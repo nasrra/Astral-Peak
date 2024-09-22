@@ -1,30 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Use Case:
+// This class is used to encapsulate all input functionality.
+// redirecting the flow of simplified inputs to listening objects.
+
 public class InputManager : MonoBehaviour{
     [SerializeField] private PlayerInput input;
+    public delegate void InputDelegate (InputAction.CallbackContext ctx);
+    public event InputDelegate jump;
+    public event InputDelegate left;
+    public event InputDelegate right;
+
     private Keybinds keybinds;
-    public void Start(){
+    void Start(){
         // enable keyboard keybinds
         keybinds = new Keybinds();
         keybinds.Keyboard.Enable();
-        keybinds.Keyboard.Jump.performed += Jump;
-        keybinds.Keyboard.Left.performed += Left;
-        keybinds.Keyboard.Right.performed += Right;
+        // bind
+        keybinds.Keyboard.Jump.performed += OnJump;
+        keybinds.Keyboard.Jump.canceled += OnJump;
+        keybinds.Keyboard.Right.performed += OnRight;
+        keybinds.Keyboard.Right.canceled += OnRight;
+        keybinds.Keyboard.Left.performed += OnLeft;
+        keybinds.Keyboard.Left.canceled += OnLeft;
     }
 
-    public void Jump(InputAction.CallbackContext ctx){
-        Debug.Log("jump");
-    }
+    void OnJump(InputAction.CallbackContext ctx) => jump?.Invoke(ctx);
+    void OnLeft(InputAction.CallbackContext ctx) => left?.Invoke(ctx);
+    void OnRight(InputAction.CallbackContext ctx) => right?.Invoke(ctx);
 
-    public void Left(InputAction.CallbackContext ctx){
-        Debug.Log("left");
-    }
-
-    public void Right(InputAction.CallbackContext ctx){
-        Debug.Log("right");
+    void OnDestroy(){
+        //unbind
+        keybinds.Keyboard.Jump.performed -= OnJump;
+        keybinds.Keyboard.Right.performed -= OnRight;
+        keybinds.Keyboard.Left.performed -= OnLeft;      
     }
 }
