@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour{
     public event InputDelegate jump;
     public event InputDelegate left;
     public event InputDelegate right;
+    public event InputDelegate interact;
 
     private Keybinds keybinds;
     void Start(){
@@ -18,22 +19,39 @@ public class InputManager : MonoBehaviour{
         keybinds = new Keybinds();
         keybinds.Keyboard.Enable();
         // bind
-        keybinds.Keyboard.Jump.performed += OnJump;
-        keybinds.Keyboard.Jump.canceled += OnJump;
-        keybinds.Keyboard.Right.performed += OnRight;
-        keybinds.Keyboard.Right.canceled += OnRight;
-        keybinds.Keyboard.Left.performed += OnLeft;
-        keybinds.Keyboard.Left.canceled += OnLeft;
+        bind_default_keyboard();
     }
 
+    void OnDestroy(){
+        //unbind    
+        unbind_default_keyboard();
+    }
+
+    #region Default Keyboard
+    private void bind_default_keyboard(){
+        keybinds.Keyboard.Jump.performed        += OnJump;
+        keybinds.Keyboard.Jump.canceled         += OnJump;
+        keybinds.Keyboard.Right.performed       += OnRight;
+        keybinds.Keyboard.Right.canceled        += OnRight;
+        keybinds.Keyboard.Left.performed        += OnLeft;
+        keybinds.Keyboard.Left.canceled         += OnLeft;
+        keybinds.Keyboard.Interact.performed    += OnInteract;
+        keybinds.Keyboard.Interact.canceled     += OnInteract;
+    }
+
+    private void unbind_default_keyboard(){
+        keybinds.Keyboard.Jump.performed        -= OnJump;
+        keybinds.Keyboard.Jump.canceled         -= OnJump;
+        keybinds.Keyboard.Right.performed       -= OnRight;
+        keybinds.Keyboard.Right.canceled        -= OnRight;
+        keybinds.Keyboard.Left.performed        -= OnLeft;
+        keybinds.Keyboard.Left.canceled         -= OnLeft;
+        keybinds.Keyboard.Interact.performed    -= OnInteract;
+        keybinds.Keyboard.Interact.canceled     -= OnInteract; 
+    }
     void OnJump(InputAction.CallbackContext ctx) => jump?.Invoke(ctx);
     void OnLeft(InputAction.CallbackContext ctx) => left?.Invoke(ctx);
     void OnRight(InputAction.CallbackContext ctx) => right?.Invoke(ctx);
-
-    void OnDestroy(){
-        //unbind
-        keybinds.Keyboard.Jump.performed -= OnJump;
-        keybinds.Keyboard.Right.performed -= OnRight;
-        keybinds.Keyboard.Left.performed -= OnLeft;      
-    }
+    void OnInteract(InputAction.CallbackContext ctx) => interact?.Invoke(ctx);
+    #endregion
 }

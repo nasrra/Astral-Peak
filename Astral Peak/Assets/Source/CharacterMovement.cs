@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class CharacterMovement : Movement{
+    [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private float jump_time = 1.0f;

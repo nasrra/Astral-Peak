@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
+    [Header("Movement")]
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;

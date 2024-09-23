@@ -1,17 +1,17 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 
 public class Player : MonoBehaviour{
     [Header("External References")]
     [SerializeField] private InputManager input;
     [Header("Internal References")]
     [SerializeField] private CharacterMovement movement;
+    [SerializeField] private Interactor interactor;
     void Start(){   
-        input.jump += jump;
-        input.left += left;
+        input.jump  += jump;
+        input.left  += left;
         input.right += right;
+        input.interact += interact;
     }
 
     void jump(InputAction.CallbackContext ctx){
@@ -27,5 +27,10 @@ public class Player : MonoBehaviour{
 
     void right(InputAction.CallbackContext ctx){
         movement.move_right(ctx.performed);
+    }
+
+    void interact(InputAction.CallbackContext ctx){
+        if(ctx.performed == true)
+            interactor.interact();
     }
 }
