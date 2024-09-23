@@ -1,14 +1,11 @@
 using UnityEngine;
 
-
-// NOTE: 
-// to make jumping feel better, try increase jump force as the counter lowers.
-
 public class CharacterMovement : Movement{
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private float jump_time = 1.0f;
     [SerializeField] private float jump_force = 10.0f;
+    [SerializeField] private float jump_force_multiplier = 0.1f;
     [SerializeField] private float jump_time_counter = 0.0f;
 
     public override void FixedUpdate(){
@@ -22,7 +19,7 @@ public class CharacterMovement : Movement{
     private void is_grounded(){
         grounded = Physics2D.OverlapAreaAll(ground_check.bounds.min, ground_check.bounds.max, ground_mask).Length > 0;
         if(grounded)
-            jump_time_counter = jump_time;
+            jump_time_counter = 0.0f;
     }
 
     // jump command
@@ -33,7 +30,7 @@ public class CharacterMovement : Movement{
 
     public void end_jump(){
         jumping = false;
-        jump_time_counter = 0.0f;
+        jump_time_counter = jump_time;
         move_direction.y = 0;
     }
 
@@ -42,9 +39,12 @@ public class CharacterMovement : Movement{
         // if we want to jump, start jumping.
         if(Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
-            if(jump_time_counter > 0.0f){
-                rb.velocity = new Vector2(rb.velocity.x, move_direction.y * jump_force);
-                jump_time_counter -= Time.deltaTime;
+            if(jump_time_counter < jump_time){
+                rb.velocity = new Vector2(
+                    rb.velocity.x, 
+                    move_direction.y * jump_force + (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
+                );
+                jump_time_counter += Time.deltaTime;
             }
             // if player is still holding jump, do it again.
             else if (jumping == true)
