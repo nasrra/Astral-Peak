@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 72615978}
   - component: {fileID: 72615979}
+  - component: {fileID: 72615980}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -169,7 +170,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -199,6 +200,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.033214808}
   m_EdgeRadius: 0
+--- !u!114 &72615980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72615977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 077d7f51c0e7bfa4688fd32b0cae1288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliding: 0
+  others: []
+  find_tag: none
 --- !u!1 &223065777
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +485,6 @@ GameObject:
   - component: {fileID: 603847086}
   - component: {fileID: 603847089}
   - component: {fileID: 603847090}
-  - component: {fileID: 603847091}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -581,7 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 932044637}
   movement: {fileID: 603847090}
-  interactor: {fileID: 603847091}
+  interactor: {fileID: 812664635}
 --- !u!114 &603847090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,10 +613,6 @@ MonoBehaviour:
   acceleration: 1
   deceleration: 0.85
   move_direction: {x: 0, y: 0}
-  ground_check: {fileID: 72615979}
-  ground_mask:
-    serializedVersion: 2
-    m_Bits: 64
   rb: {fileID: 603847086}
   grounded: 0
   jumping: 0
@@ -609,19 +620,7 @@ MonoBehaviour:
   jump_force: 6
   jump_force_multiplier: 6
   jump_time_counter: 0
---- !u!114 &603847091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603847084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bdb0610ae2c69044b4cb689aa07b6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tracker: {fileID: 812664635}
+  ground_checker: {fileID: 72615980}
 --- !u!1 &612452563
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,8 +880,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 812664633}
-  - component: {fileID: 812664635}
   - component: {fileID: 812664634}
+  - component: {fileID: 812664635}
   m_Layer: 0
   m_Name: InteractorCheck
   m_TagString: Untagged
@@ -959,9 +958,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 812664632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077d7f51c0e7bfa4688fd32b0cae1288, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bdb0610ae2c69044b4cb689aa07b6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliding: 0
   others: []
   find_tag: Interactable
 --- !u!1 &932044634

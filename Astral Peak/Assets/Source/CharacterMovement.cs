@@ -8,6 +8,7 @@ public class CharacterMovement : Movement{
     [SerializeField] private float jump_force = 10.0f;
     [SerializeField] private float jump_force_multiplier = 0.1f;
     [SerializeField] private float jump_time_counter = 0.0f;
+    [SerializeField] private Collider2DTracker ground_checker;
 
     public override void FixedUpdate(){
         is_grounded();
@@ -18,8 +19,8 @@ public class CharacterMovement : Movement{
 
     // ground check
     private void is_grounded(){
-        grounded = Physics2D.OverlapAreaAll(ground_check.bounds.min, ground_check.bounds.max, ground_mask).Length > 0;
-        if(grounded)
+        // need to change this because it checks this every frame, ontriggerenter() is an event that fires off once.
+        if(ground_checker.is_colliding())
             jump_time_counter = 0.0f;
     }
 

@@ -6,8 +6,6 @@ public class Movement : MonoBehaviour{
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
-    [SerializeField] protected BoxCollider2D ground_check;
-    [SerializeField] protected LayerMask ground_mask;
     [SerializeField] protected Rigidbody2D rb;
 
     public virtual void FixedUpdate(){
