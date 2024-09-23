@@ -1,12 +1,13 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 public class Player : MonoBehaviour{
     [Header("External References")]
     [SerializeField] private InputManager input;
     [Header("Internal References")]
-    [SerializeField] private Movement movement;
+    [SerializeField] private CharacterMovement movement;
     void Start(){   
         input.jump += jump;
         input.left += left;

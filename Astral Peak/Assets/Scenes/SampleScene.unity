@@ -468,19 +468,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 603847084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grounded: 0
-  top_speed: 10
+  top_speed: 5
   acceleration: 1
-  deceleration: 0.852
+  deceleration: 0.85
   move_direction: {x: 0, y: 0}
   ground_check: {fileID: 72615979}
   ground_mask:
     serializedVersion: 2
     m_Bits: 64
   rb: {fileID: 603847086}
+  grounded: 0
+  jumping: 0
+  jump_time: 1
+  jump_force: 10
 --- !u!1 &612452563
 GameObject:
   m_ObjectHideFlags: 0
