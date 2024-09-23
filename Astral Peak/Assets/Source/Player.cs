@@ -15,7 +15,10 @@ public class Player : MonoBehaviour{
     }
 
     void jump(InputAction.CallbackContext ctx){
-        movement.move_up(ctx.performed);
+        if(ctx.performed == true)
+            movement.jump();
+        else if(ctx.canceled == true)
+            movement.end_jump();
     }
 
     void left(InputAction.CallbackContext ctx){
