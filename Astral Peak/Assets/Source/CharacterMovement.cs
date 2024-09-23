@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CharacterMovement : Movement{
     [Header("Character Movement")]
-    [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private float jump_time = 1.0f;
     [SerializeField] private float jump_force = 10.0f;
@@ -19,7 +18,6 @@ public class CharacterMovement : Movement{
 
     // ground check
     private void is_grounded(){
-        // need to change this because it checks this every frame, ontriggerenter() is an event that fires off once.
         if(ground_checker.is_colliding())
             jump_time_counter = 0.0f;
     }
@@ -59,7 +57,7 @@ public class CharacterMovement : Movement{
 
     protected override void decelerate(){
         // decelerate when grounded and not moving.
-        if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
+        if(ground_checker.is_colliding() == true && Mathf.Abs(move_direction.x) < 0.1f)
             rb.velocity *= deceleration;        
     } 
 }
