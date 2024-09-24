@@ -1,24 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour{
+public class Player : Creature{
     public static Player player;
-    [Header("External References")]
+    [Header("Player")]
     [SerializeField] private InputManager input;
-    [Header("Internal References")]
     [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
-    [SerializeField] private Health health;
     void Start(){   
         player = this;
         input.jump  += jump;
         input.left  += left;
         input.right += right;
         input.interact += interact;
-    }
-
-    public Health get_health(){
-        return health;
     }
 
     private void jump(InputAction.CallbackContext ctx){
