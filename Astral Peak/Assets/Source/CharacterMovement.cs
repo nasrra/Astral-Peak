@@ -1,25 +1,35 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
     [Header("Character Movement")]
+    [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private float jump_time = 1.0f;
     [SerializeField] private float jump_force = 10.0f;
     [SerializeField] private float jump_force_multiplier = 0.1f;
     [SerializeField] private float jump_time_counter = 0.0f;
-    [SerializeField] private Collider2DTracker ground_checker;
+    [SerializeField] private Collider2DFeedback ground_checker;
+
+    void Start(){
+        ground_checker.trigger_enter += is_grounded;
+        ground_checker.trigger_exit += not_grounded;
+    }
 
     public override void FixedUpdate(){
-        is_grounded();
         horizontal_move();
         vertical_move();
         decelerate();        
     }
 
     // ground check
-    private void is_grounded(){
-        if(ground_checker.is_colliding())
-            jump_time_counter = 0.0f;
+    private void is_grounded(Collider2D other){
+        grounded = true;    
+        jump_time_counter = 0.0f;
+    }
+
+    private void not_grounded(Collider2D other){
+        grounded = false;
     }
 
     // jump command
@@ -57,7 +67,7 @@ public class CharacterMovement : Movement{
 
     protected override void decelerate(){
         // decelerate when grounded and not moving.
-        if(ground_checker.is_colliding() == true && Mathf.Abs(move_direction.x) < 0.1f)
+        if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
             rb.velocity *= deceleration;        
     } 
 }
