@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.

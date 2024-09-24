@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// need to swap this for the collider 2D feedback
+// this is not a good idea to keep, just have the feedback give the list of 'others' to the interactor.
+
 public class Collider2DTracker : MonoBehaviour{
     [Header("Collider 2D Tracker")]
     [SerializeField] protected bool colliding = false;
