@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour{
     public event InputDelegate left;
     public event InputDelegate right;
     public event InputDelegate interact;
+    public event InputDelegate attack;
 
     private Keybinds keybinds;
     void Start(){
@@ -37,6 +38,8 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Left.canceled         += OnLeft;
         keybinds.Keyboard.Interact.performed    += OnInteract;
         keybinds.Keyboard.Interact.canceled     += OnInteract;
+        keybinds.Keyboard.Attack.performed      += OnAttack;
+        keybinds.Keyboard.Attack.canceled       += OnAttack;
     }
 
     private void unbind_default_keyboard(){
@@ -47,11 +50,14 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Left.performed        -= OnLeft;
         keybinds.Keyboard.Left.canceled         -= OnLeft;
         keybinds.Keyboard.Interact.performed    -= OnInteract;
-        keybinds.Keyboard.Interact.canceled     -= OnInteract; 
+        keybinds.Keyboard.Interact.canceled     -= OnInteract;
+        keybinds.Keyboard.Attack.performed      -= OnAttack;
+        keybinds.Keyboard.Attack.canceled       -= OnAttack; 
     }
     void OnJump(InputAction.CallbackContext ctx) => jump?.Invoke(ctx);
     void OnLeft(InputAction.CallbackContext ctx) => left?.Invoke(ctx);
     void OnRight(InputAction.CallbackContext ctx) => right?.Invoke(ctx);
     void OnInteract(InputAction.CallbackContext ctx) => interact?.Invoke(ctx);
+    void OnAttack(InputAction.CallbackContext ctx) => attack?.Invoke(ctx);
     #endregion
 }

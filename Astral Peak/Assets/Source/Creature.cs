@@ -3,7 +3,8 @@ using UnityEngine;
 public class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
-    protected virtual void Start(){
+    [SerializeField] protected Animator animator;
+    void Start(){
         link_events();
     }
     public Health get_health(){
@@ -24,15 +25,15 @@ public class Creature : MonoBehaviour{
         Destroy(gameObject);
     }
 
-    protected virtual void OnDestroy(){
+    void OnDestroy(){
         unlink_events();
     }
 
-    protected virtual void link_events(){
+    private void link_events(){
         health.on_death += Kill;
     }
 
-    protected virtual void unlink_events(){
+    private void unlink_events(){
         health.on_death -= Kill;
     }
 }

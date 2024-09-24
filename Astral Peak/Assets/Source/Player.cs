@@ -1,7 +1,5 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore;
 
 public class Player : Creature{
     
@@ -11,12 +9,29 @@ public class Player : Creature{
     [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
 
-    protected override void Start(){   
+    void Start(){   
         player = this;
+        link_input();
+    }
+
+    void OnDestroy(){
+        unlink_input();
+    }
+
+    private void link_input(){
         input.jump  += jump;
         input.left  += left;
         input.right += right;
-        input.interact += interact;
+        input.interact += interact; 
+        input.attack += attack;       
+    }
+
+    private void unlink_input(){
+        input.jump  -= jump;
+        input.left  -= left;
+        input.right -= right;
+        input.interact -= interact;
+        input.attack -= attack;          
     }
 
     private void jump(InputAction.CallbackContext ctx){
@@ -47,5 +62,12 @@ public class Player : Creature{
     private void interact(InputAction.CallbackContext ctx){
         if(ctx.performed == true)
             interactor.interact();
+    }
+
+    private void attack(InputAction.CallbackContext ctx){
+        if(ctx.performed == true)
+            animator.SetTrigger("attack");
+        if(ctx.canceled == true)
+            animator.SetTrigger("idle");
     }
 }

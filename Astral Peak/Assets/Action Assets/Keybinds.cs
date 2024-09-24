@@ -62,6 +62,15 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a50f9ba-c98a-4011-869f-a1ecfb4a15bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8513117-2874-4ee3-afd3-13daf42381ec"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -120,6 +140,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
         m_Keyboard_Left = m_Keyboard.FindAction("Left", throwIfNotFound: true);
         m_Keyboard_Interact = m_Keyboard.FindAction("Interact", throwIfNotFound: true);
+        m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,6 +206,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Jump;
     private readonly InputAction m_Keyboard_Left;
     private readonly InputAction m_Keyboard_Interact;
+    private readonly InputAction m_Keyboard_Attack;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -193,6 +215,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Keyboard_Jump;
         public InputAction @Left => m_Wrapper.m_Keyboard_Left;
         public InputAction @Interact => m_Wrapper.m_Keyboard_Interact;
+        public InputAction @Attack => m_Wrapper.m_Keyboard_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +237,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -230,6 +256,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -253,5 +282,6 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
