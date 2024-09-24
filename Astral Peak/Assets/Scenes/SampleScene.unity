@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 223065778}
   - component: {fileID: 223065780}
   - component: {fileID: 223065781}
+  - component: {fileID: 223065782}
   m_Layer: 0
   m_Name: Door
   m_TagString: Interactable
@@ -246,16 +247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ad4a1e5a159e64896cc4c73b2558ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unityEvent:
+  base_event:
+    m_PersistentCalls:
+      m_Calls: []
+  variable_event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 223065780}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: enter
-        m_Mode: 1
+      - m_Target: {fileID: 223065782}
+        m_TargetAssemblyTypeName: HealthGiver, Assembly-CSharp
+        m_MethodName: give_health
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -335,6 +339,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5038816, y: 1.3286188}
   m_EdgeRadius: 0
+--- !u!114 &223065782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223065777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ee43e1e25c9e64eac6b29a9965a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amt: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +501,7 @@ GameObject:
   - component: {fileID: 603847087}
   - component: {fileID: 603847086}
   - component: {fileID: 603847089}
+  - component: {fileID: 603847091}
   - component: {fileID: 603847090}
   m_Layer: 0
   m_Name: Player
@@ -597,6 +615,7 @@ MonoBehaviour:
   input: {fileID: 932044637}
   movement: {fileID: 603847090}
   interactor: {fileID: 812664635}
+  health: {fileID: 603847091}
 --- !u!114 &603847090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,13 +633,26 @@ MonoBehaviour:
   deceleration: 0.85
   move_direction: {x: 0, y: 0}
   rb: {fileID: 603847086}
-  grounded: 0
   jumping: 0
   jump_time: 0.5
   jump_force: 6
   jump_force_multiplier: 6
   jump_time_counter: 0
   ground_checker: {fileID: 72615980}
+--- !u!114 &603847091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603847084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max: 3
+  current: 0
 --- !u!1 &612452563
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +996,7 @@ MonoBehaviour:
   colliding: 0
   others: []
   find_tag: Interactable
+  parent_object: {fileID: 603847084}
 --- !u!1 &932044634
 GameObject:
   m_ObjectHideFlags: 0
