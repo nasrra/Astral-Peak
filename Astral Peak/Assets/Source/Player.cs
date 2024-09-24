@@ -7,7 +7,7 @@ public class Player : Creature{
     [SerializeField] private InputManager input;
     [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
-    void Start(){   
+    protected override void Start(){   
         player = this;
         input.jump  += jump;
         input.left  += left;
