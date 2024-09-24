@@ -26,6 +26,10 @@ public class Movement : MonoBehaviour{
         move_direction += (x == true)? new Vector2(0,1) : new Vector2(0,-1);
     }
 
+    public Vector2 get_move_direction(){
+        return move_direction;
+    }
+
     protected virtual void horizontal_move(){
         if(Mathf.Abs(move_direction.x) <= 0)
             return;

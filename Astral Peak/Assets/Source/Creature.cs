@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Creature : MonoBehaviour{
@@ -10,17 +9,29 @@ public class Creature : MonoBehaviour{
     public Health get_health(){
         return health;
     }
+
+    // flip the sprite.
+    protected void flip_left(){
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+    }
+
+    protected void flip_right(){
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
     public void Kill(){
         Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
     }
+
     protected virtual void OnDestroy(){
-        Debug.Log("s");
         unlink_events();
     }
+
     protected virtual void link_events(){
         health.on_death += Kill;
     }
+
     protected virtual void unlink_events(){
         health.on_death -= Kill;
     }
