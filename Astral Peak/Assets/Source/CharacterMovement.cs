@@ -12,8 +12,11 @@ public class CharacterMovement : Movement{
     [SerializeField] private Collider2DFeedback ground_checker;
 
     void Start(){
-        ground_checker.trigger_enter += is_grounded;
-        ground_checker.trigger_exit += not_grounded;
+        link_events();
+    }
+
+    void OnDestroy(){
+        unlink_events();
     }
 
     public override void FixedUpdate(){
@@ -40,8 +43,16 @@ public class CharacterMovement : Movement{
 
     public void end_jump(){
         jumping = false;
-        jump_time_counter = jump_time;
         move_direction.y = 0;
+        // ending a jump removes the ability to jump again.
+        // Note:
+        // 'if check' is to remove a bug where jumping when grounded locks the player out of jumping.
+        // the jumptime counter would be greater than jump_time when grounded end_jump();
+        // so it should be reset to zero instead, like when grounded.
+        if(grounded == false)
+            jump_time_counter = jump_time;
+        else
+            jump_time_counter = 0.0f;
     }
 
     // override vertical move to take jumping into account.
@@ -70,4 +81,14 @@ public class CharacterMovement : Movement{
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
             rb.velocity *= deceleration;        
     } 
+
+    void link_events(){
+        ground_checker.trigger_enter += is_grounded;
+        ground_checker.trigger_exit += not_grounded;
+    }
+
+    void unlink_events(){
+        ground_checker.trigger_enter -= is_grounded;
+        ground_checker.trigger_exit -= not_grounded;
+    }
 }
