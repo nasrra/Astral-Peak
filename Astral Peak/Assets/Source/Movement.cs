@@ -14,21 +14,25 @@ public class Movement : MonoBehaviour{
         decelerate();
     }
 
-    public void move_left(bool x){
-        move_direction += (x == true)? new Vector2(-1,0) : new Vector2(1,0);
+    public void move_left(bool x)   => move_direction += (x == true)? new Vector2(-1,0) : new Vector2(1,0);
+    public void move_right(bool x)  => move_direction += (x == true)? new Vector2(1,0) : new Vector2(-1,0);
+    public void move_up(bool x)     => move_direction += (x == true)? new Vector2(0,1) : new Vector2(0,-1);
+
+    public void movement(MovementOption option, bool flag){
+        switch(option){
+            case MovementOption.UP:
+                move_up(flag);
+                break;
+            case MovementOption.LEFT:
+                move_left(flag);
+                break;
+            case MovementOption.RIGHT:
+                move_right(flag);
+                break;
+        }
     }
 
-    public void move_right(bool x){
-        move_direction += (x == true)? new Vector2(1,0) : new Vector2(-1,0);
-    }
-
-    public void move_up(bool x){
-        move_direction += (x == true)? new Vector2(0,1) : new Vector2(0,-1);
-    }
-
-    public Vector2 get_move_direction(){
-        return move_direction;
-    }
+    public Vector2 get_move_direction() => move_direction;
 
     protected virtual void horizontal_move(){
         if(Mathf.Abs(move_direction.x) <= 0)
@@ -50,4 +54,10 @@ public class Movement : MonoBehaviour{
     protected virtual void decelerate(){
         rb.velocity *= deceleration;        
     }
+}
+
+public enum MovementOption{
+    UP,   
+    LEFT, 
+    RIGHT,
 }

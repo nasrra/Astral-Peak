@@ -226,12 +226,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 390590236}
-  - component: {fileID: 390590235}
   - component: {fileID: 390590234}
   - component: {fileID: 390590233}
   - component: {fileID: 390590232}
   - component: {fileID: 390590238}
   - component: {fileID: 390590237}
+  - component: {fileID: 390590239}
+  - component: {fileID: 390590240}
   m_Layer: 7
   m_Name: turret
   m_TagString: Enemy
@@ -313,34 +314,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1321132, y: 1.0497923}
   m_EdgeRadius: 0
---- !u!114 &390590235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390590231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ad4a1e5a159e64896cc4c73b2558ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unity_event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 390590232}
-        m_TargetAssemblyTypeName: Health, Assembly-CSharp
-        m_MethodName: damage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  interactable: 1
 --- !u!4 &390590236
 Transform:
   m_ObjectHideFlags: 0
@@ -401,6 +374,40 @@ MonoBehaviour:
   fire_rate_timer: 0
   shoot_point: {fileID: 1462500877}
   projectile: {fileID: 911918212030288346, guid: f31963a032d3ead4ba3c3656bdbcc4a4, type: 3}
+--- !u!114 &390590239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390590231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0197e11ed331924a950462c5b5a8a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  paths:
+  - movement: 1
+    duration: 1
+  movement: {fileID: 390590240}
+--- !u!114 &390590240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390590231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  top_speed: 1
+  acceleration: 1
+  deceleration: 0.85
+  move_direction: {x: 0, y: 0}
+  rb: {fileID: 0}
 --- !u!4 &603847085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6013297777815326413, guid: 7886663befe01d4459ee889b7f571984, type: 3}
