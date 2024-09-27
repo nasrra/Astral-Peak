@@ -386,10 +386,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0197e11ed331924a950462c5b5a8a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path_timer: 0
+  path_index: 0
   type: 2
+  current_path:
+    movement: 0
+    duration: 0
   paths:
-  - movement: 1
+  - movement: 2
     duration: 1
+  - movement: 0
+    duration: 2
+  - movement: 3
+    duration: 1
+  - movement: 1
+    duration: 2
   movement: {fileID: 390590240}
 --- !u!114 &390590240
 MonoBehaviour:
@@ -403,11 +414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top_speed: 1
-  acceleration: 1
-  deceleration: 0.85
+  top_speed: 2
+  acceleration: 2
+  deceleration: 0.5
   move_direction: {x: 0, y: 0}
-  rb: {fileID: 0}
+  rb: {fileID: 390590237}
 --- !u!4 &603847085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6013297777815326413, guid: 7886663befe01d4459ee889b7f571984, type: 3}

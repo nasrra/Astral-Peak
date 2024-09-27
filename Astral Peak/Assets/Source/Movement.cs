@@ -15,9 +15,11 @@ public class Movement : MonoBehaviour{
     }
 
     public void move_left(bool x)   => move_direction += (x == true)? new Vector2(-1,0) : new Vector2(1,0);
-    public void move_right(bool x)  => move_direction += (x == true)? new Vector2(1,0) : new Vector2(-1,0);
-    public void move_up(bool x)     => move_direction += (x == true)? new Vector2(0,1) : new Vector2(0,-1);
+    public void move_right(bool x)  => move_direction += (x == true)? new Vector2(1,0)  : new Vector2(-1,0);
+    public void move_up(bool x)     => move_direction += (x == true)? new Vector2(0,1)  : new Vector2(0,-1);
+    public void move_down(bool x)   => move_direction += (x == true)? new Vector2(0,-1) : new Vector2(0,1);
 
+    // used for ai path finding and other state machines. 
     public void movement(MovementOption option, bool flag){
         switch(option){
             case MovementOption.UP:
@@ -28,6 +30,9 @@ public class Movement : MonoBehaviour{
                 break;
             case MovementOption.RIGHT:
                 move_right(flag);
+                break;
+            case MovementOption.DOWN:
+                move_down(flag);
                 break;
         }
     }
@@ -46,8 +51,10 @@ public class Movement : MonoBehaviour{
     }
 
     protected virtual void vertical_move(){
-        if(Mathf.Abs(move_direction.y) <= 0)
-            return;
+        //if(Mathf.Abs(move_direction.y) <= 0)
+            //return;
+            
+        // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
         rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
     }
 
@@ -58,6 +65,7 @@ public class Movement : MonoBehaviour{
 
 public enum MovementOption{
     UP,   
+    DOWN,
     LEFT, 
     RIGHT,
 }

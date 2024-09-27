@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AiPathFinder : MonoBehaviour{
+    [SerializeField] private float path_timer = 0.0f;
+    [SerializeField] private int path_index = 0;
     [SerializeField] private AiType type;
+    [SerializeField] private AiPath current_path;
     [SerializeField] private List<AiPath> paths = new List<AiPath>();
     [SerializeField] private Movement movement;
     private Coroutine coroutine;
@@ -21,11 +24,24 @@ public class AiPathFinder : MonoBehaviour{
     }
 
     IEnumerator loop(){
-        //while(true){
+        while(true){
             // start movement.
-            movement.movement(paths[0].get_movement(), true);
+            if(path_timer == 0.0f){
+                current_path = paths[path_index];
+                movement.movement(current_path.get_movement(), true);
+                path_timer = current_path.get_duration();
+            }
+            // count down duration timer.
+            else if(path_timer > 0.0f)
+                path_timer -= Time.deltaTime;
+            // stop movement.
+            else{
+                path_timer = 0.0f;
+                movement.movement(current_path.get_movement(), false);
+                path_index = ((path_index + 1) >= paths.Count)? 0 : path_index + 1;
+            }
             yield return null;
-        //}
+        }
     }
 }
 
