@@ -19,19 +19,21 @@ public class Player : Creature{
     }
 
     private void link_input(){
-        input.jump  += jump;
-        input.left  += left;
-        input.right += right;
-        input.interact += interact; 
-        input.attack += attack;       
+        input.jump      += jump;
+        input.left      += left;
+        input.right     += right;
+        input.interact  += interact; 
+        input.attack    += attack;  
+        input.parry     += parry;     
     }
 
     private void unlink_input(){
-        input.jump  -= jump;
-        input.left  -= left;
-        input.right -= right;
-        input.interact -= interact;
-        input.attack -= attack;          
+        input.jump      -= jump;
+        input.left      -= left;
+        input.right     -= right;
+        input.interact  -= interact;
+        input.attack    -= attack;  
+        input.parry     -= parry;         
     }
 
     private void jump(InputAction.CallbackContext ctx){
@@ -67,6 +69,13 @@ public class Player : Creature{
     private void attack(InputAction.CallbackContext ctx){
         if(ctx.performed == true)
             animator.SetTrigger("attack");
+        if(ctx.canceled == true)
+            animator.SetTrigger("idle");
+    }
+
+    private void parry(InputAction.CallbackContext ctx){
+        if(ctx.performed == true)
+            animator.SetTrigger("parry");
         if(ctx.canceled == true)
             animator.SetTrigger("idle");
     }

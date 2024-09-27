@@ -71,6 +71,15 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""5beea02f-826e-4c1c-be9d-94d60f91b43d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abc83662-e8df-42ef-9bf2-aebacc81ab70"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Left = m_Keyboard.FindAction("Left", throwIfNotFound: true);
         m_Keyboard_Interact = m_Keyboard.FindAction("Interact", throwIfNotFound: true);
         m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
+        m_Keyboard_Parry = m_Keyboard.FindAction("Parry", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +228,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Left;
     private readonly InputAction m_Keyboard_Interact;
     private readonly InputAction m_Keyboard_Attack;
+    private readonly InputAction m_Keyboard_Parry;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -216,6 +238,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Left => m_Wrapper.m_Keyboard_Left;
         public InputAction @Interact => m_Wrapper.m_Keyboard_Interact;
         public InputAction @Attack => m_Wrapper.m_Keyboard_Attack;
+        public InputAction @Parry => m_Wrapper.m_Keyboard_Parry;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,6 +263,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -259,6 +285,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -283,5 +312,6 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnLeft(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
     }
 }
