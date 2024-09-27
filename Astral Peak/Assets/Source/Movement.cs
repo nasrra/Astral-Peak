@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -20,7 +21,7 @@ public class Movement : MonoBehaviour{
     public void move_down(bool x)   => move_direction += (x == true)? new Vector2(0,-1) : new Vector2(0,1);
 
     // used for ai path finding and other state machines. 
-    public void movement(MovementOption option, bool flag){
+    public virtual void movement(MovementOption option, bool flag){
         switch(option){
             case MovementOption.UP:
                 move_up(flag);
@@ -34,6 +35,8 @@ public class Movement : MonoBehaviour{
             case MovementOption.DOWN:
                 move_down(flag);
                 break;
+            default:
+                throw new SystemException("("+gameObject.name+": " +option+ ") is exclusively a character movement function.");
         }
     }
 
@@ -50,17 +53,9 @@ public class Movement : MonoBehaviour{
         rb.velocity = new Vector2(newSpeed, rb.velocity.y);        
     }
 
-    protected virtual void vertical_move(){
-        //if(Mathf.Abs(move_direction.y) <= 0)
-            //return;
-            
-        // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
-        rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
-    }
-
-    protected virtual void decelerate(){
-        rb.velocity *= deceleration;        
-    }
+    // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
+    protected virtual void vertical_move() => rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
+    protected virtual void decelerate() => rb.velocity *= deceleration;
 }
 
 public enum MovementOption{
@@ -68,4 +63,6 @@ public enum MovementOption{
     DOWN,
     LEFT, 
     RIGHT,
+    START_JUMP,
+    STOP_JUMP
 }

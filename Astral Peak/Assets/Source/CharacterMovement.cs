@@ -76,6 +76,30 @@ public class CharacterMovement : Movement{
         }      
     }
 
+    // used for ai path finding and other state machines.
+    public override void movement(MovementOption option, bool flag){
+        switch(option){
+            case MovementOption.UP:
+                move_up(flag);
+                break;
+            case MovementOption.LEFT:
+                move_left(flag);
+                break;
+            case MovementOption.RIGHT:
+                move_right(flag);
+                break;
+            case MovementOption.DOWN:
+                move_down(flag);
+                break;
+            case MovementOption.START_JUMP:
+                jump();
+                break;
+            case MovementOption.STOP_JUMP:
+                end_jump();
+                break;
+        }
+    }
+
     protected override void decelerate(){
         // decelerate when grounded and not moving.
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
