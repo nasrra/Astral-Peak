@@ -1,17 +1,29 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Player : Creature{
     
+    // static fields for other classes to access.
     public static Player player;
+    public static string exit_point = "";
+
+    // data to link together.
     [Header("Player")]
     [SerializeField] private InputManager input;
     [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
 
-    void Start(){   
+    void Awake(){
         player = this;
+    }
+
+    void Start(){   
         link_input();
+        set_enter_position();
+        // snap camera to players new position.
+        CameraController.instance.snap_to_target(); 
     }
 
     void OnDestroy(){
@@ -74,5 +86,11 @@ public class Player : Creature{
     private void parry(InputAction.CallbackContext ctx){
         if(ctx.performed == true)
             animator.SetTrigger("parry");
+    }
+
+    // used to set the players initial position in the scene.
+    public void set_enter_position(){
+        if(exit_point != "")
+            transform.position = DoorManager.instance.get_position(exit_point);
     }
 }
