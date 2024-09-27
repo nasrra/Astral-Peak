@@ -7,7 +7,8 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private Transform target;
     [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
     [SerializeField] private Vector3 offset;
-    
+    [SerializeField] Camera cam;
+
     void Awake(){
         instance = this;
     }
@@ -27,4 +28,7 @@ public class CameraController : MonoBehaviour{
     public void snap_to_target(){
         transform.position = target.position + offset;
     }
+
+    public void ZoomIn()    =>     cam.orthographicSize--;
+    public void ZoomOut()   =>    cam.orthographicSize++;
 }

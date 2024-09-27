@@ -80,6 +80,24 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fb014be8-83a9-49b5-b967-ef9df69512d4"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7e937cc7-d9dd-4f85-913d-6ad8511db8eb"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +166,28 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ad431dc-2693-4bd0-993b-75c3de1e357c"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""453986bf-9194-493c-86a6-7274b8b09aa9"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -162,6 +202,8 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Interact = m_Keyboard.FindAction("Interact", throwIfNotFound: true);
         m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
         m_Keyboard_Parry = m_Keyboard.FindAction("Parry", throwIfNotFound: true);
+        m_Keyboard_ZoomOut = m_Keyboard.FindAction("ZoomOut", throwIfNotFound: true);
+        m_Keyboard_ZoomIn = m_Keyboard.FindAction("ZoomIn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +271,8 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Interact;
     private readonly InputAction m_Keyboard_Attack;
     private readonly InputAction m_Keyboard_Parry;
+    private readonly InputAction m_Keyboard_ZoomOut;
+    private readonly InputAction m_Keyboard_ZoomIn;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -239,6 +283,8 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Keyboard_Interact;
         public InputAction @Attack => m_Wrapper.m_Keyboard_Attack;
         public InputAction @Parry => m_Wrapper.m_Keyboard_Parry;
+        public InputAction @ZoomOut => m_Wrapper.m_Keyboard_ZoomOut;
+        public InputAction @ZoomIn => m_Wrapper.m_Keyboard_ZoomIn;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +312,12 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Parry.started += instance.OnParry;
             @Parry.performed += instance.OnParry;
             @Parry.canceled += instance.OnParry;
+            @ZoomOut.started += instance.OnZoomOut;
+            @ZoomOut.performed += instance.OnZoomOut;
+            @ZoomOut.canceled += instance.OnZoomOut;
+            @ZoomIn.started += instance.OnZoomIn;
+            @ZoomIn.performed += instance.OnZoomIn;
+            @ZoomIn.canceled += instance.OnZoomIn;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -288,6 +340,12 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Parry.started -= instance.OnParry;
             @Parry.performed -= instance.OnParry;
             @Parry.canceled -= instance.OnParry;
+            @ZoomOut.started -= instance.OnZoomOut;
+            @ZoomOut.performed -= instance.OnZoomOut;
+            @ZoomOut.canceled -= instance.OnZoomOut;
+            @ZoomIn.started -= instance.OnZoomIn;
+            @ZoomIn.performed -= instance.OnZoomIn;
+            @ZoomIn.canceled -= instance.OnZoomIn;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -313,5 +371,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
+        void OnZoomIn(InputAction.CallbackContext context);
     }
 }

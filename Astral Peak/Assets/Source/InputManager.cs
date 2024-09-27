@@ -41,6 +41,8 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Attack.canceled       += OnAttack;
         keybinds.Keyboard.Parry.performed       += OnParry;
         keybinds.Keyboard.Parry.canceled        += OnParry;
+        keybinds.Keyboard.ZoomOut.performed     += OnZoomOut;
+        keybinds.Keyboard.ZoomIn.performed      += OnZoomIn;
     }
 
     private void unbind_default_keyboard(){
@@ -61,5 +63,7 @@ public class InputManager : MonoBehaviour{
     void OnInteract(InputAction.CallbackContext ctx)    => interact?.Invoke(ctx);
     void OnAttack(InputAction.CallbackContext ctx)      => attack?.Invoke(ctx);
     void OnParry(InputAction.CallbackContext ctx)       => parry?.Invoke(ctx);
+    void OnZoomOut(InputAction.CallbackContext ctx)     => CameraController.instance.ZoomOut();
+    void OnZoomIn(InputAction.CallbackContext ctx)      => CameraController.instance.ZoomIn();
     #endregion
 }
