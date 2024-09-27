@@ -6,9 +6,10 @@ using UnityEngine;
 // interactivity and all that.
 
 public class Health : MonoBehaviour{
-    public event Action on_death;
-    public event Action on_heal;
-    public event Action on_damage;
+    public event Action 
+        on_death, on_heal, on_damage;
+
+    [SerializeField] private bool invulnerable = false;
     [SerializeField] private int max = 3;
     [SerializeField] private int current = 3;
 
@@ -25,5 +26,10 @@ public class Health : MonoBehaviour{
         on_damage?.Invoke();
         if(current <= 0)
             on_death?.Invoke();
+    }
+
+    public void set_invulnerable(int x){
+        //Debug.Log(gameObject.name + " is now invulnerable.");
+        invulnerable = x != 0;
     }
 }

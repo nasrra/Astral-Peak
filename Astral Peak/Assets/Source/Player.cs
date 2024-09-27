@@ -74,9 +74,13 @@ public class Player : Creature{
     }
 
     private void parry(InputAction.CallbackContext ctx){
-        if(ctx.performed == true)
+        if(ctx.performed == true){
             animator.SetTrigger("parry");
-        if(ctx.canceled == true)
+            health.set_invulnerable(1);   
+        }
+        if(ctx.canceled == true){
             animator.SetTrigger("idle");
+            health.set_invulnerable(0);
+        }
     }
 }
