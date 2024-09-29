@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour{
     public event Action end_knockback;
 
     [Header("Movement")]
-    [SerializeField] protected float knockback_timer = 0.0f;
+    [SerializeField] protected bool knockedback = false;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
@@ -51,8 +51,10 @@ public class Movement : MonoBehaviour{
     public Vector2 get_move_direction() => move_direction;
 
     protected virtual void horizontal_move(){
-        if(Mathf.Abs(move_direction.x) <= 0)
+        // if there is no input or we are currently being knocked back, return.
+        if(Mathf.Abs(move_direction.x) <= 0 || knockedback == true)
             return;
+
         // accelerate
         float increment = move_direction.x * acceleration;
         // regulate
@@ -62,24 +64,29 @@ public class Movement : MonoBehaviour{
     }
 
     // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
-    protected virtual void vertical_move() => rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
+    protected virtual void vertical_move(){
+        // if we are currently being knocked back, dont do anything.
+        if(knockedback == true)
+            return;
+        rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
+    } 
     protected virtual void decelerate(){
-        if(knockback_timer <= 0.0f)
+        if(knockedback == true)
             rb.velocity *= deceleration;
     }
 
     public void knockback(Vector3 direction, float force, float duration) => StartCoroutine(knockback_loop(direction, force, duration));
 
     IEnumerator knockback_loop(Vector3 direction, float force, float t){
-        start_knockback?.Invoke();
-
         rb.gravityScale = 0;
-        knockback_timer = t;
+        knockedback = true;
 
+        // timer to count down from.
+        float knockback_timer = t;
         // Add upward force to the knockback direction
         direction += Vector3.up * 0.55f;
         // Normalize the final knockback direction
-        // direction.Normalize();
+        direction.Normalize();
         // multiply by knock back force.
         rb.AddForce(direction * force, ForceMode2D.Impulse);
         
@@ -89,8 +96,7 @@ public class Movement : MonoBehaviour{
         }
 
         rb.gravityScale = 2;
-        
-        end_knockback?.Invoke();
+        knockedback = false;
         yield break;
     }
 }

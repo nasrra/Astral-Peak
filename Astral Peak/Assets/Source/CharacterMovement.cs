@@ -57,6 +57,10 @@ public class CharacterMovement : Movement{
 
     // override vertical move to take jumping into account.
     protected override void vertical_move(){
+        // if we are currently being knocked back, dont do anything.
+        if(knockedback == true)
+            return;
+
         // if we want to jump, start jumping.
         if(Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
