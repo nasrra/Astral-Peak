@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -92,5 +93,10 @@ public class Player : Creature{
     public void set_enter_position(){
         if(exit_point != "")
             transform.position = DoorManager.instance.get_position(exit_point);
+    }
+
+    void OnCollisionEnter2D(Collision2D other){  
+        if(other.gameObject.tag == "Enemy")
+            movement.knockback(transform.position - other.transform.position, 6, 0.25f);
     }
 }

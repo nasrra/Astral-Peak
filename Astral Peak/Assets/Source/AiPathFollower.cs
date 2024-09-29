@@ -86,6 +86,7 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
             yield return null;
         }
         set_state(AiPathFollowState.PATHING);
+        yield break;
         float dist_to_target() => (transform.position - origin.position).x;
     }
 }

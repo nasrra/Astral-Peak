@@ -11,7 +11,7 @@ using UnityEngine;
 // This idea should be followed, to mitigate any bugs and anymore time on needless ai path finding.
 
 public class Enemy : Creature{
-    public event Action<EnemyState> state_change;
+    //public event Action<EnemyState> state_change;
 
     [Header("Enemy")]
     [SerializeField] protected EnemyState state;
@@ -40,8 +40,8 @@ public class Enemy : Creature{
     }
 
     void unlink_events(){
-        combat.target_in_range -= combat_state;
         combat.target_left_range -= passive_state;
+        combat.target_in_range -= combat_state;
     }
 }
 

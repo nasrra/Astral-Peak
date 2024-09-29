@@ -1,13 +1,19 @@
 using System;
+using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
+    public event Action knockedback;
+
     [Header("Movement")]
+    [SerializeField] protected float knockback_timer = 0.0f;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
+    private Coroutine knockback_coroutine;
 
     public virtual void FixedUpdate(){
         horizontal_move();
@@ -56,7 +62,34 @@ public class Movement : MonoBehaviour{
 
     // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
     protected virtual void vertical_move() => rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
-    protected virtual void decelerate() => rb.velocity *= deceleration;
+    protected virtual void decelerate(){
+        if(knockback_timer <= 0.0f)
+            rb.velocity *= deceleration;
+    }
+
+    public void knockback(Vector3 direction, float force, float duration){
+        knockedback?.Invoke();
+        StartCoroutine(knockback_loop(direction, force, duration));
+    }
+
+    IEnumerator knockback_loop(Vector3 direction, float force, float t){
+        rb.gravityScale = 0;
+        knockback_timer = t;
+
+        // Add upward force to the knockback direction
+        direction += Vector3.up * 0.55f;
+        // Normalize the final knockback direction
+        // direction.Normalize();
+        // multiply by knock back force.
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
+        
+        while(knockback_timer >= 0.0f){
+            knockback_timer -= Time.deltaTime;
+            yield return null; 
+        }
+        rb.gravityScale = 2;
+        yield break;
+    }
 }
 
 public enum MovementOption{
