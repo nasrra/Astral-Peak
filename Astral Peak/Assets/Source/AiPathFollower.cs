@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
@@ -10,10 +7,9 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected int path_index;
     [SerializeField] protected float path_timer, dist_from_origin, return_state_threshold;
     [SerializeField] protected AiPathFollowState state;
-    [SerializeField] protected AiPath current_path;
     [SerializeField] protected List<AiPath> paths = new List<AiPath>();
     [SerializeField] protected Collider2DFeedback agro_area;
-    [SerializeField] protected Transform origin; // where the enemy is placed.
+    [SerializeField] protected Transform origin, target;
     [SerializeField] private T movement;
     protected Coroutine coroutine;
     
@@ -27,19 +23,28 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     }
 
     void link_events(){
-        agro_area.trigger_enter += player_in_range;
-        agro_area.trigger_exit += player_left_range;
+        agro_area.trigger_enter += target_in_range;
+        agro_area.trigger_exit += target_left_range;
     }
 
     void unlink_events(){
-        agro_area.trigger_enter -= player_in_range;
-        agro_area.trigger_exit -= player_left_range;
+        agro_area.trigger_enter -= target_in_range;
+        agro_area.trigger_exit -= target_left_range;
     }
 
-    void player_in_range(Collider2D c = null) => set_state(AiPathFollowState.CHASE);
-    void player_left_range(Collider2D c = null) => set_state(AiPathFollowState.PATHING); 
+    void target_in_range(Collider2D c){
+        target = c.transform;
+        set_state(AiPathFollowState.CHASE);
+    } 
+    void target_left_range(Collider2D c){
+        target = null;
+        set_state(AiPathFollowState.PATHING);
+    } 
 
     void set_state(AiPathFollowState s){
+        // reset coroutine adjusted values in preperation for the next coroutine.
+        coroutine_clean_up();
+        // set new state and execute their respective coroutine.
         state = s;
         switch(s){
             case AiPathFollowState.PATHING:
@@ -56,28 +61,32 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
         }
     }
 
+    void coroutine_clean_up(){
+        switch(state){
+            case AiPathFollowState.PATHING:
+                break;
+            case AiPathFollowState.CHASE:
+                movement.stop();
+                break;
+            case AiPathFollowState.RETREAT:
+                break;
+            default:
+                throw new System.Exception(state+": has not been implemented!");
+        }        
+    }
+
     void pathing(){
-        follow_path(true);
-    }
-
-    void chase(){
-        follow_path(false);
-    }
-
-    void retreat(){
-        follow_path(false);
-    }
-
-    public void follow_path(bool x){
-        if(paths.Count <= 0)
-            return;
-        if(x == true)
-            coroutine = StartCoroutine(loop());
-        else if(coroutine != null)
+        if(coroutine != null)
             StopCoroutine(coroutine);
+        coroutine = StartCoroutine(pathing_loop());
     }
 
-    protected IEnumerator loop(){
+    protected IEnumerator pathing_loop(){
+        // initialize
+        AiPath current_path = paths[path_index];
+        path_index = 0;
+        path_timer = 0;
+
         while(true){
             // start movement.
             if(path_timer == 0.0f){
@@ -96,6 +105,36 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
             }
             yield return null;
         }
+    }
+
+    void chase(){
+        if(coroutine != null)
+            StopCoroutine(coroutine);
+        coroutine = StartCoroutine(chase_loop());
+    }
+
+    protected IEnumerator chase_loop(){
+        while(true){
+            float curr_dist = dist_to_target();
+            Debug.Log(curr_dist);
+            // if we are not moving right, move right.
+            if(curr_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
+                movement.stop();
+                movement.move_right(true);
+            }
+            // if we are not moving left, move left.
+            if(curr_dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
+                movement.stop();
+                movement.move_left(true);
+            }
+            yield return null;
+        }
+        float dist_to_target() => (transform.position - target.position).x;
+    }
+
+    void retreat(){
+        if(coroutine != null)
+            StopCoroutine(coroutine);
     }
 
     void FixedUpdate(){

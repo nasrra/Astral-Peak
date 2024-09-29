@@ -706,8 +706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top_speed: 3
-  acceleration: 3
+  top_speed: 1
+  acceleration: 1
   deceleration: 0.85
   move_direction: {x: 0, y: 0}
   rb: {fileID: 1574278989}
@@ -781,9 +781,6 @@ MonoBehaviour:
   dist_from_origin: 0
   return_state_threshold: 0
   state: 0
-  current_path:
-    movement: 0
-    duration: 0
   paths:
   - movement: 4
     duration: 0.1
@@ -791,6 +788,7 @@ MonoBehaviour:
     duration: 0.5
   agro_area: {fileID: 1582300188}
   origin: {fileID: 0}
+  target: {fileID: 0}
   movement: {fileID: 1574278994}
 --- !u!1 &1582300185
 GameObject:
