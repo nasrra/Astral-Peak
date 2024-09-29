@@ -29,7 +29,6 @@ public class Creature : MonoBehaviour{
     }
 
     protected virtual void link_events(){
-        Debug.Log("s");
         health.on_death += kill;
     }
 

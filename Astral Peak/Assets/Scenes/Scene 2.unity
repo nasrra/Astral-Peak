@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback_timer: 0
+  knockedback: 0
   top_speed: 1
   acceleration: 1
   deceleration: 0.85
@@ -989,11 +989,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487af1cb3401cf34d93e8c1b90fd1457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveset_index: 0
+  cooldown: 0
+  target_dist: 0
   state: 0
   movement: {fileID: 1574278994}
   combat_range: {fileID: 0}
   agro_area: {fileID: 1582300188}
   target: {fileID: 0}
+  movesets:
+  - attacks:
+    - name: a
+      chance: 100
+      distance: 3
+      cooldown: 0.25
+    - name: b
+      chance: 100
+      distance: 3
+      cooldown: 0.25
+    - name: c
+      chance: 100
+      distance: 3
+      cooldown: 0.25
 --- !u!1 &1582300185
 GameObject:
   m_ObjectHideFlags: 0
