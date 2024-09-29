@@ -18,23 +18,18 @@ public class Enemy : Creature{
     [SerializeField] protected AiPathFollow path_follow;
     [SerializeField] protected AiCombat combat;
 
-    void Start(){
-        set_state(EnemyState.IDLE);
-        link_events();
-    }
+    void Start() => link_events();
 
-    void OnDestroy(){
-        unlink_events(); 
-    }
+    void OnDestroy() => unlink_events(); 
 
-    public void set_state(EnemyState s) => state_change?.Invoke(state = s);
-
-    void combat_state(){
+    public void combat_state(){
+        state = EnemyState.COMBAT;
         path_follow.set_state(AiPathFollowState.NONE);
         combat.set_state(AiCombatState.CHASE);
     }
 
-    void passive_state(){
+    public void passive_state(){
+        state = EnemyState.PASSIVE;
         path_follow.set_state(AiPathFollowState.RETREAT);
         combat.set_state(AiCombatState.NONE);
     }
@@ -51,8 +46,6 @@ public class Enemy : Creature{
 }
 
 public enum EnemyState{
-    ATTACK, // attack player state
-    CHASE,  // chase player state
-    RETURN, // return to idle state
-    IDLE,   // idle pathing state
+    PASSIVE,
+    COMBAT,
 }
