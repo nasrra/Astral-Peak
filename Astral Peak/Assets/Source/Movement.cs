@@ -4,7 +4,8 @@ using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
-    public event Action knockedback;
+    public event Action start_knockback;
+    public event Action end_knockback;
 
     [Header("Movement")]
     [SerializeField] protected float knockback_timer = 0.0f;
@@ -67,12 +68,11 @@ public class Movement : MonoBehaviour{
             rb.velocity *= deceleration;
     }
 
-    public void knockback(Vector3 direction, float force, float duration){
-        knockedback?.Invoke();
-        StartCoroutine(knockback_loop(direction, force, duration));
-    }
+    public void knockback(Vector3 direction, float force, float duration) => StartCoroutine(knockback_loop(direction, force, duration));
 
     IEnumerator knockback_loop(Vector3 direction, float force, float t){
+        start_knockback?.Invoke();
+
         rb.gravityScale = 0;
         knockback_timer = t;
 
@@ -87,7 +87,10 @@ public class Movement : MonoBehaviour{
             knockback_timer -= Time.deltaTime;
             yield return null; 
         }
+
         rb.gravityScale = 2;
+        
+        end_knockback?.Invoke();
         yield break;
     }
 }

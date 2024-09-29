@@ -1,8 +1,6 @@
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
 
 public class Player : Creature{
     
@@ -22,6 +20,7 @@ public class Player : Creature{
 
     void Start(){   
         link_input();
+        link_events();
         set_enter_position();
         // snap camera to players new position.
         CameraController.instance.snap_to_target(); 
@@ -29,6 +28,7 @@ public class Player : Creature{
 
     void OnDestroy(){
         unlink_input();
+        unlink_events();
     }
 
     private void link_input(){
@@ -47,6 +47,16 @@ public class Player : Creature{
         input.interact  -= interact;
         input.attack    -= attack;  
         input.parry     -= parry;         
+    }
+
+    private void link_events(){
+        movement.start_knockback += unlink_input;
+        movement.end_knockback += link_input;
+    }
+
+    private void unlink_events(){
+        movement.start_knockback -= unlink_input;
+        movement.end_knockback -= link_input;        
     }
 
     private void jump(InputAction.CallbackContext ctx){
