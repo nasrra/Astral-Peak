@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //NOTE:
@@ -7,55 +8,29 @@ using UnityEngine;
 // flying enemies will break. you will need to add functionality for the y-axis.
 
 public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
-    [SerializeField] protected bool right_from_origin;
     [SerializeField] protected int path_index;
     [SerializeField] protected float path_timer, dist_from_origin, return_state_threshold;
     [SerializeField] protected AiPathFollowState state;
     [SerializeField] protected List<AiPath> paths = new List<AiPath>();
-    [SerializeField] protected Collider2DFeedback agro_area;
-    [SerializeField] protected Transform origin, target;
     [SerializeField] private T movement;
+    [SerializeField] protected Transform origin;
     protected Coroutine coroutine;
     
-    void Start(){
-        link_events();
-        set_state(AiPathFollowState.PATHING);
-    } 
+    //void Start() => link_events(); 
+    void Start() => set_state(AiPathFollowState.PATHING);
+    void OnDisable() => coroutine_clean_up();
+    //void OnDestroy() => unlink_events();
 
-    void OnDestroy(){
-        unlink_events();
-    }
-
-    void link_events(){
-        agro_area.trigger_enter += target_in_range;
-        agro_area.trigger_exit += target_left_range;
-    }
-
-    void unlink_events(){
-        agro_area.trigger_enter -= target_in_range;
-        agro_area.trigger_exit -= target_left_range;
-    }
-
-    void target_in_range(Collider2D c){
-        target = c.transform;
-        set_state(AiPathFollowState.CHASE);
-    } 
-    void target_left_range(Collider2D c){
-        target = null;
-        set_state(AiPathFollowState.RETREAT);
-    } 
-
-    void set_state(AiPathFollowState s){
+    public void set_state(AiPathFollowState s){
         // reset coroutine adjusted values in preperation for the next coroutine.
         coroutine_clean_up();
         // set new state and execute their respective coroutine.
         state = s;
         switch(s){
+            case AiPathFollowState.NONE:
+                break;
             case AiPathFollowState.PATHING:
                 coroutine = StartCoroutine(pathing_loop());
-                break;
-            case AiPathFollowState.CHASE:
-                coroutine = StartCoroutine(chase_loop());
                 break;
             case AiPathFollowState.RETREAT:
                 coroutine = StartCoroutine(retreat_loop());
@@ -68,19 +43,7 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     void coroutine_clean_up(){
         if(coroutine != null)
             StopCoroutine(coroutine);
-
-        switch(state){
-            case AiPathFollowState.PATHING:
-                break;
-            case AiPathFollowState.CHASE:
-                movement.stop();
-                break;
-            case AiPathFollowState.RETREAT:
-                movement.stop();
-                break;
-            default:
-                throw new System.Exception(state+": has not been implemented!");
-        }        
+        movement.stop();      
     }
 
     protected IEnumerator pathing_loop(){
@@ -107,24 +70,6 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
             }
             yield return null;
         }
-    }
-
-    protected IEnumerator chase_loop(){
-        while(true){
-            float curr_dist = dist_to_target();
-            // if we are not moving right, move right.
-            if(curr_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
-                movement.stop();
-                movement.move_right(true);
-            }
-            // if we are not moving left, move left.
-            if(curr_dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
-                movement.stop();
-                movement.move_left(true);
-            }
-            yield return null;
-        }
-        float dist_to_target() => (transform.position - target.position).x;
     }
 
     protected IEnumerator retreat_loop(){
@@ -160,7 +105,7 @@ public struct AiPath{
 }
 
 public enum AiPathFollowState{
+    NONE,
     PATHING,
-    CHASE,
     RETREAT
 }

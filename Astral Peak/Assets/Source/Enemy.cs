@@ -1,5 +1,7 @@
 using System;
+using System.Security.Cryptography;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 
@@ -14,12 +16,38 @@ public class Enemy : Creature{
     [Header("Enemy")]
     [SerializeField] protected EnemyState state;
     [SerializeField] protected AiPathFollow path_follow;
+    [SerializeField] protected AiCombat combat;
 
-    void Start() => set_state(EnemyState.IDLE);
+    void Start(){
+        set_state(EnemyState.IDLE);
+        link_events();
+    }
+
+    void OnDestroy(){
+        unlink_events(); 
+    }
 
     public void set_state(EnemyState s) => state_change?.Invoke(state = s);
 
-    public void follow_path(bool x) => path_follow.enabled = x;
+    void combat_state(){
+        path_follow.set_state(AiPathFollowState.NONE);
+        combat.set_state(AiCombatState.CHASE);
+    }
+
+    void passive_state(){
+        path_follow.set_state(AiPathFollowState.RETREAT);
+        combat.set_state(AiCombatState.NONE);
+    }
+
+    void link_events(){
+        combat.target_in_range += combat_state;
+        combat.target_left_range += passive_state;
+    }
+
+    void unlink_events(){
+        combat.target_in_range -= combat_state;
+        combat.target_left_range -= passive_state;
+    }
 }
 
 public enum EnemyState{
