@@ -29,6 +29,6 @@ public class CameraController : MonoBehaviour{
         transform.position = target.position + offset;
     }
 
-    public void ZoomIn()    =>     cam.orthographicSize--;
+    public void ZoomIn()    =>    cam.orthographicSize--;
     public void ZoomOut()   =>    cam.orthographicSize++;
 }
