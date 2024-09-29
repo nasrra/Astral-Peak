@@ -5,6 +5,8 @@ public class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
     [SerializeField] protected Animator animator;
+    protected bool flippable = true;
+
     void Start(){
         link_events();
     }
@@ -16,13 +18,10 @@ public class Creature : MonoBehaviour{
     }
 
     // flip the sprite.
-    protected void flip_left(){
-        transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
+    protected void flip_left() => transform.rotation = flippable? Quaternion.Euler(0, 180, 0) : transform.rotation;
+    protected void flip_right() => transform.rotation = flippable? Quaternion.Euler(0, 0, 0) : transform.rotation;
 
-    protected void flip_right(){
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
+    public void can_flip(int x) => flippable = x != 0;
 
     public void kill(){
         Debug.Log(gameObject.name + " has died!");
