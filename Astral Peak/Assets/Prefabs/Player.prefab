@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8865254876112120825}
   animator: {fileID: 1416827462259707400}
+  parrying: 0
   input: {fileID: 0}
   movement: {fileID: 7249597133501691414}
   interactor: {fileID: 3372226510158270887}
@@ -328,8 +329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockedback: 0
   top_speed: 5
-  acceleration: 1
+  acceleration: 0.5
   deceleration: 0.85
   move_direction: {x: 0, y: 0}
   rb: {fileID: 5887146486120666545}

@@ -1,4 +1,6 @@
 
+using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +12,7 @@ public class Player : Creature{
 
     // data to link together.
     [Header("Player")]
+    [SerializeField] private bool parrying = false;
     [SerializeField] private InputManager input;
     [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
@@ -19,6 +22,7 @@ public class Player : Creature{
     }
 
     void Start(){   
+        //link_events();
         link_input();
         set_enter_position();
         // snap camera to players new position.
@@ -26,6 +30,7 @@ public class Player : Creature{
     }
 
     void OnDestroy(){
+        //unlink_events();
         unlink_input();
     }
 
@@ -45,6 +50,22 @@ public class Player : Creature{
         input.interact  -= interact;
         input.attack    -= attack;  
         input.parry     -= parry;         
+    }
+
+    protected override void link_events(){
+        base.link_events();
+        health.on_invulnerable += parry_check;
+    }
+
+    protected override void unlink_events(){
+        base.unlink_events();
+        health.on_invulnerable -= parry_check;
+    }
+
+
+    void OnCollisionEnter2D(Collision2D other){  
+        if(other.gameObject.tag == "Enemy")
+            handle_enemy_contact(other);
     }
 
     private void jump(InputAction.CallbackContext ctx){
@@ -87,14 +108,31 @@ public class Player : Creature{
             animator.SetTrigger("parry");
     }
 
+    private void parry_check(){
+        if(parrying == true)
+            Debug.Log("parried!");
+    }
+
     // used to set the players initial position in the scene.
     public void set_enter_position(){
         if(exit_point != "")
             transform.position = DoorManager.instance.get_position(exit_point);
     }
 
-    void OnCollisionEnter2D(Collision2D other){  
-        if(other.gameObject.tag == "Enemy")
+    public void is_parrying(int x){
+        parrying = x != 0;
+        health.set_invulnerable(x);
+    }
+
+
+    private void handle_enemy_contact(Collision2D other){
+        if(parrying == false){
+            // knockback the player.    
             movement.knockback(transform.position - other.transform.position, 10, 0.3f);
+            // damage the player.
+            health.damage(1);
+        }
+        else
+            other.gameObject.GetComponent<Movement>().knockback(other.transform.position - transform.position, 10, 0.3f);
     }
 }

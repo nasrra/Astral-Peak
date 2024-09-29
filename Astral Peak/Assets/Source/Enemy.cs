@@ -34,12 +34,14 @@ public class Enemy : Creature{
         combat.set_state(AiCombatState.NONE);
     }
 
-    void link_events(){
+    protected override void link_events(){
+        base.link_events();
         combat.target_in_range += combat_state;
         combat.target_left_range += passive_state;
     }
 
-    void unlink_events(){
+    protected override void unlink_events(){
+        base.unlink_events();
         combat.target_left_range -= passive_state;
         combat.target_in_range -= combat_state;
     }

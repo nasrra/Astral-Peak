@@ -4,9 +4,6 @@ using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
-    public event Action start_knockback;
-    public event Action end_knockback;
-
     [Header("Movement")]
     [SerializeField] protected bool knockedback = false;
     [SerializeField] protected float top_speed = 5.0f;

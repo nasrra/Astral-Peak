@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour{
     public event Action 
-        on_death, on_heal, on_damage;
+        on_death, on_heal, on_damage, on_invulnerable;
 
     [SerializeField] private bool invulnerable = false;
     [SerializeField] private int max = 3;
@@ -22,6 +22,10 @@ public class Health : MonoBehaviour{
     }
 
     public void damage(int amt){
+        if(invulnerable == true){
+            on_invulnerable?.Invoke();
+            return;
+        }
         current -= amt;
         on_damage?.Invoke();
         if(current <= 0)
