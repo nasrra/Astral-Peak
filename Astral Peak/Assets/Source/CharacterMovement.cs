@@ -38,7 +38,8 @@ public class CharacterMovement : Movement{
     // jump command
     public void jump() {
         jumping = true;
-        move_direction.y = 1;
+        if(grounded == true)
+            move_direction.y = 1;
     }
 
     public void end_jump(){
@@ -61,7 +62,7 @@ public class CharacterMovement : Movement{
         if(knockedback == true)
             return;
 
-        // if we want to jump, start jumping.
+        // if we are ggrounded and want to jump, start jumping.
         if(Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
