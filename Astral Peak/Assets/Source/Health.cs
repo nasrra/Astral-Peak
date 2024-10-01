@@ -12,6 +12,9 @@ public class Health : MonoBehaviour{
     public event Action<GameObject> 
         on_death, on_heal, on_damage, on_invulnerable;
     
+    public event Action<float>
+        on_guard_update;
+
     public event Action
         on_guard_broken, on_guard_refresh;
 
@@ -32,6 +35,7 @@ public class Health : MonoBehaviour{
             on_heal?.Invoke(other);
     }
 
+    // damage is an ambiguos function that handles damaging life values as well as guard.
     public void damage(int amt, GameObject other = null){
         if(invulnerable == true){
             on_invulnerable?.Invoke(other);
@@ -59,6 +63,7 @@ public class Health : MonoBehaviour{
                 StopCoroutine(coroutine);
             coroutine = StartCoroutine(guard_decay());
         }
+        on_guard_update?.Invoke(current_guard);
     }
 
     private IEnumerator guard_decay(){
@@ -69,9 +74,11 @@ public class Health : MonoBehaviour{
         }
         while(current_guard > 0.0f){
             current_guard -= Time.deltaTime * guard_decay_rate;
+            on_guard_update?.Invoke(current_guard);
             yield return null;
         }
         current_guard = 0.0f;
+        on_guard_update?.Invoke(current_guard);
         yield break;
     }
 
@@ -101,4 +108,6 @@ public class Health : MonoBehaviour{
     }
 
     public void set_invulnerable(int x) => invulnerable = x != 0;
+    public float get_max_guard() => max_guard;
+    public float get_current_guard() => current_guard; 
 }
