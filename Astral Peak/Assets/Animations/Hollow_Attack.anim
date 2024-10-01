@@ -695,13 +695,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: is_attacking
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
   - time: 0.083333336
     functionName: enable_hurt_box
     data: 
@@ -717,7 +710,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.41666666
-    functionName: is_attacking
+    functionName: attack_complete
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

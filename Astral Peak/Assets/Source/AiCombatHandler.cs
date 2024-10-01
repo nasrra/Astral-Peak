@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public event Action target_in_range, target_left_range;
-    [SerializeField] protected bool attacking = false;
     [SerializeField] protected int moveset_index;
     [SerializeField] protected float cooldown, target_dist;
     [SerializeField] protected AiCombatState state;
@@ -23,7 +22,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
 
     private void link_events(){
         agro_area.trigger_enter += on_target_enter;
-        agro_area.trigger_exit += on_target_exit;        
+        agro_area.trigger_exit += on_target_exit; 
     }
 
     private void unlink_events(){
@@ -42,29 +41,22 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
             case AiCombatState.CHASE:
                 coroutine = StartCoroutine(chase_loop());
                 break;
+            case AiCombatState.ATTACK:
+                break;
             default:
                 throw new System.Exception(s+": has not been implemented!");
         }
     }
 
-    private void coroutine_clean_up(){
+    private void coroutine_clean_up(){ 
         if(coroutine != null)
-            StopCoroutine(coroutine);
-        movement.stop();      
+            StopCoroutine(coroutine); 
+        movement.stop();    
     }
 
     protected IEnumerator chase_loop(){
         while(true){
             target_dist = dist_to_target();
-            
-            // lower the attack cooldown.
-            cooldown -= Time.deltaTime;
-            // attempt an attack.
-            attack();
-            
-            // dont chase if we are attacking.
-            if(attacking == true)
-                yield return null; 
 
             // if we are not moving right, move right.
             if(target_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
@@ -77,9 +69,46 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
                 movement.move_left(true);
             }
 
+            // attempt an attack.
+            // keep this at the end of the co routine so the ai can stop moving.
+            attack();
             yield return null;
         }
         float dist_to_target() => (transform.position - target.position).x;
+    }
+
+    // Note: need to make the chance of the attack applicable 
+    // add to the algorithm so that some attacks are more frequently picked
+    // depending upon their chance percentage.
+    void attack(){
+
+        // lower the attack cooldown.
+        cooldown -= Time.deltaTime;
+
+        // regulate, in the case that there is no available attacks on the previous frame.
+        if(cooldown <= 0.0f)
+            cooldown = 0.0f;
+
+        // if we have not yet recovered from a previous attack, do not attack again.
+        if(cooldown > 0.1f)
+            return;
+        
+        List<AiCombatAttack> available_attacks = new List<AiCombatAttack>();
+        // loop through the current move set.
+        foreach(AiCombatAttack attack in movesets[moveset_index].attacks)
+            if(Mathf.Abs(target_dist) <= attack.distance)
+                available_attacks.Add(attack);
+
+        // NOTE: if only one attack is available: choose it and skip the bottom code.
+        if(available_attacks.Count <= 0)
+            return;
+
+        // choose and execute attack.
+        set_state(AiCombatState.ATTACK);
+        int index = UnityEngine.Random.Range(0, available_attacks.Count);
+        AiCombatAttack chosen = available_attacks[index]; 
+        animator.SetTrigger(chosen.name);
+        cooldown = chosen.cooldown;
     }
 
     void on_target_enter(Collider2D c){
@@ -93,44 +122,8 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         set_state(AiCombatState.NONE);
     } 
 
-    // Note: need to make the chance of the attack applicable 
-    // add to the algorithm so that some attacks are more frequently picked
-    // depending upon their chance percentage.
-    void attack(){
-
-        // regulate, in the case that there is no available attacks on the previous frame.
-        if(cooldown <= 0.0f)
-            cooldown = 0.0f;
-
-        // if we have not yet recovered from a previous attack, do not attack again.
-        if(cooldown > 0.1f)
-            return;
-        
-        // list of available attacks to choose from.
-        List<AiCombatAttack> available_attacks = new List<AiCombatAttack>();
-        
-        // loop through the current move set.
-        foreach(AiCombatAttack attack in movesets[moveset_index].attacks)
-            if(Mathf.Abs(target_dist) <= attack.distance)
-                available_attacks.Add(attack);
-
-        // if only one attack is available: choose it and skip the bottom code.
-
-        if(available_attacks.Count <= 0)
-            return;
-
-        // choose an attack.
-        int index = UnityEngine.Random.Range(0, available_attacks.Count);
-    
-        // execute that attack.
-        AiCombatAttack chosen = available_attacks[index]; 
-        movement.stop();
-        animator.SetTrigger(chosen.name);
-        cooldown = chosen.cooldown;
-    }
-
     // this function is used for animation key events.
-    public void is_attacking(int x) => attacking = x != 0;
+    void attack_complete() => set_state((target!= null)? AiCombatState.CHASE : AiCombatState.NONE);   
 }
 
 [System.Serializable]
