@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -11,6 +10,8 @@ public class Movement : MonoBehaviour{
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
+    
+    public event Action<Vector2> move_direction_changed;
     private Coroutine knockback_coroutine;
 
     public virtual void FixedUpdate(){
@@ -19,11 +20,16 @@ public class Movement : MonoBehaviour{
         decelerate();
     }
 
-    public void move_left(bool x)   => move_direction += (x == true)? new Vector2(-1,0) : new Vector2(1,0);
-    public void move_right(bool x)  => move_direction += (x == true)? new Vector2(1,0)  : new Vector2(-1,0);
-    public void move_up(bool x)     => move_direction += (x == true)? new Vector2(0,1)  : new Vector2(0,-1);
-    public void move_down(bool x)   => move_direction += (x == true)? new Vector2(0,-1) : new Vector2(0,1);
-    public void stop()              => move_direction = new Vector2(0,0);
+    // update movement direction and fire an event to notify listeners that we have changed.
+    private void update_move_direction(Vector2 direction){
+        move_direction += direction;
+        move_direction_changed?.Invoke(move_direction);
+    }
+    public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
+    public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
+    public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
+    public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));
+    public void stop()              => update_move_direction(new Vector2(0,0));
 
     // used for ai path finding and other state machines. 
     public virtual void movement(MovementOption option, bool flag){

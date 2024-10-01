@@ -1,6 +1,5 @@
 
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,7 +20,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void Start(){   
-        //link_events();
+        link_events();
         link_input();
         set_enter_position();
         // snap camera to players new position.
@@ -29,7 +28,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void OnDestroy(){
-        //unlink_events();
+        unlink_events();
         unlink_input();
     }
 
@@ -51,17 +50,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.parry     -= parry;         
     }
 
-    protected override void link_events(){
-        base.link_events();
-        health.on_invulnerable += parry_check;
-    }
-
-    protected override void unlink_events(){
-        base.unlink_events();
-        health.on_invulnerable -= parry_check;
-    }
-
-
     void OnCollisionEnter2D(Collision2D other){  
         if(other.gameObject.tag == "Enemy")
             handle_enemy_contact(other);
@@ -74,23 +62,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
             movement.end_jump();
     }
 
-    private void left(InputAction.CallbackContext ctx){
-        movement.move_left(ctx.performed);
-        face_move_dir();
-    }
-
-    private void right(InputAction.CallbackContext ctx){
-        movement.move_right(ctx.performed);
-        face_move_dir();
-    }
-
-    // flip the player in relation to where they are moving towards.
-    private void face_move_dir(){
-        if(movement.get_move_direction().x < 0)
-            flip_left();
-        if(movement.get_move_direction().x > 0)
-            flip_right();
-    }
+    private void left(InputAction.CallbackContext ctx) => movement.move_left(ctx.performed);
+    private void right(InputAction.CallbackContext ctx) => movement.move_right(ctx.performed);
 
     private void interact(InputAction.CallbackContext ctx){
         if(ctx.performed == true)
