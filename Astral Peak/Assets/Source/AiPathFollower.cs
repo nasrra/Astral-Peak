@@ -16,10 +16,7 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected Transform origin;
     protected Coroutine coroutine;
     
-    //void Start() => link_events(); 
     void Start() => set_state(AiPathFollowState.PATHING);
-    void OnDisable() => coroutine_clean_up();
-    //void OnDestroy() => unlink_events();
 
     public void set_state(AiPathFollowState s){
         // reset coroutine adjusted values in preperation for the next coroutine.
