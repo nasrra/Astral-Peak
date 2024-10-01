@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.
@@ -6,34 +7,96 @@ using UnityEngine;
 // interactivity and all that.
 
 public class Health : MonoBehaviour{
+    private Coroutine coroutine;
+
     public event Action<GameObject> 
         on_death, on_heal, on_damage, on_invulnerable;
+    
+    public event Action
+        on_guard_broken, on_guard_refresh;
 
-    [SerializeField] private bool invulnerable = false;
-    [SerializeField] private int max = 3;
-    [SerializeField] private int current = 3;
+    [SerializeField] private bool
+        invulnerable, guard_broken;
+    [SerializeField] private int
+        max_life, current_life;
+    [SerializeField] private float 
+        max_guard, current_guard, 
+        guard_decay_rate, guard_decay_buffer,
+        guard_break_timer;
 
     public void heal(int amt, GameObject other = null){
-        current += amt;
-        if(current > max)
-            current = max;
+        current_life += amt;
+        if(current_life > max_life)
+            current_life = max_life;
         else
             on_heal?.Invoke(other);
     }
 
     public void damage(int amt, GameObject other = null){
+        damage_guard(amt);
         if(invulnerable == true){
             on_invulnerable?.Invoke(other);
             return;
         }
-        current -= amt;
+    }
+
+    private void damage_life(int amt, GameObject other){
+        current_life -= amt;
+        current_life += amt;
         on_damage?.Invoke(other);
-        if(current <= 0)
+        if(current_life <= 0)
             on_death?.Invoke(other);
     }
 
-    public void set_invulnerable(int x){
-        //Debug.Log(gameObject.name + " is now invulnerable.");
-        invulnerable = x != 0;
+    private void damage_guard(float amount){
+        current_guard += amount;
+        if(current_guard >= max_guard)
+            break_guard();
+        else{
+            if(coroutine != null)
+                StopCoroutine(coroutine);
+            coroutine = StartCoroutine(guard_decay());
+        }
     }
+
+    private IEnumerator guard_decay(){
+        float buffer_timer = guard_decay_buffer;
+        while(buffer_timer >= 0.0f){
+            buffer_timer -= Time.deltaTime;
+            yield return null;
+        }
+        while(current_guard > 0.0f){
+            current_guard -= Time.deltaTime * guard_decay_rate;
+            yield return null;
+        }
+        current_guard = 0.0f;
+        yield break;
+    }
+
+    public void break_guard(){
+        current_guard = max_guard;
+        if(coroutine != null)
+            StopCoroutine(coroutine);
+        coroutine = StartCoroutine(break_decay());  
+        on_guard_broken?.Invoke();
+    }
+
+    public void refresh_guard(){
+        current_guard = 0.0f;
+        on_guard_refresh?.Invoke();
+    }
+
+    private IEnumerator break_decay(){ 
+        guard_broken = true;
+        float timer = guard_break_timer;
+        while(timer >= 0.0f){
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        guard_broken = false;
+        refresh_guard();
+        yield break;
+    }
+
+    public void set_invulnerable(int x) => invulnerable = x != 0;
 }
