@@ -33,16 +33,18 @@ public class Health : MonoBehaviour{
     }
 
     public void damage(int amt, GameObject other = null){
-        damage_guard(amt);
         if(invulnerable == true){
             on_invulnerable?.Invoke(other);
             return;
         }
+        else if(guard_broken == true)
+            damage_life(amt, other);
+        else
+            damage_guard(amt);
     }
 
     private void damage_life(int amt, GameObject other){
         current_life -= amt;
-        current_life += amt;
         on_damage?.Invoke(other);
         if(current_life <= 0)
             on_death?.Invoke(other);

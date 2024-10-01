@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public event Action target_in_range, target_left_range;
@@ -15,43 +17,50 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected Animator animator;
     Coroutine coroutine;
 
-    void Start() => link_events(); 
-    void OnEnable() => set_state(AiCombatState.NONE);
-    void OnDisable() => coroutine_clean_up();
-    void OnDestroy() => unlink_events();
+    void Start(){
+        link_external();
+        link_internal(); 
+    } 
+    void OnDestroy(){
+        unlink_external();
+        unlink_internal(); 
+    }
 
-    public void link_events(){
+    public void link_external(){
         agro_area.trigger_enter += on_target_enter;
         agro_area.trigger_exit += on_target_exit; 
     }
 
-    public void unlink_events(){
+    public void link_internal(){
+        target_in_range += chase_state;
+        target_left_range += none_state;
+    }
+
+    public void unlink_external(){
         agro_area.trigger_enter -= on_target_enter;
         agro_area.trigger_exit -= on_target_exit;
     }
 
-    public void set_state(AiCombatState s){
-        // reset coroutine adjusted values in preperation for the next coroutine.
-        coroutine_clean_up();
-        // set new state and execute their respective coroutine.
-        state = s;
-        switch(s){
-            case AiCombatState.NONE:
-                break;
-            case AiCombatState.CHASE:
-                coroutine = StartCoroutine(chase_loop());
-                break;
-            case AiCombatState.ATTACK:
-                break;
-            default:
-                throw new System.Exception(s+": has not been implemented!");
-        }
+    public void unlink_internal(){
+        target_in_range -= chase_state;
+        target_left_range -= none_state;
     }
 
     private void coroutine_clean_up(){ 
         if(coroutine != null)
             StopCoroutine(coroutine); 
         movement.stop();    
+    }
+
+    public void none_state(){
+        coroutine_clean_up();
+        state = AiCombatState.NONE;
+    }
+
+    public void chase_state(){
+        coroutine_clean_up();
+        state = AiCombatState.CHASE;
+        coroutine = StartCoroutine(chase_loop());
     }
 
     protected IEnumerator chase_loop(){
@@ -104,7 +113,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
             return;
 
         // choose and execute attack.
-        set_state(AiCombatState.ATTACK);
+        state = AiCombatState.ATTACK;
         int index = UnityEngine.Random.Range(0, available_attacks.Count);
         AiCombatAttack chosen = available_attacks[index]; 
         animator.SetTrigger(chosen.name);
@@ -113,17 +122,20 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
 
     void on_target_enter(Collider2D c){
         target = c.transform;
-        target_in_range?.Invoke();
-        set_state(AiCombatState.CHASE);        
+        target_in_range?.Invoke();      
     }
     void on_target_exit(Collider2D c){
         target = null;
         target_left_range?.Invoke();
-        set_state(AiCombatState.NONE);
     } 
 
     // this function is used for animation key events.
-    void attack_complete() => set_state((target!= null)? AiCombatState.CHASE : AiCombatState.NONE);   
+    void attack_complete(){
+        if(target!= null) 
+            chase_state();
+        else
+            none_state();
+    }   
 }
 
 [System.Serializable]

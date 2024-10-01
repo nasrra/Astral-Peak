@@ -26,34 +26,45 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     public void combat_state(){
         state = EnemyState.COMBAT;
         path_follow.set_state(AiPathFollowState.NONE);
-        combat.set_state(AiCombatState.CHASE);
+        combat.chase_state();
     }
 
     public void passive_state(){
         state = EnemyState.PASSIVE;
         path_follow.set_state(AiPathFollowState.RETREAT);
-        combat.set_state(AiCombatState.NONE);
+        combat.none_state();
     }
 
     public void stun_state(){
         state = EnemyState.STUN;
-        combat.unlink_events(); // to prevent the ai from chasing once stunned.
+        // to prevent the ai from chasing once stunned.
+        combat.unlink_internal();
         path_follow.set_state(AiPathFollowState.NONE);
-        combat.set_state(AiCombatState.NONE);
+        combat.none_state();
     }
+
+    // add a recovery state later...
 
     protected override void link_events(){
         base.link_events();
-        combat.target_in_range += combat_state;
-        combat.target_left_range += passive_state;
+        link_combat();
         health.on_guard_broken += stun_state;
     }
 
     protected override void unlink_events(){
         base.unlink_events();
-        combat.target_left_range -= passive_state;
-        combat.target_in_range -= combat_state; 
+        unlink_combat();
         health.on_guard_broken -= stun_state;
+    }
+
+    private void link_combat(){
+        combat.target_in_range += combat_state;
+        combat.target_left_range += passive_state;       
+    }
+
+    private void unlink_combat(){
+        combat.target_left_range -= passive_state;
+        combat.target_in_range -= combat_state;        
     }
 }
 
