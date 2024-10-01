@@ -39,6 +39,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         state = EnemyState.STUN;
         // to prevent the ai from chasing once stunned.
         combat.unlink_internal();
+        unlink_combat();
         path_follow.set_state(AiPathFollowState.NONE);
         combat.none_state();
     }

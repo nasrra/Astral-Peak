@@ -104,6 +104,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     private void handle_parry(GameObject other){
         other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 10, 0.3f);
+        other.GetComponent<Health>().damage(1);
     }
 
     private void handle_enemy_contact(Collision2D other){
