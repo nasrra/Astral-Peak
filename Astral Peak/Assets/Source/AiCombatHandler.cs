@@ -5,6 +5,7 @@ using UnityEngine;
 
 public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public event Action target_in_range, target_left_range;
+    [SerializeField] protected bool attacking = false;
     [SerializeField] protected int moveset_index;
     [SerializeField] protected float cooldown, target_dist;
     [SerializeField] protected AiCombatState state;
@@ -12,6 +13,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected Collider2DFeedback combat_range, agro_area;
     [SerializeField] protected Transform target;
     [SerializeField] protected List<AiCombatMoveset> movesets = new List<AiCombatMoveset>();
+    [SerializeField] protected Animator animator;
     Coroutine coroutine;
 
     void Start() => link_events(); 
@@ -54,6 +56,16 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     protected IEnumerator chase_loop(){
         while(true){
             target_dist = dist_to_target();
+            
+            // lower the attack cooldown.
+            cooldown -= Time.deltaTime;
+            // attempt an attack.
+            attack();
+            
+            // dont chase if we are attacking.
+            if(attacking == true)
+                yield return null; 
+
             // if we are not moving right, move right.
             if(target_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
                 movement.stop();
@@ -64,11 +76,6 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
                 movement.stop();
                 movement.move_left(true);
             }
-
-            // lower the attack cooldown.
-            cooldown -= Time.deltaTime;
-            // attempt an attack.
-            attack();
 
             yield return null;
         }
@@ -117,9 +124,13 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     
         // execute that attack.
         AiCombatAttack chosen = available_attacks[index]; 
-        Debug.Log(chosen.name);
+        movement.stop();
+        animator.SetTrigger(chosen.name);
         cooldown = chosen.cooldown;
     }
+
+    // this function is used for animation key events.
+    public void is_attacking(int x) => attacking = x != 0;
 }
 
 [System.Serializable]
@@ -139,6 +150,7 @@ public struct AiCombatAttack{
     public float cooldown;
 }
 
+[System.Serializable]
 public enum AiCombatState{
     NONE,
     CHASE,
