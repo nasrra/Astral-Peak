@@ -20,12 +20,12 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     void OnDisable() => coroutine_clean_up();
     void OnDestroy() => unlink_events();
 
-    private void link_events(){
+    public void link_events(){
         agro_area.trigger_enter += on_target_enter;
         agro_area.trigger_exit += on_target_exit; 
     }
 
-    private void unlink_events(){
+    public void unlink_events(){
         agro_area.trigger_enter -= on_target_enter;
         agro_area.trigger_exit -= on_target_exit;
     }
