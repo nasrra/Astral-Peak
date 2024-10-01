@@ -10,7 +10,7 @@ using UnityEngine;
 // It's not really noticeable as when they hit the wall they immediately run back at the player.
 // This idea should be followed, to mitigate any bugs and anymore time on needless ai path finding.
 
-public class Enemy : Creature{
+public class Enemy : CreatureInheritor<CharacterMovement>{
     //public event Action<EnemyState> state_change;
 
     [Header("Enemy")]

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MeleeHolster : MonoBehaviour{
     [SerializeField] private int damage = 1;
+    [SerializeField] private float knockback_force, knockback_duration;
     [SerializeField] private Collider2D hurt_box;
     [SerializeField] private Collider2DFeedback feedback;
     void Start(){
@@ -14,16 +15,18 @@ public class MeleeHolster : MonoBehaviour{
         damage = amt;
     }
 
-    public void enemy_hit(Collider2D other){
+    public void hit(Collider2D other){
         Debug.Log(other.gameObject.name + " hit with melee!");
-        other.GetComponent<Creature>().get_health().damage(damage); // deal damage.
+        Creature creature = other.GetComponent<Creature>();
+        creature.get_health().damage(damage); // deal damage.
+        creature.get_movement().knockback(other.transform.position - transform.position, knockback_force, knockback_duration);
     }
 
     public void link_events(){
-        feedback.trigger_enter += enemy_hit;
+        feedback.trigger_enter += hit;
     }
 
     public void unlink_events(){
-        feedback.trigger_enter -= enemy_hit;
+        feedback.trigger_enter -= hit;
     }
 }

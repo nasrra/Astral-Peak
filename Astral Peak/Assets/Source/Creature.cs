@@ -1,7 +1,7 @@
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class Creature : MonoBehaviour{
+public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
     [SerializeField] protected Animator animator;
@@ -10,9 +10,9 @@ public class Creature : MonoBehaviour{
     void Start(){
         link_events();
     }
-    public Health get_health(){
-        return health;
-    }
+    public Health get_health() => health;
+    public abstract Movement get_movement();
+
     void OnDestroy(){
         unlink_events();
     }
@@ -35,4 +35,9 @@ public class Creature : MonoBehaviour{
     protected virtual void unlink_events(){
         health.on_death -= kill;
     }
+}
+
+public abstract class CreatureInheritor<T> : Creature where T : Movement{
+    [SerializeField] protected T movement;
+    public override Movement get_movement() => movement;
 }

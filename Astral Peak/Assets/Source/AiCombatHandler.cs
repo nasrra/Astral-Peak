@@ -103,10 +103,11 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         List<AiCombatAttack> available_attacks = new List<AiCombatAttack>();
         
         // loop through the current move set.
-        foreach(AiCombatAttack attack in movesets[moveset_index].attacks){
+        foreach(AiCombatAttack attack in movesets[moveset_index].attacks)
             if(Mathf.Abs(target_dist) <= attack.distance)
                 available_attacks.Add(attack);
-        }
+
+        // if only one attack is available: choose it and skip the bottom code.
 
         if(available_attacks.Count <= 0)
             return;
@@ -131,7 +132,7 @@ public struct AiCombatAttack{
     // the name of the trigger in the animation tree to play.
     public string name;
     // chance of that attack occuring.
-    public float chance;
+    // public float chance;
     // distance from player that the attack would be considered.
     public float distance;
     // the cooldown for a next attack to be thrown after this one.

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Creature{
+public class Player : CreatureInheritor<CharacterMovement>{
     
     // static fields for other classes to access.
     public static Player player;
@@ -14,7 +14,6 @@ public class Player : Creature{
     [Header("Player")]
     [SerializeField] private bool parrying = false;
     [SerializeField] private InputManager input;
-    [SerializeField] private CharacterMovement movement;
     [SerializeField] private Interactor interactor;
 
     void Awake(){

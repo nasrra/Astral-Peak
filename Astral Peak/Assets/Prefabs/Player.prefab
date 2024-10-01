@@ -313,9 +313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8865254876112120825}
   animator: {fileID: 1416827462259707400}
+  movement: {fileID: 7249597133501691414}
   parrying: 0
   input: {fileID: 0}
-  movement: {fileID: 7249597133501691414}
   interactor: {fileID: 3372226510158270887}
 --- !u!114 &7249597133501691414
 MonoBehaviour:
@@ -370,6 +370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  knockback_force: 10
+  knockback_duration: 0.25
   hurt_box: {fileID: 298236485352545641}
   feedback: {fileID: 7504387401921736575}
 --- !u!114 &3372226510158270887

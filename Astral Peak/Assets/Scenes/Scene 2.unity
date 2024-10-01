@@ -655,6 +655,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5487022240107012211, guid: 7886663befe01d4459ee889b7f571984, type: 3}
+      propertyPath: knockback_force
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487022240107012211, guid: 7886663befe01d4459ee889b7f571984, type: 3}
+      propertyPath: knockback_duration
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5908489452167413090, guid: 7886663befe01d4459ee889b7f571984, type: 3}
       propertyPath: input
       value: 
@@ -798,6 +806,7 @@ GameObject:
   - component: {fileID: 1574278998}
   - component: {fileID: 1574278989}
   - component: {fileID: 1574278995}
+  - component: {fileID: 1574278999}
   m_Layer: 0
   m_Name: Hollow
   m_TagString: Enemy
@@ -865,6 +874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1574278992}
   animator: {fileID: 0}
+  movement: {fileID: 1574278994}
   state: 0
   path_follow: {fileID: 1574278997}
   combat: {fileID: 1574278998}
@@ -1000,17 +1010,31 @@ MonoBehaviour:
   movesets:
   - attacks:
     - name: a
-      chance: 100
       distance: 3
       cooldown: 0.25
     - name: b
-      chance: 100
       distance: 3
       cooldown: 0.25
     - name: c
-      chance: 100
       distance: 3
       cooldown: 0.25
+--- !u!114 &1574278999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574278987}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d843c462bdfa8640a98d969499efe03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  knockback_force: 0
+  knockback_duration: 0
+  hurt_box: {fileID: 0}
+  feedback: {fileID: 0}
 --- !u!1 &1582300185
 GameObject:
   m_ObjectHideFlags: 0
