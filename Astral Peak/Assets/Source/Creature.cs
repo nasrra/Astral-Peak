@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -46,13 +47,15 @@ public abstract class Creature : MonoBehaviour{
         Destroy(gameObject);
     }
 
+    private void on_death(GameObject other) => kill();
+
     protected virtual void link_events(){
-        health.on_death += kill;
+        health.on_death += on_death;
         get_movement().move_direction_changed += face_move_dir;
     }
 
     protected virtual void unlink_events(){
-        health.on_death -= kill;
+        health.on_death -= on_death;
         get_movement().move_direction_changed -= face_move_dir;
     }
 }

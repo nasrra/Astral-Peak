@@ -18,7 +18,7 @@ public class MeleeHolster : MonoBehaviour{
     public void hit(Collider2D other){
         Debug.Log(other.gameObject.name + " hit with melee!");
         Creature creature = other.GetComponent<Creature>();
-        creature.get_health().damage(damage); // deal damage.
+        creature.get_health().damage(damage, gameObject); // deal damage.
         creature.get_movement().knockback(other.transform.position - transform.position, knockback_force, knockback_duration);
     }
 
