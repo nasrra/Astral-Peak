@@ -49,7 +49,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         unlink_combat();
 
         // interupt attack animation.
-        animator.SetTrigger("idle");
+        animator.SetTrigger("parried");
     }
 
     public void stun_state(){
@@ -75,10 +75,23 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         // re-link combat to resume attacks.
         link_combat();
         combat.link_internal();
+        recovery_state();
         yield break;
     }
 
     // add a recovery state later...
+    public void recovery_state(){
+        state_switch_clean_up();
+        combat.recovery_state();
+        
+        // check if we are able to continue attacking.
+        AiCombatState state = combat.get_state();
+
+        // if not then retreat back to path follow loop.
+        if(state == AiCombatState.NONE)
+            path_follow.set_state(AiPathFollowState.RETREAT);
+    }
+
 #endregion
 #region Events
     private void attack_failed(Collider2D other){

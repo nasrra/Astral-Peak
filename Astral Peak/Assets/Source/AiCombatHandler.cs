@@ -26,26 +26,9 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         unlink_internal(); 
     }
 
-    public void link_external(){
-        agro_area.trigger_enter += on_target_enter;
-        agro_area.trigger_exit += on_target_exit; 
-    }
+    public AiCombatState get_state() => state;
 
-    public void link_internal(){
-        target_in_range += chase_state;
-        target_left_range += none_state;
-    }
-
-    public void unlink_external(){
-        agro_area.trigger_enter -= on_target_enter;
-        agro_area.trigger_exit -= on_target_exit;
-    }
-
-    public void unlink_internal(){
-        target_in_range -= chase_state;
-        target_left_range -= none_state;
-    }
-
+#region States
     private void coroutine_clean_up(){ 
         if(coroutine != null)
             StopCoroutine(coroutine); 
@@ -121,6 +104,16 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         cooldown = chosen.cooldown;
     }
 
+    // used for when a state has finished
+    // and the next state is uncertain.
+    public void recovery_state(){
+        if(target!= null) 
+            chase_state();
+        else
+            none_state();
+    }
+#endregion
+#region Linkage
     void on_target_enter(Collider2D c){
         target = c.transform;
         target_in_range?.Invoke();      
@@ -130,13 +123,26 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         target_left_range?.Invoke();
     } 
 
-    // this function is used for animation key events.
-    void attack_complete(){
-        if(target!= null) 
-            chase_state();
-        else
-            none_state();
-    }   
+    public void link_external(){
+        agro_area.trigger_enter += on_target_enter;
+        agro_area.trigger_exit += on_target_exit; 
+    }
+
+    public void link_internal(){
+        target_in_range += chase_state;
+        target_left_range += none_state;
+    }
+
+    public void unlink_external(){
+        agro_area.trigger_enter -= on_target_enter;
+        agro_area.trigger_exit -= on_target_exit;
+    }
+
+    public void unlink_internal(){
+        target_in_range -= chase_state;
+        target_left_range -= none_state;
+    }
+#endregion
 }
 
 [System.Serializable]
