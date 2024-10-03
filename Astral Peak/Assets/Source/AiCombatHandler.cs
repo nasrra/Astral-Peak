@@ -113,6 +113,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
             return;
 
         // choose and execute attack.
+        coroutine_clean_up();
         state = AiCombatState.ATTACK;
         int index = UnityEngine.Random.Range(0, available_attacks.Count);
         AiCombatAttack chosen = available_attacks[index]; 

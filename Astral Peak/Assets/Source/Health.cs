@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.
@@ -9,8 +10,8 @@ using UnityEngine;
 public class Health : MonoBehaviour{
     private Coroutine coroutine;
 
-    public event Action<GameObject> 
-        on_death, on_heal, on_damage, on_invulnerable;
+    public event Action 
+        on_death, on_heal, on_damage_life, on_damage_guard;
     
     public event Action<float>
         on_guard_update;
@@ -19,7 +20,7 @@ public class Health : MonoBehaviour{
         on_guard_broken, on_guard_refresh;
 
     [SerializeField] private bool
-        invulnerable, guard_broken;
+        invulnerable, parrying, guarding, guard_broken;
     [SerializeField] private int
         max_life, current_life;
     [SerializeField] private float 
@@ -32,26 +33,27 @@ public class Health : MonoBehaviour{
         if(current_life > max_life)
             current_life = max_life;
         else
-            on_heal?.Invoke(other);
+            on_heal?.Invoke();
     }
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
-    public void damage(int amt, GameObject other = null){
-        if(invulnerable == true){
-            on_invulnerable?.Invoke(other);
-            return;
+    public bool damage(int amt){
+        if(guard_broken == true){
+            damage_life(amt);
+            return true;
         }
-        else if(guard_broken == true)
-            damage_life(amt, other);
-        else
-            damage_guard(amt);
+        else if (guarding == true){
+            return false;
+        }
+        damage_guard(amt);
+        return true;
     }
 
-    private void damage_life(int amt, GameObject other){
+    private void damage_life(int amt){
         current_life -= amt;
-        on_damage?.Invoke(other);
+        on_damage_life?.Invoke();
         if(current_life <= 0)
-            on_death?.Invoke(other);
+            on_death?.Invoke();
     }
 
     private void damage_guard(float amount){
@@ -63,6 +65,7 @@ public class Health : MonoBehaviour{
                 StopCoroutine(coroutine);
             coroutine = StartCoroutine(guard_decay());
         }
+        on_damage_guard?.Invoke();
         on_guard_update?.Invoke(current_guard);
     }
 
@@ -107,7 +110,9 @@ public class Health : MonoBehaviour{
         yield break;
     }
 
-    public void set_invulnerable(int x) => invulnerable = x != 0;
+    public void is_invulnerable(int x) => invulnerable = x != 0;
+    public void is_guarding(int x) => guarding = x != 0;
+    public void is_parrying(int x) => parrying = x != 0;
     public float get_max_guard() => max_guard;
     public float get_current_guard() => current_guard; 
 }

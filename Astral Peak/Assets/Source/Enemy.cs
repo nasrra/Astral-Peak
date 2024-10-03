@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Security.Cryptography;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
@@ -15,47 +16,85 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     //public event Action<EnemyState> state_change;
 
     [Header("Enemy")]
+    [SerializeField] protected float stun_state_timer;
     [SerializeField] protected EnemyState state;
     [SerializeField] protected AiPathFollow path_follow;
     [SerializeField] protected AiCombat combat;
+    private Coroutine coroutine;
 
     void Start() => link_events();
-
     void OnDestroy() => unlink_events(); 
+
+#region States
+    protected void state_switch_clean_up(){
+        // turn off all states to ensure the next state behaves as intended.
+        path_follow.set_state(AiPathFollowState.NONE);
+        combat.none_state();
+    }
 
     public void combat_state(){
         state = EnemyState.COMBAT;
-        path_follow.set_state(AiPathFollowState.NONE);
+        state_switch_clean_up();
         combat.chase_state();
     }
 
     public void passive_state(){
         state = EnemyState.PASSIVE;
+        state_switch_clean_up();
         path_follow.set_state(AiPathFollowState.RETREAT);
-        combat.none_state();
+    }
+
+    public void stagger_state(){
+        state = EnemyState.STAGGER;
+        state_switch_clean_up();
+
+        // to prevent the ai from chasing once staggered.
+        combat.unlink_internal();
+        unlink_combat();
+
+        // interupt attack animation.
+        animator.SetTrigger("idle");
     }
 
     public void stun_state(){
         state = EnemyState.STUN;
-        // to prevent the ai from chasing once stunned.
-        combat.unlink_internal();
+        state_switch_clean_up();
+        StopAllCoroutines();
+        StartCoroutine(stun_state_loop());
+    }
+
+    protected IEnumerator stun_state_loop(){
+        // to prevent the ai from chasing once staggered.
         unlink_combat();
-        path_follow.set_state(AiPathFollowState.NONE);
-        combat.none_state();
+        combat.unlink_internal();
+        // interupt attack animation.
+        animator.SetTrigger("parried");
+
+        float timer = stun_state_timer;
+        while(timer >= 0.0f){
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // re-link combat to resume attacks.
+        link_combat();
+        combat.link_internal();
+        yield break;
     }
 
     // add a recovery state later...
-
+#endregion
+#region linkage
     protected override void link_events(){
         base.link_events();
         link_combat();
-        health.on_guard_broken += stun_state;
+        link_health();
     }
 
     protected override void unlink_events(){
         base.unlink_events();
         unlink_combat();
-        health.on_guard_broken -= stun_state;
+        unlink_health(); 
     }
 
     private void link_combat(){
@@ -64,13 +103,25 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     }
 
     private void unlink_combat(){
-        combat.target_left_range -= passive_state;
         combat.target_in_range -= combat_state;        
+        combat.target_left_range -= passive_state;
     }
+
+    private void link_health(){
+        health.on_guard_broken += stagger_state;
+        health.on_damage_guard += stun_state;
+    }
+
+    private void unlink_health(){
+        health.on_guard_broken -= stagger_state;
+        health.on_damage_guard -= stun_state;
+    }
+#endregion
 }
 
 public enum EnemyState{
     PASSIVE,
     COMBAT,
     STUN,
+    STAGGER,
 }

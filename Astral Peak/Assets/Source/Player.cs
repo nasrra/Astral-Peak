@@ -12,7 +12,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // data to link together.
     [Header("Player")]
-    [SerializeField] private bool parrying = false;
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
 
@@ -51,11 +50,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.parry     -= parry;         
     }
 
-    protected override void link_events(){
-        base.link_events();
-        health.on_invulnerable += handle_parry;
-    }
-
     void OnCollisionEnter2D(Collision2D other){  
         if(other.gameObject.tag == "Enemy")
             handle_enemy_contact(other);
@@ -86,35 +80,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.SetTrigger("parry");
     }
 
-    private void parry_check(){
-        if(parrying == true)
-            Debug.Log("parried!");
-    }
-
     // used to set the players initial position in the scene.
     public void set_enter_position(){
         if(exit_point != "")
             transform.position = DoorManager.instance.get_position(exit_point);
     }
 
-    public void is_parrying(int x){
-        parrying = x != 0;
-        health.set_invulnerable(x);
-    }
-
-    private void handle_parry(GameObject other){
-        other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 10, 0.3f);
-        other.GetComponent<Health>().damage(1);
-    }
-
     private void handle_enemy_contact(Collision2D other){
-        if(parrying == false){
-            // knockback the player.    
-            movement.knockback(transform.position - other.transform.position, 10, 0.3f);
-            // damage the player.
-            health.damage(1, gameObject);
-        }
-        else
-            handle_parry(other.gameObject);
+        // knockback the player.    
+        movement.knockback(transform.position - other.transform.position, 10, 0.3f);
+        // damage the player.
+        damage(2, gameObject);
     }
 }

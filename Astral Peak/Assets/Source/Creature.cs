@@ -18,7 +18,8 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
-    [SerializeField] protected Animator animator;
+    [SerializeField] protected AnimationExtension animator;
+    [SerializeField] protected bool guarding, parrying;
     protected bool flippable = true;
 
     void Start() => link_events();
@@ -42,20 +43,32 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
+    public void damage(int amt, GameObject other){
+        if(health.damage(amt) == false){
+            other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 10, 0.3f);
+            other.GetComponent<Creature>().damage(2,gameObject);
+        }
+        else
+            get_movement().knockback(transform.position - other.transform.position, 3, 0.3f);
+    }
+    
     public void kill(){
         Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
     }
 
-    private void on_death(GameObject other) => kill();
+    public void is_guarding(int x) => health.is_guarding(x);
+    public void is_parrying(int x) => health.is_parrying(x);
+    public void is_invulnerable(int x) => health.is_invulnerable(x);
 
     protected virtual void link_events(){
-        health.on_death += on_death;
+        health.on_death += kill;
         get_movement().move_direction_changed += face_move_dir;
     }
 
     protected virtual void unlink_events(){
-        health.on_death -= on_death;
+        health.on_death -= kill;
         get_movement().move_direction_changed -= face_move_dir;
     }
+
 }

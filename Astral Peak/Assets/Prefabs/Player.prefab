@@ -234,9 +234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 8865254876112120825}
-  animator: {fileID: 1416827462259707400}
-  movement: {fileID: 7249597133501691414}
+  animator: {fileID: 7037826890519144842}
+  guarding: 0
   parrying: 0
+  movement: {fileID: 7249597133501691414}
   input: {fileID: 0}
   interactor: {fileID: 3372226510158270887}
 --- !u!114 &7249597133501691414
@@ -277,6 +278,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerable: 0
+  parrying: 0
+  guarding: 0
   guard_broken: 0
   max_life: 0
   current_life: 0

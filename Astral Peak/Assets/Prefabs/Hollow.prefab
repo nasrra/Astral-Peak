@@ -386,7 +386,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
-  animator: {fileID: 0}
+  animator: {fileID: 2757634411936988224}
+  guarding: 0
+  parrying: 0
   movement: {fileID: 1874833353735702027}
   state: 0
   path_follow: {fileID: 8159385692087430421}
@@ -404,6 +406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerable: 0
+  parrying: 0
+  guarding: 0
   guard_broken: 0
   max_life: 1
   current_life: 1

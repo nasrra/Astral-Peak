@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other){
         if(other.GetComponent<Creature>() != null)
             // damage creature that is hit.
-            other.GetComponent<Creature>().get_health().damage(damage);
+            other.GetComponent<Creature>().damage(damage, null);
         Destroy(gameObject);
     }
 }
