@@ -72,24 +72,27 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             yield return null;
         }
 
-        // re-link combat to resume attacks.
-        link_combat();
-        combat.link_internal();
         recovery_state();
         yield break;
     }
 
-    // add a recovery state later...
+    // at the end of any interruption state (e.g. parry, stun, attack failed)
+    // execute this void otherwise the whole state machine implodes.
     public void recovery_state(){
         state_switch_clean_up();
-        combat.recovery_state();
-        
+
+        // re-link combat to resume attacks.
+        link_combat();
+        combat.link_internal();
+
         // check if we are able to continue attacking.
-        AiCombatState state = combat.get_state();
+        AiCombatState state = combat.recovery_state();
 
         // if not then retreat back to path follow loop.
         if(state == AiCombatState.NONE)
-            path_follow.set_state(AiPathFollowState.RETREAT);
+            passive_state();
+        else
+            combat_state();
     }
 
 #endregion
@@ -101,7 +104,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             melee.get_self_knockback_duration()
         );
         damage(
-            (int)melee.get_self_damage(), 
+            melee.get_self_damage(), 
             other.gameObject
         );
     }
@@ -134,11 +137,13 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     private void link_guard(){
         guard.damaged += stun_state;
         guard.broken += stagger_state;
+        guard.recovered += recovery_state;
     }
 
     private void unlink_guard(){
         guard.damaged -= stun_state;
         guard.broken -= stagger_state;
+        guard.recovered -= recovery_state;
     }
 
     private void link_melee(){

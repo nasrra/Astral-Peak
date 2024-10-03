@@ -106,11 +106,11 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
 
     // used for when a state has finished
     // and the next state is uncertain.
-    public void recovery_state(){
+    public AiCombatState recovery_state(){
         if(target!= null) 
-            chase_state();
+            return AiCombatState.CHASE; 
         else
-            none_state();
+            return AiCombatState.NONE;
     }
 #endregion
 #region Linkage

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Guard : MonoBehaviour{
     public event Action
-        damaged, broken;
+        damaged, broken, recovered;
 
     [SerializeField] private bool
         parrying, guarding;
@@ -73,6 +73,7 @@ public class Guard : MonoBehaviour{
             yield return null;
         }
         guard_broke = false;
+        recovered?.Invoke();
         refresh_guard();
         yield break;
     }
