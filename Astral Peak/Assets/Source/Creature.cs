@@ -18,6 +18,7 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
+    [SerializeField] protected Guard guard;
     [SerializeField] protected AnimationExtension animator;
     [SerializeField] protected bool guarding, parrying;
     protected bool flippable = true;
@@ -43,8 +44,11 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public bool damage(int amt, GameObject other){
-        return health.damage(amt);
+    public bool damage(float amt, GameObject other){
+        if(guard.guard_broke == false)
+            return guard.damage(amt);
+        else 
+            return health.damage(amt);
     }
 
     public void kill(){
@@ -52,18 +56,16 @@ public abstract class Creature : MonoBehaviour{
         Destroy(gameObject);
     }
 
-    public void is_guarding(int x) => health.is_guarding(x);
-    public void is_parrying(int x) => health.is_parrying(x);
-    public void is_invulnerable(int x) => health.is_invulnerable(x);
+    public void is_guarding(int x) => guard.is_guarding(x);
+    public void is_parrying(int x) => guard.is_parrying(x);
 
     protected virtual void link_events(){
-        health.on_death += kill;
+        health.death += kill;
         get_movement().move_direction_changed += face_move_dir;
     }
 
     protected virtual void unlink_events(){
-        health.on_death -= kill;
+        health.death -= kill;
         get_movement().move_direction_changed -= face_move_dir;
     }
-
 }

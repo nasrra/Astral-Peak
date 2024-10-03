@@ -97,14 +97,14 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     protected override void link_events(){
         base.link_events();
         link_combat();
-        link_health();
+        link_guard();
         link_melee();
     }
 
     protected override void unlink_events(){
         base.unlink_events();
         unlink_combat();
-        unlink_health(); 
+        unlink_guard(); 
         unlink_melee();
     }
 
@@ -118,14 +118,14 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         combat.target_left_range -= passive_state;
     }
 
-    private void link_health(){
-        health.on_guard_broken += stagger_state;
-        health.on_damage_guard += stun_state;
+    private void link_guard(){
+        guard.damaged += stun_state;
+        guard.broken += stagger_state;
     }
 
-    private void unlink_health(){
-        health.on_guard_broken -= stagger_state;
-        health.on_damage_guard -= stun_state;
+    private void unlink_guard(){
+        guard.damaged -= stun_state;
+        guard.broken -= stagger_state;
     }
 
     private void link_melee(){
