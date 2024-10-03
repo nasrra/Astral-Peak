@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Security.Cryptography;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Video;
 
 
 // for enemy path follow, Hollow knight makes it so that they are restricted to the platform they are placed on.
@@ -20,6 +15,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected EnemyState state;
     [SerializeField] protected AiPathFollow path_follow;
     [SerializeField] protected AiCombat combat;
+    [SerializeField] protected MeleeHolster melee;
     private Coroutine coroutine;
 
     void Start() => link_events();
@@ -84,17 +80,32 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
 
     // add a recovery state later...
 #endregion
+#region Events
+    private void attack_failed(Collider2D other){
+        movement.knockback(
+            transform.position - other.transform.position, 
+            melee.get_self_knockback_force(), 
+            melee.get_self_knockback_duration()
+        );
+        damage(
+            (int)melee.get_self_damage(), 
+            other.gameObject
+        );
+    }
+#endregion
 #region linkage
     protected override void link_events(){
         base.link_events();
         link_combat();
         link_health();
+        link_melee();
     }
 
     protected override void unlink_events(){
         base.unlink_events();
         unlink_combat();
         unlink_health(); 
+        unlink_melee();
     }
 
     private void link_combat(){
@@ -115,6 +126,14 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     private void unlink_health(){
         health.on_guard_broken -= stagger_state;
         health.on_damage_guard -= stun_state;
+    }
+
+    private void link_melee(){
+        melee.hit_enemy_guard += attack_failed;
+    }
+
+    private void unlink_melee(){
+        melee.hit_enemy_guard -= attack_failed;
     }
 #endregion
 }

@@ -390,9 +390,11 @@ MonoBehaviour:
   guarding: 0
   parrying: 0
   movement: {fileID: 1874833353735702027}
+  stun_state_timer: 0
   state: 0
   path_follow: {fileID: 8159385692087430421}
   combat: {fileID: 4433229654957457287}
+  melee: {fileID: 784672878267895744}
 --- !u!114 &1194575375138677735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,9 +577,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d843c462bdfa8640a98d969499efe03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  health_damage: 0
+  guard_damage: 0
   knockback_force: 10
   knockback_duration: 0.25
+  self_damage: 2
+  self_knockback_force: 7
+  self_knockback_duration: 0.25
   hurt_box: {fileID: 6565874900555252136}
   feedback: {fileID: 1502897275953849558}
 --- !u!95 &4859797069849427953

@@ -43,15 +43,10 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public void damage(int amt, GameObject other){
-        if(health.damage(amt) == false){
-            other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 10, 0.3f);
-            other.GetComponent<Creature>().damage(2,gameObject);
-        }
-        else
-            get_movement().knockback(transform.position - other.transform.position, 3, 0.3f);
+    public bool damage(int amt, GameObject other){
+        return health.damage(amt);
     }
-    
+
     public void kill(){
         Debug.Log(gameObject.name + " has died!");
         Destroy(gameObject);
