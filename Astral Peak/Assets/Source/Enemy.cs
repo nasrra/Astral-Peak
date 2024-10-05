@@ -21,11 +21,11 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     void Start() => link_events();
     void OnDestroy() => unlink_events(); 
 
-#region States
     protected void state_switch_clean_up(){
         // turn off all states to ensure the next state behaves as intended.
         path_follow.set_state(AiPathFollowState.NONE);
         combat.none_state();
+        StopAllCoroutines();
     }
 
     public void combat_state(){
@@ -35,12 +35,13 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     }
 
     public void passive_state(){
+        //Debug.Log("passive state");
         state = EnemyState.PASSIVE;
         state_switch_clean_up();
         path_follow.set_state(AiPathFollowState.RETREAT);
     }
 
-    public void stagger_state(){
+    private void enter_stagger_state(){
         state = EnemyState.STAGGER;
         state_switch_clean_up();
 
@@ -52,10 +53,15 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         animator.SetTrigger("parried");
     }
 
+    private void exit_stagger_state(){
+        link_combat();
+        combat.link_internal();
+        recovery_state();       
+    }
+
     public void stun_state(){
         state = EnemyState.STUN;
         state_switch_clean_up();
-        StopAllCoroutines();
         StartCoroutine(stun_state_loop());
     }
 
@@ -72,6 +78,9 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             yield return null;
         }
 
+        link_combat();
+        combat.link_internal();
+
         recovery_state();
         yield break;
     }
@@ -80,14 +89,8 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     // execute this void otherwise the whole state machine implodes.
     public void recovery_state(){
         state_switch_clean_up();
-
-        // re-link combat to resume attacks.
-        link_combat();
-        combat.link_internal();
-
         // check if we are able to continue attacking.
         AiCombatState state = combat.recovery_state();
-
         // if not then retreat back to path follow loop.
         if(state == AiCombatState.NONE)
             passive_state();
@@ -95,8 +98,6 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             combat_state();
     }
 
-#endregion
-#region Events
     private void attack_failed(Collider2D other){
         movement.knockback(
             transform.position - other.transform.position, 
@@ -108,8 +109,12 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             other.gameObject
         );
     }
-#endregion
-#region linkage
+
+    protected override void guarded_attack(){
+        base.guarded_attack();
+    }
+
+    #region linkage
     protected override void link_events(){
         base.link_events();
         link_combat();
@@ -126,24 +131,25 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
 
     private void link_combat(){
         combat.target_in_range += combat_state;
-        combat.target_left_range += passive_state;       
+        combat.target_left_range += passive_state;
+        combat.perform_action += animator.SetTrigger;   
     }
-
     private void unlink_combat(){
         combat.target_in_range -= combat_state;        
         combat.target_left_range -= passive_state;
+        combat.perform_action -= animator.SetTrigger; 
     }
 
     private void link_guard(){
         guard.damaged += stun_state;
-        guard.broken += stagger_state;
-        guard.recovered += recovery_state;
+        guard.broken += enter_stagger_state;
+        guard.recovered += exit_stagger_state;
     }
 
     private void unlink_guard(){
         guard.damaged -= stun_state;
-        guard.broken -= stagger_state;
-        guard.recovered -= recovery_state;
+        guard.broken -= enter_stagger_state;
+        guard.recovered -= exit_stagger_state;
     }
 
     private void link_melee(){

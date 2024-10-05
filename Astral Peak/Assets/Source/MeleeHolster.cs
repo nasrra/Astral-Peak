@@ -19,7 +19,7 @@ public class MeleeHolster : MonoBehaviour{
     public float get_self_knockback_duration() => self_knockback_duration;
 
     public void hit(Collider2D other){
-        Debug.Log(other.gameObject.name + " hit with melee!");
+        //Debug.Log(other.gameObject.name + " hit with melee!");
         Creature creature = other.GetComponent<Creature>();
         
         // if we damage the creature.

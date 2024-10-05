@@ -91,8 +91,11 @@ public class Movement : MonoBehaviour{
         // Normalize the final knockback direction
         direction.Normalize();
         // multiply by knock back force.
+        rb.velocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
         
+
+
         while(knockback_timer >= 0.0f){
             knockback_timer -= Time.deltaTime;
             yield return null; 

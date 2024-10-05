@@ -6,11 +6,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // static fields for other classes to access.
     public static Player player;
     public static string exit_point = "";
+    
 
     // data to link together.
     [Header("Player")]
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
+    [SerializeField] protected MeleeHolster melee;
 
     void Awake(){
         player = this;
@@ -18,7 +20,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     void Start(){   
         link_events();
-        link_input();
         set_enter_position();
         // snap camera to players new position.
         CameraController.instance.snap_to_target(); 
@@ -26,7 +27,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     void OnDestroy(){
         unlink_events();
-        unlink_input();
     }
 
     void OnCollisionEnter2D(Collision2D other){  
@@ -62,7 +62,31 @@ public class Player : CreatureInheritor<CharacterMovement>{
         animator.SetTrigger("idle");
     }
 
+    private void attack_failed(Collider2D other){
+        movement.knockback(
+            transform.position - other.transform.position, 
+            melee.get_self_knockback_force(), 
+            melee.get_self_knockback_duration()
+        );
+        damage(
+            melee.get_self_damage(), 
+            other.gameObject
+        );
+    }
+
     #region Linkage
+    protected override void link_events(){
+        base.link_events();
+        link_input();
+        link_melee();
+    }
+
+    protected override void unlink_events(){
+        base.unlink_events();
+        unlink_input();
+        unlink_melee();
+    }
+
     private void link_input(){
         input.jump_performed        += start_jump;
         input.jump_cancelled        += stop_jump;
@@ -86,5 +110,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.attack_performed      -= attack;
         input.parry_performed       -= parry;        
     }
+
+    private void link_melee(){
+        melee.hit_enemy_guard += attack_failed;
+    }
+
+    private void unlink_melee(){
+        melee.hit_enemy_guard -= attack_failed;
+    }
+
 #endregion
 }

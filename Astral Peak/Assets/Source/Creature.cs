@@ -57,7 +57,7 @@ public abstract class Creature : MonoBehaviour{
     public void is_guarding(int x) => guard.is_guarding(x);
     public void is_parrying(int x) => guard.is_parrying(x);
     protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
-    protected virtual void guarded_attack() => Debug.Log(gameObject.name + " has guarded!");
+    protected virtual void guarded_attack() {}
 
 #region Linkage
     protected virtual void link_events(){

@@ -6,7 +6,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
-    public event Action target_in_range, target_left_range;
+    public event Action<string>
+        perform_action;
+    public event Action 
+        target_in_range, target_left_range;
     [SerializeField] protected int moveset_index;
     [SerializeField] protected float cooldown, target_dist;
     [SerializeField] protected AiCombatState state;
@@ -14,7 +17,6 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected Collider2DFeedback combat_range, agro_area;
     [SerializeField] protected Transform target;
     [SerializeField] protected List<AiCombatMoveset> movesets = new List<AiCombatMoveset>();
-    [SerializeField] protected Animator animator;
     Coroutine coroutine;
 
     void Start(){
@@ -100,12 +102,17 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         state = AiCombatState.ATTACK;
         int index = UnityEngine.Random.Range(0, available_attacks.Count);
         AiCombatAttack chosen = available_attacks[index]; 
-        animator.SetTrigger(chosen.name);
+        perform_action?.Invoke(chosen.name);
         cooldown = chosen.cooldown;
     }
 
-    void parry(){
-        Debug.Log(gameObject.name + "parry.");
+    void defend(){
+        // if we are attacking, do not parry.
+        if(state == AiCombatState.ATTACK || state == AiCombatState.NONE || state == AiCombatState.DEFEND)
+            return;
+        coroutine_clean_up();
+        state = AiCombatState.DEFEND;
+        perform_action?.Invoke("guard");
     }
 
     // used for when a state has finished
@@ -150,11 +157,11 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     }
 
     private void link_input(){
-        InputManager.instance.attack_performed += parry;
+        InputManager.instance.attack_performed += defend;
     }
 
     private void unlink_input(){
-        InputManager.instance.attack_performed -= parry;
+        InputManager.instance.attack_performed -= defend;
     }
 #endregion
 }

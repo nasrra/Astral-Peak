@@ -17,6 +17,7 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     protected Coroutine coroutine;
     
     void Start() => set_state(AiPathFollowState.PATHING);
+    void OnDestroy() => coroutine_clean_up();
 
     public void set_state(AiPathFollowState s){
         // reset coroutine adjusted values in preperation for the next coroutine.
