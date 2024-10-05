@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public event Action<string>
@@ -16,6 +14,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     [SerializeField] protected Movement movement;
     [SerializeField] protected Collider2DFeedback combat_range, agro_area;
     [SerializeField] protected Transform target;
+    [SerializeField] protected AiCombatAttack chosen_attack;
     [SerializeField] protected List<AiCombatMoveset> movesets = new List<AiCombatMoveset>();
     Coroutine coroutine;
 
@@ -101,9 +100,9 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         coroutine_clean_up();
         state = AiCombatState.ATTACK;
         int index = UnityEngine.Random.Range(0, available_attacks.Count);
-        AiCombatAttack chosen = available_attacks[index]; 
-        perform_action?.Invoke(chosen.name);
-        cooldown = chosen.cooldown;
+        chosen_attack = available_attacks[index]; 
+        perform_action?.Invoke(chosen_attack.name);
+        cooldown = chosen_attack.cooldown;
     }
 
     void defend(){
@@ -123,6 +122,8 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         else
             return AiCombatState.NONE;
     }
+
+    public AiCombatAttack get_chosen_attack() => chosen_attack;
 #endregion
 #region Linkage
     void on_target_enter(Collider2D c){
@@ -167,6 +168,14 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
 }
 
 [System.Serializable]
+public enum AiCombatState{
+    NONE,
+    CHASE,
+    ATTACK,
+    DEFEND
+}
+
+[System.Serializable]
 public struct AiCombatMoveset{
     public List<AiCombatAttack> attacks;
 }
@@ -181,12 +190,12 @@ public struct AiCombatAttack{
     public float distance;
     // the cooldown for a next attack to be thrown after this one.
     public float cooldown;
+    // the type of attack it is.
+    public AiCombatAttackType type;
 }
 
 [System.Serializable]
-public enum AiCombatState{
-    NONE,
-    CHASE,
-    ATTACK,
-    DEFEND
+public enum AiCombatAttackType{
+    LIGHT,
+    HEAVY
 }

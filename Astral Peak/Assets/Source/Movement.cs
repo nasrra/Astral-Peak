@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour{
     [Header("Movement")]
-    [SerializeField] protected bool knockedback = false;
+    [SerializeField] protected bool can_knockback = true;
+    [SerializeField] protected bool knockedback;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
@@ -78,7 +79,11 @@ public class Movement : MonoBehaviour{
             rb.velocity *= deceleration;
     }
 
-    public void knockback(Vector3 direction, float force, float duration) => StartCoroutine(knockback_loop(direction, force, duration));
+    public void is_knockbackable(int x) => can_knockback = x != 0;
+    public void knockback(Vector3 direction, float force, float duration){
+        if(can_knockback == true)
+            StartCoroutine(knockback_loop(direction, force, duration));
+    }
 
     IEnumerator knockback_loop(Vector3 direction, float force, float t){
         rb.gravityScale = 0;
@@ -94,8 +99,6 @@ public class Movement : MonoBehaviour{
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
         
-
-
         while(knockback_timer >= 0.0f){
             knockback_timer -= Time.deltaTime;
             yield return null; 

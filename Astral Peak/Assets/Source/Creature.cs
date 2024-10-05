@@ -17,7 +17,6 @@ public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
     [SerializeField] protected Guard guard;
-    [SerializeField] protected AnimationExtension animator;
     [SerializeField] protected bool guarding, parrying;
     protected bool flippable = true;
 
@@ -57,7 +56,7 @@ public abstract class Creature : MonoBehaviour{
     public void is_guarding(int x) => guard.is_guarding(x);
     public void is_parrying(int x) => guard.is_parrying(x);
     protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
-    protected virtual void guarded_attack() {}
+    protected virtual void guarded_attack(){}
 
 #region Linkage
     protected virtual void link_events(){

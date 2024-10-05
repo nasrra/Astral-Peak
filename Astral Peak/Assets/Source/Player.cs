@@ -13,6 +13,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
     [SerializeField] protected MeleeHolster melee;
+    [SerializeField] protected PlayerAnimator a;
 
     void Awake(){
         player = this;
@@ -41,8 +42,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
-    private void attack()       => animator.SetTrigger("attack");
-    private void parry()        => animator.SetTrigger("parry");
+    private void attack()       => a.attack();
+    private void parry()        => a.guard();
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
@@ -59,7 +60,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     protected override void guarded_attack(){
         base.guarded_attack();
-        animator.SetTrigger("idle");
+        a.idle();
     }
 
     private void attack_failed(Collider2D other){

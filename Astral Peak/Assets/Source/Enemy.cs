@@ -16,6 +16,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected AiPathFollow path_follow;
     [SerializeField] protected AiCombat combat;
     [SerializeField] protected MeleeHolster melee;
+    [SerializeField] protected HollowAnimator animator;
     private Coroutine coroutine;
 
     void Start() => link_events();
@@ -50,7 +51,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         unlink_combat();
 
         // interupt attack animation.
-        animator.SetTrigger("parried");
+        animator.stunned();
     }
 
     private void exit_stagger_state(){
@@ -70,7 +71,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         unlink_combat();
         combat.unlink_internal();
         // interupt attack animation.
-        animator.SetTrigger("parried");
+        animator.stunned();
 
         float timer = stun_state_timer;
         while(timer >= 0.0f){
@@ -85,8 +86,10 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         yield break;
     }
 
-    // at the end of any interruption state (e.g. parry, stun, attack failed)
-    // execute this void otherwise the whole state machine implodes.
+    // Note: do not put any linkage functions in this.
+    // Otherwise classes may double link and break
+    // because of not unlinking correctly. 
+    // (2 - 1 will always equal 1).
     public void recovery_state(){
         state_switch_clean_up();
         // check if we are able to continue attacking.
@@ -99,11 +102,13 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     }
 
     private void attack_failed(Collider2D other){
-        movement.knockback(
-            transform.position - other.transform.position, 
-            melee.get_self_knockback_force(), 
-            melee.get_self_knockback_duration()
-        );
+        // if our chosen attack is a light attack, knock us back.
+        if(combat.get_chosen_attack().type == AiCombatAttackType.LIGHT)
+            movement.knockback(
+                transform.position - other.transform.position, 
+                melee.get_self_knockback_force(), 
+                melee.get_self_knockback_duration()
+            );
         damage(
             melee.get_self_damage(), 
             other.gameObject
@@ -132,12 +137,12 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     private void link_combat(){
         combat.target_in_range += combat_state;
         combat.target_left_range += passive_state;
-        combat.perform_action += animator.SetTrigger;   
+        combat.perform_action += animator.play;   
     }
     private void unlink_combat(){
         combat.target_in_range -= combat_state;        
         combat.target_left_range -= passive_state;
-        combat.perform_action -= animator.SetTrigger; 
+        combat.perform_action -= animator.play; 
     }
 
     private void link_guard(){

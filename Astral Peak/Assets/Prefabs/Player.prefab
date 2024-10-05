@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6013297777815326413}
   - component: {fileID: 5908489452167413090}
+  - component: {fileID: 4440203974712381374}
   - component: {fileID: 7249597133501691414}
   - component: {fileID: 2167200914830832268}
   - component: {fileID: 8865254876112120825}
@@ -319,6 +320,20 @@ MonoBehaviour:
   input: {fileID: 0}
   interactor: {fileID: 3372226510158270887}
   melee: {fileID: 5487022240107012211}
+  a: {fileID: 4440203974712381374}
+--- !u!114 &4440203974712381374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2701159460100496650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce72b9fe4d0b39648b58d4f17c063a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: {fileID: 1416827462259707400}
 --- !u!114 &7249597133501691414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  can_knockback: 1
   knockedback: 0
   top_speed: 5
   acceleration: 0.5
@@ -392,10 +408,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  knockback_force: 10
+  knockback_force: 2
   knockback_duration: 0.25
   self_damage: 1
-  self_knockback_force: 7
+  self_knockback_force: 2
   self_knockback_duration: 0.35
   hurt_box: {fileID: 298236485352545641}
   feedback: {fileID: 7504387401921736575}
@@ -425,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e562908aa88a794b87b814d75c0190d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1416827462259707400}
+  a: {fileID: 0}
 --- !u!61 &786386030357141627
 BoxCollider2D:
   m_ObjectHideFlags: 0
