@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 8865254876112120825}
   - component: {fileID: 5487022240107012211}
   - component: {fileID: 3372226510158270887}
-  - component: {fileID: 7037826890519144842}
   - component: {fileID: 786386030357141627}
   - component: {fileID: 5887146486120666545}
   - component: {fileID: 1416827462259707400}
@@ -313,14 +312,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8865254876112120825}
   guard: {fileID: 2167200914830832268}
-  animator: {fileID: 7037826890519144842}
-  guarding: 0
-  parrying: 0
+  stunnable: 0
   movement: {fileID: 7249597133501691414}
   input: {fileID: 0}
   interactor: {fileID: 3372226510158270887}
   melee: {fileID: 5487022240107012211}
-  a: {fileID: 4440203974712381374}
+  animator: {fileID: 4440203974712381374}
 --- !u!114 &4440203974712381374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,19 +426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedback: {fileID: 4358643682454329791}
   others: []
---- !u!114 &7037826890519144842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2701159460100496650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e562908aa88a794b87b814d75c0190d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  a: {fileID: 0}
 --- !u!61 &786386030357141627
 BoxCollider2D:
   m_ObjectHideFlags: 0

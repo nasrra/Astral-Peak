@@ -61,6 +61,10 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     }
 
     public void stun_state(){
+        // don't stun if we are not stunnable.
+        if(stunnable == false)
+            return;
+
         state = EnemyState.STUN;
         state_switch_clean_up();
         StartCoroutine(stun_state_loop());
@@ -102,13 +106,11 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     }
 
     private void attack_failed(Collider2D other){
-        // if our chosen attack is a light attack, knock us back.
-        if(combat.get_chosen_attack().type == AiCombatAttackType.LIGHT)
-            movement.knockback(
-                transform.position - other.transform.position, 
-                melee.get_self_knockback_force(), 
-                melee.get_self_knockback_duration()
-            );
+        movement.knockback(
+            transform.position - other.transform.position, 
+            melee.get_self_knockback_force(), 
+            melee.get_self_knockback_duration()
+        );
         damage(
             melee.get_self_damage(), 
             other.gameObject

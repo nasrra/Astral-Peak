@@ -388,8 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
   guard: {fileID: 2081351076459869801}
-  guarding: 0
-  parrying: 0
+  stunnable: 0
   movement: {fileID: 1874833353735702027}
   stun_state_timer: 1
   state: 0
@@ -506,13 +505,11 @@ MonoBehaviour:
     name: 
     distance: 0
     cooldown: 0
-    type: 0
   movesets:
   - attacks:
     - name: multi
       distance: 3
-      cooldown: 5
-      type: 0
+      cooldown: 2
 --- !u!114 &784672878267895744
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -190,12 +190,4 @@ public struct AiCombatAttack{
     public float distance;
     // the cooldown for a next attack to be thrown after this one.
     public float cooldown;
-    // the type of attack it is.
-    public AiCombatAttackType type;
-}
-
-[System.Serializable]
-public enum AiCombatAttackType{
-    LIGHT,
-    HEAVY
 }

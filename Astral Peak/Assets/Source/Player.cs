@@ -13,7 +13,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
     [SerializeField] protected MeleeHolster melee;
-    [SerializeField] protected PlayerAnimator a;
+    [SerializeField] protected PlayerAnimator animator;
 
     void Awake(){
         player = this;
@@ -42,8 +42,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
-    private void attack()       => a.attack();
-    private void parry()        => a.guard();
+    private void attack()       => animator.attack();
+    private void parry()        => animator.guard();
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
@@ -60,7 +60,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     protected override void guarded_attack(){
         base.guarded_attack();
-        a.idle();
+        animator.idle();
+    }
+
+    protected override void parried_attack(){
+        base.guarded_attack();
+        animator.idle();
     }
 
     private void attack_failed(Collider2D other){
@@ -112,13 +117,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.parry_performed       -= parry;        
     }
 
-    private void link_melee(){
-        melee.hit_enemy_guard += attack_failed;
-    }
-
-    private void unlink_melee(){
-        melee.hit_enemy_guard -= attack_failed;
-    }
+    private void link_melee() => melee.hit_enemy_guard += attack_failed;
+    private void unlink_melee() => melee.hit_enemy_guard -= attack_failed;
 
 #endregion
 }

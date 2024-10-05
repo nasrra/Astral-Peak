@@ -17,7 +17,7 @@ public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
     [SerializeField] protected Guard guard;
-    [SerializeField] protected bool guarding, parrying;
+    [SerializeField] protected bool stunnable;
     protected bool flippable = true;
 
     void Start() => link_events();
@@ -48,15 +48,12 @@ public abstract class Creature : MonoBehaviour{
             return health.damage(amt);
     }
 
-    public void kill(){
-        Debug.Log(gameObject.name + " has died!");
-        Destroy(gameObject);
-    }
-
+    public void kill() => Destroy(gameObject);
     public void is_guarding(int x) => guard.is_guarding(x);
     public void is_parrying(int x) => guard.is_parrying(x);
+    public void is_stunnable(int x) => stunnable = x != 0;
     protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
-    protected virtual void guarded_attack(){}
+    protected virtual void guarded_attack(){ Debug.Log(gameObject.name + " has guarded!");}
 
 #region Linkage
     protected virtual void link_events(){
@@ -81,12 +78,7 @@ public abstract class Creature : MonoBehaviour{
         guard.parried -= parried_attack;        
     }
 
-    private void link_health(){
-        health.death += kill;
-    }
-
-    private void unlink_health(){
-        health.death -= kill;
-    }
+    private void link_health() => health.death += kill;
+    private void unlink_health() => health.death -= kill;
 #endregion
 }
