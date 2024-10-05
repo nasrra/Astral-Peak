@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,13 +7,20 @@ using UnityEngine.InputSystem;
 // redirecting the flow of simplified inputs to listening objects.
 
 public class InputManager : MonoBehaviour{
+    public static InputManager instance;
     [SerializeField] private PlayerInput input;
     private Keybinds keybinds;
 
-    public delegate void InputDelegate (InputAction.CallbackContext ctx);
-    public event InputDelegate 
+    public event Action
         // Default keyboard events
-        jump, left, right, interact, attack, parry;
+        jump_performed,     jump_cancelled, 
+        left_performed,     left_cancelled, 
+        right_performed,    right_cancelled, 
+        interact_performed, interact_cancelled, 
+        attack_performed,   attack_cancelled, 
+        parry_performed,    parry_cancelled;
+
+    void Awake() => instance = this;
 
     void Start(){
         // enable keyboard keybinds
@@ -29,41 +37,51 @@ public class InputManager : MonoBehaviour{
 
     #region Default Keyboard
     private void bind_default_keyboard(){
-        keybinds.Keyboard.Jump.performed        += OnJump;
-        keybinds.Keyboard.Jump.canceled         += OnJump;
-        keybinds.Keyboard.Right.performed       += OnRight;
-        keybinds.Keyboard.Right.canceled        += OnRight;
-        keybinds.Keyboard.Left.performed        += OnLeft;
-        keybinds.Keyboard.Left.canceled         += OnLeft;
-        keybinds.Keyboard.Interact.performed    += OnInteract;
-        keybinds.Keyboard.Interact.canceled     += OnInteract;
-        keybinds.Keyboard.Attack.performed      += OnAttack;
-        keybinds.Keyboard.Attack.canceled       += OnAttack;
-        keybinds.Keyboard.Parry.performed       += OnParry;
-        keybinds.Keyboard.Parry.canceled        += OnParry;
+        keybinds.Keyboard.Jump.performed        += on_jump_performed;
+        keybinds.Keyboard.Jump.canceled         += on_jump_cancelled;
+        keybinds.Keyboard.Right.performed       += on_right_performed;
+        keybinds.Keyboard.Right.canceled        += on_right_cancelled;
+        keybinds.Keyboard.Left.performed        += on_left_performed;
+        keybinds.Keyboard.Left.canceled         += on_left_cancelled;
+        keybinds.Keyboard.Interact.performed    += on_interact_performed;
+        keybinds.Keyboard.Interact.canceled     += on_interact_cancelled;
+        keybinds.Keyboard.Attack.performed      += on_attack_performed;
+        keybinds.Keyboard.Attack.canceled       += on_attack_cancelled;
+        keybinds.Keyboard.Parry.performed       += on_parry_performed;
+        keybinds.Keyboard.Parry.canceled        += on_parry_cancelled;
         keybinds.Keyboard.ZoomOut.performed     += OnZoomOut;
         keybinds.Keyboard.ZoomIn.performed      += OnZoomIn;
     }
 
     private void unbind_default_keyboard(){
-        keybinds.Keyboard.Jump.performed        -= OnJump;
-        keybinds.Keyboard.Jump.canceled         -= OnJump;
-        keybinds.Keyboard.Right.performed       -= OnRight;
-        keybinds.Keyboard.Right.canceled        -= OnRight;
-        keybinds.Keyboard.Left.performed        -= OnLeft;
-        keybinds.Keyboard.Left.canceled         -= OnLeft;
-        keybinds.Keyboard.Interact.performed    -= OnInteract;
-        keybinds.Keyboard.Interact.canceled     -= OnInteract;
-        keybinds.Keyboard.Attack.performed      -= OnAttack;
-        keybinds.Keyboard.Attack.canceled       -= OnAttack; 
+        keybinds.Keyboard.Jump.performed        -= on_jump_performed;
+        keybinds.Keyboard.Jump.canceled         -= on_jump_cancelled;
+        keybinds.Keyboard.Right.performed       -= on_right_performed;
+        keybinds.Keyboard.Right.canceled        -= on_right_cancelled;
+        keybinds.Keyboard.Left.performed        -= on_left_performed;
+        keybinds.Keyboard.Left.canceled         -= on_left_cancelled;
+        keybinds.Keyboard.Interact.performed    -= on_interact_performed;
+        keybinds.Keyboard.Interact.canceled     -= on_interact_cancelled;
+        keybinds.Keyboard.Attack.performed      -= on_attack_performed;
+        keybinds.Keyboard.Attack.canceled       -= on_attack_cancelled;
+        keybinds.Keyboard.Parry.performed       -= on_parry_performed;
+        keybinds.Keyboard.Parry.canceled        -= on_parry_cancelled;
+        keybinds.Keyboard.ZoomOut.performed     -= OnZoomOut;
+        keybinds.Keyboard.ZoomIn.performed      -= OnZoomIn;
     }
-    void OnJump(InputAction.CallbackContext ctx)        => jump?.Invoke(ctx);
-    void OnLeft(InputAction.CallbackContext ctx)        => left?.Invoke(ctx);
-    void OnRight(InputAction.CallbackContext ctx)       => right?.Invoke(ctx);
-    void OnInteract(InputAction.CallbackContext ctx)    => interact?.Invoke(ctx);
-    void OnAttack(InputAction.CallbackContext ctx)      => attack?.Invoke(ctx);
-    void OnParry(InputAction.CallbackContext ctx)       => parry?.Invoke(ctx);
-    void OnZoomOut(InputAction.CallbackContext ctx)     => CameraController.instance.ZoomOut();
-    void OnZoomIn(InputAction.CallbackContext ctx)      => CameraController.instance.ZoomIn();
+    void on_jump_performed(InputAction.CallbackContext ctx)     => jump_performed?.Invoke();
+    void on_jump_cancelled(InputAction.CallbackContext ctx)     => jump_cancelled?.Invoke();
+    void on_left_performed(InputAction.CallbackContext ctx)     => left_performed?.Invoke();
+    void on_left_cancelled(InputAction.CallbackContext ctx)     => left_cancelled?.Invoke();
+    void on_right_performed(InputAction.CallbackContext ctx)    => right_performed?.Invoke();
+    void on_right_cancelled(InputAction.CallbackContext ctx)    => right_cancelled?.Invoke();
+    void on_interact_performed(InputAction.CallbackContext ctx) => interact_performed?.Invoke();
+    void on_interact_cancelled(InputAction.CallbackContext ctx) => interact_cancelled?.Invoke();
+    void on_attack_performed(InputAction.CallbackContext ctx)   => attack_performed?.Invoke();
+    void on_attack_cancelled(InputAction.CallbackContext ctx)   => attack_cancelled?.Invoke();
+    void on_parry_performed(InputAction.CallbackContext ctx)    => parry_performed?.Invoke();
+    void on_parry_cancelled(InputAction.CallbackContext ctx)    => parry_cancelled?.Invoke();
+    void OnZoomOut(InputAction.CallbackContext ctx)             => CameraController.instance.ZoomOut();
+    void OnZoomIn(InputAction.CallbackContext ctx)              => CameraController.instance.ZoomIn();
     #endregion
 }

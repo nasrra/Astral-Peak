@@ -29,53 +29,20 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
     }
 
-    private void link_input(){
-        input.jump      += jump;
-        input.left      += left;
-        input.right     += right;
-        input.interact  += interact; 
-        input.attack    += attack;  
-        input.parry     += parry;     
-    }
-
-    private void unlink_input(){
-        input.jump      -= jump;
-        input.left      -= left;
-        input.right     -= right;
-        input.interact  -= interact;
-        input.attack    -= attack;  
-        input.parry     -= parry;         
-    }
-
     void OnCollisionEnter2D(Collision2D other){  
         if(other.gameObject.tag == "Enemy")
             handle_enemy_contact(other);
     }
 
-    private void jump(InputAction.CallbackContext ctx){
-        if(ctx.performed == true)
-            movement.jump();
-        else if(ctx.canceled == true)
-            movement.end_jump();
-    }
-
-    private void left(InputAction.CallbackContext ctx) => movement.move_left(ctx.performed);
-    private void right(InputAction.CallbackContext ctx) => movement.move_right(ctx.performed);
-
-    private void interact(InputAction.CallbackContext ctx){
-        if(ctx.performed == true)
-            interactor.interact();
-    }
-
-    private void attack(InputAction.CallbackContext ctx){
-        if(ctx.performed == true)
-            animator.SetTrigger("attack");
-    }
-
-    private void parry(InputAction.CallbackContext ctx){
-        if(ctx.performed == true)
-            animator.SetTrigger("parry");
-    }
+    private void start_jump()   => movement.jump();
+    private void stop_jump()    => movement.end_jump();
+    private void start_left()   => movement.move_left(true);
+    private void stop_left()    => movement.move_left(false);
+    private void start_right()  => movement.move_right(true);
+    private void stop_right()   => movement.move_right(false);
+    private void interact()     => interactor.interact();
+    private void attack()       => animator.SetTrigger("attack");
+    private void parry()        => animator.SetTrigger("parry");
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
@@ -89,4 +56,35 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // damage the player.
         damage(2, gameObject);
     }
+
+    protected override void guarded_attack(){
+        base.guarded_attack();
+        animator.SetTrigger("idle");
+    }
+
+    #region Linkage
+    private void link_input(){
+        input.jump_performed        += start_jump;
+        input.jump_cancelled        += stop_jump;
+        input.left_performed        += start_left;
+        input.left_cancelled        += stop_left;
+        input.right_performed       += start_right;
+        input.right_cancelled       += stop_right;
+        input.interact_performed    += interact;
+        input.attack_performed      += attack;
+        input.parry_performed       += parry;  
+    }
+
+    private void unlink_input(){
+        input.jump_performed        -= start_jump;
+        input.jump_cancelled        -= stop_jump;
+        input.left_performed        -= start_left;
+        input.left_cancelled        -= stop_left;
+        input.right_performed       -= start_right;
+        input.right_cancelled       -= stop_right;
+        input.interact_performed    -= interact;
+        input.attack_performed      -= attack;
+        input.parry_performed       -= parry;        
+    }
+#endregion
 }

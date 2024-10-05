@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 /// <summary>
@@ -58,14 +56,38 @@ public abstract class Creature : MonoBehaviour{
 
     public void is_guarding(int x) => guard.is_guarding(x);
     public void is_parrying(int x) => guard.is_parrying(x);
+    protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
+    protected virtual void guarded_attack() => Debug.Log(gameObject.name + " has guarded!");
 
+#region Linkage
     protected virtual void link_events(){
-        health.death += kill;
+        link_health();
+        link_guard();
         get_movement().move_direction_changed += face_move_dir;
     }
 
     protected virtual void unlink_events(){
-        health.death -= kill;
+        unlink_health();
+        unlink_guard();
         get_movement().move_direction_changed -= face_move_dir;
     }
+
+    private void link_guard(){
+        guard.guarded += guarded_attack;
+        guard.parried += parried_attack;
+    }
+
+    private void unlink_guard(){
+        guard.guarded -= guarded_attack;
+        guard.parried -= parried_attack;        
+    }
+
+    private void link_health(){
+        health.death += kill;
+    }
+
+    private void unlink_health(){
+        health.death -= kill;
+    }
+#endregion
 }

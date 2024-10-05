@@ -104,6 +104,10 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         cooldown = chosen.cooldown;
     }
 
+    void parry(){
+        Debug.Log(gameObject.name + "parry.");
+    }
+
     // used for when a state has finished
     // and the next state is uncertain.
     public AiCombatState recovery_state(){
@@ -116,7 +120,7 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
 #region Linkage
     void on_target_enter(Collider2D c){
         target = c.transform;
-        target_in_range?.Invoke();      
+        target_in_range?.Invoke();    
     }
     void on_target_exit(Collider2D c){
         target = null;
@@ -126,6 +130,13 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public void link_external(){
         agro_area.trigger_enter += on_target_enter;
         agro_area.trigger_exit += on_target_exit; 
+        link_input();
+    }
+
+    public void unlink_external(){
+        agro_area.trigger_enter -= on_target_enter;
+        agro_area.trigger_exit -= on_target_exit;
+        unlink_input();
     }
 
     public void link_internal(){
@@ -133,14 +144,17 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         target_left_range += none_state;
     }
 
-    public void unlink_external(){
-        agro_area.trigger_enter -= on_target_enter;
-        agro_area.trigger_exit -= on_target_exit;
-    }
-
     public void unlink_internal(){
         target_in_range -= chase_state;
         target_left_range -= none_state;
+    }
+
+    private void link_input(){
+        InputManager.instance.attack_performed += parry;
+    }
+
+    private void unlink_input(){
+        InputManager.instance.attack_performed -= parry;
     }
 #endregion
 }
