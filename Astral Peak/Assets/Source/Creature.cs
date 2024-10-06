@@ -32,7 +32,8 @@ public abstract class Creature : MonoBehaviour{
     public abstract Movement get_movement();
 
     // flip the creature in relation to where they are moving towards.
-    protected void face_move_dir(Vector2 direction){
+    public void face_move_dir(){
+        Vector2 direction = get_movement().get_move_direction();
         if(direction.x < 0)
             flip_left();
         else if(direction.x > 0)

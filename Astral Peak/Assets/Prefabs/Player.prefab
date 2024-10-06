@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   can_knockback: 1
   knockedback: 0
+  can_move: 1
   top_speed: 5
   acceleration: 0.5
   deceleration: 0.85
@@ -350,6 +351,7 @@ MonoBehaviour:
   rb: {fileID: 5887146486120666545}
   grounded: 0
   jumping: 0
+  can_jump: 1
   jump_time: 0.5
   jump_force: 6
   jump_force_multiplier: 6
@@ -1239,7 +1241,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.033214808}
+  m_Size: {x: 0.96, y: 0.033214808}
   m_EdgeRadius: 0
 --- !u!114 &7923567874342761152
 MonoBehaviour:

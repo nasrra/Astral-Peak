@@ -5,6 +5,7 @@ public class CharacterMovement : Movement{
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
+    [SerializeField] private bool can_jump = true;
     [SerializeField] private float jump_time = 1.0f;
     [SerializeField] private float jump_force = 10.0f;
     [SerializeField] private float jump_force_multiplier = 0.1f;
@@ -38,7 +39,7 @@ public class CharacterMovement : Movement{
     // jump command
     public void jump() {
         jumping = true;
-        if(grounded == true)
+        if(grounded == true && can_jump == true)
             move_direction.y = 1;
     }
 
@@ -110,6 +111,8 @@ public class CharacterMovement : Movement{
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
             rb.velocity *= deceleration;        
     } 
+
+    public void is_jumpable(int x) => can_jump = x != 0;
 
     void link_events(){
         ground_checker.trigger_enter += is_grounded;

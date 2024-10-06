@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour{
     [Header("Movement")]
-    [SerializeField] protected bool can_knockback = true;
-    [SerializeField] protected bool knockedback;
+    [SerializeField] protected bool can_knockback = true; 
+    [SerializeField] protected bool knockedback = false;
+    [SerializeField] protected bool can_move = true;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
     
-    public event Action<Vector2> move_direction_changed;
+    public event Action move_direction_changed;
     private Coroutine knockback_coroutine;
 
     public virtual void FixedUpdate(){
@@ -24,7 +25,7 @@ public class Movement : MonoBehaviour{
     // update movement direction and fire an event to notify listeners that we have changed.
     private void update_move_direction(Vector2 direction){
         move_direction += direction;
-        move_direction_changed?.Invoke(move_direction);
+        move_direction_changed?.Invoke();
     }
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
@@ -55,8 +56,9 @@ public class Movement : MonoBehaviour{
     public Vector2 get_move_direction() => move_direction;
 
     protected virtual void horizontal_move(){
-        // if there is no input or we are currently being knocked back, return.
-        if(Mathf.Abs(move_direction.x) <= 0 || knockedback == true)
+        if(Mathf.Abs(move_direction.x) <= 0 // if there is no input.
+            || knockedback == true // or being knocked back.
+            || can_move == false) // or unable to recieve move input.  
             return;
 
         // accelerate
@@ -79,6 +81,7 @@ public class Movement : MonoBehaviour{
             rb.velocity *= deceleration;
     }
 
+    public void is_moveable(int x) => can_move = x != 0;
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public void knockback(Vector3 direction, float force, float duration){
         if(can_knockback == true)
