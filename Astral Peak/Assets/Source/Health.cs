@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.

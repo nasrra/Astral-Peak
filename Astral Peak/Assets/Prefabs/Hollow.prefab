@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 8537454458043999464}
   - component: {fileID: 5671449017725971049}
   - component: {fileID: 1194575375138677735}
-  - component: {fileID: 2081351076459869801}
   - component: {fileID: 1874833353735702027}
   - component: {fileID: 8159385692087430421}
   - component: {fileID: 4433229654957457287}
@@ -408,27 +407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_life: 10
   current_life: 10
-  bar: {fileID: 2290670179600849766}
---- !u!114 &2081351076459869801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841642048582550558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d042d505a52ca46b75c1cc0c9d4b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parrying: 0
-  guarding: 0
-  guard_broke: 0
-  max_guard: 3
-  current_guard: 0
-  guard_decay_rate: 0.25
-  guard_decay_buffer: 1
-  guard_break_timer: 5
   bar: {fileID: 2290670179600849766}
 --- !u!114 &1874833353735702027
 MonoBehaviour:
@@ -506,7 +484,7 @@ MonoBehaviour:
     cooldown: 0
   movesets:
   - attacks:
-    - name: multi
+    - name: attack
       distance: 3
       cooldown: 2
 --- !u!114 &784672878267895744
@@ -1054,7 +1032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55273575, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1509,7 +1487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55273575, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
