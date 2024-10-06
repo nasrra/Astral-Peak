@@ -111,10 +111,7 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             melee.get_self_knockback_force(), 
             melee.get_self_knockback_duration()
         );
-        damage(
-            melee.get_self_damage(), 
-            other.gameObject
-        );
+        damage(melee.get_self_damage());
     }
 
     protected override void guarded_attack(){
@@ -125,14 +122,14 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     protected override void link_events(){
         base.link_events();
         link_combat();
-        link_guard();
+        link_health();
         link_melee();
     }
 
     protected override void unlink_events(){
         base.unlink_events();
         unlink_combat();
-        unlink_guard(); 
+        unlink_health(); 
         unlink_melee();
     }
 
@@ -147,16 +144,11 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         combat.perform_action -= animator.play; 
     }
 
-    private void link_guard(){
-        guard.damaged += stun_state;
-        guard.broken += enter_stagger_state;
-        guard.recovered += exit_stagger_state;
+    private void link_health(){
+        health.damaged += stun_state;
     }
-
-    private void unlink_guard(){
-        guard.damaged -= stun_state;
-        guard.broken -= enter_stagger_state;
-        guard.recovered -= exit_stagger_state;
+    private void unlink_health(){
+        health.damaged -= stun_state;
     }
 
     private void link_melee(){

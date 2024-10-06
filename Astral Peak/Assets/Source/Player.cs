@@ -55,7 +55,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // knockback the player.    
         movement.knockback(transform.position - other.transform.position, 10, 0.3f);
         // damage the player.
-        damage(2, gameObject);
+        damage(2);
     }
 
     protected override void guarded_attack(){
@@ -74,10 +74,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             melee.get_self_knockback_force(), 
             melee.get_self_knockback_duration()
         );
-        damage(
-            melee.get_self_damage(), 
-            other.gameObject
-        );
+        damage(melee.get_self_damage());
     }
 
     #region Linkage

@@ -14,6 +14,13 @@ public class Health : MonoBehaviour{
     [SerializeField] private float
         max_life, current_life;
 
+    [SerializeField] protected Bar bar;
+
+    void Start(){
+        bar.set_bar_max_value(max_life);
+        bar.set_bar_value(current_life);
+    }
+
     public void heal(int amt, GameObject other = null){
         current_life += amt;
         if(current_life > max_life)
@@ -25,8 +32,12 @@ public class Health : MonoBehaviour{
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public bool damage(float amt){
         current_life -= amt;
-        if(current_life <= 0.0f)
+        if(current_life <= 0.0f){
+            current_life = 0.0f;
+            bar.set_bar_value(current_life);
             death?.Invoke();
+        }
+        bar.set_bar_value(current_life);
         damaged?.Invoke();
         return true;
     }

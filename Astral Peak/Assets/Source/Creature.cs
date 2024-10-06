@@ -16,12 +16,16 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 public abstract class Creature : MonoBehaviour{
     [Header("Creature")]
     [SerializeField] protected Health health;
-    [SerializeField] protected Guard guard;
+    //[SerializeField] protected Guard guard;
     [SerializeField] protected bool stunnable;
     protected bool flippable = true;
 
-    void Start() => link_events();
-    void OnDestroy() => unlink_events();
+    void Start(){
+        link_events();
+    }
+    void OnDestroy(){
+        unlink_events();
+    } 
 
     public Health get_health() => health;
     // the inheritor class returns which movement it is using.
@@ -41,16 +45,11 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public bool damage(float amt, GameObject other){
-        if(guard.guard_broke == false)
-            return guard.damage(amt);
-        else 
-            return health.damage(amt);
-    }
+    public bool damage(float amt) => health.damage(amt);
 
     public void kill() => Destroy(gameObject);
-    public void is_guarding(int x) => guard.is_guarding(x);
-    public void is_parrying(int x) => guard.is_parrying(x);
+    //public void is_guarding(int x) => guard.is_guarding(x);
+    //public void is_parrying(int x) => guard.is_parrying(x);
     public void is_stunnable(int x) => stunnable = x != 0;
     protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
     protected virtual void guarded_attack(){ Debug.Log(gameObject.name + " has guarded!");}
@@ -58,24 +57,12 @@ public abstract class Creature : MonoBehaviour{
 #region Linkage
     protected virtual void link_events(){
         link_health();
-        link_guard();
         get_movement().move_direction_changed += face_move_dir;
     }
 
     protected virtual void unlink_events(){
         unlink_health();
-        unlink_guard();
         get_movement().move_direction_changed -= face_move_dir;
-    }
-
-    private void link_guard(){
-        guard.guarded += guarded_attack;
-        guard.parried += parried_attack;
-    }
-
-    private void unlink_guard(){
-        guard.guarded -= guarded_attack;
-        guard.parried -= parried_attack;        
     }
 
     private void link_health() => health.death += kill;

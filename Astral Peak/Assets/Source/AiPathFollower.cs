@@ -17,11 +17,13 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
     protected Coroutine coroutine;
     
     void Start() => set_state(AiPathFollowState.PATHING);
-    void OnDestroy() => coroutine_clean_up();
+    void OnDestroy() => StopAllCoroutines();
 
     public void set_state(AiPathFollowState s){
         // reset coroutine adjusted values in preperation for the next coroutine.
-        coroutine_clean_up();
+        StopAllCoroutines();
+        movement.stop(); 
+
         // set new state and execute their respective coroutine.
         state = s;
         switch(s){
@@ -36,12 +38,6 @@ public abstract class AiPathFollower<T> : MonoBehaviour where T : Movement{
             default:
                 throw new System.Exception(s+": has not been implemented!");
         }
-    }
-
-    void coroutine_clean_up(){
-        if(coroutine != null)
-            StopCoroutine(coroutine);
-        movement.stop();      
     }
 
     protected IEnumerator pathing_loop(){

@@ -23,7 +23,7 @@ public class MeleeHolster : MonoBehaviour{
         Creature creature = other.GetComponent<Creature>();
         
         // if we damage the creature.
-        if(creature.damage(damage, gameObject) == true)
+        if(creature.damage(damage) == true)
             // knock it back.
             creature.get_movement().knockback(other.transform.position - transform.position, knockback_force, knockback_duration);
         // if not.

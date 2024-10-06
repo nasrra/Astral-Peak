@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55273575, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.34389162, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -262,7 +262,6 @@ GameObject:
   - component: {fileID: 5908489452167413090}
   - component: {fileID: 4440203974712381374}
   - component: {fileID: 7249597133501691414}
-  - component: {fileID: 2167200914830832268}
   - component: {fileID: 8865254876112120825}
   - component: {fileID: 5487022240107012211}
   - component: {fileID: 3372226510158270887}
@@ -311,8 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 8865254876112120825}
-  guard: {fileID: 2167200914830832268}
-  stunnable: 0
+  stunnable: 1
   movement: {fileID: 7249597133501691414}
   input: {fileID: 0}
   interactor: {fileID: 3372226510158270887}
@@ -357,27 +355,6 @@ MonoBehaviour:
   jump_force_multiplier: 6
   jump_time_counter: 0
   ground_checker: {fileID: 7923567874342761152}
---- !u!114 &2167200914830832268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2701159460100496650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d042d505a52ca46b75c1cc0c9d4b9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parrying: 0
-  guarding: 0
-  guard_broke: 0
-  max_guard: 3
-  current_guard: 0
-  guard_decay_rate: 1
-  guard_decay_buffer: 1
-  guard_break_timer: 5
-  bar: {fileID: 2952534889126561946}
 --- !u!114 &8865254876112120825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,8 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_life: 3
-  current_life: 3
+  max_life: 5
+  current_life: 5
+  bar: {fileID: 2952534889126561946}
 --- !u!114 &5487022240107012211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,10 +383,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  knockback_force: 2
+  knockback_force: 7
   knockback_duration: 0.25
   self_damage: 1
-  self_knockback_force: 2
+  self_knockback_force: 7
   self_knockback_duration: 0.35
   hurt_box: {fileID: 298236485352545641}
   feedback: {fileID: 7504387401921736575}
@@ -1185,7 +1163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left_slider: {fileID: 5885605915663545766}
   right_slider: {fileID: 1226891826037689916}
-  health: {fileID: 0}
 --- !u!1 &7265329088880531039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55273575, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.34389162, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

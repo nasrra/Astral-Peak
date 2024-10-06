@@ -138,13 +138,13 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
     public void link_external(){
         agro_area.trigger_enter += on_target_enter;
         agro_area.trigger_exit += on_target_exit; 
-        link_input();
+        //link_input();
     }
 
     public void unlink_external(){
         agro_area.trigger_enter -= on_target_enter;
         agro_area.trigger_exit -= on_target_exit;
-        unlink_input();
+        //unlink_input();
     }
 
     public void link_internal(){
@@ -157,13 +157,8 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         target_left_range -= none_state;
     }
 
-    private void link_input(){
-        InputManager.instance.attack_performed += defend;
-    }
-
-    private void unlink_input(){
-        InputManager.instance.attack_performed -= defend;
-    }
+    private void link_input() => InputManager.instance.attack_performed += defend;
+    private void unlink_input() => InputManager.instance.attack_performed -= defend;
 #endregion
 }
 

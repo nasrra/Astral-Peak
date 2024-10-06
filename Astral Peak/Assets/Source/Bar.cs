@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Bar : MonoBehaviour{
     [SerializeField] protected Slider left_slider, right_slider;
-    [SerializeField] protected Health health;
 
     public void set_bar_value(float x){
         left_slider.value = x;
@@ -15,4 +14,7 @@ public class Bar : MonoBehaviour{
         left_slider.maxValue = x;
         right_slider.maxValue = x;
     }
+
+    public float get_max_value() => left_slider.maxValue;
+    public float get_current_value() => left_slider.value;
 }
