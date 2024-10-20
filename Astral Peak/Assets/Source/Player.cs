@@ -77,17 +77,27 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damage(melee.get_self_damage());
     }
 
+    private void movement_animation(){
+        Vector2 direction = get_movement().get_move_direction();
+        if(direction.x > 0 || direction.x < 0)
+            animator.run(); // play run animation
+        else
+            animator.idle(); // play idle animation
+    }
+
     #region Linkage
     protected override void link_events(){
         base.link_events();
         link_input();
         link_melee();
+        link_movement();
     }
 
     protected override void unlink_events(){
         base.unlink_events();
         unlink_input();
         unlink_melee();
+        unlink_movement();
     }
 
     private void link_input(){
@@ -113,6 +123,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.attack_performed      -= attack;
         input.parry_performed       -= parry;        
     }
+
+    protected void link_movement() => get_movement().move_direction_changed += movement_animation;
+    protected void unlink_movement() => get_movement().move_direction_changed -= movement_animation;
 
     private void link_melee() => melee.hit_enemy_guard += attack_failed;
     private void unlink_melee() => melee.hit_enemy_guard -= attack_failed;

@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour{
     [SerializeField] protected Rigidbody2D rb;
     
     public event Action move_direction_changed;
-    private Coroutine knockback_coroutine;
 
     public virtual void FixedUpdate(){
         horizontal_move();
