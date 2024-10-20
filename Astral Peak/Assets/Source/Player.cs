@@ -42,10 +42,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
-    private void attack(){
-        animator.play_body(animator.ATTACK);
-        melee.slash_effect(); // play effect;
-    }
+    private void attack()       => animator.play_body(animator.ATTACK);
     private void parry()        => animator.play(animator.GUARD);
 
     // used to set the players initial position in the scene.
