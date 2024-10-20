@@ -10,6 +10,7 @@ public class MeleeHolster : MonoBehaviour{
         self_damage, self_knockback_force, self_knockback_duration;
     [SerializeField] private Collider2D hurt_box;
     [SerializeField] private Collider2DFeedback feedback;
+    [SerializeField] private ParticleSystem particles;
     void Start() => link_events();
     
     public void enable_hurt_box(int x) => hurt_box.enabled = x != 0; 
@@ -31,6 +32,10 @@ public class MeleeHolster : MonoBehaviour{
             // knock us back.
             hit_enemy_guard?.Invoke(other);
     }
+
+    // used for when a creature changes their facing direction.
+    public void flip_particle_emitter_left() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
+    public void flip_particle_emitter_right() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
 
     public void link_events() => feedback.trigger_enter += hit;
     public void unlink_events() =>feedback.trigger_enter -= hit;

@@ -127,8 +127,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void link_movement() => get_movement().move_direction_changed += movement_animation;
     protected void unlink_movement() => get_movement().move_direction_changed -= movement_animation;
 
-    private void link_melee() => melee.hit_enemy_guard += attack_failed;
-    private void unlink_melee() => melee.hit_enemy_guard -= attack_failed;
+    private void link_melee(){
+        melee.hit_enemy_guard += attack_failed;
+        flipped_left += melee.flip_particle_emitter_left;
+        flipped_right += melee.flip_particle_emitter_right;
+    }
+    private void unlink_melee(){
+        melee.hit_enemy_guard -= attack_failed;
+        flipped_left -= melee.flip_particle_emitter_left;
+        flipped_right -= melee.flip_particle_emitter_right;
+    }
 
 #endregion
 }

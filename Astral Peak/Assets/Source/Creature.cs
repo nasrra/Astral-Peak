@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -14,6 +15,8 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 /// It is also the class that defines all functionality for the inheritor class.
 /// </summary>
 public abstract class Creature : MonoBehaviour{
+    public event Action flipped_right, flipped_left;
+
     [Header("Creature")]
     [SerializeField] protected Health health;
     //[SerializeField] protected Guard guard;
@@ -41,8 +44,18 @@ public abstract class Creature : MonoBehaviour{
     }
 
     // flip the sprite.
-    protected void flip_left() => transform.rotation = flippable? Quaternion.Euler(0, 180, 0) : transform.rotation;
-    protected void flip_right() => transform.rotation = flippable? Quaternion.Euler(0, 0, 0) : transform.rotation;
+    protected void flip_left(){
+        if(flippable == true){
+            transform.rotation = flippable? Quaternion.Euler(0, 180, 0) : transform.rotation;
+            flipped_left?.Invoke();
+        }
+    }
+    protected void flip_right(){
+        if(flippable == true){
+            transform.rotation = flippable? Quaternion.Euler(0, 0, 0) : transform.rotation;
+            flipped_right?.Invoke();
+        }
+    }
 
     public void can_flip(int x) => flippable = x != 0;
 
