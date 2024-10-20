@@ -42,8 +42,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
-    private void attack()       => animator.attack();
-    private void parry()        => animator.guard();
+    private void attack(){
+        animator.play_body(animator.ATTACK);
+        melee.slash_effect(); // play effect;
+    }
+    private void parry()        => animator.play(animator.GUARD);
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
@@ -60,12 +63,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     protected override void guarded_attack(){
         base.guarded_attack();
-        animator.idle();
+        animator.play(animator.IDLE);
     }
 
     protected override void parried_attack(){
         base.guarded_attack();
-        animator.idle();
+        animator.play(animator.IDLE);
     }
 
     private void attack_failed(Collider2D other){
@@ -80,9 +83,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void movement_animation(){
         Vector2 direction = get_movement().get_move_direction();
         if(direction.x > 0 || direction.x < 0)
-            animator.run(); // play run animation
+            animator.play(animator.RUN); // play run animation
         else
-            animator.idle(); // play idle animation
+            animator.play(animator.IDLE); // play idle animation
     }
 
     #region Linkage
