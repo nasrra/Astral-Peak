@@ -35,15 +35,40 @@ public class Player : CreatureInheritor<CharacterMovement>{
             handle_enemy_contact(other);
     }
 
-    private void start_jump()   => movement.jump();
+    private void start_jump(){
+        if(movement.jump() == true){
+            animator.jump();
+        }
+    }
     private void stop_jump()    => movement.end_jump();
     private void start_left()   => movement.move_left(true);
     private void stop_left()    => movement.move_left(false);
     private void start_right()  => movement.move_right(true);
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
-    private void attack()       => animator.play_body(animator.ATTACK);
-    private void parry()        => animator.play(animator.GUARD);
+    private void attack()       => animator.attack();
+    //private void parry()        => animator.play(animator.GUARD);
+
+    private void player_not_grounded(){
+        // if we aren't jumping, then just play the fall animation.
+        if(animator.is_falling() == false)
+            animator.start_fall();
+    }
+
+    private void player_is_grounded(){
+        // bounce when hitting the ground.
+        animator.medium_bounce();
+
+        // reset to none so that the animator can play the run or idle animation.
+        animator.none();
+        
+        // if we are moving play the run animation, if not, play the idle one.
+        float move_dir = movement.get_move_direction().x;
+        if(move_dir > 0 || move_dir < 0)
+            animator.run();
+        else
+            animator.idle();
+    }
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
@@ -60,12 +85,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     protected override void guarded_attack(){
         base.guarded_attack();
-        animator.play(animator.IDLE);
+        animator.idle();
     }
 
     protected override void parried_attack(){
         base.guarded_attack();
-        animator.play(animator.IDLE);
+        animator.idle();
     }
 
     private void attack_failed(Collider2D other){
@@ -80,9 +105,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void movement_animation(){
         Vector2 direction = get_movement().get_move_direction();
         if(direction.x > 0 || direction.x < 0)
-            animator.play(animator.RUN); // play run animation
+            animator.run(); // play run animation
         else
-            animator.play(animator.IDLE); // play idle animation
+            animator.idle(); // play idle animation
     }
 
     #region Linkage
@@ -109,7 +134,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       += stop_right;
         input.interact_performed    += interact;
         input.attack_performed      += attack;
-        input.parry_performed       += parry;  
+        //input.parry_performed       += parry;  
     }
 
     private void unlink_input(){
@@ -121,11 +146,21 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       -= stop_right;
         input.interact_performed    -= interact;
         input.attack_performed      -= attack;
-        input.parry_performed       -= parry;        
+        //input.parry_performed       -= parry;        
     }
 
-    protected void link_movement() => get_movement().move_direction_changed += movement_animation;
-    protected void unlink_movement() => get_movement().move_direction_changed -= movement_animation;
+    protected void link_movement(){
+        CharacterMovement movement = get_movement() as CharacterMovement;
+        movement.move_direction_changed += movement_animation;
+        movement.now_grounded += player_is_grounded;
+        movement.not_grounded += player_not_grounded;
+    }
+    protected void unlink_movement(){
+        CharacterMovement movement = get_movement() as CharacterMovement;
+        movement.move_direction_changed -= movement_animation;
+        movement.now_grounded -= player_is_grounded;
+        movement.not_grounded -= player_not_grounded;
+    }
 
     private void link_melee(){
         melee.hit_enemy_guard += attack_failed;

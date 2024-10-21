@@ -37,7 +37,14 @@ public class MeleeHolster : MonoBehaviour{
     public void flip_particle_emitter_left() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
     public void flip_particle_emitter_right() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
 
-    public void slash_effect() => particles.Emit(1);
+    public void slash_effect(){
+        particles.Emit(1);
+
+        // flip the orientation of the slash particle for variety.
+        Vector3 current_flip = particles.GetComponent<ParticleSystemRenderer>().flip; 
+        current_flip.y = UnityEngine.Random.Range(0,2);
+        particles.GetComponent<ParticleSystemRenderer>().flip = current_flip;
+    }
 
     public void link_events() => feedback.trigger_enter += hit;
     public void unlink_events() =>feedback.trigger_enter -= hit;

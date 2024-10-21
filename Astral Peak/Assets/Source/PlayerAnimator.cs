@@ -1,45 +1,40 @@
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour{
-    [SerializeField] public Animator a;
-    private int state;
-    public bool[] locked_layers = new bool[3];
+[System.Serializable]
+public class PlayerAnimator : AnimatorOverride{
     public readonly int 
-        HEAD    = 0,
-        BODY    = 1,
-        LEGS    = 2,
         IDLE    = Animator.StringToHash("idle"),
         ATTACK  = Animator.StringToHash("attack"),
         RUN     = Animator.StringToHash("run"),
-        GUARD   = Animator.StringToHash("guard");
+        GUARD   = Animator.StringToHash("guard"),
+        FALL_START  = Animator.StringToHash("fall_start"),
+        FALL_LOOP   = Animator.StringToHash("fall_loop"),
+        LBOUNCE = Animator.StringToHash("light_bounce"),
+        MBOUNCE = Animator.StringToHash("medium_bounce"),
+        HBOUNCE = Animator.StringToHash("heavy_bounce"),
+        NONE    = Animator.StringToHash("none");
 
     void Start() => state = IDLE;
 
-    public void play(int animation_hash){
-        play_head(animation_hash);
-        play_body(animation_hash);
-        play_legs(animation_hash);
-        state = animation_hash;
+    // main states that can be returned to.
+    public void idle()      {if(state != FALL_START && state != FALL_LOOP) play(IDLE, true);}
+    public void run()       {if(state != FALL_START && state != FALL_LOOP) play(RUN, true);}
+    public void none()      => play(NONE, true);
+    public void start_fall()      => play(FALL_START, true);
+    public void loop_fall()       => play(FALL_LOOP, false); // key event in jump start animation.
+    public void jump(){
+        play(FALL_START, true);
+        play_override(MBOUNCE);
     }
+    
+    // additive states that should not be returned to.
+    public void attack()    => play(ATTACK, false); 
+    
+    // used for the override animation layer to return to the none state
+    public void none_state() => a.Play(NONE, OVERRIDE);
 
-    public void play_head(int animation_hash){
-        if(locked_layers[HEAD] == false){ a.Play(animation_hash, HEAD);}
-    }
-
-    public void play_body(int animation_hash){
-        if(locked_layers[BODY] == false){ a.Play(animation_hash, BODY);}
-    }
-
-    public void play_legs(int animation_hash){
-        if(locked_layers[LEGS] == false){ a.Play(animation_hash, LEGS);}
-    }
-
-
-    // used for animator to return to the current animation state.
-    // layers that finish their animation, such as an attack, would return back to an idle or run animation.
-    public void return_state(int layerIndex) => a.Play(state,layerIndex);
-
-    // used for animator to lock a layer from changing their animation.
-    public void lock_layer(int layerIndex) => locked_layers[layerIndex] = true; 
-    public void unlock_layer(int layerIndex) => locked_layers[layerIndex] = false; 
+    // override states
+    public void light_bounce()  => play_override(LBOUNCE);
+    public void medium_bounce() => play_override(MBOUNCE);
+    public bool is_falling() => state == FALL_LOOP || state == FALL_START;
 }

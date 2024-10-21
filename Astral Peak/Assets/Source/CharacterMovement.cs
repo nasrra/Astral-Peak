@@ -1,7 +1,9 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
+    public event Action now_grounded, not_grounded;
+
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
@@ -27,20 +29,25 @@ public class CharacterMovement : Movement{
     }
 
     // ground check
-    private void is_grounded(Collider2D other){
+    private void currently_grounded(Collider2D other){
         grounded = true;    
-        jump_time_counter = 0.0f;
+        jump_time_counter = 0.0f; 
+        now_grounded?.Invoke();
     }
 
-    private void not_grounded(Collider2D other){
+    private void no_longer_grounded(Collider2D other){
         grounded = false;
+        not_grounded?.Invoke();
     }
 
     // jump command
-    public void jump() {
+    public bool jump() {
         jumping = true;
-        if(grounded == true && can_jump == true)
+        if(grounded == true && can_jump == true){
             move_direction.y = 1;
+            return true;
+        }
+        return false;
     }
 
     public void end_jump(){
@@ -115,12 +122,12 @@ public class CharacterMovement : Movement{
     public void is_jumpable(int x) => can_jump = x != 0;
 
     void link_events(){
-        ground_checker.trigger_enter += is_grounded;
-        ground_checker.trigger_exit += not_grounded;
+        ground_checker.trigger_enter += currently_grounded;
+        ground_checker.trigger_exit += no_longer_grounded;
     }
 
     void unlink_events(){
-        ground_checker.trigger_enter -= is_grounded;
-        ground_checker.trigger_exit -= not_grounded;
+        ground_checker.trigger_enter -= currently_grounded;
+        ground_checker.trigger_exit -= no_longer_grounded;
     }
 }
