@@ -8,4 +8,5 @@ public class Interactable : MonoBehaviour{
         if(interactable)
             unity_event.Invoke();
     }
+    public void is_interactable(int x) => interactable = x != 0;
 }

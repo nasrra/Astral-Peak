@@ -61,7 +61,7 @@ public abstract class Creature : MonoBehaviour{
 
     public bool damage(float amt) => health.damage(amt);
 
-    public void kill() => Destroy(gameObject);
+    protected virtual void kill() => Destroy(gameObject);
     //public void is_guarding(int x) => guard.is_guarding(x);
     //public void is_parrying(int x) => guard.is_parrying(x);
     public void is_stunnable(int x) => stunnable = x != 0;

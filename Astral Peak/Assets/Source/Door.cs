@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour{

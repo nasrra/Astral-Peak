@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using System.Collections;
 using UnityEngine;
 
@@ -17,10 +18,15 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected AiCombat combat;
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected HollowAnimator animator;
-    private Coroutine coroutine;
 
-    void Start() => link_events();
-    void OnDestroy() => unlink_events(); 
+    void Start(){
+        EnemyManager.instance.add_enemy();
+        link_events();
+    }
+    void OnDestroy(){
+        EnemyManager.instance.remove_enemy();
+        unlink_events();
+    } 
 
     protected void state_switch_clean_up(){
         // turn off all states to ensure the next state behaves as intended.
@@ -112,10 +118,6 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             melee.get_self_knockback_duration()
         );
         damage(melee.get_self_damage());
-    }
-
-    protected override void guarded_attack(){
-        base.guarded_attack();
     }
 
     #region linkage

@@ -926,6 +926,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &682382620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8495077593686719554, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
+  m_PrefabInstance: {fileID: 682382616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ad4a1e5a159e64896cc4c73b2558ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &750706186 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2494251409712957872, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
@@ -996,6 +1007,38 @@ PrefabInstance:
     - target: {fileID: 6193160536800821447, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
       propertyPath: m_Name
       value: Managers
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 682382620}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: is_interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Interactable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182622334041548864, guid: 674e5306c5b55d643b821897b8bb5c62, type: 3}
+      propertyPath: no_enemies.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
