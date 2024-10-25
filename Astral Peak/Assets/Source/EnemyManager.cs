@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour{
     public static EnemyManager instance;
-    public UnityEvent no_enemies;
+    public UnityEvent level_cleared;
     [SerializeField] int alive_enemies;
 
     void Awake() => instance = this;
@@ -12,6 +12,6 @@ public class EnemyManager : MonoBehaviour{
     public void remove_enemy(){
         alive_enemies -= 1;
         if(alive_enemies <= 0)
-            no_enemies?.Invoke();
+            level_cleared?.Invoke();
     }
 }

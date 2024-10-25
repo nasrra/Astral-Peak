@@ -17,4 +17,11 @@ public class DoorManager : MonoBehaviour{
                 return d.transform.position;
         throw new NullReferenceException(SceneManager.GetActiveScene().name + " does not contain exit point: " + exit_point);
     }
+
+    public Door get_door(string door_name){
+        foreach (Door d in doors)
+            if(d.get_enter_point() == door_name)
+                return d;
+        throw new NullReferenceException(SceneManager.GetActiveScene().name + " does not contain door: " + door_name);
+    }
 }

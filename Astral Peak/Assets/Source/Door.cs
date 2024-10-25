@@ -2,11 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour{
-    [SerializeField] private string enter_point;
-    [SerializeField] private string scene_to_load;
-    [SerializeField] private string exit_point;
+    [SerializeField] private string 
+        enter_point, scene_to_load, exit_point;
 
-    public void enter(){
+    public virtual void enter(){
         Player.exit_point = exit_point;
         SceneManager.LoadScene(scene_to_load);
     }
