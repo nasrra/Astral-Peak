@@ -98,6 +98,15 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""85844801-933b-423d-a5b1-1a916f540ae0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -159,7 +168,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""abc83662-e8df-42ef-9bf2-aebacc81ab70"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -188,6 +197,17 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""ZoomIn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fa129ee-8fe2-473c-b538-6347e31c5757"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +224,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Parry = m_Keyboard.FindAction("Parry", throwIfNotFound: true);
         m_Keyboard_ZoomOut = m_Keyboard.FindAction("ZoomOut", throwIfNotFound: true);
         m_Keyboard_ZoomIn = m_Keyboard.FindAction("ZoomIn", throwIfNotFound: true);
+        m_Keyboard_Dash = m_Keyboard.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Parry;
     private readonly InputAction m_Keyboard_ZoomOut;
     private readonly InputAction m_Keyboard_ZoomIn;
+    private readonly InputAction m_Keyboard_Dash;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -285,6 +307,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Parry => m_Wrapper.m_Keyboard_Parry;
         public InputAction @ZoomOut => m_Wrapper.m_Keyboard_ZoomOut;
         public InputAction @ZoomIn => m_Wrapper.m_Keyboard_ZoomIn;
+        public InputAction @Dash => m_Wrapper.m_Keyboard_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,6 +341,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @ZoomIn.started += instance.OnZoomIn;
             @ZoomIn.performed += instance.OnZoomIn;
             @ZoomIn.canceled += instance.OnZoomIn;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -346,6 +372,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @ZoomIn.started -= instance.OnZoomIn;
             @ZoomIn.performed -= instance.OnZoomIn;
             @ZoomIn.canceled -= instance.OnZoomIn;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -373,5 +402,6 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnParry(InputAction.CallbackContext context);
         void OnZoomOut(InputAction.CallbackContext context);
         void OnZoomIn(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

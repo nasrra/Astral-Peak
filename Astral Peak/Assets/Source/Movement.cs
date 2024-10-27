@@ -3,17 +3,23 @@ using System.Collections;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
+    public event Action apply_force_timeout;
+
     [Header("Movement")]
-    [SerializeField] protected bool can_knockback = true; 
-    [SerializeField] protected bool knockedback = false;
+    [SerializeField] protected bool can_knockback = true;
+    [SerializeField] protected bool knockedback;
     [SerializeField] protected bool can_move = true;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
+    protected Coroutine force_coroutine;
     
     public event Action move_direction_changed;
+
+    void Start() => link();
+    void OnDestroy() => unlink();
 
     public virtual void FixedUpdate(){
         horizontal_move();
@@ -82,34 +88,38 @@ public class Movement : MonoBehaviour{
 
     public void is_moveable(int x) => can_move = x != 0;
     public void is_knockbackable(int x) => can_knockback = x != 0;
+    
     public void knockback(Vector3 direction, float force, float duration){
-        if(can_knockback == true)
-            StartCoroutine(knockback_loop(direction, force, duration));
+        if(can_knockback == true){
+            knockedback = true;
+            force_coroutine = StartCoroutine(apply_force_loop(direction += Vector3.up * 0.55f, force, duration));
+        }
     }
 
-    IEnumerator knockback_loop(Vector3 direction, float force, float t){
-        rb.gravityScale = 0;
-        knockedback = true;
+    void end_knock_back() => knockedback = false;
 
+    protected IEnumerator apply_force_loop(Vector3 direction, float force, float t){
+        float original_gravity = rb.gravityScale;
+        rb.gravityScale = 0;
         // timer to count down from.
-        float knockback_timer = t;
-        // Add upward force to the knockback direction
-        direction += Vector3.up * 0.55f;
+        float timer = t;
         // Normalize the final knockback direction
         direction.Normalize();
         // multiply by knock back force.
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
-        
-        while(knockback_timer >= 0.0f){
-            knockback_timer -= Time.deltaTime;
+        while(timer >= 0.0f){
+            timer -= Time.deltaTime;
             yield return null; 
         }
-
-        rb.gravityScale = 2;
-        knockedback = false;
+        rb.gravityScale = original_gravity;
+        rb.velocity = Vector2.zero;
+        apply_force_timeout?.Invoke();
         yield break;
     }
+
+    protected virtual void link() => apply_force_timeout += end_knock_back;
+    protected virtual void unlink() => apply_force_timeout -= end_knock_back;
 }
 
 public enum MovementOption{

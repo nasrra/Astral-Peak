@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "Tap",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "85844801-933b-423d-a5b1-1a916f540ae0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -137,7 +146,7 @@
                 {
                     "name": "",
                     "id": "abc83662-e8df-42ef-9bf2-aebacc81ab70",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,6 +173,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ZoomIn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fa129ee-8fe2-473c-b538-6347e31c5757",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

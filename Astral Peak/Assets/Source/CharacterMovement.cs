@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
@@ -8,19 +9,15 @@ public class CharacterMovement : Movement{
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private bool can_jump = true;
-    [SerializeField] private float jump_time = 1.0f;
-    [SerializeField] private float jump_force = 10.0f;
-    [SerializeField] private float jump_force_multiplier = 0.1f;
-    [SerializeField] private float jump_time_counter = 0.0f;
+    [SerializeField] private bool can_dash = true;
+    [SerializeField] private bool dashed = false;
+    [SerializeField] private float 
+        jump_time, jump_force, jump_force_multiplier, jump_time_counter, 
+        dash_time, dash_force, dash_cooldown;
     [SerializeField] private Collider2DFeedback ground_checker;
 
-    void Start(){
-        link_events();
-    }
-
-    void OnDestroy(){
-        unlink_events();
-    }
+    void Start() => link();
+    void OnDestroy() => unlink();
 
     public override void FixedUpdate(){
         horizontal_move();
@@ -62,6 +59,12 @@ public class CharacterMovement : Movement{
             jump_time_counter = jump_time;
         else
             jump_time_counter = 0.0f;
+    }
+
+    protected override void horizontal_move(){
+        if(dashed == true)
+            return;
+        base.horizontal_move();
     }
 
     // override vertical move to take jumping into account.
@@ -113,6 +116,24 @@ public class CharacterMovement : Movement{
         }
     }
 
+    public void dash(Vector3 direction, float force, float duration){
+        if(can_dash == true){
+            dashed = true;
+            can_dash = false;
+            force_coroutine = StartCoroutine(apply_force_loop(direction, force, duration));
+        }      
+    }
+
+    private void end_dash() => StartCoroutine(dash_cooldown_loop());
+
+    IEnumerator dash_cooldown_loop(){
+        dashed = false;
+        can_dash = false;
+        yield return new WaitForSeconds(dash_cooldown);
+        can_dash = true;
+        yield break;
+    }
+    
     protected override void decelerate(){
         // decelerate when grounded and not moving.
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
@@ -121,13 +142,17 @@ public class CharacterMovement : Movement{
 
     public void is_jumpable(int x) => can_jump = x != 0;
 
-    void link_events(){
+    protected override void link(){
+        base.link();
         ground_checker.trigger_enter += currently_grounded;
         ground_checker.trigger_exit += no_longer_grounded;
+        apply_force_timeout += end_dash;
     }
 
-    void unlink_events(){
+    protected override void unlink(){
+        base.unlink();
         ground_checker.trigger_enter -= currently_grounded;
         ground_checker.trigger_exit -= no_longer_grounded;
+        apply_force_timeout -= end_dash;
     }
 }

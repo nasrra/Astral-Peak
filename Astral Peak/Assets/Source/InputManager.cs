@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,8 @@ public class InputManager : MonoBehaviour{
         right_performed,    right_cancelled, 
         interact_performed, interact_cancelled, 
         attack_performed,   attack_cancelled, 
-        parry_performed,    parry_cancelled;
+        parry_performed,    parry_cancelled,
+        dash_performed;
 
     void Awake() => instance = this;
 
@@ -49,6 +51,7 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Attack.canceled       += on_attack_cancelled;
         keybinds.Keyboard.Parry.performed       += on_parry_performed;
         keybinds.Keyboard.Parry.canceled        += on_parry_cancelled;
+        keybinds.Keyboard.Dash.performed        += on_dash_performed;
         keybinds.Keyboard.ZoomOut.performed     += OnZoomOut;
         keybinds.Keyboard.ZoomIn.performed      += OnZoomIn;
     }
@@ -66,6 +69,7 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Attack.canceled       -= on_attack_cancelled;
         keybinds.Keyboard.Parry.performed       -= on_parry_performed;
         keybinds.Keyboard.Parry.canceled        -= on_parry_cancelled;
+        keybinds.Keyboard.Dash.performed        -= on_dash_performed;
         keybinds.Keyboard.ZoomOut.performed     -= OnZoomOut;
         keybinds.Keyboard.ZoomIn.performed      -= OnZoomIn;
     }
@@ -81,6 +85,7 @@ public class InputManager : MonoBehaviour{
     void on_attack_cancelled(InputAction.CallbackContext ctx)   => attack_cancelled?.Invoke();
     void on_parry_performed(InputAction.CallbackContext ctx)    => parry_performed?.Invoke();
     void on_parry_cancelled(InputAction.CallbackContext ctx)    => parry_cancelled?.Invoke();
+    void on_dash_performed(InputAction.CallbackContext ctx)     => dash_performed?.Invoke();
     void OnZoomOut(InputAction.CallbackContext ctx)             => CameraController.instance.ZoomOut();
     void OnZoomIn(InputAction.CallbackContext ctx)              => CameraController.instance.ZoomIn();
     #endregion

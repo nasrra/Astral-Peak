@@ -16,7 +16,7 @@ public class TheCavalry : CreatureInheritor<Movement>{
     void Start(){
         combat.moveset = new List<BossAttack>(){
             new BossAttack(Animator.StringToHash("front_strike"),8,4),
-            //new BossAttack(Animator.StringToHash("back_strike"),8,4),
+            new BossAttack(Animator.StringToHash("back_strike"),8,4),
             new BossAttack(Animator.StringToHash("bite1"),8, 4),
         };
         state_switch(idle());

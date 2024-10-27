@@ -48,6 +48,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void interact()     => interactor.interact();
     private void attack()       => animator.attack();
     //private void parry()        => animator.play(animator.GUARD);
+    private void dash(){
+        float move_dir = movement.get_move_direction().x;
+        if(move_dir > 0)
+            movement.dash(Vector2.right, 20, 0.25f);
+        else 
+            movement.dash(Vector2.left, 20, 0.25f);
+    }
 
     private void player_not_grounded(){
         // if we aren't jumping, then just play the fall animation.
@@ -134,7 +141,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       += stop_right;
         input.interact_performed    += interact;
         input.attack_performed      += attack;
-        //input.parry_performed       += parry;  
+        //input.parry_performed       += parry;
+        input.dash_performed        += dash;  
     }
 
     private void unlink_input(){
@@ -146,7 +154,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       -= stop_right;
         input.interact_performed    -= interact;
         input.attack_performed      -= attack;
-        //input.parry_performed       -= parry;        
+        //input.parry_performed       -= parry;
+        input.dash_performed        -= dash;    
     }
 
     protected void link_movement(){
