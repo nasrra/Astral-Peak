@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class CavalryAnimator : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class CavalryAnimator : MonoBehaviour{
+    [SerializeField] Animator a;
+    public readonly int 
+        IDLE    = Animator.StringToHash("idle"),
+        RUN     = Animator.StringToHash("run"),
+        NONE    = Animator.StringToHash("none"),
+        FRONT_SWING = Animator.StringToHash("front_swing"),
+        BACK_SWING  = Animator.StringToHash("back_swing"),
+        BITE_1 = Animator.StringToHash("bite_1"),
+        BITE_2 = Animator.StringToHash("bite_2");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void idle() => a.Play(IDLE);
+    public void run() => a.Play(RUN);
+    public void front_swing() => a.Play(FRONT_SWING);
+    public void back_swing() => a.Play(BACK_SWING);
+    public void bite() => a.Play(BITE_1);
 }
