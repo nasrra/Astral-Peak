@@ -2105,6 +2105,22 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 5.761735, y: 1.8661318, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Wolf_Sprite(b)/BBody/FBody/Head
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -2621,6 +2637,15 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 515024130
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2984568671
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -9895,6 +9920,69 @@ AnimationClip:
     classID: 4
     script: {fileID: 0}
     flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 5.761735
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Wolf_Sprite(b)/BBody/FBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1.8661318
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Wolf_Sprite(b)/BBody/FBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Wolf_Sprite(b)/BBody/FBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
   m_EulerEditorCurves:
   - serializedVersion: 2
     curve:
@@ -9904,7 +9992,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9916,7 +10004,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9928,7 +10016,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9940,7 +10028,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9952,7 +10040,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9964,7 +10052,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9976,7 +10064,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    path: Wolf_Sprite(b)/BBody/TailRoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -9988,7 +10076,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    path: Wolf_Sprite(b)/BBody/TailRoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10000,7 +10088,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    path: Wolf_Sprite(b)/BBody/TailRoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10012,7 +10100,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10024,7 +10112,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10036,7 +10124,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10048,7 +10136,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10060,7 +10148,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10072,7 +10160,115 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10109,78 +10305,6 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
     path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10408,6 +10532,42 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
     path: Wolf_Sprite(b)/BBody/BRThigh/BRCalf/BRFoot
     classID: 4
     script: {fileID: 0}
@@ -10444,7 +10604,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10456,7 +10616,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10468,7 +10628,43 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10516,7 +10712,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10528,7 +10724,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10540,7 +10736,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
+    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10552,7 +10748,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10564,7 +10760,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10576,7 +10772,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf/FRFoot
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10588,7 +10784,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10600,7 +10796,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10612,7 +10808,43 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10649,6 +10881,114 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
     path: Wolf_Sprite(b)/BBody/FBody/Head/Mouth
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10732,186 +11072,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/TailRoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/TailRoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/TailRoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/RThigh/RCalf/RFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh/LCalf/LFoot
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
     path: Wolf_Sprite(b)/BBody/FBody/Head/BEar
     classID: 4
     script: {fileID: 0}
@@ -10948,7 +11108,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10960,7 +11120,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -10972,295 +11132,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Head/FEar
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm/LHand
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FLThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/FRThigh/FRCalf
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/LShoulder/LArm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -11308,7 +11180,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -11320,7 +11192,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -11332,31 +11204,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/LThigh
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.y
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Sash
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -11368,7 +11216,247 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/BCloak
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/FLThigh/FLCalf/FLFoot
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/RShoulder/RArm/RHand/WeaponHolster
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/FRThigh
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/FCloak
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody/UBody/Head
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/FBody/Cavalry_Sprite(b)/LBody
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
+    classID: 4
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Wolf_Sprite(b)/BBody/TailRoot/TailMid/TailEnd
     classID: 4
     script: {fileID: 0}
     flags: 0
