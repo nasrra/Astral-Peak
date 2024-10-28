@@ -422,6 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   can_knockback: 1
   knockedback: 0
+  can_move: 1
   top_speed: 1
   acceleration: 1
   deceleration: 0.85
@@ -429,10 +430,16 @@ MonoBehaviour:
   rb: {fileID: 2977568614855167195}
   grounded: 0
   jumping: 0
+  can_jump: 1
+  can_dash: 1
+  dashed: 0
   jump_time: 0.5
   jump_force: 6
   jump_force_multiplier: 6
   jump_time_counter: 0
+  dash_time: 0
+  dash_force: 0
+  dash_cooldown: 0
   ground_checker: {fileID: 6911941183698992944}
 --- !u!114 &8159385692087430421
 MonoBehaviour:
@@ -507,6 +514,7 @@ MonoBehaviour:
   self_knockback_duration: 0.35
   hurt_box: {fileID: 6565874900555252136}
   feedback: {fileID: 1502897275953849558}
+  particles: []
 --- !u!114 &7955418272586459454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +728,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 226215159
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.07169801, g: 0.07129218, b: 0.07129218, a: 1}
@@ -1120,7 +1128,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 474277569
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5666adef10a65a84280dafd5b74824fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

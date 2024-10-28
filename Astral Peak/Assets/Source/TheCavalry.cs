@@ -8,6 +8,8 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     [SerializeField] Animator animator;
     [SerializeField] Transform target;
     [SerializeField] float target_dist;
+    [SerializeField] MeleeHolster 
+        bite, front_swing, back_swing;
     Coroutine state;
     
     private readonly int
@@ -44,6 +46,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     // animator events.
     public void back_strike_jump() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 15, 0.55f);
+    public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 5, 0.2f);
     public void second_bite(){
         if(Random.Range(0,11) > 2)
             animator.Play(BITE_2);
@@ -52,6 +55,9 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         if(Random.Range(0,11) > 2)
             animator.Play(BITE_3);       
     }
+    public void play_bite_effect() => bite.slash_effect();
+    public void play_front_swing_effect() => front_swing.slash_effect();
+    public void play_back_swing_effect() => back_swing.slash_effect();
 
     IEnumerator follow(){
         animator.Play(RUN);
@@ -91,8 +97,28 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     IEnumerator idle(){
         animator.Play(IDLE);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         state_switch(follow());
         yield break;
+    }
+
+    public void flip_particles_left(){
+
+    }
+
+    public void flip_particles_right(){
+
+    }
+
+    protected override void link_events(){
+        base.link_events();
+        flipped_left += flip_particles_left;
+        flipped_right += flip_particles_right;
+    }
+
+    protected override void unlink_events(){
+        base.link_events();
+        flipped_left -= flip_particles_left;
+        flipped_right -= flip_particles_right;
     }
 }

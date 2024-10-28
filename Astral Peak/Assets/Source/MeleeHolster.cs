@@ -1,16 +1,18 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeHolster : MonoBehaviour{
     public Action<Collider2D>
         hit_enemy_guard;
 
+    [SerializeField] string melee_name = ""; // used to diferentiate in the editor
     [SerializeField] private float 
         damage, knockback_force, knockback_duration,
         self_damage, self_knockback_force, self_knockback_duration;
     [SerializeField] private Collider2D hurt_box;
     [SerializeField] private Collider2DFeedback feedback;
-    [SerializeField] private ParticleSystem particles;
+    [SerializeField] private List<ParticleSystem> particles;
     void Start() => link_events();
     
     public void enable_hurt_box(int x) => hurt_box.enabled = x != 0; 
@@ -20,7 +22,6 @@ public class MeleeHolster : MonoBehaviour{
     public float get_self_knockback_duration() => self_knockback_duration;
 
     public void hit(Collider2D other){
-        //Debug.Log(other.gameObject.name + " hit with melee!");
         Creature creature = other.GetComponent<Creature>();
         
         // if we damage the creature.
@@ -34,16 +35,24 @@ public class MeleeHolster : MonoBehaviour{
     }
 
     // used for when a creature changes their facing direction.
-    public void flip_particle_emitter_left() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
-    public void flip_particle_emitter_right() => particles.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
+    public void flip_particle_emitter_left(){
+        foreach(ParticleSystem p in particles)
+            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
+    }
+    public void flip_particle_emitter_right(){
+        foreach(ParticleSystem p in particles)
+            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
+    }
 
     public void slash_effect(){
-        particles.Emit(1);
+        foreach(ParticleSystem p in particles){
+            p.Emit(1);
 
-        // flip the orientation of the slash particle for variety.
-        Vector3 current_flip = particles.GetComponent<ParticleSystemRenderer>().flip; 
-        current_flip.y = UnityEngine.Random.Range(0,2);
-        particles.GetComponent<ParticleSystemRenderer>().flip = current_flip;
+            // flip the orientation of the slash particle for variety.
+            Vector3 current_flip = p.GetComponent<ParticleSystemRenderer>().flip; 
+            //current_flip.y = UnityEngine.Random.Range(0,2);
+            p.GetComponent<ParticleSystemRenderer>().flip = current_flip;
+        }
     }
 
     public void link_events() => feedback.trigger_enter += hit;
