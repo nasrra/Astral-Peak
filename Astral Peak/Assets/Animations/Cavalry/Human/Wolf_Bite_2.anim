@@ -11323,14 +11323,28 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.3
-    functionName: play_bite_effect
+    functionName: emit_attack_particles
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.3
+    functionName: enable_attack_hurt_box
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.43333334
+    functionName: third_bite
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.43333334
-    functionName: third_bite
+    functionName: enable_attack_hurt_box
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

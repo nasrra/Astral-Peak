@@ -12,7 +12,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [Header("Player")]
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
-    [SerializeField] protected MeleeHolster melee;
+    [SerializeField] protected PlayerCombat melee;
     [SerializeField] protected PlayerAnimator animator;
 
     void Awake(){
@@ -47,7 +47,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void stop_right()   => movement.move_right(false);
     private void interact()     => interactor.interact();
     private void attack()       => animator.attack();
-    //private void parry()        => animator.play(animator.GUARD);
     private void dash(){
         float move_dir = movement.get_move_direction().x;
         if(move_dir > 0)
@@ -103,10 +102,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void attack_failed(Collider2D other){
         movement.knockback(
             transform.position - other.transform.position, 
-            melee.get_self_knockback_force(), 
-            melee.get_self_knockback_duration()
+            melee.get_attack().get_self_knockback_force(), 
+            melee.get_attack().get_self_knockback_duration()
         );
-        damage(melee.get_self_damage());
     }
 
     private void movement_animation(){
@@ -141,7 +139,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       += stop_right;
         input.interact_performed    += interact;
         input.attack_performed      += attack;
-        //input.parry_performed       += parry;
         input.dash_performed        += dash;  
     }
 
@@ -154,7 +151,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       -= stop_right;
         input.interact_performed    -= interact;
         input.attack_performed      -= attack;
-        //input.parry_performed       -= parry;
         input.dash_performed        -= dash;    
     }
 
@@ -172,14 +168,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void link_melee(){
-        melee.hit_enemy_guard += attack_failed;
-        flipped_left += melee.flip_particle_emitter_left;
-        flipped_right += melee.flip_particle_emitter_right;
+        melee.get_attack().hit_enemy_guard += attack_failed;
+        flipped_left += melee.get_attack().flip_particle_emitter_left;
+        flipped_right += melee.get_attack().flip_particle_emitter_right;
     }
     private void unlink_melee(){
-        melee.hit_enemy_guard -= attack_failed;
-        flipped_left -= melee.flip_particle_emitter_left;
-        flipped_right -= melee.flip_particle_emitter_right;
+        melee.get_attack().hit_enemy_guard -= attack_failed;
+        flipped_left -= melee.get_attack().flip_particle_emitter_left;
+        flipped_right -= melee.get_attack().flip_particle_emitter_right;
     }
 
 #endregion

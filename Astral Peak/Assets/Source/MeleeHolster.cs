@@ -1,29 +1,48 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 
-public class MeleeHolster : MonoBehaviour{
+//create seperate classes for each atttack
+
+[Serializable]
+public class MeleeHolster{
     public Action<Collider2D>
         hit_enemy_guard;
-
-    [SerializeField] string melee_name = ""; // used to diferentiate in the editor
-    [SerializeField] private float 
-        damage, knockback_force, knockback_duration,
-        self_damage, self_knockback_force, self_knockback_duration;
-    [SerializeField] private Collider2D hurt_box;
-    [SerializeField] private Collider2DFeedback feedback;
-    [SerializeField] private List<ParticleSystem> particles;
-    void Start() => link_events();
     
-    public void enable_hurt_box(int x) => hurt_box.enabled = x != 0; 
+    // the name of the trigger in the animation tree to play.
+    [HideInInspector] public int animation_id;
+    [SerializeField]private float 
+        damage, knockback_force, knockback_duration,
+        self_knockback_force, self_knockback_duration;
+    
+    [SerializeField] protected Collider2D hurt_box;
+    [SerializeField] protected Collider2DFeedback feedback;
+    [SerializeField] protected List<ParticleSystem> particles;
+    protected Transform transform;
+
+    public MeleeHolster(int animation_id) => this.animation_id = animation_id;
+
+    public void set_transform(Transform transform) => this.transform = transform; 
+
+    public void enable_hurt_box(int x){
+        if(x != 0){
+            feedback.trigger_enter += hit;
+            hurt_box.enabled = true;
+        }
+        else{
+            feedback.trigger_enter -= hit;
+            hurt_box.enabled = false;
+        }
+    }
     public void set_damage(int amt) => damage = amt;
-    public float get_self_damage() => self_damage;
     public float get_self_knockback_force() => self_knockback_force;
     public float get_self_knockback_duration() => self_knockback_duration;
 
     public void hit(Collider2D other){
         Creature creature = other.GetComponent<Creature>();
-        
+
         // if we damage the creature.
         if(creature.damage(damage) == true)
             // knock it back.
@@ -44,7 +63,7 @@ public class MeleeHolster : MonoBehaviour{
             p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
     }
 
-    public void slash_effect(){
+    public void emit_particles(){
         foreach(ParticleSystem p in particles){
             p.Emit(1);
 
@@ -54,7 +73,4 @@ public class MeleeHolster : MonoBehaviour{
             p.GetComponent<ParticleSystemRenderer>().flip = current_flip;
         }
     }
-
-    public void link_events() => feedback.trigger_enter += hit;
-    public void unlink_events() =>feedback.trigger_enter -= hit;
 }

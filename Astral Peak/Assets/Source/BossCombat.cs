@@ -6,15 +6,15 @@ using UnityEngine;
 public class BossCombat : MonoBehaviour{
     [SerializeField] public float cooldown;
     [SerializeField] BossAttack chosen_attack;
-    [SerializeField] public List<BossAttack> front_moveset = new List<BossAttack>();
-    [SerializeField] public List<BossAttack> back_moveset = new List<BossAttack>();
-    [SerializeField] public List<BossAttack> special_moveset = new List<BossAttack>();
+    [SerializeField] protected Dictionary<int, BossAttack> front_moveset = new Dictionary<int, BossAttack>();
+    [SerializeField] protected Dictionary<int, BossAttack> back_moveset = new Dictionary<int, BossAttack>(); 
+    [SerializeField] protected Dictionary<int, BossAttack> special_moveset = new Dictionary<int, BossAttack>();
     Coroutine timer;
 
     // used as an animator key event.
-    public void set_front_moveset(List<BossAttack> moveset) => front_moveset = moveset;
-    public void set_back_moveset(List<BossAttack> moveset) => back_moveset = moveset;
-    public void set_special_moveset(List<BossAttack> moveset) => special_moveset = moveset;
+    protected void set_front_moveset(Dictionary<int, BossAttack> moveset) => front_moveset = moveset;
+    protected void set_back_moveset(Dictionary<int, BossAttack> moveset) => back_moveset = moveset;
+    protected void set_special_moveset(Dictionary<int, BossAttack> moveset) => special_moveset = moveset;
 
     // Note: need to make the chance of the attack applicable 
     // add to the algorithm so that some attacks are more frequently picked
@@ -38,6 +38,10 @@ public class BossCombat : MonoBehaviour{
         return chosen_attack;
     }
 
+    // animator key event functions.
+    public void enable_attack_hurt_box(int x) => chosen_attack.enable_hurt_box(x);
+    public void emit_attack_particles() => chosen_attack.emit_particles();
+
     IEnumerator cooldown_timer(float time){
         cooldown = time;
         yield return new WaitForSeconds(cooldown);
@@ -46,37 +50,36 @@ public class BossCombat : MonoBehaviour{
     }
 
     public List<BossAttack> available_infront_attacks(float dist_to_target){
-        //Debug.Log("front");
         List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(BossAttack attack in front_moveset)
-            if(Mathf.Abs(dist_to_target) <= attack.distance)
-                available_attacks.Add(attack);
+        foreach(KeyValuePair<int, BossAttack> attack in front_moveset)
+            if(Mathf.Abs(dist_to_target) <= attack.Value.distance)
+                available_attacks.Add(attack.Value);
         return available_attacks;
     }
 
     public List<BossAttack> available_behind_attacks(float dist_to_target){
-        //Debug.Log("back");
         List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(BossAttack attack in back_moveset)
-            if(Mathf.Abs(dist_to_target) <= attack.distance)
-                available_attacks.Add(attack);
+        foreach(KeyValuePair<int, BossAttack> attack in back_moveset)
+            if(Mathf.Abs(dist_to_target) <= attack.Value.distance)
+                available_attacks.Add(attack.Value);
         return available_attacks;
     }
-}
 
-[Serializable]
-public class BossAttack{
-    public BossAttack(int animation_id, float distance, float cooldown){
-        this.animation_id = animation_id;
-        this.distance = distance;
-        this.cooldown = cooldown;
+    public void flip_particles_right(){
+        foreach(KeyValuePair<int, BossAttack> a in front_moveset)
+            a.Value.flip_particle_emitter_right();
+        foreach(KeyValuePair<int, BossAttack> a in back_moveset)
+            a.Value.flip_particle_emitter_right();
+        foreach(KeyValuePair<int, BossAttack> a in special_moveset)
+            a.Value.flip_particle_emitter_right();
     }
-    // the name of the trigger in the animation tree to play.
-    public int animation_id;
-    // chance of that attack occuring.
-    // public float chance;
-    // distance from player that the attack would be considered.
-    public float distance;
-    // the cooldown for a next attack to be thrown after this one.
-    public float cooldown;
+
+    public void flip_particles_left(){
+        foreach(KeyValuePair<int, BossAttack> a in front_moveset)
+            a.Value.flip_particle_emitter_left();
+        foreach(KeyValuePair<int, BossAttack> a in back_moveset)
+            a.Value.flip_particle_emitter_left();
+        foreach(KeyValuePair<int, BossAttack> a in special_moveset)
+            a.Value.flip_particle_emitter_left();
+    }
 }

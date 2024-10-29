@@ -117,7 +117,6 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             melee.get_self_knockback_force(), 
             melee.get_self_knockback_duration()
         );
-        damage(melee.get_self_damage());
     }
 
     #region linkage

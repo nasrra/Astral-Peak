@@ -2,7 +2,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerAnimator : AnimatorOverride{
-    public readonly int 
+    public static readonly int 
         IDLE    = Animator.StringToHash("idle"),
         ATTACK  = Animator.StringToHash("attack"),
         RUN     = Animator.StringToHash("run"),

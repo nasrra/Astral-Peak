@@ -5,11 +5,9 @@ using UnityEngine;
 public class TheCavalry : CreatureInheritor<CharacterMovement>{
     // Start is called before the first frame update
     [SerializeField] BossCombat combat;
-    [SerializeField] Animator animator;
+    [SerializeField] CavalryAnimator animator;
     [SerializeField] Transform target;
     [SerializeField] float target_dist;
-    [SerializeField] MeleeHolster 
-        bite, front_swing, back_swing;
     Coroutine state;
     
     private readonly int
@@ -19,15 +17,6 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         BITE_3 = Animator.StringToHash("bite_3");
 
     void Start(){
-        combat.set_front_moveset(new List<BossAttack>(){
-            //new BossAttack(Animator.StringToHash("front_strike"),6,2),
-            new BossAttack(Animator.StringToHash("bite_1"),6, 2),
-        });
-
-        combat.set_back_moveset(new List<BossAttack>(){
-            new BossAttack(Animator.StringToHash("back_strike"),6,2),
-        });
-
         state_switch(idle());
         link_events();
     } 
@@ -49,18 +38,15 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 5, 0.2f);
     public void second_bite(){
         if(Random.Range(0,11) > 2)
-            animator.Play(BITE_2);
+            animator.play(BITE_2);
     }
     public void third_bite(){
         if(Random.Range(0,11) > 2)
-            animator.Play(BITE_3);       
+            animator.play(BITE_3);       
     }
-    public void play_bite_effect() => bite.slash_effect();
-    public void play_front_swing_effect() => front_swing.slash_effect();
-    public void play_back_swing_effect() => back_swing.slash_effect();
 
     IEnumerator follow(){
-        animator.Play(RUN);
+        animator.play(RUN);
         while(true){
             target_dist = dist_to_target();
 
@@ -91,34 +77,26 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     }
 
     IEnumerator attack(BossAttack attack){
-        animator.Play(attack.animation_id);
+        animator.play(attack.animation_id);
         yield break;
     }
 
     IEnumerator idle(){
-        animator.Play(IDLE);
+        animator.play(IDLE);
         yield return new WaitForSeconds(1);
         state_switch(follow());
         yield break;
     }
 
-    public void flip_particles_left(){
-
-    }
-
-    public void flip_particles_right(){
-
-    }
-
     protected override void link_events(){
         base.link_events();
-        flipped_left += flip_particles_left;
-        flipped_right += flip_particles_right;
+        flipped_left += combat.flip_particles_left;
+        flipped_right += combat.flip_particles_right;
     }
 
     protected override void unlink_events(){
         base.link_events();
-        flipped_left -= flip_particles_left;
-        flipped_right -= flip_particles_right;
+        flipped_left -= combat.flip_particles_left;
+        flipped_right -= combat.flip_particles_right;
     }
 }
