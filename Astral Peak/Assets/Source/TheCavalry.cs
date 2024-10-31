@@ -19,6 +19,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         state_switch(idle());
         combat.set_front_moveset(animator.get_front_moveset());
         combat.set_back_moveset(animator.get_back_moveset()); 
+        //combat.set_special_moveset(animator.get_special_moveset());
         link_events();
     } 
 
@@ -75,7 +76,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     public void switch_to_idle() => state_switch(idle());
     IEnumerator idle(){
         animator.idle();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         state_switch(follow());
         yield break;
     }

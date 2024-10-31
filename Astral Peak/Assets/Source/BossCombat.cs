@@ -30,6 +30,9 @@ public class BossCombat : MonoBehaviour{
         else
             available_attacks = dist_to_target <= 0? available_behind_attacks(dist_to_target) : available_infront_attacks(dist_to_target); 
 
+        // add special attacks to the available attacks.
+        available_attacks.AddRange(available_special_attacks(dist_to_target));
+
         // choose and execute attack.
         if(available_attacks.Count <= 0)
             return null;
@@ -43,7 +46,8 @@ public class BossCombat : MonoBehaviour{
     public void emit_attack_particles() => chosen_attack.emit_particles();
     public void attack_end(){
         attack_ended?.Invoke();
-        StartCoroutine(cooldown_timer(chosen_attack.cooldown));
+        StartCoroutine(chosen_attack.self_cooldown());
+        StartCoroutine(cooldown_timer(chosen_attack.combat_cooldown));
     }
 
     IEnumerator cooldown_timer(float time){
@@ -67,6 +71,14 @@ public class BossCombat : MonoBehaviour{
             if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
                 available_attacks.Add(attack);
         return available_attacks;
+    }
+
+    public List<BossAttack> available_special_attacks(float dist_to_target){
+        List<BossAttack> available_attacks = new List<BossAttack>();
+        foreach(BossAttack attack in special_moveset)
+            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
+                available_attacks.Add(attack);
+        return available_attacks;        
     }
 
     public void flip_particles_right(){

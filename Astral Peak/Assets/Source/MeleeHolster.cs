@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.Tilemaps;
 
 //create seperate classes for each atttack
 
@@ -73,5 +74,5 @@ public class MeleeHolster{
         }
     }
 
-    public void use() => animation();
+    public virtual void use() => animation();
 }

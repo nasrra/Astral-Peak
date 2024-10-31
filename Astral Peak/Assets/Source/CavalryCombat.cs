@@ -16,11 +16,14 @@ public class CavalryAnimator : MonoBehaviour{
         BITE_3          = Animator.StringToHash("bite_3"),
         WHISTLE         = Animator.StringToHash("whistle"),
         NO_SWORD_IDLE   = Animator.StringToHash("no_sword_idle"),
-        NO_SWORD_RUN    = Animator.StringToHash("no_sword_run");
+        NO_SWORD_RUN    = Animator.StringToHash("no_sword_run"),
+        PICKUP_SWORD    = Animator.StringToHash("pickup_sword"),
+        HOWL            = Animator.StringToHash("howl");
 
-    [SerializeField] List<BossAttack> 
-        front_moveset = new List<BossAttack>(), 
-        back_moveset = new List<BossAttack>();
+    [SerializeField] List<BossAttack>
+        front_moveset = new List<BossAttack>(),
+        back_moveset = new List<BossAttack>(),
+        special_moveset = new List<BossAttack>();
 
     void Start(){
         set_moveset_transforms();
@@ -33,6 +36,8 @@ public class CavalryAnimator : MonoBehaviour{
         front_moveset[2].set_animation(()=>animator.Play(FETCH_1));
 
         back_moveset[0].set_animation(()=>animator.Play(BACK_STRIKE));
+
+        special_moveset[0].set_animation(()=>animator.Play(HOWL));
     }
 
     void set_moveset_transforms(){
@@ -40,11 +45,13 @@ public class CavalryAnimator : MonoBehaviour{
             a.set_transform(transform);
         foreach(BossAttack a in back_moveset)
             a.set_transform(transform);
+        foreach(BossAttack a in special_moveset)
+            a.set_transform(transform);
     }
     
-    public List<BossAttack> get_front_moveset() => front_moveset; 
-    public List<BossAttack> get_back_moveset() => back_moveset;
-
+    public List<BossAttack> get_front_moveset()     => front_moveset; 
+    public List<BossAttack> get_back_moveset()      => back_moveset;
+    public List<BossAttack> get_special_moveset()   => special_moveset;
 
     // animator key events:
     public void run()           => animator.Play(RUN);
@@ -53,6 +60,7 @@ public class CavalryAnimator : MonoBehaviour{
     public void bite_3()        => animator.Play(BITE_3); 
     public void whistle()       => animator.Play(WHISTLE);
     public void no_sword_idle() => animator.Play(NO_SWORD_IDLE);
-    public void no_sword_run() => animator.Play(NO_SWORD_RUN);
+    public void no_sword_run()  => animator.Play(NO_SWORD_RUN);
+    public void pickup_sword()  => animator.Play(PICKUP_SWORD);
 }
 

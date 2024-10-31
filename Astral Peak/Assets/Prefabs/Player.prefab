@@ -5697,7 +5697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   melee_attack:
-    animation_id: 1203776827
     damage: 0
     knockback_force: 0
     knockback_duration: 0
@@ -5745,7 +5744,7 @@ MonoBehaviour:
   jumping: 0
   can_jump: 1
   can_dash: 1
-  dashed: 0
+  dashing: 0
   jump_time: 0.5
   jump_force: 6
   jump_force_multiplier: 6
@@ -5768,6 +5767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_life: 5
   current_life: 5
+  invulnerable: 0
   bar: {fileID: 8851454375331287526}
 --- !u!114 &4278735649314562499
 MonoBehaviour:

@@ -4,8 +4,6 @@ using UnityEngine;
 public class FetchSword : Projectile{
     public event Action landed;
     [SerializeField] Animator animator;
-    [SerializeField] TrailRenderer trail;
-    [SerializeField] Collider2D col;
 
     protected override void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "Player"){
@@ -18,11 +16,9 @@ public class FetchSword : Projectile{
             animator.Play("landed");
             rb.velocity = Vector3.zero;
             rb.gravityScale = 0;
+            enable_trail(false);
+            enable_collider(false);
             landed?.Invoke();
         }
     }
-
-    // used in animator.
-    public void turn_trail_off() => trail.enabled = false;
-    public void turn_collider_off() => col.enabled = false;
 }
