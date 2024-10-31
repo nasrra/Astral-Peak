@@ -7,15 +7,15 @@ public class BossCombat : MonoBehaviour{
     public event Action attack_ended;
     [SerializeField] public float cooldown;
     [SerializeField] BossAttack chosen_attack;
-    [SerializeField] protected Dictionary<int, BossAttack> front_moveset = new Dictionary<int, BossAttack>();
-    [SerializeField] protected Dictionary<int, BossAttack> back_moveset = new Dictionary<int, BossAttack>(); 
-    [SerializeField] protected Dictionary<int, BossAttack> special_moveset = new Dictionary<int, BossAttack>();
+    [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
+    [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
+    [SerializeField] protected List<BossAttack> special_moveset = new List<BossAttack>();
     Coroutine timer;
 
     // used as an animator key event.
-    protected void set_front_moveset(Dictionary<int, BossAttack> moveset) => front_moveset = moveset;
-    protected void set_back_moveset(Dictionary<int, BossAttack> moveset) => back_moveset = moveset;
-    protected void set_special_moveset(Dictionary<int, BossAttack> moveset) => special_moveset = moveset;
+    public void set_front_moveset   (List<BossAttack> moveset) => front_moveset = moveset;
+    public void set_back_moveset    (List<BossAttack> moveset) => back_moveset = moveset;
+    public void set_special_moveset (List<BossAttack> moveset) => special_moveset = moveset;
 
     // Note: need to make the chance of the attack applicable 
     // add to the algorithm so that some attacks are more frequently picked
@@ -55,35 +55,35 @@ public class BossCombat : MonoBehaviour{
 
     public List<BossAttack> available_infront_attacks(float dist_to_target){
         List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(KeyValuePair<int, BossAttack> attack in front_moveset)
-            if(Mathf.Abs(dist_to_target) <= attack.Value.distance)
-                available_attacks.Add(attack.Value);
+        foreach(BossAttack attack in front_moveset)
+            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
+                available_attacks.Add(attack);
         return available_attacks;
     }
 
     public List<BossAttack> available_behind_attacks(float dist_to_target){
         List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(KeyValuePair<int, BossAttack> attack in back_moveset)
-            if(Mathf.Abs(dist_to_target) <= attack.Value.distance)
-                available_attacks.Add(attack.Value);
+        foreach(BossAttack attack in back_moveset)
+            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
+                available_attacks.Add(attack);
         return available_attacks;
     }
 
     public void flip_particles_right(){
-        foreach(KeyValuePair<int, BossAttack> a in front_moveset)
-            a.Value.flip_particle_emitter_right();
-        foreach(KeyValuePair<int, BossAttack> a in back_moveset)
-            a.Value.flip_particle_emitter_right();
-        foreach(KeyValuePair<int, BossAttack> a in special_moveset)
-            a.Value.flip_particle_emitter_right();
+        foreach(BossAttack a in front_moveset)
+            a.flip_particle_emitter_right();
+        foreach(BossAttack a in back_moveset)
+            a.flip_particle_emitter_right();
+        foreach(BossAttack a in special_moveset)
+            a.flip_particle_emitter_right();
     }
 
     public void flip_particles_left(){
-        foreach(KeyValuePair<int, BossAttack> a in front_moveset)
-            a.Value.flip_particle_emitter_left();
-        foreach(KeyValuePair<int, BossAttack> a in back_moveset)
-            a.Value.flip_particle_emitter_left();
-        foreach(KeyValuePair<int, BossAttack> a in special_moveset)
-            a.Value.flip_particle_emitter_left();
+        foreach(BossAttack a in front_moveset)
+            a.flip_particle_emitter_left();
+        foreach(BossAttack a in back_moveset)
+            a.flip_particle_emitter_left();
+        foreach(BossAttack a in special_moveset)
+            a.flip_particle_emitter_left();
     }
 }

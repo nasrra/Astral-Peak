@@ -10037,10 +10037,10 @@ GameObject:
   - component: {fileID: 1050252211906397275}
   - component: {fileID: 5631597526233422013}
   - component: {fileID: 5770604696759256352}
-  - component: {fileID: 8357352600195202810}
   - component: {fileID: 3541078638272707198}
   - component: {fileID: 8221373605123083948}
   - component: {fileID: 4768311574549485359}
+  - component: {fileID: 4944008814152141371}
   - component: {fileID: 119345288355589671}
   - component: {fileID: 1813726766745458974}
   - component: {fileID: 7343523012452332790}
@@ -10147,25 +10147,12 @@ MonoBehaviour:
   health: {fileID: 8221373605123083948}
   stunnable: 0
   movement: {fileID: 3541078638272707198}
-  combat: {fileID: 4768311574549485359}
+  combat: {fileID: 4944008814152141371}
   ranged: {fileID: 119345288355589671}
-  animator: {fileID: 8357352600195202810}
+  animator: {fileID: 4768311574549485359}
   target: {fileID: 0}
   target_dist: 0
   fetch_sword: {fileID: 0}
---- !u!114 &8357352600195202810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5026348276079211433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e726bcac10a60a34d973834e0b5ab1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7343523012452332790}
 --- !u!114 &3541078638272707198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10227,9 +10214,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e83fdb9ed83b2242b383f66fd74bb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 7343523012452332790}
+  front_moveset:
+  - damage: 2
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+    hurt_box: {fileID: 8750099058140979642}
+    feedback: {fileID: 5803525296516700637}
+    particles:
+    - {fileID: 4004134893519033800}
+    chance: 0
+    distance: 0
+    cooldown: 2
+  - damage: 2
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+    hurt_box: {fileID: 7723417078298070469}
+    feedback: {fileID: 6883269117073972024}
+    particles:
+    - {fileID: 1008299220665093496}
+    - {fileID: 7777986798982387804}
+    chance: 0
+    distance: 6
+    cooldown: 2
+  - damage: 0
+    knockback_force: 0
+    knockback_duration: 0
+    self_knockback_force: 0
+    self_knockback_duration: 0
+    hurt_box: {fileID: 0}
+    feedback: {fileID: 0}
+    particles: []
+    chance: 0
+    distance: 6
+    cooldown: 2
+  back_moveset:
+  - damage: 1
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+    hurt_box: {fileID: 801522168139239909}
+    feedback: {fileID: 5632250104929940047}
+    particles:
+    - {fileID: 1674256910782220152}
+    chance: 0
+    distance: 6
+    cooldown: 0
+--- !u!114 &4944008814152141371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468ad2ffbb1e17f448b38fe5876f1385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cooldown: 0
   chosen_attack:
-    animation_id: 0
     damage: 0
     knockback_force: 0
     knockback_duration: 0
@@ -10241,62 +10290,9 @@ MonoBehaviour:
     chance: 0
     distance: 0
     cooldown: 0
-  front_strike:
-    animation_id: -281321175
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    hurt_box: {fileID: 8750099058140979642}
-    feedback: {fileID: 5803525296516700637}
-    particles:
-    - {fileID: 4004134893519033800}
-    chance: 33
-    distance: 6
-    cooldown: 1
-  back_strike:
-    animation_id: -588386326
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    hurt_box: {fileID: 801522168139239909}
-    feedback: {fileID: 5632250104929940047}
-    particles:
-    - {fileID: 1674256910782220152}
-    chance: 33
-    distance: 6
-    cooldown: 1
-  bite:
-    animation_id: -1503632017
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    hurt_box: {fileID: 7723417078298070469}
-    feedback: {fileID: 6883269117073972024}
-    particles:
-    - {fileID: 1008299220665093496}
-    - {fileID: 7777986798982387804}
-    chance: 33
-    distance: 6
-    cooldown: 1
-  fetch:
-    animation_id: 583794067
-    damage: 0
-    knockback_force: 0
-    knockback_duration: 0
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    particles: []
-    chance: 0
-    distance: 6
-    cooldown: 0
+  front_moveset: []
+  back_moveset: []
+  special_moveset: []
 --- !u!114 &119345288355589671
 MonoBehaviour:
   m_ObjectHideFlags: 0

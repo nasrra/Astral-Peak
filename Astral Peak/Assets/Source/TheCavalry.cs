@@ -17,6 +17,8 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     void Start(){
         state_switch(idle());
+        combat.set_front_moveset(animator.get_front_moveset());
+        combat.set_back_moveset(animator.get_back_moveset()); 
         link_events();
     } 
 
@@ -35,7 +37,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 5, 0.2f);
 
     IEnumerator follow(){
-        animator.play(CavalryAnimator.RUN);
+        animator.run();
         while(true){
             target_dist = dist_to_target();
 
@@ -66,13 +68,13 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     }
 
     IEnumerator attack(BossAttack attack){
-        animator.play(attack.animation_id);
+        attack.use();
         yield break;
     }
 
     public void switch_to_idle() => state_switch(idle());
     IEnumerator idle(){
-        animator.play(CavalryAnimator.IDLE);
+        animator.idle();
         yield return new WaitForSeconds(1);
         state_switch(follow());
         yield break;
@@ -80,7 +82,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
     IEnumerator idle_no_sword(){
-        animator.play(CavalryAnimator.NO_SWORD_IDLE);
+        animator.no_sword_idle();
         yield break;
     }
 
@@ -89,7 +91,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         target = fetch_sword.transform;
         while(true){
             target_dist = dist_to_target();
-            animator.play(CavalryAnimator.NO_SWORD_RUN);
+            animator.no_sword_run();
 
             if(Mathf.Abs(target_dist) <= 0.5f){
                 target = Player.player.transform;

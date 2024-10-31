@@ -8,11 +8,11 @@ using UnityEditor;
 
 [Serializable]
 public class MeleeHolster{
+    public delegate void AnimationDelegate();
+    private AnimationDelegate animation;
+
     public Action<Collider2D>
         hit_enemy_guard;
-    
-    // the name of the trigger in the animation tree to play.
-    [HideInInspector] public int animation_id;
     [SerializeField]private float 
         damage, knockback_force, knockback_duration,
         self_knockback_force, self_knockback_duration;
@@ -22,8 +22,7 @@ public class MeleeHolster{
     [SerializeField] protected List<ParticleSystem> particles;
     protected Transform transform;
 
-    public MeleeHolster(int animation_id) => this.animation_id = animation_id;
-
+    public void set_animation(AnimationDelegate animation) => this.animation = animation;
     public void set_transform(Transform transform) => this.transform = transform; 
 
     public void enable_hurt_box(int x){
@@ -73,4 +72,6 @@ public class MeleeHolster{
             p.GetComponent<ParticleSystemRenderer>().flip = current_flip;
         }
     }
+
+    public void use() => animation();
 }
