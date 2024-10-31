@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 292617691876226144}
   - component: {fileID: 4149376876033069601}
-  - component: {fileID: 4029889916211301614}
   - component: {fileID: 2185994165429294381}
   - component: {fileID: 4239354737643139403}
   m_Layer: 0
@@ -34,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6062491891282456533}
+  - {fileID: 5362779451759639954}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4149376876033069601
@@ -49,27 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  movement: {fileID: 4029889916211301614}
---- !u!114 &4029889916211301614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 911918212030288346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  can_knockback: 1
-  knockedback: 0
-  can_move: 1
-  top_speed: 25
-  acceleration: 25
-  deceleration: 1
-  move_direction: {x: 0, y: 0}
   rb: {fileID: 2185994165429294381}
+  front_point: {fileID: 5362779451759639954}
+  speed: 25
 --- !u!50 &2185994165429294381
 Rigidbody2D:
   serializedVersion: 4
@@ -216,3 +198,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6411428271056835804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5362779451759639954}
+  m_Layer: 0
+  m_Name: front_point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5362779451759639954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411428271056835804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.886, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 292617691876226144}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour{
     [SerializeField] private int damage = 1;
-    [SerializeField] private Movement movement;
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] private Transform front_point;
+    [SerializeField] float speed = 25;
 
     void Awake(){
         // start moving right
-        movement.move_right(true);
+        rb.velocity = (front_point.position - transform.position).normalized * speed;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    protected virtual void OnTriggerEnter2D(Collider2D other){
         if(other.GetComponent<Creature>() != null)
             // damage creature that is hit.
             other.GetComponent<Creature>().damage(damage);

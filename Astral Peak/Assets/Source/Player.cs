@@ -35,11 +35,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             handle_enemy_contact(other);
     }
 
-    private void start_jump(){
-        if(movement.jump() == true){
-            animator.jump();
-        }
-    }
+    private void start_jump()   => movement.jump();
     private void stop_jump()    => movement.end_jump();
     private void start_left()   => movement.move_left(true);
     private void stop_left()    => movement.move_left(false);
@@ -53,12 +49,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
             movement.dash(Vector2.right, 20, 0.25f);
         else 
             movement.dash(Vector2.left, 20, 0.25f);
-    }
-
-    private void player_not_grounded(){
-        // if we aren't jumping, then just play the fall animation.
-        if(animator.is_falling() == false)
-            animator.start_fall();
     }
 
     private void player_is_grounded(){
@@ -157,14 +147,20 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed += movement_animation;
-        movement.now_grounded += player_is_grounded;
-        movement.not_grounded += player_not_grounded;
+        movement.now_grounded           += player_is_grounded;
+        movement.not_grounded           += animator.start_fall;
+        movement.jumped                 += animator.jump;
+        movement.dashed                 += health.is_invulnerable;
+        movement.finish_dash            += health.is_vulnerable;
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed -= movement_animation;
-        movement.now_grounded -= player_is_grounded;
-        movement.not_grounded -= player_not_grounded;
+        movement.now_grounded           -= player_is_grounded;
+        movement.not_grounded           -= animator.start_fall;
+        movement.jumped                 -= animator.jump;
+        movement.dashed                 -= health.is_invulnerable;
+        movement.finish_dash            -= health.is_vulnerable;
     }
 
     private void link_melee(){

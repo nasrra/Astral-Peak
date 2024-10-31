@@ -11,6 +11,8 @@ public class Health : MonoBehaviour{
     
     [SerializeField] private float
         max_life, current_life;
+    
+    [SerializeField] bool invulnerable;
 
     [SerializeField] protected Bar bar;
 
@@ -27,8 +29,14 @@ public class Health : MonoBehaviour{
             healed?.Invoke();
     }
 
+    public void is_invulnerable() => invulnerable = true;
+    public void is_vulnerable() => invulnerable = false;
+
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public bool damage(float amt){
+        if(invulnerable == true)
+            return false;
+
         current_life -= amt;
         if(current_life <= 0.0f){
             current_life = 0.0f;

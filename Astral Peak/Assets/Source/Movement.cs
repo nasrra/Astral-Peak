@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
-    public event Action apply_force_timeout;
+    public event Action 
+        move_direction_changed, apply_force_timeout;
 
     [Header("Movement")]
     [SerializeField] protected bool can_knockback = true;
@@ -14,10 +15,10 @@ public class Movement : MonoBehaviour{
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
+    private float original_gravity = 0;
     protected Coroutine force_coroutine;
-    
-    public event Action move_direction_changed;
 
+    void Awake() => original_gravity = rb.gravityScale; // chache gravity scale for the knock back and dash functionality.
     void Start() => link();
     void OnDestroy() => unlink();
 
@@ -82,7 +83,7 @@ public class Movement : MonoBehaviour{
         rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
     } 
     protected virtual void decelerate(){
-        if(knockedback == true)
+        if(knockedback == false)
             rb.velocity *= deceleration;
     }
 
@@ -95,23 +96,16 @@ public class Movement : MonoBehaviour{
             force_coroutine = StartCoroutine(apply_force_loop(direction += Vector3.up * 0.55f, force, duration));
         }
     }
-
     void end_knock_back() => knockedback = false;
 
     protected IEnumerator apply_force_loop(Vector3 direction, float force, float t){
-        float original_gravity = rb.gravityScale;
         rb.gravityScale = 0;
-        // timer to count down from.
-        float timer = t;
         // Normalize the final knockback direction
         direction.Normalize();
         // multiply by knock back force.
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
-        while(timer >= 0.0f){
-            timer -= Time.deltaTime;
-            yield return null; 
-        }
+        yield return new WaitForSeconds(t);
         rb.gravityScale = original_gravity;
         rb.velocity = Vector2.zero;
         apply_force_timeout?.Invoke();

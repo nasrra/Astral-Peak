@@ -3,14 +3,16 @@ using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
-    public event Action now_grounded, not_grounded;
+    public event Action 
+        now_grounded, not_grounded, jumped, 
+        dashed, finish_dash;
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private bool can_jump = true;
     [SerializeField] private bool can_dash = true;
-    [SerializeField] private bool dashed = false;
+    [SerializeField] private bool dashing = false;
     [SerializeField] private float 
         jump_time, jump_force, jump_force_multiplier, jump_time_counter, 
         dash_time, dash_force, dash_cooldown;
@@ -38,13 +40,12 @@ public class CharacterMovement : Movement{
     }
 
     // jump command
-    public bool jump() {
+    public void jump() {
         jumping = true;
         if(grounded == true && can_jump == true){
             move_direction.y = 1;
-            return true;
+            jumped?.Invoke();
         }
-        return false;
     }
 
     public void end_jump(){
@@ -62,7 +63,7 @@ public class CharacterMovement : Movement{
     }
 
     protected override void horizontal_move(){
-        if(dashed == true)
+        if(dashing == true)
             return;
         base.horizontal_move();
     }
@@ -95,30 +96,20 @@ public class CharacterMovement : Movement{
     // used for ai path finding and other state machines.
     public override void movement(MovementOption option, bool flag){
         switch(option){
-            case MovementOption.UP:
-                move_up(flag);
-                break;
-            case MovementOption.LEFT:
-                move_left(flag);
-                break;
-            case MovementOption.RIGHT:
-                move_right(flag);
-                break;
-            case MovementOption.DOWN:
-                move_down(flag);
-                break;
             case MovementOption.START_JUMP:
                 jump();
-                break;
+                return;
             case MovementOption.STOP_JUMP:
                 end_jump();
-                break;
+                return;
         }
+        base.movement(option, flag);
     }
 
     public void dash(Vector3 direction, float force, float duration){
         if(can_dash == true){
-            dashed = true;
+            dashed?.Invoke();
+            dashing = true;
             can_dash = false;
             force_coroutine = StartCoroutine(apply_force_loop(direction, force, duration));
         }      
@@ -127,8 +118,9 @@ public class CharacterMovement : Movement{
     private void end_dash() => StartCoroutine(dash_cooldown_loop());
 
     IEnumerator dash_cooldown_loop(){
-        dashed = false;
+        dashing = false;
         can_dash = false;
+        finish_dash?.Invoke();
         yield return new WaitForSeconds(dash_cooldown);
         can_dash = true;
         yield break;

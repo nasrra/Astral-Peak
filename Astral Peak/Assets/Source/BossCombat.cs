@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCombat : MonoBehaviour{
+    public event Action attack_ended;
     [SerializeField] public float cooldown;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected Dictionary<int, BossAttack> front_moveset = new Dictionary<int, BossAttack>();
@@ -34,13 +35,16 @@ public class BossCombat : MonoBehaviour{
             return null;
         int index = UnityEngine.Random.Range(0, available_attacks.Count);
         chosen_attack = available_attacks[index]; 
-        StartCoroutine(cooldown_timer(chosen_attack.cooldown));
         return chosen_attack;
     }
 
     // animator key event functions.
     public void enable_attack_hurt_box(int x) => chosen_attack.enable_hurt_box(x);
     public void emit_attack_particles() => chosen_attack.emit_particles();
+    public void attack_end(){
+        attack_ended?.Invoke();
+        StartCoroutine(cooldown_timer(chosen_attack.cooldown));
+    }
 
     IEnumerator cooldown_timer(float time){
         cooldown = time;

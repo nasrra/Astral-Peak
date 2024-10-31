@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AnimatorOverride : MonoBehaviour{
+public class CharacterAnimatorOverride : MonoBehaviour{
     [SerializeField] protected Animator a;
     protected int state;
     public bool[] locked_layers = new bool[3];
