@@ -41,9 +41,6 @@ public class BossCombat : MonoBehaviour{
         return chosen_attack;
     }
 
-    // animator key event functions.
-    public void enable_attack_hurt_box(int x) => chosen_attack.enable_hurt_box(x);
-    public void emit_attack_particles() => chosen_attack.emit_particles();
     public void attack_end(){
         attack_ended?.Invoke();
         StartCoroutine(chosen_attack.self_cooldown());
@@ -79,23 +76,5 @@ public class BossCombat : MonoBehaviour{
             if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
                 available_attacks.Add(attack);
         return available_attacks;        
-    }
-
-    public void flip_particles_right(){
-        foreach(BossAttack a in front_moveset)
-            a.flip_particle_emitter_right();
-        foreach(BossAttack a in back_moveset)
-            a.flip_particle_emitter_right();
-        foreach(BossAttack a in special_moveset)
-            a.flip_particle_emitter_right();
-    }
-
-    public void flip_particles_left(){
-        foreach(BossAttack a in front_moveset)
-            a.flip_particle_emitter_left();
-        foreach(BossAttack a in back_moveset)
-            a.flip_particle_emitter_left();
-        foreach(BossAttack a in special_moveset)
-            a.flip_particle_emitter_left();
     }
 }

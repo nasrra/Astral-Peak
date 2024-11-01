@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CavalryRangedCombat : MonoBehaviour{
+public class CavalryRangedCombatHandler : MonoBehaviour{
     public event Action<GameObject> fetch_sword_fired;
     [SerializeField] Turret
         bite_3_beam_turret,
@@ -22,7 +22,7 @@ public class CavalryRangedCombat : MonoBehaviour{
         sword_summon_turret_2.fire_once();
         sword_summon_turret_3.fire_once();
         sword_summon_turret_4.fire_once();  
-        sword_summon_turret_5.fire_once();       
+        sword_summon_turret_5.fire_once();
     }
 
     void link() => fetch_sword_turret.projectile_fired += foo;

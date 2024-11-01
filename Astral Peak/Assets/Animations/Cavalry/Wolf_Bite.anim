@@ -13152,21 +13152,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.9166667
-    functionName: emit_attack_particles
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.9166667
-    functionName: enable_attack_hurt_box
+    functionName: bite_hurt_box
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
+  - time: 0.9166667
+    functionName: emit_bite
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.05
-    functionName: bite_2
+    functionName: bite_hurt_box
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

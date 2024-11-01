@@ -12,7 +12,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [Header("Player")]
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
-    [SerializeField] protected PlayerCombat melee;
+    [SerializeField] protected MeleeHolster melee;
+    [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerAnimator animator;
 
     void Awake(){
@@ -92,8 +93,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void attack_failed(Collider2D other){
         movement.knockback(
             transform.position - other.transform.position, 
-            melee.get_attack().get_self_knockback_force(), 
-            melee.get_attack().get_self_knockback_duration()
+            melee.get_self_knockback_force(), 
+            melee.get_self_knockback_duration()
         );
     }
 
@@ -164,14 +165,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void link_melee(){
-        melee.get_attack().hit_enemy_guard += attack_failed;
-        flipped_left += melee.get_attack().flip_particle_emitter_left;
-        flipped_right += melee.get_attack().flip_particle_emitter_right;
+        melee.hit_enemy_guard += attack_failed;
+        flipped_left += particles.flip_left;
+        flipped_right += particles.flip_right;
     }
     private void unlink_melee(){
-        melee.get_attack().hit_enemy_guard -= attack_failed;
-        flipped_left -= melee.get_attack().flip_particle_emitter_left;
-        flipped_right -= melee.get_attack().flip_particle_emitter_right;
+        melee.hit_enemy_guard -= attack_failed;
+        flipped_left -= particles.flip_left;
+        flipped_right -= particles.flip_right;
     }
 
 #endregion

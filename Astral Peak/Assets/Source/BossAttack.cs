@@ -3,7 +3,17 @@ using System;
 using System.Collections;
 
 [Serializable]
-public class BossAttack : MeleeHolster{
+public class BossAttack{
+    public BossAttack(int animation_id, float chance, float distance, float attack_cooldown, float combat_cooldown, bool enabled = true){
+        this.animation_id = animation_id;
+        this.chance = chance;
+        this.distance = distance;
+        this.attack_cooldown = attack_cooldown;
+        this.combat_cooldown = combat_cooldown;
+        this.enabled = enabled;
+    }
+
+    public int animation_id;
     // chance of that attack occuring.
     public float chance;
     // distance from player that the attack would be considered.

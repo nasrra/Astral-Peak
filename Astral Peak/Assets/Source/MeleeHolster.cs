@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.Tilemaps;
-using UnityEditor.Callbacks;
 
 //create seperate classes for each atttack
 
@@ -19,7 +14,6 @@ public class MeleeHolster{
     [SerializeField] protected Transform transform;    
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
-    [SerializeField] protected List<ParticleSystem> particles;
 
     [SerializeField]private float 
         damage, knockback_force, knockback_duration,
@@ -52,27 +46,6 @@ public class MeleeHolster{
         else
             // knock us back.
             hit_enemy_guard?.Invoke(other);
-    }
-
-    // used for when a creature changes their facing direction.
-    public void flip_particle_emitter_left(){
-        foreach(ParticleSystem p in particles)
-            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
-    }
-    public void flip_particle_emitter_right(){
-        foreach(ParticleSystem p in particles)
-            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
-    }   
-
-    public void emit_particles(){
-        foreach(ParticleSystem p in particles){
-            p.Emit(1);
-
-            // flip the orientation of the slash particle for variety.
-            Vector3 current_flip = p.GetComponent<ParticleSystemRenderer>().flip; 
-            //current_flip.y = UnityEngine.Random.Range(0,2);
-            p.GetComponent<ParticleSystemRenderer>().flip = current_flip;
-        }
     }
 
     public virtual void use() => animation();

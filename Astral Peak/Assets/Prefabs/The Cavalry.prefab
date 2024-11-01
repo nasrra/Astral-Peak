@@ -15009,9 +15009,11 @@ GameObject:
   - component: {fileID: 8221373605123083948}
   - component: {fileID: 4768311574549485359}
   - component: {fileID: 119345288355589671}
+  - component: {fileID: 7306472689858852757}
+  - component: {fileID: 7830617767703654121}
+  - component: {fileID: 1923654166500241026}
   - component: {fileID: 1813726766745458974}
   - component: {fileID: 7343523012452332790}
-  - component: {fileID: 7306472689858852757}
   m_Layer: 0
   m_Name: The Cavalry
   m_TagString: Untagged
@@ -15119,7 +15121,9 @@ MonoBehaviour:
   stunnable: 0
   movement: {fileID: 3541078638272707198}
   combat: {fileID: 7306472689858852757}
+  particles: {fileID: 7830617767703654121}
   ranged: {fileID: 119345288355589671}
+  melee: {fileID: 1923654166500241026}
   animator: {fileID: 4768311574549485359}
   target: {fileID: 0}
   target_dist: 0
@@ -15205,6 +15209,94 @@ MonoBehaviour:
   sword_summon_turret_3: {fileID: 8896897915507633096}
   sword_summon_turret_4: {fileID: 6656572407417245257}
   sword_summon_turret_5: {fileID: 2273191314255034342}
+--- !u!114 &7306472689858852757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601b6e86ab22f7c469f063fda1f97560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  chosen_attack:
+    animation_id: 0
+    chance: 0
+    distance: 0
+    attack_cooldown: 0
+    combat_cooldown: 0
+    enabled: 0
+  front_moveset: []
+  back_moveset: []
+  special_moveset: []
+--- !u!114 &7830617767703654121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca5924031f969c43998912ddd06ead8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  front_strike: {fileID: 4004134893519033800}
+  back_strike_backward: {fileID: 1674256910782220152}
+  back_strike_forward: {fileID: 6155439515017791169}
+  top_bite: {fileID: 7777986798982387804}
+  bottom_bite: {fileID: 1008299220665093496}
+--- !u!114 &1923654166500241026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b2025cbefd65240b06d5debd245bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  front_strike:
+    transform: {fileID: 2694134218538119565}
+    hurt_box: {fileID: 8750099058140979642}
+    feedback: {fileID: 5803525296516700637}
+    damage: 1
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+  back_strike_backward:
+    transform: {fileID: 2694134218538119565}
+    hurt_box: {fileID: 801522168139239909}
+    feedback: {fileID: 5632250104929940047}
+    damage: 1
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+  back_strike_forward:
+    transform: {fileID: 2694134218538119565}
+    hurt_box: {fileID: 3629182238405792111}
+    feedback: {fileID: 1634893595159288097}
+    damage: 1
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
+  bite:
+    transform: {fileID: 2694134218538119565}
+    hurt_box: {fileID: 7723417078298070469}
+    feedback: {fileID: 6883269117073972024}
+    damage: 1
+    knockback_force: 20
+    knockback_duration: 0.25
+    self_knockback_force: 0
+    self_knockback_duration: 0
 --- !u!212 &1813726766745458974
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15278,148 +15370,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7306472689858852757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5026348276079211433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601b6e86ab22f7c469f063fda1f97560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  chosen_attack:
-    transform: {fileID: 0}
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    particles: []
-    damage: 0
-    knockback_force: 0
-    knockback_duration: 0
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 0
-    attack_cooldown: 0
-    combat_cooldown: 0
-    enabled: 0
-  front_moveset: []
-  back_moveset: []
-  special_moveset: []
-  animator: {fileID: 4768311574549485359}
-  front_strike:
-    transform: {fileID: 2694134218538119565}
-    hurt_box: {fileID: 8750099058140979642}
-    feedback: {fileID: 5803525296516700637}
-    particles:
-    - {fileID: 4004134893519033800}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 6
-    attack_cooldown: 4
-    combat_cooldown: 1
-    enabled: 0
-  bite:
-    transform: {fileID: 2694134218538119565}
-    hurt_box: {fileID: 7723417078298070469}
-    feedback: {fileID: 6883269117073972024}
-    particles:
-    - {fileID: 1008299220665093496}
-    - {fileID: 7777986798982387804}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 6
-    attack_cooldown: 4
-    combat_cooldown: 1
-    enabled: 0
-  fetch:
-    transform: {fileID: 0}
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    particles: []
-    damage: 0
-    knockback_force: 0
-    knockback_duration: 0
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 12
-    attack_cooldown: 24
-    combat_cooldown: 1
-    enabled: 0
-  back_strike_forward:
-    transform: {fileID: 2694134218538119565}
-    hurt_box: {fileID: 3629182238405792111}
-    feedback: {fileID: 1634893595159288097}
-    particles:
-    - {fileID: 6155439515017791169}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 6
-    attack_cooldown: 24
-    combat_cooldown: 1
-    enabled: 0
-  back_strike_backward:
-    transform: {fileID: 2694134218538119565}
-    hurt_box: {fileID: 801522168139239909}
-    feedback: {fileID: 5632250104929940047}
-    particles:
-    - {fileID: 1674256910782220152}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 6
-    attack_cooldown: 24
-    combat_cooldown: 1
-    enabled: 0
-  ground_slam:
-    transform: {fileID: 2694134218538119565}
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    particles: []
-    damage: 1
-    knockback_force: 0
-    knockback_duration: 0
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 12
-    attack_cooldown: 1
-    combat_cooldown: 1
-    enabled: 1
-  sword_summon:
-    transform: {fileID: 0}
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    particles: []
-    damage: 0
-    knockback_force: 0
-    knockback_duration: 0
-    self_knockback_force: 0
-    self_knockback_duration: 0
-    chance: 0
-    distance: 12
-    attack_cooldown: 24
-    combat_cooldown: 1
-    enabled: 0
 --- !u!1 &5327151855131923361
 GameObject:
   m_ObjectHideFlags: 0

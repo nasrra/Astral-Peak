@@ -1,27 +1,57 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class CavalryCombat : BossCombat{
-    [SerializeField] CavalryAnimator animator;
-    [SerializeField] BossAttack
-        front_strike            = new BossAttack(),
-        bite                    = new BossAttack(),
-        fetch                   = new BossAttack(),
-        back_strike_forward     = new BossAttack(),
-        back_strike_backward    = new BossAttack(),
-        ground_slam             = new BossAttack(),
-        sword_summon            = new BossAttack();
+    BossAttack
+        front_strike = new BossAttack(
+            CavalryAnimator.FRONT_STRIKE,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    4,
+            combat_cooldown:    1),
+        
+        bite = new BossAttack(
+            CavalryAnimator.BITE_1,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    4,
+            combat_cooldown:    1),
+        
+        fetch = new BossAttack(
+            CavalryAnimator.FETCH_1,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    24,
+            combat_cooldown:    1),
+        
+        back_strike_forward = new BossAttack(
+            CavalryAnimator.BACK_STRIKE_FORWARD,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    24,
+            combat_cooldown:    1),
+        
+        back_strike_backward = new BossAttack(
+            CavalryAnimator.BACK_STRIKE_BACKWARD,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    24,
+            combat_cooldown:    1),
+        
+        ground_slam = new BossAttack(
+            CavalryAnimator.GROUND_SLAM,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    24,
+            combat_cooldown:    1),
+        
+        sword_summon = new BossAttack(
+            CavalryAnimator.HOWL,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    24,
+            combat_cooldown:    1);
 
     void Start(){
-        front_strike.set_animation(()=>animator.front_strike());
-        back_strike_forward.set_animation(()=>animator.back_strike_forward());
-        back_strike_backward.set_animation(()=>animator.back_strike_backward());
-        bite.set_animation(()=>animator.bite_1());
-        fetch.set_animation(()=>animator.fetch_1());
-        sword_summon.set_animation(()=>animator.howl());
-        ground_slam.set_animation(()=>animator.ground_slam());
-
         set_front_moveset(new List<BossAttack>(){
             front_strike,
             bite,

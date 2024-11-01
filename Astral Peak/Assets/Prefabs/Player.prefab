@@ -5630,6 +5630,7 @@ GameObject:
   - component: {fileID: 1730094031898389184}
   - component: {fileID: 1807350476830979228}
   - component: {fileID: 8597468600997471075}
+  - component: {fileID: 1683145615901213879}
   - component: {fileID: 6345792998177996148}
   - component: {fileID: 8959932368922724423}
   - component: {fileID: 5994195274358197019}
@@ -5682,7 +5683,16 @@ MonoBehaviour:
   movement: {fileID: 8959932368922724423}
   input: {fileID: 0}
   interactor: {fileID: 4278735649314562499}
-  melee: {fileID: 8597468600997471075}
+  melee:
+    transform: {fileID: 1730094031898389184}
+    hurt_box: {fileID: 3785447265557635548}
+    feedback: {fileID: 4365788086590555684}
+    damage: 1
+    knockback_force: 0
+    knockback_duration: 0
+    self_knockback_force: 5
+    self_knockback_duration: 0.25
+  particles: {fileID: 1683145615901213879}
   animator: {fileID: 6345792998177996148}
 --- !u!114 &8597468600997471075
 MonoBehaviour:
@@ -5700,13 +5710,24 @@ MonoBehaviour:
     transform: {fileID: 0}
     hurt_box: {fileID: 3785447265557635548}
     feedback: {fileID: 4365788086590555684}
-    particles:
-    - {fileID: 1695118960242674608}
     damage: 0
     knockback_force: 0
     knockback_duration: 0
     self_knockback_force: 0
     self_knockback_duration: 0
+--- !u!114 &1683145615901213879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1a0903fe71d9a349801bf8d877f9261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slash_effect: {fileID: 1695118960242674608}
 --- !u!114 &6345792998177996148
 MonoBehaviour:
   m_ObjectHideFlags: 0

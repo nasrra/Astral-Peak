@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem.Switch;
 
 public class TheCavalry : CreatureInheritor<CharacterMovement>{
     // Start is called before the first frame update
-    [SerializeField] BossCombat combat;
-    [SerializeField] CavalryRangedCombat ranged;
+    [SerializeField] CavalryCombat combat;
+    [SerializeField] CavalryParticlesHandler particles;
+    [SerializeField] CavalryRangedCombatHandler ranged;
+    [SerializeField] CavalryMeleeCombatHandler melee;
     [SerializeField] CavalryAnimator animator;
     [SerializeField] Transform target;
     [SerializeField] float target_dist;
@@ -67,7 +65,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     }
 
     IEnumerator attack(BossAttack attack){
-        attack.use();
+        animator.Play(attack.animation_id);
         yield break;
     }
 
@@ -130,16 +128,16 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     protected override void link_events(){
         base.link_events();
-        flipped_left        += combat.flip_particles_left;
-        flipped_right       += combat.flip_particles_right;
+        flipped_left        += particles.flip_left;
+        flipped_right       += particles.flip_right;
         combat.attack_ended += switch_to_idle;
         ranged.fetch_sword_fired += link_fetch_sword;
     }
 
     protected override void unlink_events(){
         base.link_events();
-        flipped_left        -= combat.flip_particles_left;
-        flipped_right       -= combat.flip_particles_right;
+        flipped_left        -= particles.flip_left;
+        flipped_right       -= particles.flip_right;
         combat.attack_ended -= switch_to_idle;
         ranged.fetch_sword_fired -= link_fetch_sword;
     }
