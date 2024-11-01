@@ -5238,6 +5238,88 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 4}
   m_EdgeRadius: 0
+--- !u!1 &2407702911575609153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7703515961860469020}
+  m_Layer: 0
+  m_Name: SwordSummon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7703515961860469020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407702911575609153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4615229853586779299}
+  - {fileID: 4955156597675098491}
+  - {fileID: 7840546541846165376}
+  - {fileID: 3755420111066052042}
+  - {fileID: 7713729104771473383}
+  m_Father: {fileID: 4920890906425315457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3206354275499107610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5006314539787660988}
+  - component: {fileID: 5654002681544037515}
+  m_Layer: 0
+  m_Name: GroundSlam1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5006314539787660988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206354275499107610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9221537208914351717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5654002681544037515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206354275499107610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire_rate: 5
+  projectile: {fileID: 7538813574005945628, guid: e80fbe5913418754ca88c216d12d1c32, type: 3}
 --- !u!1 &4272816973714050025
 GameObject:
   m_ObjectHideFlags: 0
@@ -14977,7 +15059,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4920890906425315457}
+  m_Father: {fileID: 7703515961860469020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8476656528630072367
 MonoBehaviour:
@@ -15202,13 +15284,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200985a1f6d721c4995a82938ba57372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bite_3_beam_turret: {fileID: 3210715461384523958}
-  fetch_sword_turret: {fileID: 5518536380562465474}
-  sword_summon_turret_1: {fileID: 3934824781773930747}
-  sword_summon_turret_2: {fileID: 8476656528630072367}
-  sword_summon_turret_3: {fileID: 8896897915507633096}
-  sword_summon_turret_4: {fileID: 6656572407417245257}
-  sword_summon_turret_5: {fileID: 2273191314255034342}
+  bite_3_beam: {fileID: 3210715461384523958}
+  fetch_sword: {fileID: 5518536380562465474}
+  sword_summon_1: {fileID: 3934824781773930747}
+  sword_summon_2: {fileID: 8476656528630072367}
+  sword_summon_3: {fileID: 8896897915507633096}
+  sword_summon_4: {fileID: 6656572407417245257}
+  sword_summon_5: {fileID: 2273191314255034342}
+  ground_slam_1: {fileID: 5654002681544037515}
+  ground_slam_2: {fileID: 8165952921726028770}
 --- !u!114 &7306472689858852757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15249,6 +15333,8 @@ MonoBehaviour:
   back_strike_forward: {fileID: 6155439515017791169}
   top_bite: {fileID: 7777986798982387804}
   bottom_bite: {fileID: 1008299220665093496}
+  ground_slam_hop_first: {fileID: 7603135672383233129}
+  ground_slam_hop_second: {fileID: 8886303678813244450}
 --- !u!114 &1923654166500241026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20405,7 +20491,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4920890906425315457}
+  m_Father: {fileID: 7703515961860469020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2273191314255034342
 MonoBehaviour:
@@ -20421,6 +20507,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire_rate: 5
   projectile: {fileID: 3840978033195984018, guid: b540dbade3fb17642bf0bc211f398f10, type: 3}
+--- !u!1 &6530469792629607962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2059521341520744212}
+  - component: {fileID: 8165952921726028770}
+  m_Layer: 0
+  m_Name: GroundSlam1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2059521341520744212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530469792629607962}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -3, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9221537208914351717}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8165952921726028770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530469792629607962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fire_rate: 5
+  projectile: {fileID: 7538813574005945628, guid: e80fbe5913418754ca88c216d12d1c32, type: 3}
 --- !u!1 &6824379565605836379
 GameObject:
   m_ObjectHideFlags: 0
@@ -25481,7 +25613,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4920890906425315457}
+  m_Father: {fileID: 7703515961860469020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3934824781773930747
 MonoBehaviour:
@@ -25619,7 +25751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4920890906425315457}
+  m_Father: {fileID: 7703515961860469020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8896897915507633096
 MonoBehaviour:
@@ -25669,6 +25801,39 @@ Transform:
   - {fileID: 7123254068575999398}
   - {fileID: 7023944011486334332}
   m_Father: {fileID: 2694134218538119565}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8622140782517848463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9221537208914351717}
+  m_Layer: 0
+  m_Name: GroundSlam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9221537208914351717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622140782517848463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5006314539787660988}
+  - {fileID: 2059521341520744212}
+  m_Father: {fileID: 4920890906425315457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8874904152245134269
 GameObject:
@@ -25784,7 +25949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4920890906425315457}
+  m_Father: {fileID: 7703515961860469020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6656572407417245257
 MonoBehaviour:
@@ -25831,11 +25996,8 @@ Transform:
   m_Children:
   - {fileID: 799877935455778743}
   - {fileID: 3031403189271131439}
-  - {fileID: 4615229853586779299}
-  - {fileID: 4955156597675098491}
-  - {fileID: 7840546541846165376}
-  - {fileID: 3755420111066052042}
-  - {fileID: 7713729104771473383}
+  - {fileID: 7703515961860469020}
+  - {fileID: 9221537208914351717}
   m_Father: {fileID: 2694134218538119565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &920564089753515119
@@ -25848,7 +26010,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2099939863211938632, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_Name
-      value: CavalryGroundSlamHopEffect
+      value: CavalryGroundSlamHopEffect(1)
       objectReference: {fileID: 0}
     - target: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25894,6 +26056,10 @@ PrefabInstance:
       propertyPath: m_Flip.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7786466705216187149, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ada5039e8116dd849a1e98edaed74f1c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25902,6 +26068,11 @@ PrefabInstance:
 --- !u!4 &2527588575030259092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+  m_PrefabInstance: {fileID: 920564089753515119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7603135672383233129 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
   m_PrefabInstance: {fileID: 920564089753515119}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2168269540936705060
@@ -25914,7 +26085,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2099939863211938632, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_Name
-      value: CavalryGroundSlamHopEffect
+      value: CavalryGroundSlamHopEffect(2)
       objectReference: {fileID: 0}
     - target: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25964,6 +26135,11 @@ PrefabInstance:
 --- !u!4 &3585553509877710303 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+  m_PrefabInstance: {fileID: 2168269540936705060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8886303678813244450 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
   m_PrefabInstance: {fileID: 2168269540936705060}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2592356842295080008
