@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 /// <summary>
@@ -46,14 +47,22 @@ public abstract class Creature : MonoBehaviour{
     // flip the sprite.
     protected void flip_left(){
         if(flippable == true){
-            transform.rotation = flippable? Quaternion.Euler(0, 180, 0) : transform.rotation;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             flipped_left?.Invoke();
         }
     }
     protected void flip_right(){
         if(flippable == true){
-            transform.rotation = flippable? Quaternion.Euler(0, 0, 0) : transform.rotation;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             flipped_right?.Invoke();
+        }
+    }
+    protected void flip(){
+        if(flippable == true){
+            if(transform.rotation.y == 0)
+                flip_left();
+            else
+                flip_right();
         }
     }
 

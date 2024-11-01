@@ -4,27 +4,28 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Tilemaps;
+using UnityEditor.Callbacks;
 
 //create seperate classes for each atttack
 
 [Serializable]
 public class MeleeHolster{
     public delegate void AnimationDelegate();
-    private AnimationDelegate animation;
+    protected AnimationDelegate animation;
 
     public Action<Collider2D>
         hit_enemy_guard;
-    [SerializeField]private float 
-        damage, knockback_force, knockback_duration,
-        self_knockback_force, self_knockback_duration;
-    
+
+    [SerializeField] protected Transform transform;    
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
     [SerializeField] protected List<ParticleSystem> particles;
-    protected Transform transform;
+
+    [SerializeField]private float 
+        damage, knockback_force, knockback_duration,
+        self_knockback_force, self_knockback_duration;
 
     public void set_animation(AnimationDelegate animation) => this.animation = animation;
-    public void set_transform(Transform transform) => this.transform = transform; 
 
     public void enable_hurt_box(int x){
         if(x != 0){
@@ -56,12 +57,12 @@ public class MeleeHolster{
     // used for when a creature changes their facing direction.
     public void flip_particle_emitter_left(){
         foreach(ParticleSystem p in particles)
-            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
+            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
     }
     public void flip_particle_emitter_right(){
         foreach(ParticleSystem p in particles)
-            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1,0,0);
-    }
+            p.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0,0,0);
+    }   
 
     public void emit_particles(){
         foreach(ParticleSystem p in particles){
