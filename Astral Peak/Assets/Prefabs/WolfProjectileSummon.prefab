@@ -212,7 +212,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8278169515392916948}
@@ -261,12 +261,12 @@ MonoBehaviour:
   damage: 1
   rb: {fileID: 4608727830847542227}
   front_point: {fileID: 1974985982275331762}
-  speed: 15
+  speed: 25
   trail: {fileID: 8192463318379471311}
   col: {fileID: 0}
   buffer_time: 1
   snap_rotate_speed: 10
-  lerp_rotate_speed: 2
+  lerp_rotate_speed: 3
   modifier: 0
 --- !u!1 &8309545950398749934
 GameObject:

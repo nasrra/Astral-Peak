@@ -41,30 +41,30 @@ public class CavalryCombat : BossCombat{
             CavalryAnimator.GROUND_SLAM,
             chance:             50,
             distance:           6,
-            attack_cooldown:    1,
+            attack_cooldown:    48,
             combat_cooldown:    1),
         
         sword_summon = new BossAttack(
             CavalryAnimator.HOWL,
             chance:             50,
             distance:           6,
-            attack_cooldown:    24,
+            attack_cooldown:    12,
             combat_cooldown:    1);
 
     void Start(){
         set_front_moveset(new List<BossAttack>(){
-            //front_strike,
-            //bite,
-            //fetch,
+            front_strike,
+            bite,
+            fetch,
         });
 
         set_back_moveset(new List<BossAttack>(){
-            //back_strike_forward,
-            //back_strike_backward,
+            back_strike_forward,
+            back_strike_backward,
         });
     
         set_special_moveset(new List<BossAttack>(){
-            //sword_summon,
+            sword_summon,
             ground_slam,
         });
     }
