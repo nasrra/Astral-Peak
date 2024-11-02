@@ -37,7 +37,7 @@ public class MeleeHolster{
 
     public void hit(Collider2D other){
         Creature creature = other.GetComponent<Creature>();
-
+        
         // if we damage the creature.
         if(creature.damage(damage) == true)
             // knock it back.

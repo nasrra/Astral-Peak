@@ -9,8 +9,11 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     [SerializeField] CavalryMeleeCombatHandler melee;
     [SerializeField] CavalryAnimator animator;
     [SerializeField] Transform target;
-    [SerializeField] float target_dist;
     [SerializeField] FetchSword fetch_sword;
+    [SerializeField] float 
+        target_dist,
+        follow_speed,
+        follow_fsword_speed;
     Coroutine state;
 
     void Start(){
@@ -32,7 +35,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
     public void back_strike_backward_jump() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.55f);
     public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 5, 0.2f);
-    public void switch_to_move_to_fetch_sword() => state_switch(move_to_fetch_sword());
+    public void switch_to_move_to_fetch_sword() => state_switch(follow_fetch_sword());
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
     public void switch_to_idle() => state_switch(idle());
     public void ground_slam_camera_zoom() => CameraController.instance.zoom_out_state(18, 4f);
@@ -43,6 +46,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     // states: 
     IEnumerator follow(){
         animator.run();
+        movement.set_speed(follow_speed); 
         while(true){
             target_dist = dist_to_target();
 
@@ -96,8 +100,9 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         yield break;        
     }
 
-    IEnumerator move_to_fetch_sword(){
+    IEnumerator follow_fetch_sword(){
         target = fetch_sword.transform;
+        movement.set_speed(follow_fsword_speed);
         while(true){
             target_dist = dist_to_target();
             animator.no_sword_run();

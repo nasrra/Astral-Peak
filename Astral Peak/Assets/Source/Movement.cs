@@ -15,12 +15,19 @@ public class Movement : MonoBehaviour{
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
-    private float original_gravity = 0;
+    private float original_gravity, original_deceleration;
     protected Coroutine force_coroutine;
 
-    void Awake() => original_gravity = rb.gravityScale; // chache gravity scale for the knock back and dash functionality.
+    void Awake(){
+        original_gravity = rb.gravityScale;
+        original_deceleration = deceleration;
+    }
     void Start() => link();
     void OnDestroy() => unlink();
+
+    public void set_speed(float x) => top_speed = x;
+    public void set_deceleration(float x) => deceleration = x;
+    public void reset_deceleration() => deceleration = original_deceleration;
 
     public virtual void FixedUpdate(){
         horizontal_move();
