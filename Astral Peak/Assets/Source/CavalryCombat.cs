@@ -9,11 +9,12 @@ public class CavalryCombat : BossCombat{
             attack_cooldown:    4,
             combat_cooldown:    1),
         
+        // make this attack always lunge and face the palyer before each bite.
         bite = new BossAttack(
             CavalryAnimator.BITE_1,
             chance:             50,
             distance:           6,
-            attack_cooldown:    4,
+            attack_cooldown:    1,
             combat_cooldown:    1),
         
         fetch = new BossAttack(

@@ -13,11 +13,18 @@ public class Projectile : MonoBehaviour{
     void Awake() => move();
 
     protected virtual void OnTriggerEnter2D(Collider2D other){
-        if(other.GetComponent<Creature>() != null)
-            // damage creature that is hit.
-            other.GetComponent<Creature>().damage(damage);
-        Destroy(gameObject);
-        enable_trail(false);
+        if(other.gameObject.layer == LayersManager.PLAYER){
+            Creature creature = other.GetComponent<Creature>();
+            if(creature != null&& creature.damage(damage) == true){
+                other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 20, 0.25f);
+                Destroy(gameObject);
+                enable_trail(false);            
+            }
+        }
+        else if(other.gameObject.layer == LayersManager.GROUND){
+                Destroy(gameObject);
+                enable_trail(false);
+        }
     }
 
     protected virtual void move() => rb.velocity = (front_point.position - transform.position).normalized * speed;

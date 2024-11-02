@@ -17,7 +17,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     Coroutine state;
 
     void Start(){
-        state_switch(lock_idle());
+        state_switch(idle());
         link_events();
     } 
 

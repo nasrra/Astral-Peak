@@ -8,9 +8,9 @@ public class FetchSword : Projectile{
     [SerializeField] Animator animator;
 
     protected override void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == 7){ // hits player
-            other.GetComponent<Player>().damage(1);
-            other.GetComponent<CharacterMovement>().knockback(other.transform.position - transform.position, 20, 0.25f);
+        if(other.gameObject.layer == LayersManager.PLAYER){ // hits player
+            if(other.GetComponent<Player>().damage(1) == true)
+                other.GetComponent<CharacterMovement>().knockback(other.transform.position - transform.position, 20, 0.25f);
         }
         else if(other.gameObject.layer == 6){ // hits ground
             //check which way the sword is moving and flip accordingly.

@@ -88,7 +88,7 @@ public abstract class Creature : MonoBehaviour{
         get_movement().move_direction_changed -= face_move_dir;
     }
 
-    private void link_health() => health.death += kill;
-    private void unlink_health() => health.death -= kill;
+    protected virtual void link_health() => health.death += kill;
+    protected virtual void unlink_health() => health.death -= kill;
 #endregion
 }

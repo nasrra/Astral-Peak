@@ -10,7 +10,7 @@ using UnityEngine;
 public class Health : MonoBehaviour{
     [SerializeField] List<SpriteRenderer> sprite;
     public event Action
-        healed, death, damaged;
+        healed, death, damaged, now_invulnerable, now_vulnerable;
     [SerializeField] private float
         max_life, current_life;
     [SerializeField] bool invulnerable;
@@ -30,8 +30,14 @@ public class Health : MonoBehaviour{
             healed?.Invoke();
     }
 
-    public void is_invulnerable() => invulnerable = true;
-    public void is_vulnerable() => invulnerable = false;
+    public void is_invulnerable(){
+        invulnerable = true;
+        now_invulnerable?.Invoke();
+    }
+    public void is_vulnerable(){
+        invulnerable = false;
+        now_vulnerable?.Invoke();
+    }
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public bool damage(float amt){

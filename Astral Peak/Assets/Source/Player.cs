@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerAnimator animator;
+    [SerializeField] protected Collider2D col;
 
     void Awake(){
         player = this;
@@ -52,7 +54,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             movement.dash(Vector2.left, 20, 0.25f);
     }
 
-    private void player_is_grounded(){
+    private void grounded(){
         // bounce when hitting the ground.
         animator.medium_bounce();
 
@@ -67,6 +69,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.idle();
     }
 
+    private void invulnerable(){
+        col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE;
+    }
+    private void vulnerable(){
+        col.excludeLayers = new LayerMask();
+    }
+
     // used to set the players initial position in the scene.
     public void set_enter_position(){
         if(exit_point != "")
@@ -77,7 +86,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // knockback the player.    
         movement.knockback(transform.position - other.transform.position, 10, 0.3f);
         // damage the player.
-        damage(2);
+        damage(1);
     }
 
     protected override void guarded_attack(){
@@ -148,7 +157,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed += movement_animation;
-        movement.now_grounded           += player_is_grounded;
+        movement.now_grounded           += grounded;
         movement.not_grounded           += animator.start_fall;
         movement.jumped                 += animator.jump;
         movement.dashed                 += health.is_invulnerable;
@@ -157,7 +166,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed -= movement_animation;
-        movement.now_grounded           -= player_is_grounded;
+        movement.now_grounded           -= grounded;
         movement.not_grounded           -= animator.start_fall;
         movement.jumped                 -= animator.jump;
         movement.dashed                 -= health.is_invulnerable;
@@ -175,5 +184,17 @@ public class Player : CreatureInheritor<CharacterMovement>{
         flipped_right -= particles.flip_right;
     }
 
-#endregion
+    protected override void link_health(){
+        base.link_health();
+        health.now_invulnerable += invulnerable;
+        health.now_vulnerable += vulnerable;
+    }
+
+    protected override void unlink_health(){
+        base.unlink_health();
+        health.now_invulnerable -= invulnerable;
+        health.now_vulnerable -= vulnerable;
+    }
+
+    #endregion
 }

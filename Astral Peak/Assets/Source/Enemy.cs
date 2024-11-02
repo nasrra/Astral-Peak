@@ -1,6 +1,7 @@
 using System.Buffers.Text;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 // for enemy path follow, Hollow knight makes it so that they are restricted to the platform they are placed on.
@@ -145,10 +146,12 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         combat.perform_action -= animator.play; 
     }
 
-    private void link_health(){
+    protected override void link_health(){
+        base.link_health();
         health.damaged += stun_state;
     }
-    private void unlink_health(){
+    protected override void unlink_health(){
+        base.unlink_health();
         health.damaged -= stun_state;
     }
 
