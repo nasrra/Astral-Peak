@@ -16,6 +16,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerAnimator animator;
+    [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected Collider2D col;
 
     void Awake(){
@@ -34,7 +35,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void OnCollisionEnter2D(Collision2D other){  
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.layer == LayersManager.ENEMY)
             handle_enemy_contact(other);
     }
 
@@ -47,6 +48,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void interact()     => interactor.interact();
     private void attack()       => animator.attack();
     private void dash(){
+        // if we are in our invulnerable state no dashing.
+        if(health.invulnerable == true)
+            return;
+        
         float move_dir = movement.get_move_direction().x;
         if(move_dir > 0)
             movement.dash(Vector2.right, 20, 0.25f);
@@ -74,6 +79,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     private void vulnerable(){
         col.excludeLayers = new LayerMask();
+    }
+
+    private void damaged(){
+        sprite.play_damaged_flash();
+        health.is_invulnerable(2);
     }
 
     // used to set the players initial position in the scene.
@@ -161,7 +171,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.not_grounded           += animator.start_fall;
         movement.jumped                 += animator.jump;
         movement.dashed                 += health.is_invulnerable;
-        movement.finish_dash            += health.is_vulnerable;
+        movement.dash_end               += health.is_vulnerable;
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
@@ -170,7 +180,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.not_grounded           -= animator.start_fall;
         movement.jumped                 -= animator.jump;
         movement.dashed                 -= health.is_invulnerable;
-        movement.finish_dash            -= health.is_vulnerable;
+        movement.dash_end               -= health.is_vulnerable;
     }
 
     private void link_melee(){
@@ -187,13 +197,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected override void link_health(){
         base.link_health();
         health.now_invulnerable += invulnerable;
-        health.now_vulnerable += vulnerable;
+        health.now_vulnerable   += vulnerable;
+        health.damaged          += damaged;
     }
 
     protected override void unlink_health(){
         base.unlink_health();
         health.now_invulnerable -= invulnerable;
-        health.now_vulnerable -= vulnerable;
+        health.now_vulnerable   -= vulnerable;
+        health.damaged          -= damaged;
     }
 
     #endregion

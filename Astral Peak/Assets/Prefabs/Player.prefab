@@ -5636,6 +5636,7 @@ GameObject:
   - component: {fileID: 6932510366527514548}
   - component: {fileID: 8447699733019728571}
   - component: {fileID: 8285156675828792245}
+  - component: {fileID: 1158296529060902672}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -5692,6 +5693,7 @@ MonoBehaviour:
     self_knockback_duration: 0.25
   particles: {fileID: 1683145615901213879}
   animator: {fileID: 6345792998177996148}
+  sprite: {fileID: 1158296529060902672}
   col: {fileID: 6932510366527514548}
 --- !u!114 &8597468600997471075
 MonoBehaviour:
@@ -5786,9 +5788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite:
-  - {fileID: 8993149940698182152}
-  - {fileID: 4352429637972472122}
   max_life: 5
   current_life: 5
   invulnerable: 0
@@ -5900,6 +5899,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1158296529060902672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7c8f39b72cd39479ba7d8aa06a596c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 8993149940698182152}
+  - {fileID: 4352429637972472122}
+  damaged_colour: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6442486160340527421
 GameObject:
   m_ObjectHideFlags: 0

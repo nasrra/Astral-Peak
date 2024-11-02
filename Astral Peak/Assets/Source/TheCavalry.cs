@@ -8,6 +8,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
     [SerializeField] CavalryAnimator animator;
+    [SerializeField] SpriteHandler sprite;
     [SerializeField] Transform target;
     [SerializeField] FetchSword fetch_sword;
     [SerializeField] float 
@@ -143,17 +144,19 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     protected override void link_events(){
         base.link_events();
-        flipped_left        += particles.flip_left;
-        flipped_right       += particles.flip_right;
-        combat.attack_ended += switch_to_idle;
-        ranged.fetch_sword_fired += link_fetch_sword;
+        flipped_left                += particles.flip_left;
+        flipped_right               += particles.flip_right;
+        combat.attack_ended         += switch_to_idle;
+        ranged.fetch_sword_fired    += link_fetch_sword;
+        health.damaged              += sprite.play_damaged_flash;
     }
 
     protected override void unlink_events(){
         base.link_events();
-        flipped_left        -= particles.flip_left;
-        flipped_right       -= particles.flip_right;
-        combat.attack_ended -= switch_to_idle;
-        ranged.fetch_sword_fired -= link_fetch_sword;
+        flipped_left                -= particles.flip_left;
+        flipped_right               -= particles.flip_right;
+        combat.attack_ended         -= switch_to_idle;
+        ranged.fetch_sword_fired    -= link_fetch_sword;
+        health.damaged              -= sprite.play_damaged_flash;
     }
 }

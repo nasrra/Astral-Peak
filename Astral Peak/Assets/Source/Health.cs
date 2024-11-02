@@ -1,21 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Video;
 
 // maybe create a creature or character class that has this component and a status effect component.
 // enemies could hurt eachother and player can hurt them.
 // interactivity and all that.
 
 public class Health : MonoBehaviour{
-    [SerializeField] List<SpriteRenderer> sprite;
     public event Action
         healed, death, damaged, now_invulnerable, now_vulnerable;
     [SerializeField] private float
         max_life, current_life;
-    [SerializeField] bool invulnerable;
+    [SerializeField] public bool invulnerable;
     [SerializeField] protected Bar bar;
-    Coroutine flash_coroutine;
 
     void Start(){
         bar.set_bar_max_value(max_life);
@@ -34,6 +34,17 @@ public class Health : MonoBehaviour{
         invulnerable = true;
         now_invulnerable?.Invoke();
     }
+    public void is_invulnerable(float time){
+        StopAllCoroutines();
+        StartCoroutine(invulnerable_timed(time));
+    }
+
+    IEnumerator invulnerable_timed(float time){
+        is_invulnerable();
+        yield return new WaitForSeconds(time);
+        is_vulnerable();
+    } 
+
     public void is_vulnerable(){
         invulnerable = false;
         now_vulnerable?.Invoke();
@@ -50,30 +61,8 @@ public class Health : MonoBehaviour{
             bar.set_bar_value(current_life);
             death?.Invoke();
         }
-        switch_flash_coroutine(damage_flash());
         bar.set_bar_value(current_life);
         damaged?.Invoke();
         return true;
-    }
-
-    void switch_flash_coroutine(IEnumerator x){
-        if(flash_coroutine != null)
-            StopCoroutine(flash_coroutine);
-        flash_coroutine = StartCoroutine(x);
-    }
-    
-    IEnumerator damage_flash() {
-        float elapsedTime = 0f;
-        float amount = 0;
-        float flash_time = 0.3f;
-
-        while (elapsedTime < flash_time) {
-            elapsedTime += Time.deltaTime;
-            amount = Mathf.Lerp(1f,0f,elapsedTime/flash_time);
-            foreach(SpriteRenderer s in sprite)
-                s.material.SetFloat("_amount",amount);
-            yield return null;
-        }
-        yield break;
     }
 }

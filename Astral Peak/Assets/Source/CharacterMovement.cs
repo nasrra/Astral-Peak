@@ -5,14 +5,13 @@ using UnityEngine;
 public class CharacterMovement : Movement{
     public event Action 
         now_grounded, not_grounded, jumped, 
-        dashed, finish_dash;
+        dashed, dash_end;
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private bool can_jump = true;
     [SerializeField] private bool can_dash = true;
-    [SerializeField] private bool dashing = false;
     [SerializeField] private float 
         jump_time, jump_force, jump_force_multiplier, jump_time_counter, 
         dash_time, dash_force, dash_cooldown;
@@ -21,20 +20,14 @@ public class CharacterMovement : Movement{
     void Start() => link();
     void OnDestroy() => unlink();
 
-    public override void FixedUpdate(){
-        horizontal_move();
-        vertical_move();
-        decelerate();        
-    }
-
     // ground check
-    private void currently_grounded(Collider2D other){
+    private void is_grounded(Collider2D other){
         grounded = true;    
         jump_time_counter = 0.0f; 
         now_grounded?.Invoke();
     }
 
-    private void no_longer_grounded(Collider2D other){
+    private void is_not_grounded(Collider2D other){
         grounded = false;
         not_grounded?.Invoke();
         reset_deceleration();
@@ -64,18 +57,8 @@ public class CharacterMovement : Movement{
             jump_time_counter = 0.0f;
     }
 
-    protected override void horizontal_move(){
-        if(dashing == true)
-            return;
-        base.horizontal_move();
-    }
-
     // override vertical move to take jumping into account.
     protected override void vertical_move(){
-        // if we are currently being knocked back, dont do anything.
-        if(knockedback == true)
-            return;
-
         // if we are ggrounded and want to jump, start jumping.
         if(Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
@@ -110,19 +93,16 @@ public class CharacterMovement : Movement{
 
     public void dash(Vector3 direction, float force, float duration){
         if(can_dash == true){
-            dashed?.Invoke();
-            dashing = true;
             can_dash = false;
-            force_coroutine = StartCoroutine(apply_force_loop(direction, force, duration));
+            switch_state(apply_force_loop(dashed, dash_end, direction, force, duration));
         }      
     }
 
-    private void end_dash() => StartCoroutine(dash_cooldown_loop());
-
+    private void end_dash(){
+        state_switch_default();
+        StartCoroutine(dash_cooldown_loop());
+    }
     IEnumerator dash_cooldown_loop(){
-        dashing = false;
-        can_dash = false;
-        finish_dash?.Invoke();
         yield return new WaitForSeconds(dash_cooldown);
         can_dash = true;
         yield break;
@@ -138,15 +118,15 @@ public class CharacterMovement : Movement{
 
     protected override void link(){
         base.link();
-        ground_checker.trigger_enter += currently_grounded;
-        ground_checker.trigger_exit += no_longer_grounded;
-        apply_force_timeout += end_dash;
+        ground_checker.trigger_enter += is_grounded;
+        ground_checker.trigger_exit += is_not_grounded;
+        dash_end += end_dash;
     }
 
     protected override void unlink(){
         base.unlink();
-        ground_checker.trigger_enter -= currently_grounded;
-        ground_checker.trigger_exit -= no_longer_grounded;
-        apply_force_timeout -= end_dash;
+        ground_checker.trigger_enter -= is_grounded;
+        ground_checker.trigger_exit -= is_not_grounded;
+        dash_end -= end_dash;
     }
 }

@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour{
     public event Action 
-        move_direction_changed, apply_force_timeout;
+        move_direction_changed, 
+        knockedback, knockback_ended;
 
     [Header("Movement")]
     [SerializeField] protected bool can_knockback = true;
-    [SerializeField] protected bool knockedback;
-    [SerializeField] protected bool can_move = true;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
     private float original_gravity, original_deceleration;
-    protected Coroutine force_coroutine;
+    protected Coroutine state;
 
     void Awake(){
+        state_switch_default();
         original_gravity = rb.gravityScale;
         original_deceleration = deceleration;
     }
@@ -28,12 +28,8 @@ public class Movement : MonoBehaviour{
     public void set_speed(float x) => top_speed = x;
     public void set_deceleration(float x) => deceleration = x;
     public void reset_deceleration() => deceleration = original_deceleration;
-
-    public virtual void FixedUpdate(){
-        horizontal_move();
-        vertical_move();
-        decelerate();
-    }
+    public void is_knockbackable(int x) => can_knockback = x != 0;
+    public Vector2 get_move_direction() => move_direction;
 
     // update movement direction and fire an event to notify listeners that we have changed.
     private void update_move_direction(Vector2 direction){
@@ -66,14 +62,25 @@ public class Movement : MonoBehaviour{
         }
     }
 
-    public Vector2 get_move_direction() => move_direction;
+    protected void switch_state(IEnumerator state){
+        if(this.state != null)
+            StopCoroutine(this.state);
+        this.state = StartCoroutine(state);
+    }
 
-    protected virtual void horizontal_move(){
-        if(Mathf.Abs(move_direction.x) <= 0 // if there is no input.
-            || knockedback == true // or being knocked back.
-            || can_move == false) // or unable to recieve move input.  
+    protected void state_switch_default() => switch_state(default_state());
+    protected IEnumerator default_state(){
+        while(true){
+            horizontal_move();
+            vertical_move();
+            decelerate();
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    protected virtual void horizontal_move(){    
+        if(Mathf.Abs(move_direction.x) <= 0)
             return;
-
         // accelerate
         float increment = move_direction.x * acceleration;
         // regulate
@@ -85,42 +92,31 @@ public class Movement : MonoBehaviour{
     // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
     protected virtual void vertical_move(){
         // if we are currently being knocked back, dont do anything.
-        if(knockedback == true)
-            return;
         rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
     } 
+
     protected virtual void decelerate(){
-        if(knockedback == false)
-            rb.velocity *= deceleration;
+        rb.velocity *= deceleration;
     }
 
-    public void is_moveable(int x) => can_move = x != 0;
-    public void is_knockbackable(int x) => can_knockback = x != 0;
-    
-    public void knockback(Vector3 direction, float force, float duration){
-        if(can_knockback == true){
-            knockedback = true;
-            force_coroutine = StartCoroutine(apply_force_loop(direction += Vector3.up * 0.55f, force, duration));
-        }
-    }
-    void end_knock_back() => knockedback = false;
-
-    protected IEnumerator apply_force_loop(Vector3 direction, float force, float t){
+    public void knockback(Vector3 direction, float force, float time) => switch_state(apply_force_loop(knockedback, knockback_ended, direction, force, time));
+    protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
         rb.gravityScale = 0;
         // Normalize the final knockback direction
         direction.Normalize();
         // multiply by knock back force.
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
+        start?.Invoke();
         yield return new WaitForSeconds(t);
         rb.gravityScale = original_gravity;
         rb.velocity = Vector2.zero;
-        apply_force_timeout?.Invoke();
+        end?.Invoke();
         yield break;
     }
 
-    protected virtual void link() => apply_force_timeout += end_knock_back;
-    protected virtual void unlink() => apply_force_timeout -= end_knock_back;
+    protected virtual void link() => knockback_ended += state_switch_default;
+    protected virtual void unlink() => knockback_ended -= state_switch_default;
 }
 
 public enum MovementOption{

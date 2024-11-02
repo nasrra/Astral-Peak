@@ -15090,6 +15090,7 @@ GameObject:
   - component: {fileID: 7306472689858852757}
   - component: {fileID: 7830617767703654121}
   - component: {fileID: 1923654166500241026}
+  - component: {fileID: 7895730259894186419}
   - component: {fileID: 1813726766745458974}
   - component: {fileID: 7343523012452332790}
   - component: {fileID: 2267155362899391795}
@@ -15169,6 +15170,7 @@ MonoBehaviour:
   ranged: {fileID: 119345288355589671}
   melee: {fileID: 1923654166500241026}
   animator: {fileID: 4768311574549485359}
+  sprite: {fileID: 7895730259894186419}
   target: {fileID: 0}
   fetch_sword: {fileID: 0}
   target_dist: 0
@@ -15219,10 +15221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite:
-  - {fileID: 1097737650311518334}
-  - {fileID: 1684182006036747954}
-  - {fileID: 525365168834607087}
   max_life: 100
   current_life: 100
   invulnerable: 0
@@ -15351,6 +15349,23 @@ MonoBehaviour:
     knockback_duration: 0.25
     self_knockback_force: 0
     self_knockback_duration: 0
+--- !u!114 &7895730259894186419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1b1338c2e88734e8438949dcdea884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1097737650311518334}
+  - {fileID: 1684182006036747954}
+  - {fileID: 525365168834607087}
+  damaged_colour: {r: 1, g: 1, b: 1, a: 0}
 --- !u!212 &1813726766745458974
 SpriteRenderer:
   m_ObjectHideFlags: 0
