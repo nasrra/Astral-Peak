@@ -17,7 +17,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     Coroutine state;
 
     void Start(){
-        state_switch(idle());
+        state_switch(lock_idle());
         link_events();
     } 
 
@@ -85,6 +85,11 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
         animator.idle();
         yield return new WaitForSeconds(2);
         state_switch(follow());
+        yield break;
+    }
+
+    IEnumerator lock_idle(){
+        animator.idle();
         yield break;
     }
 

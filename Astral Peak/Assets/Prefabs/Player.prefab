@@ -5708,7 +5708,7 @@ MonoBehaviour:
     transform: {fileID: 1730094031898389184}
     hurt_box: {fileID: 3785447265557635548}
     feedback: {fileID: 4365788086590555684}
-    damage: 0
+    damage: 1
     knockback_force: 0
     knockback_duration: 0
     self_knockback_force: 0
@@ -5757,7 +5757,7 @@ MonoBehaviour:
   can_move: 1
   top_speed: 5
   acceleration: 0.5
-  deceleration: 0.81
+  deceleration: 0.35
   move_direction: {x: 0, y: 0}
   rb: {fileID: 8447699733019728571}
   grounded: 0
@@ -5785,6 +5785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite:
+  - {fileID: 8993149940698182152}
+  - {fileID: 4352429637972472122}
   max_life: 5
   current_life: 5
   invulnerable: 0
@@ -6205,8 +6208,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+--- !u!212 &4352429637972472122 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3058447984367207577, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+  m_PrefabInstance: {fileID: 1591782288755832227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4905662928654352497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5909655096487212498, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+  m_PrefabInstance: {fileID: 1591782288755832227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8993149940698182152 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7699241903101790123, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
   m_PrefabInstance: {fileID: 1591782288755832227}
   m_PrefabAsset: {fileID: 0}

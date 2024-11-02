@@ -37,12 +37,14 @@ public class CharacterMovement : Movement{
     private void no_longer_grounded(Collider2D other){
         grounded = false;
         not_grounded?.Invoke();
+        reset_deceleration();
     }
 
     // jump command
     public void jump() {
         jumping = true;
         if(grounded == true && can_jump == true){
+            set_deceleration(1);
             move_direction.y = 1;
             jumped?.Invoke();
         }
