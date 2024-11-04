@@ -17,6 +17,13 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
         movement.stop();
     }
 
+    public void flip_to_target(){
+        if(dist_to_target() < 0)
+            flip_right();
+        else
+            flip_left();
+    }
+
     protected virtual IEnumerator follow(){
         while(true){
             float dist = dist_to_target();

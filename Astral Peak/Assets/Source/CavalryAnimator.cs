@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,8 +26,8 @@ public class CavalryAnimator : AnimatorOverride{
     public void back_strike_backward()  => animator.Play(BACK_STRIKE_BACKWARD);     
     public void back_strike_forward()   => animator.Play(BACK_STRIKE_FORWARD);  
     public void bite_1()                => animator.Play(BITE_1);
-    public void bite_2()                => animator.Play(BITE_2);
-    public void bite_3()                => animator.Play(BITE_3); 
+    public void bite_2()                => rng(100,BITE_2);
+    public void bite_3()                => rng(100,BITE_3); 
     public void fetch_1()               => animator.Play(FETCH_1);
     public void whistle()               => animator.Play(WHISTLE);
     public void howl()                  => animator.Play(HOWL);
@@ -36,5 +35,10 @@ public class CavalryAnimator : AnimatorOverride{
     public void no_sword_run()          => animator.Play(NO_SWORD_RUN);
     public void pickup_sword()          => animator.Play(PICKUP_SWORD);
     public void ground_slam()           => animator.Play(GROUND_SLAM);
+
+    void rng(float chance, int id){
+        if(Random.Range(0, 101) < chance)
+            animator.Play(id);
+    }
 }
 

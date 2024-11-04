@@ -21,7 +21,7 @@ public class TheCavalry : Boss{
     // animator events.
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
     public void back_strike_backward_jump() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.55f);
-    public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 5, 0.2f);
+    public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.2f);
     public void switch_to_move_to_fetch_sword() => state_switch(follow_fetch_sword());
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
     public void switch_to_idle() => state_switch(idle());

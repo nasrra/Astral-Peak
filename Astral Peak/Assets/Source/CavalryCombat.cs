@@ -8,8 +8,7 @@ public class CavalryCombat : BossCombat{
             distance:           6,
             attack_cooldown:    4,
             combat_cooldown:    1),
-        
-        // make this attack always lunge and face the palyer before each bite.
+
         bite = new BossAttack(
             CavalryAnimator.BITE_1,
             chance:             50,
@@ -53,6 +52,11 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:    1);
 
     void Start(){
+        test(bite);
+        //set_movesets(); 
+    }
+
+    void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
             front_strike,
             bite,
@@ -67,6 +71,15 @@ public class CavalryCombat : BossCombat{
         set_special_moveset(new List<BossAttack>(){
             sword_summon,
             ground_slam,
+        });
+    }
+
+    void test(BossAttack attack){
+        attack.distance = 10;
+        attack.combat_cooldown = 1;
+        attack.attack_cooldown = 1;
+        set_special_moveset(new List<BossAttack>(){
+            attack,
         });
     }
 }
