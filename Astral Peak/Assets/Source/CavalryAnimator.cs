@@ -17,7 +17,8 @@ public class CavalryAnimator : AnimatorOverride{
         NO_SWORD_RUN            = Animator.StringToHash("no_sword_run"),
         PICKUP_SWORD            = Animator.StringToHash("pickup_sword"),
         HOWL                    = Animator.StringToHash("howl"),
-        GROUND_SLAM             = Animator.StringToHash("ground_slam");
+        GROUND_SLAM             = Animator.StringToHash("ground_slam"),
+        JUMP_AWAY               = Animator.StringToHash("jump_away"); 
 
     // animator key events:
     public override void idle()         => animator.Play(IDLE);

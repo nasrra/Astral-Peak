@@ -7,6 +7,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    4,
+            idle_cooldown:      0,
             combat_cooldown:    1),
 
         bite = new BossAttack(
@@ -14,6 +15,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    1,
+            idle_cooldown:      0,
             combat_cooldown:    1),
         
         fetch = new BossAttack(
@@ -21,6 +23,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    24,
+            idle_cooldown:      0,
             combat_cooldown:    1),
         
         back_strike_forward = new BossAttack(
@@ -28,6 +31,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    24,
+            idle_cooldown:      0,
             combat_cooldown:    1),
         
         back_strike_backward = new BossAttack(
@@ -35,6 +39,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    24,
+            idle_cooldown:      0,
             combat_cooldown:    1),
         
         ground_slam = new BossAttack(
@@ -42,6 +47,7 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    48,
+            idle_cooldown:      0,
             combat_cooldown:    1),
         
         sword_summon = new BossAttack(
@@ -49,18 +55,27 @@ public class CavalryCombat : BossCombat{
             chance:             50,
             distance:           6,
             attack_cooldown:    12,
-            combat_cooldown:    1);
+            idle_cooldown:      0,
+            combat_cooldown:    1),
+        
+        jump_away = new BossAttack(
+            CavalryAnimator.JUMP_AWAY,
+            chance:             50,
+            distance:           6,
+            attack_cooldown:    0,
+            idle_cooldown:      0,
+            combat_cooldown:    0);
 
     void Start(){
-        test(bite);
-        //set_movesets(); 
+        //test(jump_away);
+        set_movesets(); 
     }
 
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
             front_strike,
             bite,
-            fetch,
+            //fetch,
         });
 
         set_back_moveset(new List<BossAttack>(){
@@ -71,6 +86,7 @@ public class CavalryCombat : BossCombat{
         set_special_moveset(new List<BossAttack>(){
             sword_summon,
             ground_slam,
+            jump_away,
         });
     }
 

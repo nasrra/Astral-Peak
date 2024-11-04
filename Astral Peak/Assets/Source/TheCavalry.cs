@@ -12,7 +12,7 @@ public class TheCavalry : Boss{
         follow_fsword_speed;
 
     void Start(){
-        state_switch(idle());
+        state_switch(idle(1));
         link_events();
     } 
 
@@ -21,19 +21,20 @@ public class TheCavalry : Boss{
     // animator events.
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
     public void back_strike_backward_jump() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.55f);
+    public void jump_away_dash() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.35f);
     public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.2f);
     public void switch_to_move_to_fetch_sword() => state_switch(follow_fetch_sword());
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
-    public void switch_to_idle() => state_switch(idle());
+    public void switch_to_idle(float x) => state_switch(idle(x));
     public void ground_slam_camera_zoom() => CameraController.instance.zoom_out_state(18, 4f);
     public void ground_slam_camera_reset() => CameraController.instance.reset_zoom_state(32f);
     public void sword_summon_camera_zoom() => CameraController.instance.zoom_out_state(14, 2f);
     public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
 
     // states: 
-    protected override IEnumerator idle(){
+    IEnumerator idle(float x){
         animator.idle();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(x);
         state_switch(follow());
         yield break;
     }

@@ -59,8 +59,6 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
         yield break;
     }
 
-    protected abstract IEnumerator idle();
-
     protected override void link_events(){
         base.link_events();
         flipped_left                += particles.flip_left;

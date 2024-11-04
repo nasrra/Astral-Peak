@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossCombat : MonoBehaviour{
-    public event Action attack_ended;
+    public event Action<float> attack_ended;
     [SerializeField] public float cooldown;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
@@ -42,7 +42,7 @@ public class BossCombat : MonoBehaviour{
     }
 
     public void attack_end(){
-        attack_ended?.Invoke();
+        attack_ended?.Invoke(chosen_attack.idle_cooldown);
         StartCoroutine(chosen_attack.self_cooldown());
         StartCoroutine(cooldown_timer(chosen_attack.combat_cooldown));
     }
