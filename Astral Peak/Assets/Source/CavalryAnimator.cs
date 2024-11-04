@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CavalryAnimator : AnimatorOverride{
-    [SerializeField] Animator animator;
-    
     public static readonly int
         IDLE                    = Animator.StringToHash("idle"),
         RUN                     = Animator.StringToHash("run"),
@@ -22,11 +20,9 @@ public class CavalryAnimator : AnimatorOverride{
         HOWL                    = Animator.StringToHash("howl"),
         GROUND_SLAM             = Animator.StringToHash("ground_slam");
 
-    public void Play(int animation_id) => animator.Play(animation_id);
-
     // animator key events:
-    public void idle()                  => animator.Play(IDLE);
-    public void run()                   => animator.Play(RUN);
+    public override void idle()         => animator.Play(IDLE);
+    public override void run()          => animator.Play(RUN);
     public void front_strike()          => animator.Play(FRONT_STRIKE);
     public void back_strike_backward()  => animator.Play(BACK_STRIKE_BACKWARD);     
     public void back_strike_forward()   => animator.Play(BACK_STRIKE_FORWARD);  

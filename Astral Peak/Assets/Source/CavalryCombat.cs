@@ -21,7 +21,7 @@ public class CavalryCombat : BossCombat{
             CavalryAnimator.FETCH_1,
             chance:             50,
             distance:           6,
-            attack_cooldown:    24,
+            attack_cooldown:    1,
             combat_cooldown:    1),
         
         back_strike_forward = new BossAttack(
@@ -54,19 +54,19 @@ public class CavalryCombat : BossCombat{
 
     void Start(){
         set_front_moveset(new List<BossAttack>(){
-            front_strike,
-            bite,
+            //front_strike,
+            //bite,
             fetch,
         });
 
         set_back_moveset(new List<BossAttack>(){
-            back_strike_forward,
-            back_strike_backward,
+            //back_strike_forward,
+            //back_strike_backward,
         });
     
         set_special_moveset(new List<BossAttack>(){
-            sword_summon,
-            ground_slam,
+            //sword_summon,
+            //ground_slam,
         });
     }
 }

@@ -1,21 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-public class TheCavalry : CreatureInheritor<CharacterMovement>{
+public class TheCavalry : Boss{
     // Start is called before the first frame update
-    [SerializeField] CavalryCombat combat;
-    [SerializeField] CavalryParticlesHandler particles;
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
-    [SerializeField] CavalryAnimator animator;
     [SerializeField] SpriteHandler sprite;
-    [SerializeField] Transform target;
     [SerializeField] FetchSword fetch_sword;
-    [SerializeField] float 
-        target_dist,
+    [SerializeField] float
         follow_speed,
         follow_fsword_speed;
-    Coroutine state;
 
     void Start(){
         state_switch(idle());
@@ -23,14 +17,6 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     } 
 
     void OnDestroy() => unlink_events();
-
-    float dist_to_target() => (transform.position - target.position).x;
-
-    void state_switch(IEnumerator n_state){
-        StopAllCoroutines();
-        state = StartCoroutine(n_state);
-        movement.stop();
-    }
 
     // animator events.
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
@@ -45,44 +31,7 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
 
     // states: 
-    IEnumerator follow(){
-        animator.run();
-        movement.set_speed(follow_speed); 
-        while(true){
-            target_dist = dist_to_target();
-
-            // attempt an attack.
-            // keep this at the end of the co routine so the ai can stop moving.
-            if(combat.cooldown == 0){
-                BossAttack chosen_attack = combat.chose_attack(target_dist);
-                if(chosen_attack != null){
-                    state_switch(attack(chosen_attack));
-                    yield break;
-                }
-            }
-
-            // if we are not moving right, move right.
-            if(target_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
-                movement.stop();
-                movement.move_right(true);
-            }
-            // if we are not moving left, move left.
-            if(target_dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
-                movement.stop();
-                movement.move_left(true);
-            }
-
-            // Fixed Update Modifier.
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    IEnumerator attack(BossAttack attack){
-        animator.Play(attack.animation_id);
-        yield break;
-    }
-
-    IEnumerator idle(){
+    protected override IEnumerator idle(){
         animator.idle();
         yield return new WaitForSeconds(2);
         state_switch(follow());
@@ -95,57 +44,66 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
     }
 
     IEnumerator idle_no_sword(){
-        animator.no_sword_idle();
+        animator.Play(CavalryAnimator.NO_SWORD_IDLE);
         yield break;
     }
 
     IEnumerator pickup_sword(){
-        animator.pickup_sword();
+        animator.Play(CavalryAnimator.PICKUP_SWORD);
+        Destroy(fetch_sword.gameObject);
+        target = Player.player.transform;
         yield return new WaitForSeconds(1);
         state_switch(follow());
-        yield break;        
+        yield break;
+    }
+
+    void fetch_sword_landed(){
+        animator.Play(CavalryAnimator.WHISTLE);
+    }
+
+    protected override IEnumerator follow(){
+        animator.run();
+        movement.set_speed(follow_speed);
+        state_switch(base.follow());
+        yield break;
     }
 
     IEnumerator follow_fetch_sword(){
         target = fetch_sword.transform;
         movement.set_speed(follow_fsword_speed);
+        animator.Play(CavalryAnimator.NO_SWORD_RUN);
         while(true){
-            target_dist = dist_to_target();
-            animator.no_sword_run();
-
-            if(Mathf.Abs(target_dist) <= 0.5f){
-                target = Player.player.transform;
-                Destroy(fetch_sword.gameObject);
-                state_switch(pickup_sword());
-                yield break;
-            }
+            
+            float dist = dist_to_target();
             
             // if we are not moving right, move right.
-            if(target_dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
+            if(dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
                 movement.stop();
                 movement.move_right(true);
             }
             // if we are not moving left, move left.
-            if(target_dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
+            if(dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
                 movement.stop();
                 movement.move_left(true);
             }
 
+            if(Mathf.Abs(dist) <= 0.5f){
+                state_switch(pickup_sword());
+                yield break;
+            }
             yield return null;
         }
     }
 
     void link_fetch_sword(GameObject sword){
         fetch_sword = sword.GetComponent<FetchSword>();
-        fetch_sword.landed += animator.whistle;
+        fetch_sword.landed += fetch_sword_landed;
         fetch_sword.landed += unlink_fetch_sword;
     }
-    void unlink_fetch_sword() => fetch_sword.landed -= animator.whistle;
+    void unlink_fetch_sword() => fetch_sword.landed -= fetch_sword_landed;
 
     protected override void link_events(){
         base.link_events();
-        flipped_left                += particles.flip_left;
-        flipped_right               += particles.flip_right;
         combat.attack_ended         += switch_to_idle;
         ranged.fetch_sword_fired    += link_fetch_sword;
         health.damaged              += sprite.play_damaged_flash;
@@ -153,8 +111,6 @@ public class TheCavalry : CreatureInheritor<CharacterMovement>{
 
     protected override void unlink_events(){
         base.link_events();
-        flipped_left                -= particles.flip_left;
-        flipped_right               -= particles.flip_right;
         combat.attack_ended         -= switch_to_idle;
         ranged.fetch_sword_fired    -= link_fetch_sword;
         health.damaged              -= sprite.play_damaged_flash;

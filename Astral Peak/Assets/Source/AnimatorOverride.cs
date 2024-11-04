@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorOverride : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public abstract class AnimatorOverride : MonoBehaviour{
+    [SerializeField] protected Animator animator;
+    public abstract void idle();
+    public abstract void run();
+    public void Play(int animation_id) => animator.Play(animation_id);
 }
