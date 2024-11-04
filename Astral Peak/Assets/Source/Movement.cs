@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour{
         rb.velocity *= deceleration;
     }
 
-    public void knockback(Vector3 direction, float force, float time) => switch_state(apply_force_loop(knockedback, knockback_ended, direction, force, time));
+    public void knockback(Vector3 direction, float force, float time) => switch_state(apply_force_loop(knockedback, knockback_ended, (direction + new Vector3(0,2.5f,0)).normalized, force, time));
     protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
         rb.gravityScale = 0;
         // Normalize the final knockback direction
