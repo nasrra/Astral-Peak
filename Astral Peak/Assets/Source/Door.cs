@@ -5,6 +5,10 @@ public class Door : MonoBehaviour{
     [SerializeField] private string 
         enter_point, scene_to_load, exit_point;
 
+    void Awake() => DoorManager.add_door(this);
+    void OnDisable() => DoorManager.erase_door(this);
+
+
     public virtual void enter(){
         Player.exit_point = exit_point;
         SceneManager.LoadScene(scene_to_load);

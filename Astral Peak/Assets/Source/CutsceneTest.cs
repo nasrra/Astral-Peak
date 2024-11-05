@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CutsceneTest : Cutscene
-{
+public class CutsceneTest : Cutscene{
     public override void begin(){
         Player.player.enter_cutscene_state();
         TheCavalry.instance.enter_cutscene_state();
@@ -12,13 +10,14 @@ public class CutsceneTest : Cutscene
 
     public override void end(){
         Player.player.exit_cutscene_state();
-        TheCavalry.instance.exit_cutscene_state();     
+        TheCavalry.instance.exit_cutscene_state();
+        Player.exit_point = BossRoomManager.instance.player_respawn_point.get_enter_point();
     }
 
     public IEnumerator test(){
-        Debug.Log("Test Cutscene!");
-        yield return new WaitForSeconds(2);
-        Debug.Log("ENDED!");
+        Player.player.get_movement().move_left(true);
+        yield return new WaitForSeconds(1);
+        Player.player.get_movement().move_left(false);
         end();
     }
 

@@ -19,7 +19,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected Collider2D col;
-    [SerializeField] bool input_blocker = false; // used to avoid bug.
+    bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
         player = this;
@@ -43,14 +43,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
             handle_enemy_contact(other);
     }
 
-    private bool check_input_blocker(){
-        if(input_blocker == true){
-            input_blocker = false;
-            return true;
-        }
-        return false;
-    }
-
     // used to avoid bug where unlinking and relinking movement:
     // holding down left or right will break move direction and cause player to only go in that one direction.
     private void start_movement(Action movement){
@@ -58,7 +50,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input_blocker = false;
     }
     private void stop_movement(Action movement){
-        if(check_input_blocker() == false)
+        if(input_blocker == false)
             movement();
     }
 
@@ -114,7 +106,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // used to set the players initial position in the scene.
     public void set_enter_position(){
         if(exit_point != "")
-            transform.position = DoorManager.instance.get_position(exit_point);
+            transform.position = DoorManager.get_position(exit_point);
     }
 
     private void handle_enemy_contact(Collision2D other){

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 public abstract class Boss : CreatureInheritor<CharacterMovement>{
+    [SerializeField] protected SpriteHandler sprite;
     [SerializeField] protected AnimatorOverride animator;
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected ParticlesHandler particles;
@@ -70,6 +71,16 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
         base.link_events();
         flipped_left                += particles.flip_left;
         flipped_right               += particles.flip_right;
+    }
+
+    protected override void link_health(){
+        base.link_health();
+        health.damaged += sprite.play_damaged_flash;
+    }
+
+    protected override void unlink_health(){
+        base.unlink_health();
+        health.damaged -= sprite.play_damaged_flash;
     }
 
     protected override void unlink_events(){

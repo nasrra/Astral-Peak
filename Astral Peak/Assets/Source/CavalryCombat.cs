@@ -76,8 +76,8 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:    0);
 
     void Start(){
-        //test(none);
-        set_movesets(); 
+        test(bite);
+        //set_movesets(); 
     }
 
     void set_movesets(){
@@ -96,15 +96,6 @@ public class CavalryCombat : BossCombat{
             sword_summon,
             ground_slam,
             jump_away,
-        });
-    }
-
-    void test(BossAttack attack){
-        attack.distance = 10;
-        attack.combat_cooldown = 1;
-        attack.attack_cooldown = 1;
-        set_special_moveset(new List<BossAttack>(){
-            attack,
         });
     }
 }

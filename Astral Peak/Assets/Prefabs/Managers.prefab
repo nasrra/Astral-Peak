@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2114827677612239857}
   - component: {fileID: 2646769623123818394}
   - component: {fileID: 2494251409712957872}
-  - component: {fileID: 31769719012324648}
   - component: {fileID: 7657085384162359157}
   - component: {fileID: 300674526841321628}
   m_Layer: 0
@@ -79,19 +78,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 2646769623123818394}
---- !u!114 &31769719012324648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6193160536800821447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f6ce44ecc92c24ead46e1b79d26a74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doors: []
 --- !u!114 &7657085384162359157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,9 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b689b182cd446459f48f823c4b2453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  curr_phase: 0
-  total_phases: 0
+  player_respawn_point: {fileID: 0}
+  boss_start_point: {fileID: 0}
 --- !u!114 &300674526841321628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,5 +104,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d556c2b4cdea5341aa292e7cd493d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutscenes: []
-  index: 0

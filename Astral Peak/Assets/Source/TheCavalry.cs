@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TheCavalry : Boss{
@@ -8,7 +7,6 @@ public class TheCavalry : Boss{
     // Start is called before the first frame update
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
-    [SerializeField] SpriteHandler sprite;
     [SerializeField] FetchSword fetch_sword;
     [SerializeField] float
         follow_speed,
@@ -114,13 +112,11 @@ public class TheCavalry : Boss{
         base.link_events();
         combat.attack_ended         += switch_to_idle;
         ranged.fetch_sword_fired    += link_fetch_sword;
-        health.damaged              += sprite.play_damaged_flash;
     }
 
     protected override void unlink_events(){
         base.link_events();
         combat.attack_ended         -= switch_to_idle;
         ranged.fetch_sword_fired    -= link_fetch_sword;
-        health.damaged              -= sprite.play_damaged_flash;
     }
 }

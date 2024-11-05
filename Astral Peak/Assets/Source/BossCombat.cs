@@ -77,4 +77,13 @@ public class BossCombat : MonoBehaviour{
                 available_attacks.Add(attack);
         return available_attacks;        
     }
+
+    protected void test(BossAttack attack){
+        attack.distance = 10;
+        attack.combat_cooldown = 1;
+        attack.attack_cooldown = 1;
+        set_special_moveset(new List<BossAttack>(){
+            attack,
+        });
+    }
 }
