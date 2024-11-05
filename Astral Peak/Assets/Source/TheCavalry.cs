@@ -1,7 +1,10 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TheCavalry : Boss{
+    public static TheCavalry instance;
+
     // Start is called before the first frame update
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
@@ -11,12 +14,13 @@ public class TheCavalry : Boss{
         follow_speed,
         follow_fsword_speed;
 
-    void Start(){
+    void Awake(){
+        instance = this;
         state_switch(idle(1));
         link_events();
     } 
 
-    void OnDestroy() => unlink_events();
+    void OnDisable() => unlink_events();
 
     // animator events.
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
@@ -32,15 +36,18 @@ public class TheCavalry : Boss{
     public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
 
     // states: 
+    public override void enter_cutscene_state() => state_switch(lock_idle());
+    public override void exit_cutscene_state() => state_switch(idle(1));
+
     IEnumerator idle(float x){
-        animator.idle();
+        animator.Play(CavalryAnimator.IDLE);
         yield return new WaitForSeconds(x);
         state_switch(follow());
         yield break;
     }
 
     IEnumerator lock_idle(){
-        animator.idle();
+        animator.Play(CavalryAnimator.IDLE);
         yield break;
     }
 
@@ -63,7 +70,7 @@ public class TheCavalry : Boss{
     }
 
     protected override IEnumerator follow(){
-        animator.run();
+        animator.Play(CavalryAnimator.RUN);
         movement.set_speed(follow_speed);
         state_switch(base.follow());
         yield break;

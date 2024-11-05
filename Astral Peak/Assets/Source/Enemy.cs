@@ -20,14 +20,8 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected HollowAnimator animator;
 
-    void Start(){
-        EnemyManager.instance.add_enemy();
-        link_events();
-    }
-    void OnDestroy(){
-        EnemyManager.instance.remove_enemy();
-        unlink_events();
-    } 
+    void Start() => link_events();
+    void OnDestroy() => unlink_events();
 
     protected void state_switch_clean_up(){
         // turn off all states to ensure the next state behaves as intended.

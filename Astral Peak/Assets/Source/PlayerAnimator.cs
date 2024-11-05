@@ -32,7 +32,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void attack()    => play(ATTACK, false); 
      
     // used for the override animation layer to return to the none state
-    public void none_state() => a.Play(NONE, OVERRIDE);
+    public void none_state() => animator.Play(NONE, OVERRIDE);
 
     // override states
     public void light_bounce()  => play_override(LBOUNCE);

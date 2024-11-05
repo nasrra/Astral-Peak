@@ -1,3 +1,4 @@
+using System;
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,26 +12,29 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // data to link together.
     [Header("Player")]
+    [SerializeField] private PlayerAnimator animator;
     [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
-    [SerializeField] protected PlayerAnimator animator;
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected Collider2D col;
+    [SerializeField] bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
         player = this;
+        GameManager.link_player();
+        link_events();
     }
 
     void Start(){   
-        link_events();
         set_enter_position();
         // snap camera to players new position.
         CameraController.instance.snap_to_target(); 
     }
 
-    void OnDestroy(){
+    void OnDisable(){
+        GameManager.unlink_player();
         unlink_events();
     }
 
@@ -39,14 +43,33 @@ public class Player : CreatureInheritor<CharacterMovement>{
             handle_enemy_contact(other);
     }
 
-    private void start_jump()   => movement.jump();
-    private void stop_jump()    => movement.end_jump();
-    private void start_left()   => movement.move_left(true);
-    private void stop_left()    => movement.move_left(false);
-    private void start_right()  => movement.move_right(true);
-    private void stop_right()   => movement.move_right(false);
+    private bool check_input_blocker(){
+        if(input_blocker == true){
+            input_blocker = false;
+            return true;
+        }
+        return false;
+    }
+
+    // used to avoid bug where unlinking and relinking movement:
+    // holding down left or right will break move direction and cause player to only go in that one direction.
+    private void start_movement(Action movement){
+        movement();
+        input_blocker = false;
+    }
+    private void stop_movement(Action movement){
+        if(check_input_blocker() == false)
+            movement();
+    }
+
+    private void start_jump()   => start_movement(()=>movement.jump());
+    private void start_left()   => start_movement(()=>movement.move_left(true));
+    private void start_right()  => start_movement(()=>movement.move_right(true));
+    private void stop_jump()    => stop_movement(()=>movement.end_jump());
+    private void stop_left()    => stop_movement(()=>movement.move_left(false));
+    private void stop_right()   => stop_movement(()=>movement.move_right(false));
     private void interact()     => interactor.interact();
-    private void attack()       => animator.attack();
+    private void attack()       => animator.Play(PlayerAnimator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
         if(health.invulnerable == true)
@@ -68,10 +91,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
         
         // if we are moving play the run animation, if not, play the idle one.
         float move_dir = movement.get_move_direction().x;
-        if(move_dir > 0 || move_dir < 0)
+        if(move_dir > 0 || move_dir < 0){
             animator.run();
-        else
+        }
+        else{
             animator.idle();
+        }
     }
 
     private void invulnerable(){
@@ -99,16 +124,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damage(1);
     }
 
-    protected override void guarded_attack(){
-        base.guarded_attack();
-        animator.idle();
-    }
-
-    protected override void parried_attack(){
-        base.guarded_attack();
-        animator.idle();
-    }
-
     private void attack_failed(Collider2D other){
         movement.knockback(
             transform.position - other.transform.position, 
@@ -123,6 +138,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.run(); // play run animation
         else
             animator.idle(); // play idle animation
+    }
+
+    public override void enter_cutscene_state(){
+        movement.stop();
+        unlink_input();
+    }
+
+    public override void exit_cutscene_state(){
+        movement.stop();
+        link_input();
     }
 
     #region Linkage
@@ -140,7 +165,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_movement();
     }
 
-    private void link_input(){
+    public void link_input(){
         input.jump_performed        += start_jump;
         input.jump_cancelled        += stop_jump;
         input.left_performed        += start_left;
@@ -149,10 +174,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.right_cancelled       += stop_right;
         input.interact_performed    += interact;
         input.attack_performed      += attack;
-        input.dash_performed        += dash;  
+        input.dash_performed        += dash; 
+        input_blocker = true; 
     }
 
-    private void unlink_input(){
+    public void unlink_input(){
         input.jump_performed        -= start_jump;
         input.jump_cancelled        -= stop_jump;
         input.left_performed        -= start_left;
@@ -162,6 +188,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         input.interact_performed    -= interact;
         input.attack_performed      -= attack;
         input.dash_performed        -= dash;    
+        input_blocker = false;
     }
 
     protected void link_movement(){

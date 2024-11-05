@@ -15203,7 +15203,7 @@ MonoBehaviour:
   jump_time_counter: 0
   dash_time: 0
   dash_force: 0
-  dash_cooldown: 0
+  dash_cooldown: 0.1
   ground_checker: {fileID: 7233953820733789464}
 --- !u!114 &8221373605123083948
 MonoBehaviour:
@@ -15274,6 +15274,7 @@ MonoBehaviour:
     distance: 0
     attack_cooldown: 0
     combat_cooldown: 0
+    idle_cooldown: 0
     enabled: 0
   front_moveset: []
   back_moveset: []

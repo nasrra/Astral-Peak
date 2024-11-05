@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Boss : CreatureInheritor<CharacterMovement>{
@@ -7,6 +7,9 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected ParticlesHandler particles;
     [SerializeField] protected Transform target;
+    [SerializeField] int 
+        current_pahse,
+        max_phase;
     protected Coroutine state;
 
     protected float dist_to_target() => (transform.position - target.position).x;
@@ -22,6 +25,10 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
             flip_right();
         else
             flip_left();
+    }
+
+    protected virtual IEnumerator none(){
+        yield break;
     }
 
     protected virtual IEnumerator follow(){

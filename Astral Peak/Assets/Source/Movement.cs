@@ -36,6 +36,7 @@ public class Movement : MonoBehaviour{
         move_direction += direction;
         move_direction_changed?.Invoke();
     }
+
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));

@@ -1,7 +1,16 @@
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 
 public class CavalryCombat : BossCombat{
     BossAttack
+        none = new BossAttack(
+            1,
+            chance:             50,
+            distance:           1000,
+            attack_cooldown:    1000,
+            idle_cooldown:      1000,
+            combat_cooldown:    1000),
+
         front_strike = new BossAttack(
             CavalryAnimator.FRONT_STRIKE,
             chance:             50,
@@ -67,7 +76,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:    0);
 
     void Start(){
-        //test(jump_away);
+        //test(none);
         set_movesets(); 
     }
 

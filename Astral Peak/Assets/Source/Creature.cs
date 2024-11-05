@@ -16,7 +16,7 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 /// It is also the class that defines all functionality for the inheritor class.
 /// </summary>
 public abstract class Creature : MonoBehaviour{
-    public event Action flipped_right, flipped_left;
+    public event Action flipped_right, flipped_left, death;
 
     [Header("Creature")]
     [SerializeField] protected Health health;
@@ -24,10 +24,10 @@ public abstract class Creature : MonoBehaviour{
     [SerializeField] protected bool stunnable;
     protected bool flippable = true;
 
-    void Start(){
+    void Awake(){
         link_events();
     }
-    void OnDestroy(){
+    void OnDisable(){
         unlink_events();
     } 
 
@@ -70,12 +70,18 @@ public abstract class Creature : MonoBehaviour{
 
     public bool damage(float amt) => health.damage(amt);
 
-    protected virtual void kill() => Destroy(gameObject);
-    //public void is_guarding(int x) => guard.is_guarding(x);
-    //public void is_parrying(int x) => guard.is_parrying(x);
+    public virtual void enter_cutscene_state(){}
+    public virtual void exit_cutscene_state(){}
+
+    public void disable_all_components(){
+        var components = GetComponents<Behaviour>();
+        foreach(var c in components)
+            if(c != this)
+                c.enabled = false;
+    }
+
+    protected virtual void kill() => death?.Invoke();
     public void is_stunnable(int x) => stunnable = x != 0;
-    protected virtual void parried_attack() => Debug.Log(gameObject.name + " has parried!");
-    protected virtual void guarded_attack(){ Debug.Log(gameObject.name + " has guarded!");}
 
 #region Linkage
     protected virtual void link_events(){

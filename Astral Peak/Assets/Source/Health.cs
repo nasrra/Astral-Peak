@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
 
 // maybe create a creature or character class that has this component and a status effect component.
@@ -18,8 +19,10 @@ public class Health : MonoBehaviour{
     [SerializeField] protected Bar bar;
 
     void Start(){
-        bar.set_bar_max_value(max_life);
-        bar.set_bar_value(current_life);
+        if(bar != null){
+            bar.set_bar_max_value(max_life);
+            bar.set_bar_value(current_life);
+        }
     }
 
     public void heal(int amt, GameObject other = null){
@@ -58,10 +61,10 @@ public class Health : MonoBehaviour{
         current_life -= amt;
         if(current_life <= 0.0f){
             current_life = 0.0f;
-            bar.set_bar_value(current_life);
             death?.Invoke();
         }
-        bar.set_bar_value(current_life);
+        if(bar!=null)
+            bar.set_bar_value(current_life);
         damaged?.Invoke();
         return true;
     }

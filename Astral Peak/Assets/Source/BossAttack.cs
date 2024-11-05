@@ -10,7 +10,7 @@ public class BossAttack{
         this.distance = distance;
         this.attack_cooldown = attack_cooldown;
         this.combat_cooldown = combat_cooldown;
-        this.idle_cooldown = combat_cooldown + idle_cooldown + 0.1f;
+        this.idle_cooldown = combat_cooldown + idle_cooldown + 0.05f;
         this.enabled = enabled;
     }
 

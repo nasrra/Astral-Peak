@@ -5677,6 +5677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1805b52f7b822204b890cde888d79884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 6345792998177996148}
   health: {fileID: 5994195274358197019}
   stunnable: 1
   movement: {fileID: 8959932368922724423}
@@ -5692,7 +5693,6 @@ MonoBehaviour:
     self_knockback_force: 5
     self_knockback_duration: 0.25
   particles: {fileID: 1683145615901213879}
-  animator: {fileID: 6345792998177996148}
   sprite: {fileID: 1158296529060902672}
   col: {fileID: 6932510366527514548}
 --- !u!114 &8597468600997471075
@@ -5741,7 +5741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce72b9fe4d0b39648b58d4f17c063a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a: {fileID: 8285156675828792245}
+  animator: {fileID: 8285156675828792245}
   locked_layers: 000000
 --- !u!114 &8959932368922724423
 MonoBehaviour:
@@ -5756,8 +5756,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   can_knockback: 1
-  knockedback: 0
-  can_move: 1
   top_speed: 5
   acceleration: 0.5
   deceleration: 0.35
@@ -5767,7 +5765,6 @@ MonoBehaviour:
   jumping: 0
   can_jump: 1
   can_dash: 1
-  dashing: 0
   jump_time: 0.5
   jump_force: 6
   jump_force_multiplier: 6
