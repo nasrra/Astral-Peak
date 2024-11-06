@@ -71,13 +71,13 @@ public class CavalryCombat : BossCombat{
             CavalryAnimator.JUMP_AWAY,
             chance:             50,
             distance:           6,
-            attack_cooldown:    0,
+            attack_cooldown:    10,
             idle_cooldown:      0,
             combat_cooldown:    0);
 
     void Start(){
-        test(bite);
-        //set_movesets(); 
+        //test(sword_summon);
+        set_movesets(); 
     }
 
     void set_movesets(){

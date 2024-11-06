@@ -6,11 +6,8 @@ public class CavalryRangedCombatHandler : MonoBehaviour{
     [SerializeField] Turret
         bite_3_beam,
         fetch_sword,
-        sword_summon_1,
-        sword_summon_2,
-        sword_summon_3,
-        sword_summon_4,
-        sword_summon_5,
+        howl_arrow,
+        jump_arrow,
         ground_slam_1,
         ground_slam_2;
 
@@ -25,13 +22,8 @@ public class CavalryRangedCombatHandler : MonoBehaviour{
         ground_slam_2.fire_once();
     }
     
-    public void summon_swords(){
-        sword_summon_1.fire_once();
-        sword_summon_2.fire_once();
-        sword_summon_3.fire_once();
-        sword_summon_4.fire_once();  
-        sword_summon_5.fire_once();
-    }
+    public void howl_arrows() => howl_arrow.fire_once();
+    public void jump_arrow_fire_once() => jump_arrow.fire_once(); 
 
     void link() => fetch_sword.projectile_fired += foo;
     public void foo(GameObject x){fetch_sword_fired?.Invoke(x);}
