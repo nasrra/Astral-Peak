@@ -22,8 +22,8 @@ public class RiderCombat : BossCombat{
         );
 
     void Start(){
-        test(front_strike);
-        //set_movesets();
+        //test(front_strike);
+        set_movesets();
     }
 
     void set_movesets(){
@@ -35,7 +35,7 @@ public class RiderCombat : BossCombat{
         });
     
         set_special_moveset(new List<BossAttack>(){
-            //sword_summon,
+            sword_summon,
         });
     }
 }
