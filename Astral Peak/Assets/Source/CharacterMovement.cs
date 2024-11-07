@@ -94,6 +94,7 @@ public class CharacterMovement : Movement{
     public void dash(Vector3 direction, float force, float duration){
         if(can_dash == true){
             can_dash = false;
+            can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
             switch_state(apply_force_loop(dashed, dash_end, direction, force, duration));
         }      
     }
@@ -101,6 +102,7 @@ public class CharacterMovement : Movement{
     private void end_dash(){
         state_switch_default();
         StartCoroutine(dash_cooldown_loop());
+        can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
     }
     IEnumerator dash_cooldown_loop(){
         yield return new WaitForSeconds(dash_cooldown);

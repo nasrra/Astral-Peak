@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 //create seperate classes for each atttack
@@ -7,6 +8,8 @@ using UnityEngine;
 public class MeleeHolster{
     public delegate void AnimationDelegate();
     protected AnimationDelegate animation;
+
+    Dictionary<string, bool> hit_creatures = new Dictionary<string, bool>();
 
     public Action<Collider2D>
         hit_enemy_guard;
@@ -29,6 +32,7 @@ public class MeleeHolster{
         else{
             feedback.trigger_enter -= hit;
             hurt_box.enabled = false;
+            hit_creatures.Clear(); // clear hit creatures for next enable.
         }
     }
     public void set_damage(int amt) => damage = amt;
@@ -40,6 +44,10 @@ public class MeleeHolster{
         CreatureLink link = other.GetComponent<CreatureLink>(); // creature linker for bigger creatures with multiple colliders and segments.
 
         Creature creature = (direct != null)? direct : link.get_creature();
+        string name = creature.gameObject.name;
+
+        if(hit_creatures.ContainsKey(name) == true)
+            return;
 
         // if we damage the creature.
         if(creature.damage(damage) == true)
@@ -49,6 +57,9 @@ public class MeleeHolster{
         else
             // knock us back.
             hit_enemy_guard?.Invoke(other);
+        
+        // add the creature to hit creatures;
+        hit_creatures.Add(name, true);
     }
 
     public virtual void use() => animation();

@@ -12,8 +12,8 @@ public class RiderCombat : BossCombat{
             idle_cooldown: 0,
             combat_cooldown: 1
         ),
-        sword_summon = new BossAttack(
-            RiderAnimator.SWORD_SUMMON,
+        run_n_gun = new BossAttack(
+            RiderAnimator.RUN_N_GUN,
             chance: 50,
             distance: 12,
             attack_cooldown: 4,
@@ -22,20 +22,20 @@ public class RiderCombat : BossCombat{
         );
 
     void Start(){
-        //test(front_strike);
-        set_movesets();
+        test(front_strike);
+        //set_movesets();
     }
 
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
             front_strike,
+            run_n_gun,
         });
 
         set_back_moveset(new List<BossAttack>(){
         });
     
         set_special_moveset(new List<BossAttack>(){
-            sword_summon,
         });
     }
 }

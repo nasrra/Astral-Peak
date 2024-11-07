@@ -100,7 +100,10 @@ public class Movement : MonoBehaviour{
         rb.velocity *= deceleration;
     }
 
-    public void knockback(Vector3 direction, float force, float time) => switch_state(apply_force_loop(knockedback, knockback_ended, (direction + new Vector3(0,2.5f,0)).normalized, force, time));
+    public void knockback(Vector3 direction, float force, float time){
+        if(can_knockback == true)
+            switch_state(apply_force_loop(knockedback, knockback_ended, (direction + new Vector3(0,2.5f,0)).normalized, force, time));
+    }
     protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
         rb.gravityScale = 0;
         // Normalize the final knockback direction
@@ -114,6 +117,18 @@ public class Movement : MonoBehaviour{
         rb.velocity = Vector2.zero;
         end?.Invoke();
         yield break;
+    }
+
+    public void move_in_faced_direction(){
+        Debug.Log(transform.rotation.y);
+        if(transform.rotation.y == 1){
+            Debug.Log("l");
+            move_left(true);
+        }   
+        else{
+            Debug.Log("r");
+            move_right(true); 
+        }
     }
 
     protected virtual void link() => knockback_ended += state_switch_default;

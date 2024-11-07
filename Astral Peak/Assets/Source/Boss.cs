@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Boss : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected SpriteHandler sprite;
@@ -35,30 +37,36 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
     protected virtual IEnumerator follow(){
         while(true){
             float dist = dist_to_target();
-
             // attempt an attack.
-            // keep this at the end of the co routine so the ai can stop moving.
-            if(combat.cooldown == 0){
-                BossAttack chosen_attack = combat.chose_attack(dist);
-                if(chosen_attack != null){
-                    state_switch(attack(chosen_attack));
-                    yield break;
-                }
-            }
-
-            // if we are not moving right, move right.
-            if(dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
-                movement.stop();
-                movement.move_right(true);
-            }
-            // if we are not moving left, move left.
-            if(dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
-                movement.stop();
-                movement.move_left(true);
-            }
-
+            if(chose_attack(dist) == true)
+                yield break;
+            move_to_player(dist);
             // Fixed Update Modifier.
             yield return new WaitForFixedUpdate();
+        }
+    }
+
+    protected bool chose_attack(float dist){
+        if(combat.cooldown == 0){
+            BossAttack chosen_attack = combat.chose_attack(dist);
+            if(chosen_attack != null){
+                state_switch(attack(chosen_attack));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void move_to_player(float dist){
+        // if we are not moving right, move right.
+        if(dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
+            movement.stop();
+            movement.move_right(true);
+        }
+        // if we are not moving left, move left.
+        if(dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
+            movement.stop();
+            movement.move_left(true);
         }
     }
 

@@ -5677,10 +5677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1805b52f7b822204b890cde888d79884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6345792998177996148}
   health: {fileID: 5994195274358197019}
   stunnable: 1
   movement: {fileID: 8959932368922724423}
+  animator: {fileID: 6345792998177996148}
   input: {fileID: 0}
   interactor: {fileID: 4278735649314562499}
   melee:
@@ -5771,7 +5771,7 @@ MonoBehaviour:
   jump_time_counter: 0
   dash_time: 0.25
   dash_force: 10
-  dash_cooldown: 1
+  dash_cooldown: 0.5
   ground_checker: {fileID: 8555385563265979661}
 --- !u!114 &5994195274358197019
 MonoBehaviour:
