@@ -6,6 +6,8 @@ public class TheRider : Boss{
 
     [SerializeField] RiderRangedCombat ranged;
     public void forward_strike_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.30f);
+    public void jump_n_dash_jump_back() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.25f);
+    public void jump_n_dash_front_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 40, 0.30f);
 
     void Awake(){
         instance = this;

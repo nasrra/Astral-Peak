@@ -19,20 +19,29 @@ public class RiderCombat : BossCombat{
             attack_cooldown: 4,
             idle_cooldown: 0,
             combat_cooldown: 1
+        ),
+        jump_n_dash = new BossAttack(
+            RiderAnimator.JUMP_N_DASH,
+            chance: 50,
+            distance: 12,
+            attack_cooldown: 4,
+            idle_cooldown: 0,
+            combat_cooldown: 1
         );
 
     void Start(){
-        test(front_strike);
-        //set_movesets();
+        //test(jump_n_dash);
+        set_movesets();
     }
 
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
             front_strike,
-            run_n_gun,
+            //run_n_gun,
         });
 
         set_back_moveset(new List<BossAttack>(){
+            jump_n_dash,
         });
     
         set_special_moveset(new List<BossAttack>(){

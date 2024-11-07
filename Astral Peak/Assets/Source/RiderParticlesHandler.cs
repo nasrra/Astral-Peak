@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class RiderParticlesHandler : ParticlesHandler{
     [SerializeField] ParticleSystem
-        front_strike;
+        front_strike,
+        jump_n_dash;
     
     public void emit_front_strike() => front_strike.Emit(1);
+    public void emit_jump_n_dash() => jump_n_dash.Emit(1);
+
     public override void flip_left(){
-        front_strike    .GetComponent<ParticleSystemRenderer>().flip = left;
+        flip_emitter_left(front_strike.GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(jump_n_dash .GetComponent<ParticleSystemRenderer>());
     }
 
     public override void flip_right(){
-        front_strike    .GetComponent<ParticleSystemRenderer>().flip = right;
+        flip_emitter_right(front_strike.GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(jump_n_dash .GetComponent<ParticleSystemRenderer>());
     }
 }

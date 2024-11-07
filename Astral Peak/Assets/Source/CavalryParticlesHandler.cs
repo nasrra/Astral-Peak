@@ -21,22 +21,22 @@ public class CavalryParticlesHandler : ParticlesHandler{
     }
 
     public override void flip_left(){
-        front_strike            .GetComponent<ParticleSystemRenderer>().flip = left;
-        back_strike_backward    .GetComponent<ParticleSystemRenderer>().flip = left;
-        back_strike_forward     .GetComponent<ParticleSystemRenderer>().flip = left;
-        top_bite                .GetComponent<ParticleSystemRenderer>().flip = left;
-        bottom_bite             .GetComponent<ParticleSystemRenderer>().flip = left;
-        ground_slam_hop_first   .GetComponent<ParticleSystemRenderer>().flip = left;
-        ground_slam_hop_second  .GetComponent<ParticleSystemRenderer>().flip = left;
+        flip_emitter_left(front_strike          .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(back_strike_backward  .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(back_strike_forward   .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(top_bite              .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(bottom_bite           .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(ground_slam_hop_first .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(ground_slam_hop_second.GetComponent<ParticleSystemRenderer>());
     }
 
     public override void flip_right(){
-        front_strike            .GetComponent<ParticleSystemRenderer>().flip = right;
-        back_strike_backward    .GetComponent<ParticleSystemRenderer>().flip = right;
-        back_strike_forward     .GetComponent<ParticleSystemRenderer>().flip = right;
-        top_bite                .GetComponent<ParticleSystemRenderer>().flip = right;
-        bottom_bite             .GetComponent<ParticleSystemRenderer>().flip = right;
-        ground_slam_hop_first   .GetComponent<ParticleSystemRenderer>().flip = right;
-        ground_slam_hop_second  .GetComponent<ParticleSystemRenderer>().flip = right;   
+        flip_emitter_right(front_strike          .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(back_strike_backward  .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(back_strike_forward   .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(top_bite              .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(bottom_bite           .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(ground_slam_hop_first .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(ground_slam_hop_second.GetComponent<ParticleSystemRenderer>()); 
     }
 }
