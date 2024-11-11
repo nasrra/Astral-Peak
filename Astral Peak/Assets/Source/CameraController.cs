@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour{
     Coroutine
         follow_state,
         zoom_state,
+        swivel_state,
         test;
 
     void Awake(){
@@ -27,19 +28,57 @@ public class CameraController : MonoBehaviour{
     }
 
     // external functions
-    public void zoom_in_state(float size, float speed) => zoom_state_swtich(zoom_in(size, speed));
-    public void zoom_out_state(float size, float speed) => zoom_state_swtich(zoom_out(size, speed));
-    public void reset_zoom_state(float speed) => zoom_state_swtich(reset_zoom(speed));
+    public void zoom_in_state(float size, float speed)      => state_swtich(zoom_state, zoom_in(size, speed));
+    public void zoom_out_state(float size, float speed)     => state_swtich(zoom_state, zoom_out(size, speed));
+    public void reset_zoom_state(float speed)               => state_swtich(zoom_state, reset_zoom(speed));
+    public void move_up_state(float y_pos, float speed)     => state_swtich(swivel_state, move_up(y_pos, speed));
+    public void move_down_state(float y_pos, float speed)   => state_swtich(swivel_state, move_down(y_pos, speed));
+    public void reset_offset_state(float speed)             => state_swtich(swivel_state, reset_offset(speed));
+
+    // state switchers:
+    void state_swtich(Coroutine state, IEnumerator n_state){
+        if(state != null)
+            StopCoroutine(state);
+        state = StartCoroutine(n_state);
+    }
 
     // states:
     IEnumerator follow(){
         while(true){
-            Vector3 desired_pos = target.position + offset;
+            Vector3 desired_pos = new Vector3(target.position.x + offset.x, offset.y, target.position.z + offset.z);
             // may want to swap this to Vector3.SmoothDamp();
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
             transform.position = smoothed_pos;            
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    IEnumerator move_up(float y_pos, float speed){
+        while(offset.y < y_pos){
+            offset += new Vector3(0, Time.deltaTime * speed, 0);
+            yield return new WaitForEndOfFrame();
+        }
+        yield break;
+    }
+
+    IEnumerator move_down(float y_pos, float speed){
+        while(offset.y > y_pos){
+            offset -= new Vector3(0, Time.deltaTime * speed, 0);
+            yield return new WaitForEndOfFrame();
+        }
+        yield break;
+    }
+
+    IEnumerator reset_offset(float speed){
+        // determine if we are too high or too low.
+        float difference = offset.y - original_offset.y;
+        
+        if(difference >= 0)
+            state_swtich(swivel_state,move_down(original_offset.y, speed));
+        else
+            state_swtich(swivel_state,move_up(original_offset.y, speed));
+        offset.y = original_offset.y;
+        yield break;
     }
 
     IEnumerator zoom_out(float size, float speed){
@@ -64,9 +103,9 @@ public class CameraController : MonoBehaviour{
         float difference = cam.orthographicSize - original_size;
         
         if(difference >= 0)
-            zoom_state_swtich(zoom_in(original_size, speed));
+            state_swtich(zoom_state,zoom_in(original_size, speed));
         else
-            zoom_state_swtich(zoom_out(original_size, speed));
+            state_swtich(zoom_state,zoom_out(original_size, speed));
         
         yield break;
     }
@@ -86,13 +125,6 @@ public class CameraController : MonoBehaviour{
                 StopCoroutine(zoom_state);
             zoom_state = StartCoroutine(reset_zoom(3.75f));
         }
-    }
-
-    // state switchers:
-    void zoom_state_swtich(IEnumerator state){
-        if(zoom_state != null)
-            StopCoroutine(zoom_state);
-        zoom_state = StartCoroutine(state);
     }
 
     public void snap_to_target(){
