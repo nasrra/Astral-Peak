@@ -20,7 +20,6 @@ public class Arrow : Projectile{
         float rng = Random.Range(0,31);
         rng /= 100;
         rng /= 2;
-        Debug.Log(rng);
         rise_speed      += rng;
         rise_time       += rng; 
         rotate_speed    += rng;

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RiderRangedCombat : MonoBehaviour{
     [SerializeField] Turret 
-        front_strike_arrow;
+        signature_arrow,
+        back_shot_arrow;
 
-    public void fire_front_strike_arrow() => front_strike_arrow.fire_once();
+    public void fire_signature_arrow() => signature_arrow.fire_once();
+    public void fire_back_shot_arrow() => back_shot_arrow.fire_once();
 }

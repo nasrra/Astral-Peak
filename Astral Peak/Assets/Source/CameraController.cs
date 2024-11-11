@@ -3,7 +3,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour{
-    
+        
     public static CameraController instance;
 
     [SerializeField] private Transform target;

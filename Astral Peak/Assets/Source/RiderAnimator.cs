@@ -6,8 +6,10 @@ public class RiderAnimator : AnimatorOverride{
     public static readonly int
         IDLE            = Animator.StringToHash("idle"),
         RUN             = Animator.StringToHash("run"),
-        FRONT_STRIKE_1  = Animator.StringToHash("front_strike_1"),
-        JUMP_N_DASH  = Animator.StringToHash("jump_n_dash"),
+        SIGNATURE       = Animator.StringToHash("signature"),
+        FRONT_STRIKE    = Animator.StringToHash("front_strike"),
+        JUMP_N_DASH     = Animator.StringToHash("jump_n_dash"),
+        BACK_SHOT       = Animator.StringToHash("back_shot"),
         RUN_N_GUN       = Animator.StringToHash("run_n_gun");
     
     public void idle() => animator.Play(IDLE);
