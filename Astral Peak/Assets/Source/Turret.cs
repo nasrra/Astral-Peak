@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Turret : MonoBehaviour{
@@ -18,7 +19,7 @@ public class Turret : MonoBehaviour{
     IEnumerator fire_loop(){
         while(true){
             Debug.Log("Fire!");
-            GameObject x = Instantiate(projectile, transform.position, transform.rotation);
+            GameObject x = Instantiate(projectile, transform.position, Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z));
             projectile_fired?.Invoke(x); 
             yield return new WaitForSeconds(fire_rate);
         }
