@@ -68,7 +68,7 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public bool damage(float amt) => health.damage(amt);
+    public bool damage(int amt) => health.damage(amt);
 
     public virtual void enter_cutscene_state(){}
     public virtual void exit_cutscene_state(){}

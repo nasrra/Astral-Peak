@@ -101,6 +101,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void damaged(){
         sprite.play_damaged_flash();
         health.is_invulnerable(2);
+        PlayerHealthBar.instance.set_health(health.get_current_health());
     }
 
     // used to set the players initial position in the scene.

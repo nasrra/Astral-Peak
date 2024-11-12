@@ -18,8 +18,11 @@ public class MeleeHolster{
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
 
+    [SerializeField] private int 
+        damage;
+
     [SerializeField]private float 
-        damage, knockback_force, knockback_duration,
+        knockback_force, knockback_duration,
         self_knockback_force, self_knockback_duration;
 
     public void set_animation(AnimationDelegate animation) => this.animation = animation;

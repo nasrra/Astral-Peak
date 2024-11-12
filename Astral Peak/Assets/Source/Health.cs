@@ -13,17 +13,11 @@ using UnityEngine.Video;
 public class Health : MonoBehaviour{
     public event Action
         healed, death, damaged, now_invulnerable, now_vulnerable;
-    [SerializeField] private float
+    [SerializeField] private int
         max_life, current_life;
     [SerializeField] public bool invulnerable;
-    [SerializeField] protected Bar bar;
 
-    void Start(){
-        if(bar != null){
-            bar.set_bar_max_value(max_life);
-            bar.set_bar_value(current_life);
-        }
-    }
+    public int get_current_health() => current_life;
 
     public void heal(int amt, GameObject other = null){
         current_life += amt;
@@ -54,17 +48,15 @@ public class Health : MonoBehaviour{
     }
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
-    public bool damage(float amt){
+    public bool damage(int amt){
         if(invulnerable == true)
             return false;
 
         current_life -= amt;
-        if(current_life <= 0.0f){
-            current_life = 0.0f;
+        if(current_life <= 0){
+            current_life = 0;
             death?.Invoke();
         }
-        if(bar!=null)
-            bar.set_bar_value(current_life);
         damaged?.Invoke();
         return true;
     }
