@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioClipHandler : MonoBehaviour{
     public static AudioClipHandler instance;
@@ -20,6 +21,7 @@ public class AudioClipHandler : MonoBehaviour{
         s.clip = sound.clip;
         s.volume = sound.volume;
         s.pitch = sound.pitch;
+        s.outputAudioMixerGroup = AudioManager.mixer.FindMatchingGroups("Music")[0];
         s.Play();
     }
 }

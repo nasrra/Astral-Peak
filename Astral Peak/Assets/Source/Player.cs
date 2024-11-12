@@ -76,7 +76,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void dashed(){
-        particles.emit_dash_effect();
+        particles.emit_dash();
         health.is_invulnerable();
     }
 
