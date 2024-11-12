@@ -8,14 +8,19 @@ public class Projectile : MonoBehaviour{
     [SerializeField] private int damage = 1;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Transform front_point;
-    [SerializeField] protected float move_speed = 25;
+    [SerializeField] protected float
+        move_speed = 25,
+        lifetime = 5;
     [SerializeField] TrailRenderer trail;
     [SerializeField] Collider2D col;
     [SerializeField] protected Coroutine 
         move_state,
         rotate_state;
 
-    void Awake() => state_switch(move_state, move(move_speed));
+    void Awake(){
+        state_switch(move_state, move(move_speed));
+        StartCoroutine(lifetime_counter());
+    }
 
     protected void state_switch(Coroutine coroutine, IEnumerator state){
         if(coroutine != null)
@@ -72,6 +77,12 @@ public class Projectile : MonoBehaviour{
             counter -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    protected IEnumerator lifetime_counter(){
+        yield return new WaitForSeconds(lifetime);
+        Destroy(this.gameObject);
+        yield break;
     }
 
     public void enable_trail(bool x) {if(trail != null)trail.enabled = x;}

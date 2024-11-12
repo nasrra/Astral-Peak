@@ -72,6 +72,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
             movement.dash(Vector2.right, 20, 0.25f);
         else 
             movement.dash(Vector2.left, 20, 0.25f);
+
+    }
+
+    private void dashed(){
+        particles.emit_dash_effect();
+        health.is_invulnerable();
     }
 
     private void grounded(){
@@ -190,7 +196,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.now_grounded           += grounded;
         movement.not_grounded           += animator.start_fall;
         movement.jumped                 += animator.jump;
-        movement.dashed                 += health.is_invulnerable;
+        movement.dashed                 += dashed;
         movement.dash_end               += health.is_vulnerable;
     }
     protected void unlink_movement(){
@@ -199,7 +205,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= animator.start_fall;
         movement.jumped                 -= animator.jump;
-        movement.dashed                 -= health.is_invulnerable;
+        movement.dashed                 -= dashed;
         movement.dash_end               -= health.is_vulnerable;
     }
 
