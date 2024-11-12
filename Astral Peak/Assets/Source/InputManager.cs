@@ -20,7 +20,8 @@ public class InputManager : MonoBehaviour{
         interact_performed, interact_cancelled, 
         attack_performed,   attack_cancelled, 
         parry_performed,    parry_cancelled,
-        dash_performed;
+        dash_performed,
+        exit_performed;
 
     void Awake() => instance = this;
 
@@ -52,8 +53,9 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Parry.performed       += on_parry_performed;
         keybinds.Keyboard.Parry.canceled        += on_parry_cancelled;
         keybinds.Keyboard.Dash.performed        += on_dash_performed;
-        keybinds.Keyboard.ZoomOut.performed     += OnZoomOut;
-        keybinds.Keyboard.ZoomIn.performed      += OnZoomIn;
+        keybinds.Keyboard.ZoomOut.performed     += on_zoom_out;
+        keybinds.Keyboard.ZoomIn.performed      += on_zoom_in;
+        keybinds.Keyboard.Exit.performed        += on_exit_performed;
     }
 
     private void unbind_default_keyboard(){
@@ -70,8 +72,9 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Parry.performed       -= on_parry_performed;
         keybinds.Keyboard.Parry.canceled        -= on_parry_cancelled;
         keybinds.Keyboard.Dash.performed        -= on_dash_performed;
-        keybinds.Keyboard.ZoomOut.performed     -= OnZoomOut;
-        keybinds.Keyboard.ZoomIn.performed      -= OnZoomIn;
+        keybinds.Keyboard.ZoomOut.performed     -= on_zoom_out;
+        keybinds.Keyboard.ZoomIn.performed      -= on_zoom_in;
+        keybinds.Keyboard.Exit.performed        -= on_exit_performed;
     }
     void on_jump_performed(InputAction.CallbackContext ctx)     => jump_performed?.Invoke();
     void on_jump_cancelled(InputAction.CallbackContext ctx)     => jump_cancelled?.Invoke();
@@ -86,7 +89,8 @@ public class InputManager : MonoBehaviour{
     void on_parry_performed(InputAction.CallbackContext ctx)    => parry_performed?.Invoke();
     void on_parry_cancelled(InputAction.CallbackContext ctx)    => parry_cancelled?.Invoke();
     void on_dash_performed(InputAction.CallbackContext ctx)     => dash_performed?.Invoke();
-    void OnZoomOut(InputAction.CallbackContext ctx)             => CameraController.instance.ZoomOut();
-    void OnZoomIn(InputAction.CallbackContext ctx)              => CameraController.instance.ZoomIn();
+    void on_exit_performed(InputAction.CallbackContext ctx)     => exit_performed?.Invoke();
+    void on_zoom_out(InputAction.CallbackContext ctx)           => CameraController.instance.ZoomOut();
+    void on_zoom_in(InputAction.CallbackContext ctx)            => CameraController.instance.ZoomIn();
     #endregion
 }

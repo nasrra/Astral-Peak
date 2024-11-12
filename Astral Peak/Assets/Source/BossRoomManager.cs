@@ -13,6 +13,5 @@ public class BossRoomManager : MonoBehaviour{
         if(play_cinematic == true)
             CutsceneManager.instance.Play(opening_cinematic);
         AudioManager.Play(boss_song);
-        //AudioManager.music_volume(-40);
     }
 }

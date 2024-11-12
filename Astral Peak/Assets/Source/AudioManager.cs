@@ -3,12 +3,22 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public static class AudioManager{
+    public const string
+        MIXER_MUSIC = "MusicVolume";
+    static AudioManager(){load_volume_settings();}
+    
     public static AudioMixer mixer = Resources.Load<AudioMixer>("Audio/Mixer");
+    
     public static void Play(string clip) => AudioClipHandler.instance.Play(SoundLibrary.sounds[clip]());
-    public static void music_volume(float volume) => mixer.SetFloat("MusicVolume",value_to_logarithmic(volume));
+    public static void music_volume(float volume) => mixer.SetFloat(MIXER_MUSIC,value_to_logarithmic(volume));
 
     // calc for mixer because volume levels are set by logarithmic values.
     static float value_to_logarithmic(float value) => Mathf.Log10(value) * 20; 
+
+    private static void load_volume_settings(){
+        float savedVolume = PlayerPrefs.GetFloat(MIXER_MUSIC, 1f);
+        music_volume(savedVolume);
+    }
 }
 
 [System.Serializable]

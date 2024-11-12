@@ -20,7 +20,7 @@ public static class GameManager{
     static public void death_state(){
         Player.player.get_movement().stop();
         Player.player.unlink_input();
-        UiManager.instance.play_death_screen();
+        UiManager.instance.enable_death_screen();
     }
 
     static public void reload_scene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
