@@ -2,54 +2,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public static class AudioManager{
+public class AudioManager : MonoBehaviour{
+    public static AudioManager instance;
+
     public const string
-        MIXER_MUSIC = "MusicVolume";
-    static AudioManager(){load_volume_settings();}
+        MIXER_MUSIC = "MusicVolume",
+        MIXER_SFX = "SfxVolume";
+    public static AudioMixer mixer;
+    public static AudioMixerGroup music_mixer;
+    public static AudioMixerGroup sfx_mixer; 
+
+    void Awake(){
+        mixer = Resources.Load<AudioMixer>("Audio/Mixer");
+        music_mixer = mixer.FindMatchingGroups("Music")[0];
+        sfx_mixer = mixer.FindMatchingGroups("Sfx")[0];
+    }
+
+    void Start(){load_volume_settings();}
     
-    public static AudioMixer mixer = Resources.Load<AudioMixer>("Audio/Mixer");
-    
-    public static void Play(string clip) => AudioClipHandler.instance.Play(SoundLibrary.sounds[clip]());
     public static void music_volume(float volume) => mixer.SetFloat(MIXER_MUSIC,value_to_logarithmic(volume));
+    public static void sfx_volume(float volume) => mixer.SetFloat(MIXER_SFX,value_to_logarithmic(volume));
 
     // calc for mixer because volume levels are set by logarithmic values.
     static float value_to_logarithmic(float value) => Mathf.Log10(value) * 20; 
 
-    private static void load_volume_settings(){
-        float savedVolume = PlayerPrefs.GetFloat(MIXER_MUSIC, 1f);
-        music_volume(savedVolume);
-    }
-}
-
-[System.Serializable]
-public struct Sound{
-    public Sound(AudioClip c, AudioMixerGroup g, float v, float p){
-        clip = c;
-        group = g;
-        volume = v;
-        pitch = p;
-    }
-    public AudioClip clip;
-    public AudioMixerGroup group;
-    public float volume;
-    public float pitch;
-}
-
-public static class SoundLibrary{
-    public delegate Sound SoundCreation();
-    
-    public readonly static Dictionary<string, SoundCreation> sounds = new Dictionary<string, SoundCreation>(){
-        { "boss1", 
-            () => new Sound(
-                load_music("run - ABRN"), 
-                AudioManager.mixer.FindMatchingGroups("Music")[0], 
-                1, 
-                1) 
-        }
-    };
-
-    static AudioClip load_music(string audioclip){
-        AudioClip c = Resources.Load<AudioClip>("Audio/Music/"+audioclip);
-        return c != null? c : throw new System.Exception("Audio Clip: ["+audioclip+"] not found!");
+    public static void load_volume_settings(){
+        music_volume(PlayerPrefs.GetFloat(MIXER_MUSIC, 1f));
+        sfx_volume(PlayerPrefs.GetFloat(MIXER_SFX, 1f));
     }
 }

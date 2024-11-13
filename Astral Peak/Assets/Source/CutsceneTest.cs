@@ -11,7 +11,7 @@ public class CutsceneTest : Cutscene{
     public override void end(){
         Player.player.exit_cutscene_state();
         TheCavalry.instance.exit_cutscene_state();
-        Player.exit_point = BossRoomManager.instance.player_respawn_point.get_enter_point();
+        Player.exit_point = BossRoomHandler.instance.player_respawn_point.get_enter_point();
     }
 
     public IEnumerator test(){

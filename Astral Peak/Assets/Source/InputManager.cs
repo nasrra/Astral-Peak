@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour{
 
     void OnDestroy(){
         //unbind    
-        unbind_default_keyboard();
+        //unbind_default_keyboard();
     }
 
     #region Default Keyboard

@@ -59,7 +59,7 @@ public class CavalryCombat : BossCombat{
             idle_cooldown:      0,
             combat_cooldown:    1),
         
-        sword_summon = new BossAttack(
+        howl = new BossAttack(
             CavalryAnimator.HOWL,
             chance:             50,
             distance:           6,
@@ -76,7 +76,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:    0);
 
     void Start(){
-        //test(ground_slam);
+        //test(howl);
         set_movesets(); 
     }
 
@@ -93,7 +93,7 @@ public class CavalryCombat : BossCombat{
         });
     
         set_special_moveset(new List<BossAttack>(){
-            sword_summon,
+            howl,
             ground_slam,
             jump_away,
         });

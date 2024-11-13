@@ -14911,6 +14911,7 @@ GameObject:
   - component: {fileID: 1813726766745458974}
   - component: {fileID: 7343523012452332790}
   - component: {fileID: 2267155362899391795}
+  - component: {fileID: 6216807389168500828}
   m_Layer: 8
   m_Name: The Cavalry
   m_TagString: Enemy
@@ -15039,7 +15040,6 @@ MonoBehaviour:
   max_life: 100
   current_life: 100
   invulnerable: 0
-  bar: {fileID: 0}
 --- !u!114 &4768311574549485359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15297,6 +15297,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 0.05}
   m_EdgeRadius: 0
+--- !u!114 &6216807389168500828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171791db58211b848a3f9e1f14d33d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5327151855131923361
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
+    [SerializeField] protected PlayerAudio audio;
     [SerializeField] protected Collider2D col;
     bool input_blocker = false; // used to avoid bug.
 
@@ -76,6 +77,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void dashed(){
+        audio.emit_dash();
         particles.emit_dash();
         health.is_invulnerable();
     }
