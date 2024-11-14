@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealthBar : MonoBehaviour{
-    public static PlayerHealthBar instance;
     [SerializeField] List<GameObject> notches = new List<GameObject>();
 
-    void Awake() => instance = this; 
+    void Awake() => Player.player.damaged_start += player_damaged;
+
+    void player_damaged() => set_health(Player.player.get_health().get_current_health());
 
     public void set_health(int amt){
         if(amt > notches.Count)

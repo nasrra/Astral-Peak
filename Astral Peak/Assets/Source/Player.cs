@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : CreatureInheritor<CharacterMovement>{
     
+    public event Action
+        damaged_start, damaged_stop;
+
     // static fields for other classes to access.
     public static Player player;
     public static string exit_point = "";
@@ -18,8 +22,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
-    [SerializeField] protected PlayerAudio audio;
+    [SerializeField] new protected PlayerAudio audio;
     [SerializeField] protected Collider2D col;
+    private float invulnerable_time = 2;
     bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
@@ -106,10 +111,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
         col.excludeLayers = new LayerMask();
     }
 
-    private void damaged(){
+    private void damaged() => StartCoroutine(damaged_state());
+    IEnumerator damaged_state(){
         sprite.play_damaged_flash();
-        health.is_invulnerable(2);
-        PlayerHealthBar.instance.set_health(health.get_current_health());
+        health.is_invulnerable(invulnerable_time);
+        damaged_start?.Invoke();
+        yield return new WaitForSeconds(invulnerable_time);
+        damaged_stop?.Invoke();
     }
 
     // used to set the players initial position in the scene.
@@ -151,7 +159,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_input();
     }
 
-    #region Linkage
     protected override void link_events(){
         base.link_events();
         link_input();
@@ -235,6 +242,4 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.now_vulnerable   -= vulnerable;
         health.damaged          -= damaged;
     }
-
-    #endregion
 }
