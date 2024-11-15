@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAudio : AudioClipHandler{
+public class PlayerAudio : ObjectAudio{
     Sound 
         dash,
         attack;
@@ -21,7 +21,7 @@ public class PlayerAudio : AudioClipHandler{
         attack              = SoundLibrary.sfx["melee_swing_1"]();     
     }
 
-    public void emit_dash() => play(dash, out source);
-    public void emit_attack() => play(attack, out source);
-    public void emit_footsteps() => play(snow_footstep[Random.Range(0,4)],out source);
+    public void emit_dash()      => AudioClipHandler.play(this, dash, out source);                                          
+    public void emit_attack()    => AudioClipHandler.play(this, attack, out source);                            
+    public void emit_footsteps() => AudioClipHandler.play(this, snow_footstep[Random.Range(0,4)],out source);   
 }

@@ -1,22 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEditor.SceneManagement;
+using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class AudioClipHandler : MonoBehaviour{
-    protected float fade_factor = 1f;
+public static class AudioClipHandler{
 
-    protected IEnumerator sound_lifetime(AudioSource source, float lifetime){
-        yield return new WaitForSeconds(lifetime);
-        if(source != null)
-            Destroy(source);
-        yield break;
-    }
+    static ObjectAudio object_audio;
 
-    AudioSource create_source(Sound sound){
-        AudioSource s = gameObject.AddComponent<AudioSource>();
+    static AudioSource create_source(Sound sound){
+        AudioSource s = object_audio.gameObject.AddComponent<AudioSource>();
         s.clip = sound.clip;
         s.volume = sound.volume;
         s.pitch = sound.pitch;
@@ -24,22 +16,40 @@ public class AudioClipHandler : MonoBehaviour{
         return s;        
     }
 
-    protected void play(Sound sound, out AudioSource source){
+    public static void set_game_object(ObjectAudio audio) => object_audio = audio;
+
+    public static void play(ObjectAudio audio, Sound sound, out AudioSource source){
+        set_game_object(audio);
         source = create_source(sound);
-        StartCoroutine(sound_lifetime(source,sound.clip.length));
         source.Play();
+        Object.Destroy(source,sound.clip.length); // unscaled time btw.
     }
 
-    protected void fade_in(Sound sound, out AudioSource source){
-        source = create_source(sound);
-        StartCoroutine(fade_in_loop(source,sound));
-        StartCoroutine(sound_lifetime(source,sound.clip.length));
-        source.Play();
+    public static void dual_fade(ObjectAudio audio, AudioSource source_1, AudioSource source_2, Sound sound, float fade_factor){
+        if(source_1.clip == null){
+            fade_out(audio, source_1, fade_factor);
+            fade_in(audio, sound, fade_factor, out source_2);
+        }
+        else if(source_2.clip == null){
+            fade_out(audio, source_2, fade_factor);
+            fade_in(audio, sound, fade_factor,out source_1);         
+        }
     }
 
-    public void fade_out(AudioSource source) => StartCoroutine(fade_out_loop(source));
+    public static void fade_in(ObjectAudio audio, Sound sound, float fade_factor, out AudioSource source){
+        set_game_object(audio);
+        source = create_source(sound);
+        object_audio.StartCoroutine(fade_in_loop(source, fade_factor, sound));
+        source.Play();
+        Object.Destroy(source,sound.clip.length); // unscaled time btw.
+    }
 
-    IEnumerator fade_in_loop(AudioSource s, Sound sound){
+    public static void fade_out(ObjectAudio audio, AudioSource source, float fade_factor){
+        set_game_object(audio);
+        object_audio.StartCoroutine(fade_out_loop(source, fade_factor));
+    }
+
+    static IEnumerator fade_in_loop(AudioSource s, float fade_factor, Sound sound){
         s.volume = 0;
         while(s.volume < sound.volume){
             s.volume += Time.deltaTime * fade_factor;
@@ -49,12 +59,13 @@ public class AudioClipHandler : MonoBehaviour{
         yield break;        
     }
 
-    IEnumerator fade_out_loop(AudioSource source){
+    static IEnumerator fade_out_loop(AudioSource source, float fade_factor){
         while(source.volume > 0){
             source.volume -= Time.deltaTime * fade_factor;
             yield return null;
         }
-        Destroy(source);
+        source.clip = null;
+        //Destroy(source);
         yield break;
     }
 }

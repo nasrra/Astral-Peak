@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CavalryAudio : AudioClipHandler{
+public class CavalryAudio : ObjectAudio{
     Sound 
         arrow_knocked,
         bow_shot,
@@ -32,13 +32,13 @@ public class CavalryAudio : AudioClipHandler{
         ground_slam_impact  = SoundLibrary.sfx["snow_impact_heavy"]();
     }
 
-    public void emit_arrow_knocked()        => play(arrow_knocked, out source);
-    public void emit_bow_shot()             => play(bow_shot, out source);
-    public void emit_ground_slam_impact()   => play(ground_slam_impact, out source);
-    public void emit_ground_slam_hop()      => play(ground_slam_hop,out source);
-    public void emit_sword_strike()         => play(sword_strike,out source);
-    public void emit_howl()                 => play(howl,out source);
-    public void emit_footsteps()            => play(snow_footstep[Random.Range(0,4)],out source);
-    public void emit_bark()                 => play(bark[Random.Range(0,3)], out source);
-    public void emit_front_strike_grab()    => play(front_strike_grab, out source);
+    public void emit_arrow_knocked()      => AudioClipHandler.play(this, arrow_knocked, out source);                                                    
+    public void emit_bow_shot()           => AudioClipHandler.play(this, bow_shot, out source);                                                            
+    public void emit_ground_slam_impact() => AudioClipHandler.play(this, ground_slam_impact, out source);                                                   
+    public void emit_ground_slam_hop()    => AudioClipHandler.play(this, ground_slam_hop,out source);                                                                  
+    public void emit_sword_strike()       => AudioClipHandler.play(this, sword_strike,out source);                                                                               
+    public void emit_howl()               => AudioClipHandler.play(this, howl,out source);                                                        
+    public void emit_footsteps()          => AudioClipHandler.play(this, snow_footstep[Random.Range(0,4)],out source);                                        
+    public void emit_bark()               => AudioClipHandler.play(this, bark[Random.Range(0,3)], out source);                            
+    public void emit_front_strike_grab()  => AudioClipHandler.play(this, front_strike_grab, out source);                      
 }

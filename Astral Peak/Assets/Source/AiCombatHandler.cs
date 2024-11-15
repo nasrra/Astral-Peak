@@ -157,8 +157,8 @@ public abstract class AiCombatHandler<T> : MonoBehaviour where T : Movement{
         target_left_range -= none_state;
     }
 
-    private void link_input() => InputManager.instance.attack_performed += defend;
-    private void unlink_input() => InputManager.instance.attack_performed -= defend;
+    private void link_input() => InputManager.attack_performed += defend;
+    private void unlink_input() => InputManager.attack_performed -= defend;
 #endregion
 }
 

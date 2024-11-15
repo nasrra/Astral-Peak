@@ -17,7 +17,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // data to link together.
     [Header("Player")]
     [SerializeField] private PlayerAnimator animator;
-    [SerializeField] private InputManager input;
     [SerializeField] private Interactor interactor;
     [SerializeField] protected MeleeHolster melee;
     [SerializeField] protected PlayerParticlesHandler particles;
@@ -30,16 +29,17 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void Awake(){
         player = this;
         GameManager.link_player();
-        link_events();
     }
 
     void Start(){   
+
+        link_events();
         set_enter_position();
         // snap camera to players new position.
         CameraController.instance.snap_to_target(); 
     }
 
-    void OnDisable(){
+    void OnDestroy(){
         GameManager.unlink_player();
         unlink_events();
     }
@@ -174,28 +174,28 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     public void link_input(){
-        input.jump_performed        += start_jump;
-        input.jump_cancelled        += stop_jump;
-        input.left_performed        += start_left;
-        input.left_cancelled        += stop_left;
-        input.right_performed       += start_right;
-        input.right_cancelled       += stop_right;
-        input.interact_performed    += interact;
-        input.attack_performed      += attack;
-        input.dash_performed        += dash; 
+        InputManager.jump_performed        += start_jump;
+        InputManager.jump_cancelled        += stop_jump;
+        InputManager.left_performed        += start_left;
+        InputManager.left_cancelled        += stop_left;
+        InputManager.right_performed       += start_right;
+        InputManager.right_cancelled       += stop_right;
+        InputManager.interact_performed    += interact;
+        InputManager.attack_performed      += attack;
+        InputManager.dash_performed        += dash; 
         input_blocker = true; 
     }
 
     public void unlink_input(){
-        input.jump_performed        -= start_jump;
-        input.jump_cancelled        -= stop_jump;
-        input.left_performed        -= start_left;
-        input.left_cancelled        -= stop_left;
-        input.right_performed       -= start_right;
-        input.right_cancelled       -= stop_right;
-        input.interact_performed    -= interact;
-        input.attack_performed      -= attack;
-        input.dash_performed        -= dash;    
+        InputManager.jump_performed        -= start_jump;
+        InputManager.jump_cancelled        -= stop_jump;
+        InputManager.left_performed        -= start_left;
+        InputManager.left_cancelled        -= stop_left;
+        InputManager.right_performed       -= start_right;
+        InputManager.right_cancelled       -= stop_right;
+        InputManager.interact_performed    -= interact;
+        InputManager.attack_performed      -= attack;
+        InputManager.dash_performed        -= dash;    
         input_blocker = false;
     }
 

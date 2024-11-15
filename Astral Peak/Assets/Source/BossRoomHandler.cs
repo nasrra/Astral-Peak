@@ -12,7 +12,7 @@ public class BossRoomHandler : MonoBehaviour{
     void Start(){
         if(play_cinematic == true)
             CutsceneManager.instance.Play(opening_cinematic);
-        MusicManager.instance.play_music(SoundLibrary.music[boss_song]());
-        MusicManager.instance.play_ambience(SoundLibrary.sfx["wind"]());
+        AudioManager.play_music(SoundLibrary.music[boss_song]());
+        AudioManager.play_ambience(SoundLibrary.sfx["wind"]());
     }
 }

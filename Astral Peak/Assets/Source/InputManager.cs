@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,12 +8,11 @@ using UnityEngine.InputSystem;
 // This class is used to encapsulate all input functionality.
 // redirecting the flow of simplified inputs to listening objects.
 
-public class InputManager : MonoBehaviour{
-    public static InputManager instance;
-    [SerializeField] private PlayerInput input;
-    private Keybinds keybinds;
+public static class InputManager{
+    private static PlayerInput input;
+    private static Keybinds keybinds;
 
-    public event Action
+    public static event Action
         // Default keyboard events
         jump_performed,     jump_cancelled, 
         left_performed,     left_cancelled, 
@@ -23,9 +23,8 @@ public class InputManager : MonoBehaviour{
         dash_performed,
         exit_performed;
 
-    void Awake() => instance = this;
-
-    void Start(){
+    public static void initialize(PlayerInput _input){
+        input = _input;
         // enable keyboard keybinds
         keybinds = new Keybinds();
         keybinds.Keyboard.Enable();
@@ -33,13 +32,8 @@ public class InputManager : MonoBehaviour{
         bind_default_keyboard();
     }
 
-    void OnDestroy(){
-        //unbind    
-        //unbind_default_keyboard();
-    }
-
     #region Default Keyboard
-    private void bind_default_keyboard(){
+    private static void bind_default_keyboard(){
         keybinds.Keyboard.Jump.performed        += on_jump_performed;
         keybinds.Keyboard.Jump.canceled         += on_jump_cancelled;
         keybinds.Keyboard.Right.performed       += on_right_performed;
@@ -58,7 +52,7 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.Exit.performed        += on_exit_performed;
     }
 
-    private void unbind_default_keyboard(){
+    private static void unbind_default_keyboard(){
         keybinds.Keyboard.Jump.performed        -= on_jump_performed;
         keybinds.Keyboard.Jump.canceled         -= on_jump_cancelled;
         keybinds.Keyboard.Right.performed       -= on_right_performed;
@@ -76,21 +70,21 @@ public class InputManager : MonoBehaviour{
         keybinds.Keyboard.ZoomIn.performed      -= on_zoom_in;
         keybinds.Keyboard.Exit.performed        -= on_exit_performed;
     }
-    void on_jump_performed(InputAction.CallbackContext ctx)     => jump_performed?.Invoke();
-    void on_jump_cancelled(InputAction.CallbackContext ctx)     => jump_cancelled?.Invoke();
-    void on_left_performed(InputAction.CallbackContext ctx)     => left_performed?.Invoke();
-    void on_left_cancelled(InputAction.CallbackContext ctx)     => left_cancelled?.Invoke();
-    void on_right_performed(InputAction.CallbackContext ctx)    => right_performed?.Invoke();
-    void on_right_cancelled(InputAction.CallbackContext ctx)    => right_cancelled?.Invoke();
-    void on_interact_performed(InputAction.CallbackContext ctx) => interact_performed?.Invoke();
-    void on_interact_cancelled(InputAction.CallbackContext ctx) => interact_cancelled?.Invoke();
-    void on_attack_performed(InputAction.CallbackContext ctx)   => attack_performed?.Invoke();
-    void on_attack_cancelled(InputAction.CallbackContext ctx)   => attack_cancelled?.Invoke();
-    void on_parry_performed(InputAction.CallbackContext ctx)    => parry_performed?.Invoke();
-    void on_parry_cancelled(InputAction.CallbackContext ctx)    => parry_cancelled?.Invoke();
-    void on_dash_performed(InputAction.CallbackContext ctx)     => dash_performed?.Invoke();
-    void on_exit_performed(InputAction.CallbackContext ctx)     => exit_performed?.Invoke();
-    void on_zoom_out(InputAction.CallbackContext ctx)           => CameraController.instance.ZoomOut();
-    void on_zoom_in(InputAction.CallbackContext ctx)            => CameraController.instance.ZoomIn();
+    static void on_jump_performed(InputAction.CallbackContext ctx)     => jump_performed?.Invoke();
+    static void on_jump_cancelled(InputAction.CallbackContext ctx)     => jump_cancelled?.Invoke();
+    static void on_left_performed(InputAction.CallbackContext ctx)     => left_performed?.Invoke();
+    static void on_left_cancelled(InputAction.CallbackContext ctx)     => left_cancelled?.Invoke();
+    static void on_right_performed(InputAction.CallbackContext ctx)    => right_performed?.Invoke();
+    static void on_right_cancelled(InputAction.CallbackContext ctx)    => right_cancelled?.Invoke();
+    static void on_interact_performed(InputAction.CallbackContext ctx) => interact_performed?.Invoke();
+    static void on_interact_cancelled(InputAction.CallbackContext ctx) => interact_cancelled?.Invoke();
+    static void on_attack_performed(InputAction.CallbackContext ctx)   => attack_performed?.Invoke();
+    static void on_attack_cancelled(InputAction.CallbackContext ctx)   => attack_cancelled?.Invoke();
+    static void on_parry_performed(InputAction.CallbackContext ctx)    => parry_performed?.Invoke();
+    static void on_parry_cancelled(InputAction.CallbackContext ctx)    => parry_cancelled?.Invoke();
+    static void on_dash_performed(InputAction.CallbackContext ctx)     => dash_performed?.Invoke();
+    static void on_exit_performed(InputAction.CallbackContext ctx)     => exit_performed?.Invoke();
+    static void on_zoom_out(InputAction.CallbackContext ctx)           => CameraController.instance.ZoomOut();
+    static void on_zoom_in(InputAction.CallbackContext ctx)            => CameraController.instance.ZoomIn();
     #endregion
 }

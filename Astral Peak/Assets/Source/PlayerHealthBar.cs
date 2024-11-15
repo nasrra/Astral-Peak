@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerHealthBar : MonoBehaviour{
     [SerializeField] List<GameObject> notches = new List<GameObject>();
 
-    void Awake() => Player.player.damaged_start += player_damaged;
+    void Start() => Player.player.damaged_start += player_damaged;
+    void OnDestroy() => Player.player.damaged_start -= player_damaged;
 
     void player_damaged() => set_health(Player.player.get_health().get_current_health());
 

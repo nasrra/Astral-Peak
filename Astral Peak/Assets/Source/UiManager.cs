@@ -23,20 +23,20 @@ public class UiManager : MonoBehaviour{
         death_screen.SetActive(false);
         settings_menu.SetActive(false);
         hud.SetActive(false);
-        InputManager.instance.exit_performed -= enable_hud;
-        InputManager.instance.exit_performed -= enable_settings_menu;
+        InputManager.exit_performed -= enable_hud;
+        InputManager.exit_performed -= enable_settings_menu;
     }
 
     public void enable_settings_menu(){
         disable_all();
         settings_menu.SetActive(true);
-        InputManager.instance.exit_performed += enable_hud;
+        InputManager.exit_performed += enable_hud;
     }
 
     public void enable_hud(){
         disable_all();
         hud.SetActive(true);
-        InputManager.instance.exit_performed += enable_settings_menu;
+        InputManager.exit_performed += enable_settings_menu;
     }
 
     public void enable_death_screen(){
