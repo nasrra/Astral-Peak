@@ -33,13 +33,14 @@ public static class StaticComponents{
 
     // initialize audio sources.
     static void audio(){
+        ObjectAudio audio_player = main.AddComponent<ObjectAudio>();
         List<AudioSource> sources = new List<AudioSource>();
         for(int i = 0; i < 2; ++i){
             AudioSource source = main.AddComponent<AudioSource>();
             source.volume = 0;
             sources.Add(source);
         }
-        AudioManager.initialize(sources);
+        AudioManager.initialize(sources, audio_player);
     }
 
     // hook into unity engines runtime.

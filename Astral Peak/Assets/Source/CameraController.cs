@@ -16,8 +16,7 @@ public class CameraController : MonoBehaviour{
     Coroutine
         follow_state,
         zoom_state,
-        swivel_state,
-        test;
+        swivel_state;
 
     void Awake(){
         instance = this;
@@ -28,15 +27,16 @@ public class CameraController : MonoBehaviour{
     }
 
     // external functions
-    public void zoom_in_state(float size, float speed)      => state_swtich(zoom_state, zoom_in(size, speed));
-    public void zoom_out_state(float size, float speed)     => state_swtich(zoom_state, zoom_out(size, speed));
-    public void reset_zoom_state(float speed)               => state_swtich(zoom_state, reset_zoom(speed));
-    public void move_up_state(float y_pos, float speed)     => state_swtich(swivel_state, move_up(y_pos, speed));
-    public void move_down_state(float y_pos, float speed)   => state_swtich(swivel_state, move_down(y_pos, speed));
-    public void reset_offset_state(float speed)             => state_swtich(swivel_state, reset_offset(speed));
+    public void zoom_in_state(float size, float speed)      => state_swtich(ref zoom_state, zoom_in(size, speed));
+    public void zoom_out_state(float size, float speed)     => state_swtich(ref zoom_state, zoom_out(size, speed));
+    public void reset_zoom_state(float speed)               => state_swtich(ref zoom_state, reset_zoom(speed));
+    public void move_up_state(float y_pos, float speed)     => state_swtich(ref swivel_state, move_up(y_pos, speed));
+    public void move_down_state(float y_pos, float speed)   => state_swtich(ref swivel_state, move_down(y_pos, speed));
+    public void reset_offset_state(float speed)             => state_swtich(ref swivel_state, reset_offset(speed));
+    public void shake_camera(float time, float amount)      => state_swtich(ref follow_state, camera_shake(time, amount));
 
     // state switchers:
-    void state_swtich(Coroutine state, IEnumerator n_state){
+    void state_swtich(ref Coroutine state, IEnumerator n_state){
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(n_state);
@@ -51,6 +51,21 @@ public class CameraController : MonoBehaviour{
             transform.position = smoothed_pos;            
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    IEnumerator camera_shake(float time, float amount){
+        float timer = 0;
+        while(timer < time){
+            float shake = (Random.Range(0,20) - 10) * amount;
+            Vector3 desired_pos = new Vector3(target.position.x + offset.x + shake, offset.y + shake, target.position.z + offset.z);
+            // may want to swap this to Vector3.SmoothDamp();
+            Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
+            transform.position = smoothed_pos;               
+            timer += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        state_swtich(ref follow_state, follow());
+        yield break;
     }
 
     IEnumerator move_up(float y_pos, float speed){
@@ -74,9 +89,9 @@ public class CameraController : MonoBehaviour{
         float difference = offset.y - original_offset.y;
         
         if(difference >= 0)
-            state_swtich(swivel_state,move_down(original_offset.y, speed));
+            state_swtich(ref swivel_state,move_down(original_offset.y, speed));
         else
-            state_swtich(swivel_state,move_up(original_offset.y, speed));
+            state_swtich(ref swivel_state,move_up(original_offset.y, speed));
         offset.y = original_offset.y;
         yield break;
     }
@@ -103,9 +118,9 @@ public class CameraController : MonoBehaviour{
         float difference = cam.orthographicSize - original_size;
         
         if(difference >= 0)
-            state_swtich(zoom_state,zoom_in(original_size, speed));
+            state_swtich(ref zoom_state,zoom_in(original_size, speed));
         else
-            state_swtich(zoom_state,zoom_out(original_size, speed));
+            state_swtich(ref zoom_state,zoom_out(original_size, speed));
         
         yield break;
     }

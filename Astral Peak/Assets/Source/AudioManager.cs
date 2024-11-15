@@ -16,13 +16,13 @@ public static class AudioManager{
     static AudioSource
         music, ambience;
 
-    public static void initialize(List<AudioSource> sources){
+    public static void initialize(List<AudioSource> sources, ObjectAudio _audio_player){
         mixer           = Resources.Load<AudioMixer>("Audio/Mixer");
         music_mixer     = mixer.FindMatchingGroups("Music")[0];
         sfx_mixer       = mixer.FindMatchingGroups("Sfx")[0];
         music           = sources[0];
         ambience        = sources[1];
-        audio_player    = StaticComponents.main.AddComponent<ObjectAudio>();
+        audio_player    = _audio_player;
     }
     
     public static void play_music(Sound sound)    => AudioClipHandler.crossfade(audio_player, ref music, sound, 1f);
