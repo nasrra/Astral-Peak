@@ -13,6 +13,8 @@ using UnityEngine.Video;
 public class Health : MonoBehaviour{
     public event Action
         healed, death, damaged, now_invulnerable, now_vulnerable;
+    public event Action<KnockbackData> 
+        knockback;
     [SerializeField] private int
         max_life, current_life;
     [SerializeField] public bool invulnerable;
@@ -48,16 +50,17 @@ public class Health : MonoBehaviour{
     }
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
-    public bool damage(int amt){
+    public void damage(DamageData damage_data, KnockbackData knockback_data){
         if(invulnerable == true)
-            return false;
+            return;
+        
+        // deal damage.
+        current_life -= damage_data.damage;
+        Action action = current_life <= 0? death : damaged;
+        action?.Invoke();
 
-        current_life -= amt;
-        if(current_life <= 0){
-            current_life = 0;
-            death?.Invoke();
-        }
-        damaged?.Invoke();
-        return true;
+        // invoke knockback if needed.
+        if(knockback_data != null)
+            knockback?.Invoke(knockback_data);
     }
 }

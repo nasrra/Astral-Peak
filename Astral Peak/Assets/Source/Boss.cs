@@ -10,9 +10,6 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected ParticlesHandler particles;
     [SerializeField] protected Transform target;
-    [SerializeField] int 
-        current_pahse,
-        max_phase;
     protected Coroutine state;
 
     protected float dist_to_target() => (transform.position - target.position).x;
@@ -73,27 +70,5 @@ public abstract class Boss : CreatureInheritor<CharacterMovement>{
     protected IEnumerator attack(BossAttack attack){
         animator.Play(attack.animation_id);
         yield break;
-    }
-
-    protected override void link_events(){
-        base.link_events();
-        flipped_left                += particles.flip_left;
-        flipped_right               += particles.flip_right;
-    }
-
-    protected override void link_health(){
-        base.link_health();
-        health.damaged += sprite.play_damaged_flash;
-    }
-
-    protected override void unlink_health(){
-        base.unlink_health();
-        health.damaged -= sprite.play_damaged_flash;
-    }
-
-    protected override void unlink_events(){
-        base.unlink_events();
-        flipped_left                -= particles.flip_left;
-        flipped_right               -= particles.flip_right;
     }
 }

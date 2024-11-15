@@ -24,13 +24,6 @@ public abstract class Creature : MonoBehaviour{
     [SerializeField] protected bool stunnable;
     protected bool flippable = true;
 
-    void Awake(){
-        link_events();
-    }
-    void OnDisable(){
-        unlink_events();
-    } 
-
     public Health get_health() => health;
     // the inheritor class returns which movement it is using.
     public abstract Movement get_movement();
@@ -68,10 +61,9 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public bool damage(int amt) => health.damage(amt);
-
     public virtual void enter_cutscene_state(){}
     public virtual void exit_cutscene_state(){}
+
 
     public void disable_all_components(){
         var components = GetComponents<Behaviour>();
@@ -82,19 +74,4 @@ public abstract class Creature : MonoBehaviour{
 
     protected virtual void kill() => death?.Invoke();
     public void is_stunnable(int x) => stunnable = x != 0;
-
-#region Linkage
-    protected virtual void link_events(){
-        link_health();
-        get_movement().move_direction_changed += face_move_dir;
-    }
-
-    protected virtual void unlink_events(){
-        unlink_health();
-        get_movement().move_direction_changed -= face_move_dir;
-    }
-
-    protected virtual void link_health() => health.death += kill;
-    protected virtual void unlink_health() => health.death -= kill;
-#endregion
 }

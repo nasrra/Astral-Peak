@@ -5686,12 +5686,14 @@ MonoBehaviour:
   animator: {fileID: 6345792998177996148}
   interactor: {fileID: 4278735649314562499}
   melee:
-    transform: {fileID: 1730094031898389184}
     hurt_box: {fileID: 3785447265557635548}
     feedback: {fileID: 4365788086590555684}
-    damage: 1
-    knockback_force: 0
-    knockback_duration: 0
+    damage_data:
+      damage: 0
+      knockback_data:
+        force: 0
+        duration: 0
+        transform: {fileID: 0}
     self_knockback_force: 5
     self_knockback_duration: 0.25
   particles: {fileID: 1683145615901213879}
@@ -5711,12 +5713,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   melee_attack:
-    transform: {fileID: 1730094031898389184}
     hurt_box: {fileID: 3785447265557635548}
     feedback: {fileID: 4365788086590555684}
-    damage: 1
-    knockback_force: 0
-    knockback_duration: 0
+    damage_data:
+      damage: 1
+      knockback_data:
+        force: 0
+        duration: 0
+        transform: {fileID: 1730094031898389184}
     self_knockback_force: 0
     self_knockback_duration: 0
 --- !u!114 &1683145615901213879
@@ -5791,7 +5795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_life: 4
-  current_life: 1
+  current_life: 4
   invulnerable: 0
 --- !u!114 &4278735649314562499
 MonoBehaviour:

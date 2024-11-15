@@ -15127,39 +15127,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   front_strike:
-    transform: {fileID: 2694134218538119565}
     hurt_box: {fileID: 8750099058140979642}
     feedback: {fileID: 5803525296516700637}
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 2694134218538119565}
     self_knockback_force: 0
     self_knockback_duration: 0
   back_strike_backward:
-    transform: {fileID: 2694134218538119565}
     hurt_box: {fileID: 801522168139239909}
     feedback: {fileID: 5632250104929940047}
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 2694134218538119565}
     self_knockback_force: 0
     self_knockback_duration: 0
   back_strike_forward:
-    transform: {fileID: 2694134218538119565}
     hurt_box: {fileID: 3629182238405792111}
     feedback: {fileID: 1634893595159288097}
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 2694134218538119565}
     self_knockback_force: 0
     self_knockback_duration: 0
   bite:
-    transform: {fileID: 2694134218538119565}
     hurt_box: {fileID: 7723417078298070469}
     feedback: {fileID: 6883269117073972024}
-    damage: 1
-    knockback_force: 20
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 2694134218538119565}
     self_knockback_force: 0
     self_knockback_duration: 0
 --- !u!114 &7895730259894186419

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,4 +40,6 @@ public class SpriteHandler : MonoBehaviour{
         foreach(SpriteRenderer s in sprites)
             s.material.SetColor("_colour", damaged_colour);
     }
+
+    //void OnDestroy() => StopAllCoroutines();
 }

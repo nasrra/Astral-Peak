@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour{
-    [SerializeField] private int damage = 1;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Transform front_point;
     [SerializeField] protected float
@@ -31,11 +28,9 @@ public class Projectile : MonoBehaviour{
     protected virtual void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
             Creature creature = other.GetComponent<Creature>();
-            if(creature != null&& creature.damage(damage) == true){
-                other.GetComponent<Movement>().knockback(other.transform.position - transform.position, 20, 0.25f);
-                Destroy(gameObject);
-                enable_trail(false);
-            } 
+            creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
+            Destroy(gameObject);
+            enable_trail(false);
         }
         else if(other.gameObject.layer == LayersManager.GROUND){
             Destroy(gameObject);

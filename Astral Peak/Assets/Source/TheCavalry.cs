@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class TheCavalry : Boss{
@@ -12,13 +13,16 @@ public class TheCavalry : Boss{
         follow_speed,
         follow_fsword_speed;
 
-    void Awake(){
+    void OnEnable(){
         instance = this;
         state_switch(idle(1));
         link_events();
     } 
 
-    void OnDisable() => unlink_events();
+    void OnDisable() {
+        unlink_events();
+        StopAllCoroutines();
+    }
 
     // animator events.
     public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
@@ -44,7 +48,7 @@ public class TheCavalry : Boss{
     public override void enter_cutscene_state() => state_switch(lock_idle());
     public override void exit_cutscene_state() => state_switch(idle(1));
 
-    IEnumerator idle(float x){
+    IEnumerator idle(float x){ 
         animator.Play(CavalryAnimator.IDLE);
         yield return new WaitForSeconds(x);
         state_switch(follow());
@@ -115,15 +119,25 @@ public class TheCavalry : Boss{
     }
     void unlink_fetch_sword() => fetch_sword.landed -= fetch_sword_landed;
 
-    protected override void link_events(){
-        base.link_events();
-        combat.attack_ended         += switch_to_idle;
-        ranged.fetch_sword_fired    += link_fetch_sword;
+    protected void link_events(){
+        health.death                            += kill;
+        health.death                            += get_movement().StopAllCoroutines;
+        combat.attack_ended                     += switch_to_idle;
+        ranged.fetch_sword_fired                += link_fetch_sword;
+        get_movement().move_direction_changed   += face_move_dir;
+        flipped_left                            += particles.flip_left;
+        flipped_right                           += particles.flip_right;
+        health.damaged                          += sprite.play_damaged_flash;
     }
 
-    protected override void unlink_events(){
-        base.link_events();
-        combat.attack_ended         -= switch_to_idle;
-        ranged.fetch_sword_fired    -= link_fetch_sword;
+    protected void unlink_events(){
+        health.death                            -= kill;
+        health.death                            -= get_movement().StopAllCoroutines;
+        combat.attack_ended                     -= switch_to_idle;
+        ranged.fetch_sword_fired                -= link_fetch_sword;
+        get_movement().move_direction_changed   -= face_move_dir;
+        flipped_left                            -= particles.flip_left;
+        flipped_right                           -= particles.flip_right;
+        health.damaged                          -= sprite.play_damaged_flash;
     }
 }

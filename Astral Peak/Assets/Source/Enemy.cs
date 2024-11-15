@@ -106,24 +106,18 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
             combat_state();
     }
 
-    private void attack_failed(Collider2D other){
-        movement.knockback(
-            transform.position - other.transform.position, 
-            melee.get_self_knockback_force(), 
-            melee.get_self_knockback_duration()
-        );
-    }
+    protected void attack_failed(Collider2D other) => movement.knockback(new KnockbackData(melee.get_self_knockback_force(), melee.get_self_knockback_duration(), other.transform));
 
     #region linkage
-    protected override void link_events(){
-        base.link_events();
+    protected void link_events(){
+        //base.link_events();
         link_combat();
         link_health();
         link_melee();
     }
 
-    protected override void unlink_events(){
-        base.unlink_events();
+    protected void unlink_events(){
+        //base.unlink_events();
         unlink_combat();
         unlink_health(); 
         unlink_melee();
@@ -140,12 +134,12 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         combat.perform_action -= animator.play; 
     }
 
-    protected override void link_health(){
-        base.link_health();
+    protected void link_health(){
+        //base.link_health();
         health.damaged += stun_state;
     }
-    protected override void unlink_health(){
-        base.unlink_health();
+    protected void unlink_health(){
+        //base.unlink_health();
         health.damaged -= stun_state;
     }
 

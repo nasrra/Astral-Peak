@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TreeEditor;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -17,7 +18,7 @@ public class Movement : MonoBehaviour{
     private float original_gravity, original_deceleration;
     protected Coroutine state;
 
-    void Awake(){
+    void OnEnable(){
         state_switch_default();
         original_gravity = rb.gravityScale;
         original_deceleration = deceleration;
@@ -87,7 +88,7 @@ public class Movement : MonoBehaviour{
         // regulate
         float newSpeed = Mathf.Clamp(rb.velocity.x + increment, -top_speed, top_speed);
         // apply
-        rb.velocity = new Vector2(newSpeed, rb.velocity.y);        
+        rb.velocity = new Vector2(newSpeed, rb.velocity.y);     
     }
 
     // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
@@ -100,9 +101,9 @@ public class Movement : MonoBehaviour{
         rb.velocity *= deceleration;
     }
 
-    public void knockback(Vector3 direction, float force, float time){
+    public void knockback(KnockbackData data){
         if(can_knockback == true)
-            switch_state(apply_force_loop(knockedback, knockback_ended, (direction + new Vector3(0,2.5f,0)).normalized, force, time));
+            switch_state(apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.5f,0)).normalized, data.force, data.duration));
     }
     protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
         rb.gravityScale = 0;

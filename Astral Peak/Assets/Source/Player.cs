@@ -126,20 +126,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             transform.position = DoorManager.get_position(exit_point);
     }
 
-    private void handle_enemy_contact(Collision2D other){
-        // knockback the player.    
-        movement.knockback(transform.position - other.transform.position, 10, 0.3f);
-        // damage the player.
-        damage(1);
-    }
-
-    private void attack_failed(Collider2D other){
-        movement.knockback(
-            transform.position - other.transform.position, 
-            melee.get_self_knockback_force(), 
-            melee.get_self_knockback_duration()
-        );
-    }
+    private void handle_enemy_contact(Collision2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
 
     private void movement_animation(){
         Vector2 direction = get_movement().get_move_direction();
@@ -159,18 +146,20 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_input();
     }
 
-    protected override void link_events(){
-        base.link_events();
+    protected void attack_failed(Collider2D other) => movement.knockback(new KnockbackData(melee.get_self_knockback_force(), melee.get_self_knockback_duration(), other.transform));
+
+    protected void link_events(){
         link_input();
         link_melee();
         link_movement();
+        link_health();
     }
 
-    protected override void unlink_events(){
-        base.unlink_events();
+    protected void unlink_events(){
         unlink_input();
         unlink_melee();
         unlink_movement();
+        link_health();
     }
 
     public void link_input(){
@@ -201,6 +190,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
+        movement.move_direction_changed += face_move_dir; 
         movement.move_direction_changed += movement_animation;
         movement.now_grounded           += grounded;
         movement.not_grounded           += animator.start_fall;
@@ -210,6 +200,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
+        movement.move_direction_changed -= face_move_dir;
         movement.move_direction_changed -= movement_animation;
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= animator.start_fall;
@@ -219,27 +210,31 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void link_melee(){
-        melee.hit_enemy_guard += attack_failed;
-        flipped_left += particles.flip_left;
-        flipped_right += particles.flip_right;
+        melee.hit_enemy_guard   += attack_failed;
+        flipped_left            += particles.flip_left;
+        flipped_right           += particles.flip_right;
     }
     private void unlink_melee(){
-        melee.hit_enemy_guard -= attack_failed;
-        flipped_left -= particles.flip_left;
-        flipped_right -= particles.flip_right;
+        melee.hit_enemy_guard   -= attack_failed;
+        flipped_left            -= particles.flip_left;
+        flipped_right           -= particles.flip_right;
     }
 
-    protected override void link_health(){
-        base.link_health();
+    protected void link_health(){
         health.now_invulnerable += invulnerable;
         health.now_vulnerable   += vulnerable;
         health.damaged          += damaged;
+        health.knockback        += get_movement().knockback;
+        health.death            += kill;
+        health.death            += get_movement().StopAllCoroutines;    
     }
 
-    protected override void unlink_health(){
-        base.unlink_health();
+    protected void unlink_health(){
         health.now_invulnerable -= invulnerable;
         health.now_vulnerable   -= vulnerable;
         health.damaged          -= damaged;
+        health.knockback        -= get_movement().knockback;
+        health.death            -= kill;
+        health.death            -= get_movement().StopAllCoroutines;    
     }
 }

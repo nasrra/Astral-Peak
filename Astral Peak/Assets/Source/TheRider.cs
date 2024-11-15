@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TheRider : Boss{
@@ -32,14 +33,24 @@ public class TheRider : Boss{
         yield break;
     }
 
-    protected override void link_events(){
-        base.link_events();
-        combat.attack_ended         += switch_to_idle;
+    protected void link_events(){
+        movement.move_direction_changed         += face_move_dir;
+        health.death                            += kill;
+        health.death                            += get_movement().StopAllCoroutines;
+        combat.attack_ended                     += switch_to_idle;
+        health.damaged                          += sprite.play_damaged_flash;
+        flipped_left                            += particles.flip_left;
+        flipped_right                           += particles.flip_right;
     }
 
-    protected override void unlink_events(){
-        base.unlink_events();
-        combat.attack_ended         -= switch_to_idle;
+    protected void unlink_events(){
+        movement.move_direction_changed         -= face_move_dir;
+        health.death                            -= kill;
+        health.death                            -= get_movement().StopAllCoroutines;
+        combat.attack_ended                     -= switch_to_idle;
+        health.damaged                          -= sprite.play_damaged_flash;
+        flipped_left                            -= particles.flip_left;
+        flipped_right                           -= particles.flip_right;
     }
 
 }

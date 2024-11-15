@@ -14,15 +14,13 @@ public class MeleeHolster{
     public Action<Collider2D>
         hit_enemy_guard;
 
-    [SerializeField] protected Transform transform;    
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
 
-    [SerializeField] private int 
-        damage;
+    [SerializeField] DamageData damage_data = new DamageData(0);
+    [SerializeField] KnockbackData knockback_data = new KnockbackData(0,0,null);
 
     [SerializeField]private float 
-        knockback_force, knockback_duration,
         self_knockback_force, self_knockback_duration;
 
     public void set_animation(AnimationDelegate animation) => this.animation = animation;
@@ -38,7 +36,6 @@ public class MeleeHolster{
             hit_creatures.Clear(); // clear hit creatures for next enable.
         }
     }
-    public void set_damage(int amt) => damage = amt;
     public float get_self_knockback_force() => self_knockback_force;
     public float get_self_knockback_duration() => self_knockback_duration;
 
@@ -51,16 +48,7 @@ public class MeleeHolster{
 
         if(hit_creatures.ContainsKey(name) == true)
             return;
-
-        // if we damage the creature.
-        if(creature.damage(damage) == true)
-            // knock it back.
-            creature.get_movement().knockback(other.transform.position - transform.position, knockback_force, knockback_duration);
-        // if not.
-        else
-            // knock us back.
-            hit_enemy_guard?.Invoke(other);
-        
+        creature.get_health().damage(damage_data, knockback_data);
         // add the creature to hit creatures;
         hit_creatures.Add(name, true);
     }

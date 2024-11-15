@@ -1,18 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossRoomHandler : MonoBehaviour{
     public static BossRoomHandler instance;
     public Door player_respawn_point;
     public Transform boss_start_point;
-    public bool play_cinematic = true;
-    public string opening_cinematic;
-    public string boss_song;
-    void Awake()=>instance = this;
+    public string song, cinematic;
+    public int phase = 0;
+    void Awake() => instance = this;
+    
     // play the opening cutscene to a boss room.
     void Start(){
-        if(play_cinematic == true)
-            CutsceneManager.instance.Play(opening_cinematic);
-        AudioManager.play_music(SoundLibrary.music[boss_song]());
         AudioManager.play_ambience(SoundLibrary.sfx["wind"]());
+        phase_transition();
+    }
+
+    protected virtual void prepare_phase_transition(){
+        phase++;
+    }
+
+    public void phase_transition(){
+        prepare_phase_transition();
+        AudioManager.play_music(SoundLibrary.music[song]());
+        //CutsceneManager.instance.Play(cinematics[phase]);
     }
 }

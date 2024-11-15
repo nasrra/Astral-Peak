@@ -10134,8 +10134,6 @@ MonoBehaviour:
   combat: {fileID: 746696598816751763}
   particles: {fileID: 796542481378532419}
   target: {fileID: 0}
-  current_pahse: 0
-  max_phase: 0
   ranged: {fileID: 0}
 --- !u!114 &7910326139473868748
 MonoBehaviour:
@@ -10211,7 +10209,6 @@ MonoBehaviour:
   max_life: 100
   current_life: 100
   invulnerable: 0
-  bar: {fileID: 0}
 --- !u!114 &746696598816751763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10265,30 +10262,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   front_strike:
-    transform: {fileID: 7980198678613854969}
     hurt_box: {fileID: 3597618722336765097}
     feedback: {fileID: 605903495910392441}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 7980198678613854969}
     self_knockback_force: 0
     self_knockback_duration: 0
   signature_strike:
-    transform: {fileID: 7980198678613854969}
     hurt_box: {fileID: 4761312800297726961}
     feedback: {fileID: 5148110119759013387}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 7980198678613854969}
     self_knockback_force: 0
     self_knockback_duration: 0
   jump_n_dash_strike:
-    transform: {fileID: 7980198678613854969}
     hurt_box: {fileID: 6084257734129502223}
     feedback: {fileID: 565888806597675898}
-    damage: 1
-    knockback_force: 25
-    knockback_duration: 0.25
+    damage_data:
+      damage: 1
+    knockback_data:
+      force: 25
+      duration: 0.25
+      transform: {fileID: 7980198678613854969}
     self_knockback_force: 0
     self_knockback_duration: 0
 --- !u!114 &6996315490541205186
