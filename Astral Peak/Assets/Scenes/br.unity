@@ -1270,11 +1270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8221373605123083948, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: max_life
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8221373605123083948, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: current_life
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8274572337880482519, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_Layer
@@ -1996,6 +1996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player_respawn_point: {fileID: 1839469610}
   boss_start_point: {fileID: 713143996}
+  play_cinematic: 0
   song: 
   cinematic: 
   phase: 0

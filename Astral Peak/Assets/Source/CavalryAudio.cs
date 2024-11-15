@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CavalryAudio : ObjectAudio{
+public class CavalryAudio : MonoBehaviour{
     Sound 
         arrow_knocked,
         bow_shot,

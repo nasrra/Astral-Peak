@@ -51,6 +51,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // used to avoid bug where unlinking and relinking movement:
     // holding down left or right will break move direction and cause player to only go in that one direction.
+
+    // known bug: when holding down both keys then letting go one at a time after the blocker is true, will still cause the problem.
     private void start_movement(Action movement){
         movement();
         input_blocker = false;

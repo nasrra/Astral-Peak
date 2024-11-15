@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 
 public static class StaticComponents{
     public static GameObject main;
+    static UnityHook hook_in;
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     // initializing the managers of the game.
@@ -16,9 +17,10 @@ public static class StaticComponents{
         main = GameObject.Instantiate(new GameObject());
         main.name = "Managers";
         main.AddComponent<DontDestroyOnLoad>();
+        hook();
         input();
         audio();
-        hook();
+        cutscene();
     }
 
     // input initialization.
@@ -33,19 +35,21 @@ public static class StaticComponents{
 
     // initialize audio sources.
     static void audio(){
-        ObjectAudio audio_player = main.AddComponent<ObjectAudio>();
         List<AudioSource> sources = new List<AudioSource>();
         for(int i = 0; i < 2; ++i){
             AudioSource source = main.AddComponent<AudioSource>();
             source.volume = 0;
             sources.Add(source);
         }
-        AudioManager.initialize(sources, audio_player);
+        AudioManager.initialize(sources, hook_in);
     }
+
+    // cutscene manager.
+    static void cutscene() => CutsceneManager.initialize(hook_in);
 
     // hook into unity engines runtime.
     static void hook(){
-        UnityHook hook = main.AddComponent<UnityHook>();
-        hook.start += AudioManager.load_volume_settings; // this only works when on start is called.
+        hook_in = main.AddComponent<UnityHook>();
+        hook_in.start += AudioManager.load_volume_settings; // this only works when on start is called.
     }
 }

@@ -5,7 +5,7 @@ public class CutsceneTest : Cutscene{
     public override void begin(){
         Player.player.enter_cutscene_state();
         TheCavalry.instance.enter_cutscene_state();
-        CutsceneManager.instance.switch_state(test());
+        CutsceneManager.set_coroutine(test());
     }
 
     public override void end(){

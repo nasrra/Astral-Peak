@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAudio : ObjectAudio{
+public class PlayerAudio : MonoBehaviour{
     Sound 
         dash,
         attack;

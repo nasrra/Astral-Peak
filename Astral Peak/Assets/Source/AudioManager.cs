@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public static class AudioManager{
-    static ObjectAudio audio_player;
+    static MonoBehaviour audio_player;
 
     public const string
         MIXER_MUSIC = "MusicVolume",
@@ -16,7 +16,7 @@ public static class AudioManager{
     static AudioSource
         music, ambience;
 
-    public static void initialize(List<AudioSource> sources, ObjectAudio _audio_player){
+    public static void initialize(List<AudioSource> sources, MonoBehaviour _audio_player){
         mixer           = Resources.Load<AudioMixer>("Audio/Mixer");
         music_mixer     = mixer.FindMatchingGroups("Music")[0];
         sfx_mixer       = mixer.FindMatchingGroups("Sfx")[0];

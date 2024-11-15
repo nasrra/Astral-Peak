@@ -4,11 +4,14 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class CameraEffects : MonoBehaviour{
+    public static CameraEffects instance;
     static CameraEffectState
-        none    = new CameraEffectState(0,0,0),
-        normal  = new CameraEffectState(0.15f,0,0.35f),
-        hurt    = new CameraEffectState(0.45f,-50,0.7f);
+        none    = new CameraEffectState(0,0,0, Color.white),
+        normal  = new CameraEffectState(0.15f,0,0.35f, Color.white),
+        hurt    = new CameraEffectState(0.45f,-50,0.7f, Color.white);
     [SerializeField] Volume volume;
+
+    void Awake() => instance = this;
 
     public void Start(){
         state_switch(normal,1);
@@ -26,10 +29,29 @@ public class CameraEffects : MonoBehaviour{
     
     public void hurt_state() => state_switch(hurt, 3);
 
+    public void fade_to_colour(Color color){
+        volume.sharedProfile.TryGet(out ColorAdjustments colour);
+        StartCoroutine(lerp_colours(colour.colorFilter, color, 1f));
+    }
+
+    IEnumerator lerp_colours(ColorParameter start, Color end, float time){
+        float elapsedTime = 0f;
+        while (elapsedTime < time){
+            elapsedTime += Time.deltaTime;
+            Color currentColor = Color.Lerp(start.value, end, elapsedTime/time/100); // have to divide by 100 for some reason, dunno why lol.
+            start.value = currentColor;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        start.value = end;
+        yield break;
+    }
+
     void state_switch(CameraEffectState state, float speed){
         handle_vignette(state.vignette_intensity, speed);
         handle_colour_adjustment(state.saturation_intensity, speed);
         handle_film_grain(state.film_grain_intensity, speed);
+        fade_to_colour(state.color);
     }
 
     void handle_vignette(float intensity, float speed){
@@ -86,15 +108,20 @@ public struct CameraEffectState{
     public CameraEffectState(
         float _vignette_intensity,
         float _saturation_intensity,
-        float _film_grain_intensity
+        float _film_grain_intensity,
+        Color _color
     ){
         vignette_intensity      = _vignette_intensity;
         saturation_intensity    = _saturation_intensity;
         film_grain_intensity    = _film_grain_intensity;
+        color = _color;
     }
     
     public readonly float 
         vignette_intensity,
         saturation_intensity,
         film_grain_intensity;
+    
+    public readonly Color
+        color;
 }

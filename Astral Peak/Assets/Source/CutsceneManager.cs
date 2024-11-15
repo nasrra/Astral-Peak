@@ -4,32 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class CutsceneManager : MonoBehaviour{
-    public static CutsceneManager instance;
-    Coroutine state;
-    
-    public void Awake() => instance = this;
-    
-    public void Play(string cutscene_id){
+public static class CutsceneManager{
+    static MonoBehaviour coroutines;
+    public static void initialize(MonoBehaviour _coroutines) => coroutines = _coroutines;
+    public static void play(string cutscene_id){
         Cutscene cutscene = CutsceneLibrary.create_cutscene[cutscene_id]();
         cutscene.begin();
     }
-
-    public void switch_state(IEnumerator n_state){
-        if(state != null)
-            StopCoroutine(state);
-        state = StartCoroutine(n_state);
-    }
+    public static void set_coroutine(IEnumerator c) => coroutines.StartCoroutine(c);
 }
 
 public abstract class Cutscene{
     public abstract void begin();
     public abstract void end();
+    protected void fade_to_black() => CameraEffects.instance.fade_to_colour(Color.black);
+    protected void fade_from_black() => CameraEffects.instance.fade_to_colour(Color.white);
 }
 
 public static class CutsceneLibrary{
     public delegate Cutscene CutsceneCreation();
     public readonly static Dictionary<string, CutsceneCreation> create_cutscene = new Dictionary<string, CutsceneCreation>(){
-        {"test",()=>new CutsceneTest()},
+        {"test",                ()=>new CutsceneTest()},
+        {"cavalry_transition_1",()=>new CavalryPhaseTransition()},
     };
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TheRider : Boss{
@@ -19,11 +18,19 @@ public class TheRider : Boss{
 
     void OnDisable() => unlink_events();
 
+    public override void enter_cutscene_state() => state_switch(lock_idle());
+    public override void exit_cutscene_state() => state_switch(idle(1));
+
     public void switch_to_idle(float x) => state_switch(idle(x));
     IEnumerator idle(float x){
         animator.Play(RiderAnimator.IDLE);
         yield return new WaitForSeconds(x);
         state_switch(follow());
+        yield break;
+    }
+
+    IEnumerator lock_idle(){
+        animator.Play(RiderAnimator.IDLE);
         yield break;
     }
 

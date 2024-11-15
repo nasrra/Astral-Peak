@@ -28,14 +28,17 @@ public class Projectile : MonoBehaviour{
     protected virtual void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
             Creature creature = other.GetComponent<Creature>();
+            creature.get_health().damaged += destroy_projectile;
             creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
-            Destroy(gameObject);
-            enable_trail(false);
+            creature.get_health().damaged -= destroy_projectile;
         }
-        else if(other.gameObject.layer == LayersManager.GROUND){
-            Destroy(gameObject);
-            enable_trail(false);
-        }
+        else if(other.gameObject.layer == LayersManager.GROUND)
+            destroy_projectile();
+    }
+
+    public void destroy_projectile(){
+        enable_trail(false);
+        Destroy(gameObject);        
     }
 
     protected virtual IEnumerator none(){yield break;}

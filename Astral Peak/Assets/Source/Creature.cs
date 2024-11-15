@@ -64,14 +64,6 @@ public abstract class Creature : MonoBehaviour{
     public virtual void enter_cutscene_state(){}
     public virtual void exit_cutscene_state(){}
 
-
-    public void disable_all_components(){
-        var components = GetComponents<Behaviour>();
-        foreach(var c in components)
-            if(c != this)
-                c.enabled = false;
-    }
-
     protected virtual void kill() => death?.Invoke();
     public void is_stunnable(int x) => stunnable = x != 0;
 }
