@@ -14,26 +14,21 @@ public static class AudioManager{
     public static AudioMixerGroup sfx_mixer; 
 
     static AudioSource
-        music_1, music_2,
-        ambience_1, ambience_2;
+        music, ambience;
 
     public static void initialize(List<AudioSource> sources){
         mixer           = Resources.Load<AudioMixer>("Audio/Mixer");
         music_mixer     = mixer.FindMatchingGroups("Music")[0];
         sfx_mixer       = mixer.FindMatchingGroups("Sfx")[0];
-        music_1         = sources[0];
-        music_2         = sources[1];
-        ambience_1      = sources[2];
-        ambience_2      = sources[3];
+        music           = sources[0];
+        ambience        = sources[1];
         audio_player    = StaticComponents.main.AddComponent<ObjectAudio>();
     }
     
-    public static void play_music(Sound sound)    => AudioClipHandler.dual_fade(audio_player, music_1, music_2, sound, 1f);
-    public static void play_ambience(Sound sound) => AudioClipHandler.dual_fade(audio_player, ambience_1, ambience_2, sound, 1f);
-    public static void stop_music(){
-        AudioClipHandler.fade_out(audio_player, music_1, 1f);
-        AudioClipHandler.fade_out(audio_player, music_2, 1f);
-    }
+    public static void play_music(Sound sound)    => AudioClipHandler.crossfade(audio_player, ref music, sound, 1f);
+    public static void play_ambience(Sound sound) => AudioClipHandler.crossfade(audio_player, ref ambience, sound, 1f);
+    public static void stop_music() => AudioClipHandler.fade_out(audio_player, music, 1f);
+
     public static void music_volume(float volume) => mixer.SetFloat(MIXER_MUSIC,value_to_logarithmic(volume));
     public static void sfx_volume(float volume) => mixer.SetFloat(MIXER_SFX,value_to_logarithmic(volume));
 

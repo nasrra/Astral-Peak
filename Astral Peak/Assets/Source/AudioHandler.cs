@@ -25,15 +25,11 @@ public static class AudioClipHandler{
         Object.Destroy(source,sound.clip.length); // unscaled time btw.
     }
 
-    public static void dual_fade(ObjectAudio audio, AudioSource source_1, AudioSource source_2, Sound sound, float fade_factor){
-        if(source_1.clip == null){
-            fade_out(audio, source_1, fade_factor);
-            fade_in(audio, sound, fade_factor, out source_2);
-        }
-        else if(source_2.clip == null){
-            fade_out(audio, source_2, fade_factor);
-            fade_in(audio, sound, fade_factor,out source_1);         
-        }
+    public static void crossfade(ObjectAudio audio, ref AudioSource source, Sound sound, float fade_factor){
+        AudioSource _source;
+        fade_out(audio, source, fade_factor);
+        fade_in(audio, sound, fade_factor, out _source);
+        source = _source;
     }
 
     public static void fade_in(ObjectAudio audio, Sound sound, float fade_factor, out AudioSource source){
@@ -65,7 +61,7 @@ public static class AudioClipHandler{
             yield return null;
         }
         source.clip = null;
-        //Destroy(source);
+        //Destroy(source); fix this.
         yield break;
     }
 }
