@@ -5,12 +5,15 @@ public class RiderParticlesHandler : ParticlesHandler{
         front_strike,
         signature_strike,
         jump_n_dash,
-        jump_n_dash_strike;
+        jump_n_dash_strike,
+        yell_particles;
     
     public void emit_signature_strike() => signature_strike.Emit(1);
     public void emit_front_strike() => front_strike.Emit(1);
     public void emit_jump_n_dash() => jump_n_dash.Emit(1);
     public void emit_jump_n_dash_strike() => jump_n_dash_strike.Emit(1);
+    public void play_yell() => yell_particles.Play();
+    public void stop_yell() => yell_particles.Stop(true, stopBehavior: ParticleSystemStopBehavior.StopEmitting);
 
     public override void flip_left(){
         flip_emitter_left(front_strike.GetComponent<ParticleSystemRenderer>());

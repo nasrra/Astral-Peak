@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossRoomHandler : MonoBehaviour{
-    public delegate void ResetObjects();
-    public ResetObjects reset_objects;
+    public delegate void ScenePreperation();
+    public ScenePreperation prepare_scene;
     public static BossRoomHandler instance;
     public Door player_respawn_point;
     public Transform boss_start_point;
@@ -16,6 +16,7 @@ public class BossRoomHandler : MonoBehaviour{
     void Start(){
         AudioManager.play_ambience(SoundLibrary.sfx["wind"]());
         phase_transition();
+        play_music();
     }
 
     public virtual void prepare_phase_transition() => phase++;

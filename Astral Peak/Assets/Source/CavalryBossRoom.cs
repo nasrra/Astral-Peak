@@ -19,13 +19,13 @@ public class CavalryBossRoom : BossRoomHandler{
         switch(phase){
             case 1:  
                 song = "boss1";
-                reset_objects = phase_1;
-                reset_objects.Invoke();
+                prepare_scene = phase_1;
+                prepare_scene.Invoke();
                 play_cinematic = false;
                 break;
             case 2: 
                 song = "boss1";
-                reset_objects = phase_2;
+                prepare_scene = phase_2;
                 cinematic = "cavalry_transition_1";
                 play_cinematic = true;
                 break;
@@ -33,13 +33,15 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     public void phase_1(){
-        cavalry.gameObject.SetActive(true);
-        rider.gameObject.SetActive(false);
+        cavalry.gameObject.SetActive(false);
+        rider.gameObject.SetActive(true);
     }
 
     public void phase_2(){
-        cavalry.gameObject.SetActive(false);
-        rider.gameObject.SetActive(true);        
+        cavalry.gameObject.SetActive(true);
+        rider.gameObject.SetActive(false);   
+        Player.exit_point = player_respawn_point.get_enter_point();
+        Player.player.set_enter_position();     
     }
 
     void link(){

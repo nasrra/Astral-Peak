@@ -10,9 +10,9 @@ public class TheRider : Boss{
     public void jump_n_dash_jump_back() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.25f);
     public void jump_n_dash_front_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 40, 0.30f);
 
-    void Awake(){
+    void OnEnable(){
         instance = this;
-        state_switch(idle(2));
+        state_switch(yell());
         link_events();
     }
 
@@ -26,6 +26,13 @@ public class TheRider : Boss{
         animator.Play(RiderAnimator.IDLE);
         yield return new WaitForSeconds(x);
         state_switch(follow());
+        yield break;
+    }
+
+    IEnumerator yell(){
+        animator.Play(RiderAnimator.YELL); 
+        yield return new WaitForSeconds(3);
+        state_switch(idle(1));
         yield break;
     }
 

@@ -5690,10 +5690,10 @@ MonoBehaviour:
     feedback: {fileID: 4365788086590555684}
     damage_data:
       damage: 0
-      knockback_data:
-        force: 0
-        duration: 0
-        transform: {fileID: 0}
+    knockback_data:
+      force: 0
+      duration: 0
+      transform: {fileID: 0}
     self_knockback_force: 5
     self_knockback_duration: 0.25
   particles: {fileID: 1683145615901213879}
@@ -5717,10 +5717,10 @@ MonoBehaviour:
     feedback: {fileID: 4365788086590555684}
     damage_data:
       damage: 1
-      knockback_data:
-        force: 0
-        duration: 0
-        transform: {fileID: 1730094031898389184}
+    knockback_data:
+      force: 0
+      duration: 0
+      transform: {fileID: 0}
     self_knockback_force: 0
     self_knockback_duration: 0
 --- !u!114 &1683145615901213879
@@ -8348,7 +8348,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -10
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

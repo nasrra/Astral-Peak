@@ -21,14 +21,6 @@ public class RiderCombat : BossCombat{
             idle_cooldown: 0,
             combat_cooldown: 1
         ),
-        run_n_gun = new BossAttack(
-            RiderAnimator.RUN_N_GUN,
-            chance: 50,
-            distance: 12,
-            attack_cooldown: 4,
-            idle_cooldown: 0,
-            combat_cooldown: 1
-        ),
         jump_n_dash = new BossAttack(
             RiderAnimator.JUMP_N_DASH,
             chance: 50,
@@ -44,6 +36,14 @@ public class RiderCombat : BossCombat{
             attack_cooldown: 4,
             idle_cooldown: 0,
             combat_cooldown: 1            
+        ),
+        round_shot = new BossAttack(
+            RiderAnimator.ROUND_SHOT,
+            chance: 50,
+            distance: 12,
+            attack_cooldown: 8,
+            idle_cooldown: 0,
+            combat_cooldown: 1
         );
 
     void Start(){
@@ -57,11 +57,11 @@ public class RiderCombat : BossCombat{
         });
 
         set_back_moveset(new List<BossAttack>(){
-            back_shot,
+            round_shot,
         });
     
         set_special_moveset(new List<BossAttack>(){
-            jump_n_dash,
+            jump_n_dash,        
         });
     }
 }

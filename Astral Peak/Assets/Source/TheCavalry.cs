@@ -42,7 +42,7 @@ public class TheCavalry : Boss{
     }
     public void sword_summon_camera_zoom() => CameraController.instance.zoom_out_state(14, 2f);
     public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
-    public void ground_slam_camera_shake() => CameraController.instance.shake_camera(0.15f, 0.5f);
+    public void ground_slam_camera_shake() => CameraController.instance.shake_camera(0.15f, 0.65f);
 
     // states: 
     public override void enter_cutscene_state() => state_switch(lock_idle());

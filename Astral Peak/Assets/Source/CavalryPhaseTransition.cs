@@ -9,8 +9,8 @@ public class CavalryPhaseTransition : Cutscene{
         Player.player.enter_cutscene_state();
         fade_to_black();
         yield return new WaitForSeconds(1f); 
-        CavalryBossRoom.instance.reset_objects.Invoke();
-        TheRider.instance.enter_cutscene_state();
+        CavalryBossRoom.instance.prepare_scene.Invoke();
+        TheCavalry.instance.enter_cutscene_state();
         fade_from_black();
         yield return new WaitForSeconds(1f);
         end(); 
@@ -19,6 +19,6 @@ public class CavalryPhaseTransition : Cutscene{
 
     public override void end(){
         Player.player.exit_cutscene_state();
-        TheRider.instance.exit_cutscene_state();
+        TheCavalry.instance.exit_cutscene_state();
     }
 }

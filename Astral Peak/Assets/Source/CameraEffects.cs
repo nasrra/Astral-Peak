@@ -76,6 +76,12 @@ public class CameraEffects : MonoBehaviour{
 
     void instant_value_set(FloatParameter value, float n_value) => value.value = n_value;
 
+    public void instant_colour_set(Color _colour){
+        volume.sharedProfile.TryGet(out ColorAdjustments colour);
+        colour.colorFilter.value = _colour;
+    }
+
+
     IEnumerator increase_value(FloatParameter value, float n_value, float time){
         while(value.value < n_value){
             value.value += Time.deltaTime * time;
@@ -101,6 +107,7 @@ public class CameraEffects : MonoBehaviour{
         instant_value_set(vignette.intensity,   none.vignette_intensity);
         instant_value_set(colour.saturation,    none.saturation_intensity);
         instant_value_set(film_grain.intensity, none.film_grain_intensity);
+        instant_colour_set(Color.white);
     }
 }
 

@@ -18,6 +18,10 @@ public struct Sound{
     public float pitch;
 }
 
+// optimisation: 
+// - have a dictionary of loaded sounds to hook into for objects. Objscts call for the ir creation on awake(), system checks if sound is loaded (load if not, dont if already).
+// - unload the sounds when a new scene is loaded, so this by hooking into unity hook.
+
 public static class SoundLibrary{
     public delegate Sound SoundCreation();
     
@@ -43,7 +47,8 @@ public static class SoundLibrary{
         {"dog_bark_3",          () => new Sound(load_sfx("dog_bark_3"), AudioManager.sfx_mixer,1f,1f)},
         {"leather_contort_1",   () => new Sound(load_sfx("leather_contort_1"), AudioManager.sfx_mixer, 1f, 1f)},
         {"bow_shot",            () => new Sound(load_sfx("bow_shot"), AudioManager.sfx_mixer, 1f, 1f)},
-        {"coin_toss",           () => new Sound(load_sfx("coin_toss"), AudioManager.sfx_mixer, 1f, 1f)}
+        {"coin_toss",           () => new Sound(load_sfx("coin_toss"), AudioManager.sfx_mixer, 1f, 1f)},
+        {"rider_yell",          () => new Sound(load_sfx("rider_yell"), AudioManager.sfx_mixer, 0.65f,1f)}
     };
 
     static AudioClip load_music(string audio_clip){
