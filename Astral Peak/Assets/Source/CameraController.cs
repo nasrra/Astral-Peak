@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour{
         
@@ -9,6 +10,10 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private Transform target;
     [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private float left_x_bound;
+    [SerializeField] private float right_x_bound;
+    [SerializeField] private float bot_y_bound;
+    [SerializeField] private float top_y_bound;
     [SerializeField] Camera cam;
     public float original_size;
     public Vector3 original_offset;
@@ -48,9 +53,18 @@ public class CameraController : MonoBehaviour{
             Vector3 desired_pos = new Vector3(target.position.x + offset.x, offset.y, target.position.z + offset.z);
             // may want to swap this to Vector3.SmoothDamp();
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
-            transform.position = smoothed_pos;            
+            transform.position = regulate_position(smoothed_pos);            
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    Vector3 regulate_position(in Vector3 pos){
+        Vector3 regulated = new Vector3();
+        regulated.x = pos.x < left_x_bound ? left_x_bound : (pos.x > right_x_bound ? right_x_bound : pos.x);
+        regulated.y = pos.y < bot_y_bound ? bot_y_bound : (pos.y > top_y_bound ? top_y_bound : pos.y);
+        regulated.z = pos.z;
+        return regulated;
+
     }
 
     IEnumerator camera_shake(float time, float amount){
@@ -60,7 +74,7 @@ public class CameraController : MonoBehaviour{
             Vector3 desired_pos = new Vector3(target.position.x + offset.x + shake, offset.y + shake, target.position.z + offset.z);
             // may want to swap this to Vector3.SmoothDamp();
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
-            transform.position = smoothed_pos;               
+            transform.position = regulate_position(smoothed_pos);               
             timer += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
