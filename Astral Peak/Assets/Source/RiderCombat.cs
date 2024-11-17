@@ -16,7 +16,7 @@ public class RiderCombat : BossCombat{
         signature = new BossAttack(
             RiderAnimator.SIGNATURE,
             chance: 50,
-            distance: 12,
+            distance: 5,
             attack_cooldown: 4,
             idle_cooldown: 0,
             combat_cooldown: 1
@@ -40,7 +40,7 @@ public class RiderCombat : BossCombat{
         round_shot = new BossAttack(
             RiderAnimator.ROUND_SHOT,
             chance: 50,
-            distance: 12,
+            distance: 4,
             attack_cooldown: 8,
             idle_cooldown: 0,
             combat_cooldown: 1

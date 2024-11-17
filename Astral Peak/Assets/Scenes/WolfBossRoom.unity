@@ -360,7 +360,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 5.8, z: 2}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.5}
+  m_LocalScale: {x: 1.2, y: 1.25, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1064310548}
@@ -2000,7 +2000,7 @@ MonoBehaviour:
   player_respawn_point: {fileID: 1839469610}
   boss_start_point: {fileID: 713143996}
   play_cinematic: 0
-  song: 
+  song: 0
   cinematic: 
   phase: 0
   cavalry: {fileID: 979067485}
@@ -2244,7 +2244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2007939296215487171, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_SortingLayer
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2716666881862599819, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_IsActive
@@ -8211,7 +8211,7 @@ PrefabInstance:
       objectReference: {fileID: 1453095824}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: bot_y_bound
-      value: 2
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: top_y_bound
@@ -8774,6 +8774,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2750919245008702051, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3682692632547633077, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: m_Name
       value: TheRider
