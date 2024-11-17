@@ -6,6 +6,5 @@ using UnityEngine;
 public class UnityHook : MonoBehaviour{
     public event Action
         start;
-    
     void Start() => start?.Invoke();
 }

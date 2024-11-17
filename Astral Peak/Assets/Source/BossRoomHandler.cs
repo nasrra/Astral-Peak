@@ -8,19 +8,13 @@ public class BossRoomHandler : MonoBehaviour{
     public Door player_respawn_point;
     public Transform boss_start_point;
     public bool play_cinematic = false;
-    public string song, cinematic;
+    public SoundID song; 
+    public string cinematic;
     public int phase = 0;
     void Awake() => instance = this;
-    
-    // play the opening cutscene to a boss room.
-    void Start(){
-        AudioManager.play_ambience(SoundLibrary.sfx["wind"]());
-        phase_transition();
-        play_music();
-    }
 
     public virtual void prepare_phase_transition() => phase++;
-    protected void play_music()     => AudioManager.play_music(SoundLibrary.music[song]());
+    protected void play_music() => AudioManager.play_music(SoundLibrary.get_sound(song));
     public void phase_transition(){
         prepare_phase_transition();
         if(play_cinematic == true)

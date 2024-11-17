@@ -24,7 +24,7 @@ public static class AudioManager{
         ambience        = sources[1];
         audio_player    = _audio_player;
     }
-    
+
     public static void play_music(Sound sound)    => AudioClipHandler.crossfade(audio_player, ref music, sound, 1f);
     public static void play_ambience(Sound sound) => AudioClipHandler.crossfade(audio_player, ref ambience, sound, 1f);
     public static void stop_music() => AudioClipHandler.fade_out(audio_player, music, 1f);

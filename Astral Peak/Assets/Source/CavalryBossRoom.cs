@@ -5,11 +5,16 @@ using UnityEngine;
 public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] public TheCavalry cavalry;
     [SerializeField] public TheRider rider;
+    [SerializeField] Collider2DFeedback feedback;
+    [SerializeField] Collider2D feedback_collider;
 
     void Awake(){
         link();
         instance = this;
     }
+
+    void Start() => AudioManager.play_ambience(SoundLibrary.get_sound(SoundID.SOFT_WIND));
+
     void OnDisable() => unlink();
 
     public override void prepare_phase_transition(){
@@ -18,18 +23,25 @@ public class CavalryBossRoom : BossRoomHandler{
         rider.gameObject.SetActive(false);
         switch(phase){
             case 1:  
-                song = "boss1";
+                song = SoundID.WOLF_BOSS_MUSIC;
                 prepare_scene = phase_1;
                 prepare_scene.Invoke();
                 play_cinematic = false;
                 break;
             case 2: 
-                song = "boss1";
+                song = SoundID.WOLF_BOSS_MUSIC;
                 prepare_scene = phase_2;
                 cinematic = "cavalry_transition_1";
                 play_cinematic = true;
                 break;
         }
+    }
+
+    void player_entered(Collider2D col){
+        feedback.enabled = false;  
+        feedback_collider.enabled = false;      
+        phase_transition();
+        play_music();
     }
 
     public void phase_1(){
@@ -45,12 +57,14 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     void link(){
-        cavalry.death   += phase_transition;
-        rider.death     += phase_transition;
+        cavalry.death           += phase_transition;
+        rider.death             += phase_transition;
+        feedback.trigger_enter  += player_entered;
     }
 
     void unlink(){
-        cavalry.death   -= phase_transition;
-        rider.death     -= phase_transition;
+        cavalry.death           -= phase_transition;
+        rider.death             -= phase_transition;
+        feedback.trigger_enter  -= player_entered;
     }
 }

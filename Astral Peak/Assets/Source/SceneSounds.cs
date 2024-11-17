@@ -1,0 +1,34 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class SceneSounds{
+    // scene sounds.
+    public static readonly Dictionary<string, Func<List<SoundID>>> create = new Dictionary<string, Func<List<SoundID>>>(){
+        {"WolfBossRoom", () => new List<SoundID>(){
+            // MUSIC
+            SoundID.WOLF_BOSS_MUSIC,
+            // SFX
+            SoundID.BOW_SHOT,
+            SoundID.COIN_TOSS,
+            SoundID.DOG_BARK_1,
+            SoundID.DOG_BARK_2,
+            SoundID.DOG_BARK_3,
+            SoundID.LEATHER_CONTORT_1,
+            SoundID.MAGIC_1,
+            SoundID.MELEE_SWING_1,
+            SoundID.MELEE_SWING_2,
+            SoundID.MELEE_SWING_3,
+            SoundID.RIDER_YELL,
+            SoundID.SNOW_FOOTSTEP_1,
+            SoundID.SNOW_FOOTSTEP_2,
+            SoundID.SNOW_FOOTSTEP_3,
+            SoundID.SNOW_FOOTSTEP_4,
+            SoundID.SNOW_IMPACT_HEAVY,
+            SoundID.SOFT_WIND,
+            SoundID.WHOOSH_1,
+            SoundID.WOLF_HOWL        
+        }},
+    };
+}

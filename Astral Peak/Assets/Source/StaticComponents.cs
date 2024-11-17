@@ -42,6 +42,7 @@ public static class StaticComponents{
             sources.Add(source);
         }
         AudioManager.initialize(sources, hook_in);
+        SoundLibrary.initialize();
     }
 
     // cutscene manager.
