@@ -28,6 +28,7 @@ public static class SceneSounds{
             SoundID.SNOW_IMPACT_HEAVY,
             SoundID.SOFT_WIND,
             SoundID.WHOOSH_1,
+            SoundID.WHISTLE_LONG,
             SoundID.WOLF_HOWL        
         }},
     };

@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private Transform target;
     [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private bool regulate;
     [SerializeField] private float left_x_bound;
     [SerializeField] private float right_x_bound;
     [SerializeField] private float bot_y_bound;
@@ -31,7 +32,10 @@ public class CameraController : MonoBehaviour{
         //test = StartCoroutine(test_zoom());
     }
 
+    public void regulate_in_bounds(bool x) => regulate = x;
+
     // external functions
+    public void set_target(Transform _target) => target = _target;
     public void zoom_in_state(float size, float speed)      => state_swtich(ref zoom_state, zoom_in(size, speed));
     public void zoom_out_state(float size, float speed)     => state_swtich(ref zoom_state, zoom_out(size, speed));
     public void reset_zoom_state(float speed)               => state_swtich(ref zoom_state, reset_zoom(speed));
@@ -59,6 +63,8 @@ public class CameraController : MonoBehaviour{
     }
 
     Vector3 regulate_position(in Vector3 pos){
+        if(regulate == false)
+            return pos;
         Vector3 regulated = new Vector3();
         regulated.x = pos.x < left_x_bound ? left_x_bound : (pos.x > right_x_bound ? right_x_bound : pos.x);
         regulated.y = pos.y < bot_y_bound ? bot_y_bound : (pos.y > top_y_bound ? top_y_bound : pos.y);
@@ -70,7 +76,7 @@ public class CameraController : MonoBehaviour{
     IEnumerator camera_shake(float time, float amount){
         float timer = 0;
         while(timer < time){
-            float shake = (Random.Range(0,20) - 10) * amount;
+            float shake = (Random.Range(0,11) - 5) * cam.orthographicSize * amount / 10;
             Vector3 desired_pos = new Vector3(target.position.x + offset.x + shake, offset.y + shake, target.position.z + offset.z);
             // may want to swap this to Vector3.SmoothDamp();
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);

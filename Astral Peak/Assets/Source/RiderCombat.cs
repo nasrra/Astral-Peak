@@ -54,14 +54,14 @@ public class RiderCombat : BossCombat{
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
             signature,
+            jump_n_dash, 
         });
 
         set_back_moveset(new List<BossAttack>(){
             round_shot,
         });
     
-        set_special_moveset(new List<BossAttack>(){
-            jump_n_dash,        
+        set_special_moveset(new List<BossAttack>(){       
         });
     }
 }

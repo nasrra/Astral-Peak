@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public static class CutsceneManager{
     static MonoBehaviour coroutines;
@@ -22,9 +21,9 @@ public abstract class Cutscene{
 }
 
 public static class CutsceneLibrary{
-    public delegate Cutscene CutsceneCreation();
-    public readonly static Dictionary<string, CutsceneCreation> create_cutscene = new Dictionary<string, CutsceneCreation>(){
+    public readonly static Dictionary<string, Func<Cutscene>> create_cutscene = new Dictionary<string, Func<Cutscene>>(){
         {"test",                ()=>new CutsceneTest()},
         {"cavalry_transition_1",()=>new CavalryPhaseTransition()},
+        {"cavalry_opening",     ()=> new CavalryOpeningCutscene()},
     };
 }

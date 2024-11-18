@@ -13,7 +13,7 @@ public class TheRider : Boss{
 
     void OnEnable(){
         instance = this;
-        state_switch(yell());
+        state_switch(idle(1));
         link_events();
     }
 
@@ -27,6 +27,22 @@ public class TheRider : Boss{
         animator.Play(RiderAnimator.IDLE);
         yield return new WaitForSeconds(x);
         state_switch(follow());
+        yield break;
+    }
+
+    public void cutscene_yell_state() => state_switch(cutscene_yell());
+    IEnumerator cutscene_yell(){
+        animator.Play(RiderAnimator.YELL); 
+        yield return new WaitForSeconds(3f);
+        state_switch(lock_idle());
+        yield break;        
+    }
+
+    public void cutscene_whistle_state() => state_switch(cutscene_whistle());
+    IEnumerator cutscene_whistle(){
+        animator.Play(RiderAnimator.WHISTLE);
+        yield return new WaitForSeconds(2.1f);
+        state_switch(lock_idle());
         yield break;
     }
 

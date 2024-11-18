@@ -12,7 +12,8 @@ public class RiderAnimator : AnimatorOverride{
         BACK_SHOT       = Animator.StringToHash("back_shot"),
         RUN_N_GUN       = Animator.StringToHash("run_n_gun"),
         ROUND_SHOT      = Animator.StringToHash("round_shot"),
-        YELL            = Animator.StringToHash("yell");
+        YELL            = Animator.StringToHash("yell"),
+        WHISTLE         = Animator.StringToHash("whistle");
     
     public void idle() => animator.Play(IDLE);
 }

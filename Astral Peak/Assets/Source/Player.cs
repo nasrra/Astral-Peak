@@ -32,7 +32,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void Start(){   
-
         link_events();
         set_enter_position();
         // snap camera to players new position.
@@ -139,13 +138,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     public override void enter_cutscene_state(){
-        movement.stop();
         unlink_input();
+        unlink_movement();
+        movement.stop();
+        animator.idle();
     }
 
     public override void exit_cutscene_state(){
-        movement.stop();
+        //movement.stop();
         link_input();
+        link_movement();
     }
 
     protected void attack_failed(Collider2D other) => movement.knockback(new KnockbackData(melee.get_self_knockback_force(), melee.get_self_knockback_duration(), other.transform));
