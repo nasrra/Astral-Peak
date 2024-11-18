@@ -10,7 +10,10 @@ public static class CutsceneManager{
         Cutscene cutscene = CutsceneLibrary.create_cutscene[cutscene_id]();
         cutscene.begin();
     }
-    public static void set_coroutine(IEnumerator c) => coroutines.StartCoroutine(c);
+    public static void set_coroutine(IEnumerator c){
+        Debug.Log(1);
+        coroutines.StartCoroutine(c);
+    }
 }
 
 public abstract class Cutscene{

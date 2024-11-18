@@ -57,9 +57,15 @@ public static class SoundLibrary{
         SceneManager.sceneUnloaded  += unload_sounds;
     }
 
+    public static void uninitialize(){
+        loaded_sounds.Clear();
+        SceneManager.sceneLoaded    -= load_scene_sounds;
+        SceneManager.sceneUnloaded  -= unload_sounds;
+    }
+
     public static Sound get_sound(SoundID id) => loaded_sounds.ContainsKey(id)? loaded_sounds[id] : throw new Exception(id + " has not been loaded.");
     static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single){
-        Debug.Log("Load ["+scene.name+"] sounds.");
+        //Debug.Log("Load ["+scene.name+"] sounds.");
         load_sounds(SceneSounds.create[scene.name]());
     } 
     static void load_sounds(List<SoundID> sounds){

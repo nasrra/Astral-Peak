@@ -19,7 +19,7 @@ public class CavalryBossRoom : BossRoomHandler{
         instance = this;
     }
 
-    void Start() => AudioManager.play_ambience(SoundLibrary.get_sound(SoundID.SOFT_WIND));
+    void Start() => AudioManager.play_ambience(SoundID.SOFT_WIND);
 
     void OnDisable() => unlink();
 
@@ -44,7 +44,7 @@ public class CavalryBossRoom : BossRoomHandler{
     void player_entered(Collider2D col){
         feedback.enabled = false;  
         feedback_collider.enabled = false;      
-        Player.exit_point = player_respawn_point.get_enter_point();
+        Player.player.set_exit_point(player_respawn_point.get_enter_point());
         phase_transition();
     }
 

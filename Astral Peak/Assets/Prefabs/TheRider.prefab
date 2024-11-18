@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6177200519104183750}
-  - component: {fileID: 89629331458923765}
+  - component: {fileID: 4723023942120979113}
   m_Layer: 0
   m_Name: RoundShot 5
   m_TagString: Untagged
@@ -212,7 +212,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3873645440087134084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &89629331458923765
+--- !u!114 &4723023942120979113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147065920377330053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1c999e77a157d4da087b5bff23b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fire_rate: 5
@@ -325,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4027133792722879146}
-  - component: {fileID: 8309059526869590190}
+  - component: {fileID: 505621225253856794}
   m_Layer: 0
   m_Name: FrontStrikeArrow
   m_TagString: Untagged
@@ -348,7 +348,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3873645440087134084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8309059526869590190
+--- !u!114 &505621225253856794
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895021796627007490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1c999e77a157d4da087b5bff23b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fire_rate: 5
@@ -24760,7 +24760,7 @@ MonoBehaviour:
   combat: {fileID: 746696598816751763}
   particles: {fileID: 796542481378532419}
   target: {fileID: 0}
-  ranged: {fileID: 0}
+  ranged: {fileID: 6996315490541205186}
 --- !u!114 &7910326139473868748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24937,14 +24937,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c6c65ee0bb56c44298e195cde3493f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signature_arrow: {fileID: 8309059526869590190}
-  back_shot_arrow: {fileID: 6923118207655408335}
+  signature_arrow: {fileID: 505621225253856794}
+  back_shot_arrow: {fileID: 7756913514428958328}
   round_shot_arrows:
-  - {fileID: 8989836585640716050}
+  - {fileID: 8198906469693186667}
   - {fileID: 325185979224985391}
   - {fileID: 6489333289710751432}
   - {fileID: 6834456782472490100}
-  - {fileID: 89629331458923765}
+  - {fileID: 4723023942120979113}
 --- !u!50 &5748691801250436687
 Rigidbody2D:
   serializedVersion: 4
@@ -25049,7 +25049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531115738587288444}
-  - component: {fileID: 8989836585640716050}
+  - component: {fileID: 8198906469693186667}
   m_Layer: 0
   m_Name: RoundShot 1
   m_TagString: Untagged
@@ -25072,7 +25072,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3873645440087134084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &8989836585640716050
+--- !u!114 &8198906469693186667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25081,7 +25081,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5264159360024510941}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1c999e77a157d4da087b5bff23b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fire_rate: 5
@@ -25095,7 +25095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 37187179563693624}
-  - component: {fileID: 6923118207655408335}
+  - component: {fileID: 7756913514428958328}
   m_Layer: 0
   m_Name: BackShot
   m_TagString: Untagged
@@ -25118,7 +25118,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3873645440087134084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6923118207655408335
+--- !u!114 &7756913514428958328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25127,7 +25127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5821055407875662328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: fb1c999e77a157d4da087b5bff23b046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fire_rate: 5

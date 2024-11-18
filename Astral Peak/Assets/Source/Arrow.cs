@@ -1,37 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class Arrow : Projectile{
-    [SerializeField] float
-        rise_speed,
-        rise_time, 
-        rotate_speed,
-        rotate_time,
-        adjust_speed,
-        fall_speed;
+    [SerializeField] GameObject despawn_effect;
 
-    Coroutine coroutine;
+    void Start() => state_switch(ref rotate_state, arrow_behaviour());
 
-    void Awake() => coroutine = StartCoroutine(arrow_behaviour());
+    protected override void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == LayersManager.PLAYER){
+            Creature creature = other.GetComponent<Creature>();
+            creature.get_health().damaged += destroy_projectile;
+            creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
+            creature.get_health().damaged -= destroy_projectile;
+        }
+        else if(other.gameObject.layer == LayersManager.GROUND)
+            StartCoroutine(grounded_behaviour());
+    }
 
     IEnumerator arrow_behaviour(){
-        float rng = Random.Range(0,31);
-        rng /= 100;
-        rng /= 2;
-        rise_speed      += rng;
-        rise_time       += rng; 
-        rotate_speed    += rng;
-        rotate_time     += rng;
-        adjust_speed    += rng;
-        fall_speed      += rng;
-        state_switch(move_state, move(rise_speed, rise_time));
-        yield return new WaitForSeconds(rise_time);
-        state_switch(rotate_state, rotate_to_target(rotate_speed, rotate_time));
-        state_switch(move_state, move(adjust_speed));
-        yield return new WaitForSeconds(rotate_time);
-        state_switch(move_state, move(fall_speed));
+        yield return new WaitForSeconds(lifetime/2f);
+        state_switch(ref rotate_state, change_direction(Vector2.down, 4));
+        yield break;
+    }
+
+    IEnumerator grounded_behaviour(){
+        if(rotate_state != null)
+            StopCoroutine(rotate_state);
+        StopCoroutine(move_state);
+        StopCoroutine(lifetime_state);
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+        col.enabled = false;
+        yield return new WaitForSeconds(1);
+        GameObject particleInstance = Instantiate(despawn_effect, front_point.position, despawn_effect.transform.rotation);
+        UnityHook.Destroy(particleInstance, particleInstance.GetComponent<ParticleSystem>().main.duration + particleInstance.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
+        Destroy(gameObject);
         yield break;
     }
 }

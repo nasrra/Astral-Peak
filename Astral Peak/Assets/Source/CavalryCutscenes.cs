@@ -16,7 +16,7 @@ public class CavalryOpeningCutscene : Cutscene{
 
     IEnumerator coroutine(){
         room.cutscene_arrow.fire_once();
-        AudioClipHandler.play(room.cutscene_arrow, SoundLibrary.get_sound(SoundID.BOW_SHOT), out source);
+        AudioClipHandler.play(room.cutscene_arrow, SoundID.BOW_SHOT, out source);
         CameraController.instance.zoom_in_state(8,1);
         //CameraController.instance.move_down_state(2,1);
         CameraController.instance.regulate_in_bounds(false);
@@ -34,7 +34,7 @@ public class CavalryOpeningCutscene : Cutscene{
     }
 
     public override void end(){
-        AudioManager.play_music(SoundLibrary.get_sound(room.song));
+        AudioManager.play_music(room.song);
         Player.player.exit_cutscene_state();
         TheRider.instance.exit_cutscene_state();
     }
@@ -62,7 +62,7 @@ public class CavalryPhaseTransition : Cutscene{
         TheRider.instance.cutscene_whistle_state();
         
         // start playing background wolf animation.
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         room.background_wolf.SetActive(true);
         CameraController.instance.set_target(room.background_wolf.transform);
         CameraController.instance.regulate_in_bounds(false);
@@ -84,7 +84,7 @@ public class CavalryPhaseTransition : Cutscene{
     }
 
     public override void end(){
-        AudioManager.play_music(SoundLibrary.get_sound(room.song));
+        AudioManager.play_music(room.song);
         Player.player.exit_cutscene_state();
         TheCavalry.instance.exit_cutscene_state();
     }

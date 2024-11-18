@@ -47,7 +47,7 @@ public class RiderCombat : BossCombat{
         );
 
     void Start(){
-        //test(front_strike);
+        //test(round_shot);
         set_movesets();
     }
 

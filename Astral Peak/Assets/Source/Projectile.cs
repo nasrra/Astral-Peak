@@ -9,17 +9,18 @@ public class Projectile : MonoBehaviour{
         move_speed = 25,
         lifetime = 5;
     [SerializeField] TrailRenderer trail;
-    [SerializeField] Collider2D col;
+    [SerializeField] protected Collider2D col;
     [SerializeField] protected Coroutine 
         move_state,
-        rotate_state;
+        rotate_state,
+        lifetime_state;
 
     void Awake(){
-        state_switch(move_state, move(move_speed));
-        StartCoroutine(lifetime_counter());
+        state_switch(ref move_state, move(move_speed));
+        state_switch(ref lifetime_state, lifetime_counter()); 
     }
 
-    protected void state_switch(Coroutine coroutine, IEnumerator state){
+    protected void state_switch(ref Coroutine coroutine, IEnumerator state){
         if(coroutine != null)
             StopCoroutine(coroutine);
         coroutine = StartCoroutine(state);
@@ -56,25 +57,37 @@ public class Projectile : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    protected virtual IEnumerator rotate_to_target(float speed){
+    protected virtual IEnumerator rotate_to_target(Transform target, float speed){
         while(true){
-            Vector3 vec_to_target = Player.player.transform.position - transform.position;
+            Vector3 vec_to_target = target.position - transform.position;
             float angle = Mathf.Atan2(vec_to_target.y, vec_to_target.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, speed * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
     }
-    protected virtual IEnumerator rotate_to_target(float speed, float time){
+    protected virtual IEnumerator rotate_to_target(Transform target, float speed, float time){
         float counter = time;
         while(counter > 0){
-            Vector3 vec_to_target = Player.player.transform.position - transform.position;
+            Vector3 vec_to_target = target.position - transform.position;
             float angle = Mathf.Atan2(vec_to_target.y, vec_to_target.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, q, speed * Time.deltaTime);
             counter -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    protected virtual IEnumerator change_direction(Vector2 direction, float speed){
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
+
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 0.05f){
+            Quaternion temp = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0f, 0f, temp.eulerAngles.z);
+            yield return new WaitForFixedUpdate();
+        }
+        transform.rotation = targetRotation;
     }
 
     protected IEnumerator lifetime_counter(){

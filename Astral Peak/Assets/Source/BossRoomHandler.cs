@@ -12,7 +12,6 @@ public class BossRoomHandler : MonoBehaviour{
     void Awake() => instance = this;
 
     public virtual void prepare_phase_transition() => phase++;
-    protected void play_music() => AudioManager.play_music(SoundLibrary.get_sound(song));
     public void phase_transition(){
         prepare_phase_transition();
         if(play_cinematic == true)

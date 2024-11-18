@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6247057131499895030}
   - component: {fileID: 7539877527770875456}
-  - component: {fileID: 1252798387968192961}
+  - component: {fileID: -4771838547253267380}
   m_Layer: 0
   m_Name: FallArrow
   m_TagString: Untagged
@@ -240,7 +240,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1252798387968192961
+--- !u!114 &-4771838547253267380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,21 +249,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3113033131358192028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46173cdd6188bf4a96ab7167f06ea00, type: 3}
+  m_Script: {fileID: 11500000, guid: 914082c74ad410743bd77c23ce11a768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   rb: {fileID: 7539877527770875456}
   front_point: {fileID: 4053712624308928907}
-  move_speed: 30
-  trail: {fileID: 0}
-  col: {fileID: 0}
-  rise_speed: 40
-  rise_time: 0.5
-  rotate_speed: 8
-  rotate_time: 1
+  move_speed: 25
+  lifetime: 5
+  trail: {fileID: 4610154022650783311}
+  col: {fileID: 9042564499259221842}
+  rise_speed: 25
+  rise_time: 0.75
+  rotate_speed: 10
+  rotate_time: 0.5
   adjust_speed: 2
-  fall_speed: 35
+  fall_speed: 25
 --- !u!1 &4620747474906692238
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 11
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -454,7 +454,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 11
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -539,7 +539,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1694760165
-  m_SortingLayer: 10
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 417b8e65399d06744a015d78ac9b11e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -658,7 +658,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 11
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -742,7 +742,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 11
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

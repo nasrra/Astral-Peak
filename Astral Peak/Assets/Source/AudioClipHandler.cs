@@ -16,21 +16,23 @@ public static class AudioClipHandler{
 
     public static void set_game_object(MonoBehaviour audio) => object_audio = audio;
 
-    public static void play(MonoBehaviour audio, Sound sound, out AudioSource source){
+    public static void play(MonoBehaviour audio, SoundID sound_id, out AudioSource source){
+        Sound sound = SoundLibrary.get_sound(sound_id);
         set_game_object(audio);
         source = create_source(sound);
         source.Play();
         Object.Destroy(source,sound.clip.length); // unscaled time btw.
     }
 
-    public static void crossfade(MonoBehaviour audio, ref AudioSource source, Sound sound, float fade_factor){
+    public static void crossfade(MonoBehaviour audio, ref AudioSource source, SoundID sound_id, float fade_factor){
         AudioSource _source;
         fade_out(audio, source, fade_factor);
-        fade_in(audio, sound, fade_factor, out _source);
+        fade_in(audio, sound_id, fade_factor, out _source);
         source = _source;
     }
 
-    public static void fade_in(MonoBehaviour audio, Sound sound, float fade_factor, out AudioSource source){
+    public static void fade_in(MonoBehaviour audio, SoundID sound_id, float fade_factor, out AudioSource source){
+        Sound sound = SoundLibrary.get_sound(sound_id);
         set_game_object(audio);
         source = create_source(sound);
         object_audio.StartCoroutine(fade_in_loop(source, fade_factor, sound));

@@ -333,9 +333,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3255954247737370109}
   - component: {fileID: 6600055358799903588}
-  - component: {fileID: -1484162936294777074}
+  - component: {fileID: 8572461713248187766}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: SmartArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +385,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-1484162936294777074
+--- !u!114 &8572461713248187766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,15 +394,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6752692394907920807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0836e7fa18642c142a34cd22e3ff1e1a, type: 3}
+  m_Script: {fileID: 11500000, guid: b46173cdd6188bf4a96ab7167f06ea00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6600055358799903588}
   front_point: {fileID: 7094553824266607717}
-  move_speed: 25
-  lifetime: 5
+  move_speed: 20
+  lifetime: 1
   trail: {fileID: 4118348966105090367}
   col: {fileID: 3597924189513528832}
+  despawn_effect: {fileID: 8296636422789084472, guid: 2378160a0a5059b47b1c4f4b740f74db, type: 3}
 --- !u!1 &6857533170122296192
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // static fields for other classes to access.
     public static Player player;
-    public static string exit_point = "";
-    
+    public string exit_point = "";
+
 
     // data to link together.
     [Header("Player")]
@@ -111,6 +111,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void vulnerable(){
         col.excludeLayers = new LayerMask();
     }
+
+    public void set_exit_point(string _exit_point) => exit_point = _exit_point;
+    public string get_exit_point() => exit_point;
 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){

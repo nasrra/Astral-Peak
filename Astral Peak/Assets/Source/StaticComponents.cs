@@ -21,6 +21,11 @@ public static class StaticComponents{
         input();
         audio();
         cutscene();
+        Application.quitting += uninitialize;
+    }
+
+    static void uninitialize(){
+        SoundLibrary.uninitialize();
     }
 
     // input initialization.
