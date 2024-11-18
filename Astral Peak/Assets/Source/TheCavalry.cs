@@ -8,6 +8,7 @@ public class TheCavalry : Boss{
     // Start is called before the first frame update
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
+    [SerializeField] CavalryAudio sound;
     [SerializeField] FetchSword fetch_sword;
     [SerializeField] float
         follow_speed,
@@ -124,6 +125,7 @@ public class TheCavalry : Boss{
         health.death                            += get_movement().StopAllCoroutines;
         combat.attack_ended                     += switch_to_idle;
         ranged.fetch_sword_fired                += link_fetch_sword;
+        ranged.arrow_fired                      += sound.emit_bow_shot;
         get_movement().move_direction_changed   += face_move_dir;
         flipped_left                            += particles.flip_left;
         flipped_right                           += particles.flip_right;
@@ -135,6 +137,7 @@ public class TheCavalry : Boss{
         health.death                            -= get_movement().StopAllCoroutines;
         combat.attack_ended                     -= switch_to_idle;
         ranged.fetch_sword_fired                -= link_fetch_sword;
+        ranged.arrow_fired                      -= sound.emit_bow_shot;
         get_movement().move_direction_changed   -= face_move_dir;
         flipped_left                            -= particles.flip_left;
         flipped_right                           -= particles.flip_right;

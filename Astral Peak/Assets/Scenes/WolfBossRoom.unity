@@ -122,52 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &38448366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 38448368}
-  - component: {fileID: 38448367}
-  m_Layer: 0
-  m_Name: BackShot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &38448367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38448366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc643d2dc3d6174c9ed7c47da37d6bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fire_rate: 0.5
-  projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
---- !u!4 &38448368
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38448366}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 14.87, y: 3.39, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!1 &71212620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5026348276079211433, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5183965939142762182, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_Sprite
@@ -2019,7 +1973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &727715457
 Transform:
   m_ObjectHideFlags: 0
@@ -2056,12 +2010,19 @@ MonoBehaviour:
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
   background_wolf: {fileID: 8944879036396718998}
-  cutscene_arrow: {fileID: 38448367}
+  cutscene_arrow:
+    fire_rate: 5
+    projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
+    fire_point: {fileID: 1404642684}
   wolf_impact_transition: {fileID: 1894936251}
   feedback: {fileID: 1839469613}
   feedback_collider: {fileID: 1839469612}
   rider_start_point: {fileID: 1002998813}
   cavalry_start_point: {fileID: 757529339}
+  turret:
+    fire_rate: 5
+    projectile: {fileID: 0}
+    fire_point: {fileID: 0}
 --- !u!1 &757529338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7966,6 +7927,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music_slider: {fileID: 1782478728}
   sfx_slider: {fileID: 2037927665}
+--- !u!1 &1404642682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404642684}
+  m_Layer: 0
+  m_Name: cutscenearrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404642684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404642682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 3.56, y: -2.61, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1422358614
 GameObject:
   m_ObjectHideFlags: 0
@@ -13855,6 +13847,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8131693212758841488, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
+      propertyPath: max_life
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131693212758841488, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
+      propertyPath: current_life
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14273,4 +14273,4 @@ SceneRoots:
   - {fileID: 1064310548}
   - {fileID: 713143996}
   - {fileID: 2001301345}
-  - {fileID: 38448368}
+  - {fileID: 1404642684}

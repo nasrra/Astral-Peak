@@ -1,22 +1,21 @@
 using System;
 using System.Collections;
-using Unity.Mathematics;
 using UnityEngine;
 
-public class Turret : MonoBehaviour{
+[System.Serializable]
+public class Turret{
     public event Action<GameObject> projectile_fired;
     [SerializeField] private float fire_rate = 5.0f;
     [SerializeField] protected GameObject projectile;
+    [SerializeField] protected Transform fire_point;
     private Coroutine coroutine;
 
-    //void Awake() => test();
-
     public virtual void fire_once(){
-        GameObject x = Instantiate(projectile, transform.position, transform.rotation); // y rotation on z because projectiles rotate on the z axis.
+        GameObject x = GameObject.Instantiate(projectile, fire_point.position, fire_point.rotation); // y rotation on z because projectiles rotate on the z axis.
         invoke_projectile_fired(x); 
     }
-    public void start_firing() => coroutine = StartCoroutine(fire_loop());
-    public void stop_firing() => StopCoroutine(coroutine);
+    //public void start_firing() => coroutine = StartCoroutine(fire_loop());
+    //public void stop_firing() => StopCoroutine(coroutine);
     protected void invoke_projectile_fired(GameObject x) => projectile_fired?.Invoke(x);
 
     IEnumerator fire_loop(){
@@ -26,7 +25,5 @@ public class Turret : MonoBehaviour{
             yield return new WaitForSeconds(fire_rate);
         }
     }
-
-    void test() => StartCoroutine(fire_loop());
 }
 

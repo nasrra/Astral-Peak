@@ -16,11 +16,10 @@ public class CavalryOpeningCutscene : Cutscene{
 
     IEnumerator coroutine(){
         room.cutscene_arrow.fire_once();
-        AudioClipHandler.play(room.cutscene_arrow, SoundID.BOW_SHOT, out source);
         CameraController.instance.zoom_in_state(8,1);
         //CameraController.instance.move_down_state(2,1);
         CameraController.instance.regulate_in_bounds(false);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         CameraController.instance.set_target(TheRider.instance.transform);
         yield return new WaitForSeconds(2);
         TheRider.instance.cutscene_yell_state();

@@ -17,11 +17,20 @@ public class CavalryBossRoom : BossRoomHandler{
     void Awake(){
         link();
         instance = this;
+        cutscene_arrow.projectile_fired += play_arrow_shot;
     }
 
-    void Start() => AudioManager.play_ambience(SoundID.SOFT_WIND);
+    [SerializeField] SmartTurret turret;
+    AudioSource source;
 
-    void OnDisable() => unlink();
+    void Start(){
+        AudioManager.play_ambience(SoundID.SOFT_WIND);
+    } 
+
+    void OnDestroy(){
+        cutscene_arrow.projectile_fired += play_arrow_shot;
+        unlink();
+    }
 
     public override void prepare_phase_transition(){
         base.prepare_phase_transition();
@@ -67,6 +76,8 @@ public class CavalryBossRoom : BossRoomHandler{
         boss.transform.position = boss_start_point.position;
         Player.player.set_enter_position();
     }
+
+    void play_arrow_shot(GameObject x) => AudioClipHandler.play(this, SoundID.BOW_SHOT, out source); 
 
     void link(){
         cavalry.death           += phase_transition;

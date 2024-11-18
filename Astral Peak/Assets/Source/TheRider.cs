@@ -5,6 +5,7 @@ public class TheRider : Boss{
     public static TheRider instance;
 
     [SerializeField] RiderRangedCombat ranged;
+    [SerializeField] RiderAudio sound;
     public void forward_strike_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.30f);
     public void signature_strike_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.30f);
     public void jump_n_dash_jump_back() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.25f);
@@ -72,6 +73,7 @@ public class TheRider : Boss{
         health.damaged                          += sprite.play_damaged_flash;
         flipped_left                            += particles.flip_left;
         flipped_right                           += particles.flip_right;
+        ranged.arrow_fired                      += sound.emit_arrow_shot;
     }
 
     protected void unlink_events(){
@@ -82,6 +84,7 @@ public class TheRider : Boss{
         health.damaged                          -= sprite.play_damaged_flash;
         flipped_left                            -= particles.flip_left;
         flipped_right                           -= particles.flip_right;
+        ranged.arrow_fired                      -= sound.emit_arrow_shot;
     }
 
 }
