@@ -18,6 +18,7 @@ public static class SceneSounds{
             SoundID.DOG_BARK_3,
             SoundID.LEATHER_CONTORT_1,
             SoundID.MAGIC_1,
+            SoundID.MAGIC_EXPLOSION,
             SoundID.MELEE_SWING_1,
             SoundID.MELEE_SWING_2,
             SoundID.MELEE_SWING_3,

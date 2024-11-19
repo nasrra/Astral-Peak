@@ -15,6 +15,7 @@ public class CavalryParticlesHandler : ParticlesHandler{
         back_footstep           ,
         jump_particle           ,
         dash_effect             ,
+        death_explosion         ,
         death_particles;
     
     public void emit_front_strike        ()     => front_strike.Emit(1);
@@ -30,6 +31,7 @@ public class CavalryParticlesHandler : ParticlesHandler{
     public void emit_jump_particle()            => jump_particle.Play();
     public void play_dash_effect()              => dash_effect.Play();
     public void stop_dash_effect()              => dash_effect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+    public void emit_death_explosion()          => death_explosion.Play();
     public void emit_bite(){
         top_bite.Emit(1);
         bottom_bite.Emit(1);
@@ -57,5 +59,22 @@ public class CavalryParticlesHandler : ParticlesHandler{
         flip_emitter_right(ground_slam_hop_second.GetComponent<ParticleSystemRenderer>()); 
         flip_emitter_right(ground_slam_impact    .GetComponent<ParticleSystemRenderer>());
         flip_emitter_right(dash_effect           .GetComponent<ParticleSystemRenderer>());
+    }
+
+    public void stop_all_particles(){
+        front_strike          .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        back_strike_backward  .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        back_strike_forward   .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        top_bite              .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        bottom_bite           .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        ground_slam_hop_first .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        ground_slam_hop_second.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        ground_slam_impact    .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        front_footstep        .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        back_footstep         .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        jump_particle         .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        dash_effect           .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        death_explosion       .Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        death_particles       .Stop(true, ParticleSystemStopBehavior.StopEmitting);     
     }
 }

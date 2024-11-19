@@ -49,7 +49,7 @@ public class UiManager : MonoBehaviour{
     public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_text());
     IEnumerator enemy_vanquished_text(){
         enemy_vanquished.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         enemy_vanquished.SetActive(false);
         yield break;
     }

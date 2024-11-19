@@ -120,6 +120,8 @@ public class Movement : MonoBehaviour{
         yield break;
     }
 
+    public void zero_velocity() => rb.velocity = Vector3.zero;
+
     public void move_in_faced_direction(){
         Debug.Log(transform.rotation.y);
         if(transform.rotation.y == 1){

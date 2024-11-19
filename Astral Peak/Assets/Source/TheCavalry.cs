@@ -48,6 +48,7 @@ public class TheCavalry : Boss{
     public void sword_summon_camera_zoom() => CameraController.instance.zoom_out_state(14, 2f);
     public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
     public void ground_slam_camera_shake() => CameraController.instance.shake_camera(0.15f, 0.65f);
+    public void death_camera_shake() => CameraController.instance.shake_camera(0.25f, 1f);
 
     // states: 
     public override void enter_cutscene_state() => state_switch(lock_idle());
@@ -64,11 +65,10 @@ public class TheCavalry : Boss{
             c.enabled = false;
         animator.Play(CavalryAnimator.DEATH);
         sprite.play_death_effect(2.25f);
-        particles.play_death_particles();
         disable_components();
-        yield return new WaitForSeconds(3);
-        particles.stop_death_particles();
-        yield return new WaitForSeconds(3);
+        movement.zero_velocity(); // stop velocity in case the boss is dashing.
+        particles.stop_all_particles();
+        yield return new WaitForSeconds(6);
         AudioManager.stop_music();
         UiManager.instance.play_enemy_vanquished();
         AudioClipHandler.play(UnityHook.instance, SoundID.WOODEN_PING, out source);

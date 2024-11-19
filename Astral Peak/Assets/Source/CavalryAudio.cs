@@ -13,7 +13,8 @@ public class CavalryAudio : MonoBehaviour
     public void emit_ground_slam_impact() => AudioClipHandler.play(this, SoundID.SNOW_IMPACT_HEAVY, out source);                                           
     public void emit_howl()               => AudioClipHandler.play(this, SoundID.WOLF_HOWL, out source);   
     public void emit_sword_strike()       => AudioClipHandler.play(this, SoundID.MELEE_SWING_2, out source);                                                                            
-    public void emit_footsteps()          => AudioClipHandler.play(this, choose_footstep(), out source);                                        
+    public void emit_footsteps()          => AudioClipHandler.play(this, choose_footstep(), out source);  
+    public void emit_magic_explosion()    => AudioClipHandler.play(this, SoundID.MAGIC_EXPLOSION, out source);                                      
 
     public SoundID choose_bark()
     {
