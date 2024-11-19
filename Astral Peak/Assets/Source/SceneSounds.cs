@@ -29,7 +29,8 @@ public static class SceneSounds{
             SoundID.SOFT_WIND,
             SoundID.WHOOSH_1,
             SoundID.WHISTLE_LONG,
-            SoundID.WOLF_HOWL        
+            SoundID.WOLF_HOWL,
+            SoundID.WOODEN_PING,        
         }},
     };
 }

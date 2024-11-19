@@ -80,13 +80,13 @@ public class CavalryBossRoom : BossRoomHandler{
     void play_arrow_shot(GameObject x) => AudioClipHandler.play(this, SoundID.BOW_SHOT, out source); 
 
     void link(){
-        cavalry.death           += phase_transition;
+        //cavalry.death           += phase_transition;
         rider.death             += phase_transition;
         feedback.trigger_enter  += player_entered;
     }
 
     void unlink(){
-        cavalry.death           -= phase_transition;
+        //cavalry.death           -= phase_transition;
         rider.death             -= phase_transition;
         feedback.trigger_enter  -= player_entered;
     }

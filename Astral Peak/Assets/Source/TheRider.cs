@@ -4,6 +4,7 @@ using UnityEngine;
 public class TheRider : Boss{
     public static TheRider instance;
 
+    [SerializeField] RiderParticlesHandler particles;
     [SerializeField] RiderRangedCombat ranged;
     [SerializeField] RiderAudio sound;
     public void forward_strike_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.30f);

@@ -24666,7 +24666,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7980198678613854969}
   - component: {fileID: 4345250155958184781}
-  - component: {fileID: 7910326139473868748}
   - component: {fileID: 3625802221286276761}
   - component: {fileID: 2801977602905901850}
   - component: {fileID: 8131693212758841488}
@@ -24678,6 +24677,7 @@ GameObject:
   - component: {fileID: 1266882780324297340}
   - component: {fileID: 156633529036933837}
   - component: {fileID: 4612390890881141321}
+  - component: {fileID: 6362768417179763687}
   m_Layer: 8
   m_Name: TheRider
   m_TagString: Untagged
@@ -24725,29 +24725,13 @@ MonoBehaviour:
   health: {fileID: 8131693212758841488}
   stunnable: 0
   movement: {fileID: 3625802221286276761}
-  sprite: {fileID: 7910326139473868748}
+  sprite: {fileID: 6362768417179763687}
   animator: {fileID: 2801977602905901850}
   combat: {fileID: 746696598816751763}
-  particles: {fileID: 796542481378532419}
   target: {fileID: 0}
+  particles: {fileID: 796542481378532419}
   ranged: {fileID: 6996315490541205186}
   sound: {fileID: 4612390890881141321}
---- !u!114 &7910326139473868748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3682692632547633077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1b1338c2e88734e8438949dcdea884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 5473328611511168871}
-  - {fileID: 4865190631762739446}
-  damaged_colour: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &3625802221286276761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25027,6 +25011,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a09f408bd1f5b43a1deed2e2e8581a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6362768417179763687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682692632547633077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bb9414dea631340884ef3683b87566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 8367793598107070361}
+  - {fileID: 6046301728459267000}
+  - {fileID: 5473328611511168871}
+  - {fileID: 4865190631762739446}
+  damaged_colour: {r: 0, g: 0, b: 0, a: 0}
+  hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
+  death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
 --- !u!1 &5264159360024510941
 GameObject:
   m_ObjectHideFlags: 0
@@ -40196,6 +40200,16 @@ SpriteRenderer:
 --- !u!212 &5473328611511168871 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3225162563351145526, guid: 627930928edebff4fadf436c0295848c, type: 3}
+  m_PrefabInstance: {fileID: 7437482699376558929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6046301728459267000 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3810037034774501609, guid: 627930928edebff4fadf436c0295848c, type: 3}
+  m_PrefabInstance: {fileID: 7437482699376558929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8367793598107070361 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1375674783945043144, guid: 627930928edebff4fadf436c0295848c, type: 3}
   m_PrefabInstance: {fileID: 7437482699376558929}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7447644392606799059

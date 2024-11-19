@@ -20,11 +20,12 @@ public class CavalryAnimator : AnimatorOverride{
         HOWL                    = Animator.StringToHash("howl"),
         GROUND_SLAM             = Animator.StringToHash("ground_slam"),
         JUMP_AWAY               = Animator.StringToHash("jump_away"),
-        PHASE_TRANSITION        = Animator.StringToHash("phase_transition");
+        PHASE_TRANSITION        = Animator.StringToHash("phase_transition"),
+        DEATH                   = Animator.StringToHash("death");
 
     // animator key events:
-    public void idle()         => animator.Play(IDLE);
-    public void run()          => animator.Play(RUN);
+    public void idle()                  => animator.Play(IDLE);
+    public void run()                   => animator.Play(RUN);
     public void front_strike()          => animator.Play(FRONT_STRIKE);
     public void back_strike_backward()  => animator.Play(BACK_STRIKE_BACKWARD);     
     public void back_strike_forward()   => animator.Play(BACK_STRIKE_FORWARD);  
@@ -38,6 +39,7 @@ public class CavalryAnimator : AnimatorOverride{
     public void no_sword_run()          => animator.Play(NO_SWORD_RUN);
     public void pickup_sword()          => animator.Play(PICKUP_SWORD);
     public void ground_slam()           => animator.Play(GROUND_SLAM);
+    public void death()                 => animator.Play(DEATH);
     static public string phase_transition(int phase) => "phase_transition_"+phase;
 
     void rng(float chance, int id){

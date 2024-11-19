@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -6,10 +8,12 @@ public class TheCavalry : Boss{
     public static TheCavalry instance;
 
     // Start is called before the first frame update
+    [SerializeField] CavalryParticlesHandler particles;
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
     [SerializeField] CavalryAudio sound;
     [SerializeField] FetchSword fetch_sword;
+    [SerializeField] List<Collider2D> body_colliders;
     [SerializeField] float
         follow_speed,
         follow_fsword_speed;
@@ -48,6 +52,42 @@ public class TheCavalry : Boss{
     // states: 
     public override void enter_cutscene_state() => state_switch(lock_idle());
     public override void exit_cutscene_state() => state_switch(idle(1));
+
+    protected override void kill(){
+        base.kill();
+        state_switch(death_state());
+    }
+
+    AudioSource source;
+    IEnumerator death_state(){
+        foreach(Collider2D c in body_colliders)
+            c.enabled = false;
+        animator.Play(CavalryAnimator.DEATH);
+        sprite.play_death_effect(2.25f);
+        particles.play_death_particles();
+        disable_components();
+        yield return new WaitForSeconds(3);
+        particles.stop_death_particles();
+        yield return new WaitForSeconds(3);
+        AudioManager.stop_music();
+        UiManager.instance.play_enemy_vanquished();
+        AudioClipHandler.play(UnityHook.instance, SoundID.WOODEN_PING, out source);
+        gameObject.SetActive(false);
+        yield break;
+    }
+
+    void disable_components(){
+        particles.StopAllCoroutines();
+        particles.enabled = false;
+        ranged.StopAllCoroutines();
+        ranged.enabled = false;
+        movement.StopAllCoroutines();
+        movement.enabled = false;
+        melee.StopAllCoroutines();
+        melee.enabled = false;
+        combat.StopAllCoroutines();
+        combat.enabled = false;
+    }
 
     IEnumerator idle(float x){ 
         animator.Play(CavalryAnimator.IDLE);

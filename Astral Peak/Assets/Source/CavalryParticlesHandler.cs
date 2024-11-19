@@ -9,7 +9,8 @@ public class CavalryParticlesHandler : ParticlesHandler{
         bottom_bite             ,
         ground_slam_hop_first   ,
         ground_slam_hop_second  ,
-        ground_slam_impact;
+        ground_slam_impact,
+        death_particles;
     
     public void emit_front_strike        () => front_strike.Emit(1);
     public void emit_back_strike_backward() => back_strike_backward.Emit(1);
@@ -17,6 +18,8 @@ public class CavalryParticlesHandler : ParticlesHandler{
     public void emit_ground_slam_hop_first() => ground_slam_hop_first.Emit(1);
     public void emit_ground_slam_hop_second() => ground_slam_hop_second.Emit(1);
     public void emit_ground_slam_impact()   => ground_slam_impact.Play();
+    public void play_death_particles() => death_particles.Play();
+    public void stop_death_particles() => death_particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     public void emit_bite(){
         top_bite.Emit(1);
         bottom_bite.Emit(1);

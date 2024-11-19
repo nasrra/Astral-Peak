@@ -11,7 +11,6 @@ public static class CutsceneManager{
         cutscene.begin();
     }
     public static void set_coroutine(IEnumerator c){
-        Debug.Log(1);
         coroutines.StartCoroutine(c);
     }
 }

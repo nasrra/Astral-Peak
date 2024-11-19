@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class Boss : CreatureInheritor<CharacterMovement>{
-    [SerializeField] protected SpriteHandler sprite;
+    [SerializeField] protected BossSpriteHandler sprite;
     [SerializeField] protected AnimatorOverride animator;
     [SerializeField] protected BossCombat combat;
-    [SerializeField] protected ParticlesHandler particles;
     [SerializeField] protected Transform target;
     protected Coroutine state;
 

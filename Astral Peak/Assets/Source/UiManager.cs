@@ -10,7 +10,8 @@ public class UiManager : MonoBehaviour{
     [SerializeField] GameObject 
         death_screen,
         settings_menu,
-        hud;
+        hud,
+        enemy_vanquished;
 
     void Awake(){
         instance = this;
@@ -43,6 +44,14 @@ public class UiManager : MonoBehaviour{
         disable_all();
         death_screen.SetActive(true);
         StartCoroutine(death_screen_timer());
+    }
+
+    public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_text());
+    IEnumerator enemy_vanquished_text(){
+        enemy_vanquished.SetActive(true);
+        yield return new WaitForSeconds(3);
+        enemy_vanquished.SetActive(false);
+        yield break;
     }
 
     IEnumerator death_screen_timer(){

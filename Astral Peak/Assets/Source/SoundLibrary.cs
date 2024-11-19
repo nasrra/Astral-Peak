@@ -42,7 +42,8 @@ public enum SoundID{
     SOFT_WIND,
     WHOOSH_1,
     WHISTLE_LONG,
-    WOLF_HOWL
+    WOLF_HOWL,
+    WOODEN_PING
 }
 
 // optimisation: 
@@ -110,6 +111,7 @@ public static class SoundLibrary{
         {SoundID.BOW_SHOT,            () => new Sound(load_sfx("bow_shot"),           AudioManager.sfx_mixer, 1f)},
         {SoundID.COIN_TOSS,           () => new Sound(load_sfx("coin_toss"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
+        {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, 1f)},
     };
 }
 
