@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -24,7 +26,7 @@ public static class AudioManager{
         ambience        = sources[1];
         audio_player    = _audio_player;
     }
-
+    
     public static void play_music(SoundID sound_id)    => AudioClipHandler.crossfade(audio_player, ref music, sound_id, 1f);
     public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(audio_player, ref ambience, sound_id, 1f);
     public static void stop_music() => AudioClipHandler.fade_out(audio_player, music, 1f);

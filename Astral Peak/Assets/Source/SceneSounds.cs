@@ -8,7 +8,8 @@ public static class SceneSounds{
     public static readonly Dictionary<string, Func<List<SoundID>>> create = new Dictionary<string, Func<List<SoundID>>>(){
         {"WolfBossRoom", () => new List<SoundID>(){
             // MUSIC
-            SoundID.WOLF_BOSS_MUSIC,
+            SoundID.WOLF_BOSS_MUSIC_1,
+            SoundID.WOLF_BOSS_MUSIC_2,
             // SFX
             SoundID.BOW_SHOT,
             SoundID.COIN_TOSS,

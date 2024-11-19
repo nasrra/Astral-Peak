@@ -20,7 +20,8 @@ public struct Sound{
 
 public enum SoundID{
     // MUSIC
-    WOLF_BOSS_MUSIC,
+    WOLF_BOSS_MUSIC_1,
+    WOLF_BOSS_MUSIC_2,
 
     // SFX
     BOW_SHOT,
@@ -88,7 +89,8 @@ public static class SoundLibrary{
     public readonly static Dictionary<SoundID, Func<Sound>> sound_creation = new Dictionary<SoundID, Func<Sound>>(){
         
         //MUSIC
-        {SoundID.WOLF_BOSS_MUSIC,     ()=> new Sound(load_music("run - ABRN"), AudioManager.music_mixer, 1, 1)},
+        {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 1, 1)},
+        {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 1, 1)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer,.5f)},

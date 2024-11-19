@@ -42,7 +42,9 @@ public class CavalryOpeningCutscene : Cutscene{
 public class CavalryPhaseTransition : Cutscene{
     AudioSource source;
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
-    public override void begin() => CutsceneManager.set_coroutine(fade());
+    public override void begin(){
+        CutsceneManager.set_coroutine(fade());
+    }
 
     IEnumerator fade(){
         fade_to_black();

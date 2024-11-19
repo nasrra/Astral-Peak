@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CavalryParticlesHandler : ParticlesHandler{
@@ -9,17 +10,26 @@ public class CavalryParticlesHandler : ParticlesHandler{
         bottom_bite             ,
         ground_slam_hop_first   ,
         ground_slam_hop_second  ,
-        ground_slam_impact,
+        ground_slam_impact      ,
+        front_footstep          ,
+        back_footstep           ,
+        jump_particle           ,
+        dash_effect             ,
         death_particles;
     
-    public void emit_front_strike        () => front_strike.Emit(1);
-    public void emit_back_strike_backward() => back_strike_backward.Emit(1);
-    public void emit_back_strike_forward () => back_strike_forward.Emit(1);
-    public void emit_ground_slam_hop_first() => ground_slam_hop_first.Emit(1);
-    public void emit_ground_slam_hop_second() => ground_slam_hop_second.Emit(1);
-    public void emit_ground_slam_impact()   => ground_slam_impact.Play();
-    public void play_death_particles() => death_particles.Play();
-    public void stop_death_particles() => death_particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+    public void emit_front_strike        ()     => front_strike.Emit(1);
+    public void emit_back_strike_backward()     => back_strike_backward.Emit(1);
+    public void emit_back_strike_forward ()     => back_strike_forward.Emit(1);
+    public void emit_ground_slam_hop_first()    => ground_slam_hop_first.Emit(1);
+    public void emit_ground_slam_hop_second()   => ground_slam_hop_second.Emit(1);
+    public void emit_ground_slam_impact()       => ground_slam_impact.Play();
+    public void play_death_particles()          => death_particles.Play();
+    public void stop_death_particles()          => death_particles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+    public void emit_front_footstep()           => front_footstep.Play();
+    public void emit_back_footstep()            => back_footstep.Play();
+    public void emit_jump_particle()            => jump_particle.Play();
+    public void play_dash_effect()              => dash_effect.Play();
+    public void stop_dash_effect()              => dash_effect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     public void emit_bite(){
         top_bite.Emit(1);
         bottom_bite.Emit(1);
@@ -34,6 +44,7 @@ public class CavalryParticlesHandler : ParticlesHandler{
         flip_emitter_left(ground_slam_hop_first .GetComponent<ParticleSystemRenderer>());
         flip_emitter_left(ground_slam_hop_second.GetComponent<ParticleSystemRenderer>());
         flip_emitter_left(ground_slam_impact    .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_left(dash_effect           .GetComponent<ParticleSystemRenderer>());
     }
 
     public override void flip_right(){
@@ -45,5 +56,6 @@ public class CavalryParticlesHandler : ParticlesHandler{
         flip_emitter_right(ground_slam_hop_first .GetComponent<ParticleSystemRenderer>());
         flip_emitter_right(ground_slam_hop_second.GetComponent<ParticleSystemRenderer>()); 
         flip_emitter_right(ground_slam_impact    .GetComponent<ParticleSystemRenderer>());
+        flip_emitter_right(dash_effect           .GetComponent<ParticleSystemRenderer>());
     }
 }

@@ -38,12 +38,12 @@ public class CavalryBossRoom : BossRoomHandler{
         rider.gameObject.SetActive(false);
         switch(phase){
             case 1:  
-                song = SoundID.WOLF_BOSS_MUSIC;
+                song = SoundID.WOLF_BOSS_MUSIC_1;
                 cinematic = "cavalry_opening";
                 play_cinematic = true;
                 break;
             case 2: 
-                song = SoundID.WOLF_BOSS_MUSIC;
+                song = SoundID.WOLF_BOSS_MUSIC_2;
                 cinematic = "cavalry_transition_1";
                 play_cinematic = true;
                 break;
