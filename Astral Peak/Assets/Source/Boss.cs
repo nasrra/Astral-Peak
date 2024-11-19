@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Boss : CreatureInheritor<CharacterMovement>{
+public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected BossSpriteHandler sprite;
     [SerializeField] protected AnimatorOverride animator;
     [SerializeField] protected BossCombat combat;

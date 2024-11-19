@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class CharacterMovement : Movement{
     public event Action 
-        now_grounded, not_grounded, jumped, 
-        dashed, dash_end;
+        now_grounded, not_grounded, jumped;
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool jumping = false;
     [SerializeField] private bool can_jump = true;
-    [SerializeField] private bool can_dash = true;
     [SerializeField] private float 
-        jump_time, jump_force, jump_force_multiplier, jump_time_counter, 
-        dash_time, dash_force, dash_cooldown;
+        jump_time, jump_force, jump_force_multiplier, jump_time_counter;
     [SerializeField] private Collider2DFeedback ground_checker;
 
     void Start() => link();
@@ -90,25 +87,6 @@ public class CharacterMovement : Movement{
         }
         base.movement(option, flag);
     }
-
-    public void dash(Vector3 direction, float force, float duration){
-        if(can_dash == true){
-            can_dash = false;
-            can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
-            switch_state(apply_force_loop(dashed, dash_end, direction, force, duration));
-        }      
-    }
-
-    private void end_dash(){
-        state_switch_default();
-        StartCoroutine(dash_cooldown_loop());
-        can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
-    }
-    IEnumerator dash_cooldown_loop(){
-        yield return new WaitForSeconds(dash_cooldown);
-        can_dash = true;
-        yield break;
-    }
     
     protected override void decelerate(){
         // decelerate when grounded and not moving.
@@ -122,13 +100,11 @@ public class CharacterMovement : Movement{
         base.link();
         ground_checker.trigger_enter += is_grounded;
         ground_checker.trigger_exit += is_not_grounded;
-        dash_end += end_dash;
     }
 
     protected override void unlink(){
         base.unlink();
         ground_checker.trigger_enter -= is_grounded;
         ground_checker.trigger_exit -= is_not_grounded;
-        dash_end -= end_dash;
     }
 }

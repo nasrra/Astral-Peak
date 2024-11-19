@@ -21,8 +21,6 @@ public abstract class Creature : MonoBehaviour{
 
     [Header("Creature")]
     [SerializeField] protected Health health;
-    //[SerializeField] protected Guard guard;
-    [SerializeField] protected bool stunnable;
     protected bool flippable = true;
 
     public Health get_health() => health;
@@ -66,5 +64,4 @@ public abstract class Creature : MonoBehaviour{
     public virtual void exit_cutscene_state(){}
 
     protected virtual void kill() => death?.Invoke();
-    public void is_stunnable(int x) => stunnable = x != 0;
 }

@@ -63,8 +63,8 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
 
     public void stun_state(){
         // don't stun if we are not stunnable.
-        if(stunnable == false)
-            return;
+        //if(stunnable == false)
+        //    return;
 
         state = EnemyState.STUN;
         state_switch_clean_up();

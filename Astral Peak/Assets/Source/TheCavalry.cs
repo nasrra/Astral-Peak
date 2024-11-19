@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
-public class TheCavalry : Boss{
+public class TheCavalry : Boss<CavalryMovement>{
     public static TheCavalry instance;
 
     // Start is called before the first frame update
@@ -29,11 +27,6 @@ public class TheCavalry : Boss{
         StopAllCoroutines();
     }
 
-    // animator events.
-    public void back_strike_forward_leap() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.75f);
-    public void back_strike_backward_jump() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.55f);
-    public void jump_away_dash() => movement.dash(transform.rotation.y == 0? Vector2.left : Vector2.right, 20, 0.35f);
-    public void second_bite_lunge() => movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.2f);
     public void switch_to_move_to_fetch_sword() => state_switch(follow_fetch_sword());
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
     public void switch_to_idle(float x) => state_switch(idle(x));

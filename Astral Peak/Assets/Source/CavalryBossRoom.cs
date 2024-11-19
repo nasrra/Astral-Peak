@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CavalryBossRoom : BossRoomHandler{
-    Boss boss;
     [SerializeField] TheCavalry cavalry;
     [SerializeField] TheRider rider;
     [SerializeField] public GameObject background_wolf;
@@ -61,19 +60,17 @@ public class CavalryBossRoom : BossRoomHandler{
         boss_start_point = rider_start_point;
         cavalry.gameObject.SetActive(false);
         rider.gameObject.SetActive(true);
-        boss = rider;
-    
     }
 
     public void phase_2(){
         boss_start_point = cavalry_start_point;
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);   
-        boss = cavalry; 
     }
 
     public void set_positions(){
-        boss.transform.position = boss_start_point.position;
+        rider.transform.position = boss_start_point.position;
+        cavalry.transform.position = boss_start_point.position;
         Player.player.set_enter_position();
     }
 

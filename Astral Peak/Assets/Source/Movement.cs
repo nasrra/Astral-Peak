@@ -1,17 +1,22 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using TreeEditor;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
     public event Action 
         move_direction_changed, 
-        knockedback, knockback_ended;
+        knockedback, knockback_ended,
+        dashed, dash_end;
 
     [Header("Movement")]
-    [SerializeField] protected bool can_knockback = true;
+    [SerializeField] protected bool 
+        can_knockback   = true,
+        can_dash        = true;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
+    [SerializeField] protected float dash_cooldown = 1.0f;
     [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
@@ -101,10 +106,30 @@ public class Movement : MonoBehaviour{
         rb.velocity *= deceleration;
     }
 
+    public void dash(Vector3 direction, float force, float duration){
+        if(can_dash == true){
+            can_dash = false;
+            can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
+            switch_state(apply_force_loop(dashed, dash_end, direction, force, duration));
+        }      
+    }
+
+    private void end_dash(){
+        state_switch_default();
+        StartCoroutine(dash_cooldown_loop());
+        can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
+    }
+    IEnumerator dash_cooldown_loop(){
+        yield return new WaitForSeconds(dash_cooldown);
+        can_dash = true;
+        yield break;
+    }
+
     public void knockback(KnockbackData data){
         if(can_knockback == true)
             switch_state(apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.5f,0)).normalized, data.force, data.duration));
     }
+
     protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
         rb.gravityScale = 0;
         // Normalize the final knockback direction
@@ -134,8 +159,14 @@ public class Movement : MonoBehaviour{
         }
     }
 
-    protected virtual void link() => knockback_ended += state_switch_default;
-    protected virtual void unlink() => knockback_ended -= state_switch_default;
+    protected virtual void link(){
+        dash_end += end_dash;
+        knockback_ended += state_switch_default;
+    }
+    protected virtual void unlink(){
+        dash_end -= end_dash;
+        knockback_ended -= state_switch_default;
+    }
 }
 
 public enum MovementOption{

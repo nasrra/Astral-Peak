@@ -29444,7 +29444,7 @@ GameObject:
   - component: {fileID: 2694134218538119565}
   - component: {fileID: 1050252211906397275}
   - component: {fileID: 5770604696759256352}
-  - component: {fileID: 3541078638272707198}
+  - component: {fileID: 4346448695507625108}
   - component: {fileID: 8221373605123083948}
   - component: {fileID: 4768311574549485359}
   - component: {fileID: 119345288355589671}
@@ -29531,8 +29531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 8221373605123083948}
-  stunnable: 0
-  movement: {fileID: 3541078638272707198}
+  movement: {fileID: 4346448695507625108}
   sprite: {fileID: 96296124482934205}
   animator: {fileID: 4768311574549485359}
   combat: {fileID: 7306472689858852757}
@@ -29545,7 +29544,7 @@ MonoBehaviour:
   body_colliders: []
   follow_speed: 5
   follow_fsword_speed: 10
---- !u!114 &3541078638272707198
+--- !u!114 &4346448695507625108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29554,27 +29553,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5026348276079211433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
+  m_Script: {fileID: 11500000, guid: add4d283ee359af45b2584cdf8200be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   can_knockback: 1
+  can_dash: 1
   top_speed: 5
   acceleration: 5
-  deceleration: 0.5
+  dash_cooldown: 0.1
+  deceleration: 0.85
   move_direction: {x: 0, y: 0}
   rb: {fileID: 1050252211906397275}
-  grounded: 0
-  jumping: 0
-  can_jump: 1
-  can_dash: 1
-  jump_time: 1
-  jump_force: 10
-  jump_force_multiplier: 0.1
-  jump_time_counter: 0
-  dash_time: 0
-  dash_force: 0
-  dash_cooldown: 0.1
-  ground_checker: {fileID: 7233953820733789464}
 --- !u!114 &8221373605123083948
 MonoBehaviour:
   m_ObjectHideFlags: 0
