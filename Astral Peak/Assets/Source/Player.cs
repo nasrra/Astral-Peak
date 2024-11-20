@@ -18,7 +18,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [Header("Player")]
     [SerializeField] private PlayerAnimator animator;
     [SerializeField] private Interactor interactor;
-    [SerializeField] protected MeleeHolster melee;
+    [SerializeField] protected PlayerCombat melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] new protected PlayerAudio audio;
@@ -153,8 +153,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_movement();
     }
 
-    protected void attack_failed(Collider2D other) => movement.knockback(new KnockbackData(melee.get_self_knockback_force(), melee.get_self_knockback_duration(), other.transform));
-
     protected void link_events(){
         link_input();
         link_melee();
@@ -217,14 +215,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     private void link_melee(){
-        melee.hit_enemy_guard   += attack_failed;
         flipped_left            += particles.flip_left;
         flipped_right           += particles.flip_right;
+        melee.melee_hit         += audio.emit_attack_hit;
     }
     private void unlink_melee(){
-        melee.hit_enemy_guard   -= attack_failed;
         flipped_left            -= particles.flip_left;
         flipped_right           -= particles.flip_right;
+        melee.melee_hit         -= audio.emit_attack_hit;
     }
 
     protected void link_health(){

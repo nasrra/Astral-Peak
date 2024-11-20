@@ -30,18 +30,6 @@ public class TheCavalry : Boss<CavalryMovement>{
     public void switch_to_move_to_fetch_sword() => state_switch(follow_fetch_sword());
     public void switch_to_idle_no_sword() => state_switch(idle_no_sword());
     public void switch_to_idle(float x) => state_switch(idle(x));
-    public void ground_slam_camera_adjust(){
-        CameraController.instance.move_up_state(6, 4f);
-        CameraController.instance.zoom_out_state(12, 2f);
-    }
-    public void ground_slam_camera_reset(){
-        CameraController.instance.reset_offset_state(32f);
-        CameraController.instance.reset_zoom_state(16f);
-    }
-    public void sword_summon_camera_zoom() => CameraController.instance.zoom_out_state(14, 2f);
-    public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
-    public void ground_slam_camera_shake() => CameraController.instance.shake_camera(0.15f, 0.65f);
-    public void death_camera_shake() => CameraController.instance.shake_camera(0.25f, 1f);
 
     // states: 
     public override void enter_cutscene_state() => state_switch(lock_idle());

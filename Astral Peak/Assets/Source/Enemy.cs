@@ -113,14 +113,14 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         //base.link_events();
         link_combat();
         link_health();
-        link_melee();
+        //link_melee();
     }
 
     protected void unlink_events(){
         //base.unlink_events();
         unlink_combat();
         unlink_health(); 
-        unlink_melee();
+        //unlink_melee();
     }
 
     private void link_combat(){
@@ -143,13 +143,13 @@ public class Enemy : CreatureInheritor<CharacterMovement>{
         health.damaged -= stun_state;
     }
 
-    private void link_melee(){
-        melee.hit_enemy_guard += attack_failed;
-    }
-
-    private void unlink_melee(){
-        melee.hit_enemy_guard -= attack_failed;
-    }
+    //private void link_melee(){
+    //    melee.hit_enemy_guard += attack_failed;
+    //}
+//
+    //private void unlink_melee(){
+    //    melee.hit_enemy_guard -= attack_failed;
+    //}
 #endregion
 }
 

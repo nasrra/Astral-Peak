@@ -24,11 +24,13 @@ public class Arrow : Projectile{
         yield break;
     }
 
-    IEnumerator grounded_behaviour(){
+    protected IEnumerator grounded_behaviour(){
         if(rotate_state != null)
             StopCoroutine(rotate_state);
-        StopCoroutine(move_state);
-        StopCoroutine(lifetime_state);
+        if(move_state != null)
+            StopCoroutine(move_state);
+        if(lifetime_state != null)
+            StopCoroutine(lifetime_state);
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
         col.enabled = false;

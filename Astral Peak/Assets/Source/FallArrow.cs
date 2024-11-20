@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class FallArrow : Projectile{
+public class FallArrow : Arrow{
     [SerializeField] float
         rise_speed,
         rise_time, 
@@ -14,7 +14,7 @@ public class FallArrow : Projectile{
 
     Coroutine coroutine;
 
-    void Awake() {}
+    void Awake() {} // we dont want a life time or movement of the normal projectile class
     void Start() => coroutine = StartCoroutine(fall_arrow_behaviour());
 
     IEnumerator fall_arrow_behaviour(){

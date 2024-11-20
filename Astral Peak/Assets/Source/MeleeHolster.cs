@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 //create seperate classes for each atttack
 
 [Serializable]
 public class MeleeHolster{
+    public event Action hit_creature;
     public delegate void AnimationDelegate();
     protected AnimationDelegate animation;
 
     Dictionary<string, bool> hit_creatures = new Dictionary<string, bool>();
-
-    public Action<Collider2D>
-        hit_enemy_guard;
 
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
@@ -51,6 +50,7 @@ public class MeleeHolster{
         creature.get_health().damage(damage_data, knockback_data);
         // add the creature to hit creatures;
         hit_creatures.Add(name, true);
+        hit_creature?.Invoke();
     }
 
     public virtual void use() => animation();
