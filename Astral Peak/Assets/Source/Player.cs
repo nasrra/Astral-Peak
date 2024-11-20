@@ -144,7 +144,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_movement();
         movement.stop();
-        animator.idle();
+        animator.cutscene_idle();
     }
 
     public override void exit_cutscene_state(){

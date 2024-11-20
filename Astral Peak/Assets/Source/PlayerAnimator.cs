@@ -18,6 +18,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     
 
     // main states that can be returned to.
+    public void cutscene_idle() => play(IDLE, true);
     public void idle()          {if(state != FALL_START && state != FALL_LOOP) play(IDLE, true);}
     public void run()           {if(state != FALL_START && state != FALL_LOOP) play(RUN, true);}
     public void none()          => play(NONE, true);
