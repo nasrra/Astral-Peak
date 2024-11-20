@@ -52,6 +52,7 @@ public class CavalryPhaseTransition : Cutscene{
         yield return new WaitForSeconds(1f); 
         room.phase_1();
         room.set_positions();
+        TheRider.instance.flip_to_target();
         TheRider.instance.enter_cutscene_state();
         Player.player.enter_cutscene_state();
         fade_from_black();
