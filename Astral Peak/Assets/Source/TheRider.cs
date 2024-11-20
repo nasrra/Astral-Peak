@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TheRider : Boss<RiderMovement>{
     public static TheRider instance;
-
     [SerializeField] RiderParticlesHandler particles;
     [SerializeField] RiderRangedCombat ranged;
     [SerializeField] RiderAudio sound;

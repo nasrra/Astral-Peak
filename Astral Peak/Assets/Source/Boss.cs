@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected BossSpriteHandler sprite;

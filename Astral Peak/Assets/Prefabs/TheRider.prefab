@@ -24676,8 +24676,8 @@ GameObject:
   - component: {fileID: 5748691801250436687}
   - component: {fileID: 1266882780324297340}
   - component: {fileID: 156633529036933837}
-  - component: {fileID: 4612390890881141321}
-  - component: {fileID: 6362768417179763687}
+  - component: {fileID: 2116196115767782715}
+  - component: {fileID: 1191106703025807306}
   m_Layer: 8
   m_Name: TheRider
   m_TagString: Untagged
@@ -24724,13 +24724,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8131693212758841488}
   movement: {fileID: 4697436725885230861}
-  sprite: {fileID: 6362768417179763687}
+  sprite: {fileID: 2116196115767782715}
   animator: {fileID: 2801977602905901850}
   combat: {fileID: 746696598816751763}
   target: {fileID: 0}
   particles: {fileID: 796542481378532419}
   ranged: {fileID: 6996315490541205186}
-  sound: {fileID: 4612390890881141321}
+  sound: {fileID: 1191106703025807306}
 --- !u!114 &4697436725885230861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24988,19 +24988,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.75}
   serializedVersion: 2
   m_Radius: 0.25
---- !u!114 &4612390890881141321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3682692632547633077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a09f408bd1f5b43a1deed2e2e8581a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6362768417179763687
+--- !u!114 &2116196115767782715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25020,6 +25008,18 @@ MonoBehaviour:
   damaged_colour: {r: 0, g: 0, b: 0, a: 0}
   hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
   death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
+--- !u!114 &1191106703025807306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682692632547633077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a09f408bd1f5b43a1deed2e2e8581a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5264159360024510941
 GameObject:
   m_ObjectHideFlags: 0
@@ -39886,6 +39886,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7980198678613854969}
     m_Modifications:
+    - target: {fileID: 620863685063968908, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 620863685063968908, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_Name
+      value: WeaponHolster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704949514559120635, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_Name
+      value: HandCrossbow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411269364900385383, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_Name
+      value: HolsteredCrossbow
+      objectReference: {fileID: 0}
     - target: {fileID: 3764781240478324355, guid: 627930928edebff4fadf436c0295848c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7165632
@@ -39925,6 +39941,14 @@ PrefabInstance:
     - target: {fileID: 4277938006046419048, guid: 627930928edebff4fadf436c0295848c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -21.316
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442470844979012607, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_Name
+      value: WeaponHolster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442470844979012607, guid: 627930928edebff4fadf436c0295848c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5085265533020104211, guid: 627930928edebff4fadf436c0295848c, type: 3}
       propertyPath: m_Name
