@@ -76,8 +76,8 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:    0);
 
     void Start(){
-        //test(ground_slam);
-        set_movesets(); 
+        test(ground_slam);
+        //set_movesets(); 
     }
 
     void set_movesets(){

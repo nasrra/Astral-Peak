@@ -13,6 +13,7 @@ public static class SceneSounds{
             // SFX
             SoundID.BOW_SHOT,
             SoundID.COIN_TOSS,
+            SoundID.DEEP_BOOM,
             SoundID.DOG_BARK_1,
             SoundID.LEATHER_CONTORT_1,
             SoundID.MAGIC_1,
@@ -27,8 +28,10 @@ public static class SceneSounds{
             SoundID.SNOW_FOOTSTEP_3,
             SoundID.SNOW_FOOTSTEP_4,
             SoundID.SNOW_IMPACT_HEAVY,
+            SoundID.SNOW_IMPACT_LIGHT,
             SoundID.SNOW_JUMP,
             SoundID.SOFT_WIND,
+            SoundID.STEAM,
             SoundID.WHOOSH_1,
             SoundID.WHISTLE_LONG,
             SoundID.WOLF_HOWL,

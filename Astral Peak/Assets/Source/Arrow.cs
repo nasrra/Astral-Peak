@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Arrow : Projectile{
     [SerializeField] GameObject despawn_effect;
+    [SerializeField] GameObject sprite;
+    AudioSource source;
 
     void Start() => state_switch(ref rotate_state, arrow_behaviour());
 
@@ -34,9 +36,14 @@ public class Arrow : Projectile{
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
         col.enabled = false;
+        AudioClipHandler.play(this, SoundID.SNOW_IMPACT_LIGHT, out source, randomise_pitch: true);
         yield return new WaitForSeconds(1);
         GameObject particleInstance = Instantiate(despawn_effect, front_point.position, despawn_effect.transform.rotation);
+        float death_delay = particleInstance.GetComponent<ParticleSystem>().main.duration + particleInstance.GetComponent<ParticleSystem>().main.startLifetime.constantMax;
         UnityHook.Destroy(particleInstance, particleInstance.GetComponent<ParticleSystem>().main.duration + particleInstance.GetComponent<ParticleSystem>().main.startLifetime.constantMax);
+        sprite.SetActive(false);
+        AudioClipHandler.play(this, SoundID.STEAM, out source, randomise_pitch: true);
+        yield return new WaitForSeconds(death_delay);
         Destroy(gameObject);
         yield break;
     }

@@ -10,6 +10,7 @@ public class PlayerAudio : MonoBehaviour
     public void emit_grounded()     => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
     public void emit_attack_hit()   => AudioClipHandler.play(this, SoundID.MELEE_HIT, out source, randomise_pitch: true);
     public void emit_jump()         => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source, randomise_pitch: true);
+    public void emit_damaged()      => AudioClipHandler.play(this, SoundID.DEEP_BOOM, out source);
 
     public SoundID choose_footstep()
     {

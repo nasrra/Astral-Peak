@@ -208,8 +208,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8757097146201202110}
-  - {fileID: 8945895618616130849}
-  - {fileID: 2362946833705830583}
   - {fileID: 4053712624308928907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -259,6 +257,7 @@ MonoBehaviour:
   trail: {fileID: 4610154022650783311}
   col: {fileID: 9042564499259221842}
   despawn_effect: {fileID: 8296636422789084472, guid: 2378160a0a5059b47b1c4f4b740f74db, type: 3}
+  sprite: {fileID: 8470042430003207716}
   rise_speed: 25
   rise_time: 0.75
   rotate_speed: 10
@@ -290,13 +289,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4620747474906692238}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: 1, y: 0.10000007, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalPosition: {x: -6.8666687, y: -0.6666671, z: 0}
+  m_LocalScale: {x: 13.333334, y: 13.333335, z: 13.333333}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7002258043677696304}
-  m_Father: {fileID: 6247057131499895030}
+  m_Father: {fileID: 3114106480536260143}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!212 &8593103227954089335
 SpriteRenderer:
@@ -408,13 +407,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6624467865610040091}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 0.10000007, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -6.8666687, y: -0.6666671, z: 0}
+  m_LocalScale: {x: 13.333335, y: 13.333335, z: 13.333334}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5873281320354475399}
-  m_Father: {fileID: 6247057131499895030}
+  m_Father: {fileID: 3114106480536260143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &6640136368867067308
 SpriteRenderer:
@@ -498,7 +497,9 @@ Transform:
   m_LocalPosition: {x: -0.03, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 8945895618616130849}
+  - {fileID: 2362946833705830583}
   m_Father: {fileID: 8757097146201202110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &7867096031497898839

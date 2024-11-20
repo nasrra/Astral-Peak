@@ -29,6 +29,7 @@ public enum SoundID{
     // SFX
     BOW_SHOT,
     COIN_TOSS,
+    DEEP_BOOM,
     DOG_BARK_1,
     LEATHER_CONTORT_1,
     MAGIC_1,
@@ -44,7 +45,9 @@ public enum SoundID{
     SNOW_FOOTSTEP_4,
     SNOW_JUMP,
     SNOW_IMPACT_HEAVY,
+    SNOW_IMPACT_LIGHT,
     SOFT_WIND,
+    STEAM,
     WHOOSH_1,
     WHISTLE_LONG,
     WOLF_HOWL,
@@ -110,7 +113,8 @@ public static class SoundLibrary{
         {SoundID.MELEE_SWING_3,       () => new Sound(load_sfx("melee_swing_3"),      AudioManager.sfx_mixer, 1f)},
         {SoundID.MAGIC_1,             () => new Sound(load_sfx("magic_1"),            AudioManager.sfx_mixer, 1f)},
         {SoundID.MAGIC_EXPLOSION,     () => new Sound(load_sfx("magic_explosion"),    AudioManager.sfx_mixer, 1f)},
-        {SoundID.SNOW_IMPACT_HEAVY,   () => new Sound(load_sfx("snow_impact_heavy"),  AudioManager.sfx_mixer,.7f)},
+        {SoundID.SNOW_IMPACT_HEAVY,   () => new Sound(load_sfx("snow_impact_heavy"),  AudioManager.sfx_mixer,.6f)},
+        {SoundID.SNOW_IMPACT_LIGHT,   () => new Sound(load_sfx("snow_impact_light"),  AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.WHISTLE_LONG,        () => new Sound(load_sfx("whistle_long"),       AudioManager.sfx_mixer, 1f)},
         {SoundID.WHOOSH_1,            () => new Sound(load_sfx("whoosh_1"),           AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.DOG_BARK_1,          () => new Sound(load_sfx("dog_bark_1"),         AudioManager.sfx_mixer, 1f)},
@@ -119,6 +123,8 @@ public static class SoundLibrary{
         {SoundID.COIN_TOSS,           () => new Sound(load_sfx("coin_toss"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
         {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, 1f)},
+        {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, 1f)},
+        {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)}
     };
 }
 

@@ -11,6 +11,11 @@ public class CameraEffects : MonoBehaviour{
         hurt    = new CameraEffectState(0.45f,-50,0.7f, Color.white);
     [SerializeField] Volume volume;
 
+    static Coroutine 
+        vignette_state,
+        colour_state,
+        grain_state;
+
     void Awake() => instance = this;
 
     public void Start(){
@@ -56,20 +61,26 @@ public class CameraEffects : MonoBehaviour{
 
     void handle_vignette(float intensity, float speed){
         volume.sharedProfile.TryGet(out Vignette vignette);
-        StartCoroutine(vignette.intensity.value < intensity?
+        if(vignette_state != null)
+            StopCoroutine(vignette_state);
+        vignette_state = StartCoroutine(vignette.intensity.value < intensity?
             increase_value(vignette.intensity, intensity, speed) :
             decrease_value(vignette.intensity, intensity, speed));    
     }
 
     void handle_colour_adjustment(float saturation, float speed){
         volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        StartCoroutine(colour.saturation.value < saturation? 
+        if(colour_state != null)
+            StopCoroutine(colour_state);
+        colour_state = StartCoroutine(colour.saturation.value < saturation? 
             increase_value(colour.saturation, saturation, speed * 100) : 
             decrease_value(colour.saturation, saturation, speed * 100));        
     }
     void handle_film_grain(float intensity, float speed){
         volume.sharedProfile.TryGet(out FilmGrain film_grain);
-        StartCoroutine(film_grain.intensity.value < intensity? 
+        if(grain_state != null)
+            StopCoroutine(grain_state);
+        grain_state = StartCoroutine(film_grain.intensity.value < intensity? 
             increase_value(film_grain.intensity, intensity, speed) :
             decrease_value(film_grain.intensity, intensity, speed));     
     }     

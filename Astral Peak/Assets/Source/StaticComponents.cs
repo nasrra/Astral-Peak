@@ -56,6 +56,6 @@ public static class StaticComponents{
     // hook into unity engines runtime.
     static void hook(){
         hook_in = main.AddComponent<UnityHook>();
-        hook_in.start += AudioManager.load_volume_settings; // this only works when on start is called.
+        hook_in.start += AudioManager.on_start; // this only works when on start is called.
     }
 }

@@ -121,9 +121,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     IEnumerator damaged_state(){
         sprite.play_damaged_flash();
         health.is_invulnerable(invulnerable_time);
+        AudioManager.low_pass_audio(true);
+        CameraController.instance.shake_camera(0.25f, 1);
+        audio.emit_damaged();
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
         damaged_stop?.Invoke();
+        AudioManager.low_pass_audio(false);
     }
 
     // used to set the players initial position in the scene.
