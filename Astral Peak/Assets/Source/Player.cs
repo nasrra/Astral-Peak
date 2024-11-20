@@ -91,6 +91,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void grounded(){
         // bounce when hitting the ground.
         animator.medium_bounce();
+        particles.emit_jump();
 
         // reset to none so that the animator can play the run or idle animation.
         animator.none();
@@ -200,6 +201,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.now_grounded           += grounded;
         movement.not_grounded           += animator.start_fall;
         movement.jumped                 += animator.jump;
+        movement.jumped                 += particles.emit_jump;
         movement.dashed                 += dashed;
         movement.dash_end               += health.is_vulnerable;
     }
@@ -210,6 +212,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= animator.start_fall;
         movement.jumped                 -= animator.jump;
+        movement.jumped                 -= particles.emit_jump;
         movement.dashed                 -= dashed;
         movement.dash_end               -= health.is_vulnerable;
     }

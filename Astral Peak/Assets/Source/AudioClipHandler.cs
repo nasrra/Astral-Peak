@@ -9,17 +9,18 @@ public static class AudioClipHandler{
         AudioSource s = object_audio.gameObject.AddComponent<AudioSource>();
         s.clip = sound.clip;
         s.volume = sound.volume;
-        s.pitch = sound.pitch;
+        s.pitch = sound.max_pitch;
         s.outputAudioMixerGroup = sound.group;
         return s;        
     }
 
     public static void set_game_object(MonoBehaviour audio) => object_audio = audio;
 
-    public static void play(MonoBehaviour audio, SoundID sound_id, out AudioSource source){
+    public static void play(MonoBehaviour audio, SoundID sound_id, out AudioSource source, bool randomise_pitch = false){
         Sound sound = SoundLibrary.get_sound(sound_id);
         set_game_object(audio);
         source = create_source(sound);
+        source.pitch = randomise_pitch? sound.randomise_pitch() : source.pitch;
         source.Play();
         Object.Destroy(source,sound.clip.length); // unscaled time btw.
     }

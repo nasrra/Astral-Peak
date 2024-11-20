@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public struct Sound{
-    public Sound(AudioClip c, AudioMixerGroup g, float v, float p = 1){
-        clip = c;
-        group = g;
-        volume = v;
-        pitch = p;
+    public Sound(AudioClip _clip, AudioMixerGroup _group, float _volume = 1, float _max_pitch = 1, float _min_pitch = 1){
+        clip = _clip;
+        group = _group;
+        volume = _volume;
+        max_pitch = _max_pitch;
+        min_pitch = _min_pitch;
     }
     public AudioClip clip;
     public AudioMixerGroup group;
     public float volume;
-    public float pitch;
+    public float max_pitch;
+    public float min_pitch;
+    public float randomise_pitch() => UnityEngine.Random.Range(min_pitch, max_pitch);
 }
 
 public enum SoundID{
@@ -27,14 +30,10 @@ public enum SoundID{
     BOW_SHOT,
     COIN_TOSS,
     DOG_BARK_1,
-    DOG_BARK_2,
-    DOG_BARK_3,
     LEATHER_CONTORT_1,
     MAGIC_1,
     MAGIC_EXPLOSION,
-    MELEE_HIT_1,
-    MELEE_HIT_2,
-    MELEE_HIT_3,
+    MELEE_HIT,
     MELEE_SWING_1,
     MELEE_SWING_2,
     MELEE_SWING_3,
@@ -103,10 +102,8 @@ public static class SoundLibrary{
         {SoundID.SNOW_FOOTSTEP_4,     () => new Sound(load_sfx("snow_footstep_4"),    AudioManager.sfx_mixer,.5f)},
         {SoundID.SOFT_WIND,           () => new Sound(load_sfx("soft_wind"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.WOLF_HOWL,           () => new Sound(load_sfx("wolf_howl"),          AudioManager.sfx_mixer, 1f)},
-        {SoundID.MELEE_HIT_1,         () => new Sound(load_sfx("melee_hit_1"),        AudioManager.sfx_mixer, 1f)},
-        {SoundID.MELEE_HIT_2,         () => new Sound(load_sfx("melee_hit_2"),        AudioManager.sfx_mixer, 1f)},
-        {SoundID.MELEE_HIT_3,         () => new Sound(load_sfx("melee_hit_3"),        AudioManager.sfx_mixer, 1f)},
-        {SoundID.MELEE_SWING_1,       () => new Sound(load_sfx("melee_swing_1"),      AudioManager.sfx_mixer, 1f)},
+        {SoundID.MELEE_HIT,           () => new Sound(load_sfx("melee_hit"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.MELEE_SWING_1,       () => new Sound(load_sfx("melee_swing_1"),      AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.MELEE_SWING_2,       () => new Sound(load_sfx("melee_swing_2"),      AudioManager.sfx_mixer, 1f)},
         {SoundID.MELEE_SWING_3,       () => new Sound(load_sfx("melee_swing_3"),      AudioManager.sfx_mixer, 1f)},
         {SoundID.MAGIC_1,             () => new Sound(load_sfx("magic_1"),            AudioManager.sfx_mixer, 1f)},
@@ -115,10 +112,8 @@ public static class SoundLibrary{
         {SoundID.WHISTLE_LONG,        () => new Sound(load_sfx("whistle_long"),       AudioManager.sfx_mixer, 1f)},
         {SoundID.WHOOSH_1,            () => new Sound(load_sfx("whoosh_1"),           AudioManager.sfx_mixer, 1f)},
         {SoundID.DOG_BARK_1,          () => new Sound(load_sfx("dog_bark_1"),         AudioManager.sfx_mixer, 1f)},
-        {SoundID.DOG_BARK_2,          () => new Sound(load_sfx("dog_bark_2"),         AudioManager.sfx_mixer, 1f)},
-        {SoundID.DOG_BARK_3,          () => new Sound(load_sfx("dog_bark_3"),         AudioManager.sfx_mixer, 1f)},
         {SoundID.LEATHER_CONTORT_1,   () => new Sound(load_sfx("leather_contort_1"),  AudioManager.sfx_mixer, 1f)},
-        {SoundID.BOW_SHOT,            () => new Sound(load_sfx("bow_shot"),           AudioManager.sfx_mixer, 1f)},
+        {SoundID.BOW_SHOT,            () => new Sound(load_sfx("bow_shot"),           AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.COIN_TOSS,           () => new Sound(load_sfx("coin_toss"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
         {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, 1f)},
