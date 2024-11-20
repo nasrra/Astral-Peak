@@ -27,6 +27,7 @@ public static class SceneSounds{
             SoundID.SNOW_FOOTSTEP_3,
             SoundID.SNOW_FOOTSTEP_4,
             SoundID.SNOW_IMPACT_HEAVY,
+            SoundID.SNOW_JUMP,
             SoundID.SOFT_WIND,
             SoundID.WHOOSH_1,
             SoundID.WHISTLE_LONG,

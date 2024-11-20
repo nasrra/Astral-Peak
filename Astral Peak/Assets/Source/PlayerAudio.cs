@@ -4,10 +4,12 @@ public class PlayerAudio : MonoBehaviour
 {
     AudioSource source;
 
-    public void emit_attack()    => AudioClipHandler.play(this, SoundID.MELEE_SWING_1, out source, randomise_pitch: true);
-    public void emit_dash()      => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source);
-    public void emit_footsteps() => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
-    public void emit_attack_hit() => AudioClipHandler.play(this, SoundID.MELEE_HIT, out source, randomise_pitch: true);
+    public void emit_attack()       => AudioClipHandler.play(this, SoundID.MELEE_SWING_1, out source, randomise_pitch: true);
+    public void emit_dash()         => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source, randomise_pitch: true);
+    public void emit_footsteps()    => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
+    public void emit_grounded()     => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
+    public void emit_attack_hit()   => AudioClipHandler.play(this, SoundID.MELEE_HIT, out source, randomise_pitch: true);
+    public void emit_jump()         => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source, randomise_pitch: true);
 
     public SoundID choose_footstep()
     {
