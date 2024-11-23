@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] TheCavalry cavalry;
     [SerializeField] TheRider rider;
+    [SerializeField] public CavalryCutsceneArrow cutscene_arrow;
     [SerializeField] public GameObject background_wolf;
-    [SerializeField] public Turret cutscene_arrow;
     [SerializeField] public ParticleSystem wolf_impact_transition;
     [SerializeField] Collider2DFeedback feedback;
     [SerializeField] Collider2D feedback_collider;
@@ -16,18 +13,13 @@ public class CavalryBossRoom : BossRoomHandler{
     void Awake(){
         link();
         instance = this;
-        cutscene_arrow.projectile_fired += play_arrow_shot;
     }
-
-    [SerializeField] SmartTurret turret;
-    AudioSource source;
 
     void Start(){
         AudioManager.play_ambience(SoundID.SOFT_WIND);
     } 
 
     void OnDestroy(){
-        cutscene_arrow.projectile_fired += play_arrow_shot;
         unlink();
     }
 
@@ -53,7 +45,7 @@ public class CavalryBossRoom : BossRoomHandler{
         feedback.enabled = false;  
         feedback_collider.enabled = false;      
         Player.player.set_exit_point(player_respawn_point.get_enter_point());
-        phase_transition();
+        start_fight();
     }
 
     public void phase_1(){
@@ -73,8 +65,6 @@ public class CavalryBossRoom : BossRoomHandler{
         cavalry.transform.position = boss_start_point.position;
         Player.player.set_enter_position();
     }
-
-    void play_arrow_shot(GameObject x) => AudioClipHandler.play(this, SoundID.BOW_SHOT, out source); 
 
     void link(){
         //cavalry.death           += phase_transition;

@@ -1,7 +1,10 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BossRoomHandler : MonoBehaviour{
+    public event Action 
+        fight_started,
+        fight_stopped;
     public static BossRoomHandler instance;
     public Door player_respawn_point;
     public Transform boss_start_point;
@@ -10,6 +13,11 @@ public class BossRoomHandler : MonoBehaviour{
     public string cinematic;
     public int phase = 0;
     void Awake() => instance = this;
+
+    public void start_fight(){
+        phase_transition();
+        fight_started?.Invoke();
+    }
 
     public virtual void prepare_phase_transition() => phase++;
     public void phase_transition(){

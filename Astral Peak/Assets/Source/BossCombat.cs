@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BossCombat : MonoBehaviour{
@@ -10,7 +11,9 @@ public class BossCombat : MonoBehaviour{
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
     [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
     [SerializeField] protected List<BossAttack> special_moveset = new List<BossAttack>();
-    Coroutine timer;
+    [SerializeField] Transform  
+        left_arena_bound,
+        right_arena_bound;
 
     // used as an animator key event.
     public void set_front_moveset   (List<BossAttack> moveset) => front_moveset = moveset;
@@ -21,17 +24,19 @@ public class BossCombat : MonoBehaviour{
     // add to the algorithm so that some attacks are more frequently picked
     // depending upon their chance percentage.
     public BossAttack chose_attack(float dist_to_target){
-        // get available attacks depending on where the player is located.
-        List<BossAttack> available_attacks; 
-        
-        // get a list of the attacks depeding upon the bosses orientation and whether or not the player is behind or in front of the boss.
-        if(transform.rotation.y == 0)
-            available_attacks = dist_to_target >= 0? available_behind_attacks(dist_to_target) : available_infront_attacks(dist_to_target);        
-        else
-            available_attacks = dist_to_target <= 0? available_behind_attacks(dist_to_target) : available_infront_attacks(dist_to_target); 
+        float target_distance = Mathf.Abs(dist_to_target);
+        float left_bound_distance = dist_to_left_bound();
+        float right_bound_distance = dist_to_left_bound();
 
-        // add special attacks to the available attacks.
-        available_attacks.AddRange(available_special_attacks(dist_to_target));
+        // Determine the appropriate moveset based on the boss's orientation and player's position.
+        List<BossAttack> available_attacks = 
+            (transform.rotation.y == 0 && dist_to_target >= 0) || (transform.rotation.y != 0 && dist_to_target <= 0) 
+            ? get_available_attacks(back_moveset , target_distance, left_bound_distance, right_bound_distance)
+            : get_available_attacks(front_moveset, target_distance, left_bound_distance, right_bound_distance);
+
+        // Get the list of available attacks from the primary moveset and add special attacks.
+        available_attacks.AddRange(get_available_attacks(special_moveset, target_distance, left_bound_distance, right_bound_distance));
+
 
         // choose and execute attack.
         if(available_attacks.Count <= 0)
@@ -54,32 +59,24 @@ public class BossCombat : MonoBehaviour{
         yield break;
     }
 
-    public List<BossAttack> available_infront_attacks(float dist_to_target){
+    public List<BossAttack> get_available_attacks(List<BossAttack> attacks, float td, float lbd, float rbd){
         List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(BossAttack attack in front_moveset)
-            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
+
+        foreach(BossAttack attack in attacks)
+            if(attack.enabled == true 
+                && td <= attack.player_distance
+                && (transform.rotation.y == 0 && lbd >= attack.arena_bound_distance || 
+                    transform.rotation.y != 0 && rbd >= attack.arena_bound_distance))
                 available_attacks.Add(attack);
         return available_attacks;
     }
 
-    public List<BossAttack> available_behind_attacks(float dist_to_target){
-        List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(BossAttack attack in back_moveset)
-            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
-                available_attacks.Add(attack);
-        return available_attacks;
-    }
-
-    public List<BossAttack> available_special_attacks(float dist_to_target){
-        List<BossAttack> available_attacks = new List<BossAttack>();
-        foreach(BossAttack attack in special_moveset)
-            if(attack.enabled == true && Mathf.Abs(dist_to_target) <= attack.distance)
-                available_attacks.Add(attack);
-        return available_attacks;        
-    }
+    float dist_to_left_bound() => Mathf.Abs(left_arena_bound.position.x - transform.position.x);
+    float dist_to_right_bound() => Mathf.Abs(right_arena_bound.position.x - transform.position.x);
 
     protected void test(BossAttack attack){
-        attack.distance = 10;
+        attack.player_distance = 10;
+        attack.arena_bound_distance = 0;
         attack.combat_cooldown = 1;
         attack.attack_cooldown = 1;
         set_special_moveset(new List<BossAttack>(){

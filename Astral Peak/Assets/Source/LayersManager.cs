@@ -15,4 +15,5 @@ public static class LayersManager{
         BITWISE_PLAYER      = 1 << PLAYER,
         BITWISE_ENEMY       = 1 << ENEMY,
         BITWISE_PROJECTILE  = 1 << PROJECTILE;
+
 }

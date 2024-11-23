@@ -15,7 +15,7 @@ public class CavalryOpeningCutscene : Cutscene{
     }
 
     IEnumerator coroutine(){
-        room.cutscene_arrow.fire_once();
+        room.cutscene_arrow.fire();
         CameraController.instance.zoom_in_state(8,1);
         //CameraController.instance.move_down_state(2,1);
         CameraController.instance.regulate_in_bounds(false);
