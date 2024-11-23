@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour{
@@ -12,7 +11,8 @@ public class UiManager : MonoBehaviour{
         settings_menu,
         hud,
         enemy_vanquished;
-
+    AudioSource source;
+    
     void Awake(){
         instance = this;
         GameManager.link_Ui();
@@ -48,6 +48,12 @@ public class UiManager : MonoBehaviour{
 
     public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_text());
     IEnumerator enemy_vanquished_text(){
+        AudioClipHandler.play(
+            SoundID.WOODEN_PING,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    false, 
+            spatial_blend:      false);
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
         enemy_vanquished.SetActive(false);

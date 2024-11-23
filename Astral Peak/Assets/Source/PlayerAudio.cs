@@ -1,16 +1,63 @@
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
     AudioSource source;
 
-    public void emit_attack()       => AudioClipHandler.play(this, SoundID.MELEE_SWING_1, out source, randomise_pitch: true);
-    public void emit_dash()         => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source, randomise_pitch: true);
-    public void emit_footsteps()    => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
-    public void emit_grounded()     => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);
-    public void emit_attack_hit()   => AudioClipHandler.play(this, SoundID.MELEE_HIT, out source, randomise_pitch: true);
-    public void emit_jump()         => AudioClipHandler.play(this, SoundID.WHOOSH_1, out source, randomise_pitch: true);
-    public void emit_damaged()      => AudioClipHandler.play(this, SoundID.DEEP_BOOM, out source);
+    public void emit_attack()=> 
+        AudioClipHandler.play(
+            SoundID.MELEE_SWING_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+
+    public void emit_dash()=> 
+        AudioClipHandler.play(
+            SoundID.WHOOSH_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+
+    public void emit_footsteps()=> 
+        AudioClipHandler.play(
+            choose_footstep(),
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+
+    public void emit_grounded()=> 
+        AudioClipHandler.play(
+            choose_footstep(),
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+
+    public void emit_attack_hit()=> 
+        AudioClipHandler.play(
+            SoundID.MELEE_HIT,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+    public void emit_jump()=> 
+        AudioClipHandler.play(
+            SoundID.WHOOSH_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
+    public void emit_damaged()=> 
+        AudioClipHandler.play(
+            SoundID.DEEP_BOOM,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    false, 
+            spatial_blend:      false);
 
     public SoundID choose_footstep()
     {

@@ -5,16 +5,85 @@ public class CavalryAudio : MonoBehaviour
 {
     AudioSource source;
 
-    public void emit_arrow_knocked()      => AudioClipHandler.play(this, SoundID.COIN_TOSS, out source);                                                    
-    public void emit_bark()               => AudioClipHandler.play(this, SoundID.DOG_BARK_1, out source, randomise_pitch: true);                                                
-    public void emit_bow_shot()           => AudioClipHandler.play(this, SoundID.BOW_SHOT, out source, randomise_pitch: true);                                                        
-    public void emit_front_strike_grab()  => AudioClipHandler.play(this, SoundID.LEATHER_CONTORT_1, out source);                                                     
-    public void emit_ground_slam_hop()    => AudioClipHandler.play(this, SoundID.MAGIC_1, out source);                                                                      
-    public void emit_ground_slam_impact() => AudioClipHandler.play(this, SoundID.SNOW_IMPACT_HEAVY, out source);                                           
-    public void emit_howl()               => AudioClipHandler.play(this, SoundID.WOLF_HOWL, out source);   
-    public void emit_sword_strike()       => AudioClipHandler.play(this, SoundID.MELEE_SWING_2, out source);                                                                            
-    public void emit_footsteps()          => AudioClipHandler.play(this, choose_footstep(), out source, randomise_pitch: true);  
-    public void emit_magic_explosion()    => AudioClipHandler.play(this, SoundID.MAGIC_EXPLOSION, out source);                                      
+    public void emit_arrow_knocked()=> 
+        AudioClipHandler.play(
+            SoundID.COIN_TOSS,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);  
+
+    public void emit_bark()=> 
+        AudioClipHandler.play(
+            SoundID.DOG_BARK_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);   
+
+    public void emit_bow_shot()=> 
+        AudioClipHandler.play(
+            SoundID.BOW_SHOT,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);      
+
+    public void emit_front_strike_grab()=> 
+        AudioClipHandler.play(
+            SoundID.LEATHER_CONTORT_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);    
+
+    public void emit_ground_slam_hop()=> 
+        AudioClipHandler.play(
+            SoundID.MAGIC_1,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true); 
+
+    public void emit_ground_slam_impact() => 
+        AudioClipHandler.play(
+            SoundID.SNOW_IMPACT_HEAVY,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);   
+
+    public void emit_howl()=> 
+        AudioClipHandler.play(
+            SoundID.WOLF_HOWL,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true); 
+
+    public void emit_sword_strike() => 
+        AudioClipHandler.play(
+            SoundID.MELEE_SWING_3,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true); 
+
+    public void emit_footsteps() => 
+        AudioClipHandler.play(
+            choose_footstep(),
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true); 
+
+    public void emit_magic_explosion() => 
+        AudioClipHandler.play(
+            SoundID.MAGIC_EXPLOSION,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);                                   
 
     public SoundID choose_footstep()
     {

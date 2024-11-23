@@ -36,7 +36,12 @@ public class Arrow : Projectile{
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
         col.enabled = false;
-        AudioClipHandler.play(this, SoundID.SNOW_IMPACT_LIGHT, out source, randomise_pitch: true);
+        AudioClipHandler.play(
+            SoundID.SNOW_IMPACT_LIGHT,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
         GameObject particle = Instantiate(grounded_effect, front_point.position, despawn_effect.transform.rotation);
         Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
 
@@ -45,7 +50,12 @@ public class Arrow : Projectile{
         float death_delay = particle.GetComponent<ParticleSystem>().main.duration;
         Destroy(particle, death_delay);
         sprite.SetActive(false);
-        AudioClipHandler.play(this, SoundID.STEAM, out source, randomise_pitch: true);
+        AudioClipHandler.play(
+            SoundID.STEAM,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
         
         yield return new WaitForSeconds(death_delay);
         Destroy(gameObject);

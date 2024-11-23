@@ -9,7 +9,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     [SerializeField] CavalryParticlesHandler particles;
     [SerializeField] CavalryRangedCombatHandler ranged;
     [SerializeField] CavalryMeleeCombatHandler melee;
-    [SerializeField] CavalryAudio sound;
+    [SerializeField] public CavalryAudio sound;
     [SerializeField] FetchSword fetch_sword;
     [SerializeField] List<Collider2D> body_colliders;
     [SerializeField] float
@@ -52,7 +52,6 @@ public class TheCavalry : Boss<CavalryMovement>{
         yield return new WaitForSeconds(6);
         AudioManager.stop_music();
         UiManager.instance.play_enemy_vanquished();
-        AudioClipHandler.play(UnityHook.instance, SoundID.WOODEN_PING, out source);
         gameObject.SetActive(false);
         yield break;
     }

@@ -69,12 +69,13 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.set_target(room.background_wolf.transform);
         CameraController.instance.regulate_in_bounds(false);
         
-        yield return new WaitForSeconds(8.475f);
+        yield return new WaitForSeconds(8.45f);
+
+        yield return new WaitForSeconds(.15f);
         room.background_wolf.SetActive(false);
-        CameraController.instance.regulate_in_bounds(true);
-        
-        yield return new WaitForSeconds(0.25f);
         room.phase_2();
+        TheCavalry.instance.sound.emit_ground_slam_impact();
+        CameraController.instance.regulate_in_bounds(true);
         room.set_positions();
         TheCavalry.instance.enter_cutscene_state();
         CameraController.instance.set_target(TheCavalry.instance.transform);

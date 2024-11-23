@@ -5,6 +5,11 @@ public class CavalryCutsceneArrow : MonoBehaviour{
     AudioSource source;
     public void fire(){
         turret.fire_once();
-        AudioClipHandler.play(this,SoundID.BOW_SHOT,out source);
+        AudioClipHandler.play(
+            SoundID.BOW_SHOT,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);
     }
 }

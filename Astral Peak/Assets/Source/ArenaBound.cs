@@ -10,11 +10,15 @@ public class ArenaBound : MonoBehaviour{
     void trigger_collider() => col.isTrigger    = true;
 
     void link(){
-        BossRoomHandler.instance.fight_started += solid_collider;
-        BossRoomHandler.instance.fight_stopped += trigger_collider;
+        if(BossRoomHandler.instance != null){
+            BossRoomHandler.instance.fight_started += solid_collider;
+            BossRoomHandler.instance.fight_stopped += trigger_collider;
+        }
     }
     void unlink(){
-        BossRoomHandler.instance.fight_started -= solid_collider;
-        BossRoomHandler.instance.fight_stopped -= trigger_collider;        
+        if(BossRoomHandler.instance != null){
+            BossRoomHandler.instance.fight_started -= solid_collider;
+            BossRoomHandler.instance.fight_stopped -= trigger_collider;  
+        }      
     }
 }

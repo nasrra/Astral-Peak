@@ -96,8 +96,8 @@ public static class SoundLibrary{
     public readonly static Dictionary<SoundID, Func<Sound>> sound_creation = new Dictionary<SoundID, Func<Sound>>(){
         
         //MUSIC
-        {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 1, 1)},
-        {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 1, 1)},
+        {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 0.8f, 1)},
+        {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 0.8f, 1)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -105,7 +105,7 @@ public static class SoundLibrary{
         {SoundID.SNOW_FOOTSTEP_3,     () => new Sound(load_sfx("snow_footstep_3"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_FOOTSTEP_4,     () => new Sound(load_sfx("snow_footstep_4"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_JUMP,           () => new Sound(load_sfx("snow_jump"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
-        {SoundID.SOFT_WIND,           () => new Sound(load_sfx("soft_wind"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.SOFT_WIND,           () => new Sound(load_sfx("soft_wind"),          AudioManager.sfx_mixer, 0.8f, 1.15f, 0.85f)},
         {SoundID.WOLF_HOWL,           () => new Sound(load_sfx("wolf_howl"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.MELEE_HIT,           () => new Sound(load_sfx("melee_hit"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.MELEE_SWING_1,       () => new Sound(load_sfx("melee_swing_1"),      AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -122,8 +122,8 @@ public static class SoundLibrary{
         {SoundID.BOW_SHOT,            () => new Sound(load_sfx("bow_shot"),           AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.COIN_TOSS,           () => new Sound(load_sfx("coin_toss"),          AudioManager.sfx_mixer, 1f)},
         {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
-        {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, 1f)},
-        {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, 1f)},
+        {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, .7f)},
+        {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, .8f)},
         {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)}
     };
 }
