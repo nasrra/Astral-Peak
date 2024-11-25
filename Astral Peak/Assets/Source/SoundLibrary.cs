@@ -56,6 +56,7 @@ public enum SoundID{
     STONE_FOOTSTEP_2,
     STONE_FOOTSTEP_3,
     STONE_FOOTSTEP_4,
+    STONE_IMPACT_LIGHT,
 }
 
 // optimisation: 
@@ -112,6 +113,7 @@ public static class SoundLibrary{
         {SoundID.STONE_FOOTSTEP_2,    () => new Sound(load_sfx("stone_footstep_2"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.STONE_FOOTSTEP_3,    () => new Sound(load_sfx("stone_footstep_3"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.STONE_FOOTSTEP_4,    () => new Sound(load_sfx("stone_footstep_4"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.STONE_IMPACT_LIGHT,  () => new Sound(load_sfx("stone_impact_light"), AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_JUMP,           () => new Sound(load_sfx("snow_jump"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SOFT_WIND,           () => new Sound(load_sfx("soft_wind"),          AudioManager.sfx_mixer, 0.8f, 1.15f, 0.85f)},
         {SoundID.WOLF_HOWL,           () => new Sound(load_sfx("wolf_howl"),          AudioManager.sfx_mixer, 1f)},

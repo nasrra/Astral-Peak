@@ -30,7 +30,6 @@ public class CharacterMovement : Movement{
         // invoke that we are now grounded if we are not toughing other ground objects.
         if(ground.Count == 1)
             now_grounded?.Invoke();
-        Debug.Log("grounded!");
     }
 
     private void is_not_grounded(Collider2D other){
@@ -41,7 +40,6 @@ public class CharacterMovement : Movement{
             grounded = false;
             not_grounded?.Invoke();
             reset_deceleration();
-            Debug.Log("not grounded!");
         }
         else
             new_ground?.Invoke(ground[ground.Count-1].tag);

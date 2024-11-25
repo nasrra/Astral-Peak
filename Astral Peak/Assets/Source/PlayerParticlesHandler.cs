@@ -7,7 +7,8 @@ public class PlayerParticlesHandler : ParticlesHandler{
         dash_effect, 
         snow_footstep_effect,
         stone_footstep_effect, 
-        jump_effect,
+        snow_jump_effect,
+        stone_jump_effect,
         death_effect,
         death_explosion;
 
@@ -22,7 +23,7 @@ public class PlayerParticlesHandler : ParticlesHandler{
         flip_emitter_right(dash_effect.GetComponent<ParticleSystemRenderer>());
     }
 
-    public void emit_jump()             => jump_effect.Play();
+    public void emit_jump()             => (ground == "Snow"? snow_jump_effect : stone_jump_effect).Play();
     public void emit_slash()            => slash_effect.Emit(1);
     public void emit_dash()             => dash_effect.Emit(1);
     public void emit_footstep()         => (ground == "Snow"? snow_footstep_effect : stone_footstep_effect).Play(); 

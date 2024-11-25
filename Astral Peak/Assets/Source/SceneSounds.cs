@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class SceneSounds{
     // scene sounds.
@@ -57,6 +55,7 @@ public static class SceneSounds{
             SoundID.STONE_FOOTSTEP_2,
             SoundID.STONE_FOOTSTEP_3,
             SoundID.STONE_FOOTSTEP_4,
+            SoundID.STONE_IMPACT_LIGHT,
             SoundID.MELEE_SWING_1,
             SoundID.WHOOSH_1,
             SoundID.SNOW_IMPACT_HEAVY,
