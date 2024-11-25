@@ -18,8 +18,6 @@ public static class GameManager{
     }
 
     static public void death_state(){
-        Player.player.get_movement().stop();
-        Player.player.unlink_input();
         UiManager.instance.enable_death_screen();
     }
 
@@ -28,8 +26,8 @@ public static class GameManager{
     static public void cutscene_state(){
     }
 
-    static public void link_player() => Player.player.death += death_state;
-    static public void unlink_player() => Player.player.death -= death_state;
+    static public void link_player() => Player.instance.death += death_state;
+    static public void unlink_player() => Player.instance.death -= death_state;
     static public void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
     static public void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
 }

@@ -7,8 +7,8 @@ public class CameraEffects : MonoBehaviour{
     public static CameraEffects instance;
     static CameraEffectState
         none    = new CameraEffectState(0,0,0, Color.white),
-        normal  = new CameraEffectState(0.15f,0,0.35f, Color.white),
-        hurt    = new CameraEffectState(0.45f,-50,0.7f, Color.white);
+        normal  = new CameraEffectState(0.05f,0,0.25f, Color.white),
+        hurt    = new CameraEffectState(0.35f,-25,0.45f, Color.white);
     [SerializeField] Volume volume;
 
     static Coroutine 
@@ -20,14 +20,12 @@ public class CameraEffects : MonoBehaviour{
 
     public void Start(){
         state_switch(normal,1);
-        Player.player.damaged_start += hurt_state;
-        Player.player.damaged_stop  += normal_state;
+        link_player();  
     }
 
     void OnDestroy(){
         reset_effects();
-        Player.player.damaged_start -= hurt_state;
-        Player.player.damaged_stop  -= normal_state;       
+        unlink_player();
     }
 
     public void normal_state() => state_switch(normal, 3);
@@ -119,6 +117,28 @@ public class CameraEffects : MonoBehaviour{
         instant_value_set(colour.saturation,    none.saturation_intensity);
         instant_value_set(film_grain.intensity, none.film_grain_intensity);
         instant_colour_set(Color.white);
+    }
+
+    void link_player(){
+        if(Player.instance == null){
+            Debug.Log("no player!");
+            return;
+        }
+        Player.instance.damaged_start += hurt_state;
+        Player.instance.damaged_stop  += normal_state;
+        Player.instance.death_start   += hurt_state;
+        Player.instance.death         += normal_state; 
+    }
+
+    void unlink_player(){
+        if(Player.instance == null){
+            Debug.Log("no player!");
+            return;
+        }
+        Player.instance.damaged_start -= hurt_state;
+        Player.instance.damaged_stop  -= normal_state;  
+        Player.instance.death_start   -= hurt_state;  
+        Player.instance.death         -= normal_state;    
     }
 }
 

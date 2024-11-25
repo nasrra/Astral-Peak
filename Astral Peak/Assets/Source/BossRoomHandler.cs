@@ -12,7 +12,10 @@ public class BossRoomHandler : MonoBehaviour{
     public SoundID song; 
     public string cinematic;
     public int phase = 0;
-    void Awake() => instance = this;
+    void Awake(){
+        instance = this;
+        AudioManager.stop_music();
+    }
 
     public void start_fight(){
         phase_transition();

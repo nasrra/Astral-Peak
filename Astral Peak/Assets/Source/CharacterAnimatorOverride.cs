@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,6 +31,11 @@ public class CharacterAnimatorOverride : AnimatorOverride{
     // used for animator to lock a layer from changing their animation.
     public void lock_layer(int layerIndex) => locked_layers[layerIndex] = true; 
     public void unlock_layer(int layerIndex) => locked_layers[layerIndex] = false; 
+
+    public void unlock_layers(){
+        for (int i = 0; i < locked_layers.Length; i++)
+            locked_layers[i] = false;
+    }
 
     public Animator get_animator() => animator;
     public int get_state() => state;

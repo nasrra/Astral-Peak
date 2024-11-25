@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     AudioSource source;
+    string ground;
 
     public void emit_attack()=> 
         AudioClipHandler.play(
@@ -58,16 +59,36 @@ public class PlayerAudio : MonoBehaviour
             source:             out source, 
             randomise_pitch:    false, 
             spatial_blend:      false);
+            
+    public void emit_magic_explosion() => 
+        AudioClipHandler.play(
+            SoundID.MAGIC_EXPLOSION,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    true, 
+            spatial_blend:      true);  
 
-    public SoundID choose_footstep()
-    {
+    public void set_ground(string _ground) => ground = _ground;
+
+    public SoundID choose_footstep(){
         int x = Random.Range(0, 4);
-        switch (x)
-        {
-            case 0: return SoundID.SNOW_FOOTSTEP_1;
-            case 1: return SoundID.SNOW_FOOTSTEP_2;
-            case 2: return SoundID.SNOW_FOOTSTEP_3;
-            case 3: return SoundID.SNOW_FOOTSTEP_4;
+        switch(ground){
+            case "Snow":
+                switch (x){
+                    case 0: return SoundID.SNOW_FOOTSTEP_1;
+                    case 1: return SoundID.SNOW_FOOTSTEP_2;
+                    case 2: return SoundID.SNOW_FOOTSTEP_3;
+                    case 3: return SoundID.SNOW_FOOTSTEP_4;
+                }
+            break;
+            case "Stone":
+                switch (x){
+                    case 0: return SoundID.STONE_FOOTSTEP_1;
+                    case 1: return SoundID.STONE_FOOTSTEP_2;
+                    case 2: return SoundID.STONE_FOOTSTEP_3;
+                    case 3: return SoundID.STONE_FOOTSTEP_4;
+                }
+            break;
         }
         throw new System.Exception("ERROR!");
     }

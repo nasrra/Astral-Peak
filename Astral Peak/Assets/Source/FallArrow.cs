@@ -29,7 +29,7 @@ public class FallArrow : Arrow{
         fall_speed      += rng;
         state_switch(ref move_state, move(rise_speed, rise_time));
         yield return new WaitForSeconds(rise_time);
-        state_switch(ref rotate_state, rotate_to_target(Player.player.transform, rotate_speed, rotate_time));
+        state_switch(ref rotate_state, rotate_to_target(Player.instance.transform, rotate_speed, rotate_time));
         state_switch(ref move_state, move(adjust_speed));
         yield return new WaitForSeconds(rotate_time);
         state_switch(ref move_state, move(fall_speed));

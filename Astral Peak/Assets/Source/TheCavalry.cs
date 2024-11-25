@@ -18,6 +18,7 @@ public class TheCavalry : Boss<CavalryMovement>{
 
     void OnEnable(){
         instance = this;
+        //state_switch(lock_idle());
         state_switch(idle(1));
         link_events();
     } 
@@ -89,7 +90,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     IEnumerator pickup_sword(){
         animator.Play(CavalryAnimator.PICKUP_SWORD);
         Destroy(fetch_sword.gameObject);
-        target = Player.player.transform;
+        target = Player.instance.transform;
         yield return new WaitForSeconds(1);
         state_switch(follow());
         yield break;

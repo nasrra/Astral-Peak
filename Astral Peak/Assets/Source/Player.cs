@@ -1,16 +1,14 @@
 using System;
 using System.Collections;
-using System.Linq.Expressions;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : CreatureInheritor<CharacterMovement>{
     
     public event Action
-        damaged_start, damaged_stop;
+        damaged_start, damaged_stop, death_start;
 
     // static fields for other classes to access.
-    public static Player player;
+    public static Player instance;
     public string exit_point = "";
 
 
@@ -27,7 +25,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
-        player = this;
+        instance = this;
         GameManager.link_player();
     }
 
@@ -146,10 +144,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.idle(); // play idle animation
     }
 
+
     public override void enter_cutscene_state(){
         unlink_input();
         unlink_movement();
-        movement.stop();
         animator.cutscene_idle();
     }
 
@@ -157,6 +155,23 @@ public class Player : CreatureInheritor<CharacterMovement>{
         //movement.stop();
         link_input();
         link_movement();
+    }
+
+    protected override void kill() => StartCoroutine(death_state());
+
+    IEnumerator death_state(){
+        unlink_events();
+        invulnerable();
+        //AudioManager.low_pass_audio(true);
+        CameraController.instance.shake_camera(0.25f, 1);
+        audio.emit_damaged();
+        sprite.play_death_effect(2);
+        animator.death();
+        death_start?.Invoke();
+        yield return new WaitForSeconds(3);
+        
+        //AudioManager.low_pass_audio(false);
+        base.kill();
     }
 
     protected void link_events(){
@@ -170,7 +185,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_melee();
         unlink_movement();
-        link_health();
+        unlink_health();
     }
 
     public void link_input(){
@@ -210,6 +225,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 += audio.emit_jump;
         movement.dashed                 += dashed;
         movement.dash_end               += health.is_vulnerable;
+        movement.new_ground             += audio.set_ground;
+        movement.new_ground             += particles.set_ground;
+        movement.stop();
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
@@ -222,6 +240,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 -= audio.emit_jump;
         movement.dashed                 -= dashed;
         movement.dash_end               -= health.is_vulnerable;
+        movement.new_ground             -= audio.set_ground;
+        movement.new_ground             -= particles.set_ground;
     }
 
     private void link_melee(){

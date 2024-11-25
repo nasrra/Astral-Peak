@@ -12,7 +12,8 @@ public class PlayerAnimator : CharacterAnimatorOverride{
         LBOUNCE     = Animator.StringToHash("light_bounce"),
         MBOUNCE     = Animator.StringToHash("medium_bounce"),
         HBOUNCE     = Animator.StringToHash("heavy_bounce"),
-        NONE        = Animator.StringToHash("none");
+        NONE        = Animator.StringToHash("none"),
+        DEATH       = Animator.StringToHash("death");
 
     void Start() => state = IDLE;
     
@@ -24,11 +25,16 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void none()          => play(NONE, true);
     public void start_fall()    {if(is_falling() == false)play(FALL_START, true);}
     public void loop_fall()     => play(FALL_LOOP, false); // key event in jump start animation.
+    public void death(){
+        unlock_layers();
+        play(DEATH, true);
+    }
     public void jump(){
         play(FALL_START, true);
         play_override(MBOUNCE);
     }
-    
+
+
     // additive states that should not be returned to.
     public void attack()    => play(ATTACK, false); 
      

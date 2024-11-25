@@ -11,6 +11,8 @@ public class UiManager : MonoBehaviour{
         settings_menu,
         hud,
         enemy_vanquished;
+    [SerializeField] Animator
+        screen_transitions;
     AudioSource source;
     
     void Awake(){
@@ -42,12 +44,11 @@ public class UiManager : MonoBehaviour{
 
     public void enable_death_screen(){
         disable_all();
-        death_screen.SetActive(true);
-        StartCoroutine(death_screen_timer());
+        play_death_screen();
     }
 
-    public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_text());
-    IEnumerator enemy_vanquished_text(){
+    public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_state());
+    IEnumerator enemy_vanquished_state(){
         AudioClipHandler.play(
             SoundID.WOODEN_PING,
             audio_player:       this, 
@@ -56,12 +57,25 @@ public class UiManager : MonoBehaviour{
             spatial_blend:      false);
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
-        enemy_vanquished.SetActive(false);
         yield break;
     }
 
-    IEnumerator death_screen_timer(){
-        yield return new WaitForSeconds(3);
+    public void play_death_screen() => StartCoroutine(death_screen_state());
+    IEnumerator death_screen_state(){
+        AudioClipHandler.play(
+            SoundID.WOODEN_PING,
+            audio_player:       this, 
+            source:             out source, 
+            randomise_pitch:    false, 
+            spatial_blend:      false);
+        death_screen.SetActive(true);
+        yield return new WaitForSeconds(4);
+        UiManager.instance.fade_to_black();
+        yield return new WaitForSeconds(4);  
         death_screen_ended?.Invoke();
+        yield break;
     }
+
+    public void fade_to_black() => screen_transitions.Play("fade_to_black");
+    public void fade_from_black() => screen_transitions.Play("fade_from_black");
 }

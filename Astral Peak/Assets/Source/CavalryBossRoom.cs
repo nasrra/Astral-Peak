@@ -9,13 +9,10 @@ public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] Collider2DFeedback feedback;
     [SerializeField] Collider2D feedback_collider;
     [SerializeField] Transform rider_start_point, cavalry_start_point;
-
-    void Awake(){
+    
+    void Start(){
         link();
         instance = this;
-    }
-
-    void Start(){
         AudioManager.play_ambience(SoundID.SOFT_WIND);
     } 
 
@@ -44,7 +41,7 @@ public class CavalryBossRoom : BossRoomHandler{
     void player_entered(Collider2D col){
         feedback.enabled = false;  
         feedback_collider.enabled = false;      
-        Player.player.set_exit_point(player_respawn_point.get_enter_point());
+        Player.instance.set_exit_point(player_respawn_point.get_enter_point());
         start_fight();
     }
 
@@ -63,7 +60,7 @@ public class CavalryBossRoom : BossRoomHandler{
     public void set_positions(){
         rider.transform.position = boss_start_point.position;
         cavalry.transform.position = boss_start_point.position;
-        Player.player.set_enter_position();
+        Player.instance.set_enter_position();
     }
 
     void link(){

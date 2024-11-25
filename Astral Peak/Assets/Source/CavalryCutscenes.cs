@@ -9,7 +9,7 @@ public class CavalryOpeningCutscene : Cutscene{
     public override void begin(){
         room.phase_1(); // enable rider
         room.set_positions(); // reset positions.
-        Player.player.enter_cutscene_state();
+        Player.instance.enter_cutscene_state();
         TheRider.instance.enter_cutscene_state();
         CutsceneManager.set_coroutine(coroutine());
     }
@@ -24,7 +24,7 @@ public class CavalryOpeningCutscene : Cutscene{
         yield return new WaitForSeconds(2);
         TheRider.instance.cutscene_yell_state();
         yield return new WaitForSeconds(3);
-        CameraController.instance.set_target(Player.player.transform);
+        CameraController.instance.set_target(Player.instance.transform);
         CameraController.instance.reset_zoom_state(1);
         CameraController.instance.reset_offset_state(1);
         CameraController.instance.regulate_in_bounds(true);
@@ -34,7 +34,7 @@ public class CavalryOpeningCutscene : Cutscene{
 
     public override void end(){
         AudioManager.play_music(room.song);
-        Player.player.exit_cutscene_state();
+        Player.instance.exit_cutscene_state();
         TheRider.instance.exit_cutscene_state();
     }
 }
@@ -54,7 +54,7 @@ public class CavalryPhaseTransition : Cutscene{
         room.set_positions();
         TheRider.instance.flip_to_target();
         TheRider.instance.enter_cutscene_state();
-        Player.player.enter_cutscene_state();
+        Player.instance.enter_cutscene_state();
         fade_from_black();
         
         yield return new WaitForSeconds(1f);
@@ -81,14 +81,14 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.set_target(TheCavalry.instance.transform);
         
         yield return new WaitForSeconds(3f);
-        CameraController.instance.set_target(Player.player.transform);
+        CameraController.instance.set_target(Player.instance.transform);
         end(); 
         yield break;
     }
 
     public override void end(){
         AudioManager.play_music(room.song);
-        Player.player.exit_cutscene_state();
+        Player.instance.exit_cutscene_state();
         TheCavalry.instance.exit_cutscene_state();
     }
 }

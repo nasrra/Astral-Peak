@@ -10,7 +10,7 @@ public class Door : MonoBehaviour{
 
 
     public virtual void enter(){
-        Player.player.set_exit_point(exit_point);
+        Player.instance.set_exit_point(exit_point);
         SceneManager.LoadScene(scene_to_load);
     }
     public void set_enter_point(string new_enter_point) => enter_point = new_enter_point;

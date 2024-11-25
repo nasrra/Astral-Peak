@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
     public event Action 
         now_grounded, not_grounded, jumped;
+    public event Action<string> new_ground;
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
@@ -13,21 +15,36 @@ public class CharacterMovement : Movement{
     [SerializeField] private float 
         jump_time, jump_force, jump_force_multiplier, jump_time_counter;
     [SerializeField] private Collider2DFeedback ground_checker;
+    List<GameObject> ground = new List<GameObject>();
 
     void Start() => link();
     void OnDestroy() => unlink();
 
     // ground check
     private void is_grounded(Collider2D other){
+        ground.Add(other.gameObject);
+        new_ground?.Invoke(other.gameObject.tag);
         grounded = true;    
         jump_time_counter = 0.0f; 
-        now_grounded?.Invoke();
+
+        // invoke that we are now grounded if we are not toughing other ground objects.
+        if(ground.Count == 1)
+            now_grounded?.Invoke();
+        Debug.Log("grounded!");
     }
 
     private void is_not_grounded(Collider2D other){
-        grounded = false;
-        not_grounded?.Invoke();
-        reset_deceleration();
+        ground.Remove(other.gameObject);
+
+        // if we are no longer touching any other ground objects.
+        if(ground.Count <= 0){
+            grounded = false;
+            not_grounded?.Invoke();
+            reset_deceleration();
+            Debug.Log("not grounded!");
+        }
+        else
+            new_ground?.Invoke(ground[ground.Count-1].tag);
     }
 
     // jump command
@@ -39,6 +56,9 @@ public class CharacterMovement : Movement{
             jumped?.Invoke();
         }
     }
+
+    // return the current ground we are standing on.
+    public GameObject get_current_ground() => ground[ground.Count - 1];
 
     public void end_jump(){
         jumping = false;

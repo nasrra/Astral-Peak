@@ -51,7 +51,11 @@ public enum SoundID{
     WHOOSH_1,
     WHISTLE_LONG,
     WOLF_HOWL,
-    WOODEN_PING
+    WOODEN_PING,
+    STONE_FOOTSTEP_1,
+    STONE_FOOTSTEP_2,
+    STONE_FOOTSTEP_3,
+    STONE_FOOTSTEP_4,
 }
 
 // optimisation: 
@@ -104,6 +108,10 @@ public static class SoundLibrary{
         {SoundID.SNOW_FOOTSTEP_2,     () => new Sound(load_sfx("snow_footstep_2"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_FOOTSTEP_3,     () => new Sound(load_sfx("snow_footstep_3"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_FOOTSTEP_4,     () => new Sound(load_sfx("snow_footstep_4"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.STONE_FOOTSTEP_1,    () => new Sound(load_sfx("stone_footstep_1"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.STONE_FOOTSTEP_2,    () => new Sound(load_sfx("stone_footstep_2"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.STONE_FOOTSTEP_3,    () => new Sound(load_sfx("stone_footstep_3"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
+        {SoundID.STONE_FOOTSTEP_4,    () => new Sound(load_sfx("stone_footstep_4"),   AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SNOW_JUMP,           () => new Sound(load_sfx("snow_jump"),          AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.SOFT_WIND,           () => new Sound(load_sfx("soft_wind"),          AudioManager.sfx_mixer, 0.8f, 1.15f, 0.85f)},
         {SoundID.WOLF_HOWL,           () => new Sound(load_sfx("wolf_howl"),          AudioManager.sfx_mixer, 1f)},
