@@ -63,5 +63,5 @@ public abstract class Creature : MonoBehaviour{
     public virtual void enter_cutscene_state(){}
     public virtual void exit_cutscene_state(){}
 
-    protected virtual void kill() => death?.Invoke();
+    public virtual void kill() => death?.Invoke();
 }

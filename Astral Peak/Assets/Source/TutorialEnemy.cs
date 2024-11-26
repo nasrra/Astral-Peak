@@ -30,7 +30,7 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    protected override void kill(){
+    public override void kill(){
         base.kill();
         Destroy(gameObject);
     }

@@ -36,7 +36,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     public override void enter_cutscene_state() => state_switch(lock_idle());
     public override void exit_cutscene_state() => state_switch(idle(1));
 
-    protected override void kill(){
+    public override void kill(){
         base.kill();
         state_switch(death_state());
     }

@@ -7,14 +7,15 @@ public class PlayerHealthBar : MonoBehaviour{
 
     void Start(){
         Player.instance.damaged_start += player_damaged;
-        Player.instance.death_start += player_damaged;
+        Player.instance.death_start += player_dead;
     }
     void OnDestroy(){
         Player.instance.damaged_start -= player_damaged;
-        Player.instance.death_start -= player_damaged;
+        Player.instance.death_start -= player_dead;
     }
 
     void player_damaged() => set_health(Player.instance.get_health().get_current_health());
+    void player_dead() => set_health(0);
 
     public void set_health(int amt){
         if(amt > notches.Count)

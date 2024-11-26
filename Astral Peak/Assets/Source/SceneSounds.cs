@@ -54,6 +54,9 @@ public static class SceneSounds{
             SoundID.MELEE_SWING_1,
             SoundID.WHOOSH_1,
             SoundID.STONE_IMPACT_LIGHT,
+            SoundID.DEEP_BOOM,
+            SoundID.MAGIC_EXPLOSION,
+            SoundID.WOODEN_PING,
         }},
         {"Shrine", () => new List<SoundID>(){
             SoundID.SOFT_WIND,

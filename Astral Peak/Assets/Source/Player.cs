@@ -157,7 +157,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_movement();
     }
 
-    protected override void kill() => StartCoroutine(death_state());
+    public override void kill() => StartCoroutine(death_state());
 
     IEnumerator death_state(){
         unlink_events();
