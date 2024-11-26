@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8904305568839613953}
   - component: {fileID: 441748230105023122}
   - component: {fileID: 6304687969754594070}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ChaseArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 887
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 1502897275953849558}
   - component: {fileID: 6565874900555252136}
   - component: {fileID: 2792386002899646460}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: HurtArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2750424916158704790}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: WeaponHolster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,8 @@ GameObject:
   - component: {fileID: 5107477675233054662}
   - component: {fileID: 19105333454842163}
   - component: {fileID: 6169257055806441816}
-  m_Layer: 7
+  - component: {fileID: 896696132830443372}
+  m_Layer: 8
   m_Name: TutorialEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -533,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
   movement: {fileID: 19105333454842163}
-  sprite: {fileID: 0}
+  sprite: {fileID: 896696132830443372}
   animator: {fileID: 7955418272586459454}
   combat: {fileID: 6140918712056275827}
   target: {fileID: 0}
@@ -586,6 +587,24 @@ MonoBehaviour:
       transform: {fileID: 8537454458043999464}
     self_knockback_force: 0
     self_knockback_duration: 0
+--- !u!114 &896696132830443372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841642048582550558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bb9414dea631340884ef3683b87566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 139354312931436382}
+  - {fileID: 720700555483269563}
+  damaged_colour: {r: 1, g: 1, b: 1, a: 1}
+  hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
+  death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
 --- !u!1 &1882863641119657761
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +886,7 @@ GameObject:
   - component: {fileID: 8365106871097185578}
   - component: {fileID: 1460467772958662652}
   - component: {fileID: 6911941183698992944}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -24,16 +24,18 @@ public class TutorialEnemy : Enemy{
     }
 
     void follow_state() => state_switch(follow());
-    protected override IEnumerator follow(){
-        Debug.Log("follow!");
+    protected override IEnumerator follow(){        
         animator.Play(HollowAnimator.IDLE);
         state_switch(base.follow());
         yield break;
     }
 
+    protected override void kill(){
+        base.kill();
+        Destroy(gameObject);
+    }
 
     public void stun_state() =>  state_switch(stun_state_loop());
-
     protected IEnumerator stun_state_loop(){
         // to prevent the ai from chasing once staggered.
         unlink_combat();
@@ -47,10 +49,6 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    // Note: do not put any linkage functions in this.
-    // Otherwise classes may double link and break
-    // because of not unlinking correctly. 
-    // (2 - 1 will always equal 1).
     public void recovery_state(){
         state_switch(target_in_range? follow() : retreat_loop());
     }
@@ -102,9 +100,13 @@ public class TutorialEnemy : Enemy{
 
     protected void link_health(){
         health.damaged += stun_state;
+        health.damaged += sprite.play_damaged_flash;
+        health.death += kill;
     }
     protected void unlink_health(){
         health.damaged -= stun_state;
+        health.damaged -= sprite.play_damaged_flash;
+        health.death -= kill;
     }
     #endregion
 }

@@ -52,7 +52,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected void move_to_player(float dist){
         // if we are not moving right, move right.
-        Debug.Log(0);
         if(dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
             movement.stop();
             movement.move_right(true);
