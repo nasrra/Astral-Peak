@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class HollowAnimator : MonoBehaviour{
+public class HollowAnimator : AnimatorOverride{
     [SerializeField] private Animator a;
-    readonly int
+    public static readonly int
         IDLE        = Animator.StringToHash("idle"),
         ATTACK      = Animator.StringToHash("attack"),
         GUARD       = Animator.StringToHash("guard"),
@@ -13,5 +13,5 @@ public class HollowAnimator : MonoBehaviour{
     public void attack()    => a.Play(ATTACK);
     public void guard()     => a.Play(GUARD);
     public void stunned()   => a.Play(STUNNED);
-    public void play(string animation) => a.Play(animation);
+    public void play(int animation) => a.Play(animation);
 }

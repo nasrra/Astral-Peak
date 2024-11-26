@@ -803,15 +803,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.6666667
-    functionName: enable_hurt_box
+  - time: 0.5833333
+    functionName: enable_front_strike_hurt_box
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
   - time: 0.8666667
-    functionName: enable_hurt_box
+    functionName: enable_front_strike_hurt_box
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -819,6 +819,20 @@ AnimationClip:
     messageOptions: 0
   - time: 1
     functionName: recovery_state
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: idle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: attack_end
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

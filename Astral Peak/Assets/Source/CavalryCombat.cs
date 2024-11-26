@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 
 public class CavalryCombat : BossCombat{
     BossAttack

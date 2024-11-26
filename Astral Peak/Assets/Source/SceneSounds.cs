@@ -34,7 +34,7 @@ public static class SceneSounds{
             SoundID.WOLF_HOWL,
             SoundID.WOODEN_PING,        
         }},
-        {"TutorialArea", () => new List<SoundID>(){
+        {"SnowForest", () => new List<SoundID>(){
             SoundID.SOFT_WIND,
             SoundID.SNOW_FOOTSTEP_1,
             SoundID.SNOW_FOOTSTEP_2,
@@ -44,6 +44,16 @@ public static class SceneSounds{
             SoundID.WHOOSH_1,
             SoundID.SNOW_IMPACT_HEAVY,
             SoundID.SNOW_IMPACT_LIGHT,
+        }},
+        {"TutorialArea", () => new List<SoundID>(){
+            SoundID.SOFT_WIND,
+            SoundID.STONE_FOOTSTEP_1,
+            SoundID.STONE_FOOTSTEP_2,
+            SoundID.STONE_FOOTSTEP_3,
+            SoundID.STONE_FOOTSTEP_4,
+            SoundID.MELEE_SWING_1,
+            SoundID.WHOOSH_1,
+            SoundID.STONE_IMPACT_LIGHT,
         }},
         {"Shrine", () => new List<SoundID>(){
             SoundID.SOFT_WIND,
