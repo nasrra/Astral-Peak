@@ -14744,7 +14744,6 @@ GameObject:
   - component: {fileID: 6345792998177996148}
   - component: {fileID: 8959932368922724423}
   - component: {fileID: 5994195274358197019}
-  - component: {fileID: 4278735649314562499}
   - component: {fileID: 1158296529060902672}
   - component: {fileID: 6932510366527514548}
   - component: {fileID: 8447699733019728571}
@@ -14800,7 +14799,7 @@ MonoBehaviour:
   movement: {fileID: 8959932368922724423}
   exit_point: 
   animator: {fileID: 6345792998177996148}
-  interactor: {fileID: 4278735649314562499}
+  interactor: {fileID: 0}
   melee: {fileID: 8597468600997471075}
   particles: {fileID: 1683145615901213879}
   sprite: {fileID: 1158296529060902672}
@@ -14906,20 +14905,6 @@ MonoBehaviour:
   max_life: 4
   current_life: 4
   invulnerable: 0
---- !u!114 &4278735649314562499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bdb0610ae2c69044b4cb689aa07b6f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feedback: {fileID: 7365004381538202572}
-  others: []
 --- !u!114 &1158296529060902672
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public static class StaticComponents{
     static void initialize(){
         main = GameObject.Instantiate(new GameObject());
         main.name = "Managers";
-        main.AddComponent<DontDestroyOnLoad>();
+        GameObject.DontDestroyOnLoad(main);
         hook();
         input();
         audio();

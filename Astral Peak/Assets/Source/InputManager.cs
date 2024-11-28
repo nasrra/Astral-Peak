@@ -86,6 +86,6 @@ public static class InputManager{
     static void on_exit_performed(InputAction.CallbackContext ctx)     => exit_performed?.Invoke();
     static void on_zoom_out(InputAction.CallbackContext ctx)           => CameraController.instance.ZoomOut();
     static void on_zoom_in(InputAction.CallbackContext ctx)            => CameraController.instance.ZoomIn();
-    static void on_debug_performed(InputAction.CallbackContext ctx)    => TheCavalry.instance.get_health().damage(new DamageData(1), null);
+    static void on_debug_performed(InputAction.CallbackContext ctx)    => UiManager.instance.start_dialogue();
     #endregion
 }

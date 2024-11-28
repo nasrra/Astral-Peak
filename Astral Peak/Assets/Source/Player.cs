@@ -15,7 +15,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // data to link together.
     [Header("Player")]
     [SerializeField] private PlayerAnimator animator;
-    [SerializeField] private Interactor interactor;
     [SerializeField] protected PlayerCombat melee;
     [SerializeField] protected PlayerParticlesHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
@@ -37,8 +36,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void OnDestroy(){
-        GameManager.unlink_player();
         unlink_events();
+        GameManager.unlink_player();
     }
 
     void OnCollisionEnter2D(Collision2D other){  
@@ -65,7 +64,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void stop_jump()    => stop_movement(()=>movement.end_jump());
     private void stop_left()    => stop_movement(()=>movement.move_left(false));
     private void stop_right()   => stop_movement(()=>movement.move_right(false));
-    private void interact()     => interactor.interact();
     private void attack()       => animator.Play(PlayerAnimator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
@@ -149,6 +147,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_movement();
         animator.cutscene_idle();
+        movement.stop();
     }
 
     public override void exit_cutscene_state(){
@@ -182,9 +181,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     protected void unlink_events(){
+        unlink_movement();
         unlink_input();
         unlink_melee();
-        unlink_movement();
         unlink_health();
     }
 
@@ -195,7 +194,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.left_cancelled        += stop_left;
         InputManager.right_performed       += start_right;
         InputManager.right_cancelled       += stop_right;
-        InputManager.interact_performed    += interact;
         InputManager.attack_performed      += attack;
         InputManager.dash_performed        += dash; 
         input_blocker = true; 
@@ -208,7 +206,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.left_cancelled        -= stop_left;
         InputManager.right_performed       -= start_right;
         InputManager.right_cancelled       -= stop_right;
-        InputManager.interact_performed    -= interact;
         InputManager.attack_performed      -= attack;
         InputManager.dash_performed        -= dash;    
         input_blocker = false;

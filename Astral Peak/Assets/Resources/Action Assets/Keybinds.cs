@@ -175,7 +175,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a8513117-2874-4ee3-afd3-13daf42381ec"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -219,7 +219,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6fa129ee-8fe2-473c-b538-6347e31c5757"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

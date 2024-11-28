@@ -13,6 +13,7 @@ public class UiManager : MonoBehaviour{
         enemy_vanquished;
     [SerializeField] Animator
         screen_transitions;
+    [SerializeField] DialogueHandler dialogue; 
     AudioSource source;
     
     void Awake(){
@@ -75,6 +76,9 @@ public class UiManager : MonoBehaviour{
         death_screen_ended?.Invoke();
         yield break;
     }
+
+    public void start_dialogue() => dialogue.start_dialogue();
+    public void next_dialogue_line() => dialogue.next_line();
 
     public void fade_to_black() => screen_transitions.Play("fade_to_black");
     public void fade_from_black() => screen_transitions.Play("fade_from_black");

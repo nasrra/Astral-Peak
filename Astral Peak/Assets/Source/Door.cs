@@ -9,8 +9,18 @@ public class Door : MonoBehaviour{
     void OnDisable() => DoorManager.erase_door(this);
 
 
+    void OnTriggerEnter2D() => enter();
+
     public virtual void enter(){
         Player.instance.set_exit_point(exit_point);
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        GameObject[] rootObjects = activeScene.GetRootGameObjects();
+        // Destroy each GameObject so that their unlink functions are correctle called :)
+        foreach (GameObject obj in rootObjects){
+            if(obj != this)
+                Destroy(obj);
+        }
         SceneManager.LoadScene(scene_to_load);
     }
     public void set_enter_point(string new_enter_point) => enter_point = new_enter_point;

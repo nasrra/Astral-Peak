@@ -6,8 +6,8 @@ public class ChimeForceApplier : MonoBehaviour{
     void Awake() => StartCoroutine(loop());
 
     IEnumerator loop(){
-        chime_end.AddForce(new Vector2(Random.Range(10f, 15f),0), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(2);
+        chime_end.AddForce(new Vector2(Random.Range(5f, 10f),0), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(4f);
         yield return null;
     }
 

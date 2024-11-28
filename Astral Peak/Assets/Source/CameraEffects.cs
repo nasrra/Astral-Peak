@@ -132,7 +132,7 @@ public class CameraEffects : MonoBehaviour{
 
     void unlink_player(){
         if(Player.instance == null){
-            Debug.Log("no player!");
+            //Debug.Log("no player!");
             return;
         }
         Player.instance.damaged_start -= hurt_state;

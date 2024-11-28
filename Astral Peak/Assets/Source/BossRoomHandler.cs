@@ -22,6 +22,8 @@ public class BossRoomHandler : MonoBehaviour{
         fight_started?.Invoke();
     }
 
+    public void stop_fight() => fight_stopped?.Invoke();
+
     public virtual void prepare_phase_transition() => phase++;
     public void phase_transition(){
         prepare_phase_transition();
