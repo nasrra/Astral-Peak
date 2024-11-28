@@ -12,7 +12,8 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
 
     public void emit_dash()=> 
         AudioClipHandler.play(
@@ -20,7 +21,8 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
 
     public void emit_footsteps()=> 
         AudioClipHandler.play(
@@ -28,7 +30,8 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
 
     public void emit_grounded()=> 
         AudioClipHandler.play(
@@ -36,7 +39,8 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
 
     public void emit_attack_hit()=> 
         AudioClipHandler.play(
@@ -44,21 +48,24 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_jump()=> 
         AudioClipHandler.play(
             SoundID.WHOOSH_1,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_damaged()=> 
         AudioClipHandler.play(
             SoundID.DEEP_BOOM,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    false, 
-            spatial_blend:      false);
+            spatial_blend:      false,
+            loop:               false);
             
     public void emit_magic_explosion() => 
         AudioClipHandler.play(
@@ -66,7 +73,8 @@ public class PlayerAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);  
+            spatial_blend:      true,
+            loop:               false);  
 
     public void set_ground(string _ground) => ground = _ground;
 

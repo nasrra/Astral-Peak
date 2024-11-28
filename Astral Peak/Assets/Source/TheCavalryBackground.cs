@@ -17,14 +17,16 @@ public class TheCavalryBackground : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void play_hop() => 
         AudioClipHandler.play(
             SoundID.MAGIC_1,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
     public void move_camera_up() => CameraController.instance.move_up_state(20, 5f);
@@ -35,6 +37,7 @@ public class TheCavalryBackground : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void play_camera_shake() => CameraController.instance.shake_camera(0.35f,1f);
 }

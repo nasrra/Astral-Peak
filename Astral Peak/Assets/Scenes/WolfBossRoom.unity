@@ -1165,19 +1165,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5001890307901372742, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
       propertyPath: exit_point
-      value: br
+      value: snow_forest_exit
       objectReference: {fileID: 0}
     - target: {fileID: 5001890307901372742, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
       propertyPath: enter_point
-      value: enter
+      value: wolf_boss_room_enter
       objectReference: {fileID: 0}
     - target: {fileID: 5001890307901372742, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
       propertyPath: scene_to_load
-      value: Start Scene
+      value: SnowForest
       objectReference: {fileID: 0}
     - target: {fileID: 5603022555563937703, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.18
+      value: -31.42
       objectReference: {fileID: 0}
     - target: {fileID: 5603022555563937703, guid: 3abf9916f16fc6940892e78be4e98a51, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953c691381e3a344b18cca1a1679bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_respawn_point: {fileID: 1839469610}
+  player_respawn_point: {fileID: 0}
   boss_start_point: {fileID: 713143996}
   play_cinematic: 0
   song: 0
@@ -1784,11 +1784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5994195274358197019, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: max_life
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5994195274358197019, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: current_life
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6270331872614881010, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7036,7 +7036,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1839469611}
-  - component: {fileID: 1839469610}
   - component: {fileID: 1839469612}
   - component: {fileID: 1839469613}
   m_Layer: 0
@@ -7046,21 +7045,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1839469610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839469609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enter_point: respawn_point
-  scene_to_load: 
-  exit_point: 
 --- !u!4 &1839469611
 Transform:
   m_ObjectHideFlags: 0

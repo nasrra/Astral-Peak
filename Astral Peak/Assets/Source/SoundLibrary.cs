@@ -25,6 +25,7 @@ public enum SoundID{
     // MUSIC
     WOLF_BOSS_MUSIC_1,
     WOLF_BOSS_MUSIC_2,
+    DOMINE_THEME,
 
     // SFX
     BOW_SHOT,
@@ -57,6 +58,7 @@ public enum SoundID{
     STONE_FOOTSTEP_3,
     STONE_FOOTSTEP_4,
     STONE_IMPACT_LIGHT,
+    DORMINS_VOICE,
 }
 
 // optimisation: 
@@ -103,6 +105,7 @@ public static class SoundLibrary{
         //MUSIC
         {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 0.8f, 1)},
         {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 0.8f, 1)},
+        {SoundID.DOMINE_THEME,          ()=> new Sound(load_music("domine theme"), AudioManager.music_mixer, 0.8f, 1)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -134,7 +137,8 @@ public static class SoundLibrary{
         {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
         {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, .7f)},
         {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, .8f)},
-        {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)}
+        {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)},
+        {SoundID.DORMINS_VOICE,       () => new Sound(load_sfx("dormin's voice"),     AudioManager.sfx_mixer, 1f)},
     };
 }
 

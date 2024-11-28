@@ -9,34 +9,39 @@ public class RiderAudio : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_arrow_shot()=> 
         AudioClipHandler.play(
             SoundID.BOW_SHOT,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_magic()=> 
         AudioClipHandler.play(
             SoundID.MAGIC_1,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_melee_attack()=> 
         AudioClipHandler.play(
             SoundID.MELEE_SWING_2,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     public void emit_yell()=> 
         AudioClipHandler.play(
             SoundID.RIDER_YELL,
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
 }
 

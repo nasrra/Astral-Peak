@@ -41,7 +41,8 @@ public class Arrow : Projectile{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
         GameObject particle = Instantiate(grounded_effect, front_point.position, despawn_effect.transform.rotation);
         Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
 
@@ -55,7 +56,8 @@ public class Arrow : Projectile{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
         
         yield return new WaitForSeconds(death_delay);
         Destroy(gameObject);

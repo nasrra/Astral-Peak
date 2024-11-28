@@ -9,7 +9,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // static fields for other classes to access.
     public static Player instance;
-    public string exit_point = "";
+    public static string exit_point = "";
 
 
     // data to link together.

@@ -55,7 +55,8 @@ public class UiManager : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    false, 
-            spatial_blend:      false);
+            spatial_blend:      false,
+            loop:               false);
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
         yield break;
@@ -68,7 +69,8 @@ public class UiManager : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    false, 
-            spatial_blend:      false);
+            spatial_blend:      false,
+            loop:               false);
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);
         UiManager.instance.fade_to_black();
@@ -79,6 +81,7 @@ public class UiManager : MonoBehaviour{
 
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
+    public DialogueHandler get_dialogue_handler() => dialogue;
 
     public void fade_to_black() => screen_transitions.Play("fade_to_black");
     public void fade_from_black() => screen_transitions.Play("fade_from_black");

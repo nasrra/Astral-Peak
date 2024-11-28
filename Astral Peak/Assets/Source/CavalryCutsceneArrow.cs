@@ -10,6 +10,7 @@ public class CavalryCutsceneArrow : MonoBehaviour{
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);
+            spatial_blend:      true,
+            loop:               false);
     }
 }

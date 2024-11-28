@@ -11,7 +11,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);  
+            spatial_blend:      true,
+            loop:               false);  
 
     public void emit_bark()=> 
         AudioClipHandler.play(
@@ -19,7 +20,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);   
+            spatial_blend:      true,
+            loop:               false);   
 
     public void emit_bow_shot()=> 
         AudioClipHandler.play(
@@ -27,7 +29,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);      
+            spatial_blend:      true,
+            loop:               false);      
 
     public void emit_front_strike_grab()=> 
         AudioClipHandler.play(
@@ -35,7 +38,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);    
+            spatial_blend:      true,
+            loop:               false);    
 
     public void emit_ground_slam_hop()=> 
         AudioClipHandler.play(
@@ -43,7 +47,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true); 
+            spatial_blend:      true,
+            loop:               false); 
 
     public void emit_ground_slam_impact() => 
         AudioClipHandler.play(
@@ -51,7 +56,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);   
+            spatial_blend:      true,
+            loop:               false);   
 
     public void emit_howl()=> 
         AudioClipHandler.play(
@@ -59,7 +65,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true); 
+            spatial_blend:      true,
+            loop:               false); 
 
     public void emit_sword_strike() => 
         AudioClipHandler.play(
@@ -67,7 +74,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true); 
+            spatial_blend:      true,
+            loop:               false); 
 
     public void emit_footsteps() => 
         AudioClipHandler.play(
@@ -75,7 +83,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true); 
+            spatial_blend:      true,
+            loop:               false); 
 
     public void emit_magic_explosion() => 
         AudioClipHandler.play(
@@ -83,7 +92,8 @@ public class CavalryAudio : MonoBehaviour
             audio_player:       this, 
             source:             out source, 
             randomise_pitch:    true, 
-            spatial_blend:      true);                                   
+            spatial_blend:      true,
+            loop:               false);                                   
 
     public SoundID choose_footstep()
     {

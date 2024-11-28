@@ -73,6 +73,8 @@ public static class SceneSounds{
             SoundID.WHOOSH_1,
             SoundID.SNOW_IMPACT_HEAVY,
             SoundID.SNOW_IMPACT_LIGHT,
+            SoundID.DOMINE_THEME,
+            SoundID.DORMINS_VOICE,
         }},
     };
 }

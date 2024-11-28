@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
 
 public class DialogueHandler : MonoBehaviour{
+    public event Action<int> new_line;
+    public event Action dialogue_ended;
     [SerializeField] string 
         dialogue_file,
         dialoge_option;
@@ -18,8 +20,6 @@ public class DialogueHandler : MonoBehaviour{
         InputManager.interact_performed += next_line;
     }
 
-    void Start() =>play_dialogue();//
-
     void OnDestroy() => InputManager.interact_performed -= next_line;
 
     public void start_dialogue(){
@@ -31,6 +31,8 @@ public class DialogueHandler : MonoBehaviour{
         StartCoroutine(dialogue_loop());
     }
     public void next_line(){
+        index++;
+        new_line?.Invoke(index);
         StopAllCoroutines();
         StartCoroutine(fade_loop());
     }
@@ -38,7 +40,7 @@ public class DialogueHandler : MonoBehaviour{
         if(index < dialogue.Count)
             text.text = dialogue[index];
         else
-            text.text = "";
+            dialogue_ended?.Invoke();
     }
 
     IEnumerator fade_loop(){
