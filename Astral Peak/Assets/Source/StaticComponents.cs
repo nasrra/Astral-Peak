@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 // this is a class for static components that are used everywhere within the game.
 // The [RuntimeInitializeOnLoadMethod] attribute will ensure InitializeOnStart is called as soon as the game starts.
@@ -21,6 +22,7 @@ public static class StaticComponents{
         input();
         audio();
         cutscene();
+        scene_manager();
         Application.quitting += uninitialize;
     }
 
@@ -57,5 +59,10 @@ public static class StaticComponents{
     static void hook(){
         hook_in = main.AddComponent<UnityHook>();
         hook_in.start += AudioManager.on_start; // this only works when on start is called.
+    }
+
+    static void scene_manager() => SceneManager.activeSceneChanged += scene_changed;
+    static void scene_changed(Scene scene_1, Scene scene_2){
+        //AudioManager.restore_sfx_smooth();
     }
 }

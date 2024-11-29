@@ -128,8 +128,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
-        if(exit_point != "")
+        if(DoorManager.contains_door(exit_point) == true){
+            StartCoroutine(door_exit_state());
             transform.position = DoorManager.get_position(exit_point);
+        }
     }
 
     private void handle_enemy_contact(Collision2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
@@ -142,6 +144,21 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.idle(); // play idle animation
     }
 
+
+    public void door_enter_state(){
+        unlink_input();
+    }
+
+    IEnumerator door_exit_state(){
+        unlink_input();
+        transform.position = DoorManager.get_position(exit_point);
+        movement.movement(DoorManager.get_exit_direction(exit_point), true);
+        AudioManager.restore_sfx_smooth();  
+        yield return new WaitForSeconds(1);
+        movement.movement(DoorManager.get_exit_direction(exit_point), false);
+        link_input();
+        yield break;
+    }
 
     public override void enter_cutscene_state(){
         unlink_input();
