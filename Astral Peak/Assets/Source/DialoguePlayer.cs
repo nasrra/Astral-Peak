@@ -5,8 +5,8 @@ public class DialoguePlayer : MonoBehaviour{
     void OnDestroy() => dialogue.dialogue_ended -= dialogue_ended;
 
     void Start(){
-        dialogue.play_dialogue();
-        //AudioManager.play_music(SoundID.DOMINE_THEME);
+        dialogue.play_dialogue(4f);
+        AudioManager.play_music(SoundID.DOMINE_THEME);
         dialogue.dialogue_ended += dialogue_ended;
     }
 

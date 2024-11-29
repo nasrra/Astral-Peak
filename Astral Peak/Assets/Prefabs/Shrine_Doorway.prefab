@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 6074610621424037348}
   - component: {fileID: 6059672491315750594}
   - component: {fileID: 1825265432607092858}
-  - component: {fileID: 5113616631213666309}
   - component: {fileID: 3332318637490508002}
   m_Layer: 0
   m_Name: Shrine_Doorway
@@ -108,9 +107,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -173495125
-  m_SortingLayer: 2
-  m_SortingOrder: -2
+  m_SortingLayerID: 1072986135
+  m_SortingLayer: 9
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5d9313ef20aab28469bb4678cadff1d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -224,25 +223,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3332318637490508002}
   scene_to_load: TutorialArea
   exit_point: TutorialAreaEnter
   enter_point: {fileID: 4841967761653122320}
-  animator: {fileID: 5113616631213666309}
   trigger_col: {fileID: 6074610621424037348}
   solid_col: {fileID: 6059672491315750594}
---- !u!114 &5113616631213666309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121117006334630562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd3f3d7d6d484d44b9dc57a9e1324cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 3332318637490508002}
+  start_open: 0
 --- !u!95 &3332318637490508002
 Animator:
   serializedVersion: 5
@@ -334,9 +321,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -173495125
-  m_SortingLayer: 2
-  m_SortingOrder: -2
+  m_SortingLayerID: 1072986135
+  m_SortingLayer: 9
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 3379d701de81b184b84ead8893350623, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

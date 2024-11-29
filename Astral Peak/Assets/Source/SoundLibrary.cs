@@ -58,7 +58,10 @@ public enum SoundID{
     STONE_FOOTSTEP_3,
     STONE_FOOTSTEP_4,
     STONE_IMPACT_LIGHT,
-    DORMINS_VOICE,
+    DOMINE_VOICE_1,
+    DOMINE_VOICE_2,
+    DOMINE_VOICE_3,
+    DOMINE_VOICE_4,
 }
 
 // optimisation: 
@@ -138,7 +141,10 @@ public static class SoundLibrary{
         {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, .7f)},
         {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, .8f)},
         {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)},
-        {SoundID.DORMINS_VOICE,       () => new Sound(load_sfx("dormin's voice"),     AudioManager.sfx_mixer, 1f)},
+        {SoundID.DOMINE_VOICE_1,      () => new Sound(load_sfx("domine_voice_1"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
+        {SoundID.DOMINE_VOICE_2,      () => new Sound(load_sfx("domine_voice_2"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
+        {SoundID.DOMINE_VOICE_3,      () => new Sound(load_sfx("domine_voice_3"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
+        {SoundID.DOMINE_VOICE_4,      () => new Sound(load_sfx("domine_voice_4"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
     };
 }
 
