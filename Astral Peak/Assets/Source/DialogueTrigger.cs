@@ -7,9 +7,9 @@ public class DialogueTrigger : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D col){
         if(loop == true || flag == false){
             if(start_trigger == true )
-                UiManager.instance.start_dialogue();
+                DialogueHandler.instance.start_dialogue();
             else
-                UiManager.instance.next_dialogue_line();
+                DialogueHandler.instance.next_line();
             flag = true;
         }
     }

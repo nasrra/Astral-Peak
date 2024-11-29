@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Audio;
-using Unity.Collections;
 
 public static class AudioManager{
     static MonoBehaviour audio_player;

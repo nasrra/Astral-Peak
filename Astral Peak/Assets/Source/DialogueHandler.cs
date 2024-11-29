@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 
 public class DialogueHandler : MonoBehaviour{
+    public static DialogueHandler instance;
     public event Action<int> new_line;
     public event Action dialogue_ended;
     [SerializeField] string 
@@ -15,8 +16,9 @@ public class DialogueHandler : MonoBehaviour{
     int index = -1;
 
     void Awake(){
+        instance = this;
         if(dialogue_file != "" && dialoge_option != "")
-        dialogue = ExcelReader.read_dialogue(dialogue_file, dialoge_option);
+            dialogue = ExcelReader.read_dialogue(dialogue_file, dialoge_option);
         InputManager.interact_performed += next_line;
     }
 

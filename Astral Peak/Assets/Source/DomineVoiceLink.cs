@@ -4,7 +4,6 @@ using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
 
 public class DomineVoiceLink : MonoBehaviour{
-    [SerializeField] DialogueHandler dialogue;
     [SerializeField] AudioSource source;
     [SerializeField] List<AudioSpectrum> audio_spectrum = new List<AudioSpectrum>();
     void handle_new_line(int x){
@@ -13,12 +12,12 @@ public class DomineVoiceLink : MonoBehaviour{
             a.source = source;
     }
     //
-    void OnEnable(){
-        dialogue.new_line += handle_new_line;
+    void Start(){
+        DialogueHandler.instance.new_line += handle_new_line;
     }
 
-    void OnDisable(){
-        dialogue.new_line -= handle_new_line;
+    void OnDestroy(){
+        DialogueHandler.instance.new_line -= handle_new_line;
     }
 
     void choose_voice(){

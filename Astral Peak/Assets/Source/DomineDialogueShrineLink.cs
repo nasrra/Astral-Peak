@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DomineDialogueShrineLink : MonoBehaviour{
-    [SerializeField] DialogueHandler dialogue;
     [SerializeField] Door shrine_door;
     void handle_new_line(int x){
         switch(x){
@@ -12,11 +11,11 @@ public class DomineDialogueShrineLink : MonoBehaviour{
             break;
         }
     }
-    void OnEnable(){
-        dialogue.new_line += handle_new_line;
+    void Start(){
+        DialogueHandler.instance.new_line += handle_new_line;
     }
 
-    void OnDisable(){
-        dialogue.new_line -= handle_new_line;
+    void OnDestroy(){
+        DialogueHandler.instance.new_line -= handle_new_line;
     }
 }

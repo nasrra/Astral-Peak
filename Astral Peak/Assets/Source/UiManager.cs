@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour{
     public event Action
         death_screen_ended;
     public static UiManager instance;
+    [SerializeField] UiState state;
     [SerializeField] GameObject 
         death_screen,
         settings_menu,
@@ -16,35 +18,38 @@ public class UiManager : MonoBehaviour{
     [SerializeField] DialogueHandler dialogue; 
     AudioSource source;
     
-    void Awake(){
+    void OnEnable(){
         instance = this;
         GameManager.link_Ui();
+        link();
     }
 
-    void Start() => enable_hud();
+    void OnDisable(){
+        GameManager.unlink_Ui();
+        unlink();   
+    }
 
-    void disable_all(){
+    void gameplay_ui(){
         death_screen.SetActive(false);
         settings_menu.SetActive(false);
         hud.SetActive(false);
-        InputManager.exit_performed -= enable_hud;
-        InputManager.exit_performed -= enable_settings_menu;
-    }
-
-    public void enable_settings_menu(){
-        disable_all();
-        settings_menu.SetActive(true);
-        InputManager.exit_performed += enable_hud;
-    }
-
-    public void enable_hud(){
-        disable_all();
-        hud.SetActive(true);
-        InputManager.exit_performed += enable_settings_menu;
+        switch(state){
+            case UiState.HUD:
+                settings_menu.SetActive(true);
+                state = UiState.SETTINGS;
+                break;
+            case UiState.SETTINGS:
+                hud.SetActive(true);
+                state = UiState.HUD;
+                break;
+            default: 
+                break;
+        }
     }
 
     public void enable_death_screen(){
-        disable_all();
+        settings_menu.SetActive(false);
+        hud.SetActive(false);
         play_death_screen();
     }
 
@@ -82,7 +87,16 @@ public class UiManager : MonoBehaviour{
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
     public DialogueHandler get_dialogue_handler() => dialogue;
-
     public void fade_to_black() => screen_transitions.Play("fade_to_black");
     public void fade_from_black() => screen_transitions.Play("fade_from_black");
+
+    void link() => InputManager.exit_performed += gameplay_ui;
+    void unlink() => InputManager.exit_performed -= gameplay_ui;
+}
+
+public enum UiState{
+    HUD,
+    SETTINGS,
+    ENEMY_VANQUISHED,
+    DEATH,
 }
