@@ -130,8 +130,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
-        if(SpawnPointManager.contains_point(spawn_point) == true){
-            StartCoroutine(door_exit_state());
+        SpawnPoint spawn = SpawnPointManager.get_point(spawn_point);
+        if(spawn != null){
+            if(spawn.get_type() == SpawnPointType.DOOR)
+                StartCoroutine(door_exit_state());
             transform.position = SpawnPointManager.get_point(spawn_point).transform.position;
         }
     }
@@ -171,7 +173,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     public override void exit_cutscene_state(){
-        //movement.stop();
         link_input();
         link_movement();
     }
