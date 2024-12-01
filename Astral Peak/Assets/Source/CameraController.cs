@@ -126,7 +126,7 @@ public class CameraController : MonoBehaviour{
     }
 
     IEnumerator zoom_in(float size, float speed){
-        while(cam.orthographicSize > size){
+        while(Mathf.Abs(cam.orthographicSize - size) > 0.1f){
             cam.orthographicSize -= Time.deltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
