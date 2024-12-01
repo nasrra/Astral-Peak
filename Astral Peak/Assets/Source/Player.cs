@@ -9,7 +9,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // static fields for other classes to access.
     public static Player instance;
-    public static string exit_point = "";
+    public static string spawn_point = "";
 
 
     // data to link together.
@@ -24,6 +24,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
+        Application.quitting += unlink_events;
         instance = this;
         GameManager.link_player();
     }
@@ -36,8 +37,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
     void OnDestroy(){
-        unlink_events();
         GameManager.unlink_player();
+        unlink_events();
+        Application.quitting -= unlink_events;
     }
 
     void OnCollisionEnter2D(Collision2D other){  
@@ -110,8 +112,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         col.excludeLayers = new LayerMask();
     }
 
-    public void set_exit_point(string _exit_point) => exit_point = _exit_point;
-    public string get_exit_point() => exit_point;
+    public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
+    public string get_spawn_point() => spawn_point;
 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
@@ -128,9 +130,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // used to set the players initial position in the scene.
     public void set_enter_position(){
-        if(DoorManager.contains_door(exit_point) == true){
+        if(SpawnPointManager.contains_point(spawn_point) == true){
             StartCoroutine(door_exit_state());
-            transform.position = DoorManager.get_position(exit_point);
+            transform.position = SpawnPointManager.get_point(spawn_point).transform.position;
         }
     }
 
@@ -151,11 +153,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     IEnumerator door_exit_state(){
         unlink_input();
-        transform.position = DoorManager.get_position(exit_point);
-        movement.movement(DoorManager.get_exit_direction(exit_point), true);
+        SpawnPoint spawn = SpawnPointManager.get_point(spawn_point);
+        transform.position = spawn.transform.position;
+        movement.movement(spawn.get_movement(), true);
         AudioManager.restore_sfx_smooth();  
         yield return new WaitForSeconds(1);
-        movement.movement(DoorManager.get_exit_direction(exit_point), false);
+        movement.movement(spawn.get_movement(), false);
         link_input();
         yield break;
     }

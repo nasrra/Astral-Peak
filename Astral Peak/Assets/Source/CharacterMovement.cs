@@ -78,8 +78,8 @@ public class CharacterMovement : Movement{
         if(Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
-                rb.velocity = new Vector2(
-                    rb.velocity.x, 
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x, 
                     move_direction.y * jump_force + (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
                 );
                 jump_time_counter += Time.deltaTime;
@@ -109,7 +109,7 @@ public class CharacterMovement : Movement{
     protected override void decelerate(){
         // decelerate when grounded and not moving.
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
-            rb.velocity *= deceleration;        
+            rb.linearVelocity *= deceleration;        
     } 
 
     public void is_jumpable(int x) => can_jump = x != 0;

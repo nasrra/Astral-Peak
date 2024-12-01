@@ -6,7 +6,7 @@ public class BossRoomHandler : MonoBehaviour{
         fight_started,
         fight_stopped;
     public static BossRoomHandler instance;
-    public Door player_respawn_point;
+    public SpawnPoint player_respawn_point;
     public Transform boss_start_point;
     public bool play_cinematic = false;
     public SoundID song; 

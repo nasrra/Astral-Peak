@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using TreeEditor;
+using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -64,6 +63,8 @@ public class Movement : MonoBehaviour{
             case MovementOption.DOWN:
                 move_down(flag);
                 break;
+            case MovementOption.NONE:
+                break;
             default:
                 throw new SystemException("("+gameObject.name+": " +option+ ") is exclusively a character movement function.");
         }
@@ -91,19 +92,19 @@ public class Movement : MonoBehaviour{
         // accelerate
         float increment = move_direction.x * acceleration;
         // regulate
-        float newSpeed = Mathf.Clamp(rb.velocity.x + increment, -top_speed, top_speed);
+        float newSpeed = Mathf.Clamp(rb.linearVelocity.x + increment, -top_speed, top_speed);
         // apply
-        rb.velocity = new Vector2(newSpeed, rb.velocity.y);     
+        rb.linearVelocity = new Vector2(newSpeed, rb.linearVelocity.y);     
     }
 
     // this causes a bug with the ai path finding, as its x velocity keeps going when it moves
     protected virtual void vertical_move(){
         // if we are currently being knocked back, dont do anything.
-        rb.velocity = new Vector2(rb.velocity.x, move_direction.y * top_speed);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, move_direction.y * top_speed);
     } 
 
     protected virtual void decelerate(){
-        rb.velocity *= deceleration;
+        rb.linearVelocity *= deceleration;
     }
 
     public void dash(Vector3 direction, float force, float duration){
@@ -135,17 +136,17 @@ public class Movement : MonoBehaviour{
         // Normalize the final knockback direction
         direction.Normalize();
         // multiply by knock back force.
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.AddForce(direction * force, ForceMode2D.Impulse);
         start?.Invoke();
         yield return new WaitForSeconds(t);
         rb.gravityScale = original_gravity;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         end?.Invoke();
         yield break;
     }
 
-    public void zero_velocity() => rb.velocity = Vector3.zero;
+    public void zero_velocity() => rb.linearVelocity = Vector3.zero;
 
     public void move_in_faced_direction(){
         Debug.Log(transform.rotation.y);
@@ -175,5 +176,6 @@ public enum MovementOption{
     LEFT, 
     RIGHT,
     START_JUMP,
-    STOP_JUMP
+    STOP_JUMP,
+    NONE,
 }

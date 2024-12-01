@@ -12,9 +12,9 @@ public class FetchSword : Projectile{
             other.GetComponent<Player>().get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
         else if(other.gameObject.layer == 6){ // hits ground
             //check which way the sword is moving and flip accordingly.
-            transform.rotation = rb.velocity.x >= 0? Quaternion.Euler(0,0,0) : Quaternion.Euler(0,180,0);
+            transform.rotation = rb.linearVelocity.x >= 0? Quaternion.Euler(0,0,0) : Quaternion.Euler(0,180,0);
             animator.Play("landed");
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.gravityScale = 0;
             enable_trail(false);
             enable_collider(false);

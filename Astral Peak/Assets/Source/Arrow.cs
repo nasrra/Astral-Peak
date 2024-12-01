@@ -33,7 +33,7 @@ public class Arrow : Projectile{
             StopCoroutine(move_state);
         if(lifetime_state != null)
             StopCoroutine(lifetime_state);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
         col.enabled = false;
         AudioClipHandler.play(

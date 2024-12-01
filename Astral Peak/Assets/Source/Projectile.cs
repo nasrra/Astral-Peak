@@ -45,14 +45,14 @@ public class Projectile : MonoBehaviour{
     protected virtual IEnumerator none(){yield break;}
     protected virtual IEnumerator move(float speed){
         while(true){
-            rb.velocity = (front_point.position - transform.position).normalized * speed;
+            rb.linearVelocity = (front_point.position - transform.position).normalized * speed;
             yield return new WaitForFixedUpdate();
         }
     }
     protected virtual IEnumerator move(float speed, float time){
         float counter = time;
         while(time > 0){
-            rb.velocity = (front_point.position - transform.position).normalized * speed;
+            rb.linearVelocity = (front_point.position - transform.position).normalized * speed;
             counter -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }

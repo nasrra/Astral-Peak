@@ -62,6 +62,7 @@ public enum SoundID{
     DOMINE_VOICE_2,
     DOMINE_VOICE_3,
     DOMINE_VOICE_4,
+    NONE,
 }
 
 // optimisation: 
@@ -83,10 +84,7 @@ public static class SoundLibrary{
     }
 
     public static Sound get_sound(SoundID id) => loaded_sounds.ContainsKey(id)? loaded_sounds[id] : throw new Exception(id + " has not been loaded.");
-    static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single){
-        //Debug.Log("Load ["+scene.name+"] sounds.");
-        load_sounds(SceneSounds.create[scene.name]());
-    } 
+    static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single) => load_sounds(SceneSounds.create[scene.name]());
     static void load_sounds(List<SoundID> sounds){
         foreach(SoundID name in sounds)
             loaded_sounds.Add(name, sound_creation[name]());
@@ -145,6 +143,7 @@ public static class SoundLibrary{
         {SoundID.DOMINE_VOICE_2,      () => new Sound(load_sfx("domine_voice_2"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
         {SoundID.DOMINE_VOICE_3,      () => new Sound(load_sfx("domine_voice_3"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
         {SoundID.DOMINE_VOICE_4,      () => new Sound(load_sfx("domine_voice_4"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
+        {SoundID.NONE,                () => new Sound(load_sfx("silence"),            AudioManager.sfx_mixer, 1f)},
     };
 }
 

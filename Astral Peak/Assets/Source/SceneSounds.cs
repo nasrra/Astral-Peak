@@ -32,7 +32,8 @@ public static class SceneSounds{
             SoundID.WHOOSH_1,
             SoundID.WHISTLE_LONG,
             SoundID.WOLF_HOWL,
-            SoundID.WOODEN_PING,        
+            SoundID.WOODEN_PING,  
+            SoundID.NONE,      
         }},
         {"SnowForest", () => new List<SoundID>(){
             SoundID.SOFT_WIND,
@@ -44,6 +45,11 @@ public static class SceneSounds{
             SoundID.WHOOSH_1,
             SoundID.SNOW_IMPACT_HEAVY,
             SoundID.SNOW_IMPACT_LIGHT,
+            SoundID.DOMINE_VOICE_1,
+            SoundID.DOMINE_VOICE_2,
+            SoundID.DOMINE_VOICE_3,
+            SoundID.DOMINE_VOICE_4,
+            SoundID.NONE,  
         }},
         {"TutorialArea", () => new List<SoundID>(){
             SoundID.SOFT_WIND,
@@ -61,6 +67,7 @@ public static class SceneSounds{
             SoundID.DOMINE_VOICE_2,
             SoundID.DOMINE_VOICE_3,
             SoundID.DOMINE_VOICE_4,
+            SoundID.NONE,  
         }},
         {"Shrine", () => new List<SoundID>(){
             SoundID.SOFT_WIND,
@@ -78,6 +85,10 @@ public static class SceneSounds{
             SoundID.DOMINE_VOICE_2,
             SoundID.DOMINE_VOICE_3,
             SoundID.DOMINE_VOICE_4,
+            SoundID.NONE,  
         }},
+        {"MainMenu", () => new List<SoundID>(){
+            SoundID.BOW_SHOT,
+        }}
     };
 }

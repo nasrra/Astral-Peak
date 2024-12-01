@@ -98,7 +98,7 @@ public class PlayerAudio : MonoBehaviour
                 }
             break;
         }
-        throw new System.Exception("ERROR!");
+        return SoundID.NONE;
     }
 
     public SoundID choose_grounded(){
@@ -106,7 +106,7 @@ public class PlayerAudio : MonoBehaviour
             case "Snow": return SoundID.SNOW_IMPACT_LIGHT;
             case "Stone": return SoundID.STONE_IMPACT_LIGHT;
         }
-        throw new System.Exception("ERROR!");
+        return SoundID.NONE;
     }
 }
 
