@@ -1,12 +1,13 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CavalryOpeningCutscene : Cutscene{
     AudioSource source;
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
-    public override void begin(){
+    public override void start(){
         room.phase_1(); // enable rider
         room.set_positions(); // reset positions.
         Player.instance.enter_cutscene_state();
@@ -28,21 +29,20 @@ public class CavalryOpeningCutscene : Cutscene{
         CameraController.instance.reset_zoom_state(1);
         CameraController.instance.reset_offset_state(1);
         CameraController.instance.regulate_in_bounds(true);
-        end();
-        yield break;
-    }
 
-    public override void end(){
+        //
         AudioManager.play_music(room.song);
         Player.instance.exit_cutscene_state();
         TheRider.instance.exit_cutscene_state();
+        end();
+        yield break;
     }
 }
 
 public class CavalryPhaseTransition : Cutscene{
     AudioSource source;
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
-    public override void begin(){
+    public override void start(){
         CutsceneManager.set_coroutine(fade());
     }
 
@@ -82,13 +82,10 @@ public class CavalryPhaseTransition : Cutscene{
         
         yield return new WaitForSeconds(3f);
         CameraController.instance.set_target(Player.instance.transform);
-        end(); 
-        yield break;
-    }
-
-    public override void end(){
         AudioManager.play_music(room.song);
         Player.instance.exit_cutscene_state();
         TheCavalry.instance.exit_cutscene_state();
+        end(); 
+        yield break;
     }
 }

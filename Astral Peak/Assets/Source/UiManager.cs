@@ -14,7 +14,8 @@ public class UiManager : MonoBehaviour{
         hud,
         enemy_vanquished;
     [SerializeField] Animator
-        screen_transitions;
+        screen_transitions,
+        black_bars; 
     [SerializeField] DialogueHandler dialogue; 
     AudioSource source;
     
@@ -83,6 +84,8 @@ public class UiManager : MonoBehaviour{
         death_screen_ended?.Invoke();
         yield break;
     }
+
+    public void cutscene_mode(bool x) => black_bars.Play(x==true?"fade_in":"fade_out");
 
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();

@@ -29,7 +29,7 @@ public class TheCavalryBackground : MonoBehaviour{
             loop:               false);
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
-    public void move_camera_up() => CameraController.instance.move_up_state(20, 5f);
+    public void move_camera_up() => CameraController.instance.move_up_state(22, 8f);
     public void reset_camera() => CameraController.instance.reset_offset_state(1.5f);
     public void play_impact_sound() => 
         AudioClipHandler.play(
