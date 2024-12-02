@@ -39,8 +39,8 @@ public class CameraController : MonoBehaviour{
     public void zoom_in_state(float size, float speed)      => state_swtich(ref zoom_state, zoom_in(size, speed));
     public void zoom_out_state(float size, float speed)     => state_swtich(ref zoom_state, zoom_out(size, speed));
     public void reset_zoom_state(float speed)               => state_swtich(ref zoom_state, reset_zoom(speed));
-    public void move_up_state(float y_pos, float speed)     => state_swtich(ref swivel_state, move_up(y_pos, speed));
-    public void move_down_state(float y_pos, float speed)   => state_swtich(ref swivel_state, move_down(y_pos, speed));
+    public void move_vertical_state(float y_pos, float speed)     => state_swtich(ref swivel_state, move_vertical(y_pos, speed));
+    public void move_horizontal_state(float x_pos, float speed)   => state_swtich(ref swivel_state, move_horizontal(x_pos, speed));
     public void reset_offset_state(float speed)             => state_swtich(ref swivel_state, reset_offset(speed));
     public void shake_camera(float time, float amount)      => state_swtich(ref follow_state, camera_shake(time, amount));
 
@@ -88,20 +88,20 @@ public class CameraController : MonoBehaviour{
         yield break;
     }
 
-    IEnumerator move_up(float y_pos, float speed){
-        while(offset.y < y_pos){
-            offset += new Vector3(0, Time.deltaTime * speed, 0);
+    IEnumerator move_vertical(float y_pos, float speed){
+        while(Mathf.Abs(offset.y - y_pos) > 0.1){
+            offset.y = Mathf.MoveTowards(offset.y, y_pos, Time.deltaTime * speed);
             yield return new WaitForEndOfFrame();
         }
         yield break;
     }
 
-    IEnumerator move_down(float y_pos, float speed){
-        while(offset.y > y_pos){
-            offset -= new Vector3(0, Time.deltaTime * speed, 0);
+    IEnumerator move_horizontal(float x_pos, float speed){
+        while(Mathf.Abs(offset.x - x_pos) > 0.1){
+            offset.x = Mathf.MoveTowards(offset.x, x_pos, Time.deltaTime * speed);
             yield return new WaitForEndOfFrame();
         }
-        yield break;
+        yield break;       
     }
 
     IEnumerator reset_offset(float speed){
@@ -109,9 +109,9 @@ public class CameraController : MonoBehaviour{
         float difference = offset.y - original_offset.y;
         
         if(difference >= 0)
-            state_swtich(ref swivel_state,move_down(original_offset.y, speed));
+            state_swtich(ref swivel_state,move_vertical(original_offset.y, speed));
         else
-            state_swtich(ref swivel_state,move_up(original_offset.y, speed));
+            state_swtich(ref swivel_state,move_vertical(original_offset.y, speed));
         offset.y = original_offset.y;
         yield break;
     }
@@ -126,7 +126,7 @@ public class CameraController : MonoBehaviour{
     }
 
     IEnumerator zoom_in(float size, float speed){
-        while(Mathf.Abs(cam.orthographicSize - size) > 0.1f){
+        while(cam.orthographicSize > size){
             cam.orthographicSize -= Time.deltaTime * speed;
             yield return new WaitForEndOfFrame();
         }

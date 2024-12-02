@@ -85,6 +85,8 @@ public static class SceneSounds{
             SoundID.DOMINE_VOICE_2,
             SoundID.DOMINE_VOICE_3,
             SoundID.DOMINE_VOICE_4,
+            SoundID.SMALL_FIRE,
+            SoundID.STEAM,
             SoundID.NONE,  
         }},
         {"MainMenu", () => new List<SoundID>(){

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CavalryCamera : MonoBehaviour{
      public void ground_slam_camera_adjust(){
-        CameraController.instance.move_up_state(7, 4f);
+        CameraController.instance.move_vertical_state(7, 4f);
         CameraController.instance.zoom_out_state(14, 2f);
     }
     public void ground_slam_camera_reset(){

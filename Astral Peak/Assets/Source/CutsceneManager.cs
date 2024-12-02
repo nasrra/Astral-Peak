@@ -22,6 +22,10 @@ public static class CutsceneManager{
         coroutines.StartCoroutine(c);
     }
     public static void invoke_event(Action action) => action?.Invoke();
+    public static void invoke_event(List<Action> actions){
+        foreach(Action a in actions)
+            a?.Invoke();
+    }
 }
 
 public abstract class Cutscene{
@@ -38,4 +42,4 @@ public static class CutsceneLibrary{
         {"cavalry_transition_1",()=>new CavalryPhaseTransition()},
         {"cavalry_opening",     ()=> new CavalryOpeningCutscene()},
     };
-}
+}//
