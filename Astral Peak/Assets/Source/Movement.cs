@@ -12,7 +12,8 @@ public class Movement : MonoBehaviour{
     [Header("Movement")]
     [SerializeField] protected bool 
         can_knockback   = true,
-        can_dash        = true;
+        can_dash        = true,
+        is_dashing         = false;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField] protected float dash_cooldown = 1.0f;
@@ -111,14 +112,16 @@ public class Movement : MonoBehaviour{
         if(can_dash == true){
             can_dash = false;
             can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
+            is_dashing = true;
             switch_state(apply_force_loop(dashed, dash_end, direction, force, duration));
         }      
     }
 
     private void end_dash(){
         state_switch_default();
-        StartCoroutine(dash_cooldown_loop());
+        is_dashing = false;
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
+        StartCoroutine(dash_cooldown_loop());
     }
     IEnumerator dash_cooldown_loop(){
         yield return new WaitForSeconds(dash_cooldown);

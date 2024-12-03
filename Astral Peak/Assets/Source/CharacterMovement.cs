@@ -48,7 +48,7 @@ public class CharacterMovement : Movement{
     // jump command
     public void jump() {
         jumping = true;
-        if(grounded == true && can_jump == true){
+        if(grounded == true && can_jump == true && is_dashing == false){
             set_deceleration(1);
             move_direction.y = 1;
             jumped?.Invoke();
@@ -118,11 +118,13 @@ public class CharacterMovement : Movement{
         base.link();
         ground_checker.trigger_enter += is_grounded;
         ground_checker.trigger_exit += is_not_grounded;
+        dashed += end_jump;
     }
 
     protected override void unlink(){
         base.unlink();
         ground_checker.trigger_enter -= is_grounded;
         ground_checker.trigger_exit -= is_not_grounded;
+        dashed -= end_jump;
     }
 }
