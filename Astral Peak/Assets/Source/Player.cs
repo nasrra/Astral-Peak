@@ -71,13 +71,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // if we are in our invulnerable state no dashing.
         if(health.invulnerable == true)
             return;
-        
-        float move_dir = movement.get_move_direction().x;
-        if(move_dir > 0)
-            movement.dash(Vector2.right, 20, 0.25f);
-        else 
-            movement.dash(Vector2.left, 20, 0.25f);
-
+        movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.25f);
     }
 
     private void dashed(){
