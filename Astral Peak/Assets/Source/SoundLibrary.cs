@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -67,10 +68,6 @@ public enum SoundID{
     DANIEL,
 }
 
-// optimisation: 
-// - have a dictionary of loaded sounds to hook into for objects. Objscts call for the ir creation on awake(), system checks if sound is loaded (load if not, dont if already).
-// - unload the sounds when a new scene is loaded, so this by hooking into unity hook.
-
 public static class SoundLibrary{
     static Dictionary<SoundID, Sound> loaded_sounds = new Dictionary<SoundID, Sound>();
 
@@ -86,7 +83,7 @@ public static class SoundLibrary{
     }
 
     public static Sound get_sound(SoundID id) => loaded_sounds.ContainsKey(id)? loaded_sounds[id] : throw new Exception(id + " has not been loaded.");
-    static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single) => load_sounds(SceneSounds.create[scene.name]());
+    static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single) => load_sounds(scene_sounds[scene.name]());
     static void load_sounds(List<SoundID> sounds){
         foreach(SoundID name in sounds)
             loaded_sounds.Add(name, sound_creation[name]());
@@ -148,6 +145,125 @@ public static class SoundLibrary{
         {SoundID.NONE,                () => new Sound(load_sfx("silence"),            AudioManager.sfx_mixer, 1f)},
         {SoundID.SMALL_FIRE,          () => new Sound(load_sfx("small_fire"),         AudioManager.sfx_mixer, .75f, 1, .8f)},
         {SoundID.DANIEL,              () => new Sound(load_sfx("daniel"),             AudioManager.sfx_mixer, 1f, 1, .8f)}
+    };
+
+    static readonly Dictionary<string, Func<List<SoundID>>> sound_sets = new Dictionary<string, Func<List<SoundID>>>(){
+        {"cavalry_theme", () => new List<SoundID>(){
+            SoundID.WOLF_BOSS_MUSIC_1,
+            SoundID.WOLF_BOSS_MUSIC_2,
+        }},
+        {"melee", () => new List<SoundID>(){
+            SoundID.MELEE_HIT,
+            SoundID.MELEE_SWING_1,      
+            SoundID.MELEE_SWING_2,
+            SoundID.MELEE_SWING_3,     
+        }},
+        {"snow", () => new List<SoundID>(){
+            SoundID.SNOW_FOOTSTEP_1,
+            SoundID.SNOW_FOOTSTEP_2,
+            SoundID.SNOW_FOOTSTEP_3,
+            SoundID.SNOW_FOOTSTEP_4,
+            SoundID.SNOW_IMPACT_HEAVY,
+            SoundID.SNOW_IMPACT_LIGHT,
+        }},
+        {"magic", () => new List<SoundID>(){
+            SoundID.MAGIC_1,
+            SoundID.MAGIC_EXPLOSION,     
+            SoundID.WHOOSH_1,       
+        }},
+        {"ui", () => new List<SoundID>(){
+            SoundID.DEEP_BOOM,
+            SoundID.WOODEN_PING,            
+        }},
+        {"wolf", () => new List<SoundID>(){
+            SoundID.DOG_BARK_1,  
+            SoundID.WOLF_HOWL,          
+        }},
+        {"outdoor_ambience", () => new List<SoundID>(){
+            SoundID.SOFT_WIND,  
+        }},
+        {"fire", () => new List<SoundID>(){
+            SoundID.STEAM,
+            SoundID.SMALL_FIRE,
+        }},
+        {"domine", () => new List<SoundID>(){
+            SoundID.DOMINE_VOICE_1,
+            SoundID.DOMINE_VOICE_2,
+            SoundID.DOMINE_VOICE_3,
+            SoundID.DOMINE_VOICE_4,
+            SoundID.DANIEL,
+        }},
+        {"ranged", () => new List<SoundID>(){
+            SoundID.BOW_SHOT,
+            SoundID.COIN_TOSS,         
+        }},
+        {"default", () => new List<SoundID>(){
+            SoundID.NONE,
+        }},
+        {"stone", () => new List<SoundID>(){
+            SoundID.STONE_FOOTSTEP_1,
+            SoundID.STONE_FOOTSTEP_2,
+            SoundID.STONE_FOOTSTEP_3,
+            SoundID.STONE_FOOTSTEP_4,
+        }},
+        {"rider", () => new List<SoundID>(){
+            SoundID.RIDER_YELL,
+            SoundID.WHISTLE_LONG,
+        }}
+    };
+
+    static readonly Dictionary<string, Func<List<SoundID>>> scene_sounds = new Dictionary<string, Func<List<SoundID>>>(){
+        {"WolfBossRoom", () => {
+            List<SoundID> list = new List<SoundID>();
+            list.AddRange(sound_sets["wolf"]());
+            list.AddRange(sound_sets["magic"]());
+            list.AddRange(sound_sets["ui"]());
+            list.AddRange(sound_sets["fire"]());
+            list.AddRange(sound_sets["outdoor_ambience"]());
+            list.AddRange(sound_sets["ranged"]());
+            list.AddRange(sound_sets["default"]());  
+            list.AddRange(sound_sets["melee"]());
+            list.AddRange(sound_sets["snow"]());
+            list.AddRange(sound_sets["cavalry_theme"]());
+            list.AddRange(sound_sets["rider"]());
+            return list;
+        }},
+        {"SnowForest", () => {
+            List<SoundID> list = new List<SoundID>();
+            list.AddRange(sound_sets["magic"]());
+            list.AddRange(sound_sets["ui"]());
+            list.AddRange(sound_sets["outdoor_ambience"]());
+            list.AddRange(sound_sets["default"]());  
+            list.AddRange(sound_sets["melee"]());
+            list.AddRange(sound_sets["snow"]());
+            list.AddRange(sound_sets["domine"]());
+            return list;
+        }},
+        {"TutorialArea", () => {
+            List<SoundID> list = new List<SoundID>();
+            list.AddRange(sound_sets["magic"]());
+            list.AddRange(sound_sets["ui"]());
+            list.AddRange(sound_sets["outdoor_ambience"]());
+            list.AddRange(sound_sets["default"]());  
+            list.AddRange(sound_sets["melee"]());
+            list.AddRange(sound_sets["stone"]());
+            list.AddRange(sound_sets["domine"]());
+            return list;
+        }},
+        {"Shrine", () => {
+            List<SoundID> list = new List<SoundID>();
+            list.AddRange(sound_sets["magic"]());
+            list.AddRange(sound_sets["ui"]());
+            list.AddRange(sound_sets["outdoor_ambience"]());
+            list.AddRange(sound_sets["default"]());  
+            list.AddRange(sound_sets["melee"]());
+            list.AddRange(sound_sets["stone"]());
+            list.AddRange(sound_sets["domine"]());
+            return list;
+        }},
+        {"MainMenu", () => new List<SoundID>(){
+            SoundID.NONE,
+        }}
     };
 }
 
