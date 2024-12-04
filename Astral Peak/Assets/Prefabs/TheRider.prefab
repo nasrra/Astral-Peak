@@ -41,6 +41,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101277734366254227}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -64,7 +65,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: -0.020558834, y: -0.44705725}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -75,7 +77,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.6967554, y: 0.027076721}
   m_EdgeRadius: 0
 --- !u!114 &8839319846161726238
@@ -143,6 +144,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982526569071156867}
   m_Enabled: 0
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -166,7 +168,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 2.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,7 +180,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 4.5, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &1147065920377330053
@@ -264,6 +266,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374918458164140580}
   m_Enabled: 0
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -287,7 +290,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 2.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,7 +302,6 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 4.5, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &1895021796627007490
@@ -5164,6 +5167,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10052,6 +10058,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14882,6 +14891,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19770,6 +19782,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24600,6 +24615,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24699,11 +24717,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 284895504069763565}
-  - {fileID: 5228139715080523048}
   - {fileID: 618763542891424821}
   - {fileID: 627647236286250500}
   - {fileID: 3873645440087134084}
   - {fileID: 7291533872477151370}
+  - {fileID: 5228139715080523048}
   - {fileID: 7364126562834190987}
   - {fileID: 5205689328652165909}
   - {fileID: 5414534820910787418}
@@ -24745,6 +24763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   can_knockback: 1
   can_dash: 1
+  is_dashing: 0
   top_speed: 5
   acceleration: 5
   dash_cooldown: 0.1
@@ -24795,7 +24814,8 @@ MonoBehaviour:
   chosen_attack:
     animation_id: 0
     chance: 0
-    distance: 0
+    player_distance: 0
+    arena_bound_distance: 0
     attack_cooldown: 0
     combat_cooldown: 0
     idle_cooldown: 0
@@ -24803,6 +24823,8 @@ MonoBehaviour:
   front_moveset: []
   back_moveset: []
   special_moveset: []
+  left_arena_bound: {fileID: 0}
+  right_arena_bound: {fileID: 0}
 --- !u!114 &796542481378532419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24907,7 +24929,7 @@ MonoBehaviour:
     fire_point: {fileID: 6177200519104183750}
 --- !u!50 &5748691801250436687
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24918,8 +24940,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -24934,7 +24956,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!95 &1266882780324297340
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -24948,6 +24970,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -24961,6 +24984,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3682692632547633077}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -24984,9 +25008,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.75}
-  serializedVersion: 2
   m_Radius: 0.25
 --- !u!114 &2116196115767782715
 MonoBehaviour:
@@ -25191,6 +25215,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6543310061127449346}
   m_Enabled: 0
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -25214,9 +25239,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 5
 --- !u!114 &7136688952881235812
 MonoBehaviour:
@@ -30035,6 +30060,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34961,6 +34989,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39822,6 +39853,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40059,6 +40093,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683363633553541123}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40082,9 +40117,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 3, y: 0}
-  serializedVersion: 2
   m_Radius: 4
 --- !u!114 &2355736251005280968
 MonoBehaviour:
@@ -40112,6 +40147,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778851331634151980}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40135,9 +40171,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: -0.5, y: 0}
-  serializedVersion: 2
   m_Radius: 4
 --- !u!114 &6296950203243766204
 MonoBehaviour:
@@ -40165,6 +40201,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2654534727285466912}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -40188,9 +40225,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 4
 --- !u!114 &5229949687104645976
 MonoBehaviour:
@@ -40243,7 +40280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.94
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3446744942007720443, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40279,7 +40316,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+      propertyPath: VelocityModule.y.scalar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297313219805046790, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7786466705216187149, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
       propertyPath: m_Flip.x
@@ -40290,9 +40339,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7786466705216187149, guid: ae7d3b0827bda5e4d92288bbe0eecafc, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ada5039e8116dd849a1e98edaed74f1c, type: 2}
+      objectReference: {fileID: 2100000, guid: de3a40961f5773b4fb8b22d015aa519f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

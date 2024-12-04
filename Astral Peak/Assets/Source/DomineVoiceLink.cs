@@ -24,16 +24,16 @@ public class DomineVoiceLink : MonoBehaviour{
         int x = Random.Range(1, 5);
         SoundID sound;
         switch(x){
-            case 1: sound = SoundID.DOMINE_VOICE_1; break;
-            case 2: sound = SoundID.DOMINE_VOICE_2; break;
-            case 3: sound = SoundID.DOMINE_VOICE_3; break;
-            case 4: sound = SoundID.DOMINE_VOICE_4; break;
+            case 1: sound = SoundID.DANIEL; break;
+            case 2: sound = SoundID.DANIEL; break;
+            case 3: sound = SoundID.DANIEL; break;
+            case 4: sound = SoundID.DANIEL; break;
             default: sound = SoundID.BOW_SHOT; break;
         }
 
         AudioClipHandler.play(
             sound_id: sound, 
-            randomise_pitch: true,
+            randomise_pitch: false,
             spatial_blend: false, 
             audio_player: this, 
             loop: false, 

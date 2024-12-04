@@ -88,6 +88,7 @@ public static class SceneSounds{
             SoundID.SMALL_FIRE,
             SoundID.STEAM,
             SoundID.NONE,  
+            SoundID.DANIEL,
         }},
         {"MainMenu", () => new List<SoundID>(){
             SoundID.BOW_SHOT,

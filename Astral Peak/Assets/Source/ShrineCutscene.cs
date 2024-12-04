@@ -56,6 +56,8 @@ public class ShrineCutscene : Cutscene{
         end();
     }
 
+    AudioSource source;
+
     void handle_new_line(int line){
         switch(line){
             case 27: 

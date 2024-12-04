@@ -64,6 +64,7 @@ public enum SoundID{
     DOMINE_VOICE_4,
     SMALL_FIRE,
     NONE,
+    DANIEL,
 }
 
 // optimisation: 
@@ -145,7 +146,8 @@ public static class SoundLibrary{
         {SoundID.DOMINE_VOICE_3,      () => new Sound(load_sfx("domine_voice_3"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
         {SoundID.DOMINE_VOICE_4,      () => new Sound(load_sfx("domine_voice_4"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
         {SoundID.NONE,                () => new Sound(load_sfx("silence"),            AudioManager.sfx_mixer, 1f)},
-        {SoundID.SMALL_FIRE,          () => new Sound(load_sfx("small_fire"),         AudioManager.sfx_mixer, .75f, 1, .8f)}
+        {SoundID.SMALL_FIRE,          () => new Sound(load_sfx("small_fire"),         AudioManager.sfx_mixer, .75f, 1, .8f)},
+        {SoundID.DANIEL,              () => new Sound(load_sfx("daniel"),             AudioManager.sfx_mixer, 1f, 1, .8f)}
     };
 }
 
