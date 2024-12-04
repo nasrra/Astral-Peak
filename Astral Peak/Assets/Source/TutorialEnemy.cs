@@ -9,6 +9,7 @@ public class TutorialEnemy : Enemy{
     void Start(){
         link_events();
         state_switch(pathing_loop());
+        target = origin;
     }
 
     void OnDestroy(){
@@ -17,15 +18,15 @@ public class TutorialEnemy : Enemy{
 
     void idle_state(float x) => state_switch(idle(x));
     IEnumerator idle(float x){
-        animator.Play(RiderAnimator.IDLE);
+        animator.Play(HollowAnimator.IDLE);
         yield return new WaitForSeconds(x);
-        state_switch(follow());
+        recovery_state();
         yield break;
     }
 
     void follow_state() => state_switch(follow());
     protected override IEnumerator follow(){        
-        animator.Play(HollowAnimator.IDLE);
+        animator.Play(HollowAnimator.WALK);
         state_switch(base.follow());
         yield break;
     }
@@ -50,30 +51,45 @@ public class TutorialEnemy : Enemy{
     }
 
     public void recovery_state(){
-        state_switch(target_in_range? follow() : retreat_loop());
+        state_switch(target_in_range == true? follow() : retreat_loop());
     }
 
     #region linkage
     protected void link_events(){
-        link_combat();
+        //link_combat();
         link_health();
         link_movement();
     }
 
     protected void unlink_events(){
-        unlink_combat();
+        //unlink_combat();
         unlink_health(); 
         unlink_movement();
     }
 
-    void player_in_range(){
+    void player_in_range(Collider2D col){
+        target = col.gameObject.transform;
         target_in_range = true;
         follow_state();
     }
 
-    void player_left_range(){
+    void player_left_range(Collider2D col){
         target_in_range = false;
         recovery_state();
+        target = null;
+        Debug.Log(1);
+    }
+
+    void pathing_animations(MovementOption _movement){
+        switch(_movement){
+            case MovementOption.LEFT:
+            case MovementOption.RIGHT:
+                animator.Play(HollowAnimator.WALK);
+                break;
+            case MovementOption.NONE:
+                animator.Play(HollowAnimator.IDLE);
+                break;
+        }
     }
 
     private void link_combat(){
@@ -83,8 +99,8 @@ public class TutorialEnemy : Enemy{
         combat.attack_ended += idle_state;
     }
     private void unlink_combat(){
-        (combat as TutorialEnemyCombat).player_in_range -= follow_state;        
-        (combat as TutorialEnemyCombat).player_left_range -= recovery_state;
+        (combat as TutorialEnemyCombat).player_in_range -= player_in_range;        
+        (combat as TutorialEnemyCombat).player_left_range -= player_left_range;
         combat.attack_ended -= idle_state;
         combat.StopAllCoroutines();
         combat.enabled = false;
@@ -92,10 +108,12 @@ public class TutorialEnemy : Enemy{
 
     private void link_movement(){
         movement.move_direction_changed         += face_move_dir;
+        pathing_movement    += pathing_animations;
     }
 
     private void unlink_movement(){
         movement.move_direction_changed         -= face_move_dir;
+        pathing_movement    -= pathing_animations;
     }
 
     protected void link_health(){

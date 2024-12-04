@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ using UnityEngine;
 // This idea should be followed, to mitigate any bugs and anymore time on needless ai path finding.
 
 public class Enemy : Boss<Movement>{
+    protected event Action<MovementOption> pathing_movement;
     [SerializeField] protected List<AiPath> paths = new List<AiPath>();
     [SerializeField] protected Transform origin;
 
@@ -21,7 +23,7 @@ public class Enemy : Boss<Movement>{
             // start movement.
             current_path = paths[path_index];
             movement.movement(current_path.movement, true);
-
+            pathing_movement?.Invoke(current_path.movement);
             yield return new WaitForSeconds(current_path.duration);
             
             movement.stop();

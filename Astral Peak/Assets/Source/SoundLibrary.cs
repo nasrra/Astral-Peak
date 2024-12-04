@@ -192,6 +192,7 @@ public static class SoundLibrary{
             SoundID.DOMINE_VOICE_3,
             SoundID.DOMINE_VOICE_4,
             SoundID.DANIEL,
+            SoundID.DOMINE_THEME,
         }},
         {"ranged", () => new List<SoundID>(){
             SoundID.BOW_SHOT,
@@ -259,6 +260,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["melee"]());
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
+            list.AddRange(sound_sets["fire"]());
             return list;
         }},
         {"MainMenu", () => new List<SoundID>(){

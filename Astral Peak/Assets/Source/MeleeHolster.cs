@@ -41,7 +41,6 @@ public class MeleeHolster{
     public void hit(Collider2D other){
         Creature direct = other.GetComponent<Creature>(); // direct creature reference from smaller enemies with one collider; like human characters.
         CreatureLink link = other.GetComponent<CreatureLink>(); // creature linker for bigger creatures with multiple colliders and segments.
-
         Creature creature = (direct != null)? direct : link.get_creature();
         string name = creature.gameObject.name;
 
