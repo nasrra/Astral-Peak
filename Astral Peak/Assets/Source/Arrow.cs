@@ -38,11 +38,9 @@ public class Arrow : Projectile{
         col.enabled = false;
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_LIGHT,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC);  
+
         GameObject particle = Instantiate(grounded_effect, front_point.position, despawn_effect.transform.rotation);
         Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
 
@@ -53,11 +51,8 @@ public class Arrow : Projectile{
         sprite.SetActive(false);
         AudioClipHandler.play(
             SoundID.STEAM,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC);  
         
         yield return new WaitForSeconds(death_delay);
         Destroy(gameObject);

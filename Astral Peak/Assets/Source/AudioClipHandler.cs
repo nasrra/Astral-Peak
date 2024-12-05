@@ -2,47 +2,50 @@ using System.Collections;
 using UnityEngine;
 
 public static class AudioClipHandler{
-
     static MonoBehaviour object_audio;
 
-    static AudioSource create_source(Sound sound, bool loop){
-        AudioSource s = object_audio.gameObject.AddComponent<AudioSource>();
-        s.clip                  = sound.clip;
-        s.volume                = sound.volume;
-        s.pitch                 = sound.max_pitch;
-        s.outputAudioMixerGroup = sound.group;
-        s.dopplerLevel          = 0;
-        s.loop                  = loop;
-        return s;        
+    static AudioSource create_source(Sound sound, AudioSourceSettings settings){
+        AudioSource source = object_audio.gameObject.AddComponent<AudioSource>();
+        source.clip                  = sound.clip;
+        source.volume                = sound.volume;
+        source.pitch                 = sound.max_pitch;
+        source.outputAudioMixerGroup = sound.group;
+        source.loop                  = settings.loop;
+        source.pitch                 = settings.randomise_pitch == true? sound.randomise_pitch() : source.pitch;
+        if(settings.spatial_blend == false)
+            return source;
+        source.dopplerLevel          = 0;
+        source.rolloffMode           = AudioRolloffMode.Linear;
+        source.maxDistance           = 48;
+        source.spatialBlend          = 1;
+        return source;          
     }
 
     public static void set_game_object(MonoBehaviour audio) => object_audio = audio;
 
-    public static void play(SoundID sound_id, bool randomise_pitch, bool spatial_blend, MonoBehaviour audio_player, bool loop, out AudioSource source){
+    public static AudioSource play(SoundID sound_id, MonoBehaviour audio_player,AudioSourceSettings settings){
         Sound sound = SoundLibrary.get_sound(sound_id);
         set_game_object(audio_player);
-        source = create_source(sound, loop);
-        source.pitch = randomise_pitch? sound.randomise_pitch() : source.pitch;
-        source.spatialBlend = spatial_blend? 0.7f : 0f;
+        AudioSource source = create_source(sound, settings);
         source.Play();
         if(source.loop == false)
             Object.Destroy(source,sound.clip.length); // unscaled time btw.
+        return source;
     }
 
-    public static void crossfade(MonoBehaviour audio, ref AudioSource source, SoundID sound_id, float fade_factor){
-        AudioSource _source;
+    public static void crossfade(MonoBehaviour audio, ref AudioSource source, SoundID sound_id, float fade_factor, AudioSourceSettings settings){
         fade_out(audio, source, fade_factor);
-        fade_in(audio, sound_id, fade_factor, out _source);
-        source = _source;
+        source = fade_in(audio, sound_id, fade_factor, settings);
     }
 
-    public static void fade_in(MonoBehaviour audio, SoundID sound_id, float fade_factor, out AudioSource source){
+    public static AudioSource fade_in(MonoBehaviour audio_player, SoundID sound_id, float fade_factor, AudioSourceSettings settings){
         Sound sound = SoundLibrary.get_sound(sound_id);
-        set_game_object(audio);
-        source = create_source(sound, false);
+        set_game_object(audio_player);
+        AudioSource source = create_source(sound, settings);
         object_audio.StartCoroutine(fade_in_loop(source, fade_factor, sound));
         source.Play();
         Object.Destroy(source,sound.clip.length); // unscaled time btw.
+        return source;
     }
 
     public static void fade_out(MonoBehaviour audio, AudioSource source, float fade_factor){
@@ -70,3 +73,4 @@ public static class AudioClipHandler{
         yield break;
     }
 }
+

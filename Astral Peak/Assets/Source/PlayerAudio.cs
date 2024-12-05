@@ -3,78 +3,57 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    AudioSource source;
     string ground;
 
-    public void emit_attack()=> 
+    public void emit_attack()   => 
         AudioClipHandler.play(
             SoundID.MELEE_SWING_1,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC
+        );
 
     public void emit_dash()=> 
         AudioClipHandler.play(
             SoundID.WHOOSH_1,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
 
     public void emit_footsteps()=> 
         AudioClipHandler.play(
             choose_footstep(),
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
 
     public void emit_grounded()=> 
         AudioClipHandler.play(
             choose_footstep(),
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+
 
     public void emit_attack_hit()=> 
         AudioClipHandler.play(
             SoundID.MELEE_HIT,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+
     public void emit_jump()=> 
         AudioClipHandler.play(
             SoundID.WHOOSH_1,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+
     public void emit_damaged()=> 
         AudioClipHandler.play(
             SoundID.DEEP_BOOM,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    false, 
-            spatial_blend:      false,
-            loop:               false);
+            audio_player: this, 
+            AudioSourceSettings.NON_DIEGETIC);  
             
     public void emit_magic_explosion() => 
         AudioClipHandler.play(
             SoundID.MAGIC_EXPLOSION,
-            audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);  
+            audio_player: this,
+            AudioSourceSettings.DIEGETIC_RANDOMISED);   
 
     public void set_ground(string _ground) => ground = _ground;
 

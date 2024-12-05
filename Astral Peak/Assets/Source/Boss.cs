@@ -31,7 +31,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         while(true){
             float dist = dist_to_target();
             // attempt an attack.
-            if(chose_attack(dist) == true)
+            if(combat != null && chose_attack(dist) == true)
                 yield break;
             move_to_player(dist);
             // Fixed Update Modifier.

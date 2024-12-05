@@ -51,13 +51,10 @@ public class Torch : MonoBehaviour{
         }
         smoke.Play();
         AudioClipHandler.play(
-            SoundID.STEAM, 
-            randomise_pitch: true,
-            spatial_blend: true,
-            audio_player: this,
-            loop: false,
-            out smoke_source
-        );
+            SoundID.STEAM,
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC);  
+
         fire_source.Stop();
         embers.Emit(30);
         embers.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -67,14 +64,11 @@ public class Torch : MonoBehaviour{
 
     IEnumerator turn_on_fire() {
         float x = 1;
-        AudioClipHandler.play(
+        fire_source = AudioClipHandler.play(
             SoundID.SMALL_FIRE, 
-            randomise_pitch: true,
-            spatial_blend: true,
             audio_player: this,
-            loop: true,
-            out fire_source
-        );
+            AudioSourceSettings.DIEGETIC_LOOP);  
+
         embers.Emit(30);
         embers.Play();
         foreach(SpriteRenderer s in fire){

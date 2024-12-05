@@ -134,7 +134,7 @@ public static class SoundLibrary{
         {SoundID.LEATHER_CONTORT_1,   () => new Sound(load_sfx("leather_contort_1"),  AudioManager.sfx_mixer, 1f)},
         {SoundID.BOW_SHOT,            () => new Sound(load_sfx("bow_shot"),           AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
         {SoundID.COIN_TOSS,           () => new Sound(load_sfx("coin_toss"),          AudioManager.sfx_mixer, 1f)},
-        {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer,.6f)},
+        {SoundID.RIDER_YELL,          () => new Sound(load_sfx("rider_yell"),         AudioManager.sfx_mixer, 1f)},
         {SoundID.WOODEN_PING,         () => new Sound(load_sfx("wooden_ping"),        AudioManager.sfx_mixer, .7f)},
         {SoundID.DEEP_BOOM,           () => new Sound(load_sfx("deep_boom"),          AudioManager.sfx_mixer, .8f)},
         {SoundID.STEAM,               () => new Sound(load_sfx("steam"),              AudioManager.sfx_mixer, 0.5f, 1f, 0.75f)},
@@ -207,7 +207,7 @@ public static class SoundLibrary{
             SoundID.STONE_FOOTSTEP_3,
             SoundID.STONE_FOOTSTEP_4,
         }},
-        {"rider", () => new List<SoundID>(){
+        {"enemy", () => new List<SoundID>(){
             SoundID.RIDER_YELL,
             SoundID.WHISTLE_LONG,
         }}
@@ -226,7 +226,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["melee"]());
             list.AddRange(sound_sets["snow"]());
             list.AddRange(sound_sets["cavalry_theme"]());
-            list.AddRange(sound_sets["rider"]());
+            list.AddRange(sound_sets["enemy"]());
             return list;
         }},
         {"SnowForest", () => {
@@ -249,6 +249,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["melee"]());
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
+            list.AddRange(sound_sets["enemy"]());
             return list;
         }},
         {"Shrine", () => {

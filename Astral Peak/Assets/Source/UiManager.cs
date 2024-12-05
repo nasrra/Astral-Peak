@@ -59,10 +59,7 @@ public class UiManager : MonoBehaviour{
         AudioClipHandler.play(
             SoundID.WOODEN_PING,
             audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    false, 
-            spatial_blend:      false,
-            loop:               false);
+            AudioSourceSettings.NON_DIEGETIC);  
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
         yield break;
@@ -73,10 +70,8 @@ public class UiManager : MonoBehaviour{
         AudioClipHandler.play(
             SoundID.WOODEN_PING,
             audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    false, 
-            spatial_blend:      false,
-            loop:               false);
+            AudioSourceSettings.NON_DIEGETIC);  
+
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);
         UiManager.instance.fade_to_black();

@@ -15,18 +15,14 @@ public class TheCavalryBackground : MonoBehaviour{
         AudioClipHandler.play(
             SoundID.WOLF_HOWL,
             audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+ 
     public void play_hop() => 
         AudioClipHandler.play(
             SoundID.MAGIC_1,
             audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+            
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
     public void move_camera_up() => CameraController.instance.move_vertical_state(22, 8f);
@@ -35,9 +31,7 @@ public class TheCavalryBackground : MonoBehaviour{
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_HEAVY,
             audio_player:       this, 
-            source:             out source, 
-            randomise_pitch:    true, 
-            spatial_blend:      true,
-            loop:               false);
+            AudioSourceSettings.DIEGETIC_RANDOMISED);
+
     public void play_camera_shake() => CameraController.instance.shake_camera(0.35f,1f);
 }

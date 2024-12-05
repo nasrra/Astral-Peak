@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour{
 
     public void set_speed(float x) => top_speed = x;
     public void set_deceleration(float x) => deceleration = x;
+    public void set_acceleration(float x) => acceleration = x;
     public void reset_deceleration() => deceleration = original_deceleration;
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public Vector2 get_move_direction() => move_direction;
@@ -131,7 +132,7 @@ public class Movement : MonoBehaviour{
 
     public void knockback(KnockbackData data){
         if(can_knockback == true)
-            switch_state(apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.5f,0)).normalized, data.force, data.duration));
+            switch_state(apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.25f,0)).normalized, data.force, data.duration));
     }
 
     protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){

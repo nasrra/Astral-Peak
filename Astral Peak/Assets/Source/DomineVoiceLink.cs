@@ -31,13 +31,9 @@ public class DomineVoiceLink : MonoBehaviour{
             default: sound = SoundID.BOW_SHOT; break;
         }
 
-        AudioClipHandler.play(
+        source = AudioClipHandler.play(
             sound_id: sound, 
-            randomise_pitch: false,
-            spatial_blend: false, 
             audio_player: this, 
-            loop: false, 
-            out source
-        );
+            AudioSourceSettings.NON_DIEGETIC);  
     }
 }

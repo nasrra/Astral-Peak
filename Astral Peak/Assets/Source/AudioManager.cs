@@ -39,8 +39,8 @@ public static class AudioManager{
 
     public static void on_start() => load_volume_settings();
 
-    public static void play_music(SoundID sound_id)    => AudioClipHandler.crossfade(audio_player, ref music, sound_id, 1f);
-    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(audio_player, ref ambience, sound_id, 1f);
+    public static void play_music(SoundID sound_id)    => AudioClipHandler.crossfade(audio_player, ref music, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
+    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(audio_player, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
     public static void stop_music() => AudioClipHandler.fade_out(audio_player, music, 1f);
 
     public static void music_volume(float volume) => mixer.SetFloat(MIXER_MUSIC,value_to_logarithmic(volume));

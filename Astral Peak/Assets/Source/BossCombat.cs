@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class BossCombat : MonoBehaviour{
@@ -24,6 +25,10 @@ public class BossCombat : MonoBehaviour{
     // add to the algorithm so that some attacks are more frequently picked
     // depending upon their chance percentage.
     public BossAttack chose_attack(float dist_to_target){
+        // return if there are no attacks moves available.
+        if(front_moveset.Count == 0 && back_moveset.Count == 0 && special_moveset.Count == 0)
+            return null;
+
         float target_distance = Mathf.Abs(dist_to_target);
         float left_bound_distance = dist_to_left_bound();
         float right_bound_distance = dist_to_left_bound();
