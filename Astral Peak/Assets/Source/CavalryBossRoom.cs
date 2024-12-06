@@ -41,7 +41,6 @@ public class CavalryBossRoom : BossRoomHandler{
     void player_entered(Collider2D col){//
         feedback.enabled = false;  
         feedback_collider.enabled = false;      
-        Player.instance.set_spawn_point(player_respawn_point.name);
         start_fight();
     }
 

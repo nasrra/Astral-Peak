@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour{
             if(start_trigger == true )
                 DialogueHandler.instance.start_dialogue();
             else
-                DialogueHandler.instance.next_line();
+                DialogueHandler.instance.next_line();//
             flag = true;
         }
     }

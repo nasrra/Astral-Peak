@@ -6,7 +6,27 @@ using UnityEngine.AI;
 public class KillZone : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other){
         Creature creature = other.GetComponent<Creature>();
-        if(creature != null)
-            creature.kill();
+        if(creature != null){
+            if(creature.gameObject.layer == LayersManager.ENEMY)
+                creature.kill();
+            else if(creature.gameObject.layer == LayersManager.PLAYER){
+                creature.get_health().damage(new DamageData(1), null);
+                if(creature.get_health().get_current_health() <= 0)
+                    Player.instance.enter_cutscene_state();
+                else
+                    StartCoroutine(hit_player());
+            }
+        }
+    }
+
+    // respawn state.
+    IEnumerator hit_player(){
+        UiManager.instance.fade_to_black();
+        Player.instance.enter_cutscene_state();
+        yield return new WaitForSeconds(1);
+        Player.instance.set_enter_position();
+        UiManager.instance.fade_from_black();
+        yield return new WaitForSeconds(1);
+        Player.instance.exit_cutscene_state();
     }
 }

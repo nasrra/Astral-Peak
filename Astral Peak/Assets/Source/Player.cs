@@ -9,7 +9,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // static fields for other classes to access.
     public static Player instance;
-    public static string spawn_point = "";
+    public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
 
 
     // data to link together.
@@ -37,6 +37,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     void OnDestroy(){
         GameManager.unlink_player();
+        set_respawn_point(""); // reset respawn point;
         unlink_events();
         Application.quitting -= unlink_events;
     }
@@ -71,7 +72,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void dashed(){
         audio.emit_dash();
         particles.emit_dash();
-        health.is_invulnerable();
+        health.is_invulnerable();//
     }
 
     private void grounded(){
@@ -100,8 +101,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         col.excludeLayers = new LayerMask();
     }
 
-    public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
-    public string get_spawn_point() => spawn_point;
 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
@@ -116,13 +115,17 @@ public class Player : CreatureInheritor<CharacterMovement>{
         AudioManager.low_pass_audio(false);
     }
 
+    public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
+    public void set_respawn_point(string _respawn_point) => respawn_point = _respawn_point;
+    public string get_spawn_point() => spawn_point;
+
     // used to set the players initial position in the scene.
     public void set_enter_position(){
-        SpawnPoint spawn = SpawnPointManager.get_point(spawn_point);
+        SpawnPoint spawn = SpawnPointManager.get_point(respawn_point != ""? respawn_point : spawn_point);
         if(spawn != null){
-            if(spawn.get_type() == SpawnPointType.DOOR)
+            if(spawn.get_movement() != MovementOption.NONE)
                 StartCoroutine(door_exit_state());
-            transform.position = SpawnPointManager.get_point(spawn_point).transform.position;
+            transform.position = spawn.transform.position;
         }
     }
 
@@ -205,6 +208,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.right_cancelled       += stop_right;
         InputManager.attack_performed      += attack;
         InputManager.dash_performed        += dash; 
+        InputManager.reset_input_blockers();
     }
 
     public void unlink_input(){

@@ -1351,7 +1351,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953c691381e3a344b18cca1a1679bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_respawn_point: {fileID: 1839469614}
   boss_start_point: {fileID: 713143996}
   play_cinematic: 0
   song: 0
@@ -7180,10 +7179,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1839469609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8ce35ff56f33d46861f9de1f9e43d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfc24ace840fd0c43a0d0fe2fdcb5678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   movement: 6
 --- !u!1 &1894242932
 GameObject:
@@ -12262,11 +12260,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8131693212758841488, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: max_life
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8131693212758841488, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: current_life
-      value: 30
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
