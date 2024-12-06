@@ -66,7 +66,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void attack()       => animator.Play(PlayerAnimator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
-        movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.25f);
+        Vector2 move_direction = movement.get_move_direction();
+        movement.dash(
+            (move_direction.magnitude == 0)?
+                (transform.rotation.y == 0? Vector2.right : Vector2.left) :
+                (move_direction.x == 1?     Vector2.right : Vector2.left) ,
+            20, 
+            0.25f); 
     }
 
     private void dashed(){
