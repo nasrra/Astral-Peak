@@ -16,7 +16,6 @@ public static class InputManager{
         jump_performed,     jump_cancelled, 
         left_performed,     left_cancelled, 
         right_performed,    right_cancelled, 
-        interact_performed, interact_cancelled, 
         attack_performed,   attack_cancelled, 
         dash_performed,
         exit_performed,

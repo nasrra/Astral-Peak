@@ -504,7 +504,6 @@ Transform:
   - {fileID: 1065876255}
   - {fileID: 499083806}
   - {fileID: 431353789}
-  - {fileID: 988181357}
   - {fileID: 1320932094}
   - {fileID: 1421768636}
   - {fileID: 1646642848}
@@ -2016,8 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop: 0
-  start_trigger: 1
+  line: 0
 --- !u!61 &932434288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2294,8 +2292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop: 0
-  start_trigger: 0
+  line: 2
 --- !u!61 &985465931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2431,7 +2428,7 @@ Transform:
   m_LocalScale: {x: 55, y: 0.8333333, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 254337658}
+  m_Father: {fileID: 1320932094}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015703834
 GameObject:
@@ -12800,6 +12797,7 @@ Transform:
   m_Children:
   - {fileID: 2055561541}
   - {fileID: 975749036}
+  - {fileID: 988181357}
   m_Father: {fileID: 254337658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1340358582
@@ -14107,8 +14105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop: 0
-  start_trigger: 0
+  line: 1
 --- !u!61 &1487706328
 BoxCollider2D:
   m_ObjectHideFlags: 0

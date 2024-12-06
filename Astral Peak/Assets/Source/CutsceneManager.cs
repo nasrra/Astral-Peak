@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class CutsceneManager{
+    public static Action<Cutscene> started_cutscene;
     static MonoBehaviour coroutines;
     static Cutscene cutscene;
     public static void initialize(MonoBehaviour _coroutines) => coroutines = _coroutines;
     public static void play(string cutscene_id){
         UiManager.instance.cutscene_mode(true);
         cutscene = CutsceneLibrary.create_cutscene[cutscene_id]();
+        started_cutscene?.Invoke(cutscene);
         cutscene.start();
         cutscene.ended += cutscene_ended;
     }
@@ -20,11 +22,6 @@ public static class CutsceneManager{
     }
     public static void set_coroutine(IEnumerator c){
         coroutines.StartCoroutine(c);
-    }
-    public static void invoke_event(Action action) => action?.Invoke();
-    public static void invoke_event(List<Action> actions){
-        foreach(Action a in actions)
-            a?.Invoke();
     }
 }
 
@@ -38,7 +35,8 @@ public abstract class Cutscene{
 
 public static class CutsceneLibrary{
     public readonly static Dictionary<string, Func<Cutscene>> create_cutscene = new Dictionary<string, Func<Cutscene>>(){
-        {"shrine_cutscene",()=>new ShrineCutscene()},
+        {"shrine_opening_cutscene",()=>new ShrineOpeningCutscene()},
+        {"shrine_altar_1_cutscene",()=>new ShrineAltarOneCutscene()},
         {"cavalry_transition_1",()=>new CavalryPhaseTransition()},
         {"cavalry_opening",     ()=> new CavalryOpeningCutscene()},
     };

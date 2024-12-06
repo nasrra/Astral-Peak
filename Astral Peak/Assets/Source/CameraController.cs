@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour{
         
@@ -22,7 +20,8 @@ public class CameraController : MonoBehaviour{
     Coroutine
         follow_state,
         zoom_state,
-        swivel_state;
+        swivel_state,
+        shake_state;
 
     void Awake(){
         instance = this;
@@ -42,7 +41,7 @@ public class CameraController : MonoBehaviour{
     public void move_vertical_state(float y_pos, float speed)     => state_swtich(ref swivel_state, move_vertical(y_pos, speed));
     public void move_horizontal_state(float x_pos, float speed)   => state_swtich(ref swivel_state, move_horizontal(x_pos, speed));
     public void reset_offset_state(float speed)             => state_swtich(ref swivel_state, reset_offset(speed));
-    public void shake_camera(float time, float amount)      => state_swtich(ref follow_state, camera_shake(time, amount));
+    public void shake_camera(float time, float amount)      => state_swtich(ref shake_state, camera_shake(time, amount));
 
     // state switchers:
     void state_swtich(ref Coroutine state, IEnumerator n_state){
@@ -51,6 +50,9 @@ public class CameraController : MonoBehaviour{
         state = StartCoroutine(n_state);
     }
 
+    public void stop_follow_state() => state_swtich(ref follow_state, none());
+    public void start_follow_state() => state_swtich(ref follow_state, follow());
+    IEnumerator none(){yield break;}
     // states:
     IEnumerator follow(){
         while(true){
@@ -76,15 +78,22 @@ public class CameraController : MonoBehaviour{
     IEnumerator camera_shake(float time, float amount){
         float timer = 0;
         while(timer < time){
-            float shake = (Random.Range(0,11) - 5) * cam.orthographicSize * amount / 10;
-            Vector3 desired_pos = new Vector3(target.position.x + offset.x + shake, offset.y + shake, target.position.z + offset.z);
-            // may want to swap this to Vector3.SmoothDamp();
+            // Generate a random shake value based on orthographic size and amount
+            float shake = (Random.Range(0f, 11f) - 5) * cam.orthographicSize * amount / 10;
+
+            // Apply shake to one or both axes (adjust as needed)
+            Vector3 desired_pos = new Vector3(offset.x + shake + transform.position.x, offset.y + shake + transform.position.y, offset.z);
+
+            // Smoothly transition to the desired position
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
-            transform.position = regulate_position(smoothed_pos);               
+
+            // Add the smoothed shake to the current position
+            transform.position += smoothed_pos - transform.position;
+            // Increment timer
             timer += Time.deltaTime;
+            //state_swtich(ref follow_state, follow());
             yield return new WaitForFixedUpdate();
         }
-        state_swtich(ref follow_state, follow());
         yield break;
     }
 

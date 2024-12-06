@@ -10,7 +10,7 @@ public class CharacterMovement : Movement{
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
-    [SerializeField] private bool jumping = false, coyote_jump = false;
+    [SerializeField] private bool jumping = false;
     [SerializeField] private bool can_jump = true;
     [SerializeField] private float 
         jump_time, jump_force, jump_force_multiplier, jump_time_counter;

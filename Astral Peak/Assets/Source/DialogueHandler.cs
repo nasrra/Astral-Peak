@@ -22,10 +22,7 @@ public class DialogueHandler : MonoBehaviour{
         instance = this;
         if(dialogue_file != "" && dialoge_option != "")
             dialogue = ExcelReader.read_dialogue(dialogue_file, dialoge_option);
-        InputManager.interact_performed += next_line;
     }
-
-    void OnDestroy() => InputManager.interact_performed -= next_line;
 
     public void start_dialogue(){
         index = -1;
@@ -36,6 +33,11 @@ public class DialogueHandler : MonoBehaviour{
     }
     public void next_line(){
         index++;
+        StopAllCoroutines();
+        StartCoroutine(fade_loop(5));
+    }
+    public void play_line(int x){
+        index = x;
         StopAllCoroutines();
         StartCoroutine(fade_loop(5));
     }

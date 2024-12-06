@@ -1,27 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using DocumentFormat.OpenXml.Presentation;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShrineCutsceneTorch : MonoBehaviour{
     [SerializeField] List<Torch> torches = new List<Torch>();
     AudioSource source;
-    void OnEnable(){
-        ShrineCutscene.torches_on   += turn_on;
-        ShrineCutscene.torches_off  += turn_off;
-        ShrineCutscene.enlargen_torches += enlargen;
-        ShrineCutscene.reset_torches += reset_torches;
-        Application.quitting += OnDisable;
-    }
-
-    void OnDisable(){
-        ShrineCutscene.torches_on   -= turn_on;
-        ShrineCutscene.torches_off  -= turn_off;
-        ShrineCutscene.enlargen_torches -= enlargen;
-        ShrineCutscene.reset_torches -= reset_torches;
-        Application.quitting        -= OnDisable;
-    }
+    void OnEnable() => link();
+    void OnDisable() => unlink();
 
     void turn_on() => StartCoroutine(turn_on_coroutine());
     IEnumerator turn_on_coroutine(){
@@ -50,4 +35,21 @@ public class ShrineCutsceneTorch : MonoBehaviour{
         foreach(Torch t in torches)
             t.revert();  
     }
+
+    void handle_cutscene(Cutscene cutscene){
+        switch(cutscene){
+            case ShrineAltarOneCutscene c:
+                c.torches_on += turn_on;                
+                break;
+            case ShrineOpeningCutscene c:
+                c.torches_on        += turn_on;
+                c.torches_off       += turn_off;
+                c.enlargen_torches  += enlargen;
+                c.reset_torches     += reset_torches;
+                break;
+        }
+    }
+
+    void link() => CutsceneManager.started_cutscene += handle_cutscene;
+    void unlink() => CutsceneManager.started_cutscene -= handle_cutscene;
 }

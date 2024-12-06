@@ -3,15 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ShrineCutscene : Cutscene{
-    public static event Action 
+public class ShrineOpeningCutscene : Cutscene{
+    public event Action 
         open_shrine_door, 
-        torches_on, torches_off, enlargen_torches, reset_torches,
-        world_constellation_on, world_constellation_off, 
-        gateway_constellation_on, gateway_constellation_off, 
-        aether_constellation_on, aether_constellation_off, 
-        soul_constellation_on, soul_constellation_off;
+        torches_on, 
+        torches_off, 
+        enlargen_torches, 
+        reset_torches,
+        world_constellation_on, 
+        world_constellation_off, 
+        gateway_constellation_on, 
+        gateway_constellation_off, 
+        aether_constellation_on, 
+        aether_constellation_off, 
+        soul_constellation_on, 
+        soul_constellation_off;
 
     public override void start(){
         Player.instance.enter_cutscene_state();
@@ -22,7 +30,7 @@ public class ShrineCutscene : Cutscene{
     }
 
     IEnumerator starting_coroutine(){
-        CutsceneManager.invoke_event(torches_on);
+        torches_on?.Invoke();
         CameraController.instance.zoom_in_state(4.45f, .5f);
         CameraController.instance.move_vertical_state(2.2f, .5f);
         yield return new WaitForSeconds(5);
@@ -49,15 +57,13 @@ public class ShrineCutscene : Cutscene{
     public void dialogue_ended() => CutsceneManager.set_coroutine(ending_couroutine());
 
     IEnumerator ending_couroutine(){
-         CutsceneManager.invoke_event(torches_off);     
+        torches_off?.Invoke();     
         yield return new WaitForSeconds(5);  
         Player.instance.exit_cutscene_state();
         AudioManager.stop_music();
+        unlink();
         end();
     }
-
-    AudioSource source;
-
     void handle_new_line(int line){
         switch(line){
             case 27: 
@@ -96,9 +102,50 @@ public class ShrineCutscene : Cutscene{
                 soul_constellation_off?.Invoke();
                 break;
 
-            //case 11: CutsceneManager.invoke_event(torches_off); break;
-            //case 14: CutsceneManager.invoke_event(torches_on); break; 
         }
     }
 
+    void unlink(){
+        open_shrine_door            = null; 
+        torches_on                  = null;
+        torches_off                 = null;
+        enlargen_torches            = null;
+        reset_torches               = null;
+        world_constellation_on      = null; 
+        world_constellation_off     = null; 
+        gateway_constellation_on    = null; 
+        gateway_constellation_off   = null; 
+        aether_constellation_on     = null; 
+        aether_constellation_off    = null;
+        soul_constellation_on       = null; 
+        soul_constellation_off      = null;        
+    }
+}
+
+public class ShrineAltarOneCutscene : Cutscene{
+    public event Action
+        torches_on, altar_numeral_on;
+
+    public override void start() => CutsceneManager.set_coroutine(cutscene());
+
+    IEnumerator cutscene(){
+        Player.instance.gameObject.SetActive(false);
+        torches_on?.Invoke();
+        
+        yield return new WaitForSeconds(5);
+        altar_numeral_on?.Invoke();
+        
+        yield return new WaitForSeconds(5);
+        UiManager.instance.fade_to_black();
+        
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("WolfBossRoom");
+        unlink();
+        yield break;
+    }
+
+    void unlink(){
+        torches_on          = null;
+        altar_numeral_on    = null;        
+    }
 }
