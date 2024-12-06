@@ -21,7 +21,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] new protected PlayerAudio audio;
     [SerializeField] protected Collider2D col;
     private float invulnerable_time = 2;
-    bool input_blocker = false; // used to avoid bug.
 
     void Awake(){
         Application.quitting += unlink_events;
@@ -50,16 +49,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // used to avoid bug where unlinking and relinking movement:
     // holding down left or right will break move direction and cause player to only go in that one direction.
 
-    // known bug: when holding down both keys then letting go one at a time after the blocker is true, will still cause the problem.
-    private void start_movement(Action movement){
-        movement();
-        input_blocker = false;
-    }
-    private void stop_movement(Action movement){
-        if(input_blocker == false)
-            movement();
-    }
-
     private void start_jump(){
         movement.set_jumping(true);
         movement.jump();
@@ -67,12 +56,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     private void stop_jump(){
         movement.set_jumping(false);
-        stop_movement(()=>movement.end_jump());
+        movement.end_jump();
     } 
-    private void start_left()   => start_movement(()=>movement.move_left(true));
-    private void start_right()  => start_movement(()=>movement.move_right(true));
-    private void stop_left()    => stop_movement(()=>movement.move_left(false));
-    private void stop_right()   => stop_movement(()=>movement.move_right(false));
+    private void start_left()   => movement.move_left(true);
+    private void start_right()  => movement.move_right(true);
+    private void stop_left()    => movement.move_left(false);
+    private void stop_right()   => movement.move_right(false);
     private void attack()       => animator.Play(PlayerAnimator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
@@ -216,7 +205,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.right_cancelled       += stop_right;
         InputManager.attack_performed      += attack;
         InputManager.dash_performed        += dash; 
-        input_blocker = true; 
     }
 
     public void unlink_input(){
@@ -228,7 +216,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.right_cancelled       -= stop_right;
         InputManager.attack_performed      -= attack;
         InputManager.dash_performed        -= dash;    
-        input_blocker = false;
+        InputManager.reset_input_blockers();
     }
 
     protected void link_movement(){
