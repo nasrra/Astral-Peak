@@ -11,6 +11,7 @@ using UnityEngine;
 // This idea should be followed, to mitigate any bugs and anymore time on needless ai path finding.
 
 public class Enemy : Boss<Movement>{
+    public event Action<Enemy> enemy_death;
     protected event Action<MovementOption> pathing_movement;
     [SerializeField] protected List<AiPath> paths = new List<AiPath>();
     [SerializeField] protected Transform origin;
@@ -31,6 +32,11 @@ public class Enemy : Boss<Movement>{
             
             yield return null;
         }
+    }
+
+    public override void kill(){
+        enemy_death?.Invoke(this);
+        base.kill();
     }
 
     public IEnumerator retreat_loop(){

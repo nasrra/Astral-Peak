@@ -15,6 +15,9 @@ public class DialogueHandler : MonoBehaviour{
     public TextMeshProUGUI text;    
     int index = -1;
 
+    // text colours.
+    string highlight_hex = "#00DDFF";
+
     void Awake(){
         instance = this;
         if(dialogue_file != "" && dialoge_option != "")
@@ -38,7 +41,7 @@ public class DialogueHandler : MonoBehaviour{
     }
     void set_text(){
         if(index < dialogue.Count){
-            text.text = dialogue[index];
+            text.text = $"{dialogue[index].Replace("#{highlight_hex}", highlight_hex)}";
             new_line?.Invoke(index); // invoke that a new line has started.
         }
         else

@@ -9,5 +9,6 @@ public class HollowAnimator : AnimatorOverride{
         ATTACK      = Animator.StringToHash("attack"),
         STUNNED     = Animator.StringToHash("stunned"),
         YELL        = Animator.StringToHash("yell"),
-        RUN         = Animator.StringToHash("run");
+        RUN         = Animator.StringToHash("run"),
+        DEATH       = Animator.StringToHash("death");
 }

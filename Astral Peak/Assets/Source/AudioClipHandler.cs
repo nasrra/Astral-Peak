@@ -11,6 +11,8 @@ public static class AudioClipHandler{
         source.pitch                 = sound.max_pitch;
         source.outputAudioMixerGroup = sound.group;
         source.loop                  = settings.loop;
+        if(source.loop == false)
+            Object.Destroy(source,sound.clip.length); // unscaled time btw
         source.pitch                 = settings.randomise_pitch == true? sound.randomise_pitch() : source.pitch;
         if(settings.spatial_blend == false)
             return source;
@@ -28,8 +30,6 @@ public static class AudioClipHandler{
         set_game_object(audio_player);
         AudioSource source = create_source(sound, settings);
         source.Play();
-        if(source.loop == false)
-            Object.Destroy(source,sound.clip.length); // unscaled time btw.
         return source;
     }
 
@@ -44,7 +44,6 @@ public static class AudioClipHandler{
         AudioSource source = create_source(sound, settings);
         object_audio.StartCoroutine(fade_in_loop(source, fade_factor, sound));
         source.Play();
-        Object.Destroy(source,sound.clip.length); // unscaled time btw.
         return source;
     }
 

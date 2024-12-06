@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem.Android;
 
 public class TutorialEnemy : Enemy{
+    [SerializeField] HollowParticlesHandler particles;
     [SerializeField] Collider2DFeedback agro_area;
+    [SerializeField] Collider2D hurt_box;
     bool target_in_range;
-    float stun_state_timer = 2f;
+    float stun_state_timer = .5f;
     [SerializeField] float 
         idle_speed, idle_acceleration, idle_deceleration,
         alert_speed, alert_acceleration, alert_deceleration;
@@ -36,8 +39,17 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    public override void kill(){
+    public override void kill() => state_switch(death_coroutine());
+    protected IEnumerator death_coroutine(){
         base.kill();
+        hurt_box.enabled = false;
+        animator.Play(HollowAnimator.DEATH);
+        unlink_health();
+        unlink_movement(); 
+        unlink_combat();
+        sprite.play_death_effect(2.25f);
+        particles.stop_ambient_particles();
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 
@@ -45,9 +57,6 @@ public class TutorialEnemy : Enemy{
     protected IEnumerator stun_state_loop(){
         // to prevent the ai from chasing once staggered.
         unlink_combat();
-        // interupt attack animation.
-        animator.Play(HollowAnimator.STUNNED);
-
         yield return new WaitForSeconds(stun_state_timer);
 
         link_combat();
@@ -140,13 +149,13 @@ public class TutorialEnemy : Enemy{
     }
 
     protected void link_health(){
-        //health.damaged += stun_state;
+        health.damaged += stun_state;
         health.damaged += sprite.play_damaged_flash;
         health.death += kill;
         health.knockback += movement.knockback;
     }
     protected void unlink_health(){
-        //health.damaged -= stun_state;
+        health.damaged -= stun_state;
         health.damaged -= sprite.play_damaged_flash;
         health.death -= kill;
         health.knockback -= movement.knockback;

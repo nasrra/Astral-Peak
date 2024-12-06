@@ -66,6 +66,10 @@ public enum SoundID{
     SMALL_FIRE,
     NONE,
     DANIEL,
+    WOODEN_RATTLE_1,
+    WOODEN_RATTLE_2,
+    WOODEN_RATTLE_4,
+    HOLLOW_THEME
 }
 
 public static class SoundLibrary{
@@ -106,6 +110,7 @@ public static class SoundLibrary{
         {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 0.8f, 1)},
         {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 0.8f, 1)},
         {SoundID.DOMINE_THEME,          ()=> new Sound(load_music("domine theme"), AudioManager.music_mixer, 0.8f, 1)},
+        {SoundID.HOLLOW_THEME,          ()=> new Sound(load_music("hollow_theme"), AudioManager.sfx_mixer, .8f,1f)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -144,7 +149,10 @@ public static class SoundLibrary{
         {SoundID.DOMINE_VOICE_4,      () => new Sound(load_sfx("domine_voice_4"),     AudioManager.sfx_mixer, 1f, .9f, 0.85f)},
         {SoundID.NONE,                () => new Sound(load_sfx("silence"),            AudioManager.sfx_mixer, 1f)},
         {SoundID.SMALL_FIRE,          () => new Sound(load_sfx("small_fire"),         AudioManager.sfx_mixer, .75f, 1, .8f)},
-        {SoundID.DANIEL,              () => new Sound(load_sfx("daniel"),             AudioManager.sfx_mixer, 1f, 1, .8f)}
+        {SoundID.DANIEL,              () => new Sound(load_sfx("daniel"),             AudioManager.sfx_mixer, 1f, 1, .8f)},
+        {SoundID.WOODEN_RATTLE_1,     () => new Sound(load_sfx("wooden_rattle_1"),    AudioManager.sfx_mixer, .25f, 1f, .85f)},
+        {SoundID.WOODEN_RATTLE_2,     () => new Sound(load_sfx("wooden_rattle_2"),    AudioManager.sfx_mixer, 1f, 1, .85f)},
+        {SoundID.WOODEN_RATTLE_4,     () => new Sound(load_sfx("wooden_rattle_4"),    AudioManager.sfx_mixer, 1f, 1f, .85f)},
     };
 
     static readonly Dictionary<string, Func<List<SoundID>>> sound_sets = new Dictionary<string, Func<List<SoundID>>>(){
@@ -207,9 +215,16 @@ public static class SoundLibrary{
             SoundID.STONE_FOOTSTEP_3,
             SoundID.STONE_FOOTSTEP_4,
         }},
-        {"enemy", () => new List<SoundID>(){
-            SoundID.RIDER_YELL,
+        {"rider", ()=> new List<SoundID>(){
             SoundID.WHISTLE_LONG,
+            SoundID.RIDER_YELL
+        }},
+        {"hollow", () => new List<SoundID>(){
+            SoundID.RIDER_YELL,
+            SoundID.WOODEN_RATTLE_1,
+            SoundID.WOODEN_RATTLE_2,
+            SoundID.WOODEN_RATTLE_4,
+            SoundID.HOLLOW_THEME,
         }}
     };
 
@@ -226,7 +241,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["melee"]());
             list.AddRange(sound_sets["snow"]());
             list.AddRange(sound_sets["cavalry_theme"]());
-            list.AddRange(sound_sets["enemy"]());
+            list.AddRange(sound_sets["rider"]());
             return list;
         }},
         {"SnowForest", () => {
@@ -249,7 +264,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["melee"]());
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
-            list.AddRange(sound_sets["enemy"]());
+            list.AddRange(sound_sets["hollow"]());
             return list;
         }},
         {"Shrine", () => {
