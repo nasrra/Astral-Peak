@@ -10,7 +10,7 @@ public class CharacterMovement : Movement{
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
-    [SerializeField] private bool jumping = false;
+    [SerializeField] private bool jumping = false, coyote_jump = false;
     [SerializeField] private bool can_jump = true;
     [SerializeField] private float 
         jump_time, jump_force, jump_force_multiplier, jump_time_counter;
@@ -28,8 +28,10 @@ public class CharacterMovement : Movement{
         jump_time_counter = 0.0f; 
 
         // invoke that we are now grounded if we are not toughing other ground objects.
-        if(ground.Count == 1)
+        if(ground.Count == 1){
+            check_jump();
             now_grounded?.Invoke();
+        }
     }
 
     private void is_not_grounded(Collider2D other){
@@ -46,8 +48,9 @@ public class CharacterMovement : Movement{
     }
 
     // jump command
+    public void set_jumping(bool x) => jumping = x;
+
     public void jump() {
-        jumping = true;
         if(grounded == true && can_jump == true && is_dashing == false){
             set_deceleration(1);
             move_direction.y = 1;
@@ -55,11 +58,15 @@ public class CharacterMovement : Movement{
         }
     }
 
+    void check_jump(){
+        if(jumping == true)
+            jump();
+    }
+
     // return the current ground we are standing on.
     public GameObject get_current_ground() => ground[ground.Count - 1];
 
     public void end_jump(){
-        jumping = false;
         move_direction.y = 0;
         // ending a jump removes the ability to jump again.
         // Note:
@@ -75,7 +82,7 @@ public class CharacterMovement : Movement{
     // override vertical move to take jumping into account.
     protected override void vertical_move(){
         // if we are ggrounded and want to jump, start jumping.
-        if(Mathf.Abs(move_direction.y) > 0.1f){
+        if(jumping == true && Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
                 rb.linearVelocity = new Vector2(
@@ -84,12 +91,6 @@ public class CharacterMovement : Movement{
                 );
                 jump_time_counter += Time.deltaTime;
             }
-            // if player is still holding jump, do it again.
-            else if (jumping == true)
-                jump();
-            // if not, end the jump.
-            else
-                end_jump();
         }      
     }
 
@@ -106,6 +107,8 @@ public class CharacterMovement : Movement{
         base.movement(option, flag);
     }
     
+
+
     protected override void decelerate(){
         // decelerate when grounded and not moving.
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
@@ -119,6 +122,7 @@ public class CharacterMovement : Movement{
         ground_checker.trigger_enter += is_grounded;
         ground_checker.trigger_exit += is_not_grounded;
         dashed += end_jump;
+        dash_end += check_jump;
     }
 
     protected override void unlink(){
@@ -126,5 +130,6 @@ public class CharacterMovement : Movement{
         ground_checker.trigger_enter -= is_grounded;
         ground_checker.trigger_exit -= is_not_grounded;
         dashed -= end_jump;
+        dash_end -= check_jump;
     }
 }

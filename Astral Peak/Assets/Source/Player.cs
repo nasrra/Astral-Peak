@@ -60,17 +60,22 @@ public class Player : CreatureInheritor<CharacterMovement>{
             movement();
     }
 
-    private void start_jump()   => start_movement(()=>movement.jump());
+    private void start_jump(){
+        movement.set_jumping(true);
+        movement.jump();
+        //movement.coyote_jump_timer();
+    }
+    private void stop_jump(){
+        movement.set_jumping(false);
+        stop_movement(()=>movement.end_jump());
+    } 
     private void start_left()   => start_movement(()=>movement.move_left(true));
     private void start_right()  => start_movement(()=>movement.move_right(true));
-    private void stop_jump()    => stop_movement(()=>movement.end_jump());
     private void stop_left()    => stop_movement(()=>movement.move_left(false));
     private void stop_right()   => stop_movement(()=>movement.move_right(false));
     private void attack()       => animator.Play(PlayerAnimator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
-        if(health.invulnerable == true)
-            return;
         movement.dash(transform.rotation.y == 0? Vector2.right : Vector2.left, 20, 0.25f);
     }
 
