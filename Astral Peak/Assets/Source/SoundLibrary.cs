@@ -69,7 +69,8 @@ public enum SoundID{
     WOODEN_RATTLE_1,
     WOODEN_RATTLE_2,
     WOODEN_RATTLE_4,
-    HOLLOW_THEME
+    HOLLOW_THEME,
+    ALTAR_THEME,
 }
 
 public static class SoundLibrary{
@@ -107,10 +108,11 @@ public static class SoundLibrary{
     public readonly static Dictionary<SoundID, Func<Sound>> sound_creation = new Dictionary<SoundID, Func<Sound>>(){
         
         //MUSIC
-        {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"), AudioManager.music_mixer, 0.8f, 1)},
-        {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"), AudioManager.music_mixer, 0.8f, 1)},
-        {SoundID.DOMINE_THEME,          ()=> new Sound(load_music("domine theme"), AudioManager.music_mixer, 0.8f, 1)},
-        {SoundID.HOLLOW_THEME,          ()=> new Sound(load_music("hollow_theme"), AudioManager.sfx_mixer, .8f,1f)},
+        {SoundID.WOLF_BOSS_MUSIC_1,     ()=> new Sound(load_music("ABRN_run_part_1"),   AudioManager.music_mixer, .8f)},
+        {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"),   AudioManager.music_mixer, .8f)},
+        {SoundID.DOMINE_THEME,          ()=> new Sound(load_music("domine_theme"),      AudioManager.music_mixer, .8f)},
+        {SoundID.HOLLOW_THEME,          ()=> new Sound(load_music("hollow_theme"),      AudioManager.music_mixer, .8f)},
+        {SoundID.ALTAR_THEME,           ()=> new Sound(load_music("altar_theme"),       AudioManager.music_mixer, .8f)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -159,6 +161,9 @@ public static class SoundLibrary{
         {"cavalry_theme", () => new List<SoundID>(){
             SoundID.WOLF_BOSS_MUSIC_1,
             SoundID.WOLF_BOSS_MUSIC_2,
+        }},
+        {"altar_theme", () => new List<SoundID>(){
+            SoundID.ALTAR_THEME,
         }},
         {"melee", () => new List<SoundID>(){
             SoundID.MELEE_HIT,
@@ -277,10 +282,14 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
             list.AddRange(sound_sets["fire"]());
+            list.AddRange(sound_sets["altar_theme"]());
             return list;
         }},
         {"MainMenu", () => new List<SoundID>(){
             SoundID.NONE,
+        }},
+        {"temp", () => new List<SoundID>(){
+
         }}
     };
 }

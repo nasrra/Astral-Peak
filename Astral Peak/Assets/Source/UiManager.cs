@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour{
@@ -74,7 +73,7 @@ public class UiManager : MonoBehaviour{
 
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);
-        UiManager.instance.fade_to_black();
+        CameraEffects.instance.fade_to_black();
         yield return new WaitForSeconds(4);  
         death_screen_ended?.Invoke();
         yield break;
@@ -85,8 +84,6 @@ public class UiManager : MonoBehaviour{
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
     public DialogueHandler get_dialogue_handler() => dialogue;
-    public void fade_to_black() => screen_transitions.Play("fade_to_black");
-    public void fade_from_black() => screen_transitions.Play("fade_from_black");
 
     void link() => InputManager.exit_performed += gameplay_ui;
     void unlink() => InputManager.exit_performed -= gameplay_ui;

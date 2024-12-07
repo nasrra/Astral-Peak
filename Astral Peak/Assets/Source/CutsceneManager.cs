@@ -29,14 +29,14 @@ public abstract class Cutscene{
     public event Action ended;
     public abstract void start();
     protected void end() => ended?.Invoke();
-    protected void fade_to_black() => UiManager.instance.fade_to_black();
-    protected void fade_from_black() => UiManager.instance.fade_from_black();
+    protected void fade_to_black() =>   CameraEffects.instance.fade_to_black();
+    protected void fade_from_black() => CameraEffects.instance.fade_from_black();
 }
 
 public static class CutsceneLibrary{
     public readonly static Dictionary<string, Func<Cutscene>> create_cutscene = new Dictionary<string, Func<Cutscene>>(){
-        {"shrine_opening_cutscene",()=>new ShrineOpeningCutscene()},
-        {"shrine_altar_1_cutscene",()=>new ShrineAltarOneCutscene()},
+        {"shrine_opening",()=>new ShrineOpeningCutscene()},
+        {"shrine_altar_1",()=>new ShrineAltarOneCutscene()},
         {"cavalry_transition_1",()=>new CavalryPhaseTransition()},
         {"cavalry_opening",     ()=> new CavalryOpeningCutscene()},
     };

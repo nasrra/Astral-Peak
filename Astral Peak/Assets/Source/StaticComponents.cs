@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 // this is a class for static components that are used everywhere within the game.
 // The [RuntimeInitializeOnLoadMethod] attribute will ensure InitializeOnStart is called as soon as the game starts.
@@ -61,7 +62,9 @@ public static class StaticComponents{
         hook_in.start += AudioManager.on_start; // this only works when on start is called.
     }
 
-    static void scene_manager() => SceneManager.activeSceneChanged += scene_changed;
+    static void scene_manager(){
+        SceneManager.activeSceneChanged += scene_changed;
+    }
     static void scene_changed(Scene scene_1, Scene scene_2){
         //AudioManager.restore_sfx_smooth();
         InputManager.reset_input_blockers(); // reset input blockers so the player cant mess up move direction when holding down keys.

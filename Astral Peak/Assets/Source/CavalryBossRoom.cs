@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] TheCavalry cavalry;
@@ -62,14 +64,28 @@ public class CavalryBossRoom : BossRoomHandler{
         Player.instance.set_enter_position();
     }
 
+    void fight_ended() => StartCoroutine(altar_cutscene());
+    IEnumerator altar_cutscene(){
+        yield return new WaitForSeconds(12);
+        CameraEffects.instance.fade_to_black();
+        yield return new WaitForSeconds(3);
+        CustomSceneManager.load_scene("Shrine");
+        CustomSceneManager.loaded_scene += play_altar_cutscene;
+        yield break;
+    }
+    void play_altar_cutscene(){
+        CutsceneManager.play("shrine_altar_1");
+        CustomSceneManager.loaded_scene -= play_altar_cutscene;
+    }
+
     void link(){
-        //cavalry.death           += phase_transition;
+        cavalry.death           += fight_ended;
         rider.death             += phase_transition;
         feedback.trigger_enter  += player_entered;
     }
 
     void unlink(){
-        //cavalry.death           -= phase_transition;
+        cavalry.death           -= fight_ended;
         rider.death             -= phase_transition;
         feedback.trigger_enter  -= player_entered;
     }

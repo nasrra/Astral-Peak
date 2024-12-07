@@ -14749,16 +14749,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1730094031898389184}
+  - component: {fileID: 8285156675828792245}
+  - component: {fileID: 6345792998177996148}
   - component: {fileID: 1807350476830979228}
+  - component: {fileID: 8959932368922724423}
   - component: {fileID: 8597468600997471075}
   - component: {fileID: 1683145615901213879}
-  - component: {fileID: 6345792998177996148}
-  - component: {fileID: 8959932368922724423}
   - component: {fileID: 5994195274358197019}
   - component: {fileID: 1158296529060902672}
   - component: {fileID: 6932510366527514548}
   - component: {fileID: 8447699733019728571}
-  - component: {fileID: 8285156675828792245}
   - component: {fileID: 5972464004493588994}
   m_Layer: 7
   m_Name: Player
@@ -14793,6 +14793,42 @@ Transform:
   - {fileID: 2740240833085531838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8285156675828792245
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fddf6059f0696c14fb59e18e84b998d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6345792998177996148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce72b9fe4d0b39648b58d4f17c063a9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8285156675828792245}
+  locked_layers: 000000
 --- !u!114 &1807350476830979228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14813,6 +14849,35 @@ MonoBehaviour:
   sprite: {fileID: 1158296529060902672}
   audio: {fileID: 5972464004493588994}
   col: {fileID: 6932510366527514548}
+--- !u!114 &8959932368922724423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can_knockback: 1
+  can_dash: 1
+  is_dashing: 0
+  top_speed: 5
+  acceleration: 0.5
+  dash_cooldown: 0.5
+  deceleration: 0.35
+  move_direction: {x: 0, y: 0}
+  rb: {fileID: 8447699733019728571}
+  grounded: 0
+  jumping: 0
+  can_jump: 1
+  jump_time: 0.5
+  jump_force: 8
+  jump_force_multiplier: 6
+  jump_time_counter: 0
+  ground_checker: {fileID: 8555385563265979661}
 --- !u!114 &8597468600997471075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14856,49 +14921,6 @@ MonoBehaviour:
   stone_jump_effect: {fileID: 2924838844301977976}
   death_effect: {fileID: 1070131198974402506}
   death_explosion: {fileID: 7742506475918205065}
---- !u!114 &6345792998177996148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce72b9fe4d0b39648b58d4f17c063a9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8285156675828792245}
-  locked_layers: 000000
---- !u!114 &8959932368922724423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  can_knockback: 1
-  can_dash: 1
-  is_dashing: 0
-  top_speed: 5
-  acceleration: 0.5
-  dash_cooldown: 0.5
-  deceleration: 0.35
-  move_direction: {x: 0, y: 0}
-  rb: {fileID: 8447699733019728571}
-  grounded: 0
-  jumping: 0
-  can_jump: 1
-  jump_time: 0.5
-  jump_force: 8
-  jump_force_multiplier: 6
-  jump_time_counter: 0
-  ground_checker: {fileID: 8555385563265979661}
 --- !u!114 &5994195274358197019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15005,28 +15027,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!95 &8285156675828792245
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fddf6059f0696c14fb59e18e84b998d6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5972464004493588994
 MonoBehaviour:
   m_ObjectHideFlags: 0

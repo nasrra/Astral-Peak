@@ -129,17 +129,21 @@ public class ShrineAltarOneCutscene : Cutscene{
     public override void start() => CutsceneManager.set_coroutine(cutscene());
 
     IEnumerator cutscene(){
+        AudioManager.play_music(SoundID.ALTAR_THEME);
+        AudioManager.restore_sfx_smooth();
         Player.instance.gameObject.SetActive(false);
+        CameraEffects.instance.flashback_state();
+        
+        yield return new WaitForSeconds(2f);
         torches_on?.Invoke();
         
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
         altar_numeral_on?.Invoke();
         
-        yield return new WaitForSeconds(5);
-        UiManager.instance.fade_to_black();
-        
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene("WolfBossRoom");
+        yield return new WaitForSeconds(7);
+        AudioManager.stop_music();
+        CustomSceneManager.load_scene("WolfBossRoom");
+        //AudioManager.restore_sfx_smooth();
         unlink();
         yield break;
     }

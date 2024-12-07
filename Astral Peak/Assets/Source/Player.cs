@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : CreatureInheritor<CharacterMovement>{
     
@@ -23,10 +24,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private float invulnerable_time = 2;
 
     void Awake(){
-        Application.quitting += unlink_events;
         instance = this;
+        Application.quitting += unlink_events;
+        SceneManager.sceneUnloaded += unloaded;
         GameManager.link_player();
     }
+
+    void unloaded(Scene s) => unlink_events(); 
 
     void Start(){   
         link_events();
@@ -203,7 +207,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_melee();
         unlink_health();
-    }
+    } 
 
     public void link_input(){
         InputManager.jump_performed        += start_jump;

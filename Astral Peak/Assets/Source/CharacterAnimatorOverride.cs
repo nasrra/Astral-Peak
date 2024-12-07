@@ -15,10 +15,12 @@ public class CharacterAnimatorOverride : AnimatorOverride{
     protected void play_override(int animation_hash){animator.Play(animation_hash, OVERRIDE);}
 
     public void play(int animation_hash, bool set_state){
-        play_head(animation_hash);
-        play_body(animation_hash);
-        play_legs(animation_hash);
-        state = set_state == true? animation_hash : state;
+        if(animator != null && gameObject.activeSelf == true && animator.enabled == true){
+            play_head(animation_hash);
+            play_body(animation_hash);
+            play_legs(animation_hash);
+            state = set_state == true? animation_hash : state;
+        }
     }
 
     // used for animator to return to the current animation state.

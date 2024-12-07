@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CavalryOpeningCutscene : Cutscene{
-    AudioSource source;
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
     public override void start(){
         room.phase_1(); // enable rider
@@ -40,7 +39,6 @@ public class CavalryOpeningCutscene : Cutscene{
 }
 
 public class CavalryPhaseTransition : Cutscene{
-    AudioSource source;
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
     public override void start(){
         CutsceneManager.set_coroutine(fade());
@@ -49,7 +47,7 @@ public class CavalryPhaseTransition : Cutscene{
     IEnumerator fade(){
         fade_to_black();
 
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(2f); 
         room.phase_1();
         room.set_positions();
         TheRider.instance.flip_to_target();

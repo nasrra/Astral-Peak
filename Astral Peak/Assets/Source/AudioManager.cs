@@ -64,6 +64,7 @@ public static class AudioManager{
             mixer.SetFloat(name, Mathf.Lerp(x,value, Time.deltaTime * speed));
             yield return null;
         }
+        mixer.SetFloat(name, value);
         yield break;
     }
 

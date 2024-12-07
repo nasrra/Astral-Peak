@@ -22,14 +22,14 @@ public class KillZone : MonoBehaviour{
 
     // respawn state.
     IEnumerator hit_player(){
-        UiManager.instance.fade_to_black();
+        CameraEffects.instance.fade_to_black();
         Player.instance.enter_cutscene_state();
         CameraController.instance.stop_follow_state();
         yield return new WaitForSeconds(1);
         Player.instance.set_enter_position();
         CameraController.instance.start_follow_state();
         CameraController.instance.snap_to_target(); 
-        UiManager.instance.fade_from_black();
+        CameraEffects.instance.fade_from_black();
         yield return new WaitForSeconds(1);
         Player.instance.exit_cutscene_state();
     }

@@ -28,17 +28,8 @@ public class Door : MonoBehaviour{
     IEnumerator enter_coroutine(){
         Player.instance.set_spawn_point(exit_point);
         Player.instance.door_enter_state();
-        AudioManager.dim_sfx_smooth();
-        UiManager.instance.fade_to_black();
-        yield return new WaitForSeconds(2f);
-
-        Scene activeScene = SceneManager.GetActiveScene();
-        GameObject[] rootObjects = activeScene.GetRootGameObjects();
-        // Destroy each GameObject so that their unlink functions are correctle called :)
-        foreach (GameObject obj in rootObjects){
-            Destroy(obj);
-        }
-        SceneManager.LoadScene(scene_to_load);        
+        CustomSceneManager.load_scene(scene_to_load); 
+        yield break;
     }
     
     public void open(){
