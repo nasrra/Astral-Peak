@@ -12,9 +12,13 @@ enum GameState{
 
 public static class GameManager{
     static GameState state;
+    public static int world_state = 0;
+
+    public static void initialize(){
+        world_state = 0;
+    }
 
     static public void gameplay_state(){
-
     }
 
     static public void death_state(){
@@ -30,4 +34,5 @@ public static class GameManager{
     static public void unlink_player() => Player.instance.death -= death_state;
     static public void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
     static public void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
+    public static void increment_world_state() => ++world_state;
 }

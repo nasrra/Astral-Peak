@@ -10,6 +10,7 @@ public class Torch : MonoBehaviour{
     Coroutine light_state, fire_state;
     [SerializeField] AudioSource fire_source, smoke_source;
     [SerializeField] Vector3 enlarged_scale, original_scale;
+    bool turned_on = false;
 
     void Awake() => original_scale = fire[0].transform.localScale;
 
@@ -28,10 +29,16 @@ public class Torch : MonoBehaviour{
         StartCoroutine(reset_light(2));
     }
     public void turn_on(){
+        if(turned_on == true)
+            return;
+        turned_on = true;
         state_switch(ref light_state, turn_on_light());
         state_switch(ref fire_state, turn_on_fire());
     }
     public void turn_off(){
+        if(turned_on == false)
+            return;
+        turned_on = false;
         fire[0].material.SetFloat("_Dim", 1);
         state_switch(ref light_state, turn_off_light());
         state_switch(ref fire_state, turn_off_fire());

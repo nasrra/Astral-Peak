@@ -24,6 +24,7 @@ public static class StaticComponents{
         audio();
         cutscene();
         scene_manager();
+        game_manager();
         Application.quitting += uninitialize;
     }
 
@@ -69,4 +70,6 @@ public static class StaticComponents{
         //AudioManager.restore_sfx_smooth();
         InputManager.reset_input_blockers(); // reset input blockers so the player cant mess up move direction when holding down keys.
     }
+
+    static void game_manager() => GameManager.initialize();
 }

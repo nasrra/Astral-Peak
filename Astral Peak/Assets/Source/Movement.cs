@@ -48,7 +48,10 @@ public class Movement : MonoBehaviour{
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
     public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));
-    public void stop()              => move_direction = new Vector2(0,0);
+    public virtual void stop(){
+        rb.linearVelocityX = 0;
+        move_direction = new Vector2(0,0);
+    }
 
     // used for ai path finding and other state machines. 
     public virtual void movement(MovementOption option, bool flag){

@@ -5,6 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class AltarNumerals : MonoBehaviour{
     [SerializeField] SpriteRenderer sprite;
+    [SerializeField] ParticleSystem particles;
     [SerializeField] Light2D light2D;
     [SerializeField] int numeral;
     [SerializeField] float light_intensity;
@@ -12,10 +13,16 @@ public class AltarNumerals : MonoBehaviour{
     void OnEnable() => link();
     void OnDisable() => unlink();
     public void turn_on(){
+        particles.gameObject.SetActive(true);
         StartCoroutine(turn_on_light());
         StartCoroutine(turn_on_sprite());
     }
     IEnumerator turn_on_light(){
+        AudioClipHandler.play(
+            SoundID.DEEP_THUMPING,
+            audio_player: this, 
+            AudioSourceSettings.DIEGETIC
+        );
         while(light2D.intensity < light_intensity){
             light2D.intensity += Time.deltaTime * speed;
             yield return null;

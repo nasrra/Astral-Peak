@@ -20,6 +20,12 @@ public class CharacterMovement : Movement{
     void Start() => link();
     void OnDestroy() => unlink();
 
+    public override void stop(){
+        jumping = false;
+        end_jump();
+        base.stop();
+    }
+
     // ground check
     private void is_grounded(Collider2D other){
         ground.Add(other.gameObject);

@@ -11,7 +11,9 @@ public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] Collider2DFeedback feedback;
     [SerializeField] Collider2D feedback_collider;
     [SerializeField] Transform rider_start_point, cavalry_start_point;
-    
+
+    void Awake() => check_world_state();
+
     void Start(){
         link();
         instance = this;
@@ -20,6 +22,14 @@ public class CavalryBossRoom : BossRoomHandler{
 
     void OnDestroy(){
         unlink();
+    }
+
+    protected override void check_world_state(){
+        if(GameManager.world_state >=1){
+            feedback.enabled = false;
+            feedback_collider.enabled = false;
+            Player.instance.set_spawn_point(feedback.gameObject.name);
+        }
     }
 
     public override void prepare_phase_transition(){
@@ -68,7 +78,8 @@ public class CavalryBossRoom : BossRoomHandler{
     IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(12);
         CameraEffects.instance.fade_to_black();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        Player.instance.enter_cutscene_state();//
         CustomSceneManager.load_scene("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;
         yield break;

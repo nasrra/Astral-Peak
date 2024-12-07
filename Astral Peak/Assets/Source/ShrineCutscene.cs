@@ -142,9 +142,10 @@ public class ShrineAltarOneCutscene : Cutscene{
         
         yield return new WaitForSeconds(7);
         AudioManager.stop_music();
+        GameManager.increment_world_state();
         CustomSceneManager.load_scene("WolfBossRoom");
-        //AudioManager.restore_sfx_smooth();
         unlink();
+        end();
         yield break;
     }
 

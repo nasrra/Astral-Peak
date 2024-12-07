@@ -71,6 +71,7 @@ public enum SoundID{
     WOODEN_RATTLE_4,
     HOLLOW_THEME,
     ALTAR_THEME,
+    DEEP_THUMPING,
 }
 
 public static class SoundLibrary{
@@ -112,7 +113,7 @@ public static class SoundLibrary{
         {SoundID.WOLF_BOSS_MUSIC_2,     ()=> new Sound(load_music("ABRN_run_part_2"),   AudioManager.music_mixer, .8f)},
         {SoundID.DOMINE_THEME,          ()=> new Sound(load_music("domine_theme"),      AudioManager.music_mixer, .8f)},
         {SoundID.HOLLOW_THEME,          ()=> new Sound(load_music("hollow_theme"),      AudioManager.music_mixer, .8f)},
-        {SoundID.ALTAR_THEME,           ()=> new Sound(load_music("altar_theme"),       AudioManager.music_mixer, .8f)},
+        {SoundID.ALTAR_THEME,           ()=> new Sound(load_music("altar_theme"),       AudioManager.music_mixer, .6f)},
 
         //SFX
         {SoundID.SNOW_FOOTSTEP_1,     () => new Sound(load_sfx("snow_footstep_1"),    AudioManager.sfx_mixer, 1f, 1.15f, 0.85f)},
@@ -155,6 +156,7 @@ public static class SoundLibrary{
         {SoundID.WOODEN_RATTLE_1,     () => new Sound(load_sfx("wooden_rattle_1"),    AudioManager.sfx_mixer, .25f, 1f, .85f)},
         {SoundID.WOODEN_RATTLE_2,     () => new Sound(load_sfx("wooden_rattle_2"),    AudioManager.sfx_mixer, 1f, 1, .85f)},
         {SoundID.WOODEN_RATTLE_4,     () => new Sound(load_sfx("wooden_rattle_4"),    AudioManager.sfx_mixer, 1f, 1f, .85f)},
+        {SoundID.DEEP_THUMPING,       () => new Sound(load_sfx("deep_thumping"),      AudioManager.sfx_mixer, 1f)},
     };
 
     static readonly Dictionary<string, Func<List<SoundID>>> sound_sets = new Dictionary<string, Func<List<SoundID>>>(){
@@ -162,8 +164,9 @@ public static class SoundLibrary{
             SoundID.WOLF_BOSS_MUSIC_1,
             SoundID.WOLF_BOSS_MUSIC_2,
         }},
-        {"altar_theme", () => new List<SoundID>(){
+        {"altar_cutscene", () => new List<SoundID>(){
             SoundID.ALTAR_THEME,
+            SoundID.DEEP_THUMPING
         }},
         {"melee", () => new List<SoundID>(){
             SoundID.MELEE_HIT,
@@ -270,6 +273,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
             list.AddRange(sound_sets["hollow"]());
+            list.AddRange(sound_sets["fire"]());
             return list;
         }},
         {"Shrine", () => {
@@ -282,7 +286,7 @@ public static class SoundLibrary{
             list.AddRange(sound_sets["stone"]());
             list.AddRange(sound_sets["domine"]());
             list.AddRange(sound_sets["fire"]());
-            list.AddRange(sound_sets["altar_theme"]());
+            list.AddRange(sound_sets["altar_cutscene"]());
             return list;
         }},
         {"MainMenu", () => new List<SoundID>(){

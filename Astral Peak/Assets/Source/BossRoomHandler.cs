@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BossRoomHandler : MonoBehaviour{
+public abstract class BossRoomHandler : MonoBehaviour{
     public event Action 
         fight_started,
         fight_stopped;
@@ -15,6 +15,8 @@ public class BossRoomHandler : MonoBehaviour{
         instance = this;
         AudioManager.stop_music();
     }
+
+    protected abstract void check_world_state();
 
     public void start_fight(){
         phase_transition();
