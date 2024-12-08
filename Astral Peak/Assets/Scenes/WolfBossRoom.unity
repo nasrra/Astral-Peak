@@ -360,12 +360,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 163ce68adb47bdc4ea0ff36fe8931592, type: 3}
+  m_Sprite: {fileID: -5372133605581788168, guid: 163ce68adb47bdc4ea0ff36fe8931592, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 21.599998}
+  m_Size: {x: 57.6, y: 17.49}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -380,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 201821997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.52, z: 2}
+  m_LocalPosition: {x: 0, y: 2.5, z: 2}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1217,12 +1217,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: a670d5b78d0cefe4493125c0a89f38fa, type: 3}
+  m_Sprite: {fileID: 5044315319188838032, guid: a670d5b78d0cefe4493125c0a89f38fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 21.599998}
+  m_Size: {x: 57.6, y: 20.9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1237,7 +1237,7 @@ Transform:
   m_GameObject: {fileID: 628773156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.52, z: 2}
+  m_LocalPosition: {x: 0, y: 4, z: 2}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1293,7 +1293,7 @@ Transform:
   m_GameObject: {fileID: 713143995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.44, y: -2.68, z: 0}
+  m_LocalPosition: {x: 6.04, y: -2.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   play_cinematic: 0
   song: 0
   cinematic: 
-  phase: 0
+  phase: 1
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
   cutscene_arrow: {fileID: 1404642685}
@@ -1550,12 +1550,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -3
-  m_Sprite: {fileID: 21300000, guid: c120d60ba507da9409effe92a7ea5627, type: 3}
+  m_Sprite: {fileID: 560565420306335895, guid: c120d60ba507da9409effe92a7ea5627, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 21.599998}
+  m_Size: {x: 57.6, y: 19.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1570,7 +1570,7 @@ Transform:
   m_GameObject: {fileID: 954706309}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.52, z: 2}
+  m_LocalPosition: {x: 0, y: 4, z: 2}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1589,7 +1589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 714219604}
-  factor: 0.5
+  factor: 0.35
 --- !u!70 &960950054 stripped
 CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 8175057076174596716, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
@@ -7632,8 +7632,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 6
-      minScalar: 4
+      scalar: 4
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -8379,11 +8379,11 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
+      minMaxState: 3
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8435,7 +8435,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8488,7 +8488,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -12168,7 +12168,7 @@ Transform:
   m_GameObject: {fileID: 1894936249}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.2, y: -2.89, z: 0.024}
+  m_LocalPosition: {x: 0.2, y: -2.58, z: 0.024}
   m_LocalScale: {x: 0.5, y: 0.5000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12288,6 +12288,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 276028581705355017, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 502435888237148574, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1671894716995008441, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486029462328997652, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3958023146779663498, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1170.5769
@@ -12335,6 +12351,10 @@ PrefabInstance:
     - target: {fileID: 6474302760724289115, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: notches.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749883908861262401, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12435,7 +12455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.27
+      value: 4.65
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12651,9 +12671,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 727715457}
   - {fileID: 1050647212}
-  - {fileID: 2068344670}
   - {fileID: 995555875}
   - {fileID: 1548632184}
+  - {fileID: 2068344670}
   - {fileID: 357513246}
   - {fileID: 1422358616}
   - {fileID: 1078612599}

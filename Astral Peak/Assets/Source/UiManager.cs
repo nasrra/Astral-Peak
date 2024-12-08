@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour{
@@ -13,11 +14,10 @@ public class UiManager : MonoBehaviour{
         hud,
         enemy_vanquished;
     [SerializeField] Animator
-        screen_transitions,
         black_bars; 
     [SerializeField] DialogueHandler dialogue; 
-    AudioSource source;
-    
+    Coroutine hud_fade;
+
     void OnEnable(){
         instance = this;
         GameManager.link_Ui();
@@ -52,6 +52,19 @@ public class UiManager : MonoBehaviour{
         hud.SetActive(false);
         play_death_screen();
     }
+
+    IEnumerator lerp_colours(Color start, Color end, float time){
+        float elapsedTime = 0f;
+        while (elapsedTime < time){
+            elapsedTime += Time.deltaTime;
+            start = Color.Lerp(start, end, elapsedTime/time/100); // have to divide by 100 for some reason, dunno why lol.
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        start = end;
+        yield break;
+    }
+
 
     public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_state());
     IEnumerator enemy_vanquished_state(){

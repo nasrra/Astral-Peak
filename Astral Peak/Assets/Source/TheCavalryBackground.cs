@@ -26,12 +26,13 @@ public class TheCavalryBackground : MonoBehaviour{
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
     public void move_camera_up() => CameraController.instance.move_vertical_state(22, 7f);
-    public void reset_camera() => CameraController.instance.reset_offset_state(1.5f);
+    public void move_camera_down() => CameraController.instance.move_vertical_state(-22, 86f);
+    public void reset_camera() => CameraController.instance.reset_offset_state(2f);
     public void play_impact_sound() => 
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_HEAVY,
             audio_player:       this, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
-    public void play_camera_shake() => CameraController.instance.shake_camera(0.35f,1f);
+    public void play_camera_shake() => CameraController.instance.shake_camera(0.4f,2f);
 }
