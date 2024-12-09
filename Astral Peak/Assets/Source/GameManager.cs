@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum GameState{
+public enum GameState{
     MENU,
     GAMEPLAY,
     DEATH,
@@ -11,15 +13,18 @@ enum GameState{
 }
 
 public static class GameManager{
-    static GameState state;
+    static GameState state = GameState.GAMEPLAY;
+    public static Action<GameState> 
+        entered_game_state, 
+        exited_game_state;
     public static int world_state = 0;
 
     public static void initialize(){
         world_state = 0;
+        state = GameState.GAMEPLAY;
     }
 
-    static public void gameplay_state(){
-    }
+    public static GameState get_state() => state;
 
     static public void death_state(){
         UiManager.instance.enable_death_screen();
@@ -27,7 +32,11 @@ public static class GameManager{
 
     static public void reload_scene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-    static public void cutscene_state(){
+    static public void state_changed(GameState _state){
+        entered_game_state?.Invoke(_state);
+        GameState previous = state;
+        state = _state;
+        exited_game_state?.Invoke(previous);
     }
 
     static public void link_player() => Player.instance.death += death_state;

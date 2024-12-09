@@ -9,14 +9,14 @@ public static class CutsceneManager{
     static Cutscene cutscene;
     public static void initialize(MonoBehaviour _coroutines) => coroutines = _coroutines;
     public static void play(string cutscene_id){
-        UiManager.instance.cutscene_mode(true);
+        GameManager.state_changed(GameState.CUTSCENE);
         cutscene = CutsceneLibrary.create_cutscene[cutscene_id]();
         started_cutscene?.Invoke(cutscene);
         cutscene.start();
         cutscene.ended += cutscene_ended;
     }
     static void cutscene_ended(){
-        UiManager.instance.cutscene_mode(false);
+        GameManager.state_changed(GameState.GAMEPLAY); 
         cutscene.ended -= cutscene_ended;
         cutscene = null;
     }

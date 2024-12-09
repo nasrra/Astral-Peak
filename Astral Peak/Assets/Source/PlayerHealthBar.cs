@@ -5,6 +5,11 @@ public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] List<HealthBarHeart> hearts;
 
+    void OnEnable(){
+        if(Player.instance != null)
+            set_health(Player.instance.get_health().get_current_health());
+    }
+
     void Start(){
         Player.instance.get_health().healed += health_updated;
         Player.instance.damaged_start       += health_updated;
@@ -22,7 +27,6 @@ public class PlayerHealthBar : MonoBehaviour
     void dead() => set_health(0);
 
     public void set_health(int amt){
-        Debug.Log(gameObject.name);
         if(amt > hearts.Count)
             throw new System.Exception("Player health bar does not have: "+amt+" of notches " + hearts.Count);
         int a = amt-1;
@@ -36,12 +40,14 @@ public class PlayerHealthBar : MonoBehaviour
     }
 
     public void fade_out(){
-        foreach(HealthBarHeart heart in hearts)
-            heart.fade_out();
+        if(GameManager.get_state() != GameState.CUTSCENE)
+            foreach(HealthBarHeart heart in hearts)
+                heart.fade_out();
     }
 
     public void fade_in(){
-        foreach(HealthBarHeart heart in hearts)
-            heart.fade_in();
+        if(GameManager.get_state() != GameState.CUTSCENE)
+            foreach(HealthBarHeart heart in hearts)
+                heart.fade_in();
     } 
 }

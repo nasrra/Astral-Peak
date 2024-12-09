@@ -78,7 +78,7 @@ public class CavalryBossRoom : BossRoomHandler{
     IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(12);
         CameraEffects.instance.fade_to_black();
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
         Player.instance.enter_cutscene_state();//
         CustomSceneManager.load_scene("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;

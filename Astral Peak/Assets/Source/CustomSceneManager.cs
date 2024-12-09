@@ -34,15 +34,15 @@ public static class CustomSceneManager{
         AudioManager.restore_sfx_smooth();
         yield return load;
         loaded_scene?.Invoke();
-
         yield break;
     }
 
     static void load_scene_with_transitions() => UnityHook.instance.StartCoroutine(load_scene_with_transitions_coroutine());
     static IEnumerator load_scene_with_transitions_coroutine(){
         AudioManager.dim_sfx_smooth();
+        CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
         CameraEffects.instance.fade_to_black();
-        CameraEffects.instance.screen_transition_completed += load_scene;
         yield break;
     } 
+    static void test() => Debug.Log(1);
 }

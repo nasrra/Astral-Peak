@@ -6,7 +6,11 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class CameraEffects : MonoBehaviour{
-    public event Action screen_transition_completed;
+    public event Action 
+        started_fade_to_black,
+        completed_fade_to_black,
+        started_fade_from_black,
+        completed_fade_from_black;
     public static CameraEffects instance;
     [SerializeField] Volume volume;
     [SerializeField] Animator screen_transitions;
@@ -29,7 +33,12 @@ public class CameraEffects : MonoBehaviour{
     void OnDestroy(){
         none_state();
         unlink_player();
-        screen_transition_completed = null;
+
+        // unlink for Door and BossRoom cutscene transitions.
+        started_fade_to_black = null;
+        completed_fade_to_black = null;
+        started_fade_from_black = null;
+        completed_fade_from_black = null;
     }
 
     public void normal_state() => state_switch(CameraEffectState.NORMAL, 12);
@@ -77,18 +86,19 @@ public class CameraEffects : MonoBehaviour{
     public void fade_to_black(float time = 1){
         if(fade_state != null)
             StopCoroutine(fade_state);
-        fade_state = StartCoroutine(screen_transition_coroutine("fade_to_black",time));
+        fade_state = StartCoroutine(screen_transition_coroutine("fade_to_black",time, started_fade_to_black, completed_fade_to_black));
     }
     public void fade_from_black(float time = 1){
         if(fade_state != null)
             StopCoroutine(fade_state);
-        fade_state = StartCoroutine(screen_transition_coroutine("fade_from_black",time));
+        fade_state = StartCoroutine(screen_transition_coroutine("fade_from_black",time, started_fade_from_black, completed_fade_from_black));
     }
-    IEnumerator screen_transition_coroutine(string transition, float time){
+    IEnumerator screen_transition_coroutine(string transition, float time, Action started, Action completed){
+        started?.Invoke();
         screen_transitions.speed = time;
         screen_transitions.Play(transition);
         yield return new WaitForSeconds(time);
-        screen_transition_completed?.Invoke();
+        completed?.Invoke();
     }
 
     public void instant_value_set(FloatParameter value, float n_value) => value.value = n_value;

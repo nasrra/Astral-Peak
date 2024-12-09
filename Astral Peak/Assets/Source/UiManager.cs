@@ -19,18 +19,20 @@ public class UiManager : MonoBehaviour{
     [SerializeField] PlayerHealthBar health_bar;
     Coroutine hud_fade;
 
-    void OnEnable(){
+    void Start(){
+        link();
         instance = this;
         GameManager.link_Ui();
-        link();
     }
 
-    void OnDisable(){
+    void OnDestroy(){
         GameManager.unlink_Ui();
         unlink();   
     }
 
     void gameplay_ui(){
+        if(GameManager.get_state() == GameState.CUTSCENE)
+            return;
         death_screen.SetActive(false);
         settings_menu.SetActive(false);
         hud.SetActive(false);
@@ -80,22 +82,41 @@ public class UiManager : MonoBehaviour{
         yield break;
     }
 
-    public void cutscene_mode(bool x){
-        if(health_bar.gameObject.activeSelf == true){
-            if(x==true)
-                health_bar.fade_out();
-            else
-                health_bar.fade_in();
-        }
-        black_bars.Play(x==true?"fade_in":"fade_out");
-    }    
+    void enable_black_bars() => black_bars.Play("fade_in");
+    void disable_black_bars() => black_bars.Play("fade_out");
 
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
     public DialogueHandler get_dialogue_handler() => dialogue;
 
-    void link() => InputManager.exit_performed += gameplay_ui;
-    void unlink() => InputManager.exit_performed -= gameplay_ui;
+    void entered_game_state(GameState state){
+        if(state == GameState.CUTSCENE){
+            health_bar.fade_out();
+            enable_black_bars();
+        }
+    }
+
+    void exited_game_state(GameState state){
+        if(state == GameState.CUTSCENE){
+            health_bar.fade_in();
+            disable_black_bars();
+        }
+    }
+
+    void link(){
+        CameraEffects.instance.started_fade_to_black    += health_bar.fade_out;
+        CameraEffects.instance.started_fade_from_black  += health_bar.fade_in;
+        GameManager.entered_game_state                  += entered_game_state;
+        GameManager.exited_game_state                   += exited_game_state;
+        InputManager.exit_performed                     += gameplay_ui;
+    }
+    void unlink(){
+        CameraEffects.instance.started_fade_to_black    -= health_bar.fade_out;
+        CameraEffects.instance.started_fade_from_black  -= health_bar.fade_in;
+        GameManager.entered_game_state                  -= entered_game_state;
+        GameManager.exited_game_state                   -= exited_game_state;
+        InputManager.exit_performed                     -= gameplay_ui;
+    }
 }
 
 public enum UiState{

@@ -7,27 +7,26 @@ public class HealthBarHeart : MonoBehaviour
     [SerializeField] Image image;
     [SerializeField] Animator animator;
     State state = State.OFF;
-    public void fade_out(){
-        animator.enabled = false;
-        StartCoroutine(ValueHelper.lerp_image_colour(image, new Color(0,0,0,0), 1));
-    }
-    public void fade_in() => StartCoroutine(fade_in_coroutine());
-    IEnumerator fade_in_coroutine(){
-        StartCoroutine(ValueHelper.lerp_image_colour(image, Color.white, 1));
-        yield return new WaitForSeconds(1);
-        animator.enabled = true;
-    }
+
+    readonly int
+            MAIN        = 0,
+            OVERRIDE    = 1;
+
+    public void fade_out() => animator.Play("fade_out", OVERRIDE);
+    public void fade_in() => animator.Play("fade_in", OVERRIDE);
     public void turn_off(){
         if(state != State.OFF){
             state = State.OFF;
-            animator.Play("turn_off");
+            animator.Play("turn_off", MAIN);
         }
+        else animator.Play("off", MAIN);
     }
     public void turn_on(){
         if(state != State.ON){
             state = State.ON;
-            animator.Play("turn_on");
-        }    
+            animator.Play("turn_on", MAIN);
+        }
+        else animator.Play("on", MAIN);
     }
     public void thump(bool x) => animator.SetBool("thump", x);
 
