@@ -858,6 +858,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4986360738732550734, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986360738732550734, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986360738732550734, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.97629607
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986360738732550734, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.21643952
+      objectReference: {fileID: 0}
+    - target: {fileID: 4986360738732550734, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -25
+      objectReference: {fileID: 0}
     - target: {fileID: 5026348276079211433, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_Name
       value: The Cavalry
@@ -7104,7 +7124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1839469611
 Transform:
   m_ObjectHideFlags: 0
@@ -7461,7 +7481,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -8010,7 +8030,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 6
+    angle: 12
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -8096,7 +8116,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.5
       mode: 0
       spread: 0
       speed:
@@ -12208,7 +12228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3682692632547633077, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4345250155958184781, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: target
@@ -12290,19 +12310,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 276028581705355017, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 502435888237148574, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1671894716995008441, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
-      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2486029462328997652, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3958023146779663498, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12348,13 +12364,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ui
       objectReference: {fileID: 0}
-    - target: {fileID: 6474302760724289115, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
-      propertyPath: notches.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8749883908861262401, guid: 4cc13278680c0ba499145f95935c4e96, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -16,6 +16,7 @@ public class UiManager : MonoBehaviour{
     [SerializeField] Animator
         black_bars; 
     [SerializeField] DialogueHandler dialogue; 
+    [SerializeField] PlayerHealthBar health_bar;
     Coroutine hud_fade;
 
     void OnEnable(){
@@ -53,19 +54,6 @@ public class UiManager : MonoBehaviour{
         play_death_screen();
     }
 
-    IEnumerator lerp_colours(Color start, Color end, float time){
-        float elapsedTime = 0f;
-        while (elapsedTime < time){
-            elapsedTime += Time.deltaTime;
-            start = Color.Lerp(start, end, elapsedTime/time/100); // have to divide by 100 for some reason, dunno why lol.
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        start = end;
-        yield break;
-    }
-
-
     public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_state());
     IEnumerator enemy_vanquished_state(){
         AudioClipHandler.play(
@@ -92,7 +80,15 @@ public class UiManager : MonoBehaviour{
         yield break;
     }
 
-    public void cutscene_mode(bool x) => black_bars.Play(x==true?"fade_in":"fade_out");
+    public void cutscene_mode(bool x){
+        if(health_bar.gameObject.activeSelf == true){
+            if(x==true)
+                health_bar.fade_out();
+            else
+                health_bar.fade_in();
+        }
+        black_bars.Play(x==true?"fade_in":"fade_out");
+    }    
 
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();

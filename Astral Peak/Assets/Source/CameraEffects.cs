@@ -32,8 +32,8 @@ public class CameraEffects : MonoBehaviour{
         screen_transition_completed = null;
     }
 
-    public void normal_state() => state_switch(CameraEffectState.NORMAL, 3);
-    public void hurt_state() => state_switch(CameraEffectState.HURT, 3);
+    public void normal_state() => state_switch(CameraEffectState.NORMAL, 12);
+    public void hurt_state() => state_switch(CameraEffectState.HURT, 12);
     public void flashback_state() => state_switch(CameraEffectState.FLASHBACK);
     public void none_state() => state_switch(CameraEffectState.NONE);
 
@@ -58,71 +58,21 @@ public class CameraEffects : MonoBehaviour{
         volume.sharedProfile.TryGet(out Vignette vignette);
         if(vignette_state != null)
             StopCoroutine(vignette_state);
-        vignette_state = StartCoroutine(vignette.intensity.value < intensity?
-            increase_value(vignette.intensity, intensity, speed) :
-            decrease_value(vignette.intensity, intensity, speed));    
+        vignette_state = StartCoroutine(ValueHelper.lerp_value(vignette.intensity, intensity, speed));
     }
 
     void handle_colour_adjustment(float saturation, float speed){
         volume.sharedProfile.TryGet(out ColorAdjustments colour);
         if(colour_state != null)
             StopCoroutine(colour_state);
-        colour_state = StartCoroutine(colour.saturation.value < saturation? 
-            increase_value(colour.saturation, saturation, speed * 100) : 
-            decrease_value(colour.saturation, saturation, speed * 100));        
+        colour_state = StartCoroutine(ValueHelper.lerp_value(colour.saturation, saturation, speed));        
     }
     void handle_film_grain(float intensity, float speed){
         volume.sharedProfile.TryGet(out FilmGrain film_grain);
         if(grain_state != null)
             StopCoroutine(grain_state);
-        grain_state = StartCoroutine(film_grain.intensity.value < intensity? 
-            increase_value(film_grain.intensity, intensity, speed) :
-            decrease_value(film_grain.intensity, intensity, speed));     
+        grain_state = StartCoroutine(ValueHelper.lerp_value(film_grain.intensity, intensity, speed));     
     }     
-
-    void fade_to_colour(Color color){
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        StartCoroutine(lerp_colours(colour.colorFilter, color, 1f));
-    }
-
-    IEnumerator lerp_colours(ColorParameter start, Color end, float time){
-        float elapsedTime = 0f;
-        while (elapsedTime < time){
-            elapsedTime += Time.deltaTime;
-            Color currentColor = Color.Lerp(start.value, end, elapsedTime/time/100); // have to divide by 100 for some reason, dunno why lol.
-            start.value = currentColor;
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-        start.value = end;
-        yield break;
-    }
-
-
-    void instant_value_set(FloatParameter value, float n_value) => value.value = n_value;
-
-    void instant_colour_set(Color _colour){
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        colour.colorFilter.value = _colour;
-    }
-
-    IEnumerator increase_value(FloatParameter value, float n_value, float time){
-        while(value.value < n_value){
-            value.value += Time.deltaTime * time;
-            yield return null;
-        }
-        value.value = n_value;
-        yield break;     
-    }
-
-    IEnumerator decrease_value(FloatParameter value, float n_value, float time){
-        while(value.value > n_value){
-            value.value -= Time.deltaTime * time;
-            yield return null;
-        }
-        value.value = n_value;
-        yield break;     
-    }
 
     public void fade_to_black(float time = 1){
         if(fade_state != null)
@@ -139,6 +89,18 @@ public class CameraEffects : MonoBehaviour{
         screen_transitions.Play(transition);
         yield return new WaitForSeconds(time);
         screen_transition_completed?.Invoke();
+    }
+
+    public void instant_value_set(FloatParameter value, float n_value) => value.value = n_value;
+
+    public void instant_colour_set(Color _colour){
+        volume.sharedProfile.TryGet(out ColorAdjustments colour);
+        colour.colorFilter.value = _colour;
+    }
+
+    public void fade_to_colour(Color color){
+        volume.sharedProfile.TryGet(out ColorAdjustments colour);
+        StartCoroutine(ValueHelper.lerp_colours(colour.colorFilter, color, 1f));
     }
 
     void link_player(){

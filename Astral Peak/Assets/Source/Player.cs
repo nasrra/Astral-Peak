@@ -258,7 +258,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 -= particles.emit_jump;
         movement.jumped                 -= audio.emit_jump;
         movement.dashed                 -= dashed;
-        movement.dash_end               -= health.is_vulnerable;
+        movement.dash_end               -= health.is_vulnerable;//
         movement.new_ground             -= audio.set_ground;
         movement.new_ground             -= particles.set_ground;
     }

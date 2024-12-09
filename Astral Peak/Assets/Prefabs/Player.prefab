@@ -14755,11 +14755,11 @@ GameObject:
   - component: {fileID: 8959932368922724423}
   - component: {fileID: 8597468600997471075}
   - component: {fileID: 1683145615901213879}
-  - component: {fileID: 5994195274358197019}
   - component: {fileID: 1158296529060902672}
   - component: {fileID: 6932510366527514548}
   - component: {fileID: 8447699733019728571}
   - component: {fileID: 5972464004493588994}
+  - component: {fileID: 6049403501429844743}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -14841,7 +14841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1805b52f7b822204b890cde888d79884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 5994195274358197019}
+  health: {fileID: 6049403501429844743}
   movement: {fileID: 8959932368922724423}
   animator: {fileID: 6345792998177996148}
   melee: {fileID: 8597468600997471075}
@@ -14921,21 +14921,6 @@ MonoBehaviour:
   stone_jump_effect: {fileID: 2924838844301977976}
   death_effect: {fileID: 1070131198974402506}
   death_explosion: {fileID: 7742506475918205065}
---- !u!114 &5994195274358197019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_life: 4
-  current_life: 4
-  invulnerable: 0
 --- !u!114 &1158296529060902672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15039,6 +15024,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af25bee1bbd42f2468dc1baae38a9233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6049403501429844743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9156679ae57d5ab4080cd24c11e6f293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_life: 4
+  current_life: 4
+  invulnerable: 0
 --- !u!1 &8785061149748549367
 GameObject:
   m_ObjectHideFlags: 0

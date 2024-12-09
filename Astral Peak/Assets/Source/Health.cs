@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.Video;
 
 // maybe create a creature or character class that has this component and a status effect component.
 // enemies could hurt eachother and player can hurt them.
@@ -15,13 +11,23 @@ public class Health : MonoBehaviour{
         healed, death, damaged, now_invulnerable, now_vulnerable;
     public event Action<KnockbackData> 
         knockback;
-    [SerializeField] private int
+    [SerializeField] protected int
         max_life, current_life;
     [SerializeField] public bool invulnerable;
+    Coroutine invulnerable_state;
 
     public int get_current_health() => current_life;
 
-    public void heal(int amt, GameObject other = null){
+    public int get_max_health() => max_life;
+
+
+    public void state_switch(ref Coroutine state, IEnumerator coroutine){
+        if(state!=null)
+            StopCoroutine(state);
+        state = StartCoroutine(coroutine);
+    }
+
+    public void heal(int amt){
         current_life += amt;
         if(current_life > max_life)
             current_life = max_life;
@@ -33,10 +39,7 @@ public class Health : MonoBehaviour{
         invulnerable = true;
         now_invulnerable?.Invoke();
     }
-    public void is_invulnerable(float time){
-        StopAllCoroutines();
-        StartCoroutine(invulnerable_timed(time));
-    }
+    public void is_invulnerable(float time) => state_switch(ref invulnerable_state, invulnerable_timed(time));
 
     IEnumerator invulnerable_timed(float time){
         is_invulnerable();

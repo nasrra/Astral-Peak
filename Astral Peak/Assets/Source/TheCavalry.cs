@@ -12,9 +12,6 @@ public class TheCavalry : Boss<CavalryMovement>{
     [SerializeField] public CavalryAudio sound;
     [SerializeField] FetchSword fetch_sword;
     [SerializeField] List<Collider2D> body_colliders;
-    [SerializeField] float
-        follow_speed,
-        follow_fsword_speed;
 
     void OnEnable(){
         instance = this;
@@ -102,14 +99,14 @@ public class TheCavalry : Boss<CavalryMovement>{
 
     protected override IEnumerator follow(){
         animator.Play(CavalryAnimator.RUN);
-        movement.set_speed(follow_speed);
+        //movement.set_speed(follow_speed);
         state_switch(base.follow());
         yield break;
     }
 
     IEnumerator follow_fetch_sword(){
         target = fetch_sword.transform;
-        movement.set_speed(follow_fsword_speed);
+        //movement.set_speed(follow_fsword_speed);
         animator.Play(CavalryAnimator.NO_SWORD_RUN);
         while(true){
             
