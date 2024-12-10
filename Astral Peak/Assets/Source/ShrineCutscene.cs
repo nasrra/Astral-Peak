@@ -50,7 +50,7 @@ public class ShrineOpeningCutscene : Cutscene{
         CameraController.instance.move_horizontal_state(3.25f, .3f);
         yield return new WaitForSeconds(26);
         CameraController.instance.reset_zoom_state(.33f);
-        CameraController.instance.move_horizontal_state(0.05f, .4f);
+        CameraController.instance.move_horizontal_state(0f, .4f);
         yield break;
     }
 

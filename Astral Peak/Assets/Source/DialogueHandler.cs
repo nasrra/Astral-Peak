@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DialogueHandler : MonoBehaviour{
     public static DialogueHandler instance;
-    public event Action<int> new_line;
+    public event Action<int> new_line, line_ended;
     public event Action dialogue_ended;
     [SerializeField] string 
         dialogue_file,
@@ -46,17 +46,17 @@ public class DialogueHandler : MonoBehaviour{
             text.text = $"{dialogue[index].Replace("#{highlight_hex}", highlight_hex)}";
             new_line?.Invoke(index); // invoke that a new line has started.
         }
-        else
-            dialogue_ended?.Invoke();
+    }
+
+    void end_dialogue(){
+        StopAllCoroutines();
+        dialogue_ended?.Invoke();
+        dialogue.Clear();    
     }
 
     IEnumerator fade_loop(float text_time){
+        // fade in.
         Color transparent = new Color(1, 1, 1, 0);
-        while (Mathf.Abs(text.color.a - transparent.a) > 0.01f){
-            text.color = Color.Lerp(text.color, transparent, Time.deltaTime * 5); // Smooth fade
-            yield return null;
-        }
-        text.color = transparent;
         set_text();
         yield return new WaitForSeconds(0.5f);
         while (Mathf.Abs(text.color.a - 1f) > 0.01f){
@@ -64,11 +64,19 @@ public class DialogueHandler : MonoBehaviour{
             yield return null;
         }
         yield return new WaitForSeconds(text_time);
+        
+        // fade out.
         while (Mathf.Abs(text.color.a - transparent.a) > 0.01f){
             text.color = Color.Lerp(text.color, transparent, Time.deltaTime * 5); // Smooth fade
             yield return null;
         }
         text.color = transparent;
+        
+        // check dialogue state.
+        if(index == dialogue.Count - 1)
+            end_dialogue(); 
+        else
+            line_ended?.Invoke(index);
         yield break;
     }
     IEnumerator dialogue_loop(float text_time){

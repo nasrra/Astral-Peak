@@ -102,6 +102,7 @@ public class CameraController : MonoBehaviour{
             offset.y = Mathf.MoveTowards(offset.y, y_pos, Time.deltaTime * speed);
             yield return new WaitForEndOfFrame();
         }
+        offset.y = y_pos;
         yield break;
     }
 
@@ -110,6 +111,7 @@ public class CameraController : MonoBehaviour{
             offset.x = Mathf.MoveTowards(offset.x, x_pos, Time.deltaTime * speed);
             yield return new WaitForEndOfFrame();
         }
+        offset.x = x_pos;
         yield break;       
     }
 

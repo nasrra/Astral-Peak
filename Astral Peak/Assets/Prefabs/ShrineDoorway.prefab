@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8ce35ff56f33d46861f9de1f9e43d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   movement: 2
 --- !u!1 &1121117006334630562
 GameObject:
@@ -58,8 +57,8 @@ GameObject:
   - component: {fileID: 6756901086777780269}
   - component: {fileID: 6074610621424037348}
   - component: {fileID: 6059672491315750594}
-  - component: {fileID: 1825265432607092858}
   - component: {fileID: 3332318637490508002}
+  - component: {fileID: 1825265432607092858}
   m_Layer: 0
   m_Name: ShrineDoorway
   m_TagString: Untagged
@@ -231,24 +230,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1, y: 10}
   m_EdgeRadius: 0
---- !u!114 &1825265432607092858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121117006334630562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 3332318637490508002}
-  scene_to_load: TutorialArea
-  exit_point: TutorialAreaEnter
-  trigger_col: {fileID: 6074610621424037348}
-  solid_col: {fileID: 6059672491315750594}
-  start_open: 0
 --- !u!95 &3332318637490508002
 Animator:
   serializedVersion: 7
@@ -271,6 +252,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1825265432607092858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121117006334630562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3332318637490508002}
+  scene_to_load: TutorialArea
+  exit_point: TutorialAreaEnter
+  trigger_col: {fileID: 6074610621424037348}
+  solid_col: {fileID: 6059672491315750594}
+  start_open: 0
+  spawn_point: {fileID: 1367918318668497736}
 --- !u!1 &2274544638950561439
 GameObject:
   m_ObjectHideFlags: 0

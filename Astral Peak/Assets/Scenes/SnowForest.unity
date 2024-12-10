@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: 0
+  line: 
 --- !u!61 &85059433
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -354,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: 1
+  line: 
 --- !u!61 &506620592
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: 2
+  line: 
 --- !u!61 &1101288840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6385,6 +6385,10 @@ PrefabInstance:
     - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
       value: ClearDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5472474015683243355, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
