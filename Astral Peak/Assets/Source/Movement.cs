@@ -49,7 +49,8 @@ public class Movement : MonoBehaviour{
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
     public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));
     public virtual void stop(){
-        rb.linearVelocityX = 0;
+        if(rb != null)
+            rb.linearVelocityX = 0;
         move_direction = new Vector2(0,0);
     }
 

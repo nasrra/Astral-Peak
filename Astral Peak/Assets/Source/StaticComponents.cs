@@ -30,6 +30,7 @@ public static class StaticComponents{
 
     static void uninitialize(){
         SoundLibrary.uninitialize();
+        AudioManager.uninitialize();
     }
 
     // input initialization.
@@ -50,7 +51,7 @@ public static class StaticComponents{
             source.volume = 0;
             sources.Add(source);
         }
-        AudioManager.initialize(sources, hook_in);
+        AudioManager.initialize(sources);
         SoundLibrary.initialize();
     }
 

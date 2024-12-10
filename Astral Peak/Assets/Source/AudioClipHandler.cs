@@ -10,16 +10,22 @@ public static class AudioClipHandler{
         source.volume                = sound.volume;
         source.pitch                 = sound.max_pitch;
         source.outputAudioMixerGroup = sound.group;
+
         source.loop                  = settings.loop;
         if(source.loop == false)
             Object.Destroy(source,sound.clip.length); // unscaled time btw
-        source.pitch                 = settings.randomise_pitch == true? sound.randomise_pitch() : source.pitch;
+        
+        if(settings.randomise_pitch == true) 
+            sound.randomise_pitch();
+        
         if(settings.spatial_blend == false)
             return source;
+        
         source.dopplerLevel          = 0;
         source.rolloffMode           = AudioRolloffMode.Linear;
         source.maxDistance           = 48;
         source.spatialBlend          = 1;
+        
         return source;          
     }
 

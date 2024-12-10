@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -169,7 +170,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public override void enter_cutscene_state(){
         unlink_input();
         unlink_movement();
-        animator.cutscene_idle();
+        animator.force_idle();
         movement.stop();
     }
 
@@ -195,11 +196,25 @@ public class Player : CreatureInheritor<CharacterMovement>{
         base.kill();
     }
 
+    void entered_game_state(GameState state){
+        if(state == GameState.MENU){
+            unlink_input();
+            movement.stop(); 
+        }
+    }
+
+    void exited_game_state(GameState state){
+        if(state == GameState.MENU){
+            link_input();
+        }
+    }
+
     protected void link_events(){
         link_input();
         link_melee();
         link_movement();
         link_health();
+        link_game_manager();
     }
 
     protected void unlink_events(){
@@ -207,6 +222,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_melee();
         unlink_health();
+        unlink_game_manager();
     } 
 
     public void link_input(){
@@ -258,9 +274,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 -= particles.emit_jump;
         movement.jumped                 -= audio.emit_jump;
         movement.dashed                 -= dashed;
-        movement.dash_end               -= health.is_vulnerable;//
+        movement.dash_end               -= health.is_vulnerable;
         movement.new_ground             -= audio.set_ground;
         movement.new_ground             -= particles.set_ground;
+        movement.stop();
     }
 
     private void link_melee(){
@@ -290,5 +307,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.knockback        -= get_movement().knockback;
         health.death            -= kill;
         health.death            -= get_movement().StopAllCoroutines;    
+    }
+
+    protected void link_game_manager(){
+        GameManager.entered_game_state +=  entered_game_state; 
+        GameManager.exited_game_state += exited_game_state;
+    }
+
+    protected void unlink_game_manager(){
+        GameManager.entered_game_state -=  entered_game_state; 
+        GameManager.exited_game_state -= exited_game_state;
     }
 }

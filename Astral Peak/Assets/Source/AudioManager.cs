@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public static class AudioManager{
-    static MonoBehaviour audio_player;
-    static Coroutine filter_coroutine, volume_coroutine;
+    static Coroutine 
+        filter_state, 
+        volume_state,
+        music_state;
 
     public const string
         MIXER_MUSIC = "MusicVolume",
@@ -15,46 +17,68 @@ public static class AudioManager{
         master_mixer,
         music_mixer,
         sfx_mixer; 
-
     static float original_sfx_volume = 0.0f;
 
     static AudioSource
         music, ambience;
 
-    public static void initialize(List<AudioSource> sources, MonoBehaviour _audio_player){
+    static SoundID music_track;
+
+    public static void on_start() => load_volume_settings();
+    public static void initialize(List<AudioSource> sources){
         mixer           = Resources.Load<AudioMixer>("Audio/Mixer");
-        master_mixer     = mixer.FindMatchingGroups("Master")[0];
+        master_mixer    = mixer.FindMatchingGroups("Master")[0];
         music_mixer     = mixer.FindMatchingGroups("Music")[0];
         sfx_mixer       = mixer.FindMatchingGroups("Sfx")[0];
         music           = sources[0];
         ambience        = sources[1];
-        audio_player    = _audio_player;
+    }    
+    public static void uninitialize(){
+        music_track = SoundID.NONE;
     }
-    
     static void state_switch(ref Coroutine coroutine, IEnumerator _coroutine){
         if(coroutine != null)
             UnityHook.instance.StopCoroutine(coroutine);
         coroutine = UnityHook.instance.StartCoroutine(_coroutine);
     }
 
-    public static void on_start() => load_volume_settings();
 
-    public static void play_music(SoundID sound_id)    => AudioClipHandler.crossfade(audio_player, ref music, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
-    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(audio_player, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
-    public static void stop_music() => AudioClipHandler.fade_out(audio_player, music, 1f);
 
+    // Music settings.
     public static void music_volume(float volume) => mixer.SetFloat(MIXER_MUSIC,value_to_logarithmic(volume));
-    public static void sfx_volume(float volume) => mixer.SetFloat(MIXER_SFX,value_to_logarithmic(volume));
+    public static void play_music(SoundID sound_id){
+        // play and loop crossfade music.
+        music_track = sound_id;
+            state_switch(ref music_state, music_coroutine(SoundLibrary.get_sound(music_track).clip.length-1)); // - 1 seccond for smooth cross fading.
+        AudioClipHandler.crossfade(UnityHook.instance, ref music, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC);
+    }
+    static IEnumerator music_coroutine(float clip_length){
+        // crossfade loop of music.
+        yield return new WaitForSeconds(clip_length);
+        play_music(music_track);
+        yield break;
+    }
+    public static void stop_music(){
+        // stop music from looping.
+        UnityHook.instance.StopCoroutine(music_state);
+        AudioClipHandler.fade_out(UnityHook.instance, music, 1f);
+    }    
 
-    public static void low_pass_audio(bool x) => state_switch(ref filter_coroutine, lerp_filter("LowpassFreq", x==true?800:22000, 5));   
+
+
+
+
+    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(UnityHook.instance, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC);
+    public static void sfx_volume(float volume) => mixer.SetFloat(MIXER_SFX,value_to_logarithmic(volume));
+    public static void low_pass_audio(bool x) => state_switch(ref filter_state, lerp_filter("LowpassFreq", x==true?800:22000, 5));   
     public static void dim_sfx_smooth(){
         float x;
         mixer.GetFloat(MIXER_SFX, out x);
         original_sfx_volume = logarithmic_to_value(x);
-        state_switch(ref volume_coroutine, lerp_filter(MIXER_SFX,value_to_logarithmic(0.001f), 1));
+        state_switch(ref volume_state, lerp_filter(MIXER_SFX,value_to_logarithmic(0.001f), 1));
     }
 
-    public static void restore_sfx_smooth() => state_switch(ref volume_coroutine, lerp_filter(MIXER_SFX,value_to_logarithmic(original_sfx_volume), 2));
+    public static void restore_sfx_smooth() => state_switch(ref volume_state, lerp_filter(MIXER_SFX,value_to_logarithmic(original_sfx_volume), 2));
 
     static IEnumerator lerp_filter(string name, float value, float speed){
         float x = 0;
