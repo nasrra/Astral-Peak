@@ -40,6 +40,8 @@ public class CharacterMovement : Movement{
         }
     }
 
+    public bool check_grounded() => grounded;
+
     private void is_not_grounded(Collider2D other){
         ground.Remove(other.gameObject);
 

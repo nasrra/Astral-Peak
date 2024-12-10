@@ -88,6 +88,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
         particles.emit_dash();
         health.is_invulnerable();//
     }
+    private void dash_end(){
+        health.is_vulnerable();
+        
+        if(movement.check_grounded() == true)
+            grounded();
+    }
     private void grounded(){
         // bounce when hitting the ground.
         animator.medium_bounce();
@@ -262,7 +268,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 += particles.emit_jump;
         movement.jumped                 += audio.emit_jump;
         movement.dashed                 += dashed;
-        movement.dash_end               += health.is_vulnerable;
+        movement.dash_end               += dash_end;
         movement.new_ground             += audio.set_ground;
         movement.new_ground             += particles.set_ground;
         movement.stop();
@@ -277,7 +283,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.jumped                 -= particles.emit_jump;
         movement.jumped                 -= audio.emit_jump;
         movement.dashed                 -= dashed;
-        movement.dash_end               -= health.is_vulnerable;
+        movement.dash_end               -= dash_end;
         movement.new_ground             -= audio.set_ground;
         movement.new_ground             -= particles.set_ground;
         movement.stop();

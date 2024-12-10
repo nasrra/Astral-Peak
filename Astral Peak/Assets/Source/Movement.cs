@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour{
     [SerializeField] protected bool 
         can_knockback   = true,
         can_dash        = true,
-        is_dashing         = false;
+        is_dashing      = false;
     [SerializeField] protected float top_speed = 5.0f;
     [SerializeField] protected float acceleration = 5.0f;
     [SerializeField] protected float dash_cooldown = 1.0f;
