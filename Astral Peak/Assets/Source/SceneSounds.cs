@@ -1,17 +1,16 @@
 using System.Collections.Generic;
-using System.Net.Mail;
-using UnityEditor.SearchService;
+using Sounds;
 
 public interface SceneSounds{
-    public List<SoundID> get_sound_ids();
+    public List<Sound> get_sounds();
 }
 
 
 public struct SnowForestSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
+            ids.AddRange(set.get_sounds());
         return ids;
     }
 
@@ -26,10 +25,10 @@ public struct SnowForestSceneSounds : SceneSounds{
 }
 
 public struct WolfBossRoomSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
+            ids.AddRange(set.get_sounds());
         return ids;
     }
     List<SoundSet> sets => new List<SoundSet>(){
@@ -47,10 +46,10 @@ public struct WolfBossRoomSceneSounds : SceneSounds{
 }
 
 public struct TutorialRoomSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
+            ids.AddRange(set.get_sounds());
         return ids;
     }
     List<SoundSet> sets => new List<SoundSet>(){
@@ -66,10 +65,10 @@ public struct TutorialRoomSceneSounds : SceneSounds{
 }
 
 public struct ShrineSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
+            ids.AddRange(set.get_sounds());
         return ids;
     }
     List<SoundSet> sets => new List<SoundSet>(){
@@ -85,22 +84,10 @@ public struct ShrineSceneSounds : SceneSounds{
 }
 
 public struct MainMenuSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
-        return ids;
-    }
-    List<SoundSet> sets => new List<SoundSet>(){
-        new UiSoundSet(),
-    };
-}
-
-public struct TempSceneSounds : SceneSounds{
-    public List<SoundID> get_sound_ids(){
-        List<SoundID> ids = new List<SoundID>();
-        foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sound_ids());
+            ids.AddRange(set.get_sounds());
         return ids;
     }
     List<SoundSet> sets => new List<SoundSet>(){

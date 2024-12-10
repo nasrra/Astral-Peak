@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
+using Sounds;
 
 public class DomineVoiceLink : MonoBehaviour{
     [SerializeField] AudioSource source;

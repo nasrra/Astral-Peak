@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using Sounds;
 
 public static class AudioManager{
     static Coroutine 
@@ -49,7 +50,7 @@ public static class AudioManager{
     public static void play_music(SoundID sound_id){
         // play and loop crossfade music.
         music_track = sound_id;
-            state_switch(ref music_state, music_coroutine(SoundLibrary.get_sound(music_track).clip.length-1)); // - 1 seccond for smooth cross fading.
+            state_switch(ref music_state, music_coroutine(SoundLibrary.get_sound(music_track).clip().length-1)); // - 1 seccond for smooth cross fading.
         AudioClipHandler.crossfade(UnityHook.instance, ref music, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC);
     }
     static IEnumerator music_coroutine(float clip_length){

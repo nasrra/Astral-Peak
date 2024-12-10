@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sounds;
 
 // this is a script for the background cavalry wolf that plays during the phase transition cutscene.
 

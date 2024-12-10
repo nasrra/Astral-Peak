@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using Sounds;
 
 public class Arrow : Projectile{
     [SerializeField] GameObject despawn_effect, grounded_effect;

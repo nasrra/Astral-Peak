@@ -1,19 +1,20 @@
 using System.Collections;
 using UnityEngine;
+using Sounds;
 
 public static class AudioClipHandler{
     static MonoBehaviour object_audio;
 
     static AudioSource create_source(Sound sound, AudioSourceSettings settings){
         AudioSource source = object_audio.gameObject.AddComponent<AudioSource>();
-        source.clip                  = sound.clip;
-        source.volume                = sound.volume;
-        source.pitch                 = sound.max_pitch;
-        source.outputAudioMixerGroup = sound.group;
+        source.clip                  = sound.clip();
+        source.volume                = sound.volume();
+        source.pitch                 = sound.max_pitch();
+        source.outputAudioMixerGroup = sound.group();
 
         source.loop                  = settings.loop;
         if(source.loop == false)
-            Object.Destroy(source,sound.clip.length); // unscaled time btw
+            Object.Destroy(source,sound.clip().length); // unscaled time btw
         
         if(settings.randomise_pitch == true) 
             sound.randomise_pitch();
@@ -60,11 +61,11 @@ public static class AudioClipHandler{
 
     static IEnumerator fade_in_loop(AudioSource s, float fade_factor, Sound sound){
         s.volume = 0;
-        while(s.volume < sound.volume){
+        while(s.volume < sound.volume()){
             s.volume += Time.deltaTime * fade_factor;
             yield return null;
         }
-        s.volume = sound.volume;
+        s.volume = sound.volume();
         yield break;        
     }
 

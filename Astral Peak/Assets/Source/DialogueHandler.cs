@@ -55,8 +55,15 @@ public class DialogueHandler : MonoBehaviour{
     }
 
     IEnumerator fade_loop(float text_time){
-        // fade in.
         Color transparent = new Color(1, 1, 1, 0);
+        // fade out.
+        while (Mathf.Abs(text.color.a - transparent.a) > 0.01f){
+            text.color = Color.Lerp(text.color, transparent, Time.deltaTime * 5); // Smooth fade
+            yield return null;
+        }
+        text.color = transparent;
+
+        // fade in.
         set_text();
         yield return new WaitForSeconds(0.5f);
         while (Mathf.Abs(text.color.a - 1f) > 0.01f){

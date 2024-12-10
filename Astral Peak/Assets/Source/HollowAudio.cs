@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sounds;
 
 public class HollowAudio : MonoBehaviour{
     public void yell_audio() =>
@@ -37,7 +38,7 @@ public class HollowAudio : MonoBehaviour{
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED);
     public void play_alerted_music() =>
-        AudioManager.play_music(SoundID.HOLLOW_THEME);
+        AudioManager.play_music(SoundID.HOLLOW_MUSIC);
 
     public void stop_alerted_music() =>
         AudioManager.stop_music();

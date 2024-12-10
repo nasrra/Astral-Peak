@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Sounds;
 
 public class ShrineOpeningCutscene : Cutscene{
     public event Action 
@@ -23,7 +24,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override void start(){
         Player.instance.enter_cutscene_state();
-        AudioManager.play_music(SoundID.DOMINE_THEME);
+        AudioManager.play_music(SoundID.DOMINE_MUSIC);
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         CutsceneManager.set_coroutine(starting_coroutine());
@@ -129,7 +130,7 @@ public class ShrineAltarOneCutscene : Cutscene{
     public override void start() => CutsceneManager.set_coroutine(cutscene());
 
     IEnumerator cutscene(){
-        AudioManager.play_music(SoundID.ALTAR_THEME);
+        AudioManager.play_music(SoundID.ALTAR_MUSIC);
         AudioManager.restore_sfx_smooth();
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();

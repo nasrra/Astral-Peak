@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sounds;
 
 public class CavalryCutsceneArrow : MonoBehaviour{
     [SerializeField] SmartTurret turret;

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Sounds;
 
 public abstract class BossRoomHandler : MonoBehaviour{
     public event Action 

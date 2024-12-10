@@ -1,4 +1,5 @@
 using UnityEngine;
+using Sounds;
 
 public class RiderAudio : MonoBehaviour{
     AudioSource source;

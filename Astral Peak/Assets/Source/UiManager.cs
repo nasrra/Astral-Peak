@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
+using Sounds;
 
 public class UiManager : MonoBehaviour{
     public event Action

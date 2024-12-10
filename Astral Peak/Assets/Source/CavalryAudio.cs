@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Sounds;
 
 public class CavalryAudio : MonoBehaviour
 {

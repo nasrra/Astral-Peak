@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Sounds;
 
 public class AltarNumerals : MonoBehaviour{
     [SerializeField] SpriteRenderer sprite;

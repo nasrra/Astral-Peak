@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
+using Sounds;
 
 public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] TheCavalry cavalry;

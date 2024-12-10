@@ -1,5 +1,6 @@
 using UnityEditorInternal;
 using UnityEngine;
+using Sounds;
 
 public class PlayerAudio : MonoBehaviour
 {
