@@ -59,23 +59,26 @@ public static class AudioClipHandler{
         object_audio.StartCoroutine(fade_out_loop(source, fade_factor));
     }
 
-    static IEnumerator fade_in_loop(AudioSource s, float fade_factor, Sound sound){
-        s.volume = 0;
-        while(s.volume < sound.volume()){
-            s.volume += Time.deltaTime * fade_factor;
+    static IEnumerator fade_in_loop(AudioSource source, float fade_factor, Sound sound){
+        if(source == null)
+            yield break;
+        source.volume = 0;
+        while(source.volume < sound.volume()){
+            source.volume += Time.deltaTime * fade_factor;
             yield return null;
         }
-        s.volume = sound.volume();
+        source.volume = sound.volume();
         yield break;        
     }
 
     static IEnumerator fade_out_loop(AudioSource source, float fade_factor){
+        if(source == null)
+            yield break;
         while(source.volume > 0){
             source.volume -= Time.deltaTime * fade_factor;
             yield return null;
         }
         source.clip = null;
-        //Destroy(source); fix this.
         yield break;
     }
 }

@@ -18,8 +18,8 @@ public static class InputManager{
         right_performed,    right_cancelled, 
         attack_performed,   attack_cancelled, 
         dash_performed,
-        exit_performed,
-        debug_performed;
+        exit_performed;
+        //debug_performed;
 
     enum Actions{
         JUMP,

@@ -119,7 +119,7 @@ public class CameraController : MonoBehaviour{
             float shake = (Random.Range(0f, 11f) - 5) * cam.orthographicSize * amount / 10;
 
             // Apply shake to one or both axes (adjust as needed)
-            Vector3 desired_pos = new Vector3(offset.x + shake + transform.position.x, offset.y + shake + transform.position.y, offset.z);
+            Vector3 desired_pos = new Vector3(shake + transform.position.x, shake + transform.position.y, offset.z);
 
             // Smoothly transition to the desired position
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);

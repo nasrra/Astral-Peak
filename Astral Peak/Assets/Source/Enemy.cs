@@ -40,6 +40,7 @@ public class Enemy : Boss<Movement>{
     }
 
     public IEnumerator retreat_loop(){
+        animator.Play(HollowAnimator.WALK);
         float curr_dist = dist_to_target();
         while(Mathf.Abs(curr_dist) >= 0.25f){
             curr_dist = dist_to_target();

@@ -1,9 +1,16 @@
 using System;
 using System.Collections;
+using ExcelDataReader.Log;
 using UnityEngine;
 using UnityEngine.InputSystem.Android;
 
 public class TutorialEnemy : Enemy{
+    
+    
+    
+    
+    
+    // Data:
     [SerializeField] HollowParticlesHandler particles;
     [SerializeField] Collider2DFeedback agro_area;
     [SerializeField] Collider2D hurt_box;
@@ -13,6 +20,11 @@ public class TutorialEnemy : Enemy{
         idle_speed, idle_acceleration, idle_deceleration,
         alert_speed, alert_acceleration, alert_deceleration;
 
+
+
+
+
+    // Base.
     void Start(){
         link_events();
         idle_movement();
@@ -24,7 +36,11 @@ public class TutorialEnemy : Enemy{
         unlink_events();
     }
 
-    void idle_state(float x) => state_switch(idle(x));
+
+
+
+
+    // States:
     IEnumerator idle(float x){
         animator.Play(HollowAnimator.IDLE);
         yield return new WaitForSeconds(x);
@@ -32,7 +48,6 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    void follow_state() => state_switch(follow());
     protected override IEnumerator follow(){        
         animator.Play(target_in_range? HollowAnimator.RUN : HollowAnimator.WALK);
         state_switch(base.follow());
@@ -41,12 +56,11 @@ public class TutorialEnemy : Enemy{
 
     public override void kill() => state_switch(death_coroutine());
     protected IEnumerator death_coroutine(){
+        animator.Play(HollowAnimator.DEATH);
         base.kill();
         hurt_box.enabled = false;
-        animator.Play(HollowAnimator.DEATH);
-        unlink_health();
-        unlink_movement(); 
-        unlink_combat();
+        unlink_events();
+        particles.stop_yell_particles();
         sprite.play_death_effect(2.25f);
         particles.stop_ambient_particles();
         yield return new WaitForSeconds(5f);
@@ -64,9 +78,7 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    void alert_state() => state_switch(alert());
     protected IEnumerator alert(){
-        unlink_combat();
         animator.Play(HollowAnimator.YELL);
         yield return new WaitForSeconds(1.95f);
         link_combat();
@@ -74,22 +86,9 @@ public class TutorialEnemy : Enemy{
         yield break;
     }
 
-    public void recovery_state(){
-        state_switch(target_in_range == true? follow() : retreat_loop());
-    }
+    public void recovery_state() => state_switch(target_in_range == true? follow() : retreat_loop());
 
-    #region linkage
-    protected void link_events(){
-        link_combat();
-        link_health();
-        link_movement();
-    }
-
-    protected void unlink_events(){
-        unlink_combat();
-        unlink_health(); 
-        unlink_movement();
-    }
+    void alert_state() => state_switch(alert());
 
     void player_in_range(Collider2D col){
         target = col.gameObject.transform;
@@ -100,17 +99,17 @@ public class TutorialEnemy : Enemy{
 
     void player_left_range(Collider2D col){
         target_in_range = false;
+        movement.stop();
         idle_movement();
         recovery_state();
+        particles.stop_yell_particles();
         target = null;
     }
-
     void idle_movement(){
         movement.set_speed(idle_speed); 
         movement.set_deceleration(idle_deceleration);
         movement.set_acceleration(idle_acceleration);        
     }
-
     void alert_movement(){
         movement.set_speed(alert_speed); 
         movement.set_deceleration(alert_deceleration);
@@ -127,6 +126,23 @@ public class TutorialEnemy : Enemy{
                 animator.Play(HollowAnimator.IDLE);
                 break;
         }
+    }
+
+
+
+
+
+    // linkage
+    protected void link_events(){
+        link_combat();
+        link_health();
+        link_movement();
+    }
+
+    protected void unlink_events(){
+        unlink_combat();
+        unlink_health(); 
+        unlink_movement();
     }
 
     private void link_combat(){
@@ -160,5 +176,4 @@ public class TutorialEnemy : Enemy{
         health.death -= kill;
         health.knockback -= movement.knockback;
     }
-    #endregion
 }
