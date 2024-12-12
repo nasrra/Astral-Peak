@@ -135,6 +135,31 @@ public struct DomineSoundSet : SoundSet {
             sounds = new List<Sound>() {
                 new Daniel(),
                 new DomineMusic(),
+                // Opening Cutscene
+                new DomineAnOffering(),
+                new DomineBurnedWoman(),
+                new DomineCursedOne(),
+                new DomineDeadWoman(),
+                new DomineEnterRooom(),
+                new DomineFixWoman(),
+                new DomineFoolOrBrave(),
+                new DomineItsExpensive(),
+                new DomineLostSoul(),
+                new DomineNoHope(),
+                new DomineOldDoor(),
+                new DomineReviveWoman(),
+                new DomineSacrificeRitual(),
+                new DomineStrongWill(),
+                new DomineUnderArches(),
+                new DomineUnless(),
+                new DomineWaitingMortal(),
+                new DomineWalkAether(),
+                new DomineWarning(),
+                new DomineYoureMortals(),
+                new DomineAshesToWind(),
+                new DomineWhyHere(),
+                new DomineNo(),
+                new DomineMountainSummit(),
             };
         }
         return sounds;

@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour{
-        
     public static CameraController instance;
 
+    [SerializeField] CameraFollowType follow_type = CameraFollowType.LockY;
     [SerializeField] private Transform target;
     [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
     [SerializeField] private Vector3 offset;
@@ -27,13 +27,16 @@ public class CameraController : MonoBehaviour{
         instance = this;
         original_offset = offset;
         original_size = cam.orthographicSize;
-        follow_state = StartCoroutine(follow());
-        //test = StartCoroutine(test_zoom());
+        start_follow_state();
     }
 
     public void regulate_in_bounds(bool x) => regulate = x;
 
     // external functions
+    public void set_offset(Vector3 _offset, bool _override_original_offset){
+        offset = _offset;
+        original_offset = _override_original_offset == true? _offset : original_offset;
+    }
     public void set_target(Transform _target) => target = _target;
     public void zoom_in_state(float size, float speed)      => state_swtich(ref zoom_state, zoom_in(size, speed));
     public void zoom_out_state(float size, float speed)     => state_swtich(ref zoom_state, zoom_out(size, speed));
@@ -50,20 +53,48 @@ public class CameraController : MonoBehaviour{
         state = StartCoroutine(n_state);
     }
 
-    public void stop_follow_state() => state_swtich(ref follow_state, none());
-    public void start_follow_state() => state_swtich(ref follow_state, follow());
-    IEnumerator none(){yield break;}
-    // states:
-    IEnumerator follow(){
+
+
+
+
+    // follow states:
+    public void snap_to_target() => transform.position = target.position + offset;
+    public void stop_follow_state() => StopCoroutine(follow_state);
+    public void start_follow_state(CameraFollowType? type = null){
+        follow_type = type!=null? type.Value : follow_type;
+        switch(follow_type){
+            case CameraFollowType.LockY:        state_swtich(ref follow_state, follow_locked_y()); break;
+            case CameraFollowType.Unlocked:    state_swtich(ref follow_state, follow_unlocked()); break;
+            case CameraFollowType.LockX:        state_swtich(ref follow_state, follow_locked_x()); break;
+        }
+    }
+    IEnumerator follow_locked_y(){
         while(true){
-            Vector3 desired_pos = new Vector3(target.position.x + offset.x, offset.y, target.position.z + offset.z);
+            Vector3 desired_pos = new Vector3(target.position.x + offset.x, offset.y, offset.z);
             // may want to swap this to Vector3.SmoothDamp();
             Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
             transform.position = regulate_position(smoothed_pos);            
             yield return new WaitForEndOfFrame();
         }
     }
-
+    IEnumerator follow_locked_x(){
+        while(true){
+            Vector3 desired_pos = new Vector3(offset.x, offset.y + target.position.y, offset.z);
+            // may want to swap this to Vector3.SmoothDamp();
+            Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
+            transform.position = regulate_position(smoothed_pos);            
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    IEnumerator follow_unlocked(){
+        while(true){
+            Vector3 desired_pos = new Vector3(offset.x + target.position.x, offset.y + target.position.y, offset.z);
+            // may want to swap this to Vector3.SmoothDamp();
+            Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
+            transform.position = regulate_position(smoothed_pos);            
+            yield return new WaitForEndOfFrame();
+        }
+    }
     Vector3 regulate_position(in Vector3 pos){
         if(regulate == false)
             return pos;
@@ -75,6 +106,12 @@ public class CameraController : MonoBehaviour{
 
     }
 
+
+
+
+
+
+    // camera shake
     IEnumerator camera_shake(float time, float amount){
         float timer = 0;
         while(timer < time){
@@ -97,6 +134,11 @@ public class CameraController : MonoBehaviour{
         yield break;
     }
 
+
+
+
+
+    // offset modifiers:
     IEnumerator move_vertical(float y_pos, float speed){
         while(Mathf.Abs(offset.y - y_pos) > 0.1){
             offset.y = Mathf.MoveTowards(offset.y, y_pos, Time.deltaTime * speed);
@@ -105,7 +147,6 @@ public class CameraController : MonoBehaviour{
         offset.y = y_pos;
         yield break;
     }
-
     IEnumerator move_horizontal(float x_pos, float speed){
         while(Mathf.Abs(offset.x - x_pos) > 0.1){
             offset.x = Mathf.MoveTowards(offset.x, x_pos, Time.deltaTime * speed);
@@ -114,7 +155,6 @@ public class CameraController : MonoBehaviour{
         offset.x = x_pos;
         yield break;       
     }
-
     IEnumerator reset_offset(float speed){
         // determine if we are too high or too low.
         float difference = offset.y - original_offset.y;
@@ -127,6 +167,11 @@ public class CameraController : MonoBehaviour{
         yield break;
     }
 
+
+
+
+
+    // camera size modifiers:
     IEnumerator zoom_out(float size, float speed){
         while(cam.orthographicSize < size){
             cam.orthographicSize += Time.deltaTime * speed;
@@ -135,7 +180,6 @@ public class CameraController : MonoBehaviour{
         cam.orthographicSize = size;
         yield break;
     }
-
     IEnumerator zoom_in(float size, float speed){
         while(cam.orthographicSize > size){
             cam.orthographicSize -= Time.deltaTime * speed;
@@ -143,7 +187,6 @@ public class CameraController : MonoBehaviour{
         }
         cam.orthographicSize = size;
     }
-
     IEnumerator reset_zoom(float speed){
         // determine if we are too high or too low.
         float difference = cam.orthographicSize - original_size;
@@ -155,28 +198,12 @@ public class CameraController : MonoBehaviour{
         
         yield break;
     }
-
-    IEnumerator test_zoom(){
-        while(true){
-            yield return new WaitForSeconds(3);
-            if(zoom_state != null)
-                StopCoroutine(zoom_state);
-            zoom_state = StartCoroutine(zoom_out(18,3.75f));
-            yield return new WaitForSeconds(3);
-            if(zoom_state != null)
-                StopCoroutine(zoom_state);
-            zoom_state = StartCoroutine(zoom_in(10,3.75f));
-            yield return new WaitForSeconds(3);
-            if(zoom_state != null)
-                StopCoroutine(zoom_state);
-            zoom_state = StartCoroutine(reset_zoom(3.75f));
-        }
-    }
-
-    public void snap_to_target(){
-        transform.position = target.position + offset;
-    }
-
     public void ZoomIn()    =>    cam.orthographicSize--;
     public void ZoomOut()   =>    cam.orthographicSize++;
+}
+
+public enum CameraFollowType{
+    LockY,
+    LockX,
+    Unlocked
 }

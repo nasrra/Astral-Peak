@@ -1,21 +1,19 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using System;
-using System.Collections;
+using UnityEngine;
 
-public class Door : MonoBehaviour{
-
-
+public abstract class Door : MonoBehaviour{
 
 
 
-    // Data.
+
+
+    // variables
     public event Action now_opened, now_closed;
-    [SerializeField] Animator animator = null;
-    [SerializeField] private string scene_to_load, exit_point;
-    [SerializeField] Collider2D trigger_col, solid_col;
-    [SerializeField] bool start_open = false;
+    [Header("Door")]
     [SerializeField] SpawnPoint spawn_point;
+    [SerializeField] Animator animator;
+    [SerializeField] bool start_open = false;
+    [SerializeField] Collider2D solid_col, trigger_col;
 
 
 
@@ -27,28 +25,16 @@ public class Door : MonoBehaviour{
             opened();
         link();
     }
-    void OnDisable(){
-        unlink();
-    }
-    void OnTriggerEnter2D(){
-        if(scene_to_load != "")
-            enter();
-    }
+    void OnDisable() => unlink();
+    void OnTriggerEnter2D() => enter();
 
 
 
 
 
 
-    // States.
-    public virtual void enter() => StartCoroutine(enter_coroutine());
-    IEnumerator enter_coroutine(){
-        Player.instance.set_spawn_point(exit_point);
-        Player.instance.door_enter_state();
-        CustomSceneManager.load_scene(scene_to_load); 
-        close();
-        yield break;
-    }
+    // states:
+    public abstract void enter();
     void exit(){
         opened();
         close();
@@ -85,7 +71,6 @@ public class Door : MonoBehaviour{
         if(solid_col != null)
             solid_col.enabled = true;
     }
-
 
 
 

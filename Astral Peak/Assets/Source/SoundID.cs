@@ -1,24 +1,37 @@
 using UnityEngine;
 namespace Sounds{
-    public enum SoundID{
+    public enum SoundID : short{
+    //Default
+    NONE,
+
     // MUSIC
     WOLF_BOSS_MUSIC_1,
     WOLF_BOSS_MUSIC_2,
     DOMINE_MUSIC,
+    HOLLOW_MUSIC,
+    ALTAR_MUSIC,
 
-    // SFX
-    BOW_SHOT,
-    COIN_TOSS,
-    DEEP_BOOM,
-    DOG_BARK_1,
+    // Magic
     LEATHER_CONTORT_1,
     MAGIC_1,
     MAGIC_EXPLOSION,
+    WHOOSH_1,
+        
+    //Ui
+    WOODEN_PING,
+    DEEP_BOOM,
+
+    // Melee
     MELEE_HIT,
     MELEE_SWING_1,
     MELEE_SWING_2,
     MELEE_SWING_3,
-    RIDER_YELL,
+
+    // Ranged
+    BOW_SHOT,
+    COIN_TOSS,
+
+    // Snow
     SNOW_FOOTSTEP_1,
     SNOW_FOOTSTEP_2,
     SNOW_FOOTSTEP_3,
@@ -26,25 +39,59 @@ namespace Sounds{
     SNOW_JUMP,
     SNOW_IMPACT_HEAVY,
     SNOW_IMPACT_LIGHT,
-    SOFT_WIND,
-    STEAM,
-    WHOOSH_1,
-    WHISTLE_LONG,
+    
+    // The Cavalry
     WOLF_HOWL,
-    WOODEN_PING,
+    DOG_BARK_1,
+    RIDER_YELL,
+    WHISTLE_LONG,
+
+    // Stone
     STONE_FOOTSTEP_1,
     STONE_FOOTSTEP_2,
     STONE_FOOTSTEP_3,
     STONE_FOOTSTEP_4,
     STONE_IMPACT_LIGHT,
+
+    // Fire
     SMALL_FIRE,
-    NONE,
-    DANIEL,
+    STEAM,
+
+    // Wooden
     WOODEN_RATTLE_1,
     WOODEN_RATTLE_2,
     WOODEN_RATTLE_4,
-    HOLLOW_MUSIC,
-    ALTAR_MUSIC,
     DEEP_THUMPING,
+
+    //Domine
+    DANIEL,
+    DOMINE_AN_OFFERING,
+    DOMINE_BURNED_WOMAN,
+    DOMINE_CURSED_ONE,
+    DOMINE_DEAD_WOMAN,
+    DOMINE_EDGE_OF_WORLD,
+    DOMINE_ENTER_ROOM,
+    DOMINE_FIX_WOMAN,
+    DOMINE_FOOL_OR_BRAVE,
+    DOMINE_ITS_EXPENSIVE,
+    DOMINE_LOST_SOUL,
+    DOMINE_NO_HOPE,
+    DOMINE_OLD_DOOR,
+    DOMINE_REVIVE_WOMAN,
+    DOMINE_SACRIFICE_RITUAL,
+    DOMINE_STRONG_WILL,
+    DOMINE_UNDER_ARCHES,
+    DOMINE_UNLESS,
+    DOMINE_WAITING_MORTAL,
+    DOMINE_WALK_AETHER,
+    DOMINE_WARNING,
+    DOMINE_NO,
+    DOMINE_YOURE_MORTALS,
+    DOMINE_ASHES_TO_WIND,
+    DOMINE_MOUNTAIN_SUMMIT,
+    DOMINE_WHY_HERE,
+
+    //Ambience
+    SOFT_WIND,
 }
 }

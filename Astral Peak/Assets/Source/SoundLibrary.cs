@@ -21,12 +21,12 @@ public static class SoundLibrary{
     public static Sound get_sound(SoundID id) => loaded_sounds.ContainsKey(id)? loaded_sounds[id] : throw new Exception(id + " has not been loaded.");
     static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single) => load_sounds(scene_sounds[scene.name]());
     static void load_sounds(List<Sound> sounds){
+        loaded_sounds.Add(SoundID.NONE, new Sounds.None());
         if(sounds == null)
             return;
         foreach(Sound sound in sounds)
             loaded_sounds.Add(sound.id(), sound);
         // add the default "none sound"
-        loaded_sounds.Add(SoundID.NONE, new Sounds.None());
     }
     static void unload_sounds(Scene scene) => loaded_sounds.Clear();
 
@@ -47,6 +47,7 @@ public static class SoundLibrary{
         {"Shrine",() => {return new ShrineSceneSounds().get_sounds();}},
         {"temp",() => {return null;}},
         {"MainMenu",() => {return new MainMenuSceneSounds().get_sounds();}},
+        {"Tower1",()=>{return new Tower1SceneSounds().get_sounds();}}
     };
 }
 

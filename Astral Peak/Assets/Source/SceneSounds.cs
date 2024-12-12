@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Sounds;
+using UnityEditor.Rendering;
+using UnityEditor.SearchService;
 
 public interface SceneSounds{
     public List<Sound> get_sounds();
@@ -92,5 +94,23 @@ public struct MainMenuSceneSounds : SceneSounds{
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new UiSoundSet(),
+    };
+}
+
+public struct Tower1SceneSounds : SceneSounds{
+    public List<Sound> get_sounds(){
+        List<Sound> ids = new List<Sound>();
+        foreach(SoundSet set in sets)
+            ids.AddRange(set.get_sounds());
+        return ids;
+    }
+    List<SoundSet> sets => new List<SoundSet>(){
+        new MagicSoundSet(),
+        new UiSoundSet(),
+        new OutdoorAmbienceSoundSet(),
+        new MeleeSoundSet(),
+        new StoneSoundSet(),
+        new HollowSoundSet(),
+        new FireSoundSet(),
     };
 }

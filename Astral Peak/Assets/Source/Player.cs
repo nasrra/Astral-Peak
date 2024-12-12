@@ -168,19 +168,18 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public void set_enter_position(){
         SpawnPoint spawn = SpawnPointManager.get_point(respawn_point != ""? respawn_point : spawn_point);
         if(spawn != null){
-            if(spawn.get_movement() != MovementOption.NONE)
-                StartCoroutine(door_exit_state());
             transform.position = spawn.transform.position;
+            if(spawn.get_movement() != MovementOption.NONE)
+                StartCoroutine(door_exit_state(spawn));
         }
-    }
+    }//
     public void door_enter_state(){
         unlink_input();
     }
-    IEnumerator door_exit_state(){
+    IEnumerator door_exit_state(SpawnPoint spawn){
         unlink_input();
-        SpawnPoint spawn = SpawnPointManager.get_point(spawn_point);
+        movement.stop();//
         spawn.use_spawn();
-        transform.position = spawn.transform.position;
         movement.movement(spawn.get_movement(), true);
         AudioManager.restore_sfx_smooth();  
         yield return new WaitForSeconds(1);
