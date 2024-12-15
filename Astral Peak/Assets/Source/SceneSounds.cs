@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 using Sounds;
-using UnityEditor.Rendering;
-using UnityEditor.SearchService;
 
-public interface SceneSounds{
+namespace SceneSounds{
+
+public interface SceneSoundSet{
     public List<Sound> get_sounds();
 }
 
 
-public struct SnowForestSceneSounds : SceneSounds{
+public struct SnowForest : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
-
     List<SoundSet> sets => new List<SoundSet>(){
         new MagicSoundSet(),
         new UiSoundSet(),
@@ -26,12 +25,12 @@ public struct SnowForestSceneSounds : SceneSounds{
     };
 }
 
-public struct WolfBossRoomSceneSounds : SceneSounds{
+public struct WolfBossRoom : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new WolfSoundSet(),
@@ -47,12 +46,12 @@ public struct WolfBossRoomSceneSounds : SceneSounds{
     };
 }
 
-public struct TutorialRoomSceneSounds : SceneSounds{
+public struct TutorialRoom : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new MagicSoundSet(),
@@ -66,12 +65,12 @@ public struct TutorialRoomSceneSounds : SceneSounds{
     };
 }
 
-public struct ShrineSceneSounds : SceneSounds{
+public struct Shrine : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new MagicSoundSet(),
@@ -85,24 +84,24 @@ public struct ShrineSceneSounds : SceneSounds{
     };
 }
 
-public struct MainMenuSceneSounds : SceneSounds{
+public struct MainMenu : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new UiSoundSet(),
     };
 }
 
-public struct Tower1SceneSounds : SceneSounds{
+public struct Tower1 : SceneSoundSet{
     public List<Sound> get_sounds(){
-        List<Sound> ids = new List<Sound>();
+        List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
-            ids.AddRange(set.get_sounds());
-        return ids;
+            sounds.AddRange(set.get_sounds());
+        return sounds;
     }
     List<SoundSet> sets => new List<SoundSet>(){
         new MagicSoundSet(),
@@ -113,4 +112,38 @@ public struct Tower1SceneSounds : SceneSounds{
         new HollowSoundSet(),
         new FireSoundSet(),
     };
+}
+
+public struct SilentBossRoom : SceneSoundSet{
+    public List<Sound> get_sounds(){
+        List<Sound> sounds = new List<Sound>();
+        foreach(SoundSet set in sets)
+            sounds.AddRange(set.get_sounds());
+        return sounds;
+    }
+    List<SoundSet> sets => new List<SoundSet>(){
+        new MagicSoundSet(),
+        new UiSoundSet(),
+        new OutdoorAmbienceSoundSet(),
+        new MeleeSoundSet(),
+        new SnowSoundSet(),
+    };
+}
+
+public struct SnowField : SceneSoundSet{
+    public List<Sound> get_sounds(){
+        List<Sound> sounds = new List<Sound>();
+        foreach(SoundSet set in sets)
+            sounds.AddRange(set.get_sounds());
+        return sounds;
+    }
+    List<SoundSet> sets => new List<SoundSet>(){
+        new MagicSoundSet(),
+        new UiSoundSet(),
+        new OutdoorAmbienceSoundSet(),
+        new MeleeSoundSet(),
+        new SnowSoundSet(),
+    };
+}
+
 }

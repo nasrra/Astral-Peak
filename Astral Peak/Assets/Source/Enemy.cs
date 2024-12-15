@@ -44,7 +44,6 @@ public class Enemy : Boss<Movement>{
         float curr_dist = dist_to_target();
         while(Mathf.Abs(curr_dist) >= 0.25f){
             curr_dist = dist_to_target();
-            movement.stop();
             // if we are not moving right, move right.
             if(curr_dist < 0 && movement.get_move_direction() != new Vector2(1,0))
                 movement.move_right(true);

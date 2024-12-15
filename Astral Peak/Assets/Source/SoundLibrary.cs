@@ -41,13 +41,15 @@ public static class SoundLibrary{
     }
 
     static readonly Dictionary<string, Func<List<Sound>>> scene_sounds = new Dictionary<string, Func<List<Sound>>>(){
-        {"WolfBossRoom", () => {return new WolfBossRoomSceneSounds().get_sounds();}},
-        {"SnowForest", () => {return new SnowForestSceneSounds().get_sounds();}},
-        {"TutorialRoom", () => {return new TutorialRoomSceneSounds().get_sounds();}},
-        {"Shrine",() => {return new ShrineSceneSounds().get_sounds();}},
-        {"temp",() => {return null;}},
-        {"MainMenu",() => {return new MainMenuSceneSounds().get_sounds();}},
-        {"Tower1",()=>{return new Tower1SceneSounds().get_sounds();}}
+        {"temp",            () => {return null;}},
+        {"WolfBossRoom",    () => {return new SceneSounds.WolfBossRoom().get_sounds();}},
+        {"SnowForest",      () => {return new SceneSounds.SnowForest().get_sounds();}},
+        {"TutorialRoom",    () => {return new SceneSounds.TutorialRoom().get_sounds();}},
+        {"Shrine",          () => {return new SceneSounds.Shrine().get_sounds();}},
+        {"MainMenu",        () => {return new SceneSounds.MainMenu().get_sounds();}},
+        {"Tower1",          () => {return new SceneSounds.Tower1().get_sounds();}},
+        {"SilentBossRoom",  () => {return new SceneSounds.SilentBossRoom().get_sounds();}},
+        {"SnowField",       () => {return new SceneSounds.SnowField().get_sounds();}}
     };
 }
 

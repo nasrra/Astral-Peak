@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour{
     public static CameraController instance;
 
-    [SerializeField] CameraFollowType follow_type = CameraFollowType.LockY;
+    //[SerializeField] CameraFollowType follow_type = CameraFollowType.LockY;
     [SerializeField] private Transform target;
     [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
     [SerializeField] private Vector3 offset;
@@ -27,6 +28,7 @@ public class CameraController : MonoBehaviour{
         instance = this;
         original_offset = offset;
         original_size = cam.orthographicSize;
+        snap_to_target();
         start_follow_state();
     }
 
@@ -58,16 +60,17 @@ public class CameraController : MonoBehaviour{
 
 
     // follow states:
-    public void snap_to_target() => transform.position = target.position + offset;
+    public void snap_to_target() => transform.position = new Vector3(target.position.x + offset.x, offset.y, offset.z);
     public void stop_follow_state() => StopCoroutine(follow_state);
-    public void start_follow_state(CameraFollowType? type = null){
-        follow_type = type!=null? type.Value : follow_type;
-        switch(follow_type){
-            case CameraFollowType.LockY:        state_swtich(ref follow_state, follow_locked_y()); break;
-            case CameraFollowType.Unlocked:    state_swtich(ref follow_state, follow_unlocked()); break;
-            case CameraFollowType.LockX:        state_swtich(ref follow_state, follow_locked_x()); break;
-        }
-    }
+    public void start_follow_state() => state_swtich(ref follow_state, follow_locked_y());
+    //public void start_follow_state(CameraFollowType? type = null){
+    //    follow_type = type!=null? type.Value : follow_type;
+    //    switch(follow_type){
+    //        case CameraFollowType.LockY:        state_swtich(ref follow_state, follow_locked_y()); break;
+    //        case CameraFollowType.Unlocked:    state_swtich(ref follow_state, follow_unlocked()); break;
+    //        case CameraFollowType.LockX:        state_swtich(ref follow_state, follow_locked_x()); break;
+    //    }
+    //}
     IEnumerator follow_locked_y(){
         while(true){
             Vector3 desired_pos = new Vector3(target.position.x + offset.x, offset.y, offset.z);

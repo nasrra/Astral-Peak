@@ -41,8 +41,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void Start(){   
         link_events();
         set_enter_position();
-        // snap camera to players new position.
-        CameraController.instance.snap_to_target(); 
     }
     void OnDestroy(){
         GameManager.unlink_player();
@@ -77,7 +75,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // if we are in our invulnerable state no dashing.
         Vector2 move_direction = movement.get_move_direction();
         movement.dash(
-            (move_direction.magnitude == 0)?
+            (move_direction.x == 0)?
                 (transform.rotation.y == 0? Vector2.right : Vector2.left) :
                 (move_direction.x == 1?     Vector2.right : Vector2.left) ,
             20, 
