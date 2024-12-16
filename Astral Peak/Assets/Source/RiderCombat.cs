@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class RiderCombat : BossCombat{
     BossAttack
         front_strike = new BossAttack(
-            RiderAnimator.FRONT_STRIKE,
+            "front_strike",
             chance:                 50,
             player_distance:        12,
             arena_bound_distance:   7,
@@ -12,7 +12,7 @@ public class RiderCombat : BossCombat{
             combat_cooldown:        1
         ),
         signature = new BossAttack(
-            RiderAnimator.SIGNATURE,
+            "signature",
             chance:                 50,
             player_distance:        5,
             arena_bound_distance:   7,
@@ -21,7 +21,7 @@ public class RiderCombat : BossCombat{
             combat_cooldown:        1
         ),
         jump_n_dash = new BossAttack(
-            RiderAnimator.JUMP_N_DASH,
+            "jump_n_dash",
             chance:                 50,
             player_distance:        12,
             arena_bound_distance:   10,
@@ -30,7 +30,7 @@ public class RiderCombat : BossCombat{
             combat_cooldown:        1
         ),
         back_shot = new BossAttack(
-            RiderAnimator.BACK_SHOT,
+            "back_shot",
             chance:                 50,
             player_distance:        12,
             arena_bound_distance:   0,
@@ -39,7 +39,7 @@ public class RiderCombat : BossCombat{
             combat_cooldown:        1            
         ),
         round_shot = new BossAttack(
-            RiderAnimator.ROUND_SHOT,
+            "round_shot",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   0,

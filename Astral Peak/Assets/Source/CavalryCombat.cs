@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class CavalryCombat : BossCombat{
     BossAttack
         front_strike = new BossAttack(
-            CavalryAnimator.FRONT_STRIKE,
+            "front_strike",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  2,
@@ -12,25 +12,16 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:       1),
 
         bite = new BossAttack(
-            CavalryAnimator.BITE_1,
+            "bite_1",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   10,
             attack_cooldown:        1,
             idle_cooldown:          0,
             combat_cooldown:        1),
-        
-        //fetch = new BossAttack(
-        //    CavalryAnimator.FETCH_1,
-        //    chance:                 50,
-        //    player_distance:        6,
-        //    arena_bound_distance:   10,
-        //    attack_cooldown:        24,
-        //    idle_cooldown:          0,
-        //    combat_cooldown:        1),
-        
+
         back_strike_forward = new BossAttack(
-            CavalryAnimator.BACK_STRIKE_FORWARD,
+            "back_strike_forward",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,
@@ -39,7 +30,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         back_strike_backward = new BossAttack(
-            CavalryAnimator.BACK_STRIKE_BACKWARD,
+            "back_strike_backward",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,
@@ -48,7 +39,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         ground_slam = new BossAttack(
-            CavalryAnimator.GROUND_SLAM,
+            "ground_slam",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   2,
@@ -57,7 +48,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         howl = new BossAttack(
-            CavalryAnimator.HOWL,
+            "howl",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   0,
@@ -66,7 +57,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         jump_away = new BossAttack(
-            CavalryAnimator.JUMP_AWAY,
+            "jump_away",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,

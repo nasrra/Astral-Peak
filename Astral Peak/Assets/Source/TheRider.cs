@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TheRider : Boss<RiderMovement>{
     public static TheRider instance;
+    [SerializeField] RiderAnimator animator;
     [SerializeField] RiderParticlesHandler particles;
     [SerializeField] RiderRangedCombat ranged;
     [SerializeField] RiderAudio sound;
@@ -21,7 +22,7 @@ public class TheRider : Boss<RiderMovement>{
 
     public void switch_to_idle(float x) => state_switch(idle(x));
     IEnumerator idle(float x){
-        animator.Play(RiderAnimator.IDLE);
+        animator.idle();
         yield return new WaitForSeconds(x);
         state_switch(follow());
         yield break;
@@ -29,7 +30,7 @@ public class TheRider : Boss<RiderMovement>{
 
     public void cutscene_yell_state() => state_switch(cutscene_yell());
     IEnumerator cutscene_yell(){
-        animator.Play(RiderAnimator.YELL); 
+        animator.yell(); 
         yield return new WaitForSeconds(3f);
         state_switch(lock_idle());
         yield break;        
@@ -37,26 +38,26 @@ public class TheRider : Boss<RiderMovement>{
 
     public void cutscene_whistle_state() => state_switch(cutscene_whistle());
     IEnumerator cutscene_whistle(){
-        animator.Play(RiderAnimator.WHISTLE);
+        animator.whistle();
         yield return new WaitForSeconds(2.1f);
         state_switch(lock_idle());
         yield break;
     }
 
     IEnumerator yell(){
-        animator.Play(RiderAnimator.YELL); 
+        animator.yell(); 
         yield return new WaitForSeconds(3);
         state_switch(idle(1));
         yield break;
     }
 
     IEnumerator lock_idle(){
-        animator.Play(RiderAnimator.IDLE);
+        animator.idle();
         yield break;
     }
 
     protected override IEnumerator follow(){
-        animator.Play(RiderAnimator.RUN);
+        animator.run();
         state_switch(base.follow());
         yield break;
     }

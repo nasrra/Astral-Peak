@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
+    [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprite;
     [SerializeField] protected AnimatorOverride animator;
     [SerializeField] protected BossCombat combat;

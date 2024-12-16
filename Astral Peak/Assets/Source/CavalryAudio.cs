@@ -1,10 +1,7 @@
 using UnityEngine;
 using Sounds;
 
-public class CavalryAudio : MonoBehaviour
-{
-    AudioSource source;
-
+public class CavalryAudio : MonoBehaviour{
     public void emit_arrow_knocked()=> 
         AudioClipHandler.play(
             SoundID.COIN_TOSS,
