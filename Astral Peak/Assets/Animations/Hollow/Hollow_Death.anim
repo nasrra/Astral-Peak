@@ -7476,50 +7476,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: play_death_ambient_particles
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: death_rattle_audio
-    data: 
+    functionName: emit_animation_event_signal
+    data: death_start
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: death_explosion_audio
-    data: 
+    functionName: emit_animation_event_signal
+    data: death_explosion_sound
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: stop_death_ambient_particles
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.3333334
-    functionName: emit_death_explosion_particles
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.3333334
-    functionName: death_camera_shake
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.8333334
-    functionName: stop_alerted_music
-    data: 
+    functionName: emit_animation_event_signal
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

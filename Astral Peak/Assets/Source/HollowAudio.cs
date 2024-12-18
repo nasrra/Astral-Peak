@@ -2,37 +2,37 @@ using UnityEngine;
 using Sounds;
 
 public class HollowAudio : MonoBehaviour{
-    public void yell_audio() =>
+    public void yell() =>
         AudioClipHandler.play(
             SoundID.RIDER_YELL,
             audio_player: this, 
             AudioSourceSettings.DIEGETIC);  
 
-    public void footstep_audio() =>
+    public void footstep() =>
         AudioClipHandler.play(
             choose_footstep(),
             audio_player: this, 
             AudioSourceSettings.DIEGETIC);  
     
-    public void walk_rattle_audio() =>
+    public void walk_rattle() =>
         AudioClipHandler.play(
             SoundID.WOODEN_RATTLE_1,
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
-    public void idle_rattle_audio() =>
+    public void idle_rattle() =>
         AudioClipHandler.play(
             SoundID.WOODEN_RATTLE_2,
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED);
     
-    public void death_explosion_audio() =>
+    public void death_explosion() =>
         AudioClipHandler.play(
             SoundID.MAGIC_EXPLOSION,
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
-    public void death_rattle_audio() =>
+    public void death_rattle() =>
         AudioClipHandler.play(
             SoundID.WOODEN_RATTLE_4,
             audio_player: this,

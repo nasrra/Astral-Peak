@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprite;
-    [SerializeField] protected AnimatorOverride animator;
+    [SerializeField] protected Animator animator;
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
     protected Coroutine state;
@@ -13,7 +13,8 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected virtual void state_switch(IEnumerator n_state){
         movement.stop();
-        StopAllCoroutines();
+        if(state != null)
+            StopCoroutine(state);
         state = StartCoroutine(n_state);
     }
 

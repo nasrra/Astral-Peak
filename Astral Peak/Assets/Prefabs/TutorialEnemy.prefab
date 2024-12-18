@@ -168,7 +168,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8537454458043999464}
   - component: {fileID: 1194575375138677735}
-  - component: {fileID: 7955418272586459454}
   - component: {fileID: 2977568614855167195}
   - component: {fileID: 877026610343841355}
   - component: {fileID: 4859797069849427953}
@@ -179,6 +178,8 @@ GameObject:
   - component: {fileID: 3310787623185486105}
   - component: {fileID: 4349994611722791513}
   - component: {fileID: 6404525578859866131}
+  - component: {fileID: 5907779583916630519}
+  - component: {fileID: 2992233626786404860}
   m_Layer: 8
   m_Name: TutorialEnemy
   m_TagString: Enemy
@@ -224,20 +225,6 @@ MonoBehaviour:
   max_life: 10
   current_life: 10
   invulnerable: 0
---- !u!114 &7955418272586459454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841642048582550558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93819b4e98d3eca43be09f1ce0437a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4859797069849427953}
-  a: {fileID: 4859797069849427953}
 --- !u!50 &2977568614855167195
 Rigidbody2D:
   serializedVersion: 5
@@ -348,7 +335,7 @@ MonoBehaviour:
   health: {fileID: 1194575375138677735}
   movement: {fileID: 9057505959519379731}
   sprite: {fileID: 896696132830443372}
-  animator: {fileID: 7955418272586459454}
+  animator: {fileID: 4859797069849427953}
   combat: {fileID: 0}
   target: {fileID: 8904305568839613953}
   paths:
@@ -361,8 +348,10 @@ MonoBehaviour:
   - movement: 6
     duration: 3
   origin: {fileID: 0}
+  animation_event: {fileID: 2992233626786404860}
   particles: {fileID: 7594034917498284294}
   agro_area: {fileID: 441748230105023122}
+  sound: {fileID: 3310787623185486105}
   hurt_box: {fileID: 6404525578859866131}
   idle_speed: 2
   idle_acceleration: 1
@@ -493,6 +482,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.9}
   m_Size: {x: 1, y: 3}
   m_Direction: 0
+--- !u!114 &5907779583916630519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841642048582550558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2992233626786404860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841642048582550558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2134164432007937801
 GameObject:
   m_ObjectHideFlags: 0

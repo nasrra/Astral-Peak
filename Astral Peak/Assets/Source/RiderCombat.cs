@@ -49,7 +49,7 @@ public class RiderCombat : BossCombat{
         );
 
     void Start(){
-        //test(round_shot);
+        //test(signature);
         set_movesets();
     }
 

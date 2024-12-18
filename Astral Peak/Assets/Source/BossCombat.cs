@@ -51,6 +51,8 @@ public class BossCombat : MonoBehaviour{
         return chosen_attack;
     }
 
+    public BossAttack get_chosen_attack() => chosen_attack;
+
     public void attack_end(){
         attack_ended?.Invoke(chosen_attack.idle_cooldown);
         StartCoroutine(chosen_attack.self_cooldown());

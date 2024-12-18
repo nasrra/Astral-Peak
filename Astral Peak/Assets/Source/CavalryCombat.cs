@@ -12,7 +12,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:       1),
 
         bite = new BossAttack(
-            "bite_1",
+            "bite",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   10,
@@ -66,7 +66,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        0);
 
     void Start(){
-        //test(jump_away);
+        //test(back_strike_backward);
         set_movesets(); 
     }
 

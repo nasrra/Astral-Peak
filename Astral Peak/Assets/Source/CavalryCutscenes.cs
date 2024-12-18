@@ -70,7 +70,7 @@ public class CavalryPhaseTransition : Cutscene{
         yield return new WaitForSeconds(8.65f);
         room.background_wolf.SetActive(false);
         room.phase_2();
-        TheCavalry.instance.sound.emit_ground_slam_impact();
+        TheCavalry.instance.sound.ground_slam_impact();
         CameraController.instance.regulate_in_bounds(true);
         room.set_positions();
         TheCavalry.instance.enter_cutscene_state();

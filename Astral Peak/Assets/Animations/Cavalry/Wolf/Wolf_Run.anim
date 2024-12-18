@@ -14403,30 +14403,30 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.083333336
-    functionName: emit_footsteps
-    data: 
+  - time: 0.16666667
+    functionName: emit_animation_event_signal
+    data: emit_front_footstep_particles
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
-    functionName: emit_front_footstep
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.5
-    functionName: emit_footsteps
-    data: 
+  - time: 0.16666667
+    functionName: emit_animation_event_signal
+    data: play_footstep_sound
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: emit_back_footstep
-    data: 
+    functionName: emit_animation_event_signal
+    data: play_footstep_sound
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5
+    functionName: emit_animation_event_signal
+    data: emit_back_footstep_particles
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

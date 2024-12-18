@@ -13418,50 +13418,43 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: flip_to_target
-    data: 
+    functionName: emit_animation_event_signal
+    data: flip_to_target
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: jump_away_dash
-    data: 
+    functionName: emit_animation_event_signal
+    data: emit_jump_particles
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: emit_jump_particle
-    data: 
+    functionName: emit_animation_event_signal
+    data: jump_away_movement
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: jump_arrow_fire_once
-    data: 
+    functionName: emit_animation_event_signal
+    data: jump_away_arrow
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.71666664
-    functionName: emit_jump_particle
-    data: 
+    functionName: emit_animation_event_signal
+    data: emit_jump_particles
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.1666666
-    functionName: attack_end
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.1666666
-    functionName: reset_deceleration
-    data: 
+    functionName: emit_animation_event_signal
+    data: attack_end
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using ExcelDataReader.Log;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.InputSystem.Android;
 
 public class TutorialEnemy : Enemy{
     
@@ -11,20 +11,24 @@ public class TutorialEnemy : Enemy{
     
     
     // Data:
+    [SerializeField] AnimationEvent animation_event;
     [SerializeField] HollowParticlesHandler particles;
     [SerializeField] Collider2DFeedback agro_area;
+    [SerializeField] HollowAudio sound;
     [SerializeField] Collider2D hurt_box;
     bool target_in_range;
     float stun_state_timer = .5f;
     [SerializeField] float 
         idle_speed, idle_acceleration, idle_deceleration,
         alert_speed, alert_acceleration, alert_deceleration;
+    Dictionary<string, Action> animation_events;
 
 
 
 
 
     // Base.
+    void Awake() => create_animation_events();
     void Start(){
         link_events();
         idle_movement();
@@ -42,28 +46,23 @@ public class TutorialEnemy : Enemy{
 
     // States:
     IEnumerator idle(float x){
-        animator.Play(HollowAnimator.IDLE);
+        animator.Play("idle");
         yield return new WaitForSeconds(x);
         recovery_state();
         yield break;
     }
 
     protected override IEnumerator follow(){        
-        animator.Play(target_in_range? HollowAnimator.RUN : HollowAnimator.WALK);
-        state_switch(base.follow());
-        yield break;
+        animator.Play(target_in_range? "run" : "walk");
+        yield return base.follow();
     }
 
     public override void kill() => state_switch(death_coroutine());
     protected IEnumerator death_coroutine(){
-        animator.Play(HollowAnimator.DEATH);
+        animator.Play("death");
+        // wait one second for animation to play out.
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + 3);
         base.kill();
-        hurt_box.enabled = false;
-        unlink_events();
-        particles.stop_yell_particles();
-        sprite.play_death_effect(2.25f);
-        particles.stop_ambient_particles();
-        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 
@@ -79,15 +78,12 @@ public class TutorialEnemy : Enemy{
     }
 
     protected IEnumerator alert(){
-        animator.Play(HollowAnimator.YELL);
-        yield return new WaitForSeconds(1.95f);
-        link_combat();
-        recovery_state();
+        animator.Play("yell");
         yield break;
     }
 
     public void recovery_state() => state_switch(target_in_range == true? follow() : retreat_loop());
-
+        
     void alert_state() => state_switch(alert());
 
     void player_in_range(Collider2D col){
@@ -102,7 +98,7 @@ public class TutorialEnemy : Enemy{
         movement.stop();
         idle_movement();
         recovery_state();
-        particles.stop_yell_particles();
+        particles.stop_yell();
         target = null;
     }
     void idle_movement(){
@@ -120,13 +116,68 @@ public class TutorialEnemy : Enemy{
         switch(_movement){
             case MovementOption.LEFT:
             case MovementOption.RIGHT:
-                animator.Play(HollowAnimator.WALK);
+                animator.Play("walk");
                 break;
             case MovementOption.NONE:
-                animator.Play(HollowAnimator.IDLE);
+                animator.Play("idle");
                 break;
         }
     }
+
+
+
+
+
+
+    // Animation
+    private void handle_animation_events(string x) => animation_events[x]();
+    private void create_animation_events(){
+        animation_events = new Dictionary<string, Action>(){
+            // Idle
+            {"idle_rattle", () => sound.idle_rattle()},
+
+            // Walk and Run
+            {"footstep", () => {
+                sound.footstep();
+                sound.walk_rattle();
+            }},
+
+            // Yell
+            {"yell_start", () =>{
+                sound.yell();
+                particles.play_yell();
+                CameraController.instance.shake_camera(2, .55f);
+                flip_to_target();
+            }},
+            {"yell_end", () =>{
+                particles.stop_yell();
+                flip_to_target();
+                recovery_state();
+            }},
+
+            // Death
+            {"death_start", () =>{
+                hurt_box.enabled = false;
+                unlink_combat();
+                unlink_movement();
+                unlink_health();
+                particles.stop_yell();
+                particles.stop_ambience();
+                particles.play_death_ambience();
+                sprite.play_death_effect(2.25f);
+                sound.death_rattle();
+            }},
+            {"death_explosion_sound", ()=>{
+                sound.death_explosion();
+            }},
+            {"death_explosion", () =>{
+                particles.stop_death_ambience();
+                particles.emit_death_explosion();
+                CameraController.instance.shake_camera(.55f, .70f);
+            }},
+        };
+    }
+
 
 
 
@@ -137,12 +188,14 @@ public class TutorialEnemy : Enemy{
         link_combat();
         link_health();
         link_movement();
+        link_animation_events();
     }
 
     protected void unlink_events(){
         unlink_combat();
         unlink_health(); 
         unlink_movement();
+        unlink_animation_events();
     }
 
     private void link_combat(){
@@ -162,6 +215,7 @@ public class TutorialEnemy : Enemy{
     private void unlink_movement(){
         movement.move_direction_changed -= face_move_dir;
         pathing_movement                -= pathing_animations;
+        movement.stop();
     }
 
     protected void link_health(){
@@ -176,4 +230,7 @@ public class TutorialEnemy : Enemy{
         health.death -= kill;
         health.knockback -= movement.knockback;
     }
+
+    protected void link_animation_events() => animation_event.signal += handle_animation_events;
+    protected void unlink_animation_events() => animation_event.signal -= handle_animation_events;
 }

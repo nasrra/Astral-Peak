@@ -14760,6 +14760,7 @@ GameObject:
   - component: {fileID: 8447699733019728571}
   - component: {fileID: 5972464004493588994}
   - component: {fileID: 6049403501429844743}
+  - component: {fileID: 6485622122962742998}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -14843,6 +14844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6049403501429844743}
   movement: {fileID: 8959932368922724423}
+  animation_event: {fileID: 6485622122962742998}
   animator: {fileID: 6345792998177996148}
   melee: {fileID: 8597468600997471075}
   particles: {fileID: 1683145615901213879}
@@ -15039,6 +15041,18 @@ MonoBehaviour:
   max_life: 4
   current_life: 4
   invulnerable: 0
+--- !u!114 &6485622122962742998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8785061149748549367
 GameObject:
   m_ObjectHideFlags: 0

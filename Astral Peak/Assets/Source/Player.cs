@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
-using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +18,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
-    // data to link together.
     [Header("Player")]
+    [SerializeField] private AnimationEvent animation_event;
     [SerializeField] private PlayerAnimator animator;
     [SerializeField] protected PlayerCombat melee;
     [SerializeField] protected PlayerParticlesHandler particles;
@@ -25,7 +27,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] new protected PlayerAudio audio;
     [SerializeField] protected Collider2D col;
     private float invulnerable_time = 2;
-
+    private Dictionary<string, Action> animation_events;
 
 
 
@@ -36,6 +38,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         Application.quitting += unlink_events;
         SceneManager.sceneUnloaded += unloaded;
         GameManager.link_player();
+        create_animation_events();
     }
     void unloaded(Scene s) => unlink_events(); 
     void Start(){   
@@ -70,7 +73,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_left()    => movement.move_left(false);
     private void stop_right()   => movement.move_right(false);
-    private void attack()       => animator.Play(PlayerAnimator.ATTACK);
+    private void attack()       => animator.Play(animator.ATTACK);
     private void dash(){
         // if we are in our invulnerable state no dashing.
         Vector2 move_direction = movement.get_move_direction();
@@ -122,6 +125,55 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
 
+
+
+
+
+    // Animations
+    private void handle_animation_events(string x) => animation_events[x]();
+    private void create_animation_events(){
+        animation_events = new Dictionary<string, Action>(){
+            
+            // Run Animation
+            {"footstep", () =>{
+                particles.emit_footstep();
+                audio.emit_footsteps();
+            }},
+            
+            // Attack Animation
+            {"attack_start", () => {
+                animator.lock_layer(animator.BODY);
+                can_flip(0);
+                audio.emit_attack();
+            }},
+            {"attack_start_hit", () =>{
+                particles.emit_slash();
+                melee.enable_attack_hurt_box(true);
+            }},
+            {"attack_stop_hit", () =>{
+                melee.enable_attack_hurt_box(false);
+            }},
+            {"attack_end", () =>{
+                animator.unlock_layer(animator.BODY);
+                animator.return_state();
+                can_flip(1);
+                face_move_dir();
+            }},
+        
+            // Death Animation.
+            {"death_start", () => {
+                particles.play_death_particles();
+            }},
+            {"death_audio", () =>{
+                audio.emit_magic_explosion();
+            }},
+            {"death_climax", () =>{
+                particles.emit_death_expolosion();
+                particles.stop_death_particles();
+            }},
+        };
+    }
+
     // Damaged and Health
     private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE;
     private void vulnerable() => col.excludeLayers = new LayerMask();
@@ -140,7 +192,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         AudioManager.low_pass_audio(false);
     }
     IEnumerator death_state(){
-        unlink_events();
+        unlink_movement();
+        unlink_input();
+        unlink_melee();
+        unlink_health();
         invulnerable();
         //AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1);
@@ -149,7 +204,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         animator.death();
         death_start?.Invoke();
         yield return new WaitForSeconds(3);
-        
         //AudioManager.low_pass_audio(false);
         base.kill();
     }
@@ -225,6 +279,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_movement();
         link_health();
         link_game_manager();
+        link_animation_events();
     }
     protected void unlink_events(){
         unlink_movement();
@@ -232,6 +287,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_melee();
         unlink_health();
         unlink_game_manager();
+        unlink_animation_events();
     } 
     public void link_input(){
         InputManager.jump_performed        += start_jump;
@@ -319,4 +375,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameManager.entered_game_state -=  entered_game_state; 
         GameManager.exited_game_state -= exited_game_state;
     }
+    protected void link_animation_events() => animation_event.signal += handle_animation_events;
+    protected void unlink_animation_events() => animation_event.signal -= handle_animation_events;
 }

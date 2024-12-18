@@ -2383,71 +2383,29 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: lock_layer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0
-    functionName: can_flip
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
-    functionName: emit_attack
-    data: 
+    functionName: emit_animation_event_signal
+    data: attack_start
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.033333335
-    functionName: emit_slash
-    data: 
+    functionName: emit_animation_event_signal
+    data: attack_start_hit
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.033333335
-    functionName: enable_attack_hurt_box
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
+    intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: enable_attack_hurt_box
-    data: 
+    functionName: emit_animation_event_signal
+    data: attack_stop_hit
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
-    functionName: return_state
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: unlock_layer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: can_flip
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.33333334
-    functionName: face_move_dir
-    data: 
+    functionName: emit_animation_event_signal
+    data: attack_end
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

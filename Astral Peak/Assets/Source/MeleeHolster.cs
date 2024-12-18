@@ -8,9 +8,6 @@ using UnityEngine;
 [Serializable]
 public class MeleeHolster{
     public event Action hit_creature;
-    public delegate void AnimationDelegate();
-    protected AnimationDelegate animation;
-
     Dictionary<string, bool> hit_creatures = new Dictionary<string, bool>();
 
     [SerializeField] protected Collider2D hurt_box;
@@ -22,10 +19,8 @@ public class MeleeHolster{
     [SerializeField]private float 
         self_knockback_force, self_knockback_duration;
 
-    public void set_animation(AnimationDelegate animation) => this.animation = animation;
-
-    public void enable_hurt_box(int x){
-        if(x != 0){
+    public void enable_hurt_box(bool x){
+        if(x == true){
             feedback.trigger_enter += hit;
             hurt_box.enabled = true;
         }
@@ -51,6 +46,4 @@ public class MeleeHolster{
         hit_creatures.Add(name, true);
         hit_creature?.Invoke();
     }
-
-    public virtual void use() => animation();
 }

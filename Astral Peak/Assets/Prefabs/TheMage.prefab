@@ -384,13 +384,14 @@ GameObject:
   - component: {fileID: 7807775443454386958}
   - component: {fileID: 6303910286237399020}
   - component: {fileID: 2628764344551210761}
-  - component: {fileID: 5995578186728946693}
   - component: {fileID: 7337751923581852116}
   - component: {fileID: 3031772494085979690}
   - component: {fileID: 9202162230221651513}
   - component: {fileID: 7100196876858075490}
   - component: {fileID: 1179165287237134916}
   - component: {fileID: 1310301186031250166}
+  - component: {fileID: 6914361556193369870}
+  - component: {fileID: 6140431847263889880}
   m_Layer: 0
   m_Name: TheMage
   m_TagString: Untagged
@@ -452,10 +453,12 @@ MonoBehaviour:
   health: {fileID: 2628764344551210761}
   movement: {fileID: 3031772494085979690}
   sprite: {fileID: 7337751923581852116}
-  animator: {fileID: 5995578186728946693}
+  animator: {fileID: 7807775443454386958}
   combat: {fileID: 0}
   target: {fileID: 0}
-  particles: {fileID: 0}
+  particles: {fileID: 9202162230221651513}
+  animation_event: {fileID: 6140431847263889880}
+  sound: {fileID: 1310301186031250166}
 --- !u!114 &2628764344551210761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,19 +474,6 @@ MonoBehaviour:
   max_life: 200
   current_life: 200
   invulnerable: 0
---- !u!114 &5995578186728946693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426246615804681694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4e13f6950b281a4b8c0f0a4945bac55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7807775443454386958}
 --- !u!114 &7337751923581852116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae2d53b4b136e3448d97e27275ed7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+    _serializedList:
+    - Key: footstep
+      Value: {fileID: 3935257015726523210}
   footsteps: {fileID: 3935257015726523210}
 --- !u!70 &7100196876858075490
 CapsuleCollider2D:
@@ -610,6 +604,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4cd14bfa19423d41ae0e2dc239b1b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6914361556193369870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426246615804681694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96bf9e91b0f2ae34db80e946bc33a812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  chosen_attack:
+    animation_id: 
+    chance: 0
+    player_distance: 0
+    arena_bound_distance: 0
+    attack_cooldown: 0
+    combat_cooldown: 0
+    idle_cooldown: 0
+    enabled: 0
+  front_moveset: []
+  back_moveset: []
+  special_moveset: []
+  left_arena_bound: {fileID: 0}
+  right_arena_bound: {fileID: 0}
+--- !u!114 &6140431847263889880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426246615804681694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3659403529855544338
