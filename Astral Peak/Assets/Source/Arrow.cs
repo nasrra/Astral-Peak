@@ -47,7 +47,7 @@ public class Arrow : Projectile{
         particle = Instantiate(despawn_effect, front_point.position, despawn_effect.transform.rotation);
         float death_delay = particle.GetComponent<ParticleSystem>().main.duration;
         Destroy(particle, death_delay);
-        sprite.enabled = false;
+        enable_sprites(false);
         AudioClipHandler.play(
             SoundID.STEAM,
             audio_player: this, 

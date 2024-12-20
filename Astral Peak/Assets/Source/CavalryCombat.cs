@@ -8,7 +8,7 @@ public class CavalryCombat : BossCombat{
             player_distance:       6,
             arena_bound_distance:  2,
             attack_cooldown:       4,
-            idle_cooldown:         0,
+            idle_cooldown:         1,
             combat_cooldown:       1),
 
         bite = new BossAttack(
@@ -17,7 +17,7 @@ public class CavalryCombat : BossCombat{
             player_distance:        6,
             arena_bound_distance:   10,
             attack_cooldown:        1,
-            idle_cooldown:          0,
+            idle_cooldown:          1,
             combat_cooldown:        1),
 
         back_strike_forward = new BossAttack(
@@ -26,7 +26,7 @@ public class CavalryCombat : BossCombat{
             player_distance:        6,
             arena_bound_distance:   20,
             attack_cooldown:        24,
-            idle_cooldown:          0,
+            idle_cooldown:          1,
             combat_cooldown:        1),
         
         back_strike_backward = new BossAttack(
@@ -35,7 +35,7 @@ public class CavalryCombat : BossCombat{
             player_distance:        6,
             arena_bound_distance:   20,
             attack_cooldown:        24,
-            idle_cooldown:          0,
+            idle_cooldown:          1,
             combat_cooldown:        1),
         
         ground_slam = new BossAttack(
@@ -44,7 +44,7 @@ public class CavalryCombat : BossCombat{
             player_distance:        6,
             arena_bound_distance:   2,
             attack_cooldown:        48,
-            idle_cooldown:          0,
+            idle_cooldown:          1,
             combat_cooldown:        1),
         
         howl = new BossAttack(
@@ -53,7 +53,7 @@ public class CavalryCombat : BossCombat{
             player_distance:        6,
             arena_bound_distance:   0,
             attack_cooldown:        12,
-            idle_cooldown:          0,
+            idle_cooldown:          1,
             combat_cooldown:        1),
         
         jump_away = new BossAttack(

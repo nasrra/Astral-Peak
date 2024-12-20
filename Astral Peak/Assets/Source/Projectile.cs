@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour{
@@ -8,7 +9,7 @@ public class Projectile : MonoBehaviour{
         death_completed;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Transform front_point;
-    [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] protected List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     [SerializeField] protected float
         move_speed = 25,
         lifetime = 5,
@@ -45,7 +46,7 @@ public class Projectile : MonoBehaviour{
 
     public void destroy_projectile() => StartCoroutine(destory_projectile_coroutine());
     protected IEnumerator destory_projectile_coroutine(){
-        sprite.enabled = false;
+        enable_sprites(false);
         state_switch(ref move_state, null);
         rb.linearVelocity = Vector2.zero;
         death_started?.Invoke();
@@ -116,4 +117,9 @@ public class Projectile : MonoBehaviour{
 
     public void enable_trail(bool x) {if(trail != null)trail.enabled = x;}
     public void enable_collider(bool x) {if(col != null)col.enabled = x;}
+
+    protected void enable_sprites(bool x){
+        foreach(SpriteRenderer sprite in sprites)
+            sprite.enabled = x;
+    }
 }
