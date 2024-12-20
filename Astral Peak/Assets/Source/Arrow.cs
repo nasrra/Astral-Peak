@@ -5,7 +5,6 @@ using Sounds;
 
 public class Arrow : Projectile{
     [SerializeField] GameObject despawn_effect, grounded_effect;
-    [SerializeField] GameObject sprite;
 
     void Start() => state_switch(ref rotate_state, arrow_behaviour());
 
@@ -48,7 +47,7 @@ public class Arrow : Projectile{
         particle = Instantiate(despawn_effect, front_point.position, despawn_effect.transform.rotation);
         float death_delay = particle.GetComponent<ParticleSystem>().main.duration;
         Destroy(particle, death_delay);
-        sprite.SetActive(false);
+        sprite.enabled = false;
         AudioClipHandler.play(
             SoundID.STEAM,
             audio_player: this, 

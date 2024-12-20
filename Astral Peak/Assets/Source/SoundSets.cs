@@ -42,6 +42,9 @@ public struct MagicSoundSet : SoundSet {
                 new Magic1(),
                 new MagicExplosion(),
                 new Whoosh1(),
+                new Electricity1(),
+                new Electricity2(),
+                new Electricity3(),
             };
         }
         return sounds;

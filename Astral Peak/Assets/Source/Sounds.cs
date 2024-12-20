@@ -622,4 +622,30 @@ public struct DomineMountainSummit : Sound{
     public float volume()           => 1.0f;
 }
 
+public struct Electricity1 : Sound{
+    public SoundID id()             => SoundID.ELECTRICITY_1;
+    public AudioClip clip()         => SoundLibrary.load_sfx("electricity_1");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1.0f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 0.5f;
+}
+
+public struct Electricity2 : Sound{
+    public SoundID id()             => SoundID.ELECTRICITY_2;
+    public AudioClip clip()         => SoundLibrary.load_sfx("electricity_2");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1.0f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
+public struct Electricity3 : Sound{
+    public SoundID id()             => SoundID.ELECTRICITY_3;
+    public AudioClip clip()         => SoundLibrary.load_sfx("electricity_3");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1.0f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 0.2f;
+}
 }

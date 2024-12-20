@@ -16,7 +16,10 @@ namespace Sounds{
     MAGIC_1,
     MAGIC_EXPLOSION,
     WHOOSH_1,
-        
+    ELECTRICITY_1,
+    ELECTRICITY_2,
+    ELECTRICITY_3,
+
     //Ui
     WOODEN_PING,
     DEEP_BOOM,

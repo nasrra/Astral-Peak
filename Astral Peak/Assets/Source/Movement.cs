@@ -157,7 +157,6 @@ public class Movement : MonoBehaviour{
     public void zero_velocity() => rb.linearVelocity = Vector3.zero;
 
     public void move_in_faced_direction(){
-        Debug.Log(transform.rotation.y);
         if(transform.rotation.y == 1){
             Debug.Log("l");
             move_left(true);

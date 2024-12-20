@@ -3,11 +3,16 @@ using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour{
+    public Action 
+        death_started,
+        death_completed;
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Transform front_point;
+    [SerializeField] protected SpriteRenderer sprite;
     [SerializeField] protected float
         move_speed = 25,
-        lifetime = 5;
+        lifetime = 5,
+        deathtime =0;
     [SerializeField] TrailRenderer trail;
     [SerializeField] protected Collider2D col;
     [SerializeField] protected Coroutine 
@@ -23,7 +28,8 @@ public class Projectile : MonoBehaviour{
     protected void state_switch(ref Coroutine coroutine, IEnumerator state){
         if(coroutine != null)
             StopCoroutine(coroutine);
-        coroutine = StartCoroutine(state);
+        if(state != null)
+            coroutine = StartCoroutine(state);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other){
@@ -37,8 +43,14 @@ public class Projectile : MonoBehaviour{
             destroy_projectile();
     }
 
-    public void destroy_projectile(){
-        enable_trail(false);
+    public void destroy_projectile() => StartCoroutine(destory_projectile_coroutine());
+    protected IEnumerator destory_projectile_coroutine(){
+        sprite.enabled = false;
+        state_switch(ref move_state, null);
+        rb.linearVelocity = Vector2.zero;
+        death_started?.Invoke();
+        yield return new WaitForSeconds(deathtime);
+        death_completed?.Invoke();
         Destroy(gameObject);        
     }
 

@@ -298,5 +298,10 @@ public class MageSound : SoundFunctions{
             SoundID.WOODEN_RATTLE_4,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"small_magic_summon",() =>
+            AudioClipHandler.play(
+            SoundID.ELECTRICITY_2,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
     };
 }
