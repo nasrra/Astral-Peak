@@ -44,6 +44,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250164712f31a8f428bc8eea943b1ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &195995890875658201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281889429206937581}
+  - component: {fileID: 7092131832697715823}
+  - component: {fileID: 1724877257993939457}
+  m_Layer: 8
+  m_Name: BodyCollider
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &281889429206937581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195995890875658201}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8537454458043999464}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &7092131832697715823
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195995890875658201}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 887
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.9}
+  m_Size: {x: 1, y: 3}
+  m_Direction: 0
+--- !u!114 &1724877257993939457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195995890875658201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030996c2a6c0687449fc1b53d305d690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 5107477675233054662}
 --- !u!1 &429990003109000799
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +139,7 @@ GameObject:
   - component: {fileID: 1502897275953849558}
   - component: {fileID: 6565874900555252136}
   - component: {fileID: 2792386002899646460}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: HurtArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,21 +250,20 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8537454458043999464}
-  - component: {fileID: 1194575375138677735}
+  - component: {fileID: 4859797069849427953}
   - component: {fileID: 2977568614855167195}
   - component: {fileID: 877026610343841355}
-  - component: {fileID: 4859797069849427953}
+  - component: {fileID: 1194575375138677735}
   - component: {fileID: 5107477675233054662}
   - component: {fileID: 896696132830443372}
   - component: {fileID: 9057505959519379731}
   - component: {fileID: 4349994611722791513}
-  - component: {fileID: 6404525578859866131}
   - component: {fileID: 907828889830464158}
   - component: {fileID: 3429079448900464409}
   - component: {fileID: 965367310683355375}
   m_Layer: 8
   m_Name: Hollow
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,23 +286,31 @@ Transform:
   - {fileID: 1268392944501070727}
   - {fileID: 2116162996696782535}
   - {fileID: 5537006007009691340}
+  - {fileID: 281889429206937581}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1194575375138677735
-MonoBehaviour:
+--- !u!95 &4859797069849427953
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841642048582550558}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  max_life: 10
-  current_life: 10
-  invulnerable: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ee0e4b4ee4e094b498bec9363dc764b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &2977568614855167195
 Rigidbody2D:
   serializedVersion: 5
@@ -264,14 +354,14 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 896
+    m_Bits: 959
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -294,28 +384,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!95 &4859797069849427953
-Animator:
-  serializedVersion: 7
+--- !u!114 &1194575375138677735
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841642048582550558}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ee0e4b4ee4e094b498bec9363dc764b2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_life: 10
+  current_life: 10
+  invulnerable: 0
 --- !u!114 &5107477675233054662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +419,8 @@ MonoBehaviour:
   ranged: {fileID: 0}
   melee: {fileID: 907828889830464158}
   sound: {fileID: 3429079448900464409}
+  body_colliders:
+  - {fileID: 7092131832697715823}
   combat: {fileID: 0}
   target: {fileID: 8904305568839613953}
   paths:
@@ -349,7 +434,7 @@ MonoBehaviour:
     duration: 3
   origin: {fileID: 0}
   agro_area: {fileID: 441748230105023122}
-  hurt_box: {fileID: 6404525578859866131}
+  hurt_box: {fileID: 6565874900555252136}
   idle_speed: 2
   idle_acceleration: 1
   idle_deceleration: 0.85
@@ -414,43 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ffaa7692d60c24ab1bd239a9b08e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &6404525578859866131
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841642048582550558}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 887
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.9}
-  m_Size: {x: 1, y: 3}
-  m_Direction: 0
 --- !u!114 &907828889830464158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,7 +5427,7 @@ GameObject:
   - component: {fileID: 8365106871097185578}
   - component: {fileID: 1460467772958662652}
   - component: {fileID: 6911941183698992944}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class TheCavalry : Boss<CavalryMovement>{
     public static TheCavalry instance;
-    [SerializeField] List<Collider2D> body_colliders;
-
+    
     void Awake(){
         instance = this;
         //state_switch(lock_idle());
@@ -32,8 +31,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     }
 
     IEnumerator death_state(){
-        foreach(Collider2D c in body_colliders)
-            c.enabled = false;
+        enable_body_colliders(false);
         animator.Play("death");
         animator.Play("death");
         sprite.play_death_effect(2.25f);

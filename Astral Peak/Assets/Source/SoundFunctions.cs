@@ -152,7 +152,11 @@ public class PlayerSound : SoundFunctions{
         SoundID.STONE_FOOTSTEP_3,
         SoundID.STONE_FOOTSTEP_4};
     public PlayerSound(MonoBehaviour _audio_player) : base(_audio_player){}
-    public override void play_ground_effected_sound(string sound_id) => sound_functions[ground+"_"+sound_id]();
+    public override void play_ground_effected_sound(string sound_id){
+        if(ground == "" || ground == null)
+            return;
+        sound_functions[ground+"_"+sound_id]();
+    }
     protected override Dictionary<string, Action> create_sound_functions()
     => new Dictionary<string, Action>(){
         {"melee", ()   => 

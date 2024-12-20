@@ -203,7 +203,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Melee
     void attack_hit(){
-        Debug.Log(1);
         sound.play_sound("melee_hit");  
     } 
 

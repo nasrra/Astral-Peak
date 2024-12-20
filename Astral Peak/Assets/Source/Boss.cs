@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
@@ -9,6 +11,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
     [SerializeField] public AudioPlayer sound;
+    [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
     protected Coroutine state;
@@ -72,5 +75,11 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected IEnumerator attack(BossAttack attack){
         animator.Play(attack.animation_id);
         yield break;
+    }
+
+    // disables body colliders so the player cant hit it anymore.
+    protected void enable_body_colliders(bool flag){
+        foreach(Collider2D c in body_colliders)
+            c.enabled = flag;
     }
 }

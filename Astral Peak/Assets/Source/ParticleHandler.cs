@@ -9,7 +9,7 @@ public class ParticleHandler : MonoBehaviour{
     public void play_particle(string particle_id)                   => particles[particle_id].Play();
     public void stop_particle(string particle_id)                   => particles[particle_id].Stop(true, ParticleSystemStopBehavior.StopEmitting);
     public void play_ground_effected_particle(string particle_id){
-        if(ground == "")
+        if(ground == "" || ground == null)
             return;
         particles[ground+"_"+particle_id].Play();
     }

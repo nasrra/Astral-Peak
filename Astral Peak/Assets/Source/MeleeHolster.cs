@@ -38,7 +38,6 @@ public class MeleeHolster{
         CreatureLink link = other.GetComponent<CreatureLink>(); // creature linker for bigger creatures with multiple colliders and segments.
         Creature creature = (direct != null)? direct : link.get_creature();
         string name = creature.gameObject.name;
-
         if(hit_creatures.ContainsKey(name) == true)
             return;
         creature.get_health().damage(damage_data, knockback_data);

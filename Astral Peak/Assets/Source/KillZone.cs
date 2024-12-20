@@ -6,7 +6,9 @@ using UnityEngine.AI;
 
 public class KillZone : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other){
-        Creature creature = other.GetComponent<Creature>();
+        Creature direct = other.GetComponent<Creature>();
+        CreatureLink link = other.GetComponent<CreatureLink>();
+        Creature creature = direct!=null? direct : link.get_creature();
         if(creature != null){
             if(creature.gameObject.layer == LayersManager.ENEMY)
                 creature.kill();

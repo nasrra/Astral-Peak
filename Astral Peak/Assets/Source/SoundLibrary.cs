@@ -21,12 +21,13 @@ public static class SoundLibrary{
     public static Sound get_sound(SoundID id) => loaded_sounds.ContainsKey(id)? loaded_sounds[id] : throw new Exception(id + " has not been loaded.");
     static void load_scene_sounds(Scene scene, LoadSceneMode mode = LoadSceneMode.Single) => load_sounds(scene_sounds[scene.name]());
     static void load_sounds(List<Sound> sounds){
-        loaded_sounds.Add(SoundID.NONE, new Sounds.None());
+        // add the default "none sound"
         if(sounds == null)
             return;
+        if(loaded_sounds.ContainsKey(SoundID.NONE) == false)
+            loaded_sounds.Add(SoundID.NONE, new Sounds.None());
         foreach(Sound sound in sounds)
             loaded_sounds.Add(sound.id(), sound);
-        // add the default "none sound"
     }
     static void unload_sounds(Scene scene) => loaded_sounds.Clear();
 
