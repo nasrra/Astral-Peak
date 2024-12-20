@@ -19,16 +19,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public static Player instance;
     public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
     [Header("Player")]
-    [SerializeField] private AnimationEvent animation_event;
     [SerializeField] private PlayerAnimator animator;
-    [SerializeField] protected PlayerCombat melee;
-    [SerializeField] protected PlayerParticlesHandler particles;
+    [SerializeField] protected MeleeHolsterHandler melee;
+    [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
-    [SerializeField] new protected PlayerAudio audio;
+    [SerializeField] protected AudioPlayer sound;
     [SerializeField] protected Collider2D col;
     private float invulnerable_time = 2;
-    private Dictionary<string, Action> animation_events;
-
 
 
 
@@ -37,8 +34,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         instance = this;
         Application.quitting += unlink_events;
         SceneManager.sceneUnloaded += unloaded;
+        sound.set_functions(new PlayerSound(sound));
         GameManager.link_player();
-        create_animation_events();
     }
     void unloaded(Scene s) => unlink_events(); 
     void Start(){   
@@ -85,8 +82,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
             0.25f); 
     }
     private void dashed(){
-        audio.emit_dash();
-        particles.emit_dash();
+        sound.play_sound("dash");
+        particles.emit_particle("dash");
         health.is_invulnerable();//
     }
     private void dash_end(){
@@ -98,8 +95,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void grounded(){
         // bounce when hitting the ground.
         animator.medium_bounce();
-        particles.emit_jump();
-        audio.emit_grounded();
+        particles.play_ground_effected_particle("jump");
+        sound.play_ground_effected_sound("jump");
 
         // reset to none so that the animator can play the run or idle animation.
         animator.none();
@@ -120,59 +117,18 @@ public class Player : CreatureInheritor<CharacterMovement>{
         else
             animator.idle(); // play idle animation
     }
-
-
-
-
-
-
-
-
-
-    // Animations
-    private void handle_animation_events(string x) => animation_events[x]();
-    private void create_animation_events(){
-        animation_events = new Dictionary<string, Action>(){
-            
-            // Run Animation
-            {"footstep", () =>{
-                particles.emit_footstep();
-                audio.emit_footsteps();
-            }},
-            
-            // Attack Animation
-            {"attack_start", () => {
-                animator.lock_layer(animator.BODY);
-                can_flip(0);
-                audio.emit_attack();
-            }},
-            {"attack_start_hit", () =>{
-                particles.emit_slash();
-                melee.enable_attack_hurt_box(true);
-            }},
-            {"attack_stop_hit", () =>{
-                melee.enable_attack_hurt_box(false);
-            }},
-            {"attack_end", () =>{
-                animator.unlock_layer(animator.BODY);
-                animator.return_state();
-                can_flip(1);
-                face_move_dir();
-            }},
-        
-            // Death Animation.
-            {"death_start", () => {
-                particles.play_death_particles();
-            }},
-            {"death_audio", () =>{
-                audio.emit_magic_explosion();
-            }},
-            {"death_climax", () =>{
-                particles.emit_death_expolosion();
-                particles.stop_death_particles();
-            }},
-        };
+    private void jumped(){
+        animator.jump();
+        particles.play_ground_effected_particle("jump");
+        sound.play_ground_effected_sound("jump");
     }
+    private void new_ground(string ground){
+        sound.set_ground(ground);
+        particles.set_ground(ground);
+    }
+
+
+
 
     // Damaged and Health
     private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE;
@@ -185,7 +141,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.is_invulnerable(invulnerable_time);
         AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1);
-        audio.emit_damaged();
+        sound.play_sound("damaged");
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
         damaged_stop?.Invoke();
@@ -199,7 +155,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         invulnerable();
         //AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1);
-        audio.emit_damaged();
+        sound.play_sound("damaged");
         sprite.play_death_effect(2);
         animator.death();
         death_start?.Invoke();
@@ -245,6 +201,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
 
+    // Melee
+    void attack_hit(){
+        Debug.Log(1);
+        sound.play_sound("melee_hit");  
+    } 
+
+
+
+
+
     // Game States.
     public override void enter_cutscene_state(){
         unlink_input();
@@ -279,7 +245,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_movement();
         link_health();
         link_game_manager();
-        link_animation_events();
     }
     protected void unlink_events(){
         unlink_movement();
@@ -287,7 +252,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_melee();
         unlink_health();
         unlink_game_manager();
-        unlink_animation_events();
     } 
     public void link_input(){
         InputManager.jump_performed        += start_jump;
@@ -317,13 +281,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.move_direction_changed += movement_animation;
         movement.now_grounded           += grounded;
         movement.not_grounded           += animator.start_fall;
-        movement.jumped                 += animator.jump;
-        movement.jumped                 += particles.emit_jump;
-        movement.jumped                 += audio.emit_jump;
+        movement.jumped                 += jumped;
         movement.dashed                 += dashed;
         movement.dash_end               += dash_end;
-        movement.new_ground             += audio.set_ground;
-        movement.new_ground             += particles.set_ground;
+        movement.new_ground             += new_ground;
         movement.stop();
     }
     protected void unlink_movement(){
@@ -332,24 +293,21 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.move_direction_changed -= movement_animation;
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= animator.start_fall;
-        movement.jumped                 -= animator.jump;
-        movement.jumped                 -= particles.emit_jump;
-        movement.jumped                 -= audio.emit_jump;
+        movement.jumped                 -= jumped;
         movement.dashed                 -= dashed;
         movement.dash_end               -= dash_end;
-        movement.new_ground             -= audio.set_ground;
-        movement.new_ground             -= particles.set_ground;
+        movement.new_ground             -= new_ground;
         movement.stop();
     }
     private void link_melee(){
-        flipped_left            += particles.flip_left;
-        flipped_right           += particles.flip_right;
-        melee.melee_hit         += audio.emit_attack_hit;
+        flipped_left            += particles.flip_particles_left;
+        flipped_right           += particles.flip_particles_right;
+        melee.hit               += attack_hit;
     }
     private void unlink_melee(){
-        flipped_left            -= particles.flip_left;
-        flipped_right           -= particles.flip_right;
-        melee.melee_hit         -= audio.emit_attack_hit;
+        flipped_left            -= particles.flip_particles_left;
+        flipped_right           -= particles.flip_particles_right;
+        melee.hit               -= attack_hit;
     }
     protected void link_health(){
         health.now_invulnerable += invulnerable;
@@ -375,6 +333,4 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameManager.entered_game_state -=  entered_game_state; 
         GameManager.exited_game_state -= exited_game_state;
     }
-    protected void link_animation_events() => animation_event.signal += handle_animation_events;
-    protected void unlink_animation_events() => animation_event.signal -= handle_animation_events;
 }

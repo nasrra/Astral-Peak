@@ -9000,15 +9000,43 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: yell_start
+    functionName: play_sound
+    data: yell
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.9833333
-    functionName: emit_animation_event_signal
-    data: yell_end
+  - time: 0
+    functionName: alert_camera_shake
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: play_particle
+    data: yell
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: flip_to_target
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9666667
+    functionName: stop_particle
+    data: yell
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9666667
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

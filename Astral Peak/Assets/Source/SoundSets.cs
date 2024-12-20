@@ -22,19 +22,16 @@ public struct MeleeSoundSet : SoundSet {
 
 public struct SnowSoundSet : SoundSet {
     private List<Sound> sounds;
-    public List<Sound> get_sounds() {
-        if (sounds == null) {
-            sounds = new List<Sound>() {
+    public List<Sound> get_sounds() =>
+        sounds == null 
+            ?new List<Sound>(){
                 new SnowFootstep1(),
                 new SnowFootstep2(),
                 new SnowFootstep3(),
                 new SnowFootstep4(),
                 new SnowImpactHeavy(),
-                new SnowImpactLight(),
-            };
-        }
-        return sounds;
-    }
+                new SnowImpactLight(),}
+            :sounds;
 }
 
 public struct MagicSoundSet : SoundSet {
@@ -188,6 +185,7 @@ public struct StoneSoundSet : SoundSet {
                 new StoneFootstep2(),
                 new StoneFootstep3(),
                 new StoneFootstep4(),
+                new StoneImpactLight(),
             };
         }
         return sounds;

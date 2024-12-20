@@ -11092,106 +11092,113 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: flip_to_target
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
-    functionName: emit_animation_event_signal
-    data: jnd_jump_back
+    functionName: jnd_jump_back
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.083333336
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5833333
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: emit_animation_event_signal
-    data: play_dash_sound
+    functionName: play_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: emit_animation_event_signal
-    data: jnd_front_leap
+    functionName: emit_particle
+    data: magic_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
+    functionName: play_sound
+    data: magic_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: emit_animation_event_signal
-    data: emit_magic_dash_particles
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: emit_animation_event_signal
-    data: emit_snow_dash_particles
+    functionName: jnd_front_leap
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.93333334
-    functionName: emit_animation_event_signal
-    data: play_melee_sound
+    functionName: enable_melee_hurtbox
+    data: jnd_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.93333334
-    functionName: emit_animation_event_signal
-    data: enable_jnd_strike_hurtbox
+    functionName: emit_particle
+    data: jnd_strike
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.93333334
+    functionName: play_sound
+    data: melee
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.25
-    functionName: emit_animation_event_signal
-    data: disable_jnd_strike_hurtbox
+    functionName: disable_melee_hurtbox
+    data: jnd_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.2666667
-    functionName: emit_animation_event_signal
-    data: stop_snow_dash_particles
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.6
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1666667
-    functionName: emit_animation_event_signal
-    data: attack_end
+  - time: 2.15
+    functionName: attack_end
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

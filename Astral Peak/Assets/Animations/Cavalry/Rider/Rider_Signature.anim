@@ -14506,211 +14506,225 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.98333335
-    functionName: emit_animation_event_signal
-    data: flip_to_target
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_animation_event_signal
-    data: play_dash_sound
+    functionName: signature_strike_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_animation_event_signal
-    data: emit_magic_dash_particles
+    functionName: play_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_animation_event_signal
-    data: emit_snow_dash_particles
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: emit_animation_event_signal
-    data: signature_strike_lunge
+    functionName: play_sound
+    data: magic_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0833334
-    functionName: emit_animation_event_signal
-    data: emit_signature_strike_particles
+    functionName: emit_particle
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0833334
-    functionName: emit_animation_event_signal
-    data: enable_signature_strike_hurtbox
+    functionName: play_sound
+    data: melee
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0833334
+    functionName: enable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: emit_animation_event_signal
-    data: disable_signature_strike_hurtbox
+    functionName: disable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: emit_animation_event_signal
-    data: stop_snow_dash_particles
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.8333334
-    functionName: emit_animation_event_signal
+    functionName: fire_projectile
     data: signature_arrow
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5666666
-    functionName: emit_animation_event_signal
-    data: flip_to_target
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5833333
-    functionName: emit_animation_event_signal
-    data: signature_strike_lunge
+    functionName: play_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5833333
-    functionName: emit_animation_event_signal
-    data: emit_snow_dash_particles
+    functionName: signature_strike_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5833333
-    functionName: emit_animation_event_signal
-    data: emit_magic_dash_particles
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.5833333
-    functionName: emit_animation_event_signal
-    data: play_dash_sound
+    functionName: play_sound
+    data: magic_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.6666667
-    functionName: emit_animation_event_signal
-    data: enable_signature_strike_hurtbox
+    functionName: enable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.6666667
-    functionName: emit_animation_event_signal
-    data: emit_signature_strike_particles
+    functionName: play_sound
+    data: melee
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.6666667
+    functionName: emit_particle
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.9166667
-    functionName: emit_animation_event_signal
-    data: disable_signature_strike_hurtbox
+    functionName: disable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3
-    functionName: emit_animation_event_signal
-    data: stop_snow_dash_particles
+  - time: 3.0833333
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.25
-    functionName: emit_animation_event_signal
+    functionName: fire_projectile
     data: signature_arrow
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.8166666
-    functionName: emit_animation_event_signal
-    data: flip_to_target
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: emit_snow_dash_particles
+    functionName: signature_strike_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: play_dash_sound
+    functionName: play_sound
+    data: magic_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: signature_strike_lunge
+    functionName: play_sound
+    data: melee
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: emit_magic_dash_particles
+    functionName: play_particle
+    data: snow_dash
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.0833335
+    functionName: play_sound
+    data: melee
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.0833335
+    functionName: enable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.1666665
-    functionName: emit_animation_event_signal
-    data: enable_signature_strike_hurtbox
+    functionName: play_particle
+    data: signature_slam
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.1666665
-    functionName: emit_animation_event_signal
-    data: emit_signature_slam_particles
+    functionName: play_sound
+    data: signature_slam
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.3333335
-    functionName: emit_animation_event_signal
-    data: disable_signature_strike_hurtbox
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.3333335
-    functionName: emit_animation_event_signal
-    data: stop_snow_dash_particles
+    functionName: disable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.5
-    functionName: emit_animation_event_signal
-    data: attack_end
+  - time: 4.483333
+    functionName: attack_end
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

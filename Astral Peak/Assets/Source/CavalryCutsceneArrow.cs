@@ -2,7 +2,7 @@ using UnityEngine;
 using Sounds;
 
 public class CavalryCutsceneArrow : MonoBehaviour{
-    [SerializeField] SmartTurret turret;
+    [SerializeField] RangedHolster turret;
     public void fire(){
         turret.fire_once();
         AudioClipHandler.play(

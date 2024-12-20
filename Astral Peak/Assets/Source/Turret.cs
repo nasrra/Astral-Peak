@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
-public class Turret{
+public class RangedHolster{
     public event Action<GameObject> projectile_fired;
     [SerializeField] private float fire_rate = 5.0f;
     [SerializeField] protected GameObject projectile;

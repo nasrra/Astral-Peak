@@ -78,15 +78,21 @@ public class Projectile : MonoBehaviour{
         }
     }
 
-    protected virtual IEnumerator change_direction(Vector2 direction, float speed){
+    protected IEnumerator change_direction(Vector2 direction, float speed){
+        // Calculate the target angle based on the direction vector
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, angle);
-
+        // Adjust for current y-axis rotation
+        float y_factor = Mathf.Approximately(transform.rotation.eulerAngles.y, -180f) ? -1 : 1;
+        // Target rotation with z-axis based on angle and y-factor
+        Quaternion targetRotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, angle * y_factor);
+        // Rotate smoothly until the angle difference is very small
         while (Quaternion.Angle(transform.rotation, targetRotation) > 0.05f){
             Quaternion temp = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(0f, 0f, temp.eulerAngles.z);
+            // Update rotation smoothly with adjustments for axis consistency
+            transform.rotation = Quaternion.Euler(0f, temp.eulerAngles.y, temp.eulerAngles.z);
             yield return new WaitForFixedUpdate();
         }
+        // Snap to the exact target rotation at the end
         transform.rotation = targetRotation;
     }
 

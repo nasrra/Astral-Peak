@@ -3184,14 +3184,28 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.16666667
-    functionName: emit_animation_event_signal
+    functionName: play_ground_effected_sound
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: emit_animation_event_signal
+  - time: 0.16666667
+    functionName: play_ground_effected_particle
+    data: footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: play_ground_effected_particle
+    data: footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: play_ground_effected_sound
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

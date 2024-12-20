@@ -6,7 +6,6 @@ using Sounds;
 public class Arrow : Projectile{
     [SerializeField] GameObject despawn_effect, grounded_effect;
     [SerializeField] GameObject sprite;
-    AudioSource source;
 
     void Start() => state_switch(ref rotate_state, arrow_behaviour());
 

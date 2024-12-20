@@ -8135,23 +8135,16 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: emit_animation_event_signal
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.25
-    functionName: emit_animation_event_signal
-    data: footstep
+    functionName: play_sound
+    data: walk_rattle
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: emit_animation_event_signal
-    data: footstep
+    functionName: play_sound
+    data: walk_rattle
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

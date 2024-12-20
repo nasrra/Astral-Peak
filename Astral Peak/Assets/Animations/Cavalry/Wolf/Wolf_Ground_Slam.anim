@@ -28044,99 +28044,113 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.75
-    functionName: emit_animation_event_signal
-    data: play_bark_sound
+    functionName: play_sound
+    data: bark
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
+    functionName: ground_slam_camera_adjust
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_animation_event_signal
-    data: play_slam_hop_sound
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: emit_animation_event_signal
-    data: slam_camera_adjust
+    functionName: play_sound
+    data: slam_hop
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5833334
-    functionName: emit_animation_event_signal
-    data: emit_slam_hop_1_particles
+    functionName: play_sound
+    data: slam_hop
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5833334
-    functionName: emit_animation_event_signal
-    data: play_slam_hop_sound
+    functionName: emit_particle
+    data: slam_hop_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.1666667
-    functionName: emit_animation_event_signal
-    data: play_slam_hop_sound
+    functionName: play_sound
+    data: slam_hop
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.1666667
-    functionName: emit_animation_event_signal
-    data: emit_slam_hop_2_particles
+    functionName: emit_particle
+    data: slam_hop_2
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: slam_camera_reset
+  - time: 2.3166666
+    functionName: play_sound
+    data: howl
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.8333333
-    functionName: emit_animation_event_signal
-    data: play_slam_impact_sound
+  - time: 3.5
+    functionName: ground_slam_camera_reset
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4
-    functionName: emit_animation_event_signal
-    data: slam_projectiles
+  - time: 3.9666667
+    functionName: fire_projectile
+    data: slam_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4
-    functionName: emit_animation_event_signal
-    data: emit_slam_impact_particles
+  - time: 3.9666667
+    functionName: play_sound
+    data: slam_impact
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4
-    functionName: emit_animation_event_signal
-    data: slam_camera_shake
+  - time: 3.9666667
+    functionName: play_particle
+    data: slam_impact
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.9666667
+    functionName: fire_projectile
+    data: slam_2
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.9666667
+    functionName: ground_slam_camera_shake
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.8166666
-    functionName: emit_animation_event_signal
-    data: attack_end
+    functionName: attack_end
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -7476,22 +7476,43 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: death_start
+    functionName: play_sound
+    data: death_rattle
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
-    functionName: emit_animation_event_signal
-    data: death_explosion_sound
+  - time: 0
+    functionName: play_particle
+    data: death_ambience
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.98333335
+    functionName: play_sound
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.3333334
-    functionName: emit_animation_event_signal
+    functionName: death_camera_shake
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: play_particle
     data: death_explosion
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: stop_particle
+    data: death_ambience
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

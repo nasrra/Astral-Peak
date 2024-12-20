@@ -1,34 +1,33 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+using DocumentFormat.OpenXml.Presentation;
+using ExcelDataReader.Log;
 using UnityEngine;
 
-public class TutorialEnemy : Enemy{
+public class Hollow : Enemy{
     
     
     
     
     
     // Data:
-    [SerializeField] AnimationEvent animation_event;
-    [SerializeField] HollowParticlesHandler particles;
+    [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
-    [SerializeField] HollowAudio sound;
     [SerializeField] Collider2D hurt_box;
     bool target_in_range;
     float stun_state_timer = .5f;
     [SerializeField] float 
         idle_speed, idle_acceleration, idle_deceleration,
         alert_speed, alert_acceleration, alert_deceleration;
-    Dictionary<string, Action> animation_events;
 
 
 
 
 
     // Base.
-    void Awake() => create_animation_events();
+    void Awake(){
+        sound.set_functions(new HollowSound(sound));
+    }
     void Start(){
         link_events();
         idle_movement();
@@ -59,10 +58,15 @@ public class TutorialEnemy : Enemy{
 
     public override void kill() => state_switch(death_coroutine());
     protected IEnumerator death_coroutine(){
+        particles.stop_all_particles();
         animator.Play("death");
+        sprite.play_death_effect(2.25f);
+        unlink_health();
+        hurt_box.enabled = false;
         // wait one second for animation to play out.
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + 3);
         base.kill();
+        unlink_events();
         Destroy(gameObject);
     }
 
@@ -98,7 +102,7 @@ public class TutorialEnemy : Enemy{
         movement.stop();
         idle_movement();
         recovery_state();
-        particles.stop_yell();
+        particles.stop_particle("yell");
         target = null;
     }
     void idle_movement(){
@@ -127,75 +131,17 @@ public class TutorialEnemy : Enemy{
 
 
 
-
-
-    // Animation
-    private void handle_animation_events(string x) => animation_events[x]();
-    private void create_animation_events(){
-        animation_events = new Dictionary<string, Action>(){
-            // Idle
-            {"idle_rattle", () => sound.idle_rattle()},
-
-            // Walk and Run
-            {"footstep", () => {
-                sound.footstep();
-                sound.walk_rattle();
-            }},
-
-            // Yell
-            {"yell_start", () =>{
-                sound.yell();
-                particles.play_yell();
-                CameraController.instance.shake_camera(2, .55f);
-                flip_to_target();
-            }},
-            {"yell_end", () =>{
-                particles.stop_yell();
-                flip_to_target();
-                recovery_state();
-            }},
-
-            // Death
-            {"death_start", () =>{
-                hurt_box.enabled = false;
-                unlink_combat();
-                unlink_movement();
-                unlink_health();
-                particles.stop_yell();
-                particles.stop_ambience();
-                particles.play_death_ambience();
-                sprite.play_death_effect(2.25f);
-                sound.death_rattle();
-            }},
-            {"death_explosion_sound", ()=>{
-                sound.death_explosion();
-            }},
-            {"death_explosion", () =>{
-                particles.stop_death_ambience();
-                particles.emit_death_explosion();
-                CameraController.instance.shake_camera(.55f, .70f);
-            }},
-        };
-    }
-
-
-
-
-
-
     // linkage
     protected void link_events(){
         link_combat();
         link_health();
         link_movement();
-        link_animation_events();
     }
 
     protected void unlink_events(){
         unlink_combat();
         unlink_health(); 
         unlink_movement();
-        unlink_animation_events();
     }
 
     private void link_combat(){
@@ -230,7 +176,4 @@ public class TutorialEnemy : Enemy{
         health.death -= kill;
         health.knockback -= movement.knockback;
     }
-
-    protected void link_animation_events() => animation_event.signal += handle_animation_events;
-    protected void unlink_animation_events() => animation_event.signal -= handle_animation_events;
 }

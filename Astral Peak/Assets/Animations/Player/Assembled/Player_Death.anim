@@ -6156,22 +6156,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: death_start
+    functionName: play_particle
+    data: death_ambience
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: emit_animation_event_signal
-    data: death_audio
+    functionName: play_sound
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: emit_animation_event_signal
-    data: death_climax
+    functionName: play_particle
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

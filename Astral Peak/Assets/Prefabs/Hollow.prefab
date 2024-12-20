@@ -174,14 +174,13 @@ GameObject:
   - component: {fileID: 5107477675233054662}
   - component: {fileID: 896696132830443372}
   - component: {fileID: 9057505959519379731}
-  - component: {fileID: 7594034917498284294}
-  - component: {fileID: 3310787623185486105}
   - component: {fileID: 4349994611722791513}
   - component: {fileID: 6404525578859866131}
-  - component: {fileID: 5907779583916630519}
-  - component: {fileID: 2992233626786404860}
+  - component: {fileID: 907828889830464158}
+  - component: {fileID: 3429079448900464409}
+  - component: {fileID: 965367310683355375}
   m_Layer: 8
-  m_Name: TutorialEnemy
+  m_Name: Hollow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,14 +199,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1274021429164988912}
-  - {fileID: 3202615028744020872}
   - {fileID: 8365106871097185578}
   - {fileID: 8904305568839613953}
   - {fileID: 1268392944501070727}
   - {fileID: 2116162996696782535}
-  - {fileID: 5536467988158857508}
-  - {fileID: 4072627755752921152}
+  - {fileID: 5537006007009691340}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1194575375138677735
@@ -336,6 +332,10 @@ MonoBehaviour:
   movement: {fileID: 9057505959519379731}
   sprite: {fileID: 896696132830443372}
   animator: {fileID: 4859797069849427953}
+  particles: {fileID: 965367310683355375}
+  ranged: {fileID: 0}
+  melee: {fileID: 907828889830464158}
+  sound: {fileID: 3429079448900464409}
   combat: {fileID: 0}
   target: {fileID: 8904305568839613953}
   paths:
@@ -348,10 +348,7 @@ MonoBehaviour:
   - movement: 6
     duration: 3
   origin: {fileID: 0}
-  animation_event: {fileID: 2992233626786404860}
-  particles: {fileID: 7594034917498284294}
   agro_area: {fileID: 441748230105023122}
-  sound: {fileID: 3310787623185486105}
   hurt_box: {fileID: 6404525578859866131}
   idle_speed: 2
   idle_acceleration: 1
@@ -405,34 +402,6 @@ MonoBehaviour:
   jump_force_multiplier: 0
   jump_time_counter: 0
   ground_checker: {fileID: 6911941183698992944}
---- !u!114 &7594034917498284294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841642048582550558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5bc43fbd6a42d94e9b92d56f4594feb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ambience: {fileID: 7151683786981688146}
-  yell: {fileID: 6797523211964387268}
-  death_explosion: {fileID: 7523723035942762164}
-  death_ambience: {fileID: 898381393276646638}
---- !u!114 &3310787623185486105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841642048582550558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8449e28578973b945a5df7f4af05c730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4349994611722791513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,7 +451,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.9}
   m_Size: {x: 1, y: 3}
   m_Direction: 0
---- !u!114 &5907779583916630519
+--- !u!114 &907828889830464158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -491,10 +460,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841642048582550558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Script: {fileID: 11500000, guid: c76f6a19f8e91054cb6e4b5040c91b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2992233626786404860
+  holsters:
+    _serializedList: []
+--- !u!114 &3429079448900464409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -503,9 +474,66 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841642048582550558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &965367310683355375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841642048582550558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d4f4473f740db4583e27606a70812c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+    _serializedList:
+    - Key: death_explosion
+      Value: {fileID: 7523723035942762164}
+    - Key: death_ambience
+      Value: {fileID: 898381393276646638}
+    - Key: yell
+      Value: {fileID: 6797523211964387268}
+    - Key: enemy_ambience
+      Value: {fileID: 7151683786981688146}
+--- !u!1 &1956319737559730232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5537006007009691340}
+  m_Layer: 8
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5537006007009691340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956319737559730232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3202615028744020872}
+  - {fileID: 5536467988158857508}
+  - {fileID: 4072627755752921152}
+  - {fileID: 1274021429164988912}
+  m_Father: {fileID: 8537454458043999464}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2134164432007937801
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +546,7 @@ GameObject:
   - component: {fileID: 898381393276646638}
   - component: {fileID: 7746356158588847035}
   m_Layer: 0
-  m_Name: deathparticles
+  m_Name: DeathAmbientParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -533,11 +561,11 @@ Transform:
   m_GameObject: {fileID: 2134164432007937801}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 0.35000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8537454458043999464}
+  m_Father: {fileID: 5537006007009691340}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!198 &898381393276646638
 ParticleSystem:
@@ -5443,7 +5471,7 @@ GameObject:
   - component: {fileID: 7523723035942762164}
   - component: {fileID: 203718763915080659}
   m_Layer: 0
-  m_Name: DeathExplosion
+  m_Name: DeathExplosionParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5462,7 +5490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8537454458043999464}
+  m_Father: {fileID: 5537006007009691340}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!198 &7523723035942762164
 ParticleSystem:
@@ -10334,7 +10362,7 @@ GameObject:
   - component: {fileID: 6797523211964387268}
   - component: {fileID: 3354511724515151274}
   m_Layer: 0
-  m_Name: yell_effect
+  m_Name: YellParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10353,7 +10381,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8537454458043999464}
+  m_Father: {fileID: 5537006007009691340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6797523211964387268
 ParticleSystem:
@@ -15286,7 +15314,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8537454458043999464}
+    m_TransformParent: {fileID: 5537006007009691340}
     m_Modifications:
     - target: {fileID: 3191233885710895924, guid: 107ef2758f8237645a13f9580eef9d89, type: 3}
       propertyPath: m_Name
@@ -15298,11 +15326,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539002495600188363, guid: 107ef2758f8237645a13f9580eef9d89, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: 0.020000458
       objectReference: {fileID: 0}
     - target: {fileID: 4539002495600188363, guid: 107ef2758f8237645a13f9580eef9d89, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 0.24000001
       objectReference: {fileID: 0}
     - target: {fileID: 4539002495600188363, guid: 107ef2758f8237645a13f9580eef9d89, type: 3}
       propertyPath: m_LocalPosition.z

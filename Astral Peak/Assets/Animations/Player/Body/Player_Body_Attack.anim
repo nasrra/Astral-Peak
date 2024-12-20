@@ -2383,30 +2383,72 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: attack_start
+    functionName: play_sound
+    data: melee
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: can_flip
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: lock_layer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.033333335
+    functionName: emit_particle
+    data: melee
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.033333335
-    functionName: emit_animation_event_signal
-    data: attack_start_hit
+    functionName: enable_melee_hurtbox
+    data: melee
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: emit_animation_event_signal
-    data: attack_stop_hit
+    functionName: disable_melee_hurtbox
+    data: melee
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.31666666
+    functionName: unlock_layer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.31666666
+    functionName: can_flip
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
+  - time: 0.31666666
+    functionName: face_move_dir
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
-    functionName: emit_animation_event_signal
-    data: attack_end
+    functionName: return_state
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0

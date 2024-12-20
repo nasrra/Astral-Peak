@@ -13417,44 +13417,37 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: emit_animation_event_signal
-    data: flip_to_target
+  - time: 0.16666667
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: emit_animation_event_signal
-    data: jump_away_movement
+    functionName: jump_away_dash
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: emit_animation_event_signal
-    data: jump_away_arrow
+    functionName: fire_projectile
+    data: jump_away
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.71666664
-    functionName: emit_animation_event_signal
-    data: emit_jump_particles
+    functionName: play_particle
+    data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1666666
-    functionName: emit_animation_event_signal
-    data: attack_end
+  - time: 1.15
+    functionName: attack_end
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

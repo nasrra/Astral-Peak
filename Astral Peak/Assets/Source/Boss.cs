@@ -5,6 +5,10 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprite;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected ParticleHandler particles;
+    [SerializeField] protected RangedHolsterHandler ranged;
+    [SerializeField] protected MeleeHolsterHandler melee;
+    [SerializeField] public AudioPlayer sound;
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
     protected Coroutine state;

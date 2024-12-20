@@ -15536,43 +15536,43 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: emit_animation_event_signal
-    data: emit_death_ambience_particles
+    functionName: play_particle
+    data: death_ambience
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: emit_animation_event_signal
-    data: play_howl_sound
+    functionName: play_sound
+    data: howl
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: emit_animation_event_signal
-    data: play_death_explosion_sound
+    functionName: play_sound
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: emit_animation_event_signal
-    data: stop_death_ambience_particles
+    functionName: death_camera_shake
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: emit_animation_event_signal
-    data: emit_death_explosion_particles
+    functionName: stop_particle
+    data: death_ambience
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: emit_animation_event_signal
-    data: death_camera_shake
+    functionName: play_particle
+    data: death_explosion
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

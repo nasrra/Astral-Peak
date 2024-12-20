@@ -91,6 +91,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250164712f31a8f428bc8eea943b1ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &573314204056747950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6240854917944397815}
+  m_Layer: 7
+  m_Name: Particles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6240854917944397815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573314204056747950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 213822634710492012}
+  - {fileID: 7085142459360486707}
+  - {fileID: 6331802165635158038}
+  - {fileID: 2740240833085531838}
+  - {fileID: 2961454184970412632}
+  - {fileID: 1910233625914215426}
+  - {fileID: 5548570105604495704}
+  - {fileID: 4095602628712583958}
+  m_Father: {fileID: 1730094031898389184}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1298274273367358245
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +142,7 @@ GameObject:
   - component: {fileID: 1695118960242674608}
   - component: {fileID: 2007939296215487171}
   m_Layer: 0
-  m_Name: StrikeEffect
+  m_Name: StrikeParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,11 +157,11 @@ Transform:
   m_GameObject: {fileID: 1298274273367358245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.464, y: 0.6400001, z: 0.34}
+  m_LocalPosition: {x: 0.4640007, y: 0.64000034, z: 0.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1730094031898389184}
+  m_Father: {fileID: 6240854917944397815}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &1695118960242674608
 ParticleSystem:
@@ -5027,7 +5066,7 @@ GameObject:
   - component: {fileID: 7742506475918205065}
   - component: {fileID: 491563127238416660}
   m_Layer: 0
-  m_Name: DeathExplosion
+  m_Name: DeathExplosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5046,7 +5085,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1730094031898389184}
+  m_Father: {fileID: 6240854917944397815}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!198 &7742506475918205065
 ParticleSystem:
@@ -9918,7 +9957,7 @@ GameObject:
   - component: {fileID: 1070131198974402506}
   - component: {fileID: 6139520867971204448}
   m_Layer: 0
-  m_Name: deathparticles
+  m_Name: DeathAmbienceParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9937,7 +9976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1730094031898389184}
+  m_Father: {fileID: 6240854917944397815}
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!198 &1070131198974402506
 ParticleSystem:
@@ -14753,14 +14792,13 @@ GameObject:
   - component: {fileID: 6345792998177996148}
   - component: {fileID: 1807350476830979228}
   - component: {fileID: 8959932368922724423}
-  - component: {fileID: 8597468600997471075}
-  - component: {fileID: 1683145615901213879}
   - component: {fileID: 1158296529060902672}
   - component: {fileID: 6932510366527514548}
   - component: {fileID: 8447699733019728571}
-  - component: {fileID: 5972464004493588994}
   - component: {fileID: 6049403501429844743}
-  - component: {fileID: 6485622122962742998}
+  - component: {fileID: 5403973528523203497}
+  - component: {fileID: 9164329520582862864}
+  - component: {fileID: 9079846177361718553}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -14781,17 +14819,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4095602628712583958}
-  - {fileID: 5548570105604495704}
   - {fileID: 6806525861391060288}
   - {fileID: 3133321541949951459}
   - {fileID: 4905662928654352497}
-  - {fileID: 1910233625914215426}
-  - {fileID: 2961454184970412632}
-  - {fileID: 213822634710492012}
-  - {fileID: 7085142459360486707}
-  - {fileID: 6331802165635158038}
-  - {fileID: 2740240833085531838}
+  - {fileID: 6240854917944397815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8285156675828792245
@@ -14844,12 +14875,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 6049403501429844743}
   movement: {fileID: 8959932368922724423}
-  animation_event: {fileID: 6485622122962742998}
   animator: {fileID: 6345792998177996148}
-  melee: {fileID: 8597468600997471075}
-  particles: {fileID: 1683145615901213879}
+  melee: {fileID: 9079846177361718553}
+  particles: {fileID: 5403973528523203497}
   sprite: {fileID: 1158296529060902672}
-  audio: {fileID: 5972464004493588994}
+  sound: {fileID: 9164329520582862864}
   col: {fileID: 6932510366527514548}
 --- !u!114 &8959932368922724423
 MonoBehaviour:
@@ -14880,49 +14910,6 @@ MonoBehaviour:
   jump_force_multiplier: 6
   jump_time_counter: 0
   ground_checker: {fileID: 8555385563265979661}
---- !u!114 &8597468600997471075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8f5a01466079304f965e2f6d0fc6407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  melee_attack:
-    hurt_box: {fileID: 3785447265557635548}
-    feedback: {fileID: 4365788086590555684}
-    damage_data:
-      damage: 1
-    knockback_data:
-      force: 10
-      duration: 0.25
-      transform: {fileID: 1730094031898389184}
-    self_knockback_force: 0
-    self_knockback_duration: 0
---- !u!114 &1683145615901213879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1a0903fe71d9a349801bf8d877f9261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slash_effect: {fileID: 1695118960242674608}
-  dash_effect: {fileID: 2805922528731707115}
-  snow_footstep_effect: {fileID: 1170117946406887103}
-  stone_footstep_effect: {fileID: 6435436540487065552}
-  snow_jump_effect: {fileID: 7728398458606878759}
-  stone_jump_effect: {fileID: 2924838844301977976}
-  death_effect: {fileID: 1070131198974402506}
-  death_explosion: {fileID: 7742506475918205065}
 --- !u!114 &1158296529060902672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15014,18 +15001,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5972464004493588994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5816904732367949109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af25bee1bbd42f2468dc1baae38a9233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6049403501429844743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15041,7 +15016,7 @@ MonoBehaviour:
   max_life: 4
   current_life: 4
   invulnerable: 0
---- !u!114 &6485622122962742998
+--- !u!114 &5403973528523203497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15050,9 +15025,65 @@ MonoBehaviour:
   m_GameObject: {fileID: 5816904732367949109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5133f48d0e717b34abd1ba871da29a3a, type: 3}
+  m_Script: {fileID: 11500000, guid: 16d4f4473f740db4583e27606a70812c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particles:
+    _serializedList:
+    - Key: melee
+      Value: {fileID: 1695118960242674608}
+    - Key: dash
+      Value: {fileID: 2805922528731707115}
+    - Key: Snow_footstep
+      Value: {fileID: 1170117946406887103}
+    - Key: Stone_footstep
+      Value: {fileID: 6435436540487065552}
+    - Key: Snow_jump
+      Value: {fileID: 7728398458606878759}
+    - Key: Stone_jump
+      Value: {fileID: 2924838844301977976}
+    - Key: death_explosion
+      Value: {fileID: 7742506475918205065}
+    - Key: death_ambience
+      Value: {fileID: 1070131198974402506}
+--- !u!114 &9164329520582862864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9079846177361718553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5816904732367949109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76f6a19f8e91054cb6e4b5040c91b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holsters:
+    _serializedList:
+    - Key: melee
+      Value:
+        hurt_box: {fileID: 3785447265557635548}
+        feedback: {fileID: 4365788086590555684}
+        damage_data:
+          damage: 1
+        knockback_data:
+          force: 10
+          duration: 0.25
+          transform: {fileID: 1730094031898389184}
+        self_knockback_force: 0
+        self_knockback_duration: 0
 --- !u!1 &8785061149748549367
 GameObject:
   m_ObjectHideFlags: 0
@@ -15065,7 +15096,7 @@ GameObject:
   - component: {fileID: 2805922528731707115}
   - component: {fileID: 630265452767893498}
   m_Layer: 0
-  m_Name: DashEffect
+  m_Name: MagicDashParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15080,11 +15111,11 @@ Transform:
   m_GameObject: {fileID: 8785061149748549367}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -1.17, y: 0.9, z: 0}
-  m_LocalScale: {x: 2.5, y: 2.5, z: 2}
+  m_LocalPosition: {x: -1.1700001, y: 0.9000001, z: 0}
+  m_LocalScale: {x: 2.4999998, y: 2.5000002, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1730094031898389184}
+  m_Father: {fileID: 6240854917944397815}
   m_LocalEulerAnglesHint: {x: 180, y: 90, z: 0}
 --- !u!198 &2805922528731707115
 ParticleSystem:
@@ -19898,7 +19929,7 @@ GameObject:
   - component: {fileID: 7728398458606878759}
   - component: {fileID: 4038776253979642356}
   m_Layer: 0
-  m_Name: SnowJumpEffect
+  m_Name: SnowJumpParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19917,7 +19948,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1730094031898389184}
+  m_Father: {fileID: 6240854917944397815}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!198 &7728398458606878759
 ParticleSystem:
@@ -24783,15 +24814,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1730094031898389184}
+    m_TransformParent: {fileID: 6240854917944397815}
     m_Modifications:
     - target: {fileID: 336317382424408193, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_Name
-      value: StoneFootstepEffect
+      value: StoneFootstepParticle
       objectReference: {fileID: 0}
     - target: {fileID: 4744348191364272374, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.015999794
+      value: 0.016000748
       objectReference: {fileID: 0}
     - target: {fileID: 4744348191364272374, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25058,15 +25089,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1730094031898389184}
+    m_TransformParent: {fileID: 6240854917944397815}
     m_Modifications:
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.016
+      value: 0.016000748
       objectReference: {fileID: 0}
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.471
+      value: -0.4710002
       objectReference: {fileID: 0}
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25082,11 +25113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3229694456278894849, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -25102,7 +25133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3285659472590648601, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_Name
-      value: FootstepEffect
+      value: SnowFootstepParticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25125,11 +25156,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1730094031898389184}
+    m_TransformParent: {fileID: 6240854917944397815}
     m_Modifications:
     - target: {fileID: 336317382424408193, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_Name
-      value: StoneJumpEffect
+      value: StoneJumpParticle
       objectReference: {fileID: 0}
     - target: {fileID: 4744348191364272374, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_LocalScale.y
@@ -25137,7 +25168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4744348191364272374, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.015999794
+      value: 0.016000748
       objectReference: {fileID: 0}
     - target: {fileID: 4744348191364272374, guid: 4a6550fc9a2ec8f43862ab98413d81a4, type: 3}
       propertyPath: m_LocalPosition.y
