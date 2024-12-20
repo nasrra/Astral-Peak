@@ -8,6 +8,7 @@ public class TheMage : Boss<Movement>{
     // Base: 
     void Awake(){
         link_events();
+        sound.set_functions(new MageSound(sound));
     }
 
     void Start(){

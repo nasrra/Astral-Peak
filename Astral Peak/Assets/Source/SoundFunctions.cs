@@ -258,3 +258,45 @@ public class HollowSound : SoundFunctions{
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
     };
 }
+
+public class MageSound : SoundFunctions{
+    public MageSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    private List<SoundID> snow_footsteps = new List<SoundID>(){
+        SoundID.SNOW_FOOTSTEP_1,
+        SoundID.SNOW_FOOTSTEP_2,
+        SoundID.SNOW_FOOTSTEP_3,
+        SoundID.SNOW_FOOTSTEP_4};
+    protected override Dictionary<string, Action> create_sound_functions()
+    => new Dictionary<string, Action>(){
+        {"yell", () =>
+            AudioClipHandler.play(
+            SoundID.RIDER_YELL,
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC)},    
+        {"footstep",()=>
+            AudioClipHandler.play(
+            random_id(snow_footsteps),
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC)},
+        {"walk_rattle", () =>
+            AudioClipHandler.play(
+            SoundID.WOODEN_RATTLE_1,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"idle_rattle",() =>
+            AudioClipHandler.play(
+            SoundID.WOODEN_RATTLE_2,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"death_explosion", () =>
+            AudioClipHandler.play(
+            SoundID.MAGIC_EXPLOSION,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},  
+        {"death_rattle",() =>
+            AudioClipHandler.play(
+            SoundID.WOODEN_RATTLE_4,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
+    };
+}

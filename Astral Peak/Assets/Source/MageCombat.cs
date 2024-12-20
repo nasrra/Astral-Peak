@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class MageCombat : BossCombat{
     BossAttack
-        front_disengage = new BossAttack(
-            "front_disengage",
+        projectile_summon = new BossAttack(
+            "projectile_summon",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  2,
@@ -13,13 +13,13 @@ public class MageCombat : BossCombat{
             combat_cooldown:       1)
     ;
     void Start(){
-        //test(jump_away);
+        test(projectile_summon);
         //set_movesets(); 
     }
 
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
-            front_disengage,
+            //front_disengage,
         });
     }
 }
