@@ -16,7 +16,6 @@ public class SpriteHandler : MonoBehaviour{
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(_state);
-        Debug.Log("switch");
     }
 
     protected IEnumerator none(){
@@ -29,7 +28,7 @@ public class SpriteHandler : MonoBehaviour{
         float t = 0;
 
         while (count > 0){
-            while (elapsedTime < t) {
+            while (t < time) {
                 elapsedTime += Time.deltaTime;
                 t = elapsedTime / time;
                 foreach (SpriteRenderer s in sprites)
@@ -37,11 +36,12 @@ public class SpriteHandler : MonoBehaviour{
                 yield return null;
             }
             elapsedTime = 0;
+            t = 0;
             --count;
             yield return null;
         }
         foreach(SpriteRenderer s in sprites)
-            s.material.SetFloat(value,1);
+            s.material.SetFloat(value,0);
         yield break;
     }
 
@@ -66,6 +66,4 @@ public class SpriteHandler : MonoBehaviour{
         foreach(SpriteRenderer s in sprites)
             s.material.SetColor("_colour", damaged_colour);
     }
-
-    //void OnDestroy() => StopAllCoroutines();
 }

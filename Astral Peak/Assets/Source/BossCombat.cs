@@ -12,7 +12,7 @@ public class BossCombat : MonoBehaviour{
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
     [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
     [SerializeField] protected List<BossAttack> special_moveset = new List<BossAttack>();
-    [SerializeField] Transform  
+    [SerializeField] public Transform  
         left_arena_bound,
         right_arena_bound;
 

@@ -55,7 +55,7 @@ public class Hollow : Enemy{
 
     public override void kill() => state_switch(death_coroutine());
     protected IEnumerator death_coroutine(){
-        enable_body_colliders(false);
+        enable_body_colliders(0);
         particles.stop_all_particles();
         animator.Play("death");
         sprite.play_death_effect(2.25f);

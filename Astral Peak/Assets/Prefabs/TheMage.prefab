@@ -528,8 +528,9 @@ MonoBehaviour:
   ranged: {fileID: 2553571693241179179}
   melee: {fileID: 3578281081255943858}
   sound: {fileID: 2733793814216122303}
-  body_colliders: []
-  combat: {fileID: 0}
+  body_colliders:
+  - {fileID: 7100196876858075490}
+  combat: {fileID: 6914361556193369870}
   target: {fileID: 0}
 --- !u!114 &2628764344551210761
 MonoBehaviour:
@@ -579,8 +580,8 @@ MonoBehaviour:
   can_knockback: 1
   can_dash: 1
   is_dashing: 0
-  top_speed: 5
-  acceleration: 5
+  top_speed: 3
+  acceleration: 0.5
   dash_cooldown: 1
   deceleration: 0.85
   move_direction: {x: 0, y: 0}

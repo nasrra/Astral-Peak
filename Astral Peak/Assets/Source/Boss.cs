@@ -78,8 +78,8 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     // disables body colliders so the player cant hit it anymore.
-    protected void enable_body_colliders(bool flag){
+    protected void enable_body_colliders(int flag){
         foreach(Collider2D c in body_colliders)
-            c.enabled = flag;
+            c.enabled = flag == 1;
     }
 }

@@ -31,7 +31,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     }
 
     IEnumerator death_state(){
-        enable_body_colliders(false);
+        enable_body_colliders(0);
         animator.Play("death");
         animator.Play("death");
         sprite.play_death_effect(2.25f);

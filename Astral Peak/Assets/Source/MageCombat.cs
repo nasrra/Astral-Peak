@@ -28,7 +28,7 @@ public class MageCombat : BossCombat{
 
     void set_movesets(){
         set_front_moveset(new List<BossAttack>(){
-            //front_disengage,
+            projectile_summon,
         });
         set_special_moveset(new List<BossAttack>(){
             teleport,
