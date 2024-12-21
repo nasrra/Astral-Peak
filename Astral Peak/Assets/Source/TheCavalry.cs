@@ -33,7 +33,6 @@ public class TheCavalry : Boss<CavalryMovement>{
     IEnumerator death_state(){
         enable_body_colliders(0);
         animator.Play("death");
-        animator.Play("death");
         sprite.play_death_effect(2.25f);
         disable_components();
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
@@ -60,22 +59,19 @@ public class TheCavalry : Boss<CavalryMovement>{
 
     IEnumerator idle(float x){ 
         animator.Play("idle");
-        animator.Play("idle");
         yield return new WaitForSeconds(x);
-        state_switch(follow());
+        state_switch(follow_and_attack());
         yield break;
     }
 
     IEnumerator lock_idle(){
         animator.Play("idle");
-        animator.Play("idle");
         yield break;
     }
 
-    protected override IEnumerator follow(){
+    protected override IEnumerator follow_and_attack(){
         animator.Play("run");
-        animator.Play("run");
-        state_switch(base.follow());
+        state_switch(base.follow_and_attack());
         yield break;
     }
 

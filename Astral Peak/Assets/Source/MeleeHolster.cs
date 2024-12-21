@@ -8,7 +8,7 @@ using UnityEngine;
 [Serializable]
 public class MeleeHolster{
     public event Action hit_creature;
-    Dictionary<string, bool> hit_creatures = new Dictionary<string, bool>();
+    Dictionary<Creature, bool> hit_creatures = new Dictionary<Creature, bool>();
 
     [SerializeField] protected Collider2D hurt_box;
     [SerializeField] protected Collider2DFeedback feedback;
@@ -38,11 +38,11 @@ public class MeleeHolster{
         CreatureLink link = other.GetComponent<CreatureLink>(); // creature linker for bigger creatures with multiple colliders and segments.
         Creature creature = (direct != null)? direct : link.get_creature();
         string name = creature.gameObject.name;
-        if(hit_creatures.ContainsKey(name) == true)
+        if(hit_creatures.ContainsKey(creature) == true)
             return;
         creature.get_health().damage(damage_data, knockback_data);
         // add the creature to hit creatures;
-        hit_creatures.Add(name, true);
+        hit_creatures.Add(creature, true);
         hit_creature?.Invoke();
     }
 }

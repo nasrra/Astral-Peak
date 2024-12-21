@@ -22,15 +22,13 @@ public class TheRider : Boss<RiderMovement>{
     public void switch_to_idle(float x) => state_switch(idle(x));
     IEnumerator idle(float x){
         animator.Play("idle");
-        animator.Play("idle");
         yield return new WaitForSeconds(x);
-        state_switch(follow());
+        state_switch(follow_and_attack());
         yield break;
     }
 
     public void cutscene_yell_state() => state_switch(cutscene_yell());
     IEnumerator cutscene_yell(){
-        animator.Play("yell"); 
         animator.Play("yell"); 
         yield return new WaitForSeconds(3f);
         state_switch(lock_idle());
@@ -39,7 +37,6 @@ public class TheRider : Boss<RiderMovement>{
 
     public void cutscene_whistle_state() => state_switch(cutscene_whistle());
     IEnumerator cutscene_whistle(){
-        animator.Play("whistle");
         animator.Play("whistle");
         yield return new WaitForSeconds(2.1f);
         state_switch(lock_idle());
@@ -58,10 +55,9 @@ public class TheRider : Boss<RiderMovement>{
         yield break;
     }
 
-    protected override IEnumerator follow(){
+    protected override IEnumerator follow_and_attack(){
         animator.Play("run");
-        animator.Play("run");
-        state_switch(base.follow());
+        state_switch(base.follow_and_attack());
         yield break;
     }
 

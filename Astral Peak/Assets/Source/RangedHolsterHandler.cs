@@ -11,4 +11,5 @@ public class RangedHolsterHandler : MonoBehaviour{
         holsters[holster_id].fire_once();
         fired?.Invoke(holster_id);
     }
+    public RangedHolster get_holster(string id) => holsters[id];
 }

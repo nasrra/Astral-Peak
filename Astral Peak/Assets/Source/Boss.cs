@@ -23,6 +23,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(n_state);
+        Debug.Log(2);
     }
 
     public void flip_to_target(){
@@ -36,12 +37,21 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         yield break;
     }
 
-    protected virtual IEnumerator follow(){
+    protected virtual IEnumerator follow_and_attack(){
         while(true){
             float dist = dist_to_target();
             // attempt an attack.
             if(combat != null && chose_attack(dist) == true)
                 yield break;
+            move_to_player(dist);
+            // Fixed Update Modifier.
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    protected virtual IEnumerator follow_only(){
+        while(true){
+            float dist = dist_to_target();
             move_to_player(dist);
             // Fixed Update Modifier.
             yield return new WaitForFixedUpdate();
@@ -82,4 +92,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         foreach(Collider2D c in body_colliders)
             c.enabled = flag == 1;
     }
+
+    public void set_target(Transform _target) => target = _target;
 }

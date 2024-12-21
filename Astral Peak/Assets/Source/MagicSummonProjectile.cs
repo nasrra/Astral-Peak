@@ -22,6 +22,7 @@ public class MagicSummonProjectile : TrackingProjectile{
             deathtime/4
         );
         death_started -= fade_out;
+        enable_collider(false);
     }
 
 

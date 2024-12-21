@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class Hollow : Enemy{
     
     
     // Data:
+    public event Action on_start;
     [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
     [SerializeField] Collider2D hurt_box;
@@ -24,15 +26,19 @@ public class Hollow : Enemy{
     // Base.
     void Awake(){
         sound.set_functions(new HollowSound(sound));
-    }
-    void Start(){
         link_events();
         idle_movement();
-        state_switch(pathing_loop());
-        target = origin;
+        if(state == null)
+            state_switch(pathing_loop());
+        if(target == null)
+            target = origin;    
+    }
+    void Start(){
+        on_start?.Invoke();
     }
 
     void OnDestroy(){
+        on_start = null;
         unlink_events();
     }
 
@@ -48,9 +54,9 @@ public class Hollow : Enemy{
         yield break;
     }
 
-    protected override IEnumerator follow(){        
+    protected override IEnumerator follow_only(){        
         animator.Play(target_in_range? "run" : "walk");
-        yield return base.follow();
+        yield return base.follow_only();
     }
 
     public override void kill() => state_switch(death_coroutine());
@@ -81,17 +87,21 @@ public class Hollow : Enemy{
 
     protected IEnumerator alert(){
         animator.Play("yell");
+        target_in_range = true; // keep here for mage boss fight.
+        alert_movement();
         yield break;
     }
 
-    public void recovery_state() => state_switch(target_in_range == true? follow() : retreat_loop());
+    public void recovery_state(){
+        particles.stop_particle("yell");
+        state_switch(target_in_range == true? follow_only() : retreat_loop());   
+    }
         
-    void alert_state() => state_switch(alert());
+    public void alert_state() => state_switch(alert());
 
     void player_in_range(Collider2D col){
-        target = col.gameObject.transform;
+        target = Player.instance.transform;
         target_in_range = true;
-        alert_movement();
         alert_state();
     }
 
@@ -101,7 +111,7 @@ public class Hollow : Enemy{
         idle_movement();
         recovery_state();
         particles.stop_particle("yell");
-        target = null;
+        target = origin;
     }
     void idle_movement(){
         movement.set_speed(idle_speed); 
@@ -143,10 +153,14 @@ public class Hollow : Enemy{
     }
 
     private void link_combat(){
+        if(agro_area == null)
+            return;
         agro_area.trigger_enter += player_in_range;
         agro_area.trigger_exit  += player_left_range;
     }
     private void unlink_combat(){
+        if(agro_area == null)
+            return;
         agro_area.trigger_enter -= player_in_range;
         agro_area.trigger_exit  -= player_left_range; 
     }

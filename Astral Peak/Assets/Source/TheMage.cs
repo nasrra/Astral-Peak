@@ -30,16 +30,17 @@ public class TheMage : Boss<Movement>{
     IEnumerator idle(float x){
         animator.Play("idle");
         yield return new WaitForSeconds(x);
-        state_switch(follow());
+        state_switch(follow_and_attack());
         yield break;
     }
 
-    protected override IEnumerator follow(){
+    protected override IEnumerator follow_and_attack(){
         animator.Play("walk");
-        return base.follow();
+        return base.follow_and_attack();
     }
 
-    public void teleport(){
+    public void follow_only_state() => state_switch(base.follow_only());
+    private void teleport(){
         float random = Random.Range(0,2);
         float offset = Random.Range(8,17);
         Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
@@ -51,6 +52,13 @@ public class TheMage : Boss<Movement>{
         animator.Play("exit_teleport");
     }
 
+    // used for when hollows are summoned.
+    private void set_hollow_target(GameObject x){
+        Hollow hollow = x.GetComponent<Hollow>();
+        hollow.set_target(target);
+        hollow.on_start += hollow.alert_state;
+    }
+
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
 
@@ -59,12 +67,14 @@ public class TheMage : Boss<Movement>{
         link_health();
         link_movement();
         link_combat();
+        link_ranged();
     }
 
     protected void unlink(){
         unlink_health();
         unlink_movement();
         unlink_combat();
+        unlink_ranged();
     }
 
     void link_health() => health.damaged += sprite.play_damaged_flash;
@@ -73,4 +83,12 @@ public class TheMage : Boss<Movement>{
     void unlink_movement() => get_movement().move_direction_changed -= face_move_dir;
     void link_combat() => combat.attack_ended += idle_state;
     void unlink_combat() => combat.attack_ended -= idle_state;
+    void link_ranged(){
+        ranged.get_holster("hollow_1").projectile_fired += set_hollow_target;
+        ranged.get_holster("hollow_2").projectile_fired += set_hollow_target;
+    }
+    void unlink_ranged(){
+        ranged.get_holster("hollow_1").projectile_fired -= set_hollow_target;
+        ranged.get_holster("hollow_2").projectile_fired -= set_hollow_target;
+    }
 }

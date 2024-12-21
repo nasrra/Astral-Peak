@@ -19,7 +19,6 @@ public class Enemy : Boss<Movement>{
     public IEnumerator pathing_loop(){
         AiPath current_path;
         int path_index = 0;
-
         while(true){
             // start movement.
             current_path = paths[path_index];
@@ -54,7 +53,7 @@ public class Enemy : Boss<Movement>{
         }
         state_switch(pathing_loop());
         yield break;
-        float dist_to_target() => (transform.position - origin.position).x;
+        float dist_to_target() => (transform.position - target.position).x;
     }
 }
 
