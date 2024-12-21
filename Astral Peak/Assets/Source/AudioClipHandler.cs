@@ -76,6 +76,7 @@ public static class AudioClipHandler{
     static IEnumerator fade_out_loop(AudioSource source, float fade_factor){
         if(source == null)
             yield break;
+        float time_factor = source.volume;
         while(source.volume > 0){
             source.volume -= Time.deltaTime * fade_factor;
             yield return null;

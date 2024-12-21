@@ -43,24 +43,6 @@ public class TheMage : Boss<Movement>{
         return base.follow();
     }
 
-    void enter_invisible(){
-        animator.Play("enter_invisible", 1);
-    }
-
-    void exit_invisible(){
-        animator.Play("exit_invisible", 1);
-    }
-    IEnumerator test(){
-        while(true){
-            exit_invisible();
-            yield return new WaitForSeconds(2);
-            enter_invisible();
-            yield return new WaitForSeconds(2);
-        }
-    }
-    
-
-
     // Linkage:
     protected void link_events(){
         link_health();

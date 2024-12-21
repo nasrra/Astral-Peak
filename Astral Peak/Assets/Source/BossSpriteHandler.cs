@@ -10,5 +10,11 @@ public class BossSpriteHandler : SpriteHandler{
     public void play_death_effect(float time){
         set_material(death_material);
         state_switch(lerp_value("_amount", 2, 0, time));
+        Debug.Log(1);
+    }
+    public void play_death_effect_reverse(float time){
+        set_material(death_material);
+        state_switch(lerp_value("_amount", 0, 2, time));
+        Debug.Log(1);
     }
 }
