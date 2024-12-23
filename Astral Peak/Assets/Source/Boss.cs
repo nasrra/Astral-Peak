@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprite;
-    [SerializeField] protected Animator animator;
+    [SerializeField] public Animator animator;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
@@ -23,7 +23,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(n_state);
-        Debug.Log(2);
     }
 
     public void flip_to_target(){

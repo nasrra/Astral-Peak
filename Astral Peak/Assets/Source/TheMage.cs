@@ -56,7 +56,8 @@ public class TheMage : Boss<Movement>{
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
-        hollow.on_start += hollow.alert_state;
+        hollow.animator.Play("summon");
+        hollow.on_start += hollow.summon_state;
     }
 
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}

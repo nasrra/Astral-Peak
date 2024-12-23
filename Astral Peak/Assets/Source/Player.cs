@@ -1,8 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -156,7 +153,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         //AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1);
         sound.play_sound("damaged");
-        sprite.play_death_effect(2);
+        sprite.play_death_effect(1.5f);
         animator.death();
         death_start?.Invoke();
         yield return new WaitForSeconds(3);

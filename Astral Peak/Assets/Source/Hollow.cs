@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hollow : Enemy{
@@ -13,7 +14,7 @@ public class Hollow : Enemy{
     [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
     [SerializeField] Collider2D hurt_box;
-    bool target_in_range;
+    bool alerted;
     float stun_state_timer = .5f;
     [SerializeField] float 
         idle_speed, idle_acceleration, idle_deceleration,
@@ -28,12 +29,12 @@ public class Hollow : Enemy{
         sound.set_functions(new HollowSound(sound));
         link_events();
         idle_movement();
-        if(state == null)
-            state_switch(pathing_loop());
         if(target == null)
             target = origin;    
     }
     void Start(){
+        if(state == null)
+            state_switch(pathing_loop());
         on_start?.Invoke();
     }
 
@@ -55,7 +56,7 @@ public class Hollow : Enemy{
     }
 
     protected override IEnumerator follow_only(){        
-        animator.Play(target_in_range? "run" : "walk");
+        animator.Play(target == origin? "walk":"run");
         yield return base.follow_only();
     }
 
@@ -64,7 +65,7 @@ public class Hollow : Enemy{
         enable_body_colliders(0);
         particles.stop_all_particles();
         animator.Play("death");
-        sprite.play_death_effect(2.25f);
+        sprite.play_death_effect(1.25f);
         unlink_health();
         hurt_box.enabled = false;
         // wait one second for animation to play out.
@@ -85,33 +86,41 @@ public class Hollow : Enemy{
         yield break;
     }
 
+
+    public void recovery_state(){
+        particles.stop_particle("yell");
+        state_switch(target == origin?
+            retreat_loop(): 
+            alerted == true? follow_only() : alert()
+        );
+    }
+        
+    public void summon_state() => state_switch(summon());
+    IEnumerator summon(){
+        animator.Play("summon");
+        yield break;
+    }
+
+    public void alert_state() => state_switch(alert());
     protected IEnumerator alert(){
         animator.Play("yell");
-        target_in_range = true; // keep here for mage boss fight.
+        alerted = true;
         alert_movement();
         yield break;
     }
 
-    public void recovery_state(){
-        particles.stop_particle("yell");
-        state_switch(target_in_range == true? follow_only() : retreat_loop());   
-    }
-        
-    public void alert_state() => state_switch(alert());
-
     void player_in_range(Collider2D col){
         target = Player.instance.transform;
-        target_in_range = true;
         alert_state();
     }
 
     void player_left_range(Collider2D col){
-        target_in_range = false;
         movement.stop();
         idle_movement();
         recovery_state();
         particles.stop_particle("yell");
         target = origin;
+        alerted = false;
     }
     void idle_movement(){
         movement.set_speed(idle_speed); 
@@ -135,9 +144,6 @@ public class Hollow : Enemy{
                 break;
         }
     }
-
-
-
 
     // linkage
     protected void link_events(){

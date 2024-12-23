@@ -30,8 +30,8 @@ public class MageCombat : BossCombat{
         ;
 
     void Start(){
-        //test(projectile_summon);
-        set_movesets(); 
+        test(hollow_summon);
+        //set_movesets(); 
     }
 
     void set_movesets(){

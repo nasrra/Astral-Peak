@@ -13,7 +13,9 @@ using UnityEngine;
 public class Enemy : Boss<Movement>{
     public event Action<Enemy> enemy_death;
     protected event Action<MovementOption> pathing_movement;
+    [Header("Enemy")]
     [SerializeField] protected List<AiPath> paths = new List<AiPath>();
+    [SerializeField] Animator summoning_animator;
     [SerializeField] protected Transform origin;
 
     public IEnumerator pathing_loop(){
@@ -32,6 +34,8 @@ public class Enemy : Boss<Movement>{
             yield return null;
         }
     }
+
+    public void play_summoning_animation() => summoning_animator.Play("loop");
 
     public override void kill(){
         enemy_death?.Invoke(this);
