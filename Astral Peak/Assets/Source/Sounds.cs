@@ -648,4 +648,13 @@ public struct Electricity3 : Sound{
     public float min_pitch()        => .85f;
     public float volume()           => 0.2f;
 }
+
+public struct BellChimes1 : Sound{
+    public SoundID id()             => SoundID.BELL_CHIMES;
+    public AudioClip clip()         => SoundLibrary.load_sfx("bell_chimes_1");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => .55f;
+    public float min_pitch()        => .40f;
+    public float volume()           => 1f;
+}
 }

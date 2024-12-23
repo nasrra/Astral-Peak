@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Sounds;
+using UnityEditor;
 
 //
 
@@ -18,8 +19,8 @@ public static class AudioClipHandler{
         if(source.loop == false)
             Object.Destroy(source,sound.clip().length); // unscaled time btw
         
-        if(settings.randomise_pitch == true) 
-            sound.randomise_pitch();
+        if(settings.randomise_pitch == true)
+            source.pitch = sound.randomise_pitch();
         
         if(settings.spatial_blend == false)
             return source;
@@ -56,9 +57,9 @@ public static class AudioClipHandler{
         return source;
     }
 
-    public static void fade_out(MonoBehaviour audio, AudioSource source, float fade_factor){
+    public static void fade_out(MonoBehaviour audio, AudioSource source, float fade_factor, bool destroy_source = false){
         set_game_object(audio);
-        object_audio.StartCoroutine(fade_out_loop(source, fade_factor));
+        object_audio.StartCoroutine(fade_out_loop(source, fade_factor, destroy_source));
     }
 
     static IEnumerator fade_in_loop(AudioSource source, float fade_factor, Sound sound){
@@ -73,7 +74,7 @@ public static class AudioClipHandler{
         yield break;        
     }
 
-    static IEnumerator fade_out_loop(AudioSource source, float fade_factor){
+    static IEnumerator fade_out_loop(AudioSource source, float fade_factor, bool destroy_source){
         if(source == null)
             yield break;
         float time_factor = source.volume;
@@ -81,7 +82,10 @@ public static class AudioClipHandler{
             source.volume -= Time.deltaTime * fade_factor;
             yield return null;
         }
-        source.clip = null;
+        if(destroy_source == true)
+            GameObject.Destroy(source);
+        else
+            source.clip = null;
         yield break;
     }
 }

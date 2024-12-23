@@ -49,6 +49,9 @@ namespace Sounds{
     RIDER_YELL,
     WHISTLE_LONG,
 
+    // The Mage
+    BELL_CHIMES,
+
     // Stone
     STONE_FOOTSTEP_1,
     STONE_FOOTSTEP_2,

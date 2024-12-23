@@ -3,9 +3,9 @@ using UnityEngine;
 public struct AudioSourceSettings{
     public readonly bool randomise_pitch, spatial_blend, loop;
     AudioSourceSettings(bool _randomise_pitch, bool _spatial_blend, bool _loop){
-        this.randomise_pitch    = _randomise_pitch;
-        this.spatial_blend      = _spatial_blend;
-        this.loop               = _loop;
+        randomise_pitch    = _randomise_pitch;
+        spatial_blend      = _spatial_blend;
+        loop               = _loop;
     }
 
 

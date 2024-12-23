@@ -128,6 +128,7 @@ public struct SilentBossRoom : SceneSoundSet{
         new MeleeSoundSet(),
         new SnowSoundSet(),
         new HollowSoundSet(),
+        new MageSoundSet(),
     };
 }
 

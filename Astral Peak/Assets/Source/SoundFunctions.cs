@@ -2,13 +2,17 @@ using UnityEngine;
 using Sounds;
 using System.Collections.Generic;
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public abstract class SoundFunctions{
     protected string ground;
     protected Dictionary<string, Action> sound_functions;
+    [SerializeField] protected Dictionary<string, AudioSource> looping_sources = new Dictionary<string, AudioSource>();
     protected MonoBehaviour audio_player;
     public void play_sound(string sound_id) => sound_functions[sound_id]();
+    public void stop_sound(string sound_id){
+        AudioClipHandler.fade_out(audio_player, looping_sources[sound_id], 1, destroy_source: true);
+        looping_sources.Remove(sound_id);
+    }
     public virtual void play_ground_effected_sound(string sound_id) => throw new Exception("This has not been implemented for this class!");
     protected abstract Dictionary<string, Action> create_sound_functions();
     protected SoundID random_id(List<SoundID> options) => options[UnityEngine.Random.Range(0, options.Count)];
@@ -203,7 +207,7 @@ public class PlayerSound : SoundFunctions{
             AudioClipHandler.play(
             SoundID.MAGIC_EXPLOSION,
             audio_player: audio_player,
-            AudioSourceSettings.DIEGETIC_RANDOMISED)},   
+            AudioSourceSettings.DIEGETIC)},   
     };
 }
 
@@ -250,7 +254,7 @@ public class HollowSound : SoundFunctions{
             AudioClipHandler.play(
             SoundID.MAGIC_EXPLOSION,
             audio_player: audio_player,
-            AudioSourceSettings.DIEGETIC_RANDOMISED)},  
+            AudioSourceSettings.DIEGETIC)},  
         {"death_rattle",() =>
         AudioClipHandler.play(
             SoundID.WOODEN_RATTLE_4,
@@ -292,12 +296,18 @@ public class MageSound : SoundFunctions{
             AudioClipHandler.play(
             SoundID.MAGIC_EXPLOSION,
             audio_player: audio_player,
-            AudioSourceSettings.DIEGETIC_RANDOMISED)},  
+            AudioSourceSettings.DIEGETIC)},  
         {"death_rattle",() =>
             AudioClipHandler.play(
             SoundID.WOODEN_RATTLE_4,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"staff_ambience",() =>
+            looping_sources.Add("staff_ambience",
+            AudioClipHandler.play(
+            SoundID.BELL_CHIMES,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP))},
         {"small_magic_summon",() =>
             AudioClipHandler.play(
             SoundID.ELECTRICITY_2,

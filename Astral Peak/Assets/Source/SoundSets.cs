@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Office.Drawing;
 using Sounds;
 using System.Collections.Generic;
 
@@ -220,6 +221,18 @@ public struct HollowSoundSet : SoundSet {
                 new HollowMusic(),
             };
         }
+        return sounds;
+    }
+}
+
+public struct MageSoundSet : SoundSet{
+    private List<Sound> sounds;
+    public List<Sound> get_sounds(){
+        sounds = sounds == null
+        ?new List<Sound>(){
+            new BellChimes1(),
+        }
+        :sounds;
         return sounds;
     }
 }
