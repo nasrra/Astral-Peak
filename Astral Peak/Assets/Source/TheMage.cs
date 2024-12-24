@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
+    [Header("Mage")]
+    [SerializeField] int phase = 1;
+
     // Base: 
     void Awake(){
         link_events();
@@ -30,8 +33,24 @@ public class TheMage : Boss<Movement>{
     IEnumerator idle(float x){
         animator.Play("idle");
         yield return new WaitForSeconds(x);
-        state_switch(follow_and_attack());
+        if(phase == 1)
+            state_switch(follow_and_attack());
+        else
+            state_switch(fly_pattern());
         yield break;
+    }
+
+    protected IEnumerator fly_pattern(){
+        float sin_x = 0;
+        float sin_y = 0;
+        movement.set_gravity(0);
+        animator.Play("hover");
+        while(true){
+            sin_x = Mathf.Sin(Time.time * Time.deltaTime * 20);
+            sin_y = Mathf.Sin(Time.time * Time.deltaTime * 40);
+            movement.set_move_direction(new Vector2(sin_x, sin_y));
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     protected override IEnumerator follow_and_attack(){
@@ -66,14 +85,16 @@ public class TheMage : Boss<Movement>{
     // Linkage:
     protected void link_events(){
         link_health();
-        link_movement();
+        if(phase == 1)
+            link_movement();
         link_combat();
         link_ranged();
     }
 
     protected void unlink(){
         unlink_health();
-        unlink_movement();
+        if(phase == 1)
+            unlink_movement();
         unlink_combat();
         unlink_ranged();
     }

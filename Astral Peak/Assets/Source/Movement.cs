@@ -39,10 +39,17 @@ public class Movement : MonoBehaviour{
     public Vector2 get_move_direction() => move_direction;
 
     // update movement direction and fire an event to notify listeners that we have changed.
-    private void update_move_direction(Vector2 direction){
+    public void update_move_direction(Vector2 direction){
         move_direction += direction;
         move_direction_changed?.Invoke();
     }
+
+    public void set_move_direction(Vector2 direction){
+        move_direction = direction;
+        move_direction_changed?.Invoke();        
+    }
+
+    public void set_gravity(float _gravity) => rb.gravityScale = _gravity;
 
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
