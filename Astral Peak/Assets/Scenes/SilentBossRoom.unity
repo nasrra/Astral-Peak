@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55599692}
   - component: {fileID: 55599691}
+  - component: {fileID: 55599693}
   m_Layer: 0
   m_Name: Fog (2)
   m_TagString: Untagged
@@ -206,6 +207,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 199977851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &55599693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55599690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c73e823b7d016941bf5df267027f39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 55599691}
+  fog_presets:
+  - size: 2.5
+    density: 0.4
+    speed: 0.1
+    color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
+  - size: 2.5
+    density: 0.45
+    speed: 0.3
+    color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
+  speed: 0.125
 --- !u!1 &199977849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5469,6 +5494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442977554}
   - component: {fileID: 442977553}
+  - component: {fileID: 442977555}
   m_Layer: 0
   m_Name: Fog (2)
   m_TagString: Untagged
@@ -5546,6 +5572,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &442977555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442977552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c73e823b7d016941bf5df267027f39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 442977553}
+  fog_presets:
+  - size: 5
+    density: 0.45
+    speed: 0.15
+    color: {r: 0.34509805, g: 0.88235295, b: 1, a: 0.5647059}
+  - size: 5
+    density: 0.5
+    speed: 0.4
+    color: {r: 0.34509805, g: 0.88235295, b: 1, a: 0.5647059}
+  speed: 0.15
 --- !u!1001 &600873335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11072,6 +11122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1658059462}
   - component: {fileID: 1658059461}
+  - component: {fileID: 1658059463}
   m_Layer: 0
   m_Name: Fog (1)
   m_TagString: Untagged
@@ -11149,6 +11200,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 956338953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658059463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658059460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c73e823b7d016941bf5df267027f39e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1658059461}
+  fog_presets:
+  - size: 10
+    density: 0.5
+    speed: 0.1
+    color: {r: 0.627451, g: 0.93333334, b: 1, a: 0.5647059}
+  - size: 10
+    density: 0.5
+    speed: 0.4
+    color: {r: 0.627451, g: 0.93333334, b: 1, a: 0.5647059}
+  speed: 0.1
 --- !u!1001 &1805343010
 PrefabInstance:
   m_ObjectHideFlags: 0

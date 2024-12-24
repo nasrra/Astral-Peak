@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpriteHandler : MonoBehaviour{
-    [SerializeField] List<SpriteRenderer> sprites;
-    [SerializeField] Coroutine state;
-    [SerializeField] Color damaged_colour;
+    [SerializeField] protected List<SpriteRenderer> sprites;
 
     protected void set_material(Material material){
         foreach(SpriteRenderer sprite in sprites)
             sprite.material = material;
     }
 
-    protected void state_switch(IEnumerator _state){
+    protected void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(_state);
@@ -62,8 +60,20 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    public void set_colour(Color color){
-        foreach(SpriteRenderer s in sprites)
-            s.material.SetColor("_colour", damaged_colour);
+    protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
+        float elapsedTime = 0;
+        float t = 0;
+        foreach (SpriteRenderer s in sprites)
+            s.material.SetColor(value, start);
+        while (t < time) {
+            elapsedTime += Time.deltaTime;
+            t = elapsedTime / time;
+            foreach (SpriteRenderer s in sprites)
+                s.material.SetColor(value, Color.Lerp(start,end,1/time * t));
+            yield return null;
+        }
+        foreach (SpriteRenderer s in sprites)
+            s.material.SetColor(value, end);
+        yield break;
     }
 }
