@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
+using TMPro;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class SpriteHandler : MonoBehaviour{
     [SerializeField] protected List<SpriteRenderer> sprites;
@@ -22,58 +26,56 @@ public class SpriteHandler : MonoBehaviour{
 
     protected IEnumerator pulse_value(string value, int pulses = 1, float time = 0.35f){
         int count = pulses;
-        float elapsedTime = 0;
-        float t = 0;
-
         while (count > 0){
-            while (t < time) {
-                elapsedTime += Time.deltaTime;
-                t = elapsedTime / time;
-                foreach (SpriteRenderer s in sprites)
-                    s.material.SetFloat(value, Mathf.Lerp(1f,0f,1/time * t));
-                yield return null;
-            }
-            elapsedTime = 0;
-            t = 0;
+            yield return StartCoroutine(lerp_value(value, 1f, 0f, time));
             --count;
             yield return null;
         }
-        foreach(SpriteRenderer s in sprites)
-            s.material.SetFloat(value,0);
+        foreach (SpriteRenderer s in sprites)
+            s.material.SetFloat(value, 0);
         yield break;
     }
 
     protected IEnumerator lerp_value(string value, float start, float end, float time) {
-        float elapsedTime = 0;
-        float t = 0;
-        foreach (SpriteRenderer s in sprites)
-            s.material.SetFloat(value, start);
-        while (t < time) {
-            elapsedTime += Time.deltaTime;
-            t = elapsedTime / time;
-            foreach (SpriteRenderer s in sprites)
-                s.material.SetFloat(value, Mathf.Lerp(start,end,1/time * t));
-            yield return null;
+        List<bool> operations = new List<bool>();
+        for(int i = 0; i<sprites.Count;++i){
+            int index = i;
+            sprites[i].material.SetFloat(value, start);
+            operations.Add(true); // operation is occuring
+            StartCoroutine(Calc.Coroutines.lerp_value(val => sprites[index].material.SetFloat(value, val), start, end, time, () => operations[index]=false));
         }
-        foreach (SpriteRenderer s in sprites)
-            s.material.SetFloat(value, end);
+        while(operations.Contains(true))
+            yield return null;
         yield break;
     }
 
     protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
-        float elapsedTime = 0;
-        float t = 0;
-        foreach (SpriteRenderer s in sprites)
-            s.material.SetColor(value, start);
-        while (t < time) {
-            elapsedTime += Time.deltaTime;
-            t = elapsedTime / time;
-            foreach (SpriteRenderer s in sprites)
-                s.material.SetColor(value, Color.Lerp(start,end,1/time * t));
-            yield return null;
+        List<bool> operations = new List<bool>();
+        for(int i = 0; i<sprites.Count;++i){
+            int index = i;
+            sprites[i].material.SetColor(value, start);
+            operations.Add(true); // operation is occuring
+            StartCoroutine(Calc.Coroutines.lerp_color(val => sprites[index].material.SetColor(value, val), start, end, time, () => operations[index]=false));
         }
-        foreach (SpriteRenderer s in sprites)
-            s.material.SetColor(value, end);
+        while(operations.Contains(true))
+            yield return null;
         yield break;
     }
+
+    //protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
+    //    float elapsedTime = 0;
+    //    float t = 0;
+    //    foreach (SpriteRenderer s in sprites)
+    //        s.material.SetColor(value, start);
+    //    while (t < time) {
+    //        elapsedTime += Time.deltaTime;
+    //        t = elapsedTime / time;
+    //        foreach (SpriteRenderer s in sprites)
+    //            s.material.SetColor(value, Color.Lerp(start,end,1/time * t));
+    //        yield return null;
+    //    }
+    //    foreach (SpriteRenderer s in sprites)
+    //        s.material.SetColor(value, end);
+    //    yield break;
+    //}
 }

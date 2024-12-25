@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO.Compression;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class FogController : SpriteHandler{
@@ -30,24 +28,10 @@ public class FogController : SpriteHandler{
     public void lerp_preset(int _preset){
         Material fog = sprites[0].material;
         FogShaderData data = fog_presets[_preset];
-        state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, 1));
-        state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,1));
-        state_switch(ref speed_state,lerp_speed     (speed,data.speed,2));
-        state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,1));
-    }
-
-    protected IEnumerator lerp_speed(float start, float end, float time) {
-        float elapsedTime = 0;
-        float t = 0;
-        speed = start;
-        while (t < time) {
-            elapsedTime += Time.deltaTime;
-            t = elapsedTime / time;
-            speed = Mathf.Lerp(start,end,1/time * t);
-            yield return null;
-        }
-        speed = end;
-        yield break;
+        state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, 2));
+        state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,2));
+        state_switch(ref speed_state,Calc.Coroutines.lerp_value(val => speed = val, speed, data.speed,2));
+        state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,2));
     }
 
     IEnumerator test(){

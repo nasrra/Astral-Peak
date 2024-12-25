@@ -227,7 +227,7 @@ MonoBehaviour:
     speed: 0.1
     color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
   - size: 2.5
-    density: 0.45
+    density: 0.55
     speed: 0.3
     color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
   speed: 0.125
@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 380871849}
   - component: {fileID: 380871848}
   - component: {fileID: 380871847}
+  - component: {fileID: 380871850}
   m_Layer: 0
   m_Name: SnowEmitter (1)
   m_TagString: Untagged
@@ -505,7 +506,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -546,7 +547,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380871846}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -621,7 +622,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -674,8 +675,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 24
-      minScalar: 12
+      scalar: 8
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1375,7 +1376,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 80
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2000,7 +2001,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -10
+      scalar: -2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5270,12 +5271,68 @@ Transform:
   m_GameObject: {fileID: 380871846}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalPosition: {x: 3, y: 18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &380871850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380871846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef0f21e864342d45b1e167f0784d34c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presets:
+  - lifetime: 6
+    rate: 60
+    simulation_speed: 1
+    size:
+      m_Mode: 3
+      m_CurveMultiplier: 0
+      m_CurveMin:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      m_CurveMax:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      m_ConstantMin: 0.15
+      m_ConstantMax: 0.4
+    velocity: {x: -2, y: 0}
+  - lifetime: 6
+    rate: 120
+    simulation_speed: 2
+    size:
+      m_Mode: 3
+      m_CurveMultiplier: 0
+      m_CurveMin:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      m_CurveMax:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      m_ConstantMin: 0.15
+      m_ConstantMax: 0.4
+    velocity: {x: -6, y: 0}
+  particle: {fileID: 380871848}
 --- !u!1 &416330449
 GameObject:
   m_ObjectHideFlags: 0
@@ -5592,7 +5649,7 @@ MonoBehaviour:
     speed: 0.15
     color: {r: 0.34509805, g: 0.88235295, b: 1, a: 0.5647059}
   - size: 5
-    density: 0.5
+    density: 0.6
     speed: 0.4
     color: {r: 0.34509805, g: 0.88235295, b: 1, a: 0.5647059}
   speed: 0.15
@@ -11220,7 +11277,7 @@ MonoBehaviour:
     speed: 0.1
     color: {r: 0.627451, g: 0.93333334, b: 1, a: 0.5647059}
   - size: 10
-    density: 0.5
+    density: 0.6
     speed: 0.4
     color: {r: 0.627451, g: 0.93333334, b: 1, a: 0.5647059}
   speed: 0.1
