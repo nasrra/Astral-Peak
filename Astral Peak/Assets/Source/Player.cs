@@ -23,7 +23,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected AudioPlayer sound;
     [SerializeField] protected Collider2D col;
     private float invulnerable_time = 2;
-
+    [SerializeField] bool up_toggle = false;
 
 
     // Base.
@@ -67,7 +67,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_left()    => movement.move_left(false);
     private void stop_right()   => movement.move_right(false);
-    private void attack()       => animator.Play(animator.ATTACK);
+    private void start_up()     => up_toggle = true;
+    private void stop_up()      => up_toggle = false;
+    private void attack(){
+        if(up_toggle == true)
+            animator.up_attack();
+        else
+            animator.side_attack();
+    }
     private void dash(){
         // if we are in our invulnerable state no dashing.
         Vector2 move_direction = movement.get_move_direction();
@@ -258,6 +265,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.right_cancelled       += stop_right;
         InputManager.attack_performed      += attack;
         InputManager.dash_performed        += dash; 
+        InputManager.up_performed          += start_up;
+        InputManager.up_cancelled          += stop_up;
         InputManager.reset_input_blockers();
     }
     public void unlink_input(){
@@ -269,6 +278,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.right_cancelled       -= stop_right;
         InputManager.attack_performed      -= attack;
         InputManager.dash_performed        -= dash;    
+        InputManager.up_performed          -= start_up;
+        InputManager.up_cancelled          -= stop_up;
         InputManager.reset_input_blockers();
     }
     protected void link_movement(){

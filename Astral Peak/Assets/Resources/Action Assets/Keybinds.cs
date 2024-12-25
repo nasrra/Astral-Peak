@@ -31,7 +31,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""name"": ""Right"",
                     ""type"": ""Button"",
                     ""id"": ""f6c4190c-2a74-474d-8955-56e1c393fdcf"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
@@ -49,7 +49,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""name"": ""Left"",
                     ""type"": ""Button"",
                     ""id"": ""78d21d3c-5306-4a0d-80c3-2b53b73bb7b7"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
@@ -124,6 +124,15 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""89e510a5-1f9c-46cf-9d25-54bbe3a50fde"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -248,6 +257,17 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""Debug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adfc608d-a0c1-4e15-9594-15838e96c633"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -267,6 +287,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Dash = m_Keyboard.FindAction("Dash", throwIfNotFound: true);
         m_Keyboard_Exit = m_Keyboard.FindAction("Exit", throwIfNotFound: true);
         m_Keyboard_Debug = m_Keyboard.FindAction("Debug", throwIfNotFound: true);
+        m_Keyboard_Up = m_Keyboard.FindAction("Up", throwIfNotFound: true);
     }
 
     ~@Keybinds()
@@ -344,6 +365,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Dash;
     private readonly InputAction m_Keyboard_Exit;
     private readonly InputAction m_Keyboard_Debug;
+    private readonly InputAction m_Keyboard_Up;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -359,6 +381,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Keyboard_Dash;
         public InputAction @Exit => m_Wrapper.m_Keyboard_Exit;
         public InputAction @Debug => m_Wrapper.m_Keyboard_Debug;
+        public InputAction @Up => m_Wrapper.m_Keyboard_Up;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -401,6 +424,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Debug.started += instance.OnDebug;
             @Debug.performed += instance.OnDebug;
             @Debug.canceled += instance.OnDebug;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -438,6 +464,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Debug.started -= instance.OnDebug;
             @Debug.performed -= instance.OnDebug;
             @Debug.canceled -= instance.OnDebug;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -468,5 +497,6 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnExit(InputAction.CallbackContext context);
         void OnDebug(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
     }
 }

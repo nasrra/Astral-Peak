@@ -2,9 +2,11 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerAnimator : CharacterAnimatorOverride{
+    bool is_attacking = false;
     public readonly int 
         IDLE        = Animator.StringToHash("idle"),
-        ATTACK      = Animator.StringToHash("attack"),
+        SIDE_ATTACK = Animator.StringToHash("side_attack"),
+        UP_ATTACK   = Animator.StringToHash("up_attack"),
         RUN         = Animator.StringToHash("run"),
         GUARD       = Animator.StringToHash("guard"),
         FALL_START  = Animator.StringToHash("fall_start"),
@@ -36,8 +38,10 @@ public class PlayerAnimator : CharacterAnimatorOverride{
 
 
     // additive states that should not be returned to.
-    public void attack()    => play(ATTACK, false); 
-     
+    public void attack_end () => is_attacking = false;
+    public void side_attack()    => play(SIDE_ATTACK, false); 
+    public void up_attack()    => play(UP_ATTACK, false);      
+
     // used for the override animation layer to return to the none state
     public void none_state() => animator.Play(NONE, OVERRIDE);
 

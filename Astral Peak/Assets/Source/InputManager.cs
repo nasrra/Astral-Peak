@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -17,6 +19,7 @@ public static class InputManager{
         left_performed,     left_cancelled, 
         right_performed,    right_cancelled, 
         attack_performed,   attack_cancelled, 
+        up_performed,       up_cancelled,
         dash_performed,
         exit_performed;
         //debug_performed;
@@ -25,6 +28,7 @@ public static class InputManager{
         JUMP,
         LEFT,
         RIGHT,
+        UP,
         ATTACK,
     }
 
@@ -33,6 +37,7 @@ public static class InputManager{
         {Actions.LEFT,    true},
         {Actions.RIGHT,   true},
         {Actions.ATTACK,  true},
+        {Actions.UP,      true},
     };
 
     // Reset the input blockers
@@ -68,6 +73,8 @@ public static class InputManager{
         keybinds.Keyboard.Right.canceled        += on_right_cancelled;
         keybinds.Keyboard.Left.performed        += on_left_performed;
         keybinds.Keyboard.Left.canceled         += on_left_cancelled;
+        keybinds.Keyboard.Up.performed          += on_up_performed;
+        keybinds.Keyboard.Up.canceled           += on_up_cancelled;
         keybinds.Keyboard.Attack.performed      += on_attack_performed;
         keybinds.Keyboard.Attack.canceled       += on_attack_cancelled;
         keybinds.Keyboard.Dash.performed        += on_dash_performed;
@@ -100,6 +107,8 @@ public static class InputManager{
     static void on_right_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.RIGHT] == false) right_cancelled?.Invoke();}
     static void on_attack_performed(InputAction.CallbackContext ctx)   { attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
     static void on_attack_cancelled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.ATTACK] == false) attack_cancelled?.Invoke();}
+    static void on_up_performed(InputAction.CallbackContext ctx)       { up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
+    static void on_up_cancelled(InputAction.CallbackContext ctx)       { if(input_blocker[Actions.UP] == false) up_cancelled?.Invoke();}
     static void on_dash_performed(InputAction.CallbackContext ctx)     => dash_performed?.Invoke();
     static void on_exit_performed(InputAction.CallbackContext ctx)     => exit_performed?.Invoke();
     static void on_zoom_out(InputAction.CallbackContext ctx)           => CameraController.instance.ZoomOut();

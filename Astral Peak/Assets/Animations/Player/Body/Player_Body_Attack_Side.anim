@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Body_Attack
+  m_Name: Player_Body_Attack_Side
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -2383,15 +2383,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: play_sound
-    data: melee
+    functionName: can_flip
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: can_flip
-    data: 
+    functionName: play_sound
+    data: melee
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -2405,31 +2405,24 @@ AnimationClip:
     messageOptions: 0
   - time: 0.033333335
     functionName: emit_particle
-    data: melee
+    data: melee_side
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.033333335
     functionName: enable_melee_hurtbox
-    data: melee
+    data: melee_side
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
     functionName: disable_melee_hurtbox
-    data: melee
+    data: melee_side
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
-    messageOptions: 0
-  - time: 0.31666666
-    functionName: unlock_layer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
     messageOptions: 0
   - time: 0.31666666
     functionName: can_flip
@@ -2444,6 +2437,13 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
+    messageOptions: 0
+  - time: 0.31666666
+    functionName: unlock_layer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0.33333334
     functionName: return_state
