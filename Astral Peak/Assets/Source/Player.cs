@@ -126,9 +126,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
         particles.play_ground_effected_particle("jump");
         sound.play_ground_effected_sound("jump");
     }
-    private void new_ground(string ground){
-        sound.set_ground(ground);
-        particles.set_ground(ground);
+    private void new_ground(GameObject ground){
+        sound.set_ground(ground.tag);
+        particles.set_ground(ground.tag);
+        transform.parent = ground.transform;
+    }
+    private void not_grounded(){
+        animator.start_fall();
+        transform.parent = null;
     }
 
 
@@ -287,7 +292,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.move_direction_changed += face_move_dir; 
         movement.move_direction_changed += movement_animation;
         movement.now_grounded           += grounded;
-        movement.not_grounded           += animator.start_fall;
+        movement.not_grounded           += not_grounded;
         movement.jumped                 += jumped;
         movement.dashed                 += dashed;
         movement.dash_end               += dash_end;
@@ -299,7 +304,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.move_direction_changed -= face_move_dir;
         movement.move_direction_changed -= movement_animation;
         movement.now_grounded           -= grounded;
-        movement.not_grounded           -= animator.start_fall;
+        movement.not_grounded           -= not_grounded;
         movement.jumped                 -= jumped;
         movement.dashed                 -= dashed;
         movement.dash_end               -= dash_end;

@@ -46,8 +46,8 @@ public class TheMage : Boss<Movement>{
         movement.set_gravity(0);
         animator.Play("hover");
         while(true){
-            sin_x = Mathf.Sin(Time.time * Time.deltaTime * 20);
-            sin_y = Mathf.Sin(Time.time * Time.deltaTime * 40);
+            sin_x = Mathf.Sin(Time.time * Time.deltaTime * 30);
+            sin_y = Mathf.Sin(Time.time * Time.deltaTime * 60);
             movement.set_move_direction(new Vector2(sin_x, sin_y));
             yield return new WaitForFixedUpdate();
         }

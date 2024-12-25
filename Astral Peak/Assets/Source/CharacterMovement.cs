@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterMovement : Movement{
     public event Action 
         now_grounded, not_grounded, jumped;
-    public event Action<string> new_ground;
+    public event Action<GameObject> new_ground;
 
     [Header("Character Movement")]
     [SerializeField] private bool grounded = false;
@@ -29,7 +29,7 @@ public class CharacterMovement : Movement{
     // ground check
     private void is_grounded(Collider2D other){
         ground.Add(other.gameObject);
-        new_ground?.Invoke(other.gameObject.tag);
+        new_ground?.Invoke(other.gameObject);
         grounded = true;    
         jump_time_counter = 0.0f; 
 
@@ -52,7 +52,7 @@ public class CharacterMovement : Movement{
             reset_deceleration();
         }
         else
-            new_ground?.Invoke(ground[ground.Count-1].tag);
+            new_ground?.Invoke(ground[ground.Count-1]);
     }
 
     // jump command
