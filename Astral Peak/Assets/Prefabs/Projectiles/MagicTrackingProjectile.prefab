@@ -138,7 +138,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 831
+    m_Bits: 1855
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -5170,15 +5170,15 @@ MonoBehaviour:
   front_point: {fileID: 4690671774031383066}
   sprites:
   - {fileID: 933587297815576494}
-  move_speed: 25
+  move_speed: 20
   lifetime: 5
   deathtime: 2
   trail: {fileID: 0}
   col: {fileID: 2090766879210780737}
-  buffer_time: 1.5
+  buffer_time: 2
   snap_rotate_speed: 20
-  lerp_rotate_speed: 2
-  enable_col_before_buffer: 1
+  lerp_rotate_speed: 1.5
+  enable_col_before_buffer: 0
 --- !u!1 &5544262033871193502
 GameObject:
   m_ObjectHideFlags: 0

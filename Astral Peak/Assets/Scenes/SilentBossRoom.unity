@@ -189,6 +189,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2746973341451586383, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 50951302}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &54575392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3108092081499610176, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &55599690
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &267301927
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &324799483
 Transform:
   m_ObjectHideFlags: 0
@@ -655,6 +660,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 480442253}
     m_Modifications:
+    - target: {fileID: 2438958569921006859, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4197864141889085480, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -698,6 +707,10 @@ PrefabInstance:
     - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_Name
       value: Magic Platform (0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5610,6 +5623,11 @@ MonoBehaviour:
       m_ConstantMax: 0.4
     velocity: {x: -6, y: 0}
   particle: {fileID: 380871848}
+--- !u!4 &390612324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2337431915740513581, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &403250171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5618,6 +5636,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 480442253}
     m_Modifications:
+    - target: {fileID: 2438958569921006859, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4197864141889085480, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5661,6 +5683,10 @@ PrefabInstance:
     - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_Name
       value: Magic Platform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6100,6 +6126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 480442253}
     m_Modifications:
+    - target: {fileID: 2438958569921006859, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4197864141889085480, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6144,6 +6174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magic Platform (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6165,6 +6199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519424288a047c542895fbc66d4c7d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &531566442 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3247813809404593138, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &546264376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6345,7 +6384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &610907051
 Transform:
   m_ObjectHideFlags: 0
@@ -6401,6 +6440,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 480442253}
     m_Modifications:
+    - target: {fileID: 2438958569921006859, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4197864141889085480, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6444,6 +6487,10 @@ PrefabInstance:
     - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_Name
       value: Magic Platform (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11369,6 +11416,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!4 &744270219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 87830586817276100, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &821992799
 GameObject:
   m_ObjectHideFlags: 0
@@ -11477,10 +11529,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2746973341451586383, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 836059597}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &872430169 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6619723628049759496, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &912837941 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 836059597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &924025591 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5686698394742009848, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &929932284
 GameObject:
@@ -11777,6 +11839,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 600873336}
   factor: 0.33
+--- !u!4 &1251555333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1698849995935034583, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1281693781
 GameObject:
   m_ObjectHideFlags: 0
@@ -12140,11 +12207,6 @@ PrefabInstance:
 --- !u!4 &1447472354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2746973341451586383, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
-  m_PrefabInstance: {fileID: 1447472353}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1451752211 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 1447472353}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1517076096
@@ -12554,11 +12616,6 @@ Transform:
   - {fileID: 1342483945}
   m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1796585011 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
-  m_PrefabInstance: {fileID: 283805086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1805343010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12607,6 +12664,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3785447265557635548, guid: 83071178484848040bfc2d72435dd883, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1791
+      objectReference: {fileID: 0}
+    - target: {fileID: 4061606139430735869, guid: 83071178484848040bfc2d72435dd883, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1791
+      objectReference: {fileID: 0}
     - target: {fileID: 5816904732367949109, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12630,6 +12695,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 480442253}
     m_Modifications:
+    - target: {fileID: 2438958569921006859, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 4197864141889085480, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12673,6 +12742,10 @@ PrefabInstance:
     - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
       propertyPath: m_Name
       value: Magic Platform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13045,7 +13118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2081077927
 Transform:
   m_ObjectHideFlags: 0
@@ -13132,11 +13205,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2746973341451586383, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 2114333715}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2114333717 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
-  m_PrefabInstance: {fileID: 2114333715}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2131018019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13207,11 +13275,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2746973341451586383, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 2131018019}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2131018021 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
-  m_PrefabInstance: {fileID: 2131018019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &437290954900120628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13229,49 +13292,185 @@ PrefabInstance:
       value: RangedHolsters
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[0].Key
+      value: stone_7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[1].Key
+      value: stone_6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[2].Key
+      value: stone_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[3].Key
+      value: stone_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[4].Key
+      value: stone_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[5].Key
+      value: stone_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[6].Key
+      value: stone_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[7].Key
+      value: hollow_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[8].Key
+      value: hollow_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[9].Key
+      value: round_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[10].Key
+      value: round_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[11].Key
+      value: round_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[12].Key
+      value: round_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[13].Key
+      value: round_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[14].Key
+      value: round_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[15].Key
+      value: round_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[16].Key
+      value: round_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[0].Value.fire_point
       value: 
       objectReference: {fileID: 1583119494}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[1].Value.fire_point
       value: 
-      objectReference: {fileID: 267301927}
+      objectReference: {fileID: 1941933217}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[2].Value.fire_point
       value: 
-      objectReference: {fileID: 2081077927}
+      objectReference: {fileID: 1533446352}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[3].Value.fire_point
       value: 
-      objectReference: {fileID: 324799483}
+      objectReference: {fileID: 1342483945}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[4].Value.fire_point
       value: 
-      objectReference: {fileID: 610907051}
+      objectReference: {fileID: 470520937}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[5].Value.fire_point
       value: 
-      objectReference: {fileID: 1941933217}
+      objectReference: {fileID: 2024994219}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[6].Value.fire_point
       value: 
-      objectReference: {fileID: 1533446352}
+      objectReference: {fileID: 929932285}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[7].Value.fire_point
       value: 
-      objectReference: {fileID: 1342483945}
+      objectReference: {fileID: 872430169}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[7].Value.projectile
+      value: 
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[8].Value.fire_point
       value: 
-      objectReference: {fileID: 470520937}
+      objectReference: {fileID: 531566442}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[8].Value.projectile
+      value: 
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[9].Value.fire_point
       value: 
-      objectReference: {fileID: 2024994219}
+      objectReference: {fileID: 1251555333}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[9].Value.projectile
+      value: 
+      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[10].Value.fire_point
       value: 
-      objectReference: {fileID: 929932285}
+      objectReference: {fileID: 54575392}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[10].Value.projectile
+      value: 
+      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[11].Value.fire_point
+      value: 
+      objectReference: {fileID: 924025591}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[11].Value.projectile
+      value: 
+      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[12].Value.fire_point
+      value: 
+      objectReference: {fileID: 390612324}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[12].Value.projectile
+      value: 
+      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[13].Value.fire_point
+      value: 
+      objectReference: {fileID: 744270219}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[14].Value.fire_point
+      value: 
+      objectReference: {fileID: 744270219}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[15].Value.fire_point
+      value: 
+      objectReference: {fileID: 744270219}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[16].Value.fire_point
+      value: 
+      objectReference: {fileID: 744270219}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[7].Value.projectile_is_child
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[8].Value.projectile_is_child
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[9].Value.projectile_is_child
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[10].Value.projectile_is_child
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3031772494085979690, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: top_speed
       value: 6
@@ -13378,7 +13577,7 @@ PrefabInstance:
       objectReference: {fileID: 1805343011}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: summoning_circles.Array.size
-      value: 11
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'teleport_points.Array.data[0]'
@@ -13423,23 +13622,23 @@ PrefabInstance:
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[6]'
       value: 
-      objectReference: {fileID: 1451752211}
+      objectReference: {fileID: 546264378}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[7]'
       value: 
-      objectReference: {fileID: 2131018021}
+      objectReference: {fileID: 546264378}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[8]'
       value: 
-      objectReference: {fileID: 1796585011}
+      objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[9]'
       value: 
-      objectReference: {fileID: 2114333717}
+      objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[10]'
       value: 
-      objectReference: {fileID: 546264378}
+      objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'summoning_circles.Array.data[11]'
       value: 

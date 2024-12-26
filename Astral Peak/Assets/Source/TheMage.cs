@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Deluz;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
@@ -12,38 +13,22 @@ public class TheMage : Boss<Movement>{
         link_events();
         sound.set_functions(new MageSound(sound));
     }
-    void Start(){
-        state_switch(idle(2));
-        StartCoroutine(test());
-    }
-    void OnDestroy(){
-        unlink_health();
-    }
+    void Start() => state_switch(idle(2));
+    void OnDestroy() => unlink_events();
 
 
 
 
-    IEnumerator test(){
-        while(true){
-            yield return new WaitForSeconds(6);
+    public void wailing_stone_attack(){
+        StartCoroutine(Util.timer(6, time_out: () =>{
             foreach(Animator circle in summoning_circles)
-                circle.Play("loop_long");
-            StartCoroutine(test_1());
-            yield return null;
-        }
+                circle.Play("loop");
+        }));
+        StartCoroutine(Util.timer(7.5f, time_out: () =>{
+            for(int i = 0; i < summoning_circles.Count; i++)
+                ranged.fire_projectile("stone_"+(i+1));
+        }));
     }
-
-    IEnumerator test_1(){
-        yield return new WaitForSeconds(2);
-        for(int i = 0; i < summoning_circles.Count; i++)
-            ranged.fire_projectile("stone_"+(i+1));
-        yield return new WaitForSeconds(2);
-        for(int i = 0; i < summoning_circles.Count; i++)
-            ranged.fire_projectile("stone_"+(i+1));
-        yield break;    
-    }
-    
-
 
     // states:
     IEnumerator lock_idle(){
@@ -113,7 +98,7 @@ public class TheMage : Boss<Movement>{
         link_ranged();
     }
 
-    protected void unlink(){
+    protected void unlink_events(){
         unlink_health();
         if(phase == 1)
             unlink_movement();

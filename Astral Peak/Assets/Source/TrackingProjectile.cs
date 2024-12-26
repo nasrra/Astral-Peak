@@ -1,26 +1,34 @@
+using System;
 using System.Collections;
+using Deluz;
 using UnityEngine;
 
 public class TrackingProjectile : Projectile{
+    public event Action buffer_started, buffer_stopped;
     [SerializeField] protected float
         buffer_time,
         snap_rotate_speed,
         lerp_rotate_speed;
     [SerializeField] bool enable_col_before_buffer = true;
+    Coroutine buffer_state;
 
-    void Awake(){}
-    void Start(){
+    void Awake(){
         state_switch(ref rotate_state, rotate_to_target(Player.instance.transform, snap_rotate_speed));
-        StartCoroutine(buffer_timer());
+        buffer();
     }
 
-    protected IEnumerator buffer_timer(){
-        col.enabled = enable_col_before_buffer;
-        yield return new WaitForSeconds(buffer_time);
-        state_switch(ref move_state, move(move_speed));
-        state_switch(ref rotate_state, rotate_to_target(Player.instance.transform, lerp_rotate_speed));
-        enable_trail(true);
-        col.enabled = true;
-        yield break;
-    }
+    public void buffer() =>
+        state_switch(ref buffer_state, Util.timer(buffer_time,
+            start_action: () => {
+                col.enabled = enable_col_before_buffer;   
+                buffer_started?.Invoke();
+            },
+            time_out: () => {
+                state_switch(ref move_state, move(move_speed));
+                state_switch(ref rotate_state, rotate_to_target(Player.instance.transform, lerp_rotate_speed));
+                enable_trail(true);
+                col.enabled = true;
+                buffer_stopped?.Invoke();
+                transform.parent = null;
+        }));
 }

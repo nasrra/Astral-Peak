@@ -2,7 +2,6 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerAnimator : CharacterAnimatorOverride{
-    bool is_attacking = false;
     public readonly int 
         IDLE        = Animator.StringToHash("idle"),
         SIDE_ATTACK = Animator.StringToHash("side_attack"),
@@ -38,7 +37,6 @@ public class PlayerAnimator : CharacterAnimatorOverride{
 
 
     // additive states that should not be returned to.
-    public void attack_end () => is_attacking = false;
     public void side_attack()    => play(SIDE_ATTACK, false); 
     public void up_attack()    => play(UP_ATTACK, false);      
 
