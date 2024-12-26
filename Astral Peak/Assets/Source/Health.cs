@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Deluz;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.
@@ -17,9 +18,7 @@ public class Health : MonoBehaviour{
     Coroutine invulnerable_state;
 
     public int get_current_health() => current_life;
-
     public int get_max_health() => max_life;
-
 
     public void state_switch(ref Coroutine state, IEnumerator coroutine){
         if(state!=null)
@@ -39,17 +38,19 @@ public class Health : MonoBehaviour{
         invulnerable = true;
         now_invulnerable?.Invoke();
     }
-    public void is_invulnerable(float time) => state_switch(ref invulnerable_state, invulnerable_timed(time));
-
-    IEnumerator invulnerable_timed(float time){
-        is_invulnerable();
-        yield return new WaitForSeconds(time);
-        is_vulnerable();
-    } 
+    public void is_invulnerable(float time) => 
+        state_switch(ref invulnerable_state, Util.timer(time,
+            start_action: ()=>invulnerable=true, 
+            time_out: ()=>{
+                invulnerable_state=null;
+                invulnerable=false;
+            }));
 
     public void is_vulnerable(){
-        invulnerable = false;
-        now_vulnerable?.Invoke();
+        if(invulnerable_state == null){
+            invulnerable = false;
+            now_vulnerable?.Invoke();
+        }
     }
 
     // damage is an ambiguos function that handles damaging life values as well as guard.

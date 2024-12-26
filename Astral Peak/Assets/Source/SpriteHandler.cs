@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using TMPro;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.U2D.IK;
+using Deluz;
 
 public class SpriteHandler : MonoBehaviour{
     [SerializeField] protected List<SpriteRenderer> sprites;
@@ -42,7 +39,7 @@ public class SpriteHandler : MonoBehaviour{
             int index = i;
             sprites[i].material.SetFloat(value, start);
             operations.Add(true); // operation is occuring
-            StartCoroutine(Calc.Coroutines.lerp_value(val => sprites[index].material.SetFloat(value, val), start, end, time, () => operations[index]=false));
+            StartCoroutine(Calc.lerp_value(val => sprites[index].material.SetFloat(value, val), start, end, time, () => operations[index]=false));
         }
         while(operations.Contains(true))
             yield return null;
@@ -55,7 +52,7 @@ public class SpriteHandler : MonoBehaviour{
             int index = i;
             sprites[i].material.SetColor(value, start);
             operations.Add(true); // operation is occuring
-            StartCoroutine(Calc.Coroutines.lerp_color(val => sprites[index].material.SetColor(value, val), start, end, time, () => operations[index]=false));
+            StartCoroutine(Calc.lerp_color(val => sprites[index].material.SetColor(value, val), start, end, time, () => operations[index]=false));
         }
         while(operations.Contains(true))
             yield return null;

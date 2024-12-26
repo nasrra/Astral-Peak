@@ -5,6 +5,7 @@ using UnityEngine;
 public class TheMage : Boss<Movement>{
     [Header("Mage")]
     [SerializeField] int phase = 1;
+    [SerializeField] List<Animator> summoning_circles = new List<Animator>();
 
     // Base: 
     void Awake(){
@@ -13,7 +14,7 @@ public class TheMage : Boss<Movement>{
     }
     void Start(){
         state_switch(idle(2));
-        //StartCoroutine(test());
+        StartCoroutine(test());
     }
     void OnDestroy(){
         unlink_health();
@@ -21,6 +22,27 @@ public class TheMage : Boss<Movement>{
 
 
 
+
+    IEnumerator test(){
+        while(true){
+            yield return new WaitForSeconds(6);
+            foreach(Animator circle in summoning_circles)
+                circle.Play("loop_long");
+            StartCoroutine(test_1());
+            yield return null;
+        }
+    }
+
+    IEnumerator test_1(){
+        yield return new WaitForSeconds(2);
+        for(int i = 0; i < summoning_circles.Count; i++)
+            ranged.fire_projectile("stone_"+(i+1));
+        yield return new WaitForSeconds(2);
+        for(int i = 0; i < summoning_circles.Count; i++)
+            ranged.fire_projectile("stone_"+(i+1));
+        yield break;    
+    }
+    
 
 
     // states:

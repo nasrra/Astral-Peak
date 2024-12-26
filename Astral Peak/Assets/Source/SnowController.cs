@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
+using Deluz;
 
 public class SnowController : MonoBehaviour{
     [SerializeField] List<SnowEmitterData> presets;
@@ -40,25 +40,25 @@ public class SnowController : MonoBehaviour{
     public void lerp_data(int _preset){
         SnowEmitterData preset = presets[_preset];
         // lifetime.
-        state_switch(ref lifetime_state, Calc.Coroutines.lerp_value(val => main.startLifetime = val, main.startLifetime.constant, preset.lifetime, 2));
+        state_switch(ref lifetime_state, Calc.lerp_value(val => main.startLifetime = val, main.startLifetime.constant, preset.lifetime, 2));
        
         // speed.
-        state_switch(ref simulation_speed_state, Calc.Coroutines.lerp_value(val => main.simulationSpeed = val, main.simulationSpeed, preset.simulation_speed, 2));
+        state_switch(ref simulation_speed_state, Calc.lerp_value(val => main.simulationSpeed = val, main.simulationSpeed, preset.simulation_speed, 2));
 
 
        // size.
-        state_switch(ref min_size_state, Calc.Coroutines.lerp_value(val =>{
+        state_switch(ref min_size_state, Calc.lerp_value(val =>{
             start_size.constantMin = val;
             main.startSize = start_size; 
         }, main.startSize.constantMin, preset.size.constantMin, 2));
-        state_switch(ref max_size_state, Calc.Coroutines.lerp_value(val =>{
+        state_switch(ref max_size_state, Calc.lerp_value(val =>{
             start_size.constantMax = val;
             main.startSize = start_size; 
         }, main.startSize.constantMax, preset.size.constantMax, 2));
         
         // rate.
-        state_switch(ref rate_state, Calc.Coroutines.lerp_value(val => emission.rateOverTime = val, emission.rateOverTime.constant, preset.rate, 2));
-        state_switch(ref velocity_state, Calc.Coroutines.lerp_value(val => velocity.x = val, velocity.xMultiplier, preset.velocity.x, 2));
+        state_switch(ref rate_state, Calc.lerp_value(val => emission.rateOverTime = val, emission.rateOverTime.constant, preset.rate, 2));
+        state_switch(ref velocity_state, Calc.lerp_value(val => velocity.x = val, velocity.xMultiplier, preset.velocity.x, 2));
     }
 
     void get_particle_system_modules(){

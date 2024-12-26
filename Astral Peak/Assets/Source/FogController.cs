@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Deluz;
 
 public class FogController : SpriteHandler{
     [SerializeField] List<FogShaderData> fog_presets = new List<FogShaderData>();
@@ -30,7 +31,7 @@ public class FogController : SpriteHandler{
         FogShaderData data = fog_presets[_preset];
         state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, 2));
         state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,2));
-        state_switch(ref speed_state,Calc.Coroutines.lerp_value(val => speed = val, speed, data.speed,2));
+        state_switch(ref speed_state, Calc.lerp_value(val => speed = val, speed, data.speed,2));
         state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,2));
     }
 

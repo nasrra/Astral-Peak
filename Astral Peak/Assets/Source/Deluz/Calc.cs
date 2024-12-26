@@ -1,10 +1,8 @@
 using System.Collections;
-using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Office2013.PowerPoint.Roaming;
 using UnityEngine;
 
-namespace Calc{
-public static class Coroutines{
+namespace Deluz{
+public static class Calc{
     static public IEnumerator lerp_value(System.Action<float> _value, float _start, float _end, float _time, System.Action _onComplete = null){
         float elapsedTime = 0;
         float t = 0;
