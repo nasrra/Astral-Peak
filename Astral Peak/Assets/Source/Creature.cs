@@ -1,6 +1,5 @@
 using System;
-using Unity.Mathematics;
-using UnityEditor.Callbacks;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -23,13 +22,18 @@ public abstract class Creature : MonoBehaviour{
     [SerializeField] protected Health health;
     protected bool flippable = true;
 
+    protected virtual void state_switch(ref Coroutine state, IEnumerator _state){
+        if(state != null)
+            StopCoroutine(state);
+        state = StartCoroutine(_state);
+    }
+
     public Health get_health() => health;
     // the inheritor class returns which movement it is using.
     public abstract Movement get_movement();
 
     // flip the creature in relation to where they are moving towards.
-    public void face_move_dir(){
-        Vector2 direction = get_movement().get_move_direction();
+    public void face_direction(Vector2 direction){
         if(direction.x < 0)
             flip_left();
         else if(direction.x > 0)

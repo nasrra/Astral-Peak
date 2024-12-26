@@ -22,7 +22,7 @@ public class CavalryOpeningCutscene : Cutscene{
         yield return new WaitForSeconds(3);
         CameraController.instance.set_target(TheRider.instance.transform);
         yield return new WaitForSeconds(2);
-        TheRider.instance.cutscene_yell_state();
+        TheRider.instance.cutscene_yell();
         yield return new WaitForSeconds(3);
         CameraController.instance.set_target(Player.instance.transform);
         CameraController.instance.reset_zoom_state(1);
@@ -59,7 +59,7 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.set_target(TheRider.instance.transform);
         
         yield return new WaitForSeconds(1);
-        TheRider.instance.cutscene_whistle_state();
+        TheRider.instance.cutscene_whistle();
         
         // start playing background wolf animation.
         yield return new WaitForSeconds(2f);

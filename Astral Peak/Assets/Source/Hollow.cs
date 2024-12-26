@@ -1,14 +1,9 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using Deluz;
 using UnityEngine;
 
 public class Hollow : Enemy{
-    
-    
-    
-    
-    
     // Data:
     public event Action on_start;
     [Header("Hollow")]
@@ -19,6 +14,7 @@ public class Hollow : Enemy{
     [SerializeField] float 
         idle_speed, idle_acceleration, idle_deceleration,
         alert_speed, alert_acceleration, alert_deceleration;
+    Coroutine stun_state;
 
 
 
@@ -33,8 +29,7 @@ public class Hollow : Enemy{
             target = origin;    
     }
     void Start(){
-        if(state == null)
-            state_switch(pathing_loop());
+        movement.pathing_loop_state(paths);
         on_start?.Invoke();
     }
 
@@ -48,74 +43,70 @@ public class Hollow : Enemy{
 
 
     // States:
-    IEnumerator idle(float x){
-        animator.Play("idle");
-        yield return new WaitForSeconds(x);
-        recovery_state();
-        yield break;
-    }
-
-    protected override IEnumerator follow_only(){        
-        animator.Play(target == origin? "walk":"run");
-        yield return base.follow_only();
-    }
-
-    public override void kill() => state_switch(death_coroutine());
-    protected IEnumerator death_coroutine(){
-        enable_body_colliders(0);
-        particles.stop_all_particles();
+    public override void kill(){
         animator.Play("death");
-        sprite.play_death_effect(1.25f);
-        unlink_health();
-        hurt_box.enabled = false;
-        // wait one second for animation to play out.
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length + 3);
-        base.kill();
-        unlink_events();
-        Destroy(gameObject);
+        StartCoroutine(Util.timer(
+            animator.GetCurrentAnimatorClipInfo(0).Length + 3,
+            start_action: ()=>{
+                movement.no_state();
+                enable_body_colliders(0);
+                particles.stop_all_particles();
+                sprite.play_death_effect(1.25f);
+                unlink_health();
+                hurt_box.enabled = false;
+            },
+            time_out: ()=>{
+                base.kill();
+                unlink_events();
+                Destroy(gameObject);
+            }
+        ));
     }
 
-    public void stun_state() =>  state_switch(stun_state_loop());
-    protected IEnumerator stun_state_loop(){
-        // to prevent the ai from chasing once staggered.
-        unlink_combat();
-        yield return new WaitForSeconds(stun_state_timer);
-
-        link_combat();
-        recovery_state();
-        yield break;
-    }
-
+    public void stun() => 
+        state_switch(ref stun_state, Util.timer(
+            stun_state_timer,
+            start_action:()=>{
+                unlink_combat();        
+            },
+            time_out:()=>{
+                link_combat();
+                recovery_state();
+            }
+        ));
 
     public void recovery_state(){
         particles.stop_particle("yell");
-        state_switch(target == origin?
-            retreat_loop(): 
-            alerted == true? follow_only() : alert()
-        );
+        if(alerted == false)
+            alert();
+        else
+            movement.move_to_target_state(target);
+        //state_switch(target == origin?
+        //    retreat_loop(): 
+        //    alerted == true? follow_only() : alert()
+        //);
     }
         
-    public void summon_state() => state_switch(summon());
-    IEnumerator summon(){
+    public void summon_state(){
         animator.Play("summon");
-        yield break;
+        play_summoning_animation();
+        movement.no_state();
+        //combat.no_state();
     }
 
-    public void alert_state() => state_switch(alert());
-    protected IEnumerator alert(){
+    public void alert(){
         animator.Play("yell");
         alerted = true;
         alert_movement();
-        yield break;
     }
 
     void player_in_range(Collider2D col){
         target = Player.instance.transform;
-        alert_state();
+        alert();
     }
 
     void player_left_range(Collider2D col){
-        movement.stop();
+        movement.clear_move_direction();
         idle_movement();
         recovery_state();
         particles.stop_particle("yell");
@@ -145,6 +136,18 @@ public class Hollow : Enemy{
         }
     }
 
+    void move_direction_changed(Vector2 move_direction){
+        if(move_direction == Vector2.left || move_direction == Vector2.right)
+            animator.Play(alerted==true?"run":"walk");
+        else
+            animator.Play("idle");
+    }
+
+    void target_reached(){
+        if(target == origin)
+            movement.pathing_loop_state(paths);
+    }
+
     // linkage
     protected void link_events(){
         link_combat();
@@ -172,24 +175,26 @@ public class Hollow : Enemy{
     }
 
     private void link_movement(){
-        movement.move_direction_changed += face_move_dir;
-        pathing_movement                += pathing_animations;
+        movement.move_direction_changed += move_direction_changed;
+        movement.move_direction_changed += face_direction;
+        movement.target_reached += target_reached;
     }
 
     private void unlink_movement(){
-        movement.move_direction_changed -= face_move_dir;
-        pathing_movement                -= pathing_animations;
-        movement.stop();
+        movement.move_direction_changed -= move_direction_changed;
+        movement.move_direction_changed -= face_direction;
+        movement.target_reached -= target_reached;
+        movement.clear_move_direction();
     }
 
     protected void link_health(){
-        health.damaged += stun_state;
+        health.damaged += stun;
         health.damaged += sprite.play_damaged_flash;
         health.death += kill;
         health.knockback += movement.knockback;
     }
     protected void unlink_health(){
-        health.damaged -= stun_state;
+        health.damaged -= stun;
         health.damaged -= sprite.play_damaged_flash;
         health.death -= kill;
         health.knockback -= movement.knockback;

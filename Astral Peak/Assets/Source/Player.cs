@@ -49,7 +49,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         if(other.gameObject.layer == LayersManager.ENEMY)
             handle_enemy_contact(other);
     }
-
+    public void face_move_dir() => face_direction(movement.get_move_direction());
 
 
 
@@ -114,8 +114,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.idle();
         }
     }
-    private void movement_animation(){
-        Vector2 direction = get_movement().get_move_direction();
+    private void movement_animation(Vector2 direction){
         if(direction.x > 0 || direction.x < 0)
             animator.run(); // play run animation
         else
@@ -195,7 +194,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     IEnumerator door_exit_state(SpawnPoint spawn){
         unlink_input();
-        movement.stop();//
+        movement.clear_move_direction();//
         spawn.use_spawn();
         movement.movement(spawn.get_movement(), true);
         AudioManager.restore_sfx_smooth();  
@@ -224,7 +223,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_input();
         unlink_movement();
         animator.force_idle();
-        movement.stop();
+        movement.clear_move_direction();
     }
     public override void exit_cutscene_state(){
         link_input();
@@ -233,7 +232,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void entered_game_state(GameState state){
         if(state == GameState.MENU){
             unlink_input();
-            movement.stop(); 
+            movement.clear_move_direction(); 
         }
     }
     void exited_game_state(GameState state){
@@ -289,7 +288,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
-        movement.move_direction_changed += face_move_dir; 
+        movement.move_direction_changed += face_direction; 
         movement.move_direction_changed += movement_animation;
         movement.now_grounded           += grounded;
         movement.not_grounded           += not_grounded;
@@ -297,11 +296,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 += dashed;
         movement.dash_end               += dash_end;
         movement.new_ground             += new_ground;
-        movement.stop();
+        movement.clear_move_direction();
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
-        movement.move_direction_changed -= face_move_dir;
+        movement.move_direction_changed += face_direction; 
         movement.move_direction_changed -= movement_animation;
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= not_grounded;
@@ -309,7 +308,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 -= dashed;
         movement.dash_end               -= dash_end;
         movement.new_ground             -= new_ground;
-        movement.stop();
+        movement.clear_move_direction();
     }
     private void link_melee(){
         flipped_left            += particles.flip_particles_left;

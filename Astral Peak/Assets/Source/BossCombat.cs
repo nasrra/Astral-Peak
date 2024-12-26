@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.U2D;
 using UnityEngine;
+using Deluz;
+using Unity.VisualScripting;
 
 public class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
-    [SerializeField] public float cooldown;
+    public event Action<BossAttack> attack_chosen;
+    [SerializeField] public bool on_cooldown = false, is_attacking = false;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
     [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
@@ -15,55 +16,65 @@ public class BossCombat : MonoBehaviour{
     [SerializeField] public Transform  
         left_arena_bound,
         right_arena_bound;
+    Coroutine state;
 
-    // used as an animator key event.
     public void set_front_moveset   (List<BossAttack> moveset) => front_moveset = moveset;
     public void set_back_moveset    (List<BossAttack> moveset) => back_moveset = moveset;
     public void set_special_moveset (List<BossAttack> moveset) => special_moveset = moveset;
 
+    private void state_switch(IEnumerator _state){
+        if(state != null)
+            StopCoroutine(state);
+        state = _state!=null? StartCoroutine(_state) : null;
+    }
+    public void no_state() => state_switch(null);
+
     // Note: need to make the chance of the attack applicable 
     // add to the algorithm so that some attacks are more frequently picked
     // depending upon their chance percentage.
-    public BossAttack chose_attack(float dist_to_target){
-        // return if there are no attacks moves available.
-        if(front_moveset.Count == 0 && back_moveset.Count == 0 && special_moveset.Count == 0)
-            return null;
+    public void chose_attack_state(Transform target) => state_switch(chose_attack(target));
+    protected IEnumerator chose_attack(Transform target){
+        while(target != null){
+            // return if there are no attacks moves available.
+            if(on_cooldown == true || (front_moveset.Count == 0 && back_moveset.Count == 0 && special_moveset.Count == 0)){
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
 
-        float target_distance = Mathf.Abs(dist_to_target);
-        float left_bound_distance = dist_to_left_bound();
-        float right_bound_distance = dist_to_left_bound();
+            float target_distance = Mathf.Abs(transform.position.x - target.position.x);
+            float left_bound_distance = dist_to_left_bound();
+            float right_bound_distance = dist_to_left_bound(); // used to be left btw.
 
-        // Determine the appropriate moveset based on the boss's orientation and player's position.
-        List<BossAttack> available_attacks = 
-            (transform.rotation.y == 0 && dist_to_target >= 0) || (transform.rotation.y != 0 && dist_to_target <= 0) 
-            ? get_available_attacks(back_moveset , target_distance, left_bound_distance, right_bound_distance)
-            : get_available_attacks(front_moveset, target_distance, left_bound_distance, right_bound_distance);
+            // Determine the appropriate moveset based on the boss's orientation and player's position.
+            List<BossAttack> available_attacks = 
+                (transform.rotation.y == 0 && target_distance >= 0) || (transform.rotation.y != 0 && target_distance <= 0) 
+                ? get_available_attacks(back_moveset , target_distance, left_bound_distance, right_bound_distance)
+                : get_available_attacks(front_moveset, target_distance, left_bound_distance, right_bound_distance);
 
-        // Get the list of available attacks from the primary moveset and add special attacks.
-        available_attacks.AddRange(get_available_attacks(special_moveset, target_distance, left_bound_distance, right_bound_distance));
+            // Get the list of available attacks from the primary moveset and add special attacks.
+            available_attacks.AddRange(get_available_attacks(special_moveset, target_distance, left_bound_distance, right_bound_distance));
 
-
-        // choose and execute attack.
-        if(available_attacks.Count <= 0)
-            return null;
-        int index = UnityEngine.Random.Range(0, available_attacks.Count);
-        chosen_attack = available_attacks[index]; 
-        return chosen_attack;
+            // choose and execute attack.
+            if(available_attacks.Count <= 0){
+                yield return new WaitForFixedUpdate();
+                continue;
+            }
+            int index = UnityEngine.Random.Range(0, available_attacks.Count);
+            chosen_attack = available_attacks[index]; 
+            attack_chosen?.Invoke(chosen_attack);
+            is_attacking = true;
+            yield break;
+        }
+        yield break;
     }
 
     public BossAttack get_chosen_attack() => chosen_attack;
 
     public void attack_end(){
+        is_attacking = false;
         attack_ended?.Invoke(chosen_attack.idle_cooldown);
         StartCoroutine(chosen_attack.self_cooldown());
-        StartCoroutine(cooldown_timer(chosen_attack.combat_cooldown));
-    }
-
-    IEnumerator cooldown_timer(float time){
-        cooldown = time;
-        yield return new WaitForSeconds(cooldown);
-        cooldown = 0;
-        yield break;
+        StartCoroutine(Util.timer(chosen_attack.combat_cooldown, start_action:()=>on_cooldown=true, time_out:()=>on_cooldown=false));
     }
 
     public List<BossAttack> get_available_attacks(List<BossAttack> attacks, float td, float lbd, float rbd){

@@ -12,28 +12,10 @@ using UnityEngine;
 
 public class Enemy : Boss<Movement>{
     public event Action<Enemy> enemy_death;
-    protected event Action<MovementOption> pathing_movement;
     [Header("Enemy")]
-    [SerializeField] protected List<AiPath> paths = new List<AiPath>();
+    [SerializeField] protected List<MovementPath> paths = new List<MovementPath>();
     [SerializeField] Animator summoning_animator;
     [SerializeField] protected Transform origin;
-
-    public IEnumerator pathing_loop(){
-        AiPath current_path;
-        int path_index = 0;
-        while(true){
-            // start movement.
-            current_path = paths[path_index];
-            movement.movement(current_path.movement, true);
-            pathing_movement?.Invoke(current_path.movement);
-            yield return new WaitForSeconds(current_path.duration);
-            
-            movement.stop();
-            path_index = ((path_index + 1) >= paths.Count)? 0 : path_index + 1;
-            
-            yield return null;
-        }
-    }
 
     public void play_summoning_animation() => summoning_animator.Play("loop");
 
@@ -41,31 +23,4 @@ public class Enemy : Boss<Movement>{
         enemy_death?.Invoke(this);
         base.kill();
     }
-
-    public IEnumerator retreat_loop(){
-        animator.Play("walk");
-        float curr_dist = dist_to_target();
-        while(Mathf.Abs(curr_dist) >= 0.25f){
-            curr_dist = dist_to_target();
-            // if we are not moving right, move right.
-            if(curr_dist < 0 && movement.get_move_direction() != new Vector2(1,0))
-                movement.move_right(true);
-            // if we are not moving left, move left.
-            if(curr_dist > 0 && movement.get_move_direction() != new Vector2(-1,0))
-                movement.move_left(true);
-            yield return null;
-        }
-        state_switch(pathing_loop());
-        yield break;
-        float dist_to_target() => (transform.position - target.position).x;
-    }
-}
-
-// Path that the Ai will follow.
-[System.Serializable]
-public struct AiPath{
-    // direction to move in.
-    public MovementOption movement;
-    // duration of movement.
-    public float duration;
 }

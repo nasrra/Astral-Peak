@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Deluz;
+using Unity.Collections;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
@@ -12,8 +13,9 @@ public class TheMage : Boss<Movement>{
     void Awake(){
         link_events();
         sound.set_functions(new MageSound(sound));
+        //StartCoroutine(fly_pattern());
+        idle(2);
     }
-    void Start() => state_switch(idle(2));
     void OnDestroy() => unlink_events();
 
 
@@ -31,20 +33,21 @@ public class TheMage : Boss<Movement>{
     }
 
     // states:
-    IEnumerator lock_idle(){
-        animator.Play("idle");
-        yield break;
-    }
+    private void idle(float time) =>
+        StartCoroutine(Util.timer(
+            time,
+            start_action:()=>idle(),
+            time_out:()=>{
+                if(phase == 1)
+                    follow_and_attack_state();
+                else
+                    follow_only_state();
+            }
+        ));
 
-    void idle_state(float x) => state_switch(idle(x));
-    IEnumerator idle(float x){
+    private void idle(){
+        no_state();
         animator.Play("idle");
-        yield return new WaitForSeconds(x);
-        if(phase == 1)
-            state_switch(follow_and_attack());
-        else
-            state_switch(fly_pattern());
-        yield break;
     }
 
     protected IEnumerator fly_pattern(){
@@ -60,12 +63,6 @@ public class TheMage : Boss<Movement>{
         }
     }
 
-    protected override IEnumerator follow_and_attack(){
-        animator.Play("walk");
-        return base.follow_and_attack();
-    }
-
-    public void follow_only_state() => state_switch(base.follow_only());
     private void teleport(){
         float random = Random.Range(0,2);
         float offset = Random.Range(8,17);
@@ -106,12 +103,34 @@ public class TheMage : Boss<Movement>{
         unlink_ranged();
     }
 
+
+    void move_direction_changed(Vector2 direction){
+        if(combat.is_attacking == true)
+            return;
+        if(direction == Vector2.left || direction == Vector2.right)
+            animator.Play("walk");
+        else
+            animator.Play("idle");
+    }
+
     void link_health() => health.damaged += sprite.play_damaged_flash;
     void unlink_health() => health.damaged -= sprite.play_damaged_flash;
-    void link_movement() => get_movement().move_direction_changed += face_move_dir;
-    void unlink_movement() => get_movement().move_direction_changed -= face_move_dir;
-    void link_combat() => combat.attack_ended += idle_state;
-    void unlink_combat() => combat.attack_ended -= idle_state;
+    void link_movement(){
+        movement.move_direction_changed += face_direction;
+        movement.move_direction_changed += move_direction_changed;
+    }
+    void unlink_movement(){
+        movement.move_direction_changed -= face_direction;
+        movement.move_direction_changed -= move_direction_changed;
+    }
+    void link_combat(){
+        combat.attack_ended += idle;
+        combat.attack_chosen += attack;
+    }
+    void unlink_combat(){
+        combat.attack_ended -= idle;
+        combat.attack_chosen -= attack;
+    }
     void link_ranged(){
         ranged.get_holster("hollow_1").projectile_fired += set_hollow_target;
         ranged.get_holster("hollow_2").projectile_fired += set_hollow_target;

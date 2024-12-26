@@ -20,10 +20,10 @@ public class CharacterMovement : Movement{
     void Start() => link();
     void OnDestroy() => unlink();
 
-    public override void stop(){
+    public override void clear_move_direction(){
         jumping = false;
         end_jump();
-        base.stop();
+        base.clear_move_direction();
     }
 
     // ground check

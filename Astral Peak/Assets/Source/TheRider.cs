@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Deluz;
 using UnityEngine;
 
 public class TheRider : Boss<RiderMovement>{
@@ -9,65 +7,54 @@ public class TheRider : Boss<RiderMovement>{
 
     void Awake(){
         instance = this;
-        state_switch(idle(1));
+        idle(1);
         sound.set_functions(new RiderSound(sound));
         link_events();
     }
 
     void OnDestroy() => unlink_events();
 
-    public override void enter_cutscene_state() => state_switch(lock_idle());
-    public override void exit_cutscene_state() => state_switch(idle(1));
+    public override void enter_cutscene_state() => idle();
+    public override void exit_cutscene_state() => idle(1);
 
-    public void switch_to_idle(float x) => state_switch(idle(x));
-    IEnumerator idle(float x){
-        animator.Play("idle");
-        yield return new WaitForSeconds(x);
-        state_switch(follow_and_attack());
-        yield break;
+    public void cutscene_yell(){
+        no_state();
+        animator.Play("yell");
     }
-
-    public void cutscene_yell_state() => state_switch(cutscene_yell());
-    IEnumerator cutscene_yell(){
-        animator.Play("yell"); 
-        yield return new WaitForSeconds(3f);
-        state_switch(lock_idle());
-        yield break;        
-    }
-
-    public void cutscene_whistle_state() => state_switch(cutscene_whistle());
-    IEnumerator cutscene_whistle(){
+    public void cutscene_whistle(){
+        no_state();
         animator.Play("whistle");
-        yield return new WaitForSeconds(2.1f);
-        state_switch(lock_idle());
-        yield break;
     }
 
-    IEnumerator yell(){
-        animator.Play("yell"); 
-        yield return new WaitForSeconds(3);
-        state_switch(idle(1));
-        yield break;
-    }
+    private void idle(float time) =>
+        StartCoroutine(Util.timer(
+            time,
+            start_action:()=>idle(),
+            time_out:()=>follow_and_attack_state()
+        ));
 
-    IEnumerator lock_idle(){
+    private void idle(){
         animator.Play("idle");
-        yield break;
-    }
-
-    protected override IEnumerator follow_and_attack(){
-        animator.Play("run");
-        state_switch(base.follow_and_attack());
-        yield break;
+        no_state();
     }
 
     void projectile_fired(string x) => sound.play_sound("bow_shot");
 
+    void move_direction_changed(Vector2 direction){
+        if(combat.is_attacking == true)
+            return;
+        if(direction == Vector2.left || direction == Vector2.right)
+            animator.Play("run");
+        else
+            animator.Play("idle");
+    }
+
     protected void link_events(){
-        movement.move_direction_changed         += face_move_dir;
+        movement.move_direction_changed         += face_direction;
+        movement.move_direction_changed         += move_direction_changed;
         health.death                            += kill;
-        health.death                            += get_movement().StopAllCoroutines;
-        combat.attack_ended                     += switch_to_idle;
+        health.death                            += movement.StopAllCoroutines;
+        combat.attack_ended                     += idle;
         health.damaged                          += sprite.play_damaged_flash;
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
@@ -75,10 +62,11 @@ public class TheRider : Boss<RiderMovement>{
     }
 
     protected void unlink_events(){
-        movement.move_direction_changed         -= face_move_dir;
+        movement.move_direction_changed         -= face_direction;
+        movement.move_direction_changed         -= move_direction_changed;
         health.death                            -= kill;
-        health.death                            -= get_movement().StopAllCoroutines;
-        combat.attack_ended                     -= switch_to_idle;
+        health.death                            -= movement.StopAllCoroutines;
+        combat.attack_ended                     -= idle;
         health.damaged                          -= sprite.play_damaged_flash;
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;

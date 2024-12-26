@@ -14,15 +14,12 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
-    protected Coroutine state;
 
     protected float dist_to_target() => (transform.position - target.position).x;
 
-    protected virtual void state_switch(IEnumerator n_state){
-        movement.stop();
-        if(state != null)
-            StopCoroutine(state);
-        state = StartCoroutine(n_state);
+    protected override void state_switch(ref Coroutine state, IEnumerator _state){
+        movement.clear_move_direction();
+        base.state_switch(ref state, _state);
     }
 
     public void flip_to_target(){
@@ -32,58 +29,24 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
             flip_left();
     }
 
-    protected virtual IEnumerator none(){
-        yield break;
-    }
-
-    protected virtual IEnumerator follow_and_attack(){
-        while(true){
-            float dist = dist_to_target();
-            // attempt an attack.
-            if(combat != null && chose_attack(dist) == true)
-                yield break;
-            move_to_player(dist);
-            // Fixed Update Modifier.
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    protected virtual IEnumerator follow_only(){
-        while(true){
-            float dist = dist_to_target();
-            move_to_player(dist);
-            // Fixed Update Modifier.
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    protected bool chose_attack(float dist){
-        if(combat.cooldown == 0){
-            BossAttack chosen_attack = combat.chose_attack(dist);
-            if(chosen_attack != null){
-                state_switch(attack(chosen_attack));
-                return true;
-            }
-        }
-        return false;
-    }
-
-    protected void move_to_player(float dist){
-        // if we are not moving right, move right.
-        if(dist < 0 && movement.get_move_direction() != new Vector2(1,0)){
-            movement.stop();
-            movement.move_right(true);
-        }
-        // if we are not moving left, move left.
-        if(dist > 0 && movement.get_move_direction() != new Vector2(-1,0)){
-            movement.stop();
-            movement.move_left(true);
-        }
-    }
-
-    protected IEnumerator attack(BossAttack attack){
+    protected void attack(BossAttack attack){
+        no_state();
         animator.Play(attack.animation_id);
-        yield break;
+    }
+
+    public void follow_and_attack_state(){
+        movement.move_to_target_state(target);
+        combat.chose_attack_state(target);
+    }
+
+    public void follow_only_state(){
+        movement.move_to_target_state(target);
+        combat.no_state();
+    }
+
+    public void no_state(){
+        movement.no_state();
+        combat.no_state();
     }
 
     // disables body colliders so the player cant hit it anymore.
