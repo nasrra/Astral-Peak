@@ -78,7 +78,7 @@ public class CavalryBossRoom : BossRoomHandler{
 
     void fight_ended() => StartCoroutine(altar_cutscene());
     IEnumerator altar_cutscene(){
-        yield return new WaitForSeconds(12);
+        yield return new WaitForSeconds(6);
         CustomSceneManager.load_scene("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;
         Player.instance.enter_cutscene_state();

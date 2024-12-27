@@ -265,7 +265,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1940388453
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f5dfde35578384e4697aa3f71216b69e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6135,7 +6135,7 @@ MonoBehaviour:
   play_cinematic: 0
   song: 0
   cinematic: 
-  phase: 0
+  phase: 1
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
   cutscene_arrow: {fileID: 1404642685}
@@ -6543,7 +6543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2007939296215487171, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_SortingLayer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2716666881862599819, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_IsActive
@@ -6919,6 +6919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret:
+    projectile_is_child: 0
     fire_rate: 5
     projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
     fire_point: {fileID: 1404642684}
@@ -7374,7 +7375,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -12255,10 +12256,6 @@ PrefabInstance:
     - target: {fileID: 4494602424875793722, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4761312800297726961, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5989136780711792201, guid: e789b8d3443a2fa43a911b2297c91bd4, type: 3}
       propertyPath: m_Pivot.x

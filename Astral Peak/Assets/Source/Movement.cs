@@ -201,7 +201,7 @@ public class Movement : MonoBehaviour{
             yield return new WaitForSeconds(current_path.duration);
             clear_move_direction();
             path_index = ((path_index + 1) >= paths.Count)? 0 : path_index + 1;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 

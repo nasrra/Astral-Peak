@@ -14,6 +14,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
+    protected Coroutine state; // an override state to control flow of all components.
 
     protected float dist_to_target() => (transform.position - target.position).x;
 
@@ -34,19 +35,23 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         animator.Play(attack.animation_id);
     }
 
+    // NOTE: always do combat first then movement, so that back attacks are chosen :)
     public void follow_and_attack_state(){
-        movement.move_to_target_state(target);
+        Debug.Log(1);
         combat.chose_attack_state(target);
+        // edge case to check if we are able to attack coming out of an attack.
+        if(combat.is_attacking == false)
+            movement.move_to_target_state(target);
     }
 
     public void follow_only_state(){
-        movement.move_to_target_state(target);
         combat.no_state();
+        movement.move_to_target_state(target);
     }
 
     public void no_state(){
-        movement.no_state();
         combat.no_state();
+        movement.no_state();
     }
 
     // disables body colliders so the player cant hit it anymore.

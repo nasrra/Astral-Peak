@@ -4,6 +4,7 @@ using UnityEngine;
 public class TheRider : Boss<RiderMovement>{
     public static TheRider instance;
     public void yell_camera_shake() => CameraController.instance.shake_camera(3,0.75f);
+    protected Coroutine idle_state;
 
     void Awake(){
         instance = this;
@@ -27,13 +28,15 @@ public class TheRider : Boss<RiderMovement>{
     }
 
     private void idle(float time) =>
-        StartCoroutine(Util.timer(
+        state_switch(ref idle_state, Util.timer(
             time,
             start_action:()=>idle(),
             time_out:()=>follow_and_attack_state()
         ));
 
     private void idle(){
+        if(idle_state != null)
+            StopCoroutine(idle_state);
         animator.Play("idle");
         no_state();
     }
@@ -55,6 +58,7 @@ public class TheRider : Boss<RiderMovement>{
         health.death                            += kill;
         health.death                            += movement.StopAllCoroutines;
         combat.attack_ended                     += idle;
+        combat.attack_chosen                    += attack;
         health.damaged                          += sprite.play_damaged_flash;
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
@@ -67,6 +71,7 @@ public class TheRider : Boss<RiderMovement>{
         health.death                            -= kill;
         health.death                            -= movement.StopAllCoroutines;
         combat.attack_ended                     -= idle;
+        combat.attack_chosen                    -= attack;
         health.damaged                          -= sprite.play_damaged_flash;
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;

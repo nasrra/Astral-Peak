@@ -41,18 +41,19 @@ public class BossCombat : MonoBehaviour{
                 continue;
             }
 
-            float target_distance = Mathf.Abs(transform.position.x - target.position.x);
+            float target_distance = transform.position.x - target.position.x;
+            float abs_distance = Mathf.Abs(target_distance);
             float left_bound_distance = dist_to_left_bound();
             float right_bound_distance = dist_to_left_bound(); // used to be left btw.
 
             // Determine the appropriate moveset based on the boss's orientation and player's position.
             List<BossAttack> available_attacks = 
-                (transform.rotation.y == 0 && target_distance >= 0) || (transform.rotation.y != 0 && target_distance <= 0) 
-                ? get_available_attacks(back_moveset , target_distance, left_bound_distance, right_bound_distance)
-                : get_available_attacks(front_moveset, target_distance, left_bound_distance, right_bound_distance);
+                (transform.rotation.y == 0 && target_distance <= 0) || (transform.rotation.y != 0 && target_distance >= 0) 
+                ? get_available_attacks(front_moveset , abs_distance, left_bound_distance, right_bound_distance)
+                : get_available_attacks(back_moveset, abs_distance, left_bound_distance, right_bound_distance);
 
             // Get the list of available attacks from the primary moveset and add special attacks.
-            available_attacks.AddRange(get_available_attacks(special_moveset, target_distance, left_bound_distance, right_bound_distance));
+            available_attacks.AddRange(get_available_attacks(special_moveset, abs_distance, left_bound_distance, right_bound_distance));
 
             // choose and execute attack.
             if(available_attacks.Count <= 0){
@@ -63,6 +64,7 @@ public class BossCombat : MonoBehaviour{
             chosen_attack = available_attacks[index]; 
             attack_chosen?.Invoke(chosen_attack);
             is_attacking = true;
+            state_switch(null);
             yield break;
         }
         yield break;
@@ -72,9 +74,9 @@ public class BossCombat : MonoBehaviour{
 
     public void attack_end(){
         is_attacking = false;
-        attack_ended?.Invoke(chosen_attack.idle_cooldown);
         StartCoroutine(chosen_attack.self_cooldown());
         StartCoroutine(Util.timer(chosen_attack.combat_cooldown, start_action:()=>on_cooldown=true, time_out:()=>on_cooldown=false));
+        attack_ended?.Invoke(chosen_attack.idle_cooldown);
     }
 
     public List<BossAttack> get_available_attacks(List<BossAttack> attacks, float td, float lbd, float rbd){

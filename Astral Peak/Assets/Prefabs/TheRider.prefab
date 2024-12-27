@@ -180,7 +180,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.5, y: 3}
+  m_Size: {x: 5, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &1147065920377330053
 GameObject:
@@ -5192,7 +5192,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10083,7 +10083,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -14916,7 +14916,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -19807,7 +19807,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -24640,7 +24640,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -24742,6 +24742,7 @@ MonoBehaviour:
   ranged: {fileID: 459208093712462975}
   melee: {fileID: 3434202193293167761}
   sound: {fileID: 6926405380062519890}
+  body_colliders: []
   combat: {fileID: 746696598816751763}
   target: {fileID: 0}
 --- !u!114 &4697436725885230861
@@ -24792,7 +24793,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a45a202450a8b428cf12873cda73d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  on_cooldown: 0
+  is_attacking: 0
   chosen_attack:
     animation_id: 0
     chance: 0
@@ -24909,7 +24911,6 @@ MonoBehaviour:
   - {fileID: 6046301728459267000}
   - {fileID: 5473328611511168871}
   - {fileID: 4865190631762739446}
-  damaged_colour: {r: 1, g: 1, b: 1, a: 1}
   hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
   death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
 --- !u!114 &2407976506595431332
@@ -24933,7 +24934,7 @@ MonoBehaviour:
     - Key: jump
       Value: {fileID: 8368871497017102084}
     - Key: signature_strike
-      Value: {fileID: 2750919245008702051}
+      Value: {fileID: 2764072115617918501}
     - Key: signature_slam
       Value: {fileID: 2750919245008702051}
     - Key: snow_dash
@@ -25008,31 +25009,37 @@ MonoBehaviour:
     _serializedList:
     - Key: signature_arrow
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
         fire_point: {fileID: 4027133792722879146}
     - Key: round_1
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
         fire_point: {fileID: 531115738587288444}
     - Key: round_2
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: f087511cd16359a438b9db8f15abc4b0, type: 3}
         fire_point: {fileID: 4363505855217266796}
     - Key: round_3
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: f087511cd16359a438b9db8f15abc4b0, type: 3}
         fire_point: {fileID: 2083392289887922863}
     - Key: round_4
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: f087511cd16359a438b9db8f15abc4b0, type: 3}
         fire_point: {fileID: 1283806089067415751}
     - Key: round_5
       Value:
+        projectile_is_child: 0
         fire_rate: 0
         projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
         fire_point: {fileID: 6177200519104183750}
@@ -30000,7 +30007,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -34928,7 +34935,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 686374365
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

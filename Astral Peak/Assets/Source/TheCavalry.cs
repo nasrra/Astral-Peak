@@ -1,10 +1,10 @@
-using System.Collections;
 using Deluz;
 using UnityEngine;
 
 public class TheCavalry : Boss<CavalryMovement>{
     public static TheCavalry instance;
-    
+    Coroutine idle_state;
+
     void Awake(){
         instance = this;
         idle(2);
@@ -18,7 +18,10 @@ public class TheCavalry : Boss<CavalryMovement>{
     }
 
     // states: 
-    public override void enter_cutscene_state() => idle();
+    public override void enter_cutscene_state(){
+        stop_idle_loop();    
+        idle();
+    }
     public override void exit_cutscene_state() => idle(1);
 
     public override void kill(){
@@ -26,8 +29,10 @@ public class TheCavalry : Boss<CavalryMovement>{
         StartCoroutine(Util.timer(
             animator.GetCurrentAnimatorClipInfo(0).Length + 3,
             start_action:()=>{
+                if(idle_state != null)
+                    StopCoroutine(idle_state);
                 enable_body_colliders(0);
-                sprite.play_death_effect(2.25f);
+                sprite.play_death_effect(1.5f);
                 disable_components();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
@@ -35,6 +40,7 @@ public class TheCavalry : Boss<CavalryMovement>{
             time_out:()=>{
                 AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
+                base.kill();
                 gameObject.SetActive(false);
             }
         ));
@@ -53,12 +59,19 @@ public class TheCavalry : Boss<CavalryMovement>{
         combat.enabled = false;
     }
 
-    private void idle(float time) =>
-        StartCoroutine(Util.timer(
+    private void stop_idle_loop(){
+        if(idle_state != null)
+            StopCoroutine(idle_state);
+    }
+
+    private void idle(float time){
+        stop_idle_loop();
+        idle_state = StartCoroutine(Util.timer(
             time,
-            start_action:()=> idle(),
+            start_action:()=>idle(),
             time_out:()=>follow_and_attack_state()
         ));
+    }
 
     private void idle(){
         animator.Play("idle");
@@ -79,6 +92,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     protected void link_events(){
         health.death                            += kill;
         health.death                            += movement.StopAllCoroutines;
+        combat.attack_chosen                    += attack;
         combat.attack_ended                     += idle;
         movement.move_direction_changed         += face_direction;
         movement.move_direction_changed         += move_direction_changed;
@@ -91,6 +105,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     protected void unlink_events(){
         health.death                            -= kill;
         health.death                            -= movement.StopAllCoroutines;
+        combat.attack_chosen                    -= attack;
         combat.attack_ended                     -= idle;
         movement.move_direction_changed         -= face_direction;
         movement.move_direction_changed         -= move_direction_changed;

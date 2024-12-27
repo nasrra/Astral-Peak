@@ -40,10 +40,10 @@ public class Health : MonoBehaviour{
     }
     public void is_invulnerable(float time) => 
         state_switch(ref invulnerable_state, Util.timer(time,
-            start_action: ()=>invulnerable=true, 
+            start_action: ()=>is_invulnerable(),
             time_out: ()=>{
                 invulnerable_state=null;
-                invulnerable=false;
+                is_vulnerable();
             }));
 
     public void is_vulnerable(){

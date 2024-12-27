@@ -125,7 +125,7 @@ public class RiderSound : SoundFunctions{
             AudioClipHandler.play(
             SoundID.RIDER_YELL,
             audio_player: audio_player, 
-            AudioSourceSettings.DIEGETIC_RANDOMISED)},
+            AudioSourceSettings.DIEGETIC)},
         {"bow_shot",()=>
             AudioClipHandler.play(
             SoundID.BOW_SHOT,
