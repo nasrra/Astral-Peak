@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Deluz;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -23,10 +24,10 @@ public class Movement : MonoBehaviour{
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
     private float original_gravity, original_deceleration;
-    protected Coroutine state;
+    protected Coroutine move_state, controller_state, dash_state;
 
     void OnEnable(){
-        state_switch_default();
+        move_only_state();
         original_gravity = rb.gravityScale;
         original_deceleration = deceleration;
     }
@@ -58,6 +59,22 @@ public class Movement : MonoBehaviour{
 
 
 
+    // state machine.
+    public void no_state(){
+        clear_move_direction();
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, null);
+    }
+    private void state_switch(ref Coroutine state, IEnumerator _state){
+        if(state != null)
+            StopCoroutine(state);
+        state = _state != null ? StartCoroutine(_state) : null;
+    }
+    public void zero_velocity() => rb.linearVelocity = Vector3.zero;
+
+
+
+
     //movment functions
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
@@ -66,7 +83,8 @@ public class Movement : MonoBehaviour{
     public virtual void clear_move_direction(){
         if(rb != null)
             rb.linearVelocityX = 0;
-        move_direction = new Vector2(0,0);
+        //move_direction = new Vector2(0,0);
+        set_move_direction(Vector2.zero);
     }
     // used for ai path finding and other state machines. 
     public virtual void movement(MovementOption option, bool flag){
@@ -84,6 +102,7 @@ public class Movement : MonoBehaviour{
                 move_down(flag);
                 break;
             case MovementOption.NONE:
+                clear_move_direction();
                 break;
             default:
                 throw new SystemException("("+gameObject.name+": " +option+ ") is exclusively a character movement function.");
@@ -99,76 +118,64 @@ public class Movement : MonoBehaviour{
     protected virtual void vertical_move() => rb.linearVelocity = new Vector2(rb.linearVelocity.x, move_direction.y * top_speed);
     protected virtual void decelerate() => rb.linearVelocity *= deceleration;
 
-
-
-
-
-    // state machine.
-    public void no_state(){
-        state_switch(null);
-        clear_move_direction();
+    public void move_only_state(){
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, null);
     }
-    private void state_switch(IEnumerator _state){
-        if(state != null)
-            StopCoroutine(state);
-        state = _state!=null? StartCoroutine(_state) : null;
-    }
-    protected void state_switch_default() => state_switch(default_state());
-    protected IEnumerator default_state(){
+    private IEnumerator move(){
         while(true){
-            move();
+            horizontal_move();
+            vertical_move();
+            decelerate();
             yield return new WaitForFixedUpdate();
         }
     }
-    private void move(){
-        horizontal_move();
-        vertical_move();
-        decelerate();
-    }
-
-
     public void dash(Vector3 direction, float force, float duration){
         if(can_dash == true){
             can_dash = false;
             can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
             is_dashing = true;
-            state_switch(apply_force_loop(dashed, dash_end, direction, force, duration));
+            state_switch(ref move_state, apply_force_loop(dashed, dash_end, direction, force, duration));
+            state_switch(ref controller_state, null);
+
         }      
     }
     private void end_dash(){
-        state_switch_default();
+        move_only_state();
         is_dashing = false;
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
         StartCoroutine(Util.timer(dash_cooldown, time_out:()=>can_dash=true));
     }
     public void knockback(KnockbackData data){
-        if(can_knockback == true)
-            state_switch(apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.25f,0)).normalized, data.force, data.duration));
+        if(can_knockback == true){
+            state_switch(ref move_state, apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.25f,0)).normalized, data.force, data.duration));
+            state_switch(ref controller_state, null);
+        }
     }
-    //TODO: fix this with a timer Coroutine from Util.
-    protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float t){
-        rb.gravityScale = 0;
-        // Normalize the final knockback direction
-        direction.Normalize();
-        // multiply by knock back force.
-        rb.linearVelocity = Vector2.zero;
-        rb.AddForce(direction * force, ForceMode2D.Impulse);
-        start?.Invoke();
-        yield return new WaitForSeconds(t);
-        rb.gravityScale = original_gravity;
-        rb.linearVelocity = Vector2.zero;
-        end?.Invoke();
-        yield break;
-    }
-    public void zero_velocity() => rb.linearVelocity = Vector3.zero;
-    public void move_in_faced_direction(){
+    protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float time) 
+        => Util.timer(
+            time,
+            start_action:()=>{
+                rb.gravityScale = 0;
+                // Normalize the final knockback direction
+                direction.Normalize();
+                // multiply by knock back force.
+                rb.linearVelocity = Vector2.zero;
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
+                start?.Invoke();
+            },
+            time_out:()=>{
+                rb.gravityScale = original_gravity;
+                rb.linearVelocity = Vector2.zero;
+                end?.Invoke();
+            }
+        );
+
+    public void move_to_target_state(Transform target) {
         clear_move_direction();
-        if(transform.rotation.eulerAngles.y == 180)
-            move_left(true);
-        else
-            move_right(true); 
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, move_to_target(target));
     }
-    public void move_to_target_state(Transform transform) => state_switch(move_to_target(transform));
     protected IEnumerator move_to_target(Transform target){
         while(target != null){
             float dist = (transform.position - target.position).x;
@@ -182,14 +189,17 @@ public class Movement : MonoBehaviour{
                 clear_move_direction();
                 move_left(true);
             }
-            if(Mathf.Abs(dist) >= 0.25f)
+            if(Mathf.Abs(dist) <= 0.1f)
                 target_reached?.Invoke();
-            move();
             yield return new WaitForFixedUpdate();
         }
         yield break;
     }
-    public void pathing_loop_state(List<MovementPath> paths) => state_switch(pathing_loop(paths));
+    public void pathing_loop_state(List<MovementPath> paths){
+        clear_move_direction();
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, pathing_loop(paths));    
+    }
     public IEnumerator pathing_loop(List<MovementPath> paths){
         MovementPath current_path;
         int path_index = 0;
@@ -197,7 +207,6 @@ public class Movement : MonoBehaviour{
             // start movement.
             current_path = paths[path_index];
             movement(current_path.movement, true);
-            move();
             yield return new WaitForSeconds(current_path.duration);
             clear_move_direction();
             path_index = ((path_index + 1) >= paths.Count)? 0 : path_index + 1;
@@ -207,11 +216,11 @@ public class Movement : MonoBehaviour{
 
     protected virtual void link(){
         dash_end += end_dash;
-        knockback_ended += state_switch_default;
+        knockback_ended += move_only_state;
     }
     protected virtual void unlink(){
         dash_end -= end_dash;
-        knockback_ended -= state_switch_default;
+        knockback_ended -= move_only_state;
     }
 }
 

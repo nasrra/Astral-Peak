@@ -44,7 +44,8 @@ public class Hollow : Enemy{
 
     // States:
     public override void kill(){
-        animator.Play("death");
+        unlink_events();
+        animator.Play("death",0,0);
         StartCoroutine(Util.timer(
             animator.GetCurrentAnimatorClipInfo(0).Length + 3,
             start_action: ()=>{
@@ -52,12 +53,12 @@ public class Hollow : Enemy{
                 enable_body_colliders(0);
                 particles.stop_all_particles();
                 sprite.play_death_effect(1.25f);
-                unlink_health();
                 hurt_box.enabled = false;
+                if(stun_state != null)
+                    StopCoroutine(stun_state);
             },
             time_out: ()=>{
                 base.kill();
-                unlink_events();
                 Destroy(gameObject);
             }
         ));
@@ -67,6 +68,7 @@ public class Hollow : Enemy{
         state_switch(ref stun_state, Util.timer(
             stun_state_timer,
             start_action:()=>{
+                animator.Play("idle");
                 unlink_combat();        
             },
             time_out:()=>{
@@ -81,24 +83,23 @@ public class Hollow : Enemy{
             alert();
         else
             movement.move_to_target_state(target);
-        //state_switch(target == origin?
-        //    retreat_loop(): 
-        //    alerted == true? follow_only() : alert()
-        //);
     }
         
     public void summon_state(){
         animator.Play("summon");
         play_summoning_animation();
         movement.no_state();
-        //combat.no_state();
     }
 
     public void alert(){
+        movement.no_state();
         animator.Play("yell");
         alerted = true;
         alert_movement();
     }
+
+    // used in animator for alert animation.
+    public void move_to_target() => movement.move_to_target_state(target);
 
     void player_in_range(Collider2D col){
         target = Player.instance.transform;
@@ -106,12 +107,12 @@ public class Hollow : Enemy{
     }
 
     void player_left_range(Collider2D col){
-        movement.clear_move_direction();
+        movement.no_state();
         idle_movement();
-        recovery_state();
         particles.stop_particle("yell");
         target = origin;
         alerted = false;
+        movement.move_to_target_state(target);
     }
     void idle_movement(){
         movement.set_speed(idle_speed); 
@@ -124,23 +125,11 @@ public class Hollow : Enemy{
         movement.set_acceleration(alert_acceleration);        
     }
 
-    void pathing_animations(MovementOption _movement){
-        switch(_movement){
-            case MovementOption.LEFT:
-            case MovementOption.RIGHT:
-                animator.Play("walk");
-                break;
-            case MovementOption.NONE:
-                animator.Play("idle");
-                break;
-        }
-    }
-
     void move_direction_changed(Vector2 move_direction){
-        if(move_direction == Vector2.left || move_direction == Vector2.right)
-            animator.Play(alerted==true?"run":"walk");
-        else
+        if(move_direction != Vector2.left && move_direction != Vector2.right)
             animator.Play("idle");
+        else
+            animator.Play(alerted == true? "run" : "walk", 0, 0); // force the animation to play (0,0);
     }
 
     void target_reached(){
@@ -175,16 +164,15 @@ public class Hollow : Enemy{
     }
 
     private void link_movement(){
-        movement.move_direction_changed += move_direction_changed;
-        movement.move_direction_changed += face_direction;
         movement.target_reached += target_reached;
+        movement.move_direction_changed += face_direction;
+        movement.move_direction_changed += move_direction_changed;
     }
 
     private void unlink_movement(){
-        movement.move_direction_changed -= move_direction_changed;
-        movement.move_direction_changed -= face_direction;
         movement.target_reached -= target_reached;
-        movement.clear_move_direction();
+        movement.move_direction_changed -= face_direction;
+        movement.move_direction_changed -= move_direction_changed;
     }
 
     protected void link_health(){
