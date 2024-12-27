@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShrineFogShaderMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 16bf894e9d537bb4296c7d41b4dbffb3, type: 3}
-  m_Parent: {fileID: 2100000, guid: 51f110c8a744b5d458800567658e17b4, type: 2}
+  m_Name: ShrineFogAutomatic 2
+  m_Shader: {fileID: -6465566751694194690, guid: 5832e4eba26c00249968544b51bb579a, type: 3}
+  m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,16 +22,29 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Density: 0.2
-    - _Size: 12
+    - _density: 0.25
+    - _size: 12
     m_Colors:
-    - _Color: {r: 0.2971698, g: 0.7915745, b: 1, a: 1}
+    - _color: {r: 0.18431371, g: 0.73526716, b: 1, a: 0.5647059}
+    - _speed: {r: 0.033, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &275910519201418424
+--- !u!114 &8573273901422074073
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

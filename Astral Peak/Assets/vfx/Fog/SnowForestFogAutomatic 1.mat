@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-417789383238832367
+--- !u!114 &-8900058816215028329
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SnowForestFogShader
-  m_Shader: {fileID: -6465566751694194690, guid: 16bf894e9d537bb4296c7d41b4dbffb3, type: 3}
+  m_Name: SnowForestFogAutomatic 1
+  m_Shader: {fileID: -6465566751694194690, guid: 5832e4eba26c00249968544b51bb579a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -50,10 +50,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Density: 0.4
-    - _Size: 6
-    - _Speed: 0.033
+    - _density: 0.33
+    - _size: 6
     m_Colors:
-    - _Color: {r: 0.3443396, g: 0.88309926, b: 1, a: 0.5647059}
+    - _color: {r: 1, g: 1, b: 1, a: 0.5647059}
+    - _direction: {r: 1, g: 0, b: 0, a: 0}
+    - _speed: {r: 0.05, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
