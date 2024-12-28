@@ -213,16 +213,19 @@ public class Movement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    public void figure_eight_state(){
+    public void figure_eight_state(bool reverse = false){
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, figure_eight());
+        state_switch(ref controller_state, figure_eight(reverse));
     }
-    protected IEnumerator figure_eight(){
+    protected IEnumerator figure_eight(bool reverse = false){
         float elapsed_time = 0;
+        float reverse_factor = reverse==false? 1 : -1;
+        float y_speed_factor = top_speed*10;
+        float x_speed_factor = y_speed_factor/2;
         while(true){
             elapsed_time += Time.deltaTime;
-            float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * 30);
-            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * 60);
+            float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * x_speed_factor * reverse_factor);
+            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * y_speed_factor);
             set_move_direction(new Vector2(sin_x, sin_y));
             yield return new WaitForFixedUpdate();
         }

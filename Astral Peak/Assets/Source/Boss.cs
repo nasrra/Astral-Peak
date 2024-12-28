@@ -36,7 +36,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected virtual void attack(BossAttack attack){
         no_state();
-        animator.Play(attack.animation_id,0,0);
+        animator.Play(attack.animation_id);
     }
 
     // NOTE: always do combat first then movement, so that back attacks are chosen :)

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using Deluz;
-using DocumentFormat.OpenXml.Drawing;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
@@ -9,6 +9,8 @@ public class TheMage : Boss<Movement>{
     public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
     [SerializeField] List<Animator> summoning_circles = new List<Animator>();
+    [SerializedDictionary("id","Transform")]
+    [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
     Dictionary<int, Action> phase_linker;
 
     // Base: 
@@ -74,11 +76,21 @@ public class TheMage : Boss<Movement>{
 
     // set a fly pattern at the end of every teleport.
     private void set_fly_pattern(){
-        //Random.Range.
-        movement.figure_eight_state();
+        int x = UnityEngine.Random.Range(0,teleport_points.Count);
+        movement.no_state();
+        switch(x){
+            case 0:
+                transform.position = teleport_points["figure_eight"].position;
+                movement.figure_eight_state(reverse:false);                
+                break;
+            case 1:
+                transform.position = teleport_points["figure_eight_reversed"].position;
+                movement.figure_eight_state(reverse:true);
+                break;
+        }
     }
 
-    public void teleport(){
+    public void teleport_phase_1(){
         float random = UnityEngine.Random.Range(0,2);
         float offset = UnityEngine.Random.Range(8,17);
         Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
@@ -92,6 +104,10 @@ public class TheMage : Boss<Movement>{
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
 
+    public void teleport_phase_2(){
+        animator.Play("2_exit_teleport");
+        set_fly_pattern();
+    }
 
     // used for when hollows are summoned.
     private void set_hollow_target(GameObject x){

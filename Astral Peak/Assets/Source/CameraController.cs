@@ -153,7 +153,7 @@ public class CameraController : MonoBehaviour{
     IEnumerator move_horizontal(float x_pos, float speed){
         while(Mathf.Abs(offset.x - x_pos) > 0.1){
             offset.x = Mathf.MoveTowards(offset.x, x_pos, Time.deltaTime * speed);
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
         offset.x = x_pos;
         yield break;       

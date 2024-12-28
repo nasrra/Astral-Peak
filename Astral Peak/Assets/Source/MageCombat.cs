@@ -3,23 +3,23 @@ using System.Collections.Generic;
 
 public class MageCombat : BossCombat{
     BossAttack
-        projectile_summon = new BossAttack(
-            "projectile_summon",
+        projectile_summon_phase_1 = new BossAttack(
+            "1_projectile_summon",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  2,
             attack_cooldown:       4,
             idle_cooldown:         0,
             combat_cooldown:       2),
-        teleport = new BossAttack(
-            "enter_teleport",
+        teleport_phase_1 = new BossAttack(
+            "1_enter_teleport",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  0,
             attack_cooldown:       4,
             idle_cooldown:         1,
             combat_cooldown:       2),
-        hollow_summon = new BossAttack(
+        hollow_summon_phase_1 = new BossAttack(
             "hollow_summon",
             chance:                50,
             player_distance:       6,
@@ -27,14 +27,22 @@ public class MageCombat : BossCombat{
             attack_cooldown:       12,
             idle_cooldown:         3,
             combat_cooldown:       3),
-        wailing_stone_attack = new BossAttack(
-            "wailing_stone_attack",
+        projectile_summon_phase_2 = new BossAttack(
+            "2_projectile_summon",
             chance:                50,
             player_distance:       20,
             arena_bound_distance:  2,
             attack_cooldown:       8,
             idle_cooldown:         0,
-            combat_cooldown:       2)
+            combat_cooldown:       2),
+        teleport_phase_2 = new BossAttack(
+            "2_enter_teleport",
+            chance:                50,
+            player_distance:       6,
+            arena_bound_distance:  0,
+            attack_cooldown:       4,
+            idle_cooldown:         1,
+            combat_cooldown:       2)        
         ;
     protected override void create_movesets(){
         movesets = new Dictionary<int, Action>(){
@@ -42,16 +50,17 @@ public class MageCombat : BossCombat{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    projectile_summon,
-                    teleport,
-                    hollow_summon
+                    projectile_summon_phase_1,
+                    teleport_phase_1,
+                    hollow_summon_phase_1
                 };
             }},
             {2,()=>{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    wailing_stone_attack,
+                    projectile_summon_phase_2,
+                    teleport_phase_2,
                 };
             }}
         };
