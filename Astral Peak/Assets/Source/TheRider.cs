@@ -8,9 +8,12 @@ public class TheRider : Boss<RiderMovement>{
 
     void Awake(){
         instance = this;
-        idle(1);
         sound.set_functions(new RiderSound(sound));
         link_events();
+        idle(1);
+    }
+    void Start(){
+        select_phase(phase);
     }
 
     void OnDestroy() => unlink_events();
@@ -47,7 +50,7 @@ public class TheRider : Boss<RiderMovement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("run");
+            animator.Play("run",0,0);
         else
             animator.Play("idle");
     }
@@ -63,6 +66,7 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
+        phase_selected                          += combat.set_moveset;
     }
 
     protected void unlink_events(){
@@ -76,5 +80,6 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
+        phase_selected                          += combat.set_moveset;
     }
 }

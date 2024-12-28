@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Sounds;
 
 public class ShrineOpeningCutscene : Cutscene{
@@ -32,26 +29,26 @@ public class ShrineOpeningCutscene : Cutscene{
 
     IEnumerator starting_coroutine(){
         torches_on?.Invoke();
-        CameraController.instance.zoom_in_state(4.45f, .5f);
-        CameraController.instance.move_vertical_state(2.2f, .5f);
+        //CameraController.instance.zoom_in_state(4.45f, .5f);
+        //CameraController.instance.move_vertical_state(2.2f, .5f);
         yield return new WaitForSeconds(5);
         DialogueHandler.instance.play_dialogue(3f);
         yield return new WaitForSeconds(3f);
-        CameraController.instance.move_vertical_state(-2.5f, .2f);
+        //CameraController.instance.move_vertical_state(-2.5f, .2f);
         yield return new WaitForSeconds(40);
-        CameraController.instance.reset_zoom_state(.2f);
-        CameraController.instance.move_vertical_state(0, .2f);     
+        //CameraController.instance.reset_zoom_state(.2f);
+        //CameraController.instance.move_vertical_state(0, .2f);     
         yield break;
     }
 
     IEnumerator middle_coroutine(){
-        CameraController.instance.zoom_in_state(2.5f, .5f);
-        CameraController.instance.move_horizontal_state(-3.25f, .4f);
+        //CameraController.instance.zoom_in_state(2.5f, .5f);
+        //CameraController.instance.move_horizontal_state(-3.25f, .4f);
         yield return new WaitForSeconds(9);
-        CameraController.instance.move_horizontal_state(3.25f, .3f);
+        //CameraController.instance.move_horizontal_state(3.25f, .3f);
         yield return new WaitForSeconds(26);
-        CameraController.instance.reset_zoom_state(.33f);
-        CameraController.instance.move_horizontal_state(0f, .4f);
+        //CameraController.instance.reset_zoom_state(.33f);
+        //CameraController.instance.move_horizontal_state(0f, .4f);
         yield break;
     }
 

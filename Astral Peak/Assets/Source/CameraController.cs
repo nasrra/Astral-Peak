@@ -1,6 +1,6 @@
 using System.Collections;
+using Deluz;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour{
     public static CameraController instance;
@@ -21,7 +21,8 @@ public class CameraController : MonoBehaviour{
     Coroutine
         follow_state,
         zoom_state,
-        swivel_state,
+        x_offset_state,
+        y_offset_state,
         shake_state;
 
     void Awake(){
@@ -40,12 +41,6 @@ public class CameraController : MonoBehaviour{
         original_offset = _override_original_offset == true? _offset : original_offset;
     }
     public void set_target(Transform _target) => target = _target;
-    public void zoom_in_state(float size, float speed)      => state_swtich(ref zoom_state, zoom_in(size, speed));
-    public void zoom_out_state(float size, float speed)     => state_swtich(ref zoom_state, zoom_out(size, speed));
-    public void reset_zoom_state(float speed)               => state_swtich(ref zoom_state, reset_zoom(speed));
-    public void move_vertical_state(float y_pos, float speed)     => state_swtich(ref swivel_state, move_vertical(y_pos, speed));
-    public void move_horizontal_state(float x_pos, float speed)   => state_swtich(ref swivel_state, move_horizontal(x_pos, speed));
-    public void reset_offset_state(float speed)             => state_swtich(ref swivel_state, reset_offset(speed));
     public void shake_camera(float time, float amount)      => state_swtich(ref shake_state, camera_shake(time, amount));
 
     // state switchers:
@@ -142,65 +137,14 @@ public class CameraController : MonoBehaviour{
 
 
     // offset modifiers:
-    IEnumerator move_vertical(float y_pos, float speed){
-        while(Mathf.Abs(offset.y - y_pos) > 0.1){
-            offset.y = Mathf.MoveTowards(offset.y, y_pos, Time.deltaTime * speed);
-            yield return new WaitForEndOfFrame();
-        }
-        offset.y = y_pos;
-        yield break;
+    public void lerp_offset(float? x, float? y, float time){
+        state_swtich(ref y_offset_state, Calc.lerp_value(val => offset.y = val, offset.y, y.GetValueOrDefault(offset.y), time));
+        state_swtich(ref x_offset_state, Calc.lerp_value(val => offset.x = val, offset.x, x.GetValueOrDefault(offset.x), time));
     }
-    IEnumerator move_horizontal(float x_pos, float speed){
-        while(Mathf.Abs(offset.x - x_pos) > 0.1){
-            offset.x = Mathf.MoveTowards(offset.x, x_pos, Time.deltaTime * speed);
-            yield return null;
-        }
-        offset.x = x_pos;
-        yield break;       
-    }
-    IEnumerator reset_offset(float speed){
-        // determine if we are too high or too low.
-        float difference = offset.y - original_offset.y;
-        
-        if(difference >= 0)
-            state_swtich(ref swivel_state,move_vertical(original_offset.y, speed));
-        else
-            state_swtich(ref swivel_state,move_vertical(original_offset.y, speed));
-        offset.y = original_offset.y;
-        yield break;
-    }
-
-
-
-
-
-    // camera size modifiers:
-    IEnumerator zoom_out(float size, float speed){
-        while(cam.orthographicSize < size){
-            cam.orthographicSize += Time.deltaTime * speed;
-            yield return new WaitForEndOfFrame();
-        }
-        cam.orthographicSize = size;
-        yield break;
-    }
-    IEnumerator zoom_in(float size, float speed){
-        while(cam.orthographicSize > size){
-            cam.orthographicSize -= Time.deltaTime * speed;
-            yield return new WaitForEndOfFrame();
-        }
-        cam.orthographicSize = size;
-    }
-    IEnumerator reset_zoom(float speed){
-        // determine if we are too high or too low.
-        float difference = cam.orthographicSize - original_size;
-        
-        if(difference >= 0)
-            state_swtich(ref zoom_state,zoom_in(original_size, speed));
-        else
-            state_swtich(ref zoom_state,zoom_out(original_size, speed));
-        
-        yield break;
-    }
+    public void reset_offset(float time) => lerp_offset(original_offset.x, original_offset.y, time);
+    public void lerp_zoom(float size, float time) =>
+        state_swtich(ref zoom_state, Calc.lerp_value(val => cam.orthographicSize = val, cam.orthographicSize, size, time));
+    public void reset_zoom(float time) => lerp_zoom(original_size, time);
     public void ZoomIn()    =>    cam.orthographicSize--;
     public void ZoomOut()   =>    cam.orthographicSize++;
 }

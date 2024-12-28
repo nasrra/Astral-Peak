@@ -16,7 +16,7 @@ public class CavalryOpeningCutscene : Cutscene{
 
     IEnumerator coroutine(){
         room.cutscene_arrow.fire();
-        CameraController.instance.zoom_in_state(8,1);
+        CameraController.instance.lerp_zoom(8,2f);
         //CameraController.instance.move_down_state(2,1);
         CameraController.instance.regulate_in_bounds(false);
         yield return new WaitForSeconds(3);
@@ -25,8 +25,8 @@ public class CavalryOpeningCutscene : Cutscene{
         TheRider.instance.cutscene_yell();
         yield return new WaitForSeconds(3);
         CameraController.instance.set_target(Player.instance.transform);
-        CameraController.instance.reset_zoom_state(1);
-        CameraController.instance.reset_offset_state(1);
+        CameraController.instance.reset_zoom(time:2);
+        CameraController.instance.reset_offset(time:2);
         CameraController.instance.regulate_in_bounds(true);
 
         //

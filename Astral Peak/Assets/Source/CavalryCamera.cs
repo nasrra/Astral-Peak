@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CavalryCamera : MonoBehaviour{
      public void ground_slam_camera_adjust(){
-        CameraController.instance.move_vertical_state(7, 4f);
-        CameraController.instance.zoom_out_state(14, 2f);
+        CameraController.instance.lerp_offset(x:null,y:9,time:1.5f);
+        CameraController.instance.lerp_zoom(14, 1.5f);
     }
     public void ground_slam_camera_reset(){
-        CameraController.instance.reset_offset_state(32f);
-        CameraController.instance.reset_zoom_state(16f);
+        CameraController.instance.reset_offset(.5f);
+        CameraController.instance.reset_zoom(.5f);
     }
     public void ground_slam_camera_shake()  => CameraController.instance.shake_camera(0.15f, 1f);
     public void death_camera_shake()        => CameraController.instance.shake_camera(0.25f, 1f);
-    public void sword_summon_camera_zoom()  => CameraController.instance.zoom_out_state(14, 2f);
-    public void sword_summon_camera_reset() => CameraController.instance.reset_zoom_state(1f);
 }

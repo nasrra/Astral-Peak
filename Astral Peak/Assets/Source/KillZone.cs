@@ -32,7 +32,7 @@ public class KillZone : MonoBehaviour{
         CameraController.instance.start_follow_state();
         CameraController.instance.snap_to_target(); 
         CameraEffects.instance.fade_from_black();
-        CameraController.instance.reset_offset_state(10f);
+        CameraController.instance.reset_offset(1);
         yield return new WaitForSeconds(1);
         Player.instance.exit_cutscene_state();
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sounds;
+using Unity.Collections;
 
 // this is a script for the background cavalry wolf that plays during the phase transition cutscene.
 
@@ -26,9 +27,9 @@ public class TheCavalryBackground : MonoBehaviour{
             
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
-    public void move_camera_up() => CameraController.instance.move_vertical_state(22, 7f);
-    public void move_camera_down() => CameraController.instance.move_vertical_state(-22, 86f);
-    public void reset_camera() => CameraController.instance.reset_offset_state(2f);
+    public void move_camera_up() => CameraController.instance.lerp_offset(x:null, y:20, 1.75f);
+    public void move_camera_down() => CameraController.instance.lerp_offset(x:null, y:-5, 0.5f);
+    public void reset_camera() => CameraController.instance.reset_offset(.5f);
     public void play_impact_sound() => 
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_HEAVY,
