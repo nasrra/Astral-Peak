@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class CavalryCombat : BossCombat{
@@ -64,28 +65,23 @@ public class CavalryCombat : BossCombat{
             attack_cooldown:        10,
             idle_cooldown:          0,
             combat_cooldown:        0);
-
-    void Start(){
-        //test(back_strike_backward);
-        set_movesets(); 
-    }
-
-    void set_movesets(){
-        set_front_moveset(new List<BossAttack>(){
-            front_strike,
-            bite,
-            //fetch,
-        });
-
-        set_back_moveset(new List<BossAttack>(){
-            back_strike_forward,
-            back_strike_backward,
-        });
-    
-        set_special_moveset(new List<BossAttack>(){
-            howl,
-            ground_slam,
-            jump_away,
-        });
+    protected override void create_movesets(){
+        movesets = new Dictionary<int, Action>(){
+            {1,()=>{
+                front_moveset = new List<BossAttack>(){
+                    front_strike,
+                    bite,
+                };
+                back_moveset = new List<BossAttack>(){
+                    back_strike_forward,
+                    back_strike_backward,
+                };
+                special_moveset = new List<BossAttack>(){
+                    howl,
+                    ground_slam,
+                    jump_away,
+                };
+            }},
+        };
     }
 }

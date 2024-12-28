@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Deluz;
-using Unity.VisualScripting;
 
-public class BossCombat : MonoBehaviour{
+public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
     public event Action<BossAttack> attack_chosen;
     [SerializeField] public bool on_cooldown = false, is_attacking = false;
@@ -13,22 +12,21 @@ public class BossCombat : MonoBehaviour{
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
     [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
     [SerializeField] protected List<BossAttack> special_moveset = new List<BossAttack>();
+    protected Dictionary<int, Action> movesets;
     [SerializeField] public Transform  
         left_arena_bound,
         right_arena_bound;
     Coroutine state;
 
-    public void set_front_moveset   (List<BossAttack> moveset) => front_moveset = moveset;
-    public void set_back_moveset    (List<BossAttack> moveset) => back_moveset = moveset;
-    public void set_special_moveset (List<BossAttack> moveset) => special_moveset = moveset;
-
+    void Awake() => create_movesets();
     private void state_switch(IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
         state = _state!=null? StartCoroutine(_state) : null;
     }
+    public void set_moveset(int _moveset) => movesets[_moveset]();
     public void no_state() => state_switch(null);
-
+    protected abstract void create_movesets();
     // Note: need to make the chance of the attack applicable 
     // add to the algorithm so that some attacks are more frequently picked
     // depending upon their chance percentage.
@@ -74,8 +72,9 @@ public class BossCombat : MonoBehaviour{
 
     public void attack_end(){
         is_attacking = false;
-        StartCoroutine(chosen_attack.self_cooldown());
-        StartCoroutine(Util.timer(chosen_attack.combat_cooldown, start_action:()=>on_cooldown=true, time_out:()=>on_cooldown=false));
+        BossAttack attack = chosen_attack; // here to remove referencing bug with enabled timer.
+        StartCoroutine(Util.timer(attack.attack_cooldown, start_action:()=>attack.enabled = false, time_out:()=>attack.enabled = true));
+        StartCoroutine(Util.timer(attack.combat_cooldown, start_action:()=>on_cooldown=true, time_out:()=>on_cooldown=false));
         attack_ended?.Invoke(chosen_attack.idle_cooldown);
     }
 
@@ -99,8 +98,6 @@ public class BossCombat : MonoBehaviour{
         attack.arena_bound_distance = 0;
         attack.combat_cooldown = 1;
         attack.attack_cooldown = 1;
-        set_special_moveset(new List<BossAttack>(){
-            attack,
-        });
+        special_moveset = new List<BossAttack>(){attack};
     }
 }

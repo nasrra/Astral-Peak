@@ -24,11 +24,4 @@ public class BossAttack{
         combat_cooldown,
         idle_cooldown;
     public bool enabled = true;
-
-    // called in BossCombat once the attack is concluded.
-    public IEnumerator self_cooldown(){
-        enabled = false;
-        yield return new WaitForSeconds(attack_cooldown);
-        enabled = true;
-    }
 }

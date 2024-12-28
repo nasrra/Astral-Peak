@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour{
     // state machine.
     public void no_state(){
         clear_move_direction();
-        state_switch(ref move_state, move());
+        state_switch(ref move_state, null);
         state_switch(ref controller_state, null);
     }
     private void state_switch(ref Coroutine state, IEnumerator _state){
@@ -210,6 +210,20 @@ public class Movement : MonoBehaviour{
             yield return new WaitForSeconds(current_path.duration);
             clear_move_direction();
             path_index = ((path_index + 1) >= paths.Count)? 0 : path_index + 1;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    public void figure_eight_state(){
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, figure_eight());
+    }
+    protected IEnumerator figure_eight(){
+        float elapsed_time = 0;
+        while(true){
+            elapsed_time += Time.deltaTime;
+            float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * 30);
+            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * 60);
+            set_move_direction(new Vector2(sin_x, sin_y));
             yield return new WaitForFixedUpdate();
         }
     }

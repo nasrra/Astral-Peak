@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class MageCombat : BossCombat{
@@ -25,19 +26,34 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  6,
             attack_cooldown:       12,
             idle_cooldown:         3,
-            combat_cooldown:       3)
+            combat_cooldown:       3),
+        wailing_stone_attack = new BossAttack(
+            "wailing_stone_attack",
+            chance:                50,
+            player_distance:       20,
+            arena_bound_distance:  2,
+            attack_cooldown:       8,
+            idle_cooldown:         0,
+            combat_cooldown:       2)
         ;
-
-    void Start(){
-        //test(hollow_summon);
-        set_movesets(); 
-    }
-
-    void set_movesets(){
-        set_special_moveset(new List<BossAttack>(){
-            projectile_summon,
-            hollow_summon,
-            teleport,
-        });
+    protected override void create_movesets(){
+        movesets = new Dictionary<int, Action>(){
+            {1,()=>{
+                front_moveset = new List<BossAttack>();
+                back_moveset = new List<BossAttack>();
+                special_moveset = new List<BossAttack>(){
+                    projectile_summon,
+                    teleport,
+                    hollow_summon
+                };
+            }},
+            {2,()=>{
+                front_moveset = new List<BossAttack>();
+                back_moveset = new List<BossAttack>();
+                special_moveset = new List<BossAttack>(){
+                    wailing_stone_attack,
+                };
+            }}
+        };
     }
 }

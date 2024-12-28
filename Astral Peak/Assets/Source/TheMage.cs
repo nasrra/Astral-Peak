@@ -1,19 +1,22 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Deluz;
-using Unity.Collections;
+using DocumentFormat.OpenXml.Drawing;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
+    public event Action switch_to_idle, switch_to_follow_and_attack;
+    public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
-    [SerializeField] int phase = 1;
     [SerializeField] List<Animator> summoning_circles = new List<Animator>();
+    Dictionary<int, Action> phase_linker;
 
     // Base: 
     void Awake(){
         link_events();
+        create_phase_linker();
+        select_phase(phase);
         sound.set_functions(new MageSound(sound));
-        //StartCoroutine(fly_pattern());
         idle(2);
     }
     void OnDestroy() => unlink_events();
@@ -22,11 +25,9 @@ public class TheMage : Boss<Movement>{
 
 
     public void wailing_stone_attack(){
-        StartCoroutine(Util.timer(6, time_out: () =>{
-            foreach(Animator circle in summoning_circles)
-                circle.Play("loop");
-        }));
-        StartCoroutine(Util.timer(7.5f, time_out: () =>{
+        foreach(Animator circle in summoning_circles)
+            circle.Play("loop");
+        StartCoroutine(Util.timer(1.5f, time_out: () =>{
             for(int i = 0; i < summoning_circles.Count; i++)
                 ranged.fire_projectile("stone_"+(i+1));
         }));
@@ -36,36 +37,50 @@ public class TheMage : Boss<Movement>{
     private void idle(float time) =>
         StartCoroutine(Util.timer(
             time,
-            start_action:()=>idle(),
-            time_out:()=>{
-                if(phase == 1)
-                    follow_and_attack_state();
-                else
-                    follow_only_state();
-            }
+            start_action:()=>switch_to_idle(),
+            time_out:()=>switch_to_follow_and_attack()
         ));
 
-    private void idle(){
+    private void idle_phase_1(){
         no_state();
         animator.Play("idle");
     }
 
-    protected IEnumerator fly_pattern(){
-        float sin_x = 0;
-        float sin_y = 0;
-        movement.set_gravity(0);
+    private void idle_phase_2(){
         animator.Play("hover");
-        while(true){
-            sin_x = Mathf.Sin(Time.time * Time.deltaTime * 30);
-            sin_y = Mathf.Sin(Time.time * Time.deltaTime * 60);
-            movement.set_move_direction(new Vector2(sin_x, sin_y));
-            yield return new WaitForFixedUpdate();
-        }
     }
 
-    private void teleport(){
-        float random = Random.Range(0,2);
-        float offset = Random.Range(8,17);
+    protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
+    private void attack_phase_1(BossAttack attack) => base.attack(attack);
+    private void attack_phase_2(BossAttack attack) => animator.Play(attack.animation_id);
+
+    private void movement_phase_1(){
+        movement.set_gravity(1);
+        movement.set_deceleration(.85f);
+        movement.set_speed(3);
+    }
+
+    private void movement_phase_2(){
+        movement.set_gravity(0);
+        movement.set_deceleration(1f);
+        movement.set_speed(6);
+    }
+
+    private void fly_and_attack_state(){
+        //movement.set_gravity(0);
+        animator.Play("hover");
+        combat.chose_attack_state(target);
+    }
+
+    // set a fly pattern at the end of every teleport.
+    private void set_fly_pattern(){
+        //Random.Range.
+        movement.figure_eight_state();
+    }
+
+    public void teleport(){
+        float random = UnityEngine.Random.Range(0,2);
+        float offset = UnityEngine.Random.Range(8,17);
         Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
         Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
         if(random == 0)
@@ -74,6 +89,9 @@ public class TheMage : Boss<Movement>{
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
         animator.Play("exit_teleport");
     }
+    private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
+    private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
+
 
     // used for when hollows are summoned.
     private void set_hollow_target(GameObject x){
@@ -83,34 +101,54 @@ public class TheMage : Boss<Movement>{
         hollow.on_start += hollow.summon_state;
     }
 
-    private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
-    private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
-
-    // Linkage:
-    protected void link_events(){
-        link_health();
-        if(phase == 1)
-            link_movement();
-        link_combat();
-        link_ranged();
-    }
-
-    protected void unlink_events(){
-        unlink_health();
-        if(phase == 1)
-            unlink_movement();
-        unlink_combat();
-        unlink_ranged();
-    }
-
-
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("walk");
+            animator.Play("walk",0,0);
         else
-            animator.Play("idle");
+            animator.Play("idle",0,0);
+    }
+
+    // Linkage:
+    protected void link_events(){
+        phase_selected += link_phase;
+        phase_selected += combat.set_moveset;
+    }
+    protected void unlink_events(){
+        unlink_health();
+        unlink_movement();
+        unlink_combat();
+        unlink_ranged();
+    }
+        
+    void link_phase(int phase) => phase_linker[phase]();
+    void create_phase_linker(){
+        unlink_events();
+        phase_linker = new Dictionary<int, Action>(){
+            {1, ()=>link_phase_1()},
+            {2, ()=>link_phase_2()},        
+        };
+    }
+    void link_phase_1(){
+        movement_phase_1();
+        link_health();
+        link_movement();
+        link_combat();
+        link_ranged();
+        switch_to_idle = idle_phase_1;
+        switch_to_follow_and_attack = follow_and_attack_state;
+        switch_to_attack = attack_phase_1;
+    }
+    void link_phase_2(){
+        movement_phase_2();
+        set_fly_pattern(); // here temporarily.
+        link_health();
+        link_combat();
+        link_ranged();
+        switch_to_idle = idle_phase_2;
+        switch_to_follow_and_attack = fly_and_attack_state;
+        switch_to_attack = attack_phase_2;
     }
 
     void link_health() => health.damaged += sprite.play_damaged_flash;

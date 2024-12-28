@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
+    public event Action<int> phase_selected;
     [Header("Boss")]
+    [SerializeField] protected int phase = 1;
     [SerializeField] protected BossSpriteHandler sprite;
     [SerializeField] public Animator animator;
     [SerializeField] protected ParticleHandler particles;
@@ -16,6 +19,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected Transform target;
     protected Coroutine state; // an override state to control flow of all components.
 
+    public void select_phase(int _phase) => phase_selected(phase = _phase);
     protected float dist_to_target() => (transform.position - target.position).x;
 
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
@@ -30,14 +34,13 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
             flip_left();
     }
 
-    protected void attack(BossAttack attack){
+    protected virtual void attack(BossAttack attack){
         no_state();
-        animator.Play(attack.animation_id);
+        animator.Play(attack.animation_id,0,0);
     }
 
     // NOTE: always do combat first then movement, so that back attacks are chosen :)
     public void follow_and_attack_state(){
-        Debug.Log(1);
         combat.chose_attack_state(target);
         // edge case to check if we are able to attack coming out of an attack.
         if(combat.is_attacking == false)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class RiderCombat : BossCombat{
@@ -47,23 +48,19 @@ public class RiderCombat : BossCombat{
             idle_cooldown:          2,
             combat_cooldown:        1
         );
+        protected override void create_movesets(){
+            movesets = new Dictionary<int, Action>(){
+                {1,()=>{
+                    front_moveset = new List<BossAttack>(){
+                        signature,
+                        jump_n_dash, 
+                    };
+                    back_moveset = new List<BossAttack>(){
+                        round_shot,             
+                    };
+                    special_moveset = new List<BossAttack>();
+                }},
+            };
+        }
 
-    void Start(){
-        //test(round_shot);
-        set_movesets();
-    }
-
-    void set_movesets(){
-        set_front_moveset(new List<BossAttack>(){
-            signature,
-            jump_n_dash, 
-        });
-
-        set_back_moveset(new List<BossAttack>(){
-            round_shot,
-        });
-    
-        set_special_moveset(new List<BossAttack>(){       
-        });
-    }
 }
