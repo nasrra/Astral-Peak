@@ -7,28 +7,35 @@ public class CameraController : MonoBehaviour{
 
     //[SerializeField] CameraFollowType follow_type = CameraFollowType.LockY;
     [SerializeField] private Transform target;
-    [SerializeField, Range(0,5)] private float smooth_speed = 3.75f;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private float 
+        smooth_speed, 
+        original_size;
+    [SerializeField] Vector2 
+        x_bounds, // x is left, y is right
+        y_bounds, // x is bot, y is top
+        original_x_bounds,
+        original_y_bounds;
+    [SerializeField] private Vector3 
+        offset,
+        original_offset;
     [SerializeField] private bool regulate;
-    [SerializeField] private float left_x_bound;
-    [SerializeField] private float right_x_bound;
-    [SerializeField] private float bot_y_bound;
-    [SerializeField] private float top_y_bound;
     [SerializeField] Camera cam;
-    public float original_size;
-    public Vector3 original_offset;
 
     Coroutine
         follow_state,
         zoom_state,
         x_offset_state,
         y_offset_state,
+        x_bounds_state,
+        y_bounds_state,
         shake_state;
 
     void Awake(){
         instance = this;
         original_offset = offset;
         original_size = cam.orthographicSize;
+        original_x_bounds = x_bounds;
+        original_y_bounds = y_bounds;
         snap_to_target();
         start_follow_state();
     }
@@ -97,8 +104,8 @@ public class CameraController : MonoBehaviour{
         if(regulate == false)
             return pos;
         Vector3 regulated = new Vector3();
-        regulated.x = pos.x < left_x_bound ? left_x_bound : (pos.x > right_x_bound ? right_x_bound : pos.x);
-        regulated.y = pos.y < bot_y_bound ? bot_y_bound : (pos.y > top_y_bound ? top_y_bound : pos.y);
+        regulated.x = pos.x < x_bounds.x ? x_bounds.x : (pos.x > x_bounds.y ? x_bounds.y : pos.x);
+        regulated.y = pos.y < y_bounds.x ? y_bounds.x : (pos.y > y_bounds.y ? y_bounds.y : pos.y);
         regulated.z = pos.z;
         return regulated;
 
@@ -136,17 +143,21 @@ public class CameraController : MonoBehaviour{
 
 
 
-    // offset modifiers:
+    // lerpers and modifiers:
     public void lerp_offset(float? x, float? y, float time){
         state_swtich(ref y_offset_state, Calc.lerp_value(val => offset.y = val, offset.y, y.GetValueOrDefault(offset.y), time));
         state_swtich(ref x_offset_state, Calc.lerp_value(val => offset.x = val, offset.x, x.GetValueOrDefault(offset.x), time));
     }
     public void reset_offset(float time) => lerp_offset(original_offset.x, original_offset.y, time);
-    public void lerp_zoom(float size, float time) =>
-        state_swtich(ref zoom_state, Calc.lerp_value(val => cam.orthographicSize = val, cam.orthographicSize, size, time));
+    public void lerp_zoom(float size, float time) => state_swtich(ref zoom_state, Calc.lerp_value(val => cam.orthographicSize = val, cam.orthographicSize, size, time));
     public void reset_zoom(float time) => lerp_zoom(original_size, time);
-    public void ZoomIn()    =>    cam.orthographicSize--;
-    public void ZoomOut()   =>    cam.orthographicSize++;
+    public void ZoomIn() => cam.orthographicSize--;
+    public void ZoomOut() => cam.orthographicSize++;
+    public void lerp_regulators(Vector2? _x_bounds, Vector2? _y_bounds, float time){
+        state_swtich(ref x_bounds_state, Calc.lerp_vector2(val => x_bounds=val, x_bounds, _x_bounds.GetValueOrDefault(x_bounds), time));
+        state_swtich(ref y_bounds_state, Calc.lerp_vector2(val => y_bounds=val, y_bounds, _y_bounds.GetValueOrDefault(y_bounds), time));
+    }
+    public void reset_regulators(float time) => lerp_regulators(original_x_bounds,original_y_bounds,time);
 }
 
 public enum CameraFollowType{

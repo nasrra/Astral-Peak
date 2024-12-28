@@ -52,7 +52,7 @@ public class Hollow : Enemy{
                 movement.no_state();
                 enable_body_colliders(0);
                 particles.stop_all_particles();
-                sprite.play_death_effect(1.25f);
+                sprite.play_death_effect(1.5f);
                 hurt_box.enabled = false;
                 if(stun_state != null)
                     StopCoroutine(stun_state);

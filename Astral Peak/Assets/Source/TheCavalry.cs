@@ -35,7 +35,7 @@ public class TheCavalry : Boss<CavalryMovement>{
                 if(idle_state != null)
                     StopCoroutine(idle_state);
                 enable_body_colliders(0);
-                sprite.play_death_effect(1.5f);
+                sprite.play_death_effect(2f);
                 disable_components();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();

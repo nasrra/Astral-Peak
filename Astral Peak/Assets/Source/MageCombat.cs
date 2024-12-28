@@ -20,7 +20,7 @@ public class MageCombat : BossCombat{
             idle_cooldown:         1,
             combat_cooldown:       2),
         hollow_summon_phase_1 = new BossAttack(
-            "hollow_summon",
+            "1_hollow_summon",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  6,

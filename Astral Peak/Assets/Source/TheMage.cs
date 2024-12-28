@@ -99,7 +99,7 @@ public class TheMage : Boss<Movement>{
             transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
         else
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
-        animator.Play("exit_teleport");
+        animator.Play("1_exit_teleport");
     }
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}

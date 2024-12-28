@@ -9,7 +9,7 @@ public class BossSpriteHandler : SpriteHandler{
     void Awake() => set_material(hurt_material);
     public void play_damaged_flash(){
         set_material(hurt_material);
-        state_switch(ref state, pulse_value("_amount", 1, .5f));
+        state_switch(ref state, pulse_value("_amount", 1, .25f));
     }
     public void play_death_effect(float time){
         set_material(death_material);
