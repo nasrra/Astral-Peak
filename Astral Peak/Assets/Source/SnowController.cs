@@ -19,7 +19,7 @@ public class SnowController : MonoBehaviour{
         velocity_state;
     void Awake(){
         get_particle_system_modules();
-        StartCoroutine(test());
+        //StartCoroutine(test());
     }
 
     void state_switch(ref Coroutine state, IEnumerator _state){

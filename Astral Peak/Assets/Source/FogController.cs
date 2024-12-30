@@ -12,7 +12,7 @@ public class FogController : SpriteHandler{
         color_state;
     [SerializeField] float speed = 2;
     void Awake(){
-        StartCoroutine(test());
+        //StartCoroutine(test());
         StartCoroutine(set_offset());   
         set_preset(0);
     }
