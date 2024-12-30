@@ -30,7 +30,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     public override void kill(){
         animator.Play("death");
         StartCoroutine(Util.timer(
-            animator.GetCurrentAnimatorClipInfo(0).Length + 3,
+            animator.get_clip_length("death") + 3,
             start_action:()=>{
                 if(idle_state != null)
                     StopCoroutine(idle_state);

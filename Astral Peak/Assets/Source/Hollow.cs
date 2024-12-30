@@ -47,7 +47,7 @@ public class Hollow : Enemy{
         unlink_events();
         animator.Play("death",0,0);
         StartCoroutine(Util.timer(
-            animator.GetCurrentAnimatorClipInfo(0).Length + 3,
+            animator.get_clip_length("death") + 3,
             start_action: ()=>{
                 movement.no_state();
                 enable_body_colliders(0);

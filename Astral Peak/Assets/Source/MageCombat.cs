@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class MageCombat : BossCombat{
     BossAttack
         projectile_summon_phase_1 = new BossAttack(
-            "1_projectile_summon",
+            "Mage1ProjSum",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  2,
@@ -12,7 +12,7 @@ public class MageCombat : BossCombat{
             idle_cooldown:         0,
             combat_cooldown:       2),
         teleport_phase_1 = new BossAttack(
-            "1_enter_teleport",
+            "Mage1EnterTel",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  0,
@@ -20,7 +20,7 @@ public class MageCombat : BossCombat{
             idle_cooldown:         1,
             combat_cooldown:       2),
         hollow_summon_phase_1 = new BossAttack(
-            "1_hollow_summon",
+            "Mage1HolSum",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  6,
@@ -28,21 +28,21 @@ public class MageCombat : BossCombat{
             idle_cooldown:         3,
             combat_cooldown:       3),
         projectile_summon_phase_2 = new BossAttack(
-            "2_projectile_summon",
+            "Mage2ProjSum",
             chance:                50,
             player_distance:       20,
             arena_bound_distance:  2,
             attack_cooldown:       8,
             idle_cooldown:         0,
             combat_cooldown:       2),
-        teleport_phase_2 = new BossAttack(
-            "2_enter_teleport",
+        signature_2 = new BossAttack(
+            "Mage2Sig",
             chance:                50,
-            player_distance:       6,
-            arena_bound_distance:  0,
-            attack_cooldown:       4,
-            idle_cooldown:         1,
-            combat_cooldown:       2)        
+            player_distance:       20,
+            arena_bound_distance:  2,
+            attack_cooldown:       8,
+            idle_cooldown:         0,
+            combat_cooldown:       2)
         ;
     protected override void create_movesets(){
         movesets = new Dictionary<int, Action>(){
@@ -60,7 +60,7 @@ public class MageCombat : BossCombat{
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
                     projectile_summon_phase_2,
-                    teleport_phase_2,
+                    signature_2
                 };
             }}
         };

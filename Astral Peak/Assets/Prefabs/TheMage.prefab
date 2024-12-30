@@ -452,6 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6195114758219728643}
   - component: {fileID: 7807775443454386958}
+  - component: {fileID: 2450987617186753991}
   - component: {fileID: 6303910286237399020}
   - component: {fileID: 2628764344551210761}
   - component: {fileID: 7337751923581852116}
@@ -511,6 +512,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2450987617186753991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426246615804681694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a49318797a8a8f4a93473b4ad84a73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7807775443454386958}
 --- !u!114 &6303910286237399020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +541,7 @@ MonoBehaviour:
   movement: {fileID: 3031772494085979690}
   phase: 1
   sprite: {fileID: 7337751923581852116}
-  animator: {fileID: 7807775443454386958}
+  animator: {fileID: 2450987617186753991}
   particles: {fileID: 2124548225488711359}
   ranged: {fileID: 2553571693241179179}
   melee: {fileID: 3578281081255943858}

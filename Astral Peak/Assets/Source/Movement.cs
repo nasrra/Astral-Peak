@@ -225,7 +225,7 @@ public class Movement : MonoBehaviour{
         while(true){
             elapsed_time += Time.deltaTime;
             float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * x_speed_factor * reverse_factor);
-            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * y_speed_factor);
+            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * y_speed_factor * reverse_factor);
             set_move_direction(new Vector2(sin_x, sin_y));
             yield return new WaitForFixedUpdate();
         }

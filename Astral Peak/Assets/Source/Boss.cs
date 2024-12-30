@@ -9,7 +9,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [Header("Boss")]
     [SerializeField] protected int phase = 1;
     [SerializeField] protected BossSpriteHandler sprite;
-    [SerializeField] public Animator animator;
+    [SerializeField] public AnimatorOverride animator;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
@@ -17,7 +17,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected Transform target;
-    protected Coroutine state; // an override state to control flow of all components.
 
     public void select_phase(int _phase) => phase_selected(phase = _phase);
     protected float dist_to_target() => (transform.position - target.position).x;

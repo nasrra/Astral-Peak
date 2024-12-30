@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Deluz;
+using Deluz.Collections;
 using UnityEngine;
 
 public class TheMage : Boss<Movement>{
@@ -12,6 +13,7 @@ public class TheMage : Boss<Movement>{
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
     Dictionary<int, Action> phase_linker;
+    StateQueue state;
 
     // Base: 
     void Awake(){
@@ -19,6 +21,8 @@ public class TheMage : Boss<Movement>{
         create_phase_linker();
         select_phase(phase);
         sound.set_functions(new MageSound(sound));
+        state = new StateQueue(this, ()=>fly_and_attack_state());
+        set_fly_pattern();
         idle(2);
     }
     void OnDestroy() => unlink_events();
@@ -36,26 +40,58 @@ public class TheMage : Boss<Movement>{
     }
 
     // states:
-    private void idle(float time) =>
-        StartCoroutine(Util.timer(
-            time,
-            start_action:()=>switch_to_idle(),
-            time_out:()=>switch_to_follow_and_attack()
-        ));
+    private void idle(float time){
+        state.queue(
+            time: time,
+            start_action:()=>switch_to_idle()
+        );
+        state.state_switch();
+    }
 
     private void idle_phase_1(){
         no_state();
-        animator.Play("idle");
+        animator.Play("MageIdle");
     }
 
     private void idle_phase_2(){
-        animator.Play("hover");
+        animator.Play("MageHover");
     }
 
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     private void attack_phase_1(BossAttack attack) => base.attack(attack);
-    private void attack_phase_2(BossAttack attack) => animator.Play(attack.animation_id);
-
+    private void attack_phase_2(BossAttack attack){
+        if(teleport_points.ContainsKey(attack.animation_id)){
+            state.queue(
+                time: animator.get_clip_length("Mage2EnterTel"),
+                start_action:() => {
+                    movement.no_state();
+                    movement.zero_velocity();
+                    animator.Play("Mage2EnterTel");
+                });
+            state.queue(
+                time: animator.get_clip_length("Mage2ExitTel"), 
+                start_action:()=>teleport_phase_2(teleport_points[attack.animation_id].position));
+            state.queue(
+                time: animator.get_clip_length(attack.animation_id),
+                start_action:()=>animator.Play(attack.animation_id));
+            state.queue(
+                time: animator.get_clip_length("Mage2EnterTel"),
+                start_action:()=>animator.Play("Mage2EnterTel"));
+            state.queue(
+                time: animator.get_clip_length("Mage2ExitTel"), 
+                start_action:()=>set_fly_pattern()); // return to idle flying.
+            state.queue(
+                time: 0,
+                start_action:()=>combat.attack_end()
+            );
+        }
+        else
+            state.queue(
+                time: animator.get_clip_length(attack.animation_id),
+                start_action:()=>animator.Play(attack.animation_id));
+        state.state_switch();
+    }
+//
     private void movement_phase_1(){
         movement.set_gravity(1);
         movement.set_deceleration(.85f);
@@ -69,14 +105,14 @@ public class TheMage : Boss<Movement>{
     }
 
     private void fly_and_attack_state(){
-        //movement.set_gravity(0);
-        animator.Play("hover");
+        animator.Play("MageHover");
         combat.chose_attack_state(target);
     }
 
     // set a fly pattern at the end of every teleport.
     private void set_fly_pattern(){
-        int x = UnityEngine.Random.Range(0,teleport_points.Count);
+        int x = UnityEngine.Random.Range(0,2);
+        animator.Play("Mage2ExitTel");
         movement.no_state();
         switch(x){
             case 0:
@@ -104,9 +140,9 @@ public class TheMage : Boss<Movement>{
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
 
-    public void teleport_phase_2(){
-        animator.Play("2_exit_teleport");
-        set_fly_pattern();
+    public void teleport_phase_2(Vector3 pos){
+        transform.position = pos;
+        animator.Play("Mage2ExitTel");
     }
 
     // used for when hollows are summoned.
@@ -121,9 +157,9 @@ public class TheMage : Boss<Movement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("walk",0,0);
+            animator.Play("MageWalk",0,0);
         else
-            animator.Play("idle",0,0);
+            animator.Play("MageIdle",0,0);
     }
 
     // Linkage:
@@ -158,7 +194,6 @@ public class TheMage : Boss<Movement>{
     }
     void link_phase_2(){
         movement_phase_2();
-        set_fly_pattern(); // here temporarily.
         link_health();
         link_combat();
         link_ranged();

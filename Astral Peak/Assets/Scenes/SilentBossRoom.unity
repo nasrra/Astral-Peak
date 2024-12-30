@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39344981}
   m_Layer: 0
-  m_Name: figure_eight_reversed
+  m_Name: figure_eight_reverse
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 39344980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18, y: -6, z: 0}
+  m_LocalPosition: {x: 18, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6046,7 +6046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &480442253
 Transform:
   m_ObjectHideFlags: 0
@@ -11720,7 +11720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f6f4c9a0c80264c896735688960ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
 --- !u!4 &1033344237
 Transform:
   m_ObjectHideFlags: 0
@@ -12076,6 +12075,37 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 1313043744}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1326285702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1326285703}
+  m_Layer: 0
+  m_Name: Mage2Sig
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1326285703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326285702}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 4.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1356286902}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342483944
 GameObject:
   m_ObjectHideFlags: 0
@@ -12226,6 +12256,7 @@ Transform:
   m_Children:
   - {fileID: 1170752381}
   - {fileID: 39344981}
+  - {fileID: 1326285703}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1447472353
@@ -13513,7 +13544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -13521,7 +13552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -13533,7 +13564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -13541,7 +13572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: phase
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: target
@@ -13612,11 +13643,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: teleport_points._serializedList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: teleport_points._serializedList.Array.data[0].Key
+      value: Mage2Sig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: teleport_points._serializedList.Array.data[1].Key
+      value: figure_eight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: teleport_points._serializedList.Array.data[2].Key
+      value: figure_eight_reversed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 1326285703}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: teleport_points._serializedList.Array.data[1].Value
       value: 
       objectReference: {fileID: 1170752381}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: teleport_points._serializedList.Array.data[1].Value
+      propertyPath: teleport_points._serializedList.Array.data[2].Value
       value: 
       objectReference: {fileID: 39344981}
     - target: {fileID: 6914361556193369870, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
