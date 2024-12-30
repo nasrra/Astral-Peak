@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 907828889830464158}
   - component: {fileID: 3429079448900464409}
   - component: {fileID: 965367310683355375}
+  - component: {fileID: 553567108010788096}
   m_Layer: 8
   m_Name: Hollow
   m_TagString: Untagged
@@ -414,8 +415,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
   movement: {fileID: 9057505959519379731}
+  phase: 1
   sprite: {fileID: 896696132830443372}
-  animator: {fileID: 4859797069849427953}
+  animator: {fileID: 553567108010788096}
   particles: {fileID: 965367310683355375}
   ranged: {fileID: 0}
   melee: {fileID: 907828889830464158}
@@ -548,6 +550,19 @@ MonoBehaviour:
       Value: {fileID: 6797523211964387268}
     - Key: enemy_ambience
       Value: {fileID: 7151683786981688146}
+--- !u!114 &553567108010788096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841642048582550558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a49318797a8a8f4a93473b4ad84a73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4859797069849427953}
 --- !u!1 &1956319737559730232
 GameObject:
   m_ObjectHideFlags: 0

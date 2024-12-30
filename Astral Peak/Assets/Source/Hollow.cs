@@ -45,9 +45,9 @@ public class Hollow : Enemy{
     // States:
     public override void kill(){
         unlink_events();
-        animator.Play("death",0,0);
+        animator.Play("HollowDeath",0,0);
         StartCoroutine(Util.timer(
-            animator.get_clip_length("death") + 3,
+            animator.get_clip_length("HollowDeath") + 3,
             start_action: ()=>{
                 movement.no_state();
                 enable_body_colliders(0);
@@ -68,7 +68,7 @@ public class Hollow : Enemy{
         state_switch(ref stun_state, Util.timer(
             stun_state_timer,
             start_action:()=>{
-                animator.Play("idle");
+                animator.Play("HollowIdle");
                 unlink_combat();        
             },
             time_out:()=>{
@@ -86,14 +86,14 @@ public class Hollow : Enemy{
     }
         
     public void summon_state(){
-        animator.Play("summon");
+        animator.Play("HollowSummon");
         play_summoning_animation();
         movement.no_state();
     }
 
     public void alert(){
         movement.no_state();
-        animator.Play("yell");
+        animator.Play("HollowYell");
         alerted = true;
         alert_movement();
     }
@@ -127,9 +127,9 @@ public class Hollow : Enemy{
 
     void move_direction_changed(Vector2 move_direction){
         if(move_direction != Vector2.left && move_direction != Vector2.right)
-            animator.Play("idle");
+            animator.Play("HollowIdle");
         else
-            animator.Play(alerted == true? "run" : "walk", 0, 0); // force the animation to play (0,0);
+            animator.Play(alerted == true? "HollowRun" : "HollowWalk", 0, 0); // force the animation to play (0,0);
     }
 
     void target_reached(){

@@ -21,8 +21,6 @@ public class TheMage : Boss<Movement>{
         create_phase_linker();
         select_phase(phase);
         sound.set_functions(new MageSound(sound));
-        state = new StateQueue(this, ()=>fly_and_attack_state());
-        set_fly_pattern();
         idle(2);
     }
     void OnDestroy() => unlink_events();
@@ -135,7 +133,7 @@ public class TheMage : Boss<Movement>{
             transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
         else
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
-        animator.Play("1_exit_teleport");
+        animator.Play("Mage1ExitTel");
     }
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
@@ -149,7 +147,6 @@ public class TheMage : Boss<Movement>{
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
-        hollow.animator.Play("summon");
         hollow.on_start += hollow.summon_state;
     }
 
@@ -188,6 +185,7 @@ public class TheMage : Boss<Movement>{
         link_movement();
         link_combat();
         link_ranged();
+        state = new StateQueue(this, ()=>follow_and_attack_state());
         switch_to_idle = idle_phase_1;
         switch_to_follow_and_attack = follow_and_attack_state;
         switch_to_attack = attack_phase_1;
@@ -197,6 +195,8 @@ public class TheMage : Boss<Movement>{
         link_health();
         link_combat();
         link_ranged();
+        set_fly_pattern();
+        state = new StateQueue(this, ()=>fly_and_attack_state());
         switch_to_idle = idle_phase_2;
         switch_to_follow_and_attack = fly_and_attack_state;
         switch_to_attack = attack_phase_2;
