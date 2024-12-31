@@ -250,9 +250,17 @@ public class TheMage : Boss<Movement>{
     void link_ranged(){
         ranged.get_holster("hollow_1").projectile_fired += set_hollow_target;
         ranged.get_holster("hollow_2").projectile_fired += set_hollow_target;
+        ranged.get_holster("hollow_3").projectile_fired += set_hollow_target;
+        ranged.get_holster("hollow_4").projectile_fired += set_hollow_target;
+        ranged.get_holster("hollow_5").projectile_fired += set_hollow_target;
+        ranged.get_holster("hollow_6").projectile_fired += set_hollow_target;
     }
     void unlink_ranged(){
         ranged.get_holster("hollow_1").projectile_fired -= set_hollow_target;
         ranged.get_holster("hollow_2").projectile_fired -= set_hollow_target;
+        ranged.get_holster("hollow_3").projectile_fired -= set_hollow_target;
+        ranged.get_holster("hollow_4").projectile_fired -= set_hollow_target;
+        ranged.get_holster("hollow_5").projectile_fired -= set_hollow_target;
+        ranged.get_holster("hollow_6").projectile_fired -= set_hollow_target;
     }
 }

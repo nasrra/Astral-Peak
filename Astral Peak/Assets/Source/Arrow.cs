@@ -34,7 +34,7 @@ public class Arrow : Projectile{
             StopCoroutine(lifetime_state);
         rb.linearVelocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Static;
-        col.enabled = false;
+        enable_colliders(false);
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_LIGHT,
             audio_player: this, 

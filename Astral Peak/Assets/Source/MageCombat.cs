@@ -27,6 +27,14 @@ public class MageCombat : BossCombat{
             attack_cooldown:       12,
             idle_cooldown:         3,
             combat_cooldown:       3),
+        hollow_summon_phase_2 = new BossAttack(
+            "Mage2HolSum",
+            chance:                50,
+            player_distance:       6,
+            arena_bound_distance:  6,
+            attack_cooldown:       12,
+            idle_cooldown:         3,
+            combat_cooldown:       3),
         projectile_summon_phase_2 = new BossAttack(
             "Mage2ProjSum",
             chance:                50,
@@ -35,7 +43,7 @@ public class MageCombat : BossCombat{
             attack_cooldown:       8,
             idle_cooldown:         0,
             combat_cooldown:       2),
-        signature_2 = new BossAttack(
+        signature_phase_2 = new BossAttack(
             "Mage2Sig",
             chance:                50,
             player_distance:       20,
@@ -60,7 +68,8 @@ public class MageCombat : BossCombat{
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
                     //projectile_summon_phase_2,
-                    signature_2
+                    signature_phase_2,
+                    hollow_summon_phase_2,
                 };
             }}
         };

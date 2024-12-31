@@ -7,17 +7,22 @@ public class LightningStrikeProjectile : Projectile{
         state_switch(ref lifetime_state, lifetime_counter());
         StartCoroutine(Util.timer(
             time: 1.5f,
-            start_action:()=> enable_collider(false),
+            start_action:()=> enable_colliders(false),
             time_out: loop
         ));
     }
     void loop(){
-        enable_collider(true);
+        enable_colliders(true);
         lightning.start_emitting();    
         AudioClipHandler.play(
             sound_id: Sounds.SoundID.THUNDER_1,
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED
+        );
+        AudioClipHandler.play(
+            sound_id: Sounds.SoundID.ELECTRICITY_LOOP,
+            audio_player: this,
+            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
         );
         SceneLightining.instance.lerp_intensity(
             id:"global",

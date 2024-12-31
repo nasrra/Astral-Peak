@@ -337,6 +337,41 @@ MonoBehaviour:
     speed: 0.3
     color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
   speed: 0.125
+--- !u!1 &93940184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93940185}
+  m_Layer: 0
+  m_Name: HollowSummonPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93940185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93940184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: -7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2032488920}
+  - {fileID: 1476667162}
+  - {fileID: 703115894}
+  - {fileID: 513023296}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &199977849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,6 +6137,37 @@ MonoBehaviour:
   - {fileID: 673818932}
   rotation_speed: 25
   radius: 6
+--- !u!1 &513023295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513023296}
+  m_Layer: 0
+  m_Name: HollowSummon (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513023296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513023295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93940185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &517630440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6183,11 +6249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519424288a047c542895fbc66d4c7d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &531566442 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3247813809404593138, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-  m_PrefabInstance: {fileID: 437290954900120628}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &544969670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6698,6 +6759,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+--- !u!1 &703115893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703115894}
+  m_Layer: 0
+  m_Name: HollowSummon (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &703115894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703115893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93940185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &726800707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7615,6 +7707,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d5af5cd5b2bc5479f0a554be81fd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1476667161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476667162}
+  m_Layer: 0
+  m_Name: HollowSummon (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476667162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476667161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93940185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1517076096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8473,6 +8596,37 @@ Transform:
   - {fileID: 836059598}
   m_Father: {fileID: 1733914257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2032488919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2032488920}
+  m_Layer: 0
+  m_Name: HollowSummon (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032488920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032488919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 93940185}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2062009361 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
@@ -8727,7 +8881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.size
-      value: 15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[0].Key
@@ -8771,30 +8925,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[10].Key
-      value: round_1
+      value: hollow_3
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[11].Key
-      value: round_2
+      value: hollow_4
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[12].Key
-      value: round_3
+      value: hollow_5
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[13].Key
-      value: round_4
+      value: hollow_6
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[14].Key
-      value: round_5
+      value: round_1
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[15].Key
-      value: round_5
+      value: round_2
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[16].Key
+      value: round_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[17].Key
+      value: round_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[18].Key
       value: round_5
       objectReference: {fileID: 0}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
@@ -8848,7 +9010,7 @@ PrefabInstance:
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[9].Value.fire_point
       value: 
-      objectReference: {fileID: 531566442}
+      objectReference: {fileID: 872430169}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[9].Value.projectile
       value: 
@@ -8856,43 +9018,59 @@ PrefabInstance:
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[10].Value.fire_point
       value: 
-      objectReference: {fileID: 1251555333}
+      objectReference: {fileID: 2032488920}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[10].Value.projectile
       value: 
-      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[11].Value.fire_point
       value: 
-      objectReference: {fileID: 54575392}
+      objectReference: {fileID: 1476667162}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[11].Value.projectile
       value: 
-      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[12].Value.fire_point
       value: 
-      objectReference: {fileID: 924025591}
+      objectReference: {fileID: 703115894}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[12].Value.projectile
       value: 
-      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[13].Value.fire_point
       value: 
-      objectReference: {fileID: 390612324}
+      objectReference: {fileID: 513023296}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[13].Value.projectile
+      value: 
+      objectReference: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[14].Value.fire_point
       value: 
-      objectReference: {fileID: 744270219}
+      objectReference: {fileID: 1251555333}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[15].Value.fire_point
       value: 
-      objectReference: {fileID: 744270219}
+      objectReference: {fileID: 54575392}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[16].Value.fire_point
       value: 
+      objectReference: {fileID: 924025591}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[17].Value.fire_point
+      value: 
+      objectReference: {fileID: 390612324}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[18].Value.fire_point
+      value: 
       objectReference: {fileID: 744270219}
+    - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[18].Value.projectile
+      value: 
+      objectReference: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
     - target: {fileID: 2553571693241179179, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: holsters._serializedList.Array.data[0].Value.projectile_is_child
       value: 0
@@ -9188,3 +9366,4 @@ SceneRoots:
   - {fileID: 688337739}
   - {fileID: 677344364}
   - {fileID: 1764098513}
+  - {fileID: 93940185}

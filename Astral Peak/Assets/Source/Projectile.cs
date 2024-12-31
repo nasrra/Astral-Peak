@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour{
         lifetime = 5,
         deathtime =0;
     [SerializeField] TrailRenderer trail;
-    [SerializeField] protected Collider2D col;
+    [SerializeField] protected List<Collider2D> colliders = new List<Collider2D>();
     [SerializeField] protected Coroutine 
         move_state,
         rotate_state,
@@ -134,7 +134,12 @@ public class Projectile : MonoBehaviour{
     }
 
     public void enable_trail(bool x) {if(trail != null)trail.enabled = x;}
-    public void enable_collider(bool x) {col.enabled = x;}
+    public void enable_colliders(bool x){
+        if(colliders.Count==0)
+            throw new Exception("no colliders!"); // delete me once done, just here to remember for other projectiles.
+        foreach(Collider2D col in colliders)
+            col.enabled = x;
+    }
 
     protected void enable_sprites(bool x){
         foreach(SpriteRenderer sprite in sprites)

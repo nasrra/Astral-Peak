@@ -20,14 +20,14 @@ public class TrackingProjectile : Projectile{
     public void buffer() =>
         state_switch(ref buffer_state, Util.timer(buffer_time,
             start_action: () => {
-                col.enabled = enable_col_before_buffer;   
+                enable_colliders(enable_col_before_buffer);   
                 buffer_started?.Invoke();
             },
             time_out: () => {
                 state_switch(ref move_state, move(move_speed));
                 state_switch(ref rotate_state, rotate_to_target(Player.instance.transform, lerp_rotate_speed));
                 enable_trail(true);
-                col.enabled = true;
+                enable_colliders(true);
                 buffer_stopped?.Invoke();
                 transform.parent = null;
         }));
