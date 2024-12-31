@@ -32,6 +32,7 @@ public class ParticleHandler : MonoBehaviour{
         foreach(ParticleSystem p in particles.Values)
             flip_emitter_left(p.GetComponent<ParticleSystemRenderer>());
     }
+    public ParticleSystem get_particle(string id) => particles[id];
 }
 
 

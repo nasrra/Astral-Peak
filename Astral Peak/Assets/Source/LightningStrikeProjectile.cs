@@ -2,9 +2,19 @@ using Deluz;
 using UnityEngine;
 
 public class LightningStrikeProjectile : Projectile{
+    [Header("Lightning Strike")]
     [SerializeField] LightningController lightning;
+    [SerializeField] float lifetime, move_speed;
+
+    public override void destroy(){
+        Destroy(gameObject);
+    }
+
     void Awake(){
-        state_switch(ref lifetime_state, lifetime_counter());
+        StartCoroutine(Util.timer(
+            time: lifetime,
+            time_out: destroy
+        ));
         StartCoroutine(Util.timer(
             time: 1.5f,
             start_action:()=> enable_colliders(false),
@@ -32,12 +42,11 @@ public class LightningStrikeProjectile : Projectile{
                 id: "global",
                 value: 1,
                 time:.15f));
-        state_switch(ref move_state, move(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right)); 
+        movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }
-    protected override void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == LayersManager.PLAYER){
-            Creature creature = other.GetComponent<Creature>();
-            creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
-        }
+    
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == LayersManager.PLAYER)
+            damage_creature(other.GetComponent<Creature>());
     }
 }

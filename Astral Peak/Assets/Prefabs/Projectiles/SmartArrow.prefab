@@ -309,6 +309,8 @@ GameObject:
   - component: {fileID: 3255954247737370109}
   - component: {fileID: 6600055358799903588}
   - component: {fileID: 8572461713248187766}
+  - component: {fileID: 5998932368886777655}
+  - component: {fileID: 2706935612149229415}
   m_Layer: 0
   m_Name: SmartArrow
   m_TagString: Untagged
@@ -374,19 +376,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46173cdd6188bf4a96ab7167f06ea00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6600055358799903588}
-  front_point: {fileID: 7094553824266607717}
+  particles: {fileID: 2706935612149229415}
+  colliders: []
   sprites:
   - {fileID: 6737656278818758255}
   - {fileID: 7721747331841257304}
   - {fileID: 3531449573300917479}
+  movement: {fileID: 5998932368886777655}
+  front_point: {fileID: 7094553824266607717}
+  move_time: 0
+  rotation_speed: 0
   move_speed: 20
-  lifetime: 1
-  deathtime: 0
-  trail: {fileID: 0}
-  col: {fileID: 3597924189513528832}
-  despawn_effect: {fileID: 8296636422789084472, guid: 2378160a0a5059b47b1c4f4b740f74db, type: 3}
-  grounded_effect: {fileID: 3285659472590648601, guid: a67f3a62472781148a408092ceb90313, type: 3}
+--- !u!114 &5998932368886777655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752692394907920807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0836e7fa18642c142a34cd22e3ff1e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6600055358799903588}
+--- !u!114 &2706935612149229415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752692394907920807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d4f4473f740db4583e27606a70812c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+    _serializedList:
+    - Key: grounded
+      Value: {fileID: 0}
+    - Key: smoke
+      Value: {fileID: 0}
 --- !u!1 &8992184771182305914
 GameObject:
   m_ObjectHideFlags: 0
