@@ -114,7 +114,7 @@ public struct Tower1 : SceneSoundSet{
     };
 }
 
-public struct SilentBossRoom : SceneSoundSet{
+public struct MageBossRoom : SceneSoundSet{
     public List<Sound> get_sounds(){
         List<Sound> sounds = new List<Sound>();
         foreach(SoundSet set in sets)
@@ -129,6 +129,8 @@ public struct SilentBossRoom : SceneSoundSet{
         new SnowSoundSet(),
         new HollowSoundSet(),
         new MageSoundSet(),
+        new ThunderSoundSet(),
+        new ElectricitySoundSet(),
     };
 }
 

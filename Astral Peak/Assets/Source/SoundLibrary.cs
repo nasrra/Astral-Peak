@@ -49,7 +49,7 @@ public static class SoundLibrary{
         {"Shrine",          () => {return new SceneSounds.Shrine().get_sounds();}},
         {"MainMenu",        () => {return new SceneSounds.MainMenu().get_sounds();}},
         {"Tower1",          () => {return new SceneSounds.Tower1().get_sounds();}},
-        {"MageBossRoom",  () => {return new SceneSounds.SilentBossRoom().get_sounds();}},
+        {"MageBossRoom",    () => {return new SceneSounds.MageBossRoom().get_sounds();}},
         {"SnowField",       () => {return new SceneSounds.SnowField().get_sounds();}}
     };
 }

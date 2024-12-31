@@ -12,22 +12,84 @@ public class TheMage : Boss<Movement>{
     [SerializeField] List<Animator> summoning_circles = new List<Animator>();
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
+    [SerializeField] List<LightningController> staff_lightning = new List<LightningController>();
     Dictionary<int, Action> phase_linker;
     StateQueue state;
 
     // Base: 
-    void Awake(){
+    void Start(){
         link_events();
         create_phase_linker();
         select_phase(phase);
         sound.set_functions(new MageSound(sound));
-        idle(2);
+        idle(2);        
     }
     void OnDestroy() => unlink_events();
+    private void idle(float time){
+        state.queue(
+            time: time,
+            start_action:()=>switch_to_idle()
+        );
+        state.state_switch();
+    }
+    protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
 
 
 
 
+
+    //phase 1.
+    private void idle_phase_1(){
+        no_state();
+        animator.Play("MageIdle");
+    }
+    private void attack_phase_1(BossAttack attack) => base.attack(attack);
+    private void movement_phase_1(){
+        movement.set_gravity(1);
+        movement.set_deceleration(.85f);
+        movement.set_speed(3);
+    }
+    public void teleport_phase_1(){
+        float random = UnityEngine.Random.Range(0,2);
+        float offset = UnityEngine.Random.Range(8,17);
+        Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
+        Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
+        if(random == 0)
+            transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
+        else
+            transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
+        animator.Play("Mage1ExitTel");
+    }
+    private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
+    private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
+    private void set_hollow_target(GameObject x){
+        Hollow hollow = x.GetComponent<Hollow>();
+        hollow.set_target(target);
+        hollow.on_start += hollow.summon_state;
+    }
+    void move_direction_changed(Vector2 direction){
+        if(combat.is_attacking == true)
+            return;
+        if(direction == Vector2.left || direction == Vector2.right)
+            animator.Play("MageWalk",0,0);
+        else
+            animator.Play("MageIdle",0,0);
+    }
+
+
+
+
+
+    // phase 2.
+    private void idle_phase_2() => animator.Play("MageHover");
+    public void start_staff_lightning(){
+        foreach(LightningController l in staff_lightning)
+            l.start_emitting();
+    }
+    public void stop_staff_lightning(){
+        foreach(LightningController l in staff_lightning)
+            l.stop_emitting();
+    }
     public void wailing_stone_attack(){
         foreach(Animator circle in summoning_circles)
             circle.Play("loop");
@@ -36,27 +98,6 @@ public class TheMage : Boss<Movement>{
                 ranged.fire_projectile("stone_"+(i+1));
         }));
     }
-
-    // states:
-    private void idle(float time){
-        state.queue(
-            time: time,
-            start_action:()=>switch_to_idle()
-        );
-        state.state_switch();
-    }
-
-    private void idle_phase_1(){
-        no_state();
-        animator.Play("MageIdle");
-    }
-
-    private void idle_phase_2(){
-        animator.Play("MageHover");
-    }
-
-    protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
-    private void attack_phase_1(BossAttack attack) => base.attack(attack);
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
             state.queue(
@@ -89,25 +130,15 @@ public class TheMage : Boss<Movement>{
                 start_action:()=>animator.Play(attack.animation_id));
         state.state_switch();
     }
-//
-    private void movement_phase_1(){
-        movement.set_gravity(1);
-        movement.set_deceleration(.85f);
-        movement.set_speed(3);
-    }
-
     private void movement_phase_2(){
         movement.set_gravity(0);
         movement.set_deceleration(1f);
         movement.set_speed(6);
     }
-
     private void fly_and_attack_state(){
         animator.Play("MageHover");
         combat.chose_attack_state(target);
     }
-
-    // set a fly pattern at the end of every teleport.
     private void set_fly_pattern(){
         int x = UnityEngine.Random.Range(0,2);
         animator.Play("Mage2ExitTel");
@@ -123,41 +154,37 @@ public class TheMage : Boss<Movement>{
                 break;
         }
     }
-
-    public void teleport_phase_1(){
-        float random = UnityEngine.Random.Range(0,2);
-        float offset = UnityEngine.Random.Range(8,17);
-        Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
-        Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
-        if(random == 0)
-            transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
-        else
-            transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
-        animator.Play("Mage1ExitTel");
-    }
-    private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
-    private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
-
     public void teleport_phase_2(Vector3 pos){
         transform.position = pos;
         animator.Play("Mage2ExitTel");
     }
-
-    // used for when hollows are summoned.
-    private void set_hollow_target(GameObject x){
-        Hollow hollow = x.GetComponent<Hollow>();
-        hollow.set_target(target);
-        hollow.on_start += hollow.summon_state;
+    public void spawn_lightning_strike(){
+        RaycastHit2D hit;
+        Transform player = Player.instance.transform;
+        hit = Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, LayersManager.BITWISE_GROUND);
+        if(hit==true)
+            ranged.fire_projectile("lightning_strike",hit.point);
     }
 
-    void move_direction_changed(Vector2 direction){
-        if(combat.is_attacking == true)
-            return;
-        if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("MageWalk",0,0);
-        else
-            animator.Play("MageIdle",0,0);
+
+
+
+
+    // VFX Calls
+    public void signature_2_lighting(){
+        SceneLightining.instance.lerp_intensity(
+            id:"global",
+            value:2.5f,
+            time:.15f,
+            callback:()=>SceneLightining.instance.lerp_intensity(
+                id: "global",
+                value: 1,
+                time:.15f));
     }
+
+
+
+
 
     // Linkage:
     protected void link_events(){

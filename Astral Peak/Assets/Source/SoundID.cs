@@ -16,9 +16,12 @@ namespace Sounds{
     MAGIC_1,
     MAGIC_EXPLOSION,
     WHOOSH_1,
+
+    // electricity
     ELECTRICITY_1,
     ELECTRICITY_2,
     ELECTRICITY_3,
+    ELECTRICITY_LOOP,
 
     //Ui
     WOODEN_PING,
@@ -97,7 +100,13 @@ namespace Sounds{
     DOMINE_MOUNTAIN_SUMMIT,
     DOMINE_WHY_HERE,
 
+    //thunder
+    THUNDER_1,
+    THUNDER_2,
+    THUNDER_DISTANT,
+
     //Ambience
     SOFT_WIND,
+    HEAVY_WIND,
 }
 }

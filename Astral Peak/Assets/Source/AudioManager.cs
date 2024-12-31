@@ -78,7 +78,7 @@ public static class AudioManager{
     public static void voice_volume(float volume) => mixer.SetFloat(VOICE_VOLUME, value_to_logarithmic(volume));
 
 
-    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(UnityHook.instance, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC);
+    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(UnityHook.instance, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
     public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,value_to_logarithmic(volume));
 
 

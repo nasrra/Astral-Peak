@@ -270,6 +270,10 @@ public class MageSound : SoundFunctions{
         SoundID.SNOW_FOOTSTEP_2,
         SoundID.SNOW_FOOTSTEP_3,
         SoundID.SNOW_FOOTSTEP_4};
+    private List<SoundID> thunder = new List<SoundID>(){
+        SoundID.THUNDER_1,
+        SoundID.THUNDER_2,
+    };
     protected override Dictionary<string, Action> create_sound_functions()
     => new Dictionary<string, Action>(){
         {"yell", () =>
@@ -313,5 +317,16 @@ public class MageSound : SoundFunctions{
             SoundID.ELECTRICITY_2,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"thunder", () =>
+            AudioClipHandler.play(
+            SoundID.THUNDER_2,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)},
+        {"electricity_loop", () =>
+            looping_sources.Add("electricity_loop",
+            AudioClipHandler.play(
+            SoundID.ELECTRICITY_LOOP,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED_LOOP))},
     };
 }

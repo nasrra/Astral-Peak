@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1024102492303572179}
   - component: {fileID: 7374902811535397434}
+  - component: {fileID: 2941456102765826825}
   m_Layer: 0
   m_Name: SwordStaff
   m_TagString: Untagged
@@ -88,6 +89,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2941456102765826825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32278348271996180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 2
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0, g: 0.6484003, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 2
+  m_LightVolumeEnabled: 1
+  m_ApplyToSortingLayers: 00000000390583e8abaca8f53f08f76537d1ef083b945525f7c47b0dc1e6441c1b03fc9add3de9281778f43f65faa773156817b5
+  m_LightCookieSprite: {fileID: 21300000, guid: a34c5ad37b0e5fa49a4270b35c5667fd, type: 3}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0.19999999, y: -0.07000017, z: 0}
+    m_Extent: {x: 0.64, y: 4.98, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &80320174047054801
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +518,7 @@ GameObject:
   - component: {fileID: 2124548225488711359}
   - component: {fileID: 2733793814216122303}
   - component: {fileID: 2553571693241179179}
+  - component: {fileID: 184681769367896912}
   m_Layer: 8
   m_Name: TheMage
   m_TagString: Enemy
@@ -564,6 +618,7 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: figure_eight_reversed
       Value: {fileID: 0}
+  staff_lightning: []
 --- !u!114 &2628764344551210761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,111 +871,106 @@ MonoBehaviour:
     - Key: stone_11
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_10
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_9
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_8
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_7
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_6
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_5
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_4
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_3
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_2
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: stone_1
       Value:
         projectile_is_child: 1
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 0}
     - Key: hollow_1
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
         fire_point: {fileID: 6619723628049759496}
     - Key: hollow_2
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
         fire_point: {fileID: 3247813809404593138}
     - Key: round_1
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 1698849995935034583}
     - Key: round_2
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 3108092081499610176}
     - Key: round_3
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 5686698394742009848}
     - Key: round_4
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 2337431915740513581}
     - Key: round_5
       Value:
         projectile_is_child: 0
-        fire_rate: 0
         projectile: {fileID: 4937053571805033081, guid: 156ccb75868604d4e9110ee602926229, type: 3}
         fire_point: {fileID: 87830586817276100}
+--- !u!114 &184681769367896912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426246615804681694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361eb76b913623b4f8af876da6a3a517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightning: {fileID: 0}
 --- !u!1 &3659403529855544338
 GameObject:
   m_ObjectHideFlags: 0

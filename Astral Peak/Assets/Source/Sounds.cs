@@ -657,4 +657,50 @@ public struct BellChimes1 : Sound{
     public float min_pitch()        => .40f;
     public float volume()           => 1f;
 }
+
+public struct Thunder1 : Sound{
+    public SoundID id()             => SoundID.THUNDER_1;
+    public AudioClip clip()         => SoundLibrary.load_sfx("thunder_1");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 2f;
+}
+
+public struct Thunder2 : Sound{
+    public SoundID id()             => SoundID.THUNDER_2;
+    public AudioClip clip()         => SoundLibrary.load_sfx("thunder_2");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 2f;
+}
+
+public struct ThunderDistant : Sound{
+    public SoundID id()             => SoundID.THUNDER_DISTANT;
+    public AudioClip clip()         => SoundLibrary.load_sfx("thunder_distant");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
+public struct HeavyWind : Sound{
+    public SoundID id()             => SoundID.HEAVY_WIND;
+    public AudioClip clip()         => SoundLibrary.load_sfx("heavy_wind");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
+public struct ElectricityLoop : Sound{
+    public SoundID id()             => SoundID.ELECTRICITY_LOOP;
+    public AudioClip clip()         => SoundLibrary.load_sfx("electricity_loop");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .84f;
+    public float volume()           => 1f;    
+}
+
 }

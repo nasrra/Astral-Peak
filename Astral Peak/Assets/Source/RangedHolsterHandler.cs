@@ -11,5 +11,9 @@ public class RangedHolsterHandler : MonoBehaviour{
         holsters[holster_id].fire_once();
         fired?.Invoke(holster_id);
     }
+    public void fire_projectile(string holster_id, Vector2 fire_point){
+        holsters[holster_id].fire_once(fire_point);
+        fired?.Invoke(holster_id);
+    }
     public RangedHolster get_holster(string id) => holsters[id];
 }

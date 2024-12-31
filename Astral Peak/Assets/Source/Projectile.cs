@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour{
         lifetime_state;
 
     void Awake(){
-        state_switch(ref move_state, move(move_speed));
+        state_switch(ref move_state, move());
         state_switch(ref lifetime_state, lifetime_counter()); 
     }
 
@@ -56,19 +56,35 @@ public class Projectile : MonoBehaviour{
     }
 
     protected virtual IEnumerator none(){yield break;}
-    protected virtual IEnumerator move(float speed){
+    protected IEnumerator move(){
         while(true){
-            rb.linearVelocity = (front_point.position - transform.position).normalized * speed;
+            rb.linearVelocity = (front_point.position - transform.position).normalized * move_speed;
             yield return new WaitForFixedUpdate();
         }
     }
-    protected virtual IEnumerator move(float speed, float time){
+    protected IEnumerator move(Vector2 direction){
+        while(true){
+            rb.linearVelocity = direction.normalized * move_speed;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    protected IEnumerator move(float time){
+        float counter = time;
+        while(time > 0){
+            rb.linearVelocity = (front_point.position - transform.position).normalized * move_speed;
+            counter -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        yield break;
+    }
+    protected IEnumerator move(float speed, float time){
         float counter = time;
         while(time > 0){
             rb.linearVelocity = (front_point.position - transform.position).normalized * speed;
             counter -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+        yield break;       
     }
     protected virtual IEnumerator rotate_to_target(Transform target, float speed){
         while(true){
@@ -89,6 +105,7 @@ public class Projectile : MonoBehaviour{
             counter -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+        yield break;
     }
 
     protected IEnumerator change_direction(Vector2 direction, float speed){
@@ -107,6 +124,7 @@ public class Projectile : MonoBehaviour{
         }
         // Snap to the exact target rotation at the end
         transform.rotation = targetRotation;
+        yield break;
     }
 
     protected IEnumerator lifetime_counter(){
@@ -116,7 +134,7 @@ public class Projectile : MonoBehaviour{
     }
 
     public void enable_trail(bool x) {if(trail != null)trail.enabled = x;}
-    public void enable_collider(bool x) {if(col != null)col.enabled = x;}
+    public void enable_collider(bool x) {col.enabled = x;}
 
     protected void enable_sprites(bool x){
         foreach(SpriteRenderer sprite in sprites)

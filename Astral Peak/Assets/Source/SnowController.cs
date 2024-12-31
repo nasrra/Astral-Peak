@@ -28,7 +28,7 @@ public class SnowController : MonoBehaviour{
         state = StartCoroutine(_state);
     }
 
-    public void set_data(int _preset){
+    public void set_preset(int _preset){
         SnowEmitterData preset = presets[_preset];
         main.startLifetime = preset.lifetime;
         main.simulationSpeed = preset.simulation_speed;
@@ -37,7 +37,7 @@ public class SnowController : MonoBehaviour{
         velocity.x = preset.velocity.x;
     }
 
-    public void lerp_data(int _preset){
+    public void lerp_preset(int _preset){
         SnowEmitterData preset = presets[_preset];
         // lifetime.
         state_switch(ref lifetime_state, Calc.lerp_value(val => main.startLifetime = val, main.startLifetime.constant, preset.lifetime, 2));
@@ -70,10 +70,10 @@ public class SnowController : MonoBehaviour{
 
     IEnumerator test(){
         while(true){
-            yield return new WaitForSeconds(7);
-            lerp_data(1);
-            yield return new WaitForSeconds(7);
-            lerp_data(0);
+            yield return new WaitForSeconds(2);
+            lerp_preset(1);
+            yield return new WaitForSeconds(14);
+            lerp_preset(0);
             yield return null;            
         }
     }

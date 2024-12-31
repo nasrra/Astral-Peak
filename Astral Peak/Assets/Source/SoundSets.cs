@@ -1,4 +1,6 @@
+using DocumentFormat.OpenXml.Office.CustomUI;
 using DocumentFormat.OpenXml.Office.Drawing;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Sounds;
 using System.Collections.Generic;
 
@@ -43,13 +45,22 @@ public struct MagicSoundSet : SoundSet {
                 new Magic1(),
                 new MagicExplosion(),
                 new Whoosh1(),
-                new Electricity1(),
-                new Electricity2(),
-                new Electricity3(),
             };
         }
         return sounds;
     }
+}
+
+public struct ElectricitySoundSet : SoundSet{
+    private List<Sound> sounds;
+    public List<Sound> get_sounds()
+        =>sounds==null
+        ? new List<Sound>(){
+            new Electricity1(),
+            new Electricity2(),
+            new Electricity3(),
+            new ElectricityLoop()}
+        : sounds;
 }
 
 public struct UiSoundSet : SoundSet {
@@ -84,10 +95,22 @@ public struct OutdoorAmbienceSoundSet : SoundSet {
         if (sounds == null) {
             sounds = new List<Sound>() {
                 new SoftWind(),
+                new HeavyWind(),
             };
         }
         return sounds;
     }
+}
+
+public struct ThunderSoundSet : SoundSet{
+    private List<Sound> sounds;
+    public List<Sound> get_sounds() 
+        => sounds == null
+        ? new List<Sound>(){
+            new Thunder1(),
+            new Thunder2(),
+        }
+        : sounds;
 }
 
 public struct AltarCutsceneSoundSet : SoundSet {
