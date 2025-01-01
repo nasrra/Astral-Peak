@@ -36,11 +36,11 @@ public class LightningStrikeProjectile : Projectile{
         );
         SceneLightining.instance.lerp_intensity(
             id:"global",
-            value:2.5f,
+            value:1.5f,
             time:.1f,
             callback:()=>SceneLightining.instance.lerp_intensity(
                 id: "global",
-                value: 1,
+                value: .5f,
                 time:.1f));
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }

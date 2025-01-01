@@ -328,5 +328,11 @@ public class MageSound : SoundFunctions{
             SoundID.ELECTRICITY_LOOP,
             audio_player: audio_player,
             AudioSourceSettings.NON_DIEGETIC_RANDOMISED_LOOP))},
+        {"electric_burst",()=>
+            AudioClipHandler.play(
+            SoundID.ELECTRIC_BURST,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
+        },
     };
 }

@@ -36,5 +36,5 @@ public class TheCavalryBackground : MonoBehaviour{
             audio_player:       this, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
-    public void play_camera_shake() => CameraController.instance.shake_camera(0.3f,1.5f);
+    public void play_camera_shake() => CameraController.instance.shake_camera(time: 0.3f, amount: 1.5f, lock_shake: false);
 }

@@ -9,6 +9,6 @@ public class CavalryCamera : MonoBehaviour{
         CameraController.instance.reset_offset(.5f);
         CameraController.instance.reset_zoom(.5f);
     }
-    public void ground_slam_camera_shake()  => CameraController.instance.shake_camera(0.15f, 1f);
-    public void death_camera_shake()        => CameraController.instance.shake_camera(0.25f, 1f);
+    public void ground_slam_camera_shake()  => CameraController.instance.shake_camera(time:0.15f, amount:1f, lock_shake: false);
+    public void death_camera_shake()        => CameraController.instance.shake_camera(time:0.25f, amount:1f, lock_shake: false);
 }

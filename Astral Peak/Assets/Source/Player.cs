@@ -148,7 +148,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         sprite.play_damaged_flash();
         health.is_invulnerable(invulnerable_time);
         AudioManager.low_pass_audio(true);
-        CameraController.instance.shake_camera(0.25f, 1);
+        CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_sound("damaged");
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
@@ -162,7 +162,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_health();
         invulnerable();
         //AudioManager.low_pass_audio(true);
-        CameraController.instance.shake_camera(0.25f, 1);
+        CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_sound("damaged");
         sprite.play_death_effect(1.5f);
         animator.death();

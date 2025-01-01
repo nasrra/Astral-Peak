@@ -86,8 +86,8 @@ public class MageCombat : BossCombat{
                     projectile_summon_phase_2,
                     hollow_summon_phase_2,
                     signature_phase_2,
-                    left_right_phase_2,
-                    right_left_phase_2,
+                    //left_right_phase_2,
+                    //right_left_phase_2,
                 };
             }}
         };

@@ -194,11 +194,11 @@ public class TheMage : Boss<Movement>{
     public void signature_2_lighting(){
         SceneLightining.instance.lerp_intensity(
             id:"global",
-            value:2.5f,
+            value:1.5f,
             time:.1f,
             callback:()=>SceneLightining.instance.lerp_intensity(
                 id: "global",
-                value: 1,
+                value: .5f,
                 time:.1f));
     }
 

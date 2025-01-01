@@ -703,4 +703,13 @@ public struct ElectricityLoop : Sound{
     public float volume()           => 1f;    
 }
 
+public struct ElectricBurst : Sound{
+    public SoundID id()             => SoundID.ELECTRIC_BURST;
+    public AudioClip clip()         => SoundLibrary.load_sfx("electric_burst");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => .9f;
+    public float min_pitch()        => .8f;
+    public float volume()           => 1f;
+}
+
 }

@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour{
         offset,
         original_offset;
     [SerializeField] private bool regulate;
+    [SerializeField] private bool shake_locked = false;
     [SerializeField] Camera cam;
 
     Coroutine
@@ -48,7 +49,10 @@ public class CameraController : MonoBehaviour{
         original_offset = _override_original_offset == true? _offset : original_offset;
     }
     public void set_target(Transform _target) => target = _target;
-    public void shake_camera(float time, float amount)      => state_swtich(ref shake_state, camera_shake(time, amount));
+    public void shake_camera(float time, float amount, bool lock_shake){
+        if(shake_locked == false)
+            state_swtich(ref shake_state, camera_shake(time, amount, lock_shake));
+    }
 
     // state switchers:
     void state_swtich(ref Coroutine state, IEnumerator n_state){
@@ -117,8 +121,9 @@ public class CameraController : MonoBehaviour{
 
 
     // camera shake
-    IEnumerator camera_shake(float time, float amount){
+    IEnumerator camera_shake(float time, float amount, bool lock_shake){
         float timer = 0;
+        shake_locked = lock_shake;
         while(timer < time){
             // Generate a random shake value based on orthographic size and amount
             float shake = (Random.Range(0f, 11f) - 5) * cam.orthographicSize * amount / 10;
@@ -136,6 +141,7 @@ public class CameraController : MonoBehaviour{
             //state_swtich(ref follow_state, follow());
             yield return new WaitForFixedUpdate();
         }
+        shake_locked = false;
         yield break;
     }
 

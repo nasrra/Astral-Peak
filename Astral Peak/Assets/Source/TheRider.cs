@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TheRider : Boss<RiderMovement>{
     public static TheRider instance;
-    public void yell_camera_shake() => CameraController.instance.shake_camera(3,0.75f);
+    public void yell_camera_shake() => CameraController.instance.shake_camera(time: 3, amount: 0.75f, lock_shake: false);
     protected Coroutine idle_state;
 
     void Awake(){

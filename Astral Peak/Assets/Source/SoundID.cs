@@ -22,6 +22,7 @@ namespace Sounds{
     ELECTRICITY_2,
     ELECTRICITY_3,
     ELECTRICITY_LOOP,
+    ELECTRIC_BURST,
 
     //Ui
     WOODEN_PING,

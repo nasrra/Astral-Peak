@@ -59,7 +59,9 @@ public struct ElectricitySoundSet : SoundSet{
             new Electricity1(),
             new Electricity2(),
             new Electricity3(),
-            new ElectricityLoop()}
+            new ElectricityLoop(),
+            new ElectricBurst()
+            }
         : sounds;
 }
 

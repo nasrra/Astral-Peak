@@ -70,10 +70,12 @@ public class Hollow : Enemy{
             start_action:()=>{
                 animator.Play("HollowIdle");
                 unlink_combat();        
+                set_body_colliders_exclude_layers(~LayersManager.BITWISE_GROUND);
             },
             time_out:()=>{
                 link_combat();
                 recovery_state();
+                set_body_colliders_exclude_layers(~(LayersManager.BITWISE_GROUND | LayersManager.BITWISE_PLAYER | LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_HURTBOX));
             }
         ));
 

@@ -61,6 +61,10 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         foreach(Collider2D c in body_colliders)
             c.enabled = flag == 1;
     }
+    protected void set_body_colliders_exclude_layers(int bitwise_layer){
+        foreach(Collider2D c in body_colliders)
+            c.excludeLayers = bitwise_layer;
+    }
 
     public void set_target(Transform _target) => target = _target;
 }
