@@ -10,21 +10,26 @@ public class MovingObjects : MonoBehaviour{
     void OnEnable(){
         StopAllCoroutines();
         switch(behaviour){
-            case MovingObjectsBehavior.CIRCLE:
+            case MovingObjectsBehavior.CLOCKWISE_CIRCLE:
+            case MovingObjectsBehavior.ANTI_CLOCKWISE_CIRCLE:
                 StartCoroutine(circle());
                 break;
-            case MovingObjectsBehavior.FIGURE_EIGHT:
+            case MovingObjectsBehavior.CLOCKWISE_FIGURE_EIGHT:
+            case MovingObjectsBehavior.ANTI_CLOCKWISE_FIGURE_EIGHT:
                 StartCoroutine(figure_eight());
                 break;
         }
     }
 
+    public void set_behaviour(MovingObjectsBehavior _behaviour)=>behaviour=_behaviour;
+
     IEnumerator circle(){
+        float factor = behaviour == MovingObjectsBehavior.CLOCKWISE_CIRCLE? -1 : 1;
         // Calculate the angular offset between blocks
         float angleStep = 360f / objects.Count;
         while (true){
             for (int i = 0; i < objects.Count; i++){
-                float angle = (Time.time * rotation_speed + i * angleStep) * Mathf.Deg2Rad;
+                float angle = (Time.time * rotation_speed * factor + i * angleStep) * Mathf.Deg2Rad;
                 float x = transform.position.x + Mathf.Cos(angle) * radius;
                 float y = transform.position.y + Mathf.Sin(angle) * radius;
                 if(objects[i]!=null)
@@ -36,10 +41,11 @@ public class MovingObjects : MonoBehaviour{
 
     IEnumerator figure_eight(){
         // Calculate the angular offset between blocks
+        float factor = behaviour == MovingObjectsBehavior.ANTI_CLOCKWISE_FIGURE_EIGHT? -1 : 1;
         float angleStep = 360f / objects.Count;
         while (true){
             for (int i = 0; i < objects.Count; i++){
-                float angle = (Time.time * rotation_speed + i * angleStep) * Mathf.Deg2Rad;
+                float angle = (Time.time * rotation_speed * factor + i * angleStep) * Mathf.Deg2Rad;
                 float x = transform.position.x + Mathf.Cos(angle) * radius;
                 float y = transform.position.y + Mathf.Sin(angle * 2) * radius /2;
                 if(objects[i]!=null)
@@ -50,7 +56,9 @@ public class MovingObjects : MonoBehaviour{
     }
 }
 
-enum MovingObjectsBehavior{
-    CIRCLE,
-    FIGURE_EIGHT,
+public enum MovingObjectsBehavior{
+    CLOCKWISE_CIRCLE,
+    ANTI_CLOCKWISE_CIRCLE,
+    CLOCKWISE_FIGURE_EIGHT,
+    ANTI_CLOCKWISE_FIGURE_EIGHT,
 }
