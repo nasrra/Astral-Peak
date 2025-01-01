@@ -7,6 +7,10 @@ public class MagicStationaryProjectile : Projectile{
     [SerializeField] bool destroy_on_hit = true;
     AudioSource source;
 
+    void Awake(){
+        play_sound();
+    }
+
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer==LayersManager.PLAYER)
             if(destroy_on_hit == true)
