@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class MageCamera : MonoBehaviour{
-    [SerializeField] LightningController lightning;
+    [SerializeField] LineParticleEmitter lightning;
     public void signature_adjust(){
         CameraController.instance.lerp_offset(x:null, y:6f, time:2);
         CameraController.instance.lerp_zoom(size: 16, time: 2);

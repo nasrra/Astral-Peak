@@ -76,7 +76,9 @@ public class Movement : MonoBehaviour{
 
 
     //movment functions
+    public void move_left(int x)   => update_move_direction((x == 1)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
+    public void move_right(int x)  => update_move_direction((x == 1)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
     public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));

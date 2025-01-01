@@ -4,18 +4,21 @@ using Deluz;
 
 public class Arrow : Projectile{
     [Header("Arrow")]
+    [SerializeField] ParticleSystem smoke, snow;
     [SerializeField] protected Transform front_point;
     [SerializeField] float move_time, rotation_speed, move_speed;
     void Start(){
-        movement.movement_state(front_point.position-transform.position,move_speed);
+       movement.move_to_target_state(front_point, move_speed);
         StartCoroutine(Util.timer(
             move_time, 
             time_out:()=>movement.rotate_to_direction_state(Vector2.down, rotation_speed))); 
     }
 
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == LayersManager.PLAYER)
+        if(other.gameObject.layer == LayersManager.PLAYER){
+            grounded();
             damage_creature_and_self_destruct(other.GetComponent<Creature>());
+        }   
         else if(other.gameObject.layer == LayersManager.GROUND)
             StartCoroutine(
                 Util.timer(
@@ -30,7 +33,9 @@ public class Arrow : Projectile{
         movement.StopAllCoroutines();
         movement.zero_velocity();
         enable_colliders(false);
-        particles.play_particle("grounded");
+        snow.Play();
+        ParticleSystem.ShapeModule shape = snow.shape;
+        shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_LIGHT,
             audio_player: this, 
@@ -39,7 +44,8 @@ public class Arrow : Projectile{
 
     public override void destroy(){
         enable_sprites(false);
-        ParticleSystem smoke = particles.get_particle("smoke");
+        ParticleSystem.ShapeModule shape = smoke.shape;
+        shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();
         AudioClipHandler.play(
             SoundID.STEAM,

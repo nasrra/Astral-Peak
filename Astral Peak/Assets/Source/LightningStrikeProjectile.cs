@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LightningStrikeProjectile : Projectile{
     [Header("Lightning Strike")]
-    [SerializeField] LightningController lightning;
+    [SerializeField] LineParticleEmitter lightning;
     [SerializeField] float lifetime, move_speed;
 
     public override void destroy(){
@@ -23,7 +23,7 @@ public class LightningStrikeProjectile : Projectile{
     }
     void loop(){
         enable_colliders(true);
-        lightning.start_emitting();    
+        lightning.start_emitting();
         AudioClipHandler.play(
             sound_id: Sounds.SoundID.THUNDER_1,
             audio_player: this,
@@ -37,11 +37,11 @@ public class LightningStrikeProjectile : Projectile{
         SceneLightining.instance.lerp_intensity(
             id:"global",
             value:2.5f,
-            time:.15f,
+            time:.1f,
             callback:()=>SceneLightining.instance.lerp_intensity(
                 id: "global",
                 value: 1,
-                time:.15f));
+                time:.1f));
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }
     

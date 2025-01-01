@@ -12,7 +12,9 @@ public class TheMage : Boss<Movement>{
     [SerializeField] List<Animator> summoning_circles = new List<Animator>();
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
-    [SerializeField] List<LightningController> staff_lightning = new List<LightningController>();
+    [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
+    [SerializeField] GameObject surrounding_projectiles;
+    [SerializeField] LineParticleEmitter teleport_trail;
     Dictionary<int, Action> phase_linker;
     StateQueue state;
 
@@ -81,13 +83,15 @@ public class TheMage : Boss<Movement>{
 
 
     // phase 2.
+    public void enable_surrounding_projectiles() => surrounding_projectiles.SetActive(true);
+    public void disable_surrounding_projectiles() => surrounding_projectiles.SetActive(false);
     private void idle_phase_2() => animator.Play("MageHover");
     public void start_staff_lightning(){
-        foreach(LightningController l in staff_lightning)
+        foreach(LineParticleEmitter l in staff_lightning)
             l.start_emitting();
     }
     public void stop_staff_lightning(){
-        foreach(LightningController l in staff_lightning)
+        foreach(LineParticleEmitter l in staff_lightning)
             l.stop_emitting();
     }
     public void wailing_stone_attack(){
@@ -100,25 +104,36 @@ public class TheMage : Boss<Movement>{
     }
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
+            Vector3 previous_pos = Vector3.zero;
             state.queue(
                 time: animator.get_clip_length("Mage2EnterTel"),
                 start_action:() => {
                     movement.no_state();
                     movement.zero_velocity();
+                    previous_pos = transform.position;
                     animator.Play("Mage2EnterTel");
                 });
             state.queue(
                 time: animator.get_clip_length("Mage2ExitTel"), 
-                start_action:()=>teleport_phase_2(teleport_points[attack.animation_id].position));
+                start_action:()=>{
+                    teleport_phase_2(teleport_points[attack.animation_id].position);
+                    teleport_trail.emit_once(transform.position, previous_pos);
+                });
             state.queue(
                 time: animator.get_clip_length(attack.animation_id),
                 start_action:()=>animator.Play(attack.animation_id));
             state.queue(
                 time: animator.get_clip_length("Mage2EnterTel"),
-                start_action:()=>animator.Play("Mage2EnterTel"));
+                start_action:()=>{
+                    previous_pos = transform.position;
+                    animator.Play("Mage2EnterTel");
+                });
             state.queue(
                 time: animator.get_clip_length("Mage2ExitTel"), 
-                start_action:()=>set_fly_pattern()); // return to idle flying.
+                start_action:()=>{
+                    set_fly_pattern();
+                    teleport_trail.emit_once(transform.position, previous_pos);
+                });
             state.queue(
                 time: 0,
                 start_action:()=>combat.attack_end()
@@ -134,6 +149,11 @@ public class TheMage : Boss<Movement>{
         movement.set_gravity(0);
         movement.set_deceleration(1f);
         movement.set_speed(6);
+    }
+    public void movement_sped_up_phase_2(){
+        movement.set_gravity(0);
+        movement.set_deceleration(1f);
+        movement.set_speed(12);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");
@@ -175,11 +195,11 @@ public class TheMage : Boss<Movement>{
         SceneLightining.instance.lerp_intensity(
             id:"global",
             value:2.5f,
-            time:.15f,
+            time:.1f,
             callback:()=>SceneLightining.instance.lerp_intensity(
                 id: "global",
                 value: 1,
-                time:.15f));
+                time:.1f));
     }
 
 

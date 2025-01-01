@@ -7,7 +7,8 @@ public class MovingObjects : MonoBehaviour{
     [SerializeField] MovingObjectsBehavior behaviour;
     [SerializeField] float rotation_speed;
     [SerializeField] float radius;
-    void Awake(){
+    void OnEnable(){
+        StopAllCoroutines();
         switch(behaviour){
             case MovingObjectsBehavior.CIRCLE:
                 StartCoroutine(circle());
@@ -25,8 +26,9 @@ public class MovingObjects : MonoBehaviour{
             for (int i = 0; i < objects.Count; i++){
                 float angle = (Time.time * rotation_speed + i * angleStep) * Mathf.Deg2Rad;
                 float x = transform.position.x + Mathf.Cos(angle) * radius;
-                float y = transform.position.z + Mathf.Sin(angle) * radius;
-                objects[i].transform.position = new Vector3(x,y, 0);
+                float y = transform.position.y + Mathf.Sin(angle) * radius;
+                if(objects[i]!=null)
+                    objects[i].transform.position = new Vector3(x, y, 0);
             }
             yield return null;
         }
@@ -39,8 +41,9 @@ public class MovingObjects : MonoBehaviour{
             for (int i = 0; i < objects.Count; i++){
                 float angle = (Time.time * rotation_speed + i * angleStep) * Mathf.Deg2Rad;
                 float x = transform.position.x + Mathf.Cos(angle) * radius;
-                float y = transform.position.z + Mathf.Sin(angle * 2) * radius /2;
-                objects[i].transform.position = new Vector3(x,y, 0);
+                float y = transform.position.y + Mathf.Sin(angle * 2) * radius /2;
+                if(objects[i]!=null)
+                    objects[i].transform.position = new Vector3(x,y, 0);
             }
             yield return null;
         }

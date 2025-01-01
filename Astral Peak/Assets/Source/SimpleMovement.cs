@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class SimpleMovment : MonoBehaviour{
+public class SimpleMovement : MonoBehaviour{
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Coroutine 
         move_state,
@@ -50,9 +50,7 @@ public class SimpleMovment : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-
-
-
+    public void set_velocity(Vector2 velocity) => rb.linearVelocity = velocity;
 
 
     // rotation
