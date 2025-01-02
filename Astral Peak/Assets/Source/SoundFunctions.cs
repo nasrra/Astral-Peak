@@ -334,5 +334,11 @@ public class MageSound : SoundFunctions{
             audio_player: audio_player,
             AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
         },
+        {"ping",()=>
+            AudioClipHandler.play(
+            SoundID.PING,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
+        },
     };
 }

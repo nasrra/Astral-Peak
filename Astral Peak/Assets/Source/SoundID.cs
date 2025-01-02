@@ -26,6 +26,7 @@ namespace Sounds{
 
     //Ui
     WOODEN_PING,
+    PING,
     DEEP_BOOM,
 
     // Melee

@@ -256,6 +256,7 @@ public struct MageSoundSet : SoundSet{
         sounds = sounds == null
         ?new List<Sound>(){
             new BellChimes1(),
+            new Ping(),        
         }
         :sounds;
         return sounds;

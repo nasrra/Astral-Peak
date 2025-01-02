@@ -27,6 +27,14 @@ public class MageCombat : BossCombat{
             attack_cooldown:       12,
             idle_cooldown:         3,
             combat_cooldown:       3),
+        three_slash_phase_1 = new BossAttack(
+            "Mage1ThreeSlash",
+            chance:                50,
+            player_distance:       6,
+            arena_bound_distance:  2,
+            attack_cooldown:       4,
+            idle_cooldown:         0,
+            combat_cooldown:       2),
         hollow_summon_phase_2 = new BossAttack(
             "Mage2HolSum",
             chance:                50,
@@ -74,9 +82,10 @@ public class MageCombat : BossCombat{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    projectile_summon_phase_1,
+                    //projectile_summon_phase_1,
                     teleport_phase_1,
-                    hollow_summon_phase_1
+                    //hollow_summon_phase_1,
+                    //three_slash_phase_1,
                 };
             }},
             {2,()=>{

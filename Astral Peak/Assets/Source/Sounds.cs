@@ -712,4 +712,13 @@ public struct ElectricBurst : Sound{
     public float volume()           => 1f;
 }
 
+public struct Ping : Sound{
+    public SoundID id()             => SoundID.PING;
+    public AudioClip clip()         => SoundLibrary.load_sfx("ping");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
 }

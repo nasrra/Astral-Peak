@@ -796,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &172043554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11271,7 +11271,7 @@ GameObject:
   - component: {fileID: 1911231600}
   - component: {fileID: 1911231599}
   m_Layer: 0
-  m_Name: SwordStaff
+  m_Name: Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11286,8 +11286,8 @@ Transform:
   m_GameObject: {fileID: 1911231597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.53, y: -2.75, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: -0.53, y: -0.5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1810366474}
@@ -11388,7 +11388,7 @@ SpriteRenderer:
   m_SortingLayerID: 474277569
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a34c5ad37b0e5fa49a4270b35c5667fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dd1cf956ac41f0a409446a18b01114b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12538,10 +12538,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2941456102765826825, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2941456102765826825, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LightVolumeEnabled
       value: 1
       objectReference: {fileID: 0}
@@ -12567,7 +12563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426246615804681694, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3588758409486819215, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_PreviewTimeScale
@@ -12789,22 +12785,6 @@ PrefabInstance:
       propertyPath: right_arena_bound
       value: 
       objectReference: {fileID: 344119342}
-    - target: {fileID: 7374902811535397434, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374902811535397434, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374902811535397434, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374902811535397434, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
     - target: {fileID: 9113373134936756369, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
