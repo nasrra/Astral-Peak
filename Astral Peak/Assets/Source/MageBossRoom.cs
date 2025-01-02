@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using DocumentFormat.OpenXml.Office2019.Drawing.Model3D;
 using Sounds;
-using UnityEditor.UnityLinker;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
@@ -27,19 +26,11 @@ public class MageBossRoom : BossRoomHandler{
             fog.lerp_preset(_x);
         snow_controller.lerp_preset(_x);
         AudioManager.play_ambience(ambience[_x]);
-        if(_x == 0){
-            SceneLightining.instance.enable_light(id: "global",     enable: true);
-            SceneLightining.instance.enable_light(id: "lightning",  enable: false);
-            SceneLightining.instance.set_intensity(id: "global", value: 1);
-        }
-        else{
-            SceneLightining.instance.enable_light(id: "global",    enable: true);
-            SceneLightining.instance.enable_light(id: "lightning", enable: true);
-            SceneLightining.instance.set_intensity(id: "lightning", value: 0);
-            SceneLightining.instance.lerp_intensity(id: "global", value: .8f, time: 2);
-            SceneLightining.instance.set_default_intensity(id: "global", .8f);
-            SceneLightining.instance.lerp_intensity(id: "lightning", value: .25f, time: 2);
-            SceneLightining.instance.set_default_intensity(id: "lightning", .25f);
+        if(_x == 1){
+            SceneLighting.instance.enable_light(id: "global",     enable: true);
+            SceneLighting.instance.enable_light(id: "lightning",  enable: true);
+            SceneLighting.instance.lerp_preset(_id: "global", _preset: _x, 2f);
+            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: _x, 2f);
         }
     }
     void link_events(){

@@ -34,13 +34,13 @@ public class LightningStrikeProjectile : Projectile{
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
         );
-        SceneLightining.instance.lerp_intensity(
+        SceneLighting.instance.lerp_intensity(
             id:"global",
             value:2f,
             time:.1f,
-            callback:()=>SceneLightining.instance.reset_intensity(
-                id: "global",
-                time:.1f));
+            callback:()=>SceneLighting.instance.reset_lighting(
+                _id: "global",
+                _time:.1f));
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }
     

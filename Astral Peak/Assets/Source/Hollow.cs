@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Deluz;
 using UnityEngine;
 
@@ -8,7 +7,6 @@ public class Hollow : Enemy{
     public event Action on_start;
     [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
-    [SerializeField] Collider2D hurt_box;
     bool alerted;
     float stun_state_timer = .5f;
     [SerializeField] float 
@@ -53,7 +51,6 @@ public class Hollow : Enemy{
                 enable_body_colliders(0);
                 particles.stop_all_particles();
                 sprite.play_death_effect(1.5f);
-                hurt_box.enabled = false;
                 if(stun_state != null)
                     StopCoroutine(stun_state);
             },
