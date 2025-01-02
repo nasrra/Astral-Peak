@@ -19,13 +19,13 @@ public class ShrineOpeningCutscene : Cutscene{
         soul_constellation_on, 
         soul_constellation_off;
 
-    public override void start(){
-        Player.instance.enter_cutscene_state();
-        AudioManager.play_music(SoundID.DOMINE_MUSIC);
-        DialogueHandler.instance.dialogue_ended += dialogue_ended;
-        DialogueHandler.instance.new_line += handle_new_line;
-        CutsceneManager.set_coroutine(starting_coroutine());
-    }
+    //public override void start(){
+    //    Player.instance.enter_cutscene_state();
+    //    AudioManager.play_music(SoundID.DOMINE_MUSIC);
+    //    DialogueHandler.instance.dialogue_ended += dialogue_ended;
+    //    DialogueHandler.instance.new_line += handle_new_line;
+    //    CutsceneManager.set_coroutine(starting_coroutine());
+    //}
 
     IEnumerator starting_coroutine(){
         torches_on?.Invoke();
@@ -52,7 +52,7 @@ public class ShrineOpeningCutscene : Cutscene{
         yield break;
     }
 
-    public void dialogue_ended() => CutsceneManager.set_coroutine(ending_couroutine());
+    //public void dialogue_ended() => CutsceneManager.set_coroutine(ending_couroutine());
 
     IEnumerator ending_couroutine(){
         torches_off?.Invoke();     
@@ -79,7 +79,7 @@ public class ShrineOpeningCutscene : Cutscene{
                 torches_on?.Invoke(); 
                 break;
             case 16: 
-                CutsceneManager.set_coroutine(middle_coroutine()); 
+                //CutsceneManager.set_coroutine(middle_coroutine()); 
                 break;
             case 17: 
                 world_constellation_on?.Invoke(); 
@@ -118,13 +118,23 @@ public class ShrineOpeningCutscene : Cutscene{
         soul_constellation_on       = null; 
         soul_constellation_off      = null;        
     }
+
+    public override IEnumerator get_coroutine()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class ShrineAltarOneCutscene : Cutscene{
     public event Action
         torches_on, altar_numeral_on;
 
-    public override void start() => CutsceneManager.set_coroutine(cutscene());
+    public override IEnumerator get_coroutine()
+    {
+        throw new NotImplementedException();
+    }
+
+    //public override void start() => CutsceneManager.set_coroutine(cutscene());
 
     IEnumerator cutscene(){
         AudioManager.play_music(SoundID.ALTAR_MUSIC);

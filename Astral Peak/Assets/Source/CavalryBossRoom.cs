@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using System;
 using Sounds;
 
 public class CavalryBossRoom : BossRoomHandler{
@@ -26,6 +24,9 @@ public class CavalryBossRoom : BossRoomHandler{
         unlink();
     }
 
+    public TheCavalry get_cavalary() => cavalry;
+    public TheRider get_rider() => rider;
+
     protected override void check_world_state(){
         if(GameManager.world_state >=1){
             feedback.enabled = false;
@@ -41,12 +42,12 @@ public class CavalryBossRoom : BossRoomHandler{
         switch(phase){
             case 1:  
                 song = SoundID.WOLF_BOSS_MUSIC_1;
-                cinematic = "cavalry_opening";
+                cutscene = new Cutscenes.CavalryOpening();
                 play_cinematic = true;
                 break;
             case 2: 
                 song = SoundID.WOLF_BOSS_MUSIC_2;
-                cinematic = "cavalry_transition_1";
+                cutscene = new Cutscenes.CavalryPhaseTransition();
                 play_cinematic = true;
                 break;
         }
@@ -86,7 +87,7 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     void play_altar_cutscene(){
-        CutsceneManager.play("shrine_altar_1");
+        CutsceneManager.play(new ShrineAltarOneCutscene());
         CustomSceneManager.loaded_scene -= play_altar_cutscene;
     }
 

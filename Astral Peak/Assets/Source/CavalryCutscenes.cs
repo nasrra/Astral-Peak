@@ -1,20 +1,13 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class CavalryOpeningCutscene : Cutscene{
+namespace Cutscenes{
+public class CavalryOpening : Cutscene{
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
-    public override void start(){
+    public override IEnumerator get_coroutine(){
         room.phase_1(); // enable rider
         room.set_positions(); // reset positions.
-        Player.instance.enter_cutscene_state();
-        TheRider.instance.enter_cutscene_state();
-        CutsceneManager.set_coroutine(coroutine());
-    }
 
-    IEnumerator coroutine(){
         room.cutscene_arrow.fire();
         CameraController.instance.lerp_zoom(8,2f);
         //CameraController.instance.move_down_state(2,1);
@@ -31,8 +24,6 @@ public class CavalryOpeningCutscene : Cutscene{
 
         //
         AudioManager.play_music(room.song);
-        Player.instance.exit_cutscene_state();
-        TheRider.instance.exit_cutscene_state();
         end();
         yield break;
     }
@@ -40,19 +31,13 @@ public class CavalryOpeningCutscene : Cutscene{
 
 public class CavalryPhaseTransition : Cutscene{
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
-    public override void start(){
-        CutsceneManager.set_coroutine(fade());
-    }
-
-    IEnumerator fade(){
+    public override IEnumerator get_coroutine(){
         fade_to_black();
 
         yield return new WaitForSeconds(2f); 
         room.phase_1();
         room.set_positions();
         TheRider.instance.flip_to_target();
-        TheRider.instance.enter_cutscene_state();
-        Player.instance.enter_cutscene_state();
         fade_from_black();
         
         yield return new WaitForSeconds(1f);
@@ -79,9 +64,9 @@ public class CavalryPhaseTransition : Cutscene{
         yield return new WaitForSeconds(3f);
         CameraController.instance.set_target(Player.instance.transform);
         AudioManager.play_music(room.song);
-        Player.instance.exit_cutscene_state();
-        TheCavalry.instance.exit_cutscene_state();
         end(); 
         yield break;
     }
 }
+}
+

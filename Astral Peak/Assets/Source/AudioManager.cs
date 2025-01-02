@@ -66,8 +66,10 @@ public static class AudioManager{
     }
     public static void stop_music(){
         // stop music from looping.
-        UnityHook.instance.StopCoroutine(music_state);
-        AudioClipHandler.fade_out(UnityHook.instance, music, 1f);
+        if(music_state != null){
+            UnityHook.instance.StopCoroutine(music_state);
+            AudioClipHandler.fade_out(UnityHook.instance, music, 1f);
+        }
     }    
 
 

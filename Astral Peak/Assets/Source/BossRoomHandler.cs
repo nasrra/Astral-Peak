@@ -10,7 +10,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
     public Transform boss_start_point;
     public bool play_cinematic = false;
     public SoundID song; 
-    public string cinematic;
+    protected Cutscene cutscene; 
     public int phase = 0;
     void Awake(){
         instance = this;
@@ -30,6 +30,6 @@ public abstract class BossRoomHandler : MonoBehaviour{
     public void phase_transition(){
         prepare_phase_transition();
         if(play_cinematic == true)
-            CutsceneManager.play(cinematic);
+            CutsceneManager.play(cutscene);
     }
 }

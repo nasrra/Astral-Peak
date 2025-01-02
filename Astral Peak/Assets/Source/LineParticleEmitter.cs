@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class LineParticleEmitter : MonoBehaviour{
-    [SerializeField] ParticleSystem particles; 
+    [SerializeField] public ParticleSystem particles;
     ParticleSystem.EmitParams emission_parameters;
     [SerializeField] Transform start_point, end_point;
     [SerializeField] int particles_per_unit;
@@ -26,6 +26,8 @@ public class LineParticleEmitter : MonoBehaviour{
             yield return null;
         }
     }
+
+    public ParticleSystem get_particles() => particles;
 
     protected void emit(int intermediate_particles){
         Vector3 direction = end_point.position - start_point.position;

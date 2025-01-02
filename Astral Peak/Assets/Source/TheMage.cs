@@ -24,10 +24,10 @@ public class TheMage : Boss<Movement>{
         create_phase_linker();
         select_phase(phase);
         sound.set_functions(new MageSound(sound));
-        idle(2);        
+        //idle(2);        
     }
     void OnDestroy() => unlink_events();
-    private void idle(float time){
+    public void idle(float time){
         state.queue(
             time: time,
             start_action:()=>switch_to_idle()
@@ -56,10 +56,12 @@ public class TheMage : Boss<Movement>{
         float offset = UnityEngine.Random.Range(8,17);
         Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
         Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
+        Vector3 previous_pos = teleport_trail.transform.position;
         if(random == 0)
             transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
         else
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
+        teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
         animator.Play("Mage1ExitTel");
     }
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
@@ -110,14 +112,14 @@ public class TheMage : Boss<Movement>{
                 start_action:() => {
                     movement.no_state();
                     movement.zero_velocity();
-                    previous_pos = transform.position;
+                    previous_pos = teleport_trail.transform.position;
                     animator.Play("Mage2EnterTel");
                 });
             state.queue(
                 time: animator.get_clip_length("Mage2ExitTel"), 
                 start_action:()=>{
                     teleport_phase_2(teleport_points[attack.animation_id].position);
-                    teleport_trail.emit_once(transform.position, previous_pos);
+                    teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
                 });
             state.queue(
                 time: animator.get_clip_length(attack.animation_id),
@@ -125,14 +127,14 @@ public class TheMage : Boss<Movement>{
             state.queue(
                 time: animator.get_clip_length("Mage2EnterTel"),
                 start_action:()=>{
-                    previous_pos = transform.position;
+                    previous_pos = teleport_trail.transform.position;
                     animator.Play("Mage2EnterTel");
                 });
             state.queue(
                 time: animator.get_clip_length("Mage2ExitTel"), 
                 start_action:()=>{
                     set_fly_pattern();
-                    teleport_trail.emit_once(transform.position, previous_pos);
+                    teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
                 });
             state.queue(
                 time: 0,

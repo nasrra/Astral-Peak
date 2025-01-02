@@ -674,11 +674,20 @@ MonoBehaviour:
   - {fileID: 0}
   teleport_points:
     _serializedList:
+    - Key: Mage2RightLeft
+      Value: {fileID: 0}
+    - Key: Mage2LeftRight
+      Value: {fileID: 0}
+    - Key: Mage2Sig
+      Value: {fileID: 0}
     - Key: figure_eight
       Value: {fileID: 0}
     - Key: figure_eight_reversed
       Value: {fileID: 0}
-  staff_lightning: []
+  staff_lightning:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   surrounding_projectiles: {fileID: 2740713537679043683}
   teleport_trail: {fileID: 253309762562350863}
 --- !u!114 &2628764344551210761
@@ -7187,6 +7196,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5887513930526950897}
     m_Modifications:
+    - target: {fileID: 7137376869685518890, guid: 0ca7014ab26a591499728696dc805232, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7137376869685518890, guid: 0ca7014ab26a591499728696dc805232, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1710688319
+      objectReference: {fileID: 0}
     - target: {fileID: 8271131591639357240, guid: 0ca7014ab26a591499728696dc805232, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
