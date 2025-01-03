@@ -38,11 +38,13 @@ namespace Cutscenes{
             CameraController.instance.set_target(mage.transform);
             CameraController.instance.lerp_offset(x:null, y:-3.5f, time:.15f);
             yield return new WaitForSeconds(1f);
+            mage.animator.Play("MageYell");
+            yield return new WaitForSeconds(1f);
             CameraController.instance.reset_offset(2f);
             CameraController.instance.reset_zoom(2f);
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
-            mage.idle(1);
+            mage.idle(2);
             end();
             yield break;
         }

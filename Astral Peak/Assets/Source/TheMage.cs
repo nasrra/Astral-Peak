@@ -40,6 +40,24 @@ public class TheMage : Boss<Movement>{
 
 
 
+    // Camera
+    public void signature_adjust(){
+        CameraController.instance.lerp_offset(x:null, y:6f, time:2);
+        CameraController.instance.lerp_zoom(size: 16, time: 2);
+        CameraController.instance.lerp_regulators(_x_bounds: Vector2.zero, _y_bounds: null, time: 2);
+    }
+    public void signature_shake() => CameraController.instance.shake_camera(amount: .5f, time: 7.30f, lock_shake: true);
+    public void signature_reset(){
+        CameraController.instance.reset_offset(2);
+        CameraController.instance.reset_zoom(2);
+        CameraController.instance.reset_regulators(2);
+    }
+    public void yell_camera_shake() => CameraController.instance.shake_camera(time: 3, amount: 0.75f, lock_shake: false);
+
+
+
+
+
     //phase 1.
     private void idle_phase_1(){
         no_state();
