@@ -85,7 +85,7 @@ public class MageCombat : BossCombat{
                     //projectile_summon_phase_1,
                     teleport_phase_1,
                     //hollow_summon_phase_1,
-                    //three_slash_phase_1,
+                    three_slash_phase_1,
                 };
             }},
             {2,()=>{

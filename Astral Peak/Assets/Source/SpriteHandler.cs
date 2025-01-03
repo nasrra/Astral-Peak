@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Deluz;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 public class SpriteHandler : MonoBehaviour{
     [SerializeField] protected List<SpriteRenderer> sprites;
@@ -41,8 +42,9 @@ public class SpriteHandler : MonoBehaviour{
             operations.Add(true); // operation is occuring
             StartCoroutine(Calc.lerp_value(val => sprites[index].material.SetFloat(value, val), start, end, time, () => operations[index]=false));
         }
-        while(operations.Contains(true))
+        while(operations.Contains(true)){
             yield return null;
+        }
         yield break;
     }
 

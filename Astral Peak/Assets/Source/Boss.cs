@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<int> phase_selected;
     [Header("Boss")]
     [SerializeField] protected int phase = 1;
-    [SerializeField] protected BossSpriteHandler sprite;
+    [SerializeField] protected SerializedDictionary<string, BossSpriteHandler> sprites = new SerializedDictionary<string, BossSpriteHandler>();
     [SerializeField] public AnimatorOverride animator;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
@@ -21,6 +22,16 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public void select_phase(int _phase) => phase_selected(phase = _phase);
     protected float dist_to_target() => (transform.position - target.position).x;
 
+    protected void play_damaged_flash(){
+        foreach(BossSpriteHandler sprite in sprites.Values)
+            sprite.play_damaged_flash();  
+    }
+
+    protected void play_death_effect(float time){
+        foreach(BossSpriteHandler sprite in sprites.Values)
+            sprite.play_death_effect(time);        
+    }
+    
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
         movement.clear_move_direction();
         base.state_switch(ref state, _state);

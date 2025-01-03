@@ -202,7 +202,7 @@ public class TheMage : Boss<Movement>{
                 _id: "global",
                 _time:.1f));
     }
-
+    protected void play_weapon_flash() => sprites["staff"].play_charged_flash();
 
 
 
@@ -250,8 +250,8 @@ public class TheMage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
 
-    void link_health() => health.damaged += sprite.play_damaged_flash;
-    void unlink_health() => health.damaged -= sprite.play_damaged_flash;
+    void link_health() => health.damaged += play_damaged_flash;
+    void unlink_health() => health.damaged -= play_damaged_flash;
     void link_movement(){
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;

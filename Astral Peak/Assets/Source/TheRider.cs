@@ -62,7 +62,7 @@ public class TheRider : Boss<RiderMovement>{
         health.death                            += movement.StopAllCoroutines;
         combat.attack_ended                     += idle;
         combat.attack_chosen                    += attack;
-        health.damaged                          += sprite.play_damaged_flash;
+        health.damaged                          += play_damaged_flash;
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
@@ -76,7 +76,7 @@ public class TheRider : Boss<RiderMovement>{
         health.death                            -= movement.StopAllCoroutines;
         combat.attack_ended                     -= idle;
         combat.attack_chosen                    -= attack;
-        health.damaged                          -= sprite.play_damaged_flash;
+        health.damaged                          -= play_damaged_flash;
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;

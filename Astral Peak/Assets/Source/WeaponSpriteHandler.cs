@@ -1,10 +1,7 @@
 using UnityEngine;
 
 public class WeaponSpriteHandler : SpriteHandler{
-    [SerializeField] Material flash_material;
     Coroutine state;
-    public void play_damaged_flash(){
-        set_material(flash_material);
-        state_switch(ref state, pulse_value("_amount", 1, .25f));
-    }
+    public void play_damaged_flash() => state_switch(ref state, pulse_value("hurt_flash_amount", 1, .25f));
+    public void play_charged_flash() => state_switch(ref state, pulse_value("charge_amount", 1, 1f));
 }
