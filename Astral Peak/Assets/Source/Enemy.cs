@@ -17,7 +17,9 @@ public class Enemy : Boss<Movement>{
     [SerializeField] Animator summoning_animator;
     [SerializeField] protected Transform origin;
 
-    public void play_summoning_animation() => summoning_animator.Play("loop");
+    public void play_summoning_animation() => summoning_animator.Play("turn_on");
+    public void stop_summoning_animation() => summoning_animator.Play("turn_off");
+
 
     public override void kill(){
         enemy_death?.Invoke(this);
