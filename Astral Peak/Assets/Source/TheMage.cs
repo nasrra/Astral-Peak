@@ -24,7 +24,7 @@ public class TheMage : Boss<Movement>{
         create_phase_linker();
         select_phase(phase);
         sound.set_functions(new MageSound(sound));
-        idle(2);        
+        //idle(2);        
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){

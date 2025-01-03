@@ -7,13 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BackgroundCharacterShader
-  m_Shader: {fileID: -6465566751694194690, guid: 72c2a2c8083d34f4bbdfe36f89ebc816, type: 3}
+  m_Name: BackgroundCreatureMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 868206ab863eed146b9f374c112d723d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ENUM_HIT
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -25,11 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8cff34a79884e8547aba1da17ebc74a0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -46,13 +41,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ENUM: 1
-    - _amount: 1
+    - _charge_amount: 0
+    - _damaged_amount: 1
+    - _dissolve_amount: 1
+    - _dissolve_detail: 2
     m_Colors:
-    - _colour: {r: 0.098039225, g: 0.19215688, b: 0.25882354, a: 1}
+    - _charge_colour: {r: 0, g: 0.8492365, b: 1, a: 1}
+    - _damaged_colour: {r: 0.09803922, g: 0.19215687, b: 0.25882354, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5868777699761730423
+--- !u!114 &6382122030219363309
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

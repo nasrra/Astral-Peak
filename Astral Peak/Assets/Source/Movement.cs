@@ -233,7 +233,6 @@ public class Movement : MonoBehaviour{
         }
     }
     public void move_in_faced_direction_state(){
-        Debug.Log("m");
         state_switch(ref move_state, move());
         state_switch(ref controller_state, move_in_faced_direction());        
     }

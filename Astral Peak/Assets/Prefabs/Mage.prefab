@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 184681769367896912}
   - component: {fileID: 2640624942175576056}
   m_Layer: 8
-  m_Name: TheMage
+  m_Name: Mage
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -969,7 +969,7 @@ MonoBehaviour:
         rotation_type: 0
         projectile_is_child: 0
         projectile: {fileID: 898774245151442885, guid: a05076459eafae24d9fc67fa6b4939d5, type: 3}
-        fire_point: {fileID: 6195114758219728643}
+        fire_point: {fileID: 0}
     - Key: stone_7
       Value:
         rotation_type: 0
@@ -1020,13 +1020,13 @@ MonoBehaviour:
         fire_point: {fileID: 6619723628049759496}
     - Key: hollow_2
       Value:
-        rotation_type: 1
+        rotation_type: 0
         projectile_is_child: 0
         projectile: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
         fire_point: {fileID: 3247813809404593138}
     - Key: hollow_3
       Value:
-        rotation_type: 0
+        rotation_type: 1
         projectile_is_child: 0
         projectile: {fileID: 1841642048582550558, guid: 6477dad9cb541ec41869dcc4660105bc, type: 3}
         fire_point: {fileID: 0}
