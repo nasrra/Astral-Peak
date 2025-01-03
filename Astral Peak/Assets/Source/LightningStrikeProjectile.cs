@@ -36,7 +36,7 @@ public class LightningStrikeProjectile : Projectile{
         );
         SceneLighting.instance.lerp_intensity(
             id:"global",
-            value:2f,
+            end:2f,
             time:.1f,
             callback:()=>SceneLighting.instance.reset_lighting(
                 _id: "global",

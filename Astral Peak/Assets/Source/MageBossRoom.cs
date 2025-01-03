@@ -12,7 +12,7 @@ public class MageBossRoom : BossRoomHandler{
         SoundID.SOFT_WIND,
         SoundID.HEAVY_WIND,
     };
-    void Start(){
+    void Awake(){
         link_events();
     }
     void OnDestroy(){

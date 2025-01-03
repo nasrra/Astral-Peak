@@ -18,7 +18,7 @@ public class FogController : SpriteHandler{
     }
 
     public void set_preset(int _preset){
-        Material fog = sprites[0].material;
+        Material fog = sprites["main"].material;
         FogShaderData data = fog_presets[_preset];
         fog.SetFloat("_size", data.size);
         fog.SetFloat("_density",data.density);
@@ -27,7 +27,7 @@ public class FogController : SpriteHandler{
     }
 
     public void lerp_preset(int _preset){
-        Material fog = sprites[0].material;
+        Material fog = sprites["main"].material;
         FogShaderData data = fog_presets[_preset];
         state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, 2));
         state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,2));
@@ -47,7 +47,7 @@ public class FogController : SpriteHandler{
 
     IEnumerator set_offset(){
         while(true){
-            sprites[0].material.SetVector("_offset", sprites[0].material.GetVector("_offset") + (new Vector4(1, 0,0,0) * speed * Time.deltaTime));
+            sprites["main"].material.SetVector("_offset", sprites["main"].material.GetVector("_offset") + (new Vector4(1, 0,0,0) * speed * Time.deltaTime));
             yield return null;
         }
     }

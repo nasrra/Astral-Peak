@@ -300,17 +300,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
   movement: {fileID: 9057505959519379731}
-  phase: 1
-  sprite: {fileID: 896696132830443372}
+  sprites: {fileID: 896696132830443372}
+  body_colliders:
+  - {fileID: 7092131832697715823}
   animator: {fileID: 553567108010788096}
   particles: {fileID: 965367310683355375}
   ranged: {fileID: 0}
   melee: {fileID: 907828889830464158}
   sound: {fileID: 3429079448900464409}
-  body_colliders:
-  - {fileID: 7092131832697715823}
   combat: {fileID: 0}
+  lighting: {fileID: 0}
   target: {fileID: 8904305568839613953}
+  phase: 1
   paths:
   - movement: 2
     duration: 3
@@ -323,7 +324,6 @@ MonoBehaviour:
   summoning_animator: {fileID: 5941228342312037909}
   origin: {fileID: 0}
   agro_area: {fileID: 441748230105023122}
-  hurt_box: {fileID: 0}
   idle_speed: 2
   idle_acceleration: 1
   idle_deceleration: 0.85
@@ -343,9 +343,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 3177520641196942762}
-  hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
-  death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
+    _serializedList:
+    - Key: main
+      Value: {fileID: 3177520641196942762}
 --- !u!114 &9057505959519379731
 MonoBehaviour:
   m_ObjectHideFlags: 0

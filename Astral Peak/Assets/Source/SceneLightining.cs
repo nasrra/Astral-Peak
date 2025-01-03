@@ -1,45 +1,29 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Deluz;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class SceneLighting : MonoBehaviour{
+public class SceneLighting : LightingHandler{
     public static SceneLighting instance;
-    [SerializedDictionary("id","Light2D")]
-    [SerializeField] SerializedDictionary<string, Light2D> lights = new SerializedDictionary<string, Light2D>();
+    [Header("Scene Lighting")]
     [SerializeField] SerializedDictionary<string, SceneLightingPreset> presets = new SerializedDictionary<string, SceneLightingPreset>();
     int current_preset = 0;
+    
     void Awake(){
         instance = this;
         foreach(KeyValuePair<string, Light2D> kvp in lights)
             set_preset(kvp.Value, presets[format_preset_id(kvp.Key)]);
     }
-    public string format_preset_id(string id) => current_preset+"_"+id; 
     public void reset_lighting(string _id, float _time) => lerp_preset(_id, current_preset, _time);
-    public void enable_light(string id, bool enable) => lights[id].enabled = enable;
-    public void set_intensity(string id, float value) => lights[id].intensity = value;
-    private void set_intensity(Light2D light, float value) => light.intensity = value;
-    public void lerp_intensity(string id, float value, float time, Action callback = null){
-        Light2D light = lights[id];
-        light.StopAllCoroutines();
-        lerp_intensity(light, value, time, callback);
-    }
-    private void lerp_intensity(Light2D light, float value, float time, Action callback = null) =>
-        light.StartCoroutine(Calc.lerp_value(
-            _val=>light.intensity=_val,
-            _start:light.intensity,
-            _end:value,
-            _time:time,
-            _on_complete: ()=>callback?.Invoke()));
+    public string format_preset_id(string id) => current_preset+"_"+id; 
 
     public void lerp_preset(string _id, int _preset, float time){
         Light2D light = lights[_id];
         current_preset = _preset;
         SceneLightingPreset preset = presets[format_preset_id(_id)];
         light.StopAllCoroutines();
-        lerp_intensity(light, preset.intensity, time);
+        lerp_intensity(light: light, start: light.intensity, end: preset.intensity, time: time);
     }
     public void set_preset(string _id, int _preset){
         current_preset = _preset;

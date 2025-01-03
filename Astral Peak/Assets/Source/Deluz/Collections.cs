@@ -43,30 +43,31 @@ public class StateQueue{
     IEnumerator state_call(Action action){action(); yield break;}
 }
 
-    [Serializable]
-    public class ActionQueue{
-        [SerializeField] List<Action> actions = new List<Action>();
-        MonoBehaviour entity;
-        public ActionQueue(MonoBehaviour _entity, Action _default_action){
-            actions.Add(_default_action);
-            entity = _entity;
-        }
-        public void start() => next_action();
-        public void next_action() => actions[actions.Count-1]();
-        public void queue(Action action, float time = 0){
-            if(time<=0)
-                throw new Exception("time cannot be 0 or less!");
-            actions.Add(()=>entity.StartCoroutine(Util.timer(
-                time: time, 
-                start_action: () =>{
-                    action();
-                    actions.RemoveAt(actions.Count-1);
-                }, 
-                time_out: ()=>{
-                    next_action();        
-                }
-            )));
-        }
-        public void clear() => actions.Clear();
+[Serializable]
+public class ActionQueue{
+    [SerializeField] List<Action> actions = new List<Action>();
+    MonoBehaviour entity;
+    public ActionQueue(MonoBehaviour _entity, Action _default_action){
+        actions.Add(_default_action);
+        entity = _entity;
     }
+    public void start() => next_action();
+    public void next_action() => actions[actions.Count-1]();
+    public void queue(Action action, float time = 0){
+        if(time<=0)
+            throw new Exception("time cannot be 0 or less!");
+        actions.Add(()=>entity.StartCoroutine(Util.timer(
+            time: time, 
+            start_action: () =>{
+                action();
+                actions.RemoveAt(actions.Count-1);
+            }, 
+            time_out: ()=>{
+                next_action();        
+            }
+        )));
+    }
+    public void clear() => actions.Clear();
+}
+
 }

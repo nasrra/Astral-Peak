@@ -196,13 +196,20 @@ public class TheMage : Boss<Movement>{
     public void signature_2_lighting(){
         SceneLighting.instance.lerp_intensity(
             id:"global",
-            value:2f,
+            end:2f,
             time:.1f,
             callback:()=>SceneLighting.instance.reset_lighting(
                 _id: "global",
                 _time:.1f));
     }
-    protected void play_weapon_flash() => sprites["staff"].play_charged_flash();
+    protected void play_weapon_flash(){
+        sprites.play_charged_flash("staff");
+        lighting.lerp_intensity("staff", start: 1, end: 0, time: 1); 
+        sound.play_sound("ping");
+    }
+    protected void play_weapon_tip_flash(){
+        lighting.lerp_intensity("staff_tip", start: 1, end: 0, time: .5f);
+    }
 
 
 
@@ -250,8 +257,8 @@ public class TheMage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
 
-    void link_health() => health.damaged += play_damaged_flash;
-    void unlink_health() => health.damaged -= play_damaged_flash;
+    void link_health() => health.damaged += sprites.play_damaged_flash;
+    void unlink_health() => health.damaged -= sprites.play_damaged_flash;
     void link_movement(){
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;

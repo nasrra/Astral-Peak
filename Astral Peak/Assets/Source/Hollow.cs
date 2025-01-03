@@ -50,7 +50,7 @@ public class Hollow : Enemy{
                 movement.no_state();
                 enable_body_colliders(0);
                 particles.stop_all_particles();
-                play_death_effect(1.5f);
+                sprites.play_death_effect(1.5f);
                 if(stun_state != null)
                     StopCoroutine(stun_state);
             },
@@ -176,13 +176,13 @@ public class Hollow : Enemy{
 
     protected void link_health(){
         health.damaged += stun;
-        health.damaged += play_damaged_flash;
+        health.damaged += sprites.play_damaged_flash;
         health.death += kill;
         health.knockback += movement.knockback;
     }
     protected void unlink_health(){
         health.damaged -= stun;
-        health.damaged -= play_damaged_flash;
+        health.damaged -= sprites.play_damaged_flash;
         health.death -= kill;
         health.knockback -= movement.knockback;
     }

@@ -493,7 +493,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 55599691}
+    _serializedList:
+    - Key: main
+      Value: {fileID: 55599691}
   fog_presets:
   - size: 2.5
     density: 0.55
@@ -6738,7 +6740,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 442977553}
+    _serializedList:
+    - Key: main
+      Value: {fileID: 442977553}
   fog_presets:
   - size: 5
     density: 0.6
@@ -10368,7 +10372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 1658059461}
+    _serializedList:
+    - Key: main
+      Value: {fileID: 1658059461}
   fog_presets:
   - size: 10
     density: 0.6
@@ -12332,7 +12338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2143389924
 Transform:
   m_ObjectHideFlags: 0
@@ -12594,28 +12600,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166805101488319614, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166805101488319614, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: m_LightVolumeEnabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.x

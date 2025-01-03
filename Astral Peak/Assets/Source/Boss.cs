@@ -8,29 +8,20 @@ using UnityEngine;
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<int> phase_selected;
     [Header("Boss")]
-    [SerializeField] protected int phase = 1;
-    [SerializeField] protected SerializedDictionary<string, BossSpriteHandler> sprites = new SerializedDictionary<string, BossSpriteHandler>();
+    [SerializeField] protected BossSpriteHandler sprites;
+    [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] public AnimatorOverride animator;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
     [SerializeField] public AudioPlayer sound;
-    [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
     [SerializeField] protected BossCombat combat;
+    [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
+    [SerializeField] protected int phase = 1;
 
     public void select_phase(int _phase) => phase_selected(phase = _phase);
     protected float dist_to_target() => (transform.position - target.position).x;
-
-    protected void play_damaged_flash(){
-        foreach(BossSpriteHandler sprite in sprites.Values)
-            sprite.play_damaged_flash();  
-    }
-
-    protected void play_death_effect(float time){
-        foreach(BossSpriteHandler sprite in sprites.Values)
-            sprite.play_death_effect(time);        
-    }
     
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
         movement.clear_move_direction();
