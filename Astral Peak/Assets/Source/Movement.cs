@@ -59,15 +59,19 @@ public class Movement : MonoBehaviour{
 
 
     // state machine.
-    public void no_state(){
-        clear_move_direction();
-        state_switch(ref move_state, null);
-        state_switch(ref controller_state, null);
-    }
     private void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
         state = _state != null ? StartCoroutine(_state) : null;
+    }
+    public void stop(){
+        zero_velocity();
+        no_state();
+    }
+    public void no_state(){
+        clear_move_direction();
+        state_switch(ref move_state, null);
+        state_switch(ref controller_state, null);
     }
     public void zero_velocity() => rb.linearVelocity = Vector3.zero;
 
@@ -82,9 +86,7 @@ public class Movement : MonoBehaviour{
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
     public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));
     public virtual void clear_move_direction(){
-        if(rb != null)
-            rb.linearVelocityX = 0;
-        //move_direction = new Vector2(0,0);
+        rb.linearVelocityX = 0;
         set_move_direction(Vector2.zero);
     }
     // used for ai path finding and other state machines. 

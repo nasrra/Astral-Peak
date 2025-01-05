@@ -38,6 +38,10 @@ public class StateQueue{
             }
         ));
     }
+    public void queue(List<StateQueueItem> items){
+        foreach (StateQueueItem item in items)
+            queue(item.time, item.start_action, item.time_out);
+    }
     public void clear() => states.Clear();
     public void stop(){
         if(state!=null)
@@ -48,6 +52,17 @@ public class StateQueue{
         stop();
     }
     IEnumerator state_call(Action action){action(); yield break;}
+}
+
+public struct StateQueueItem{
+    public readonly float time;
+    public readonly Action start_action;
+    public readonly Action time_out;
+    public StateQueueItem(float _time, Action _start_action, Action _time_out = null){
+        time=_time;
+        start_action=_start_action;
+        time_out=_time_out;
+    }
 }
 
 [Serializable]

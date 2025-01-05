@@ -23,6 +23,7 @@ public class RangedHolster{
         x.transform.parent = projectile_is_child == true? fire_point:null;
         invoke_projectile_fired(x);         
     }
+    public void set_fire_point(Transform _fire_point) => fire_point = _fire_point;
     protected void invoke_projectile_fired(GameObject x) => projectile_fired?.Invoke(x);
     enum RotationType{
         Z,Y

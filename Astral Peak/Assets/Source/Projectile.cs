@@ -20,4 +20,10 @@ public abstract class Projectile : MonoBehaviour{
         creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
         creature.get_health().damaged -= destroy;
     }
+    protected void snap_to_floor(){
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, LayersManager.BITWISE_GROUND);
+        if(hit==true)
+            transform.position = hit.point;
+    }
 }

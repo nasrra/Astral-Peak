@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Deluz;
+using Deluz.Collections;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
@@ -18,6 +19,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
     [SerializeField] protected int phase = 1;
+    protected StateQueue state  = new StateQueue(null, null);
     protected Dictionary<int, Action> phase_linker;
     protected Dictionary<int, Action> phase_unlinker;
 
@@ -88,16 +90,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
-    //protected void link_phase_select(){
-    //    phase_selected += link_phase;
-    //    phase_selected += unlink_phase;
-    //    phase_selected += combat.set_moveset;
-    //}
-    //protected void unlink_phase_select(){
-    //    phase_selected -= link_phase;
-    //    phase_selected -= unlink_phase;
-    //    phase_selected -= combat.set_moveset;
-    //}
     private void link_phase(int phase){
         phase_linker[phase]();
         combat.set_moveset(phase);
@@ -108,12 +100,4 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         phase_exited?.Invoke(phase);
     }
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
-    protected virtual void link_game_manager(){
-        GameManager.entered_game_state += entered_game_state;
-        GameManager.exited_game_state  += exited_game_state;
-    }
-    protected virtual void unlink_game_manager(){
-        GameManager.entered_game_state -= entered_game_state;
-        GameManager.exited_game_state  -= exited_game_state;        
-    }
 }

@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Deluz;
 using Deluz.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mage : Boss<Movement>{
     public event Action switch_to_idle, switch_to_follow_and_attack;
     public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
-    [SerializeField] List<Animator> summoning_circles = new List<Animator>();
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
     [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
     [SerializeField] GameObject surrounding_projectiles;
     [SerializeField] LineParticleEmitter teleport_trail;
-    StateQueue state  = new StateQueue(null, null);
-
+    [SerializeField] SummoningCircleHandler summoning_circles;
+    
     // Base: 
     void Start(){
         link_events();
@@ -38,24 +38,14 @@ public class Mage : Boss<Movement>{
         state.state_switch();
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
-    protected override void entered_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            enter_cutscene_state();
-    }
-    protected override void exited_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            exit_cutscene_state();
-    }
     public override void enter_cutscene_state(){
         no_state();
         state.stop();
-        state = new (this, ()=>switch_to_idle.Invoke());
-        state.state_switch();
+        switch_to_idle();
     } 
     public override void exit_cutscene_state(){
         switch_phase();
         idle(3);
-        //state.state_switch();
     }
 
 
@@ -88,14 +78,9 @@ public class Mage : Boss<Movement>{
     }
     private void attack_phase_1(BossAttack attack){
         state.queue(
-                time: animator.get_clip_length(attack.animation_id),
-                start_action:()=>animator.Play(attack.animation_id));
+            time: animator.get_clip_length(attack.animation_id),
+            start_action:()=>animator.Play(attack.animation_id));
         state.state_switch();
-    }
-    private void movement_phase_1(){
-        movement.set_gravity(1);
-        movement.set_deceleration(.85f);
-        movement.set_speed(3);
     }
     public void teleport_phase_1(){
         float random = UnityEngine.Random.Range(0,2);
@@ -142,50 +127,38 @@ public class Mage : Boss<Movement>{
         foreach(LineParticleEmitter l in staff_lightning)
             l.stop_emitting();
     }
-    public void turn_on_wailing_stones(){
-        foreach(Animator circle in summoning_circles)
-            circle.Play("turn_on");
-    }
-    public void turn_off_wailing_stones(){
-        foreach(Animator circle in summoning_circles)
-            circle.Play("turn_off");
-    }
+    public void turn_on_wailing_stones() => summoning_circles.turn_on(); 
+    public void turn_off_wailing_stones() => summoning_circles.turn_off();
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
-            Vector3 previous_pos = Vector3.zero;
-            state.queue(
-                time: animator.get_clip_length("Mage2EnterTel"),
-                start_action:() => {
-                    movement.no_state();
-                    movement.zero_velocity();
-                    previous_pos = teleport_trail.transform.position;
-                    animator.Play("Mage2EnterTel");
-                });
-            state.queue(
-                time: animator.get_clip_length("Mage2ExitTel"), 
-                start_action:()=>{
-                    teleport_phase_2(teleport_points[attack.animation_id].position);
-                    teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
-                });
-            state.queue(
-                time: animator.get_clip_length(attack.animation_id),
-                start_action:()=>animator.Play(attack.animation_id));
-            state.queue(
-                time: animator.get_clip_length("Mage2EnterTel"),
-                start_action:()=>{
-                    previous_pos = teleport_trail.transform.position;
-                    animator.Play("Mage2EnterTel");
-                });
-            state.queue(
-                time: animator.get_clip_length("Mage2ExitTel"), 
-                start_action:()=>{
-                    set_fly_pattern();
-                    teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
-                });
-            state.queue(
-                time: 0,
-                start_action:()=>combat.attack_end()
-            );
+            movement.no_state();
+            movement.zero_velocity();
+            state.queue(new List<StateQueueItem>{
+                new(
+                    _time: animator.get_clip_length("Mage2EnterTel"),
+                    _start_action: () => animator.Play("Mage2EnterTel")
+                ),
+                new(
+                    _time: animator.get_clip_length("Mage2ExitTel"),
+                    _start_action: () => teleport_phase_2(teleport_points[attack.animation_id].position)
+                ),
+                new(
+                    _time: animator.get_clip_length(attack.animation_id),
+                    _start_action: () => animator.Play(attack.animation_id)
+                ),
+                new(
+                    _time: animator.get_clip_length("Mage2EnterTel"),
+                    _start_action: () => animator.Play("Mage2EnterTel")
+                ),
+                new(
+                    _time: animator.get_clip_length("Mage2ExitTel"),
+                    _start_action: () => set_fly_pattern()
+                ),
+                new(
+                    _time: 0,
+                    _start_action: () => combat.attack_end()
+                )
+            });
         }
         else
             state.queue(
@@ -193,16 +166,7 @@ public class Mage : Boss<Movement>{
                 start_action:()=>animator.Play(attack.animation_id));
         state.state_switch();
     }
-    private void movement_phase_2(){
-        movement.set_gravity(0);
-        movement.set_deceleration(1f);
-        movement.set_speed(6);
-    }
-    public void movement_sped_up_phase_2(){
-        movement.set_gravity(0);
-        movement.set_deceleration(1f);
-        movement.set_speed(12);
-    }
+    public void movement_sped_up_phase_2() => movement.set_speed(12);
     private void fly_and_attack_state(){
         animator.Play("MageHover");
         combat.chose_attack_state(target);
@@ -211,42 +175,21 @@ public class Mage : Boss<Movement>{
         int x = UnityEngine.Random.Range(0,2);
         animator.Play("Mage2ExitTel");
         movement.no_state();
-        switch(x){
-            case 0:
-                transform.position = teleport_points["figure_eight"].position;
-                movement.figure_eight_state(reverse:false);                
-                break;
-            case 1:
-                transform.position = teleport_points["figure_eight_reversed"].position;
-                movement.figure_eight_state(reverse:true);
-                break;
-        }
+        teleport_phase_2(x==0?teleport_points["figure_eight"].position : teleport_points["figure_eight_reversed"].position);
+        movement.figure_eight_state(reverse:x==0?false:true);
     }
     public void teleport_phase_2(Vector3 pos){
+        teleport_trail.emit_once(transform.position,pos);
         transform.position = pos;
         animator.Play("Mage2ExitTel");
     }
-    public void spawn_lightning_strike(){
-        RaycastHit2D hit;
-        Transform player = Player.instance.transform;
-        hit = Physics2D.Raycast(player.position, Vector2.down, Mathf.Infinity, LayersManager.BITWISE_GROUND);
-        if(hit==true)
-            ranged.fire_projectile("lightning_strike",hit.point);
-    }
-
-
 
 
 
     // VFX Calls
     public void signature_2_lighting(){
-        SceneLighting.instance.lerp_intensity(
-            id:"global",
-            end:2f,
-            time:.1f,
-            callback:()=>SceneLighting.instance.reset_lighting(
-                _id: "global",
-                _time:.1f));
+        SceneLighting.instance.set_intensity("global", 2f);
+        SceneLighting.instance.reset_lighting("global", .2f);
     }
     protected void play_weapon_flash(){
         sprites.play_charged_flash("staff");
@@ -282,8 +225,9 @@ public class Mage : Boss<Movement>{
         };    
     }
     void link_phase_1(){
-        Debug.Log("link 1");
-        movement_phase_1();
+        movement.set_gravity(1);
+        movement.set_deceleration(.85f);
+        movement.set_speed(3);        
         link_health();
         health.death += next_phase;
         link_movement();
@@ -295,7 +239,6 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     void unlink_phase_1(){
-        Debug.Log("unlink 1");
         unlink_health();
         health.death -= next_phase;
         unlink_movement();
@@ -303,8 +246,9 @@ public class Mage : Boss<Movement>{
         unlink_ranged();
     }
     void link_phase_2(){
-        Debug.Log("link 2");
-        movement_phase_2();
+        movement.set_gravity(0);
+        movement.set_deceleration(1f);
+        movement.set_speed(6);
         link_health();
         link_combat();
         link_ranged();
@@ -315,7 +259,6 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
     void unlink_phase_2(){
-        Debug.Log("unlink 2");
         unlink_health();
         unlink_combat();
         unlink_ranged();
@@ -341,6 +284,7 @@ public class Mage : Boss<Movement>{
     void link_ranged(){
         for(int i = 1; i < 7; i++)
             ranged.get_holster("hollow_"+i).projectile_fired += set_hollow_target;
+        ranged.get_holster("lightning_strike").set_fire_point(Player.instance.transform);
     }
     void unlink_ranged(){
         for(int i = 1; i < 7; i++)

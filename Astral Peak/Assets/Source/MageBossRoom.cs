@@ -7,7 +7,7 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] GameObject background_mage;
     [SerializeField] SnowController snow_controller;
     [SerializeField] List<FogController> fog_controllers = new List<FogController>();
-    [SerializeField] List<Animator> attraction_particles_summoning_circles = new List<Animator>();
+    [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
     List<SoundID> ambience = new List<SoundID>(){
@@ -47,14 +47,12 @@ public class MageBossRoom : BossRoomHandler{
         }
     }
     public void emit_attraction_particles(){
-        foreach(Animator circle in attraction_particles_summoning_circles)
-            circle.Play("turn_on");
+        summoning_circles.turn_on(new(){0,1,4});
         for(int i = 1; i < 4; i++)
             particles.play_particle("stone_"+i);
     }
     public void stop_attraction_particles(){
-        foreach(Animator circle in attraction_particles_summoning_circles)
-            circle.Play("turn_off");
+        summoning_circles.turn_off(new(){0,1,4});
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
     }
