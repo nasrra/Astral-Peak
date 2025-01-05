@@ -21,7 +21,7 @@ public class MageBossRoom : BossRoomHandler{
     }
     public void enable_mage(bool x) => mage.gameObject.SetActive(x);
     public void enable_background_mage(bool x) => background_mage.gameObject.SetActive(x);
-    public TheMage get_mage() => mage.GetComponent<TheMage>();
+    public Mage get_mage() => mage.GetComponent<Mage>();
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
     protected override void check_world_state(){
         //throw new System.NotImplementedException();
@@ -41,9 +41,9 @@ public class MageBossRoom : BossRoomHandler{
         }
     }
     void link_events(){
-        mage.GetComponent<TheMage>().phase_selected += handle_phase_switch;
+        mage.GetComponent<Mage>().phase_selected += handle_phase_switch;
     }
     void unlink_events(){
-        mage.GetComponent<TheMage>().phase_selected -= handle_phase_switch;
+        mage.GetComponent<Mage>().phase_selected -= handle_phase_switch;
     }
 }

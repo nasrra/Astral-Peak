@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
+using Deluz;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
@@ -19,8 +19,16 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
     [SerializeField] protected int phase = 1;
+    protected Dictionary<int, Action> phase_linker;
+    protected Dictionary<int, Action> phase_unlinker;
 
-    public void select_phase(int _phase) => phase_selected(phase = _phase);
+    public void select_phase(int _phase){
+        int previous_phase = phase-1;
+        if(previous_phase>0)
+            unlink_phase(previous_phase);
+        link_phase(_phase);        
+        phase_selected(phase = _phase);
+    }
     protected float dist_to_target() => (transform.position - target.position).x;
     
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
@@ -69,4 +77,26 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     public void set_target(Transform _target) => target = _target;
+
+    protected override void entered_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            enter_cutscene_state();
+    }
+    protected override void exited_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            exit_cutscene_state();
+    }
+    protected void link_phase_select(){
+        phase_selected += link_phase;
+        phase_selected += unlink_phase;
+        phase_selected += combat.set_moveset;
+    }
+    protected void unlink_phase_select(){
+        phase_selected -= link_phase;
+        phase_selected -= unlink_phase;
+        phase_selected -= combat.set_moveset;
+    }
+    private void link_phase(int phase) => phase_linker[phase]();
+    private void unlink_phase(int phase) => phase_unlinker[phase]();
+    protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
 }

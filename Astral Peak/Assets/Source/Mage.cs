@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Deluz;
 using Deluz.Collections;
 using UnityEngine;
 
-public class TheMage : Boss<Movement>{
+public class Mage : Boss<Movement>{
     public event Action switch_to_idle, switch_to_follow_and_attack;
     public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
@@ -15,16 +14,18 @@ public class TheMage : Boss<Movement>{
     [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
     [SerializeField] GameObject surrounding_projectiles;
     [SerializeField] LineParticleEmitter teleport_trail;
-    Dictionary<int, Action> phase_linker;
-    StateQueue state;
+    StateQueue state  = new StateQueue(null, null);
 
     // Base: 
     void Start(){
         link_events();
-        create_phase_linker();
-        select_phase(phase);
+        create_phase_linkage();
         sound.set_functions(new MageSound(sound));
-        idle(2);        
+        check_game_state();
+        
+        //  debug purposes.
+        select_phase(phase);
+        state.state_switch();
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){
@@ -35,6 +36,23 @@ public class TheMage : Boss<Movement>{
         state.state_switch();
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
+    protected override void entered_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            enter_cutscene_state();
+    }
+    protected override void exited_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            exit_cutscene_state();
+    }
+    public override void enter_cutscene_state(){
+        no_state();
+        state = new StateQueue(this, ()=>switch_to_idle.Invoke());
+    } 
+    public override void exit_cutscene_state(){
+        select_phase(phase);
+        state.state_switch();
+    }
+
 
 
 
@@ -63,7 +81,12 @@ public class TheMage : Boss<Movement>{
         no_state();
         animator.Play("MageIdle");
     }
-    private void attack_phase_1(BossAttack attack) => base.attack(attack);
+    private void attack_phase_1(BossAttack attack){
+        state.queue(
+                time: animator.get_clip_length(attack.animation_id),
+                start_action:()=>animator.Play(attack.animation_id));
+        state.state_switch();
+    }
     private void movement_phase_1(){
         movement.set_gravity(1);
         movement.set_deceleration(.85f);
@@ -114,13 +137,13 @@ public class TheMage : Boss<Movement>{
         foreach(LineParticleEmitter l in staff_lightning)
             l.stop_emitting();
     }
-    public void wailing_stone_attack(){
+    public void turn_on_wailing_stones(){
         foreach(Animator circle in summoning_circles)
-            circle.Play("loop");
-        StartCoroutine(Util.timer(1.5f, time_out: () =>{
-            for(int i = 0; i < summoning_circles.Count; i++)
-                ranged.fire_projectile("stone_"+(i+1));
-        }));
+            circle.Play("turn_on");
+    }
+    public void turn_off_wailing_stones(){
+        foreach(Animator circle in summoning_circles)
+            circle.Play("turn_off");
     }
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
@@ -234,23 +257,26 @@ public class TheMage : Boss<Movement>{
 
     // Linkage:
     protected void link_events(){
-        phase_selected += link_phase;
-        phase_selected += combat.set_moveset;
+        link_phase_select();
+        link_game_manager();
     }
     protected void unlink_events(){
+        unlink_phase_select(); 
+        unlink_game_manager();
         unlink_health();
         unlink_movement();
         unlink_combat();
         unlink_ranged();
     }
-        
-    void link_phase(int phase) => phase_linker[phase]();
-    void create_phase_linker(){
-        unlink_events();
+    protected override void create_phase_linkage(){
         phase_linker = new Dictionary<int, Action>(){
             {1, ()=>link_phase_1()},
             {2, ()=>link_phase_2()},        
         };
+        phase_unlinker = new Dictionary<int, Action>(){
+            {1, ()=>unlink_phase_1()},
+            {2, ()=>unlink_phase_2()},        
+        };    
     }
     void link_phase_1(){
         movement_phase_1();
@@ -263,6 +289,13 @@ public class TheMage : Boss<Movement>{
         switch_to_follow_and_attack = follow_and_attack_state;
         switch_to_attack = attack_phase_1;
     }
+    void unlink_phase_1(){
+        unlink_health();
+        unlink_movement();
+        unlink_combat();
+        unlink_ranged();
+        state.clear();
+    }
     void link_phase_2(){
         movement_phase_2();
         link_health();
@@ -274,7 +307,14 @@ public class TheMage : Boss<Movement>{
         switch_to_follow_and_attack = fly_and_attack_state;
         switch_to_attack = attack_phase_2;
     }
-
+    void unlink_phase_2(){
+        movement_phase_2();
+        unlink_health();
+        unlink_combat();
+        unlink_ranged();
+        set_fly_pattern();
+        state.clear();
+    }
     void link_health() => health.damaged += sprites.play_damaged_flash;
     void unlink_health() => health.damaged -= sprites.play_damaged_flash;
     void link_movement(){
@@ -308,5 +348,13 @@ public class TheMage : Boss<Movement>{
         ranged.get_holster("hollow_4").projectile_fired -= set_hollow_target;
         ranged.get_holster("hollow_5").projectile_fired -= set_hollow_target;
         ranged.get_holster("hollow_6").projectile_fired -= set_hollow_target;
+    }
+    void link_game_manager(){
+        GameManager.entered_game_state += entered_game_state;
+        GameManager.exited_game_state  += exited_game_state;
+    }
+    void unlink_game_manager(){
+        GameManager.entered_game_state -= entered_game_state;
+        GameManager.exited_game_state  -= exited_game_state;        
     }
 }

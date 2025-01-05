@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Deluz;
 using UnityEngine;
 
 /// <summary>
@@ -64,8 +65,13 @@ public abstract class Creature : MonoBehaviour{
 
     public void can_flip(int x) => flippable = x != 0;
 
-    public virtual void enter_cutscene_state(){}
-    public virtual void exit_cutscene_state(){}
-
+    /// <summary>
+/// this should only be used on Awake(), Start(), OnEnable(), to check what the game state is that the creature has initialized into.
+    /// </summary>
+    protected void check_game_state() => entered_game_state(GameManager.get_state());
+    protected virtual void entered_game_state(GameState state){Log.MethodNotImplemented(this);}
+    protected virtual void exited_game_state(GameState state){Log.MethodNotImplemented(this);}
+    public virtual void enter_cutscene_state(){Log.MethodNotImplemented(this);}
+    public virtual void exit_cutscene_state(){Log.MethodNotImplemented(this);}
     public virtual void kill() => death?.Invoke();
 }

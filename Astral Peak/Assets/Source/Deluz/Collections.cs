@@ -38,7 +38,6 @@ public class StateQueue{
             }
         ));
     }
-
     public void clear() => states.Clear();
     IEnumerator state_call(Action action){action(); yield break;}
 }

@@ -84,8 +84,8 @@ public class MageCombat : BossCombat{
                 special_moveset = new List<BossAttack>(){
                     //projectile_summon_phase_1,
                     //teleport_phase_1,
-                    hollow_summon_phase_1,
-                    //three_slash_phase_1,
+                    //hollow_summon_phase_1,
+                    three_slash_phase_1,
                 };
             }},
             {2,()=>{

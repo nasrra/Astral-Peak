@@ -5,7 +5,7 @@ namespace Cutscenes{
     public class MageOpening : Cutscene{
         public override IEnumerator get_coroutine(){
             MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
-            TheMage mage = room.get_mage(); 
+            Mage mage = room.get_mage(); 
             MageBackground background_mage = room.get_background_mage();
             CameraController.instance.lerp_offset(x:null, y:0.9f, time:2f);
             CameraController.instance.lerp_zoom(size:8.65f, time:2f);
@@ -44,7 +44,6 @@ namespace Cutscenes{
             CameraController.instance.reset_zoom(2f);
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
-            mage.idle(2);
             end();
             yield break;
         }
