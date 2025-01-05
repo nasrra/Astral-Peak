@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Deluz;
-using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
-    public event Action<int> phase_selected;
+    public event Action<int> phase_queued, phase_entered, phase_exited;
     [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprites;
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
@@ -22,13 +21,16 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected Dictionary<int, Action> phase_linker;
     protected Dictionary<int, Action> phase_unlinker;
 
-    public void select_phase(int _phase){
+    protected void next_phase() => queue_phase(phase=phase+1);
+    protected void queue_phase(int _phase) => phase_queued?.Invoke(phase=_phase);
+    protected virtual void switch_phase(){
         int previous_phase = phase-1;
+        no_state();
         if(previous_phase>0)
             unlink_phase(previous_phase);
-        link_phase(_phase);        
-        phase_selected(phase = _phase);
+        link_phase(phase);        
     }
+    
     protected float dist_to_target() => (transform.position - target.position).x;
     
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
@@ -86,17 +88,32 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
-    protected void link_phase_select(){
-        phase_selected += link_phase;
-        phase_selected += unlink_phase;
-        phase_selected += combat.set_moveset;
+    //protected void link_phase_select(){
+    //    phase_selected += link_phase;
+    //    phase_selected += unlink_phase;
+    //    phase_selected += combat.set_moveset;
+    //}
+    //protected void unlink_phase_select(){
+    //    phase_selected -= link_phase;
+    //    phase_selected -= unlink_phase;
+    //    phase_selected -= combat.set_moveset;
+    //}
+    private void link_phase(int phase){
+        phase_linker[phase]();
+        combat.set_moveset(phase);
+        phase_entered?.Invoke(phase);
     }
-    protected void unlink_phase_select(){
-        phase_selected -= link_phase;
-        phase_selected -= unlink_phase;
-        phase_selected -= combat.set_moveset;
+    private void unlink_phase(int phase){
+        phase_unlinker[phase]();
+        phase_exited?.Invoke(phase);
     }
-    private void link_phase(int phase) => phase_linker[phase]();
-    private void unlink_phase(int phase) => phase_unlinker[phase]();
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
+    protected virtual void link_game_manager(){
+        GameManager.entered_game_state += entered_game_state;
+        GameManager.exited_game_state  += exited_game_state;
+    }
+    protected virtual void unlink_game_manager(){
+        GameManager.entered_game_state -= entered_game_state;
+        GameManager.exited_game_state  -= exited_game_state;        
+    }
 }

@@ -13,7 +13,7 @@ public class TheRider : Boss<RiderMovement>{
         idle(1);
     }
     void Start(){
-        select_phase(phase);
+        queue_phase(phase);
     }
 
     void OnDestroy() => unlink_events();
@@ -66,7 +66,7 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
-        phase_selected                          += combat.set_moveset;
+        phase_queued                            += combat.set_moveset;
     }
 
     protected void unlink_events(){
@@ -80,6 +80,6 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
-        phase_selected                          += combat.set_moveset;
+        phase_queued                            -= combat.set_moveset;
     }
 }

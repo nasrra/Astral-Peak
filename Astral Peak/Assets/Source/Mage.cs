@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using Deluz;
 using Deluz.Collections;
 using UnityEngine;
 
@@ -22,9 +23,10 @@ public class Mage : Boss<Movement>{
         create_phase_linkage();
         sound.set_functions(new MageSound(sound));
         check_game_state();
+        queue_phase(phase);
         
         //  debug purposes.
-        select_phase(phase);
+        switch_phase();
         state.state_switch();
     }
     void OnDestroy() => unlink_events();
@@ -46,11 +48,14 @@ public class Mage : Boss<Movement>{
     }
     public override void enter_cutscene_state(){
         no_state();
-        state = new StateQueue(this, ()=>switch_to_idle.Invoke());
+        state.stop();
+        state = new (this, ()=>switch_to_idle.Invoke());
+        state.state_switch();
     } 
     public override void exit_cutscene_state(){
-        select_phase(phase);
-        state.state_switch();
+        switch_phase();
+        idle(3);
+        //state.state_switch();
     }
 
 
@@ -257,11 +262,9 @@ public class Mage : Boss<Movement>{
 
     // Linkage:
     protected void link_events(){
-        link_phase_select();
         link_game_manager();
     }
     protected void unlink_events(){
-        unlink_phase_select(); 
         unlink_game_manager();
         unlink_health();
         unlink_movement();
@@ -279,8 +282,10 @@ public class Mage : Boss<Movement>{
         };    
     }
     void link_phase_1(){
+        Debug.Log("link 1");
         movement_phase_1();
         link_health();
+        health.death += next_phase;
         link_movement();
         link_combat();
         link_ranged();
@@ -290,13 +295,15 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     void unlink_phase_1(){
+        Debug.Log("unlink 1");
         unlink_health();
+        health.death -= next_phase;
         unlink_movement();
         unlink_combat();
         unlink_ranged();
-        state.clear();
     }
     void link_phase_2(){
+        Debug.Log("link 2");
         movement_phase_2();
         link_health();
         link_combat();
@@ -308,12 +315,10 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
     void unlink_phase_2(){
-        movement_phase_2();
+        Debug.Log("unlink 2");
         unlink_health();
         unlink_combat();
         unlink_ranged();
-        set_fly_pattern();
-        state.clear();
     }
     void link_health() => health.damaged += sprites.play_damaged_flash;
     void unlink_health() => health.damaged -= sprites.play_damaged_flash;
@@ -334,27 +339,11 @@ public class Mage : Boss<Movement>{
         combat.attack_chosen -= attack;
     }
     void link_ranged(){
-        ranged.get_holster("hollow_1").projectile_fired += set_hollow_target;
-        ranged.get_holster("hollow_2").projectile_fired += set_hollow_target;
-        ranged.get_holster("hollow_3").projectile_fired += set_hollow_target;
-        ranged.get_holster("hollow_4").projectile_fired += set_hollow_target;
-        ranged.get_holster("hollow_5").projectile_fired += set_hollow_target;
-        ranged.get_holster("hollow_6").projectile_fired += set_hollow_target;
+        for(int i = 1; i < 7; i++)
+            ranged.get_holster("hollow_"+i).projectile_fired += set_hollow_target;
     }
     void unlink_ranged(){
-        ranged.get_holster("hollow_1").projectile_fired -= set_hollow_target;
-        ranged.get_holster("hollow_2").projectile_fired -= set_hollow_target;
-        ranged.get_holster("hollow_3").projectile_fired -= set_hollow_target;
-        ranged.get_holster("hollow_4").projectile_fired -= set_hollow_target;
-        ranged.get_holster("hollow_5").projectile_fired -= set_hollow_target;
-        ranged.get_holster("hollow_6").projectile_fired -= set_hollow_target;
-    }
-    void link_game_manager(){
-        GameManager.entered_game_state += entered_game_state;
-        GameManager.exited_game_state  += exited_game_state;
-    }
-    void unlink_game_manager(){
-        GameManager.entered_game_state -= entered_game_state;
-        GameManager.exited_game_state  -= exited_game_state;        
+        for(int i = 1; i < 7; i++)
+            ranged.get_holster("hollow_"+i).projectile_fired -= set_hollow_target;
     }
 }

@@ -10,28 +10,17 @@ namespace Cutscenes{
             CameraController.instance.lerp_offset(x:null, y:0.9f, time:2f);
             CameraController.instance.lerp_zoom(size:8.65f, time:2f);
             yield return new WaitForSeconds(2.5f);
-            play_teleport_sound();
-            yield return new WaitForSeconds(.5f);
             room.enable_background_mage(true);
-            background_mage.teleport_exit();
-            yield return new WaitForSeconds(2);
-            background_mage.teleport_enter();
-            play_teleport_sound();
-            yield return new WaitForSeconds(.5f);
+            background_mage.teleport(0);
+            yield return new WaitForSeconds(2+background_mage.teleport_time);
+            background_mage.teleport(1);
+            yield return new WaitForSeconds(background_mage.teleport_time/2);
             CameraController.instance.set_target(background_mage.transform);
-            background_mage.teleport_to_point(0);
-            background_mage.teleport_exit();
-            yield return new WaitForSeconds(.5f);
-            background_mage.teleport_enter();
-            play_teleport_sound();
-            yield return new WaitForSeconds(.5f);
-            background_mage.teleport_to_point(1);
-            background_mage.teleport_exit();
-            yield return new WaitForSeconds(.5f);
-            play_teleport_sound();
-            background_mage.teleport_enter();
-            yield return new WaitForSeconds(.5f);
-            background_mage.teleport_to_point(2);
+            yield return new WaitForSeconds(1);
+            background_mage.teleport(2);
+            yield return new WaitForSeconds(1+background_mage.teleport_time/2);
+            background_mage.teleport(3);
+            yield return new WaitForSeconds(background_mage.teleport_time/2);
             background_mage.enable_sprite(false);
             background_mage.destroy();
             room.enable_mage(true);
@@ -47,11 +36,18 @@ namespace Cutscenes{
             end();
             yield break;
         }
-        void play_teleport_sound() =>
-            AudioClipHandler.play(
-            sound_id: Sounds.SoundID.ELECTRIC_BURST,
-            audio_player: UnityHook.instance,
-            AudioSourceSettings.NON_DIEGETIC_RANDOMISED);
+    }
+    public class MagePhaseTransition : Cutscene{
+        public override IEnumerator get_coroutine(){
+            MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            room.emit_attraction_particles();
+            yield return new WaitForSeconds(1);
+            room.stop_attraction_particles();
+            room.enable_mage(true);
+            yield return new WaitForSeconds(1);
+            end();
+            yield break;
+        }
     }
 }
 

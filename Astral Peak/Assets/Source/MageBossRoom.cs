@@ -7,6 +7,8 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] GameObject background_mage;
     [SerializeField] SnowController snow_controller;
     [SerializeField] List<FogController> fog_controllers = new List<FogController>();
+    [SerializeField] List<Animator> attraction_particles_summoning_circles = new List<Animator>();
+    [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,
@@ -19,8 +21,8 @@ public class MageBossRoom : BossRoomHandler{
     void OnDestroy(){
         unlink_events();
     }
-    public void enable_mage(bool x) => mage.gameObject.SetActive(x);
-    public void enable_background_mage(bool x) => background_mage.gameObject.SetActive(x);
+    public void enable_mage(bool x) => mage.SetActive(x);
+    public void enable_background_mage(bool x) => background_mage.SetActive(x);
     public Mage get_mage() => mage.GetComponent<Mage>();
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
     protected override void check_world_state(){
@@ -28,6 +30,10 @@ public class MageBossRoom : BossRoomHandler{
     }
     void handle_phase_switch(int x){
         int _x = x-1;
+        if(x == 2){
+            //mage.SetActive(false);
+            CutsceneManager.play(new Cutscenes.MagePhaseTransition());
+        }
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(_x);
         snow_controller.lerp_preset(_x);
@@ -40,10 +46,22 @@ public class MageBossRoom : BossRoomHandler{
             phase_2_ambient_lightning.Play();
         }
     }
+    public void emit_attraction_particles(){
+        foreach(Animator circle in attraction_particles_summoning_circles)
+            circle.Play("turn_on");
+        for(int i = 1; i < 4; i++)
+            particles.play_particle("stone_"+i);
+    }
+    public void stop_attraction_particles(){
+        foreach(Animator circle in attraction_particles_summoning_circles)
+            circle.Play("turn_off");
+        for(int i = 1; i < 4; i++)
+            particles.stop_particle("stone_"+i);
+    }
     void link_events(){
-        mage.GetComponent<Mage>().phase_selected += handle_phase_switch;
+        mage.GetComponent<Mage>().phase_queued += handle_phase_switch;
     }
     void unlink_events(){
-        mage.GetComponent<Mage>().phase_selected -= handle_phase_switch;
+        mage.GetComponent<Mage>().phase_queued -= handle_phase_switch;
     }
 }

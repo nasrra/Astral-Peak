@@ -39,6 +39,14 @@ public class StateQueue{
         ));
     }
     public void clear() => states.Clear();
+    public void stop(){
+        if(state!=null)
+            entity.StopCoroutine(state);
+    }
+    public void clear_and_stop(){
+        clear();
+        stop();
+    }
     IEnumerator state_call(Action action){action(); yield break;}
 }
 
