@@ -12,9 +12,6 @@ public class TheRider : Boss<RiderMovement>{
         link_events();
         idle(1);
     }
-    void Start(){
-        queue_phase(phase);
-    }
 
     void OnDestroy() => unlink_events();
 

@@ -18,19 +18,19 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
-    [SerializeField] protected int phase = 1;
+    [SerializeField] protected int current_phase = 1, queued_phase;
     protected StateQueue state  = new StateQueue(null, null);
     protected Dictionary<int, Action> phase_linker;
     protected Dictionary<int, Action> phase_unlinker;
 
-    protected void next_phase() => queue_phase(phase=phase+1);
-    protected void queue_phase(int _phase) => phase_queued?.Invoke(phase=_phase);
+    protected void next_phase() => queue_phase(queued_phase=current_phase+1);
+    protected void queue_phase(int _phase) => phase_queued?.Invoke(queued_phase=_phase);
     protected virtual void switch_phase(){
-        int previous_phase = phase-1;
         no_state();
-        if(previous_phase>0)
-            unlink_phase(previous_phase);
-        link_phase(phase);        
+        if(current_phase>0)
+            unlink_phase(current_phase);
+        link_phase(queued_phase);
+        current_phase = queued_phase;     
     }
     
     protected float dist_to_target() => (transform.position - target.position).x;
@@ -67,7 +67,8 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     public void no_state(){
         combat.no_state();
-        movement.no_state();
+        movement.clear_state();
+        state.stop();
     }
 
     // disables body colliders so the player cant hit it anymore.

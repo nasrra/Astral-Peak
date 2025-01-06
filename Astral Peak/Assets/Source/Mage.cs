@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Deluz;
 using Deluz.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mage : Boss<Movement>{
@@ -19,28 +18,22 @@ public class Mage : Boss<Movement>{
     
     // Base: 
     void Start(){
-        link_events();
         create_phase_linkage();
+        switch_phase();
+        link_events();
         sound.set_functions(new MageSound(sound));
         check_game_state();
-        queue_phase(phase);
-        
-        //  debug purposes.
-        switch_phase();
-        state.state_switch();
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){
-        state.queue(
+        state.queue_and_start(
             time: time,
-            start_action:()=>switch_to_idle()
+            start_action:switch_to_idle
         );
-        state.state_switch();
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
         no_state();
-        state.stop();
         switch_to_idle();
     } 
     public override void exit_cutscene_state(){
@@ -83,12 +76,11 @@ public class Mage : Boss<Movement>{
         state.state_switch();
     }
     public void teleport_phase_1(){
-        float random = UnityEngine.Random.Range(0,2);
         float offset = UnityEngine.Random.Range(8,17);
         Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
         Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
         Vector3 previous_pos = teleport_trail.transform.position;
-        if(random == 0)
+        if(UnityEngine.Random.Range(0,2) == 0)
             transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
         else
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
@@ -131,9 +123,8 @@ public class Mage : Boss<Movement>{
     public void turn_off_wailing_stones() => summoning_circles.turn_off();
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
-            movement.no_state();
-            movement.zero_velocity();
-            state.queue(new List<StateQueueItem>{
+            movement.halt();
+            state.queue_and_start(new List<StateQueueItem>{
                 new(
                     _time: animator.get_clip_length("Mage2EnterTel"),
                     _start_action: () => animator.Play("Mage2EnterTel")
@@ -161,10 +152,9 @@ public class Mage : Boss<Movement>{
             });
         }
         else
-            state.queue(
+            state.queue_and_start(
                 time: animator.get_clip_length(attack.animation_id),
                 start_action:()=>animator.Play(attack.animation_id));
-        state.state_switch();
     }
     public void movement_sped_up_phase_2() => movement.set_speed(12);
     private void fly_and_attack_state(){
@@ -174,7 +164,8 @@ public class Mage : Boss<Movement>{
     private void set_fly_pattern(){
         int x = UnityEngine.Random.Range(0,2);
         animator.Play("Mage2ExitTel");
-        movement.no_state();
+        movement.halt();
+        Log.MethodCall(this);
         teleport_phase_2(x==0?teleport_points["figure_eight"].position : teleport_points["figure_eight_reversed"].position);
         movement.figure_eight_state(reverse:x==0?false:true);
     }
@@ -225,6 +216,7 @@ public class Mage : Boss<Movement>{
         };    
     }
     void link_phase_1(){
+        Log.MethodCall(this);
         movement.set_gravity(1);
         movement.set_deceleration(.85f);
         movement.set_speed(3);        
@@ -233,12 +225,15 @@ public class Mage : Boss<Movement>{
         link_movement();
         link_combat();
         link_ranged();
-        state = new StateQueue(this, ()=>follow_and_attack_state());
+        state = new StateQueue(this, follow_and_attack_state);
         switch_to_idle = idle_phase_1;
         switch_to_follow_and_attack = follow_and_attack_state;
         switch_to_attack = attack_phase_1;
     }
     void unlink_phase_1(){
+        Log.MethodCall(this);
+        sound.stop_all_loops();
+        particles.stop_all_particles();
         unlink_health();
         health.death -= next_phase;
         unlink_movement();
@@ -250,10 +245,12 @@ public class Mage : Boss<Movement>{
         movement.set_deceleration(1f);
         movement.set_speed(6);
         link_health();
+        health.set_max_life(40);
+        health.set_current_life(40);
         link_combat();
         link_ranged();
         set_fly_pattern();
-        state = new StateQueue(this, ()=>fly_and_attack_state());
+        state = new StateQueue(this, fly_and_attack_state);
         switch_to_idle = idle_phase_2;
         switch_to_follow_and_attack = fly_and_attack_state;
         switch_to_attack = attack_phase_2;

@@ -9,23 +9,26 @@ public class StateQueue{
     Coroutine state;
     [SerializeField] Queue<IEnumerator> states = new Queue<IEnumerator>();
     MonoBehaviour entity;
-    Action default_state_call;
+    Action default_state;
 
     public StateQueue(MonoBehaviour _entity, Action _default_state){
-        default_state_call = _default_state;
-        states.Enqueue(state_call(default_state_call));
+        default_state = _default_state;
         entity = _entity;
     }
 
-    public void start() => state_switch();
+    //public void start() => state_switch();
     public void state_switch(){
         if (state != null)
             entity.StopCoroutine(state);
         if (states.Count <= 0)
-            states.Enqueue(state_call(default_state_call));
-        state = entity.StartCoroutine(states.Dequeue()); // start and deque the state.
+            default_state();
+        else
+            state = entity.StartCoroutine(states.Dequeue()); // start and deque the state.
     }
-
+    public void queue_and_start(float time, Action start_action, Action time_out = null){
+        queue(time, start_action, time_out);
+        state_switch();
+    }
     public void queue(float time, Action start_action, Action time_out = null){
         if (time < 0)
             throw new Exception("time cannot be less than zero!");
@@ -42,6 +45,11 @@ public class StateQueue{
         foreach (StateQueueItem item in items)
             queue(item.time, item.start_action, item.time_out);
     }
+    
+    public void queue_and_start(List<StateQueueItem> items){
+        queue(items);
+        state_switch();
+    }
     public void clear() => states.Clear();
     public void stop(){
         if(state!=null)
@@ -51,7 +59,6 @@ public class StateQueue{
         clear();
         stop();
     }
-    IEnumerator state_call(Action action){action(); yield break;}
 }
 
 public struct StateQueueItem{

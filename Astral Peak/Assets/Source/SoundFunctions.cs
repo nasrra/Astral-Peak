@@ -28,6 +28,13 @@ public abstract class SoundFunctions{
         }
         return SoundID.NONE;
     }
+    public void stop_all_loops(){
+        if(looping_sources.Count > 0){
+            List<string> keys = new List<string>(looping_sources.Keys);
+            foreach(string key in keys)
+                stop_sound(key);
+        }
+    }
 }
 
 public class CavalrySound : SoundFunctions{

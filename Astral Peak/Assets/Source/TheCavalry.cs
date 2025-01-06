@@ -11,9 +11,6 @@ public class TheCavalry : Boss<CavalryMovement>{
         sound.set_functions(new CavalrySound(sound));
         link_events();
     } 
-    void Start(){
-        queue_phase(phase);
-    }
 
     void OnDestroy() {
         unlink_events();

@@ -340,12 +340,4 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.death            -= kill;
         health.death            -= get_movement().StopAllCoroutines;    
     }
-    protected void link_game_manager(){
-        GameManager.entered_game_state +=  entered_game_state; 
-        GameManager.exited_game_state += exited_game_state;
-    }
-    protected void unlink_game_manager(){
-        GameManager.entered_game_state -=  entered_game_state; 
-        GameManager.exited_game_state -= exited_game_state;
-    }
 }

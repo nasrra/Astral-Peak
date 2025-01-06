@@ -47,7 +47,7 @@ public class Hollow : Enemy{
         StartCoroutine(Util.timer(
             animator.get_clip_length("HollowDeath") + 3,
             start_action: ()=>{
-                movement.no_state();
+                movement.halt();
                 enable_body_colliders(0);
                 particles.stop_all_particles();
                 sprites.play_death_effect(1.5f);
@@ -87,11 +87,11 @@ public class Hollow : Enemy{
     public void summon_state(){
         animator.Play("HollowSummon");
         play_summoning_animation();
-        movement.no_state();
+        movement.halt();
     }
 
     public void alert(){
-        movement.no_state();
+        movement.halt();
         animator.Play("HollowYell");
         alerted = true;
         alert_movement();
@@ -106,7 +106,7 @@ public class Hollow : Enemy{
     }
 
     void player_left_range(Collider2D col){
-        movement.no_state();
+        movement.halt();
         idle_movement();
         particles.stop_particle("yell");
         target = origin;

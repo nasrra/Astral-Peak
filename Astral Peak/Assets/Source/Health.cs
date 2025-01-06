@@ -53,6 +53,9 @@ public class Health : MonoBehaviour{
         }
     }
 
+    public void set_max_life(int amount) => max_life = amount;
+    public void set_current_life(int amount) => current_life = amount;
+
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public void damage(DamageData damage_data, KnockbackData knockback_data){
         if(invulnerable == true)
