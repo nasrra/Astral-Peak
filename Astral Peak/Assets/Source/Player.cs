@@ -228,6 +228,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public override void exit_cutscene_state(){
         link_input();
         link_movement();
+        movement.move_only_state();
     }
     protected override void entered_game_state(GameState state){
         if(state == GameState.MENU){

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Deluz;
 using UnityEngine;
 
 public class CharacterMovement : Movement{
@@ -24,6 +25,10 @@ public class CharacterMovement : Movement{
         jumping = false;
         end_jump();
         base.clear_move_direction();
+    }
+
+    public override void halt(){
+        base.halt();
     }
 
     // ground check

@@ -7,8 +7,9 @@ public abstract class BossRoomHandler : MonoBehaviour{
         fight_started,
         fight_stopped;
     public static BossRoomHandler instance;
-    public Transform boss_start_point;
-    public bool play_cinematic = false;
+    [SerializeField] protected Transform boss_start_point, respawn_point;
+    [SerializeField] protected Collider2DFeedback cutscene_trigger;
+    protected bool play_cinematic = false;
     public SoundID song; 
     protected Cutscene cutscene; 
     public int phase = 0;
@@ -32,4 +33,5 @@ public abstract class BossRoomHandler : MonoBehaviour{
         if(play_cinematic == true)
             CutsceneManager.play(cutscene);
     }
+    protected void set_respawn_point() => Player.instance.set_respawn_point(respawn_point.name);    
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cutscenes;
 using Sounds;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ public class MageBossRoom : BossRoomHandler{
         //throw new System.NotImplementedException();
     }
     void handle_phase_switch(int x){
+        reset_positions();
         int _x = x-1;
         if(x == 2){
             //mage.SetActive(false);
@@ -56,10 +58,24 @@ public class MageBossRoom : BossRoomHandler{
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
     }
+    protected void reset_positions(){
+        Player.instance.transform.position = respawn_point.position;
+        mage.transform.position = boss_start_point.position;
+    }
+    void on_trigger_enter(Collider2D other){
+        set_respawn_point();
+        Player.instance.get_movement().halt();
+        Player.instance.transform.position = cutscene_trigger.transform.position;
+        cutscene_trigger.enabled = false;
+        CutsceneManager.play(new MageOpening());
+        cutscene_trigger.trigger_enter -= on_trigger_enter;
+    }
     void link_events(){
         mage.GetComponent<Mage>().phase_queued += handle_phase_switch;
+        cutscene_trigger.trigger_enter += on_trigger_enter;
     }
     void unlink_events(){
         mage.GetComponent<Mage>().phase_queued -= handle_phase_switch;
+        cutscene_trigger.trigger_enter -= on_trigger_enter;
     }
 }

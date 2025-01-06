@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Deluz;
 using DocumentFormat.OpenXml.Wordprocessing;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -82,10 +81,14 @@ public class Movement : MonoBehaviour{
         state_switch(ref move_state, null);
         state_switch(ref controller_state, null);
     }
-    public void halt(){
+    public virtual void halt(){
         clear_move_direction();
         zero_velocity();
         clear_state();
+        can_dash = true;
+        can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
+        is_dashing = false;
+        reset_gravity();
     }
 
 

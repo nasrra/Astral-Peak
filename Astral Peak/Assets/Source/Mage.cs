@@ -24,7 +24,7 @@ public class Mage : Boss<Movement>{
         link_events();
         sound.set_functions(new MageSound(sound));
         check_game_state();
-        idle(3);
+        //idle(3);
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){
