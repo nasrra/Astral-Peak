@@ -115,13 +115,11 @@ public class Hollow : Enemy{
     }
     void idle_movement(){
         movement.set_speed(idle_speed); 
-        movement.set_deceleration(idle_deceleration);
-        movement.set_acceleration(idle_acceleration);        
+        movement.set_decel(idle_deceleration);
     }
     void alert_movement(){
         movement.set_speed(alert_speed); 
-        movement.set_deceleration(alert_deceleration);
-        movement.set_acceleration(alert_acceleration);        
+        movement.set_decel(alert_deceleration);
     }
 
     void move_direction_changed(Vector2 move_direction){

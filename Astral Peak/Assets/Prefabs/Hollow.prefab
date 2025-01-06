@@ -311,7 +311,8 @@ MonoBehaviour:
   combat: {fileID: 0}
   lighting: {fileID: 0}
   target: {fileID: 8904305568839613953}
-  phase: 1
+  current_phase: 1
+  queued_phase: 0
   paths:
   - movement: 2
     duration: 3
@@ -361,10 +362,18 @@ MonoBehaviour:
   can_knockback: 1
   can_dash: 1
   is_dashing: 0
-  top_speed: 5
-  acceleration: 5
-  dash_cooldown: 1
-  deceleration: 0.85
+  data:
+    speed: 2
+    accel: 1
+    decel: 0.25
+    gravity: 3.33
+    dash_cooldown: 0
+  base_data:
+    speed: 0
+    accel: 0
+    decel: 0
+    gravity: 0
+    dash_cooldown: 0
   move_direction: {x: 0, y: 0}
   rb: {fileID: 2977568614855167195}
   grounded: 0

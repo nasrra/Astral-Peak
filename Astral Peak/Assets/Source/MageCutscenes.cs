@@ -40,6 +40,10 @@ namespace Cutscenes{
     public class MagePhaseTransition : Cutscene{
         public override IEnumerator get_coroutine(){
             MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            fade_to_black();
+            yield return new WaitForSeconds(2);
+            fade_from_black();
+            yield return new WaitForSeconds(1);
             room.emit_attraction_particles();
             yield return new WaitForSeconds(1);
             room.stop_attraction_particles();

@@ -49,7 +49,7 @@ public class CharacterMovement : Movement{
         if(ground.Count <= 0){
             grounded = false;
             not_grounded?.Invoke();
-            reset_deceleration();
+            reset_decel();
         }
         else
             new_ground?.Invoke(ground[ground.Count-1]);
@@ -60,7 +60,7 @@ public class CharacterMovement : Movement{
 
     public void jump() {
         if(grounded == true && can_jump == true && is_dashing == false){
-            set_deceleration(1);
+            mod_decel(1);
             move_direction.y = 1;
             jumped?.Invoke();
         }
@@ -120,7 +120,7 @@ public class CharacterMovement : Movement{
     protected override void decelerate(){
         // decelerate when grounded and not moving.
         if(grounded == true && Mathf.Abs(move_direction.x) < 0.1f)
-            rb.linearVelocity *= deceleration;        
+            rb.linearVelocity *= data.decel;        
     } 
 
     public void is_jumpable(int x) => can_jump = x != 0;

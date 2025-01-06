@@ -19780,10 +19780,18 @@ MonoBehaviour:
   can_knockback: 1
   can_dash: 1
   is_dashing: 0
-  top_speed: 5
-  acceleration: 0.5
-  dash_cooldown: 0.5
-  deceleration: 0.35
+  data:
+    speed: 6
+    accel: 0.5
+    decel: 0.25
+    gravity: 3.5
+    dash_cooldown: 1
+  base_data:
+    speed: 0
+    accel: 0
+    decel: 0
+    gravity: 0
+    dash_cooldown: 0
   move_direction: {x: 0, y: 0}
   rb: {fileID: 8447699733019728571}
   grounded: 0

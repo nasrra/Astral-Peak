@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Deluz;
+using DocumentFormat.OpenXml.Wordprocessing;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Movement : MonoBehaviour{
@@ -16,19 +18,14 @@ public class Movement : MonoBehaviour{
         can_knockback   = true,
         can_dash        = true,
         is_dashing      = false;
-    [SerializeField] protected float top_speed = 5.0f;
-    [SerializeField] protected float acceleration = 5.0f;
-    [SerializeField] protected float dash_cooldown = 1.0f;
-    [SerializeField, Range(0f, 1f)] protected float deceleration = 0.85f;
+    [SerializeField] protected MovementData data, base_data;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
-    private float original_gravity, original_deceleration;
     protected Coroutine move_state, controller_state, dash_state;
 
     void OnEnable(){
         move_only_state();
-        original_gravity = rb.gravityScale;
-        original_deceleration = deceleration;
+        base_data = data;
     }
     void Start() => link();
     void OnDestroy() => unlink();
@@ -38,10 +35,20 @@ public class Movement : MonoBehaviour{
 
 
     // getters and setters.
-    public void set_speed(float x) => top_speed = x;
-    public void set_deceleration(float x) => deceleration = x;
-    public void set_acceleration(float x) => acceleration = x;
-    public void reset_deceleration() => deceleration = original_deceleration;
+    public void set_speed(float _speed) => data.speed = base_data.speed = _speed;
+    public void set_accel(float _accel) => data.accel = base_data.accel = _accel;
+    public void set_decel(float _decel) => data.decel = base_data.decel = _decel;
+    public void set_gravity(float _gravity) => rb.gravityScale = base_data.gravity = _gravity;
+    public void mod_speed(float _speed) => data.speed = _speed;
+    public void mod_accel(float _accel) => data.accel = _accel;
+    public void mod_decel(float _decel) => data.decel = _decel;
+    public void mod_gravity(float _gravity) => rb.gravityScale = _gravity;
+    public void reset_speed() => data.speed = base_data.speed;
+    public void reset_accel() => data.accel = base_data.accel;
+    public void reset_decel() => data.decel = base_data.decel;
+    public void reset_gravity() => rb.gravityScale = base_data.gravity;
+
+
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public Vector2 get_move_direction() => move_direction;
     public void update_move_direction(Vector2 direction){
@@ -52,7 +59,12 @@ public class Movement : MonoBehaviour{
         move_direction = direction;
         move_direction_changed?.Invoke(move_direction);        
     }
-    public void set_gravity(float _gravity) => rb.gravityScale = _gravity;
+    public void set_data(MovementData data){
+        set_speed(data.speed);
+        set_decel(data.decel);
+        set_accel(data.accel);
+        set_gravity(data.gravity);
+    }
 
 
 
@@ -80,9 +92,9 @@ public class Movement : MonoBehaviour{
 
 
     //movment functions
-    public void move_left(int x)   => update_move_direction((x == 1)? new Vector2(-1,0) : new Vector2(1,0));
+    public void move_left(int x)    => update_move_direction((x == 1)? new Vector2(-1,0) : new Vector2(1,0));
     public void move_left(bool x)   => update_move_direction((x == true)? new Vector2(-1,0) : new Vector2(1,0));
-    public void move_right(int x)  => update_move_direction((x == 1)? new Vector2(1,0)  : new Vector2(-1,0));
+    public void move_right(int x)   => update_move_direction((x == 1)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_right(bool x)  => update_move_direction((x == true)? new Vector2(1,0)  : new Vector2(-1,0));
     public void move_up(bool x)     => update_move_direction((x == true)? new Vector2(0,1)  : new Vector2(0,-1));
     public void move_down(bool x)   => update_move_direction((x == true)? new Vector2(0,-1) : new Vector2(0,1));
@@ -111,12 +123,12 @@ public class Movement : MonoBehaviour{
     protected virtual void horizontal_move(){    
         if(Mathf.Abs(move_direction.x) <= 0)
             return;
-        float increment = move_direction.x * acceleration;
-        float newSpeed = Mathf.Clamp(rb.linearVelocity.x + increment, -top_speed, top_speed);
+        float increment = move_direction.x * data.accel;
+        float newSpeed = Mathf.Clamp(rb.linearVelocity.x + increment, -data.speed, data.speed);
         rb.linearVelocity = new Vector2(newSpeed, rb.linearVelocity.y);     
     }
-    protected virtual void vertical_move() => rb.linearVelocity = new Vector2(rb.linearVelocity.x, move_direction.y * top_speed);
-    protected virtual void decelerate() => rb.linearVelocity *= deceleration;
+    protected virtual void vertical_move() => rb.linearVelocity = new Vector2(rb.linearVelocity.x, move_direction.y * data.speed);
+    protected virtual void decelerate() => rb.linearVelocity *= data.decel;
 
     public void move_only_state(){
         state_switch(ref move_state, move());
@@ -126,7 +138,8 @@ public class Movement : MonoBehaviour{
         while(true){
             horizontal_move();
             vertical_move();
-            decelerate();
+            if(move_direction.x == 0)
+                decelerate();
             yield return new WaitForFixedUpdate();
         }
     }
@@ -144,7 +157,7 @@ public class Movement : MonoBehaviour{
         move_only_state();
         is_dashing = false;
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
-        StartCoroutine(Util.timer(dash_cooldown, time_out:()=>can_dash=true));
+        StartCoroutine(Util.timer(data.dash_cooldown, time_out:()=>can_dash=true));
     }
     public void knockback(KnockbackData data){
         if(can_knockback == true){
@@ -165,7 +178,7 @@ public class Movement : MonoBehaviour{
                 start?.Invoke();
             },
             time_out:()=>{
-                rb.gravityScale = original_gravity;
+                rb.gravityScale = base_data.gravity;
                 rb.linearVelocity = Vector2.zero;
                 end?.Invoke();
             }
@@ -220,7 +233,7 @@ public class Movement : MonoBehaviour{
     protected IEnumerator figure_eight(bool reverse = false){
         float elapsed_time = 0;
         float reverse_factor = reverse==false? 1 : -1;
-        float y_speed_factor = top_speed*10;
+        float y_speed_factor = data.speed*10;
         float x_speed_factor = y_speed_factor/2;
         while(true){
             elapsed_time += Time.deltaTime;
@@ -270,10 +283,27 @@ public enum MovementOption{
 }
 
 // Path that the Ai will follow.
-[System.Serializable]
+[Serializable]
 public struct MovementPath{
     // direction to move in.
     public MovementOption movement;
     // duration of movement.
     public float duration;
+}
+
+[Serializable]
+public struct MovementData{
+    public float 
+        speed,
+        accel,
+        decel,
+        gravity,
+        dash_cooldown;
+    public MovementData(float _speed, float _accel, float _decel, float _gravity, float _dash_cooldown){
+        speed = _speed;
+        accel = _accel;
+        decel = _decel;
+        gravity = _gravity;
+        dash_cooldown = _dash_cooldown;
+    }    
 }

@@ -68,7 +68,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public void no_state(){
         combat.no_state();
         movement.clear_state();
-        state.stop();
     }
 
     // disables body colliders so the player cant hit it anymore.

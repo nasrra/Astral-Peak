@@ -667,7 +667,7 @@ MonoBehaviour:
   lighting: {fileID: 2640624942175576056}
   target: {fileID: 0}
   current_phase: 0
-  queued_phase: 1
+  queued_phase: 2
   teleport_points:
     _serializedList:
     - Key: Mage2RightLeft
@@ -680,6 +680,22 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: figure_eight_reversed
       Value: {fileID: 0}
+  movement_presets:
+    _serializedList:
+    - Key: phase_1
+      Value:
+        speed: 3
+        accel: 3
+        decel: 0.25
+        gravity: 1
+        dash_cooldown: 0
+    - Key: phase_2
+      Value:
+        speed: 6
+        accel: 1
+        decel: 1
+        gravity: 0
+        dash_cooldown: 0
   staff_lightning:
   - {fileID: 0}
   - {fileID: 0}
@@ -749,10 +765,18 @@ MonoBehaviour:
   can_knockback: 1
   can_dash: 1
   is_dashing: 0
-  top_speed: 3
-  acceleration: 0.5
-  dash_cooldown: 1
-  deceleration: 0.85
+  data:
+    speed: 3
+    accel: 0.5
+    decel: 0.25
+    gravity: 1
+    dash_cooldown: 0
+  base_data:
+    speed: 0
+    accel: 0
+    decel: 0
+    gravity: 0
+    dash_cooldown: 0
   move_direction: {x: 0, y: 0}
   rb: {fileID: 1179165287237134916}
 --- !u!70 &7100196876858075490
@@ -850,7 +874,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0
   m_GravityScale: 1

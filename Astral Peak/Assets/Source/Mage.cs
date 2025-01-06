@@ -10,7 +10,8 @@ public class Mage : Boss<Movement>{
     public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
     [SerializedDictionary("id","Transform")]
-    [SerializeField] SerializedDictionary<string, Transform> teleport_points= new SerializedDictionary<string, Transform>();
+    [SerializeField] SerializedDictionary<string, Transform> teleport_points = new SerializedDictionary<string, Transform>();
+    [SerializeField] SerializedDictionary<string, MovementData> movement_presets = new SerializedDictionary<string, MovementData>();
     [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
     [SerializeField] GameObject surrounding_projectiles;
     [SerializeField] LineParticleEmitter teleport_trail;
@@ -23,6 +24,7 @@ public class Mage : Boss<Movement>{
         link_events();
         sound.set_functions(new MageSound(sound));
         check_game_state();
+        idle(3);
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){
@@ -33,7 +35,9 @@ public class Mage : Boss<Movement>{
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
-        no_state();
+        movement.clear_state();
+        combat.no_state();
+        state.stop();
         switch_to_idle();
     } 
     public override void exit_cutscene_state(){
@@ -67,13 +71,15 @@ public class Mage : Boss<Movement>{
     //phase 1.
     private void idle_phase_1(){
         no_state();
+        state.stop();
         animator.Play("MageIdle");
     }
     private void attack_phase_1(BossAttack attack){
-        state.queue(
+        movement.halt();
+        combat.no_state();
+        state.queue_and_start(
             time: animator.get_clip_length(attack.animation_id),
             start_action:()=>animator.Play(attack.animation_id));
-        state.state_switch();
     }
     public void teleport_phase_1(){
         float offset = UnityEngine.Random.Range(8,17);
@@ -156,7 +162,6 @@ public class Mage : Boss<Movement>{
                 time: animator.get_clip_length(attack.animation_id),
                 start_action:()=>animator.Play(attack.animation_id));
     }
-    public void movement_sped_up_phase_2() => movement.set_speed(12);
     private void fly_and_attack_state(){
         animator.Play("MageHover");
         combat.chose_attack_state(target);
@@ -165,7 +170,6 @@ public class Mage : Boss<Movement>{
         int x = UnityEngine.Random.Range(0,2);
         animator.Play("Mage2ExitTel");
         movement.halt();
-        Log.MethodCall(this);
         teleport_phase_2(x==0?teleport_points["figure_eight"].position : teleport_points["figure_eight_reversed"].position);
         movement.figure_eight_state(reverse:x==0?false:true);
     }
@@ -216,10 +220,7 @@ public class Mage : Boss<Movement>{
         };    
     }
     void link_phase_1(){
-        Log.MethodCall(this);
-        movement.set_gravity(1);
-        movement.set_deceleration(.85f);
-        movement.set_speed(3);        
+        movement.set_data(movement_presets["phase_1"]);      
         link_health();
         health.death += next_phase;
         link_movement();
@@ -231,7 +232,6 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     void unlink_phase_1(){
-        Log.MethodCall(this);
         sound.stop_all_loops();
         particles.stop_all_particles();
         unlink_health();
@@ -241,9 +241,7 @@ public class Mage : Boss<Movement>{
         unlink_ranged();
     }
     void link_phase_2(){
-        movement.set_gravity(0);
-        movement.set_deceleration(1f);
-        movement.set_speed(6);
+        movement.set_data(movement_presets["phase_2"]);
         link_health();
         health.set_max_life(40);
         health.set_current_life(40);
