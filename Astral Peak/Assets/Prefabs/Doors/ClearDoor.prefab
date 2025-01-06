@@ -51,7 +51,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 3959
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -97,7 +97,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 3711
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -139,12 +139,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_point: {fileID: 0}
   animator: {fileID: 0}
+  start_open: 1
+  solid_col: {fileID: 5144157962665142012}
+  trigger_col: {fileID: 9213135363660254388}
   scene_to_load: TutorialArea
   exit_point: TutorialAreaExit
-  trigger_col: {fileID: 9213135363660254388}
-  solid_col: {fileID: 5144157962665142012}
-  start_open: 1
 --- !u!1 &5472474015683243355
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,5 +190,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8ce35ff56f33d46861f9de1f9e43d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   movement: 3

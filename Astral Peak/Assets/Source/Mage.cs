@@ -105,7 +105,7 @@ public class Mage : Boss<Movement>{
             return;
         if(direction == Vector2.left || direction == Vector2.right)
             animator.Play("MageWalk",0,0);
-        else
+        else if(direction == Vector2.zero)
             animator.Play("MageIdle",0,0);
     }
 
@@ -264,7 +264,7 @@ public class Mage : Boss<Movement>{
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
     }
-    void unlink_movement(){
+    public void unlink_movement(){
         movement.move_direction_changed -= face_direction;
         movement.move_direction_changed -= move_direction_changed;
     }

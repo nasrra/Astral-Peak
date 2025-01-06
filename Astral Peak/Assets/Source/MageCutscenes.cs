@@ -40,15 +40,29 @@ namespace Cutscenes{
     public class MagePhaseTransition : Cutscene{
         public override IEnumerator get_coroutine(){
             MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            Mage mage = room.get_mage();
+            
             fade_to_black();
             yield return new WaitForSeconds(2);
             fade_from_black();
             yield return new WaitForSeconds(1);
+            mage.animator.Play("MageYell");
+            CameraController.instance.set_target(mage.transform);
+            yield return new WaitForSeconds(mage.animator.get_clip_length("MageYell")+1);
+            mage.animator.Play("MagePhaseTransition");
+            mage.unlink_movement();
+            mage.get_movement().mod_gravity(0);
+            mage.get_movement().mod_speed(6);
+            mage.get_movement().move_up(true);
+            mage.get_movement().move_only_state();
             room.emit_attraction_particles();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
+            mage.get_movement().move_up(false);
+            mage.get_movement().clear_move_direction();
+            mage.get_movement().zero_velocity();
             room.stop_attraction_particles();
-            room.enable_mage(true);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
+            CameraController.instance.set_target(Player.instance.transform);
             end();
             yield break;
         }

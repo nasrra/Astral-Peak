@@ -97,8 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8312630605511337484}
   - component: {fileID: 1574979722944450992}
-  - component: {fileID: 3669280354736213021}
-  m_Layer: 3
+  - component: {fileID: 7883893674375809787}
+  m_Layer: 11
   m_Name: ParticleAttractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,10 +614,10 @@ ParticleSystemForceField:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    m_MultiplyDragByParticleSize: 1
-    m_MultiplyDragByParticleVelocity: 1
---- !u!61 &3669280354736213021
-BoxCollider2D:
+    m_MultiplyDragByParticleSize: 0
+    m_MultiplyDragByParticleVelocity: 0
+--- !u!70 &7883893674375809787
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -632,14 +632,14 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -650,15 +650,6 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 1.87}
+  m_Size: {x: 1, y: 4}
+  m_Direction: 0
