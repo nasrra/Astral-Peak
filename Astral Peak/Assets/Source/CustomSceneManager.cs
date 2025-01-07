@@ -41,7 +41,7 @@ public static class CustomSceneManager{
     static IEnumerator load_scene_with_transitions_coroutine(){
         AudioManager.dim_sfx_smooth();
         CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
-        CameraEffects.instance.fade_to_black();
+        CameraEffects.instance.fade_to_black(1);
         yield break;
     } 
     static void test() => Debug.Log(1);

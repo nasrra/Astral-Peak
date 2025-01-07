@@ -134,6 +134,15 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipCutscene"",
+                    ""type"": ""Button"",
+                    ""id"": ""436044c7-4eda-4b78-91e3-4e57a721c391"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -268,6 +277,17 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04c70352-1131-4334-ad6e-6067cf00a7ed"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipCutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -288,6 +308,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_Keyboard_Exit = m_Keyboard.FindAction("Exit", throwIfNotFound: true);
         m_Keyboard_Debug = m_Keyboard.FindAction("Debug", throwIfNotFound: true);
         m_Keyboard_Up = m_Keyboard.FindAction("Up", throwIfNotFound: true);
+        m_Keyboard_SkipCutscene = m_Keyboard.FindAction("SkipCutscene", throwIfNotFound: true);
     }
 
     ~@Keybinds()
@@ -366,6 +387,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Exit;
     private readonly InputAction m_Keyboard_Debug;
     private readonly InputAction m_Keyboard_Up;
+    private readonly InputAction m_Keyboard_SkipCutscene;
     public struct KeyboardActions
     {
         private @Keybinds m_Wrapper;
@@ -382,6 +404,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         public InputAction @Exit => m_Wrapper.m_Keyboard_Exit;
         public InputAction @Debug => m_Wrapper.m_Keyboard_Debug;
         public InputAction @Up => m_Wrapper.m_Keyboard_Up;
+        public InputAction @SkipCutscene => m_Wrapper.m_Keyboard_SkipCutscene;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -427,6 +450,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Up.started += instance.OnUp;
             @Up.performed += instance.OnUp;
             @Up.canceled += instance.OnUp;
+            @SkipCutscene.started += instance.OnSkipCutscene;
+            @SkipCutscene.performed += instance.OnSkipCutscene;
+            @SkipCutscene.canceled += instance.OnSkipCutscene;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -467,6 +493,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Up.started -= instance.OnUp;
             @Up.performed -= instance.OnUp;
             @Up.canceled -= instance.OnUp;
+            @SkipCutscene.started -= instance.OnSkipCutscene;
+            @SkipCutscene.performed -= instance.OnSkipCutscene;
+            @SkipCutscene.canceled -= instance.OnSkipCutscene;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -498,5 +527,6 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnExit(InputAction.CallbackContext context);
         void OnDebug(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
+        void OnSkipCutscene(InputAction.CallbackContext context);
     }
 }

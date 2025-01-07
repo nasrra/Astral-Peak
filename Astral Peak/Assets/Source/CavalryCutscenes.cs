@@ -27,6 +27,9 @@ public class CavalryOpening : Cutscene{
         end();
         yield break;
     }
+    public override void skip(){
+        Debug.Log("skip!");
+    }
 }
 
 public class CavalryPhaseTransition : Cutscene{
@@ -66,6 +69,9 @@ public class CavalryPhaseTransition : Cutscene{
         AudioManager.play_music(room.song);
         end(); 
         yield break;
+    }
+    public override void skip(){
+        Debug.Log("skip!");
     }
 }
 }

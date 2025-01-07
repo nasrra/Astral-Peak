@@ -37,6 +37,9 @@ namespace Cutscenes{
             end();
             yield break;
         }
+        public override void skip(){
+            Debug.Log("skip opening!");
+        }
     }
     public class MagePhaseTransition : Cutscene{
         public override IEnumerator get_coroutine(){
@@ -74,6 +77,10 @@ namespace Cutscenes{
             end();
             yield break;
             //set_fly_pattern();
+        }
+
+        public override void skip(){
+            Debug.Log("skip phase transition!");
         }
     }
 }

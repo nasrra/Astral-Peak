@@ -26,13 +26,4 @@ public static class ValueHelper{
         start.value = end;
         yield break;
     }
-
-    public static IEnumerator lerp_value(FloatParameter value, float n_value, float time){
-        while(Mathf.Abs(value.value - n_value) > 0.05f){
-            value.value = Mathf.Lerp(value.value, n_value, Time.deltaTime * time);
-            yield return null;
-        }
-        value.value = n_value;
-        yield break;     
-    }
 }

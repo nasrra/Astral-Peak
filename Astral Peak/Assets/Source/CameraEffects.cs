@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
+using Deluz;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -16,14 +16,22 @@ public class CameraEffects : MonoBehaviour{
     [SerializeField] Animator screen_transitions;
     [SerializeField] Coroutine fade_state;
 
+    [SerializeField] Vignette vignette;
+    [SerializeField] ColorAdjustments colour;
+    [SerializeField] FilmGrain film_grain;
+
+
     static Coroutine 
         vignette_state,
+        
+        colour_saturation_state,
         colour_state,
         grain_state;
 
     public void Awake(){
         instance = this;
-        state_switch(CameraEffectState.NORMAL);
+        get_volume_components();
+        set_preset(CameraEffectState.NORMAL);
     }
 
     void Start(){
@@ -41,77 +49,52 @@ public class CameraEffects : MonoBehaviour{
         completed_fade_from_black = null;
     }
 
-    public void normal_state() => state_switch(CameraEffectState.NORMAL, 12);
-    public void hurt_state() => state_switch(CameraEffectState.HURT, 12);
-    public void flashback_state() => state_switch(CameraEffectState.FLASHBACK);
-    public void none_state() => state_switch(CameraEffectState.NONE);
+    public void normal_state()      => lerp_preset(CameraEffectState.NORMAL,    .35f);
+    public void hurt_state()        => lerp_preset(CameraEffectState.HURT,      .35f);
+    public void flashback_state()   => set_preset(CameraEffectState.FLASHBACK);
+    public void none_state()        => set_preset(CameraEffectState.NONE);
 
-    void state_switch(CameraEffectState state, float speed){
-        handle_vignette(state.vignette_intensity, speed);
-        handle_colour_adjustment(state.saturation_intensity, speed);
-        handle_film_grain(state.film_grain_intensity, speed);
-        fade_to_colour(state.color);
-    }
-
-    void state_switch(CameraEffectState state){
-        volume.sharedProfile.TryGet(out Vignette vignette);
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        volume.sharedProfile.TryGet(out FilmGrain film_grain);
-        instant_value_set(vignette.intensity,   state.vignette_intensity);
-        instant_value_set(colour.saturation,    state.saturation_intensity);
-        instant_value_set(film_grain.intensity, state.film_grain_intensity);
-        instant_colour_set(state.color);
+    void state_switch(ref Coroutine state, IEnumerator _state){
+        if(state!=null)
+            StopCoroutine(state);
+        state = _state!=null? StartCoroutine(_state) : null;
     }
 
-    void handle_vignette(float intensity, float speed){
-        volume.sharedProfile.TryGet(out Vignette vignette);
-        if(vignette_state != null)
-            StopCoroutine(vignette_state);
-        vignette_state = StartCoroutine(ValueHelper.lerp_value(vignette.intensity, intensity, speed));
+    void lerp_preset(CameraEffectState preset, float time){
+        state_switch(ref vignette_state, Calc.lerp_value(val=>vignette.intensity.value=val, _start:vignette.intensity.value, _end: preset.vignette_intensity, _time:time));
+        state_switch(ref colour_saturation_state, Calc.lerp_value(val=>colour.saturation.value=val, _start:colour.saturation.value, _end: preset.colour_saturation, _time:time));
+        state_switch(ref grain_state, Calc.lerp_value(val=>film_grain.intensity.value=val, _start:film_grain.intensity.value, _end: preset.film_grain_intensity, _time:time));
+        state_switch(ref colour_state, Calc.lerp_color(val=>colour.colorFilter.value=val, _start:colour.colorFilter.value, _end: preset.colour_filter, _time:time));
     }
 
-    void handle_colour_adjustment(float saturation, float speed){
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        if(colour_state != null)
-            StopCoroutine(colour_state);
-        colour_state = StartCoroutine(ValueHelper.lerp_value(colour.saturation, saturation, speed));        
-    }
-    void handle_film_grain(float intensity, float speed){
-        volume.sharedProfile.TryGet(out FilmGrain film_grain);
-        if(grain_state != null)
-            StopCoroutine(grain_state);
-        grain_state = StartCoroutine(ValueHelper.lerp_value(film_grain.intensity, intensity, speed));     
-    }     
-
-    public void fade_to_black(float time = 1){
-        if(fade_state != null)
-            StopCoroutine(fade_state);
-        fade_state = StartCoroutine(screen_transition_coroutine("fade_to_black",time, started_fade_to_black, completed_fade_to_black));
-    }
-    public void fade_from_black(float time = 1){
-        if(fade_state != null)
-            StopCoroutine(fade_state);
-        fade_state = StartCoroutine(screen_transition_coroutine("fade_from_black",time, started_fade_from_black, completed_fade_from_black));
-    }
-    IEnumerator screen_transition_coroutine(string transition, float time, Action started, Action completed){
-        started?.Invoke();
-        screen_transitions.speed = time;
-        screen_transitions.Play(transition);
-        yield return new WaitForSeconds(time);
-        completed?.Invoke();
+    void set_preset(CameraEffectState state){
+        vignette.intensity.value   = state.vignette_intensity;
+        colour.saturation.value    = state.colour_saturation;
+        film_grain.intensity.value = state.film_grain_intensity;
+        colour.colorFilter.value   = state.colour_filter;
     }
 
-    public void instant_value_set(FloatParameter value, float n_value) => value.value = n_value;
-
-    public void instant_colour_set(Color _colour){
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        colour.colorFilter.value = _colour;
+    void get_volume_components(){
+        volume.sharedProfile.TryGet(out Vignette _vignette);
+        vignette = _vignette;
+        volume.sharedProfile.TryGet(out ColorAdjustments _colour);
+        colour = _colour;
+        volume.sharedProfile.TryGet(out FilmGrain _film_grain);
+        film_grain = _film_grain;
     }
 
-    public void fade_to_colour(Color color){
-        volume.sharedProfile.TryGet(out ColorAdjustments colour);
-        StartCoroutine(ValueHelper.lerp_colours(colour.colorFilter, color, 1f));
-    }
+    public void fade_to_black(float time) => state_switch(ref fade_state, screen_transition_coroutine("fade_to_black",time, started_fade_to_black, completed_fade_to_black));
+    public void fade_from_black(float time) => state_switch(ref fade_state, screen_transition_coroutine("fade_from_black",time, started_fade_from_black, completed_fade_from_black));
+    IEnumerator screen_transition_coroutine(string transition, float time, Action started, Action completed) =>
+        Util.timer(
+            time: time,
+            start_action:()=>{
+                screen_transitions.speed = time;
+                screen_transitions.Play(transition);
+                started?.Invoke();                
+            },
+            time_out:()=>completed?.Invoke()
+        );
 
     void link_player(){
         if(Player.instance == null){
@@ -137,29 +120,28 @@ public class CameraEffects : MonoBehaviour{
 }
 
 public struct CameraEffectState{
+    public readonly float 
+        vignette_intensity,
+        colour_saturation,
+        film_grain_intensity;
+    
+    public readonly Color
+        colour_filter;
     public CameraEffectState(
         float _vignette_intensity,
-        float _saturation_intensity,
+        float _colour_saturation,
         float _film_grain_intensity,
-        Color _color
+        Color _colour_filter
     ){
         vignette_intensity      = _vignette_intensity;
-        saturation_intensity    = _saturation_intensity;
+        colour_saturation       = _colour_saturation;
         film_grain_intensity    = _film_grain_intensity;
-        color = _color;
+        colour_filter = _colour_filter;
     }
-
     public readonly static CameraEffectState 
     NONE        = new CameraEffectState(0,0,0, Color.white),
     NORMAL      = new CameraEffectState(0.05f,0,0.25f, Color.white),
     HURT        = new CameraEffectState(0.35f,-25,0.45f, Color.white),
     FLASHBACK   = new CameraEffectState(.55f, -100, 1, Color.white);
 
-    public readonly float 
-        vignette_intensity,
-        saturation_intensity,
-        film_grain_intensity;
-    
-    public readonly Color
-        color;
 }

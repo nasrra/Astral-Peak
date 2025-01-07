@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SkipCutscene",
+                    "type": "Button",
+                    "id": "436044c7-4eda-4b78-91e3-4e57a721c391",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -244,6 +253,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04c70352-1131-4334-ad6e-6067cf00a7ed",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipCutscene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

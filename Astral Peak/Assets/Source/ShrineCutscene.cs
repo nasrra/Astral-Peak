@@ -123,6 +123,9 @@ public class ShrineOpeningCutscene : Cutscene{
     {
         throw new NotImplementedException();
     }
+    public override void skip(){
+        Debug.Log("skip!");
+    }
 }
 
 public class ShrineAltarOneCutscene : Cutscene{
@@ -160,5 +163,8 @@ public class ShrineAltarOneCutscene : Cutscene{
     void unlink(){
         torches_on          = null;
         altar_numeral_on    = null;        
+    }
+    public override void skip(){
+        Debug.Log("skip!");
     }
 }

@@ -82,7 +82,7 @@ public class UiManager : MonoBehaviour{
             AudioSourceSettings.NON_DIEGETIC);  
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);
-        CameraEffects.instance.fade_to_black();
+        CameraEffects.instance.fade_to_black(1);
         yield return new WaitForSeconds(4);  
         death_screen_ended?.Invoke();
         yield break;
