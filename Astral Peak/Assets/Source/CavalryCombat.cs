@@ -66,9 +66,9 @@ public class CavalryCombat : BossCombat{
             idle_cooldown:          0,
             combat_cooldown:        0);
     protected override void create_movesets(){
-        movesets = new Dictionary<int, Action>(){
-            {0,()=>{test(ground_slam);}},
-            {1,()=>{
+        movesets = new Dictionary<string, Action>(){
+            {"test",()=>{test(ground_slam);}},
+            {"phase_1",()=>{
                 front_moveset = new List<BossAttack>(){
                     front_strike,
                     bite,

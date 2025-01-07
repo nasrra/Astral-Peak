@@ -77,8 +77,8 @@ public class MageCombat : BossCombat{
             combat_cooldown:       6)
         ;
     protected override void create_movesets(){
-        movesets = new Dictionary<int, Action>(){
-            {1,()=>{
+        movesets = new Dictionary<string, Action>(){
+            {"phase_1",()=>{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
@@ -88,13 +88,13 @@ public class MageCombat : BossCombat{
                     //three_slash_phase_1,
                 };
             }},
-            {2,()=>{
+            {"phase_2",()=>{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    //projectile_summon_phase_2,
-                    //hollow_summon_phase_2,
-                    //signature_phase_2,
+                    projectile_summon_phase_2,
+                    hollow_summon_phase_2,
+                    signature_phase_2,
                     left_right_phase_2,
                     right_left_phase_2,
                 };

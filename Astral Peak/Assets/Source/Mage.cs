@@ -16,14 +16,38 @@ public class Mage : Boss<Movement>{
     [SerializeField] GameObject surrounding_projectiles;
     [SerializeField] LineParticleEmitter teleport_trail;
     [SerializeField] SummoningCircleHandler summoning_circles;
+    protected Dictionary<string, Action> phase_linker;
+    protected Dictionary<string, Action> phase_unlinker;
+    protected Dictionary<string, Action> exit_cutscene_states;
     
     // Base: 
-    void Start(){
-        create_phase_linkage();
-        switch_phase();
-        link_events();
+    void Awake(){
         sound.set_functions(new MageSound(sound));
+        phase_linker = new Dictionary<string, Action>(){
+            {"phase_1", link_phase_1},
+            {"phase_2", link_phase_2},        
+            {"cutscene_opening", link_cutscene_opening},
+            {"cutscene_transition", link_cutscene_transition},
+        };
+        phase_unlinker = new Dictionary<string, Action>(){
+            {"phase_1", unlink_phase_1},
+            {"phase_2", unlink_phase_2},        
+        };        
+        exit_cutscene_states =  new Dictionary<string, Action>(){
+            {"phase_1",()=>{
+                idle(0);
+            }},
+            {"phase_2",()=>{
+                queue_fly_pattern();
+                idle(6);                
+            }}
+        };
+        //link_phase(current_phase);
+    }
+    void Start(){
+        link_events();
         check_game_state();
+        //switch_phase();
         //idle(3);
     }
     void OnDestroy() => unlink_events();
@@ -40,12 +64,9 @@ public class Mage : Boss<Movement>{
         state.stop();
         switch_to_idle();
     } 
-    public override void exit_cutscene_state(){
-        switch_phase();
-        idle(3);
-    }
-
-
+    public override void exit_cutscene_state() => exit_cutscene_states[current_phase]();
+    protected override Dictionary<string,Action> get_phase_linker() => phase_linker;
+    protected override Dictionary<string,Action> get_phase_unlinker() => phase_unlinker;
 
 
 
@@ -116,7 +137,10 @@ public class Mage : Boss<Movement>{
     // phase 2.
     public void enable_surrounding_projectiles() => surrounding_projectiles.SetActive(true);
     public void disable_surrounding_projectiles() => surrounding_projectiles.SetActive(false);
-    private void idle_phase_2() => animator.Play("MageHover");
+    private void idle_phase_2(){
+        Log.MethodCall(this);
+        animator.Play("MageHover");   
+    }
     public void start_staff_lightning(){
         foreach(LineParticleEmitter l in staff_lightning)
             l.start_emitting();
@@ -166,6 +190,7 @@ public class Mage : Boss<Movement>{
         animator.Play("MageHover");
         combat.chose_attack_state(target);
     }
+    public void queue_fly_pattern() => state.queue(0, set_fly_pattern);
     private void set_fly_pattern(){
         int x = UnityEngine.Random.Range(0,2);
         animator.Play("Mage2ExitTel");
@@ -198,6 +223,58 @@ public class Mage : Boss<Movement>{
 
 
 
+
+
+    // phase link:
+  
+    private void link_phase_1(){
+        movement.set_data(movement_presets["phase_1"]);      
+        link_health();
+        health.death += transition_phase;
+        link_movement();
+        link_combat();
+        link_ranged();
+        state = new StateQueue(this, follow_and_attack_state);
+        switch_to_idle = idle_phase_1;
+        switch_to_follow_and_attack = follow_and_attack_state;
+        switch_to_attack = attack_phase_1;
+    }
+    private void unlink_phase_1(){
+        sound.stop_all_loops();
+        particles.stop_all_particles();
+        unlink_health();
+        health.death -= transition_phase;
+        unlink_movement();
+        unlink_combat();
+        unlink_ranged();
+    }
+    private void link_phase_2(){
+        movement.set_data(movement_presets["phase_2"]);
+        link_health();
+        health.set_max_life(40);
+        health.set_current_life(40);
+        link_combat();
+        link_ranged();
+        state = new StateQueue(this, fly_and_attack_state);
+        switch_to_idle = idle_phase_2;
+        switch_to_follow_and_attack = fly_and_attack_state;
+        switch_to_attack = attack_phase_2;
+    }
+    private void unlink_phase_2(){
+        unlink_health();
+        unlink_combat();
+        unlink_ranged();
+    }
+    private void link_cutscene_opening(){
+        switch_to_idle = idle_phase_1;
+    }
+    private void link_cutscene_transition(){
+        switch_to_idle = idle_phase_1;
+    }
+
+
+
+
     // Linkage:
     protected void link_events(){
         link_game_manager();
@@ -209,57 +286,12 @@ public class Mage : Boss<Movement>{
         unlink_combat();
         unlink_ranged();
     }
-    protected override void create_phase_linkage(){
-        phase_linker = new Dictionary<int, Action>(){
-            {1, ()=>link_phase_1()},
-            {2, ()=>link_phase_2()},        
-        };
-        phase_unlinker = new Dictionary<int, Action>(){
-            {1, ()=>unlink_phase_1()},
-            {2, ()=>unlink_phase_2()},        
-        };    
+    void link_health(){
+        health.damaged += sprites.play_damaged_flash;
     }
-    void link_phase_1(){
-        movement.set_data(movement_presets["phase_1"]);      
-        link_health();
-        health.death += next_phase;
-        link_movement();
-        link_combat();
-        link_ranged();
-        state = new StateQueue(this, follow_and_attack_state);
-        switch_to_idle = idle_phase_1;
-        switch_to_follow_and_attack = follow_and_attack_state;
-        switch_to_attack = attack_phase_1;
+    void unlink_health(){
+        health.damaged -= sprites.play_damaged_flash;
     }
-    void unlink_phase_1(){
-        sound.stop_all_loops();
-        particles.stop_all_particles();
-        unlink_health();
-        health.death -= next_phase;
-        unlink_movement();
-        unlink_combat();
-        unlink_ranged();
-    }
-    void link_phase_2(){
-        movement.set_data(movement_presets["phase_2"]);
-        link_health();
-        health.set_max_life(40);
-        health.set_current_life(40);
-        link_combat();
-        link_ranged();
-        set_fly_pattern();
-        state = new StateQueue(this, fly_and_attack_state);
-        switch_to_idle = idle_phase_2;
-        switch_to_follow_and_attack = fly_and_attack_state;
-        switch_to_attack = attack_phase_2;
-    }
-    void unlink_phase_2(){
-        unlink_health();
-        unlink_combat();
-        unlink_ranged();
-    }
-    void link_health() => health.damaged += sprites.play_damaged_flash;
-    void unlink_health() => health.damaged -= sprites.play_damaged_flash;
     void link_movement(){
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
@@ -279,7 +311,7 @@ public class Mage : Boss<Movement>{
     void link_ranged(){
         for(int i = 1; i < 7; i++)
             ranged.get_holster("hollow_"+i).projectile_fired += set_hollow_target;
-        ranged.get_holster("lightning_strike").set_fire_point(Player.instance.transform);
+        ranged.get_holster("lightning_strike").set_fire_point(target);
     }
     void unlink_ranged(){
         for(int i = 1; i < 7; i++)

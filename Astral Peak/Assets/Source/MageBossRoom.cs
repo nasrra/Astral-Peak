@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cutscenes;
 using Sounds;
@@ -11,6 +12,22 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
+    List<Action> lighting_states = new List<Action>(){
+        ()=>{// 0
+            SceneLighting.instance.enable_light(id: "lightning",  enable: false);
+            SceneLighting.instance.enable_light(id: "global",     enable: true);
+            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 0, 2f);
+            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 0, 2f);},
+        () =>{// 1
+            SceneLighting.instance.enable_light(id: "lightning",  enable: true);
+            SceneLighting.instance.enable_light(id: "global",     enable: true);
+            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 2f);
+            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 2f);}
+    };
+    List<Cutscene> cutscenes = new List<Cutscene>(){
+        new MageOpening(),
+        new MagePhaseTransition(),
+    };
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,
         SoundID.HEAVY_WIND,
@@ -18,7 +35,9 @@ public class MageBossRoom : BossRoomHandler{
     void Awake(){
         instance = this;
         link_events();
+        enable_mage(false);
     }
+    void Start() => set_room_state(0);
     void OnDestroy(){
         unlink_events();
     }
@@ -29,24 +48,16 @@ public class MageBossRoom : BossRoomHandler{
     protected override void check_world_state(){
         //throw new System.NotImplementedException();
     }
-    void handle_phase_switch(int x){
-        reset_positions();
-        int _x = x-1;
-        if(x == 2){
-            //mage.SetActive(false);
-            CutsceneManager.play(new Cutscenes.MagePhaseTransition());
-        }
+    public void set_room_state(int x){
+        AudioManager.play_ambience(ambience[x]);
         foreach(FogController fog in fog_controllers)
-            fog.lerp_preset(_x);
-        snow_controller.lerp_preset(_x);
-        AudioManager.play_ambience(ambience[_x]);
-        if(_x == 1){
-            SceneLighting.instance.enable_light(id: "global",     enable: true);
-            SceneLighting.instance.enable_light(id: "lightning",  enable: true);
-            SceneLighting.instance.lerp_preset(_id: "global", _preset: _x, 2f);
-            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: _x, 2f);
+            fog.lerp_preset(x);
+        snow_controller.lerp_preset(x);
+        foreach(FogController fog in fog_controllers)
+            fog.lerp_preset(x);
+        lighting_states[x]();
+        if(x == 1)
             phase_2_ambient_lightning.Play();
-        }
     }
     public void emit_attraction_particles(){
         summoning_circles.turn_on(new(){0,1,4});
@@ -58,24 +69,24 @@ public class MageBossRoom : BossRoomHandler{
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
     }
-    protected void reset_positions(){
+    public void reset_positions(){
         Player.instance.transform.position = respawn_point.position;
         mage.transform.position = boss_start_point.position;
     }
+
+
     void on_trigger_enter(Collider2D other){
         set_respawn_point();
         Player.instance.get_movement().halt();
         Player.instance.transform.position = cutscene_trigger.transform.position;
+        CutsceneManager.play(cutscenes[1]);
         cutscene_trigger.enabled = false;
-        CutsceneManager.play(new MageOpening());
         cutscene_trigger.trigger_enter -= on_trigger_enter;
     }
     void link_events(){
-        mage.GetComponent<Mage>().phase_queued += handle_phase_switch;
         cutscene_trigger.trigger_enter += on_trigger_enter;
     }
     void unlink_events(){
-        mage.GetComponent<Mage>().phase_queued -= handle_phase_switch;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
     }
 }

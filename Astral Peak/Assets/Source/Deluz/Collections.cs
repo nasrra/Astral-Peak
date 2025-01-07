@@ -16,7 +16,7 @@ public class StateQueue{
         entity = _entity;
     }
 
-    //public void start() => state_switch();
+    public void start() => state_switch();
     public void state_switch(){
         if (state != null)
             entity.StopCoroutine(state);

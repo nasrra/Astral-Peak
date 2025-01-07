@@ -49,8 +49,8 @@ public class RiderCombat : BossCombat{
             combat_cooldown:        1
         );
         protected override void create_movesets(){
-            movesets = new Dictionary<int, Action>(){
-                {1,()=>{
+            movesets = new Dictionary<string, Action>(){
+                {"phase_1",()=>{
                     front_moveset = new List<BossAttack>(){
                         signature,
                         jump_n_dash, 

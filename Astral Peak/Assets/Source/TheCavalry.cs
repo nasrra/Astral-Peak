@@ -100,7 +100,7 @@ public class TheCavalry : Boss<CavalryMovement>{
         flipped_right                           += particles.flip_particles_right;
         health.damaged                          += sprites.play_damaged_flash;
         ranged.fired                            += projectile_fired;
-        phase_queued                            += combat.set_moveset;
+        //phase_transition                        += combat.set_moveset;
     }
 
     protected void unlink_events(){
@@ -114,6 +114,6 @@ public class TheCavalry : Boss<CavalryMovement>{
         flipped_right                           -= particles.flip_particles_right;
         health.damaged                          -= sprites.play_damaged_flash;
         ranged.fired                            -= projectile_fired;
-        phase_queued                            -= combat.set_moveset;
+        //phase_transition                        -= combat.set_moveset;
     }
 }

@@ -12,7 +12,7 @@ public abstract class BossCombat : MonoBehaviour{
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
     [SerializeField] protected List<BossAttack> back_moveset    = new List<BossAttack>(); 
     [SerializeField] protected List<BossAttack> special_moveset = new List<BossAttack>();
-    protected Dictionary<int, Action> movesets;
+    protected Dictionary<string, Action> movesets;
     [SerializeField] public Transform  
         left_arena_bound,
         right_arena_bound;
@@ -24,7 +24,7 @@ public abstract class BossCombat : MonoBehaviour{
             StopCoroutine(state);
         state = _state!=null? StartCoroutine(_state) : null;
     }
-    public void set_moveset(int _moveset) => movesets[_moveset]();
+    public void set_moveset(string _moveset) => movesets[_moveset]();
     public void no_state() => state_switch(null);
     protected abstract void create_movesets();
     // Note: need to make the chance of the attack applicable 

@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Deluz;
 using Deluz.Collections;
 using UnityEngine;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
-    public event Action<int> phase_queued, phase_entered, phase_exited;
+    public event Action<string> phase_transition, phase_entered, phase_exited;
     [Header("Boss")]
     [SerializeField] protected BossSpriteHandler sprites;
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
@@ -18,21 +19,10 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
-    [SerializeField] protected int current_phase = 1, queued_phase;
+    [SerializeField] protected string current_phase;
     protected StateQueue state  = new StateQueue(null, null);
-    protected Dictionary<int, Action> phase_linker;
-    protected Dictionary<int, Action> phase_unlinker;
-
-    protected void next_phase() => queue_phase(queued_phase=current_phase+1);
-    protected void queue_phase(int _phase) => phase_queued?.Invoke(queued_phase=_phase);
-    protected virtual void switch_phase(){
-        no_state();
-        if(current_phase>0)
-            unlink_phase(current_phase);
-        link_phase(queued_phase);
-        current_phase = queued_phase;     
-    }
     
+
     protected float dist_to_target() => (transform.position - target.position).x;
     
     protected override void state_switch(ref Coroutine state, IEnumerator _state){
@@ -90,14 +80,21 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
-    private void link_phase(int phase){
-        phase_linker[phase]();
-        combat.set_moveset(phase);
+    public void link_phase(string phase){
+        get_phase_linker()[phase]();
+        if(phase.Contains("phase"))
+            combat.set_moveset(phase);
         phase_entered?.Invoke(phase);
+        current_phase = phase;
     }
-    private void unlink_phase(int phase){
-        phase_unlinker[phase]();
+    public void unlink_phase(string phase){
+        get_phase_unlinker()[phase]();
         phase_exited?.Invoke(phase);
     }
+    protected virtual Dictionary<string, Action> get_phase_unlinker(){throw Log.MethodNotImplemented(this);}
+    protected virtual Dictionary<string, Action> get_phase_linker(){throw Log.MethodNotImplemented(this);}
+
+    public string get_phase() => current_phase;
+    public void transition_phase() => phase_transition?.Invoke(current_phase);
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
 }

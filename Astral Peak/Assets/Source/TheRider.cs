@@ -63,7 +63,7 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
-        phase_queued                            += combat.set_moveset;
+        //phase_transition                        += combat.set_moveset;
     }
 
     protected void unlink_events(){
@@ -77,6 +77,6 @@ public class TheRider : Boss<RiderMovement>{
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
-        phase_queued                            -= combat.set_moveset;
+        //phase_transition                        -= combat.set_moveset;
     }
 }
