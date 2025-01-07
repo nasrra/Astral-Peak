@@ -85,10 +85,12 @@ public class Movement : MonoBehaviour{
         clear_move_direction();
         zero_velocity();
         clear_state();
+    }
+    protected void renew(){
         can_dash = true;
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
         is_dashing = false;
-        reset_gravity();
+        set_data(base_data);
     }
 
 
@@ -186,13 +188,49 @@ public class Movement : MonoBehaviour{
                 end?.Invoke();
             }
         );
-
-    public void move_to_target_state(Transform target) {
+    public void freeform_move_to(Transform target){
         clear_move_direction();
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, move_to_target(target));
+        state_switch(ref controller_state, freeform_move_towards(target));
     }
-    protected IEnumerator move_to_target(Transform target){
+
+    protected IEnumerator freeform_move_towards(Transform target){
+        while(target != null){
+            Vector3 direction = (target.position - transform.position).normalized; 
+            set_move_direction(direction);
+            if(Mathf.Abs(direction.magnitude) <= 0.05f)
+                target_reached?.Invoke();
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void freeform_approach_to(Transform target){
+        clear_move_direction();
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, freeform_approach_towards(target));
+    }
+    protected IEnumerator freeform_approach_towards(Transform target){
+        while(target != null){
+            Vector3 distance = target.position - transform.position;
+            Vector3 direction = distance.normalized; 
+            set_move_direction(direction);
+            if(Mathf.Abs(distance.magnitude) <= 0.1f){
+                Log.MethodCall(this);
+                halt();
+                transform.position = target.position;
+                target_reached?.Invoke();
+                yield break;
+            }   
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void move_to(Transform target) {
+        clear_move_direction();
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, move_towards(target));
+    }
+    protected IEnumerator move_towards(Transform target){
         while(target != null){
             float dist = (transform.position - target.position).x;
             // if we are not moving right, move right.

@@ -83,17 +83,33 @@ public class CameraEffects : MonoBehaviour{
         film_grain = _film_grain;
     }
 
-    public void fade_to_black(float time) => state_switch(ref fade_state, screen_transition_coroutine("fade_to_black",time, started_fade_to_black, completed_fade_to_black));
-    public void fade_from_black(float time) => state_switch(ref fade_state, screen_transition_coroutine("fade_from_black",time, started_fade_from_black, completed_fade_from_black));
-    IEnumerator screen_transition_coroutine(string transition, float time, Action started, Action completed) =>
+    public void fade_to_black(float time, Action time_out = null) 
+        => state_switch(ref fade_state, screen_transition_coroutine(
+            transition: "fade_to_black",
+            time: time, 
+            start_action: started_fade_to_black, 
+            time_out: ()=>{
+                time_out?.Invoke();
+                completed_fade_to_black?.Invoke();
+            }));
+    public void fade_from_black(float time, Action time_out = null) 
+        => state_switch(ref fade_state, screen_transition_coroutine(
+            transition: "fade_from_black",
+            time: time, 
+            start_action: started_fade_from_black, 
+            time_out: ()=>{
+                time_out?.Invoke();
+                completed_fade_from_black?.Invoke();
+            }));
+    IEnumerator screen_transition_coroutine(string transition, float time, Action start_action, Action time_out) =>
         Util.timer(
             time: time,
             start_action:()=>{
                 screen_transitions.speed = time;
                 screen_transitions.Play(transition);
-                started?.Invoke();                
+                start_action?.Invoke();                
             },
-            time_out:()=>completed?.Invoke()
+            time_out:()=>time_out?.Invoke()
         );
 
     void link_player(){

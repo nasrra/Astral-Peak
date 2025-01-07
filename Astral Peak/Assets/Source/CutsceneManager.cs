@@ -23,12 +23,11 @@ public static class CutsceneManager{
 
 public abstract class Cutscene{
     public event Action ended;
+    protected float fade_transition_time = 1;
     public abstract IEnumerator get_coroutine();
     protected void end(){
         ended?.Invoke();
         ended = null;
     }
-    protected void fade_to_black() =>   CameraEffects.instance.fade_to_black(1);
-    protected void fade_from_black() => CameraEffects.instance.fade_from_black(1);
     public abstract void skip();
 }

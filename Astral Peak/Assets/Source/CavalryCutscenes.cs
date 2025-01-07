@@ -35,13 +35,13 @@ public class CavalryOpening : Cutscene{
 public class CavalryPhaseTransition : Cutscene{
     CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
     public override IEnumerator get_coroutine(){
-        fade_to_black();
+        CameraEffects.instance.fade_to_black(fade_transition_time);
 
         yield return new WaitForSeconds(2f); 
         room.phase_1();
         room.set_positions();
         TheRider.instance.flip_to_target();
-        fade_from_black();
+        CameraEffects.instance.fade_from_black(fade_transition_time);
         
         yield return new WaitForSeconds(1f);
         CameraController.instance.set_target(TheRider.instance.transform);

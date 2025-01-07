@@ -81,7 +81,7 @@ public class Hollow : Enemy{
         if(alerted == false)
             alert();
         else
-            movement.move_to_target_state(target);
+            movement.move_to(target);
     }
         
     public void summon_state(){
@@ -98,7 +98,7 @@ public class Hollow : Enemy{
     }
 
     // used in animator for alert animation.
-    public void move_to_target() => movement.move_to_target_state(target);
+    public void move_to_target() => movement.move_to(target);
 
     void player_in_range(Collider2D col){
         target = Player.instance.transform;
@@ -111,7 +111,7 @@ public class Hollow : Enemy{
         particles.stop_particle("yell");
         target = origin;
         alerted = false;
-        movement.move_to_target_state(target);
+        movement.move_to(target);
     }
     void idle_movement(){
         movement.set_speed(idle_speed); 

@@ -46,12 +46,12 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         combat.chose_attack_state(target);
         // edge case to check if we are able to attack coming out of an attack.
         if(combat.is_attacking == false)
-            movement.move_to_target_state(target);
+            movement.move_to(target);
     }
 
     public void follow_only_state(){
         combat.halt();
-        movement.move_to_target_state(target);
+        movement.move_to(target);
     }
 
     public void no_state(){

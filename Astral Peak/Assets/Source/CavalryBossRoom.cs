@@ -60,20 +60,20 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     public void phase_1(){
-        boss_start_point = rider_start_point;
+        //boss_start_point = rider_start_point;
         cavalry.gameObject.SetActive(false);
         rider.gameObject.SetActive(true);
     }
 
     public void phase_2(){
-        boss_start_point = cavalry_start_point;
+        //boss_start_point = cavalry_start_point;
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);   
     }
 
     public void set_positions(){
-        rider.transform.position = boss_start_point.position;
-        cavalry.transform.position = boss_start_point.position;
+        //rider.transform.position = boss_start_point.position;
+        //cavalry.transform.position = boss_start_point.position;
         Player.instance.set_enter_position();
     }
 

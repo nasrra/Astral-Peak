@@ -69,10 +69,6 @@ public class MageBossRoom : BossRoomHandler{
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
     }
-    public void reset_positions(){
-        Player.instance.transform.position = respawn_point.position;
-        mage.transform.position = boss_start_point.position;
-    }
 
 
     void on_trigger_enter(Collider2D other){
@@ -81,7 +77,7 @@ public class MageBossRoom : BossRoomHandler{
         Player.instance.transform.position = cutscene_trigger.transform.position;
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("phase_1");
+        play_cutscene("opening");
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);

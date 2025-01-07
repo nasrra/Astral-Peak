@@ -1,4 +1,6 @@
 using System.Collections;
+using DocumentFormat.OpenXml.Packaging;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cutscenes{
@@ -41,20 +43,16 @@ namespace Cutscenes{
             Debug.Log("skip opening!");
         }
     }
-    public class MagePhaseTransition : Cutscene{
+    public class MagePhaseTransition : Cutscene{            
         public override IEnumerator get_coroutine(){
             MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            Mage mage = (BossRoomHandler.instance as MageBossRoom).get_mage();
+            CameraEffects.instance.fade_to_black(fade_transition_time);
             room.enable_mage(false);
-            fade_to_black();
-            yield return new WaitForSeconds(2);
-            room.reset_positions();
-            room.enable_mage(true);
-            Mage mage = room.get_mage();            
-            mage.unlink_phase("phase_1");
-            mage.link_phase("cutscene_transition");
-            mage.animator.Play("MageIdle",0,0);
-            fade_from_black();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(fade_transition_time);
+            prepare();
+            CameraEffects.instance.fade_from_black(fade_transition_time);
+            yield return new WaitForSeconds(fade_transition_time);
             mage.animator.Play("MageYell");
             CameraController.instance.set_target(mage.transform);
             yield return new WaitForSeconds(mage.animator.get_clip_length("MageYell")+1);
@@ -62,12 +60,11 @@ namespace Cutscenes{
             mage.link_phase("phase_2");
             mage.animator.Play("MagePhaseTransition");
             mage.unlink_movement();
-            mage.get_movement().move_up(true);
             mage.get_movement().mod_speed(3);
-            mage.get_movement().move_only_state();
+            mage.get_movement().mod_gravity(0);
+            mage.get_movement().freeform_approach_to(room.get_boss_point(2));
             room.emit_attraction_particles();
-            yield return new WaitForSeconds(3);
-            mage.get_movement().move_up(false);
+            yield return new WaitForSeconds(6);
             mage.get_movement().reset_speed();
             mage.get_movement().clear_move_direction();
             mage.get_movement().zero_velocity();
@@ -79,8 +76,21 @@ namespace Cutscenes{
             //set_fly_pattern();
         }
 
+        void prepare(){
+            MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            Mage mage = (BossRoomHandler.instance as MageBossRoom).get_mage();
+            mage.transform.position = room.get_boss_point(1).position;
+            room.set_respawn_point();
+            Player.instance.set_enter_position();
+            room.enable_mage(true);
+            mage.unlink_phase("phase_1");
+            mage.link_phase("cutscene_transition");
+            mage.animator.Play("MageIdle",0,0);
+        }
+
         public override void skip(){
             Debug.Log("skip phase transition!");
+            
         }
     }
 }
