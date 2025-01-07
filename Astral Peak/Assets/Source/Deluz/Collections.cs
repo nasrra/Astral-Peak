@@ -25,11 +25,11 @@ public class StateQueue{
         else
             state = entity.StartCoroutine(states.Dequeue()); // start and deque the state.
     }
-    public void queue_and_start(float time, Action start_action, Action time_out = null){
-        queue(time, start_action, time_out);
+    public void queue_and_start(Action start_action, Action time_out = null, float time = 0){
+        queue(time: time, start_action: start_action, time_out: time_out);
         state_switch();
     }
-    public void queue(float time, Action start_action, Action time_out = null){
+    public void queue(Action start_action, Action time_out = null, float time = 0){
         if (time < 0)
             throw new Exception("time cannot be less than zero!");
         states.Enqueue(Util.timer(
@@ -43,7 +43,7 @@ public class StateQueue{
     }
     public void queue(List<StateQueueItem> items){
         foreach (StateQueueItem item in items)
-            queue(item.time, item.start_action, item.time_out);
+            queue(time: item.time, start_action: item.start_action, time_out: item.time_out);
     }
     
     public void queue_and_start(List<StateQueueItem> items){
@@ -65,7 +65,7 @@ public struct StateQueueItem{
     public readonly float time;
     public readonly Action start_action;
     public readonly Action time_out;
-    public StateQueueItem(float _time, Action _start_action, Action _time_out = null){
+    public StateQueueItem(Action _start_action, Action _time_out = null, float _time = 0){
         time=_time;
         start_action=_start_action;
         time_out=_time_out;

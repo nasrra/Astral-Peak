@@ -25,7 +25,11 @@ public abstract class BossCombat : MonoBehaviour{
         state = _state!=null? StartCoroutine(_state) : null;
     }
     public void set_moveset(string _moveset) => movesets[_moveset]();
-    public void no_state() => state_switch(null);
+    public void halt() => state_switch(null);
+    public void renew(){
+        on_cooldown = false;
+        is_attacking = false;
+    }
     protected abstract void create_movesets();
     // Note: need to make the chance of the attack applicable 
     // add to the algorithm so that some attacks are more frequently picked

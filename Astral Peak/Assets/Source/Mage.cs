@@ -38,7 +38,9 @@ public class Mage : Boss<Movement>{
                 idle(0);
             }},
             {"phase_2",()=>{
-                queue_fly_pattern();
+                string fly_pattern = choose_fly_pattern();
+                teleport_phase_2(teleport_points[fly_pattern].position);
+                state.queue(()=>start_fly_pattern(fly_pattern));
                 idle(6);                
             }}
         };
@@ -59,8 +61,9 @@ public class Mage : Boss<Movement>{
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
-        movement.clear_state();
-        combat.no_state();
+        movement.halt();
+        combat.halt();
+        combat.renew();
         state.stop();
         switch_to_idle();
     } 
@@ -97,7 +100,7 @@ public class Mage : Boss<Movement>{
     }
     private void attack_phase_1(BossAttack attack){
         movement.halt();
-        combat.no_state();
+        combat.halt();
         state.queue_and_start(
             time: animator.get_clip_length(attack.animation_id),
             start_action:()=>animator.Play(attack.animation_id));
@@ -137,10 +140,7 @@ public class Mage : Boss<Movement>{
     // phase 2.
     public void enable_surrounding_projectiles() => surrounding_projectiles.SetActive(true);
     public void disable_surrounding_projectiles() => surrounding_projectiles.SetActive(false);
-    private void idle_phase_2(){
-        Log.MethodCall(this);
-        animator.Play("MageHover");   
-    }
+    private void idle_phase_2() => animator.Play("MageHover");   
     public void start_staff_lightning(){
         foreach(LineParticleEmitter l in staff_lightning)
             l.start_emitting();
@@ -153,55 +153,46 @@ public class Mage : Boss<Movement>{
     public void turn_off_wailing_stones() => summoning_circles.turn_off();
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
-            movement.halt();
-            state.queue_and_start(new List<StateQueueItem>{
-                new(
-                    _time: animator.get_clip_length("Mage2EnterTel"),
-                    _start_action: () => animator.Play("Mage2EnterTel")
-                ),
-                new(
-                    _time: animator.get_clip_length("Mage2ExitTel"),
-                    _start_action: () => teleport_phase_2(teleport_points[attack.animation_id].position)
-                ),
-                new(
-                    _time: animator.get_clip_length(attack.animation_id),
-                    _start_action: () => animator.Play(attack.animation_id)
-                ),
-                new(
-                    _time: animator.get_clip_length("Mage2EnterTel"),
-                    _start_action: () => animator.Play("Mage2EnterTel")
-                ),
-                new(
-                    _time: animator.get_clip_length("Mage2ExitTel"),
-                    _start_action: () => set_fly_pattern()
-                ),
-                new(
-                    _time: 0,
-                    _start_action: () => combat.attack_end()
-                )
-            });
+            string fly_pattern = choose_fly_pattern();
+            teleport_phase_2(teleport_points[attack.animation_id].position);
+            state.queue(time: animator.get_clip_length(attack.animation_id), start_action: () => animator.Play(attack.animation_id));
+            teleport_phase_2(teleport_points[fly_pattern].position);
+            state.queue(()=>start_fly_pattern(fly_pattern));
+            state.queue_and_start(combat.attack_end);
         }
         else
             state.queue_and_start(
                 time: animator.get_clip_length(attack.animation_id),
                 start_action:()=>animator.Play(attack.animation_id));
     }
+    public void teleport_phase_2(Vector3 pos){
+        state.queue(
+            time: animator.get_clip_length("Mage2EnterTel"),
+            start_action: ()=>{
+                movement.halt();
+                animator.Play("Mage2EnterTel");
+            }
+        );
+        state.queue(
+            time: animator.get_clip_length("Mage2ExitTel"),
+            start_action: () =>{
+                teleport_trail.emit_once(transform.position,pos);
+                transform.position = pos;
+                animator.Play("Mage2ExitTel");                
+            }
+        );
+    }
+    private string choose_fly_pattern(){
+        int x = UnityEngine.Random.Range(0,2);
+        return x==0? "figure_eight" : "figure_eight_reversed";    
+    }
+    private void start_fly_pattern(string fly_pattern){
+        movement.halt();
+        movement.figure_eight_state(reverse: fly_pattern=="figure_eight"?false:true);
+    }
     private void fly_and_attack_state(){
         animator.Play("MageHover");
         combat.chose_attack_state(target);
-    }
-    public void queue_fly_pattern() => state.queue(0, set_fly_pattern);
-    private void set_fly_pattern(){
-        int x = UnityEngine.Random.Range(0,2);
-        animator.Play("Mage2ExitTel");
-        movement.halt();
-        teleport_phase_2(x==0?teleport_points["figure_eight"].position : teleport_points["figure_eight_reversed"].position);
-        movement.figure_eight_state(reverse:x==0?false:true);
-    }
-    public void teleport_phase_2(Vector3 pos){
-        teleport_trail.emit_once(transform.position,pos);
-        transform.position = pos;
-        animator.Play("Mage2ExitTel");
     }
 
 
@@ -228,6 +219,7 @@ public class Mage : Boss<Movement>{
     // phase link:
   
     private void link_phase_1(){
+        Log.MethodCall(this);
         movement.set_data(movement_presets["phase_1"]);      
         link_health();
         health.death += transition_phase;
@@ -240,6 +232,8 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     private void unlink_phase_1(){
+        Log.MethodCall(this);
+
         sound.stop_all_loops();
         particles.stop_all_particles();
         unlink_health();
@@ -249,6 +243,8 @@ public class Mage : Boss<Movement>{
         unlink_ranged();
     }
     private void link_phase_2(){
+        Log.MethodCall(this);
+
         movement.set_data(movement_presets["phase_2"]);
         link_health();
         health.set_max_life(40);
@@ -261,6 +257,7 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
     private void unlink_phase_2(){
+        Log.MethodCall(this);
         unlink_health();
         unlink_combat();
         unlink_ranged();

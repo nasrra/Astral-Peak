@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Deluz;
 using Deluz.Collections;
 using UnityEngine;
@@ -51,12 +50,12 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     public void follow_only_state(){
-        combat.no_state();
+        combat.halt();
         movement.move_to_target_state(target);
     }
 
     public void no_state(){
-        combat.no_state();
+        combat.halt();
         movement.clear_state();
     }
 

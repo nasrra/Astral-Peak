@@ -24,9 +24,9 @@ public class MageBossRoom : BossRoomHandler{
             SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 2f);
             SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 2f);}
     };
-    List<Cutscene> cutscenes = new List<Cutscene>(){
-        new MageOpening(),
-        new MagePhaseTransition(),
+    Dictionary<string, Cutscene> cutscenes = new Dictionary<string, Cutscene>(){
+        {"opening",new MageOpening()},
+        {"phase_1",new MagePhaseTransition()}
     };
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,
@@ -79,14 +79,19 @@ public class MageBossRoom : BossRoomHandler{
         set_respawn_point();
         Player.instance.get_movement().halt();
         Player.instance.transform.position = cutscene_trigger.transform.position;
-        CutsceneManager.play(cutscenes[1]);
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
+        play_cutscene("phase_1");
     }
+
+    void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
+    
     void link_events(){
+        get_mage().phase_transition += play_cutscene;
         cutscene_trigger.trigger_enter += on_trigger_enter;
     }
     void unlink_events(){
+        get_mage().phase_transition += play_cutscene;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
     }
 }
