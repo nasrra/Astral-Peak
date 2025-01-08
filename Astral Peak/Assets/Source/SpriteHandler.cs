@@ -83,6 +83,12 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
+    public void enable_sprite(string id, bool enabled) => sprites[id].enabled = enabled;
+    public void enable_sprite(bool enabled){
+        foreach(SpriteRenderer sprite in sprites.Values)
+            sprite.enabled = enabled;
+    }
+
     //protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
     //    float elapsedTime = 0;
     //    float t = 0;

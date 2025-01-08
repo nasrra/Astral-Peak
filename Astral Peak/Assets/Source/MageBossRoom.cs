@@ -35,7 +35,6 @@ public class MageBossRoom : BossRoomHandler{
     void Awake(){
         instance = this;
         link_events();
-        enable_mage(false);
     }
     void Start() => set_room_state(0);
     void OnDestroy(){
@@ -77,7 +76,7 @@ public class MageBossRoom : BossRoomHandler{
         Player.instance.transform.position = cutscene_trigger.transform.position;
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);

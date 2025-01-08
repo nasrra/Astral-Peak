@@ -114,6 +114,8 @@ MonoBehaviour:
   current_phase: 
   teleport_points:
     _serializedList:
+    - Key: MageSig
+      Value: {fileID: 0}
     - Key: figure_eight
       Value: {fileID: 0}
     - Key: figure_eight_reversed
@@ -525,7 +527,7 @@ MonoBehaviour:
     - Key: footstep
       Value: {fileID: 3935257015726523210}
     - Key: yell
-      Value: {fileID: 5253450646374070211}
+      Value: {fileID: 3181284252741854017}
     - Key: teleport_trail
       Value: {fileID: 3181284252741854017}
 --- !u!1 &7624618172426725430
@@ -635,11 +637,6 @@ ParticleSystem:
 --- !u!198 &3935257015726523210 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4496309225515346830, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
-  m_PrefabInstance: {fileID: 647056051192539332}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &5253450646374070211 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4616980766183988999, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
   m_PrefabInstance: {fileID: 647056051192539332}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5887513930526950897 stripped

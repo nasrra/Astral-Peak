@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Deluz;
 using Deluz.Collections;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using UnityEngine;
 
 public class Mage : Boss<Movement>{
@@ -44,6 +46,7 @@ public class Mage : Boss<Movement>{
                 idle(6);                
             }}
         };
+        gameObject.SetActive(false);
         //link_phase(current_phase);
     }
     void Start(){
@@ -96,14 +99,15 @@ public class Mage : Boss<Movement>{
     private void idle_phase_1(){
         no_state();
         state.stop();
-        animator.Play("MageIdle");
+        animator.Rebind();
+        animator.Play("MageIdle",0,0);
     }
     private void attack_phase_1(BossAttack attack){
         movement.halt();
         combat.halt();
         state.queue_and_start(
             time: animator.get_clip_length(attack.animation_id),
-            start_action:()=>animator.Play(attack.animation_id));
+            start_action:()=>animator.Play(attack.animation_id,0,0));
     }
     public void teleport_phase_1(){
         float offset = UnityEngine.Random.Range(8,17);
@@ -140,7 +144,10 @@ public class Mage : Boss<Movement>{
     // phase 2.
     public void enable_surrounding_projectiles() => surrounding_projectiles.SetActive(true);
     public void disable_surrounding_projectiles() => surrounding_projectiles.SetActive(false);
-    private void idle_phase_2() => animator.Play("MageHover");   
+    private void idle_phase_2(){
+        animator.Rebind();
+        animator.Play("MageHover",0,0);
+    }   
     public void start_staff_lightning(){
         foreach(LineParticleEmitter l in staff_lightning)
             l.start_emitting();
@@ -197,6 +204,56 @@ public class Mage : Boss<Movement>{
 
 
 
+
+
+    // death
+    void teleport_death(Vector2 pos)=>
+        StartCoroutine(Util.timer(
+            time: 0.5f,
+            start_action: ()=>{
+                sprites.play_death_effect(0.5f);
+                sound.play_sound("electric_burst");
+            },
+            time_out: ()=>{
+                sprites.play_death_effect_reverse(0.5f);
+                teleport_trail.emit_once(transform.position, pos);
+                transform.position = pos;
+            }
+        ));
+    public void death_state(){
+        state.stop();
+        movement.halt();
+        combat.halt();
+        StartCoroutine(death_loop());
+    }
+    IEnumerator death_loop(){
+        enable_body_colliders(0);
+        teleport_death(new Vector2(0,0));
+        animator.Play("MageDeath");
+        particles.play_particle("yell");
+        CameraController.instance.start_camera_shake(0.75f, true);
+        yield return new WaitForSeconds(1.5f);
+        int count = 0;
+        while(count < 5){
+            int x = UnityEngine.Random.Range(0,10) - 5;
+            int y = UnityEngine.Random.Range(0,10) - 5;
+            teleport_death(new Vector2(x,y));
+            count++;
+            yield return new WaitForSeconds(1.25f);
+        }
+        teleport_death(new Vector2(0,2));
+        sprites.play_death_effect(4);
+        yield return new WaitForSeconds(4);
+        CameraController.instance.stop_camera_shake();
+        particles.stop_particle("yell");
+        Destroy(gameObject, 3);
+        yield break;
+    }
+
+
+
+
+
     // VFX Calls
     public void signature_2_lighting(){
         SceneLighting.instance.set_intensity("global", 2f);
@@ -217,7 +274,7 @@ public class Mage : Boss<Movement>{
 
 
     // phase link:
-  
+
     private void link_phase_1(){
         Log.MethodCall(this);
         movement.set_data(movement_presets["phase_1"]);      
@@ -247,8 +304,9 @@ public class Mage : Boss<Movement>{
 
         movement.set_data(movement_presets["phase_2"]);
         link_health();
-        health.set_max_life(40);
-        health.set_current_life(40);
+        health.set_max_life(2);
+        health.set_current_life(2);
+        health.death += death_state;
         link_combat();
         link_ranged();
         state = new StateQueue(this, fly_and_attack_state);

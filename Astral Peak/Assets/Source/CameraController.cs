@@ -53,12 +53,19 @@ public class CameraController : MonoBehaviour{
         if(shake_locked == false)
             state_swtich(ref shake_state, camera_shake(time, amount, lock_shake));
     }
-
+    public void start_camera_shake(float amount, bool lock_shake){
+        if(shake_locked == false)
+            state_swtich(ref shake_state, camera_shake(amount, lock_shake));
+    }
+    public void stop_camera_shake(){
+        state_swtich(ref shake_state, null);
+        shake_locked = false;
+    }
     // state switchers:
     void state_swtich(ref Coroutine state, IEnumerator n_state){
         if(state != null)
             StopCoroutine(state);
-        state = StartCoroutine(n_state);
+        state = n_state != null? StartCoroutine(n_state) : null;
     }
 
 
@@ -143,6 +150,27 @@ public class CameraController : MonoBehaviour{
         }
         shake_locked = false;
         yield break;
+    }
+
+    // camera shake
+    IEnumerator camera_shake(float amount, bool lock_shake){
+        shake_locked = lock_shake;
+        while(true){
+            // Generate a random shake value based on orthographic size and amount
+            float shake = (Random.Range(0f, 11f) - 5) * cam.orthographicSize * amount / 10;
+
+            // Apply shake to one or both axes (adjust as needed)
+            Vector3 desired_pos = new Vector3(shake + transform.position.x, shake + transform.position.y, offset.z);
+
+            // Smoothly transition to the desired position
+            Vector3 smoothed_pos = Vector3.Lerp(transform.position, desired_pos, smooth_speed * Time.deltaTime);
+
+            // Add the smoothed shake to the current position
+            transform.position += smoothed_pos - transform.position;
+            // Increment timer
+            //state_swtich(ref follow_state, follow());
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 
