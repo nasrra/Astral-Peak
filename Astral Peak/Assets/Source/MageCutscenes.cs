@@ -36,11 +36,8 @@ namespace Cutscenes{
             CameraController.instance.reset_zoom(2f);
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
-            end();
+            end();//
             yield break;
-        }
-        public override void skip(){
-            Debug.Log("skip opening!");
         }
     }
     public class MagePhaseTransition : Cutscene{            
@@ -86,11 +83,6 @@ namespace Cutscenes{
             mage.unlink_phase("phase_1");
             mage.link_phase("cutscene_transition");
             mage.animator.Play("MageIdle",0,0);
-        }
-
-        public override void skip(){
-            Debug.Log("skip phase transition!");
-            
         }
     }
 }

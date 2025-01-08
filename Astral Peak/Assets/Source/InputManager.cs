@@ -19,8 +19,7 @@ public static class InputManager{
         attack_performed,   attack_cancelled, 
         up_performed,       up_cancelled,
         dash_performed,
-        exit_performed,
-        skip_cutscene_performed;
+        exit_performed;
         //debug_performed;
 
     enum Actions{
@@ -70,7 +69,6 @@ public static class InputManager{
         keybinds.Keyboard.ZoomIn.performed          += on_zoom_in;
         keybinds.Keyboard.Exit.performed            += on_exit_performed;
         keybinds.Keyboard.Debug.performed           += on_debug_performed;
-        keybinds.Keyboard.SkipCutscene.performed    += on_skip_cutscene_performed;
     }
 
     private static void unbind_default_keyboard(){
@@ -87,7 +85,6 @@ public static class InputManager{
         keybinds.Keyboard.ZoomIn.performed          -= on_zoom_in;
         keybinds.Keyboard.Exit.performed            -= on_exit_performed;
         keybinds.Keyboard.Debug.performed           -= on_debug_performed;
-        keybinds.Keyboard.SkipCutscene.performed    -= on_skip_cutscene_performed;
     }
     static void on_jump_performed(InputAction.CallbackContext ctx)          { jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
     static void on_jump_cancelled(InputAction.CallbackContext ctx)          { if(input_blocker[Actions.JUMP] == false) jump_cancelled?.Invoke();}
@@ -104,5 +101,4 @@ public static class InputManager{
     static void on_zoom_out(InputAction.CallbackContext ctx)                => CameraController.instance.ZoomOut();
     static void on_zoom_in(InputAction.CallbackContext ctx)                 => CameraController.instance.ZoomIn();
     static void on_debug_performed(InputAction.CallbackContext ctx)         => UiManager.instance.start_dialogue();
-    static void on_skip_cutscene_performed(InputAction.CallbackContext ctx) => skip_cutscene_performed?.Invoke();
 }

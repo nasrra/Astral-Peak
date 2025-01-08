@@ -12,13 +12,9 @@ public static class CutsceneManager{
         cutscene = _cutscene;
         started_cutscene?.Invoke(cutscene);
         coroutines.StartCoroutine(cutscene.get_coroutine());
-        InputManager.skip_cutscene_performed += cutscene.skip;
         cutscene.ended += cutscene_ended;
     }
-    static void cutscene_ended(){
-        InputManager.skip_cutscene_performed -= cutscene.skip;
-        GameManager.state_changed(GameState.GAMEPLAY);
-    }  
+    static void cutscene_ended() => GameManager.state_changed(GameState.GAMEPLAY);
 }
 
 public abstract class Cutscene{
@@ -29,5 +25,4 @@ public abstract class Cutscene{
         ended?.Invoke();
         ended = null;
     }
-    public abstract void skip();
 }

@@ -226,6 +226,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.clear_move_direction();
     }
     public override void exit_cutscene_state(){
+        movement.renew();
         link_input();
         link_movement();
         movement.move_only_state();

@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour{
         zero_velocity();
         clear_state();
     }
-    protected void renew(){
+    public virtual void renew(){
         can_dash = true;
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
         is_dashing = false;
@@ -215,7 +215,6 @@ public class Movement : MonoBehaviour{
             Vector3 direction = distance.normalized; 
             set_move_direction(direction);
             if(Mathf.Abs(distance.magnitude) <= 0.1f){
-                Log.MethodCall(this);
                 halt();
                 transform.position = target.position;
                 target_reached?.Invoke();

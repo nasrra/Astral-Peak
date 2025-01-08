@@ -31,6 +31,11 @@ public class CharacterMovement : Movement{
         base.halt();
     }
 
+    public override void renew(){
+        jumping = false;        
+        base.renew();
+    }
+
     // ground check
     private void is_grounded(Collider2D other){
         ground.Add(other.gameObject);

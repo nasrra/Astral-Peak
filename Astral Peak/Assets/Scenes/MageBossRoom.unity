@@ -7254,11 +7254,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3731993456105699275, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
   m_PrefabInstance: {fileID: 1973040482689557288}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &863697825 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
-  m_PrefabInstance: {fileID: 1973040482689557288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &902662655 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4771696750861460665, guid: 6efb17b28bb6ac1429840f604a1398cc, type: 3}
@@ -7455,7 +7450,6 @@ Transform:
   m_Children:
   - {fileID: 1658059462}
   - {fileID: 821992800}
-  - {fileID: 863697825}
   - {fileID: 1105016429}
   - {fileID: 968357781}
   m_Father: {fileID: 0}
@@ -9773,6 +9767,50 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[7].Value.fire_point
+      value: 
+      objectReference: {fileID: 2032488920}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[8].Value.fire_point
+      value: 
+      objectReference: {fileID: 1476667162}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[9].Value.fire_point
+      value: 
+      objectReference: {fileID: 703115894}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[10].Value.fire_point
+      value: 
+      objectReference: {fileID: 513023296}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[11].Value.fire_point
+      value: 
+      objectReference: {fileID: 929932285}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[12].Value.fire_point
+      value: 
+      objectReference: {fileID: 470520937}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[13].Value.fire_point
+      value: 
+      objectReference: {fileID: 2024994219}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[14].Value.fire_point
+      value: 
+      objectReference: {fileID: 1342483945}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[15].Value.fire_point
+      value: 
+      objectReference: {fileID: 1533446352}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[16].Value.fire_point
+      value: 
+      objectReference: {fileID: 1941933217}
+    - target: {fileID: 4450737455548280372, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: holsters._serializedList.Array.data[17].Value.fire_point
+      value: 
+      objectReference: {fileID: 1583119494}
     - target: {fileID: 5144333297458716560, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
@@ -9830,13 +9868,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1805343011}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: current_phase
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: summoning_circles
       value: 
       objectReference: {fileID: 2143389928}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: staff_lightning.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: 'staff_lightning.Array.data[0]'
       value: 
@@ -9916,23 +9954,19 @@ PrefabInstance:
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[0].Value
       value: 
-      objectReference: {fileID: 76365406}
+      objectReference: {fileID: 1170752381}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[1].Value
       value: 
-      objectReference: {fileID: 1243398188}
+      objectReference: {fileID: 39344981}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[2].Value
       value: 
-      objectReference: {fileID: 1326285703}
+      objectReference: {fileID: 76365406}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[3].Value
       value: 
-      objectReference: {fileID: 1170752381}
-    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-      propertyPath: teleport_points._serializedList.Array.data[4].Value
-      value: 
-      objectReference: {fileID: 39344981}
+      objectReference: {fileID: 1243398188}
     - target: {fileID: 6619723628049759496, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -9984,8 +10018,44 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 956338953}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: teleport_layers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_layers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 956338953}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_layers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1979594590}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_layers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1979594590}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_layers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 199977851}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_points.Array.data[0]'
+      value: 
+      objectReference: {fileID: 968357781}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_points.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1343155209}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_points.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1467522927}
+    - target: {fileID: 2230687761707845211, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: 'teleport_points.Array.data[3]'
+      value: 
+      objectReference: {fileID: 437290954900120629}
     - target: {fileID: 3731993456105699275, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
       propertyPath: m_Name
       value: MageBackground
@@ -9995,12 +10065,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4154545
+      value: 1.557
       objectReference: {fileID: 0}
     - target: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7573430266179182811, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10036,10 +10114,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7837280677079290492, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
       propertyPath: teleport_layers.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7837280677079290492, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
-      propertyPath: teleport_points.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7837280677079290492, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
@@ -10109,3 +10183,4 @@ SceneRoots:
   - {fileID: 172043558}
   - {fileID: 1436353790}
   - {fileID: 1197821285}
+  - {fileID: 1973040482689557288}
