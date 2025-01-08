@@ -1,50 +1,59 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Sounds;
+using System.Collections.Generic;
+using Deluz;
 
 public class AltarNumerals : MonoBehaviour{
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] ParticleSystem particles;
-    [SerializeField] Light2D light2D;
-    [SerializeField] int numeral;
-    [SerializeField] float light_intensity;
-    [SerializeField] float speed;
+    [SerializeField] List<SpriteRenderer> sprite = new List<SpriteRenderer>();
+    [SerializeField] List<ParticleSystem> particles = new List<ParticleSystem>();
+    [SerializeField] List<Light2D> light2D = new List<Light2D>();
+    [SerializeField] List<float> light_intensity = new List<float>();
     void OnEnable() => link();
     void OnDisable() => unlink();
-    public void turn_on(){
-        particles.gameObject.SetActive(true);
-        StartCoroutine(turn_on_light());
-        StartCoroutine(turn_on_sprite());
+
+    public void turn_on(List<int> numerals){
+        if(numerals==null)
+            return;
+        foreach(int numeral in numerals)
+            turn_on(numeral);
     }
-    IEnumerator turn_on_light(){
+    public void turn_on(int i){
+        particles[i].gameObject.SetActive(true);
         AudioClipHandler.play(
             SoundID.DEEP_THUMPING,
             audio_player: this, 
             AudioSourceSettings.DIEGETIC
         );
-        while(light2D.intensity < light_intensity){
-            light2D.intensity += Time.deltaTime * speed;
-            yield return null;
-        }
-        light2D.intensity = light_intensity;
-        yield break;
+        StartCoroutine(Calc.lerp_value(
+            val=>light2D[i].intensity=val,
+            _start: 0,
+            _end:   light_intensity[i],
+            _time:  1
+        ));
+        StartCoroutine(Calc.lerp_color(
+            color=>sprite[i].color=color,
+            _start:new Color(0,0,0,0),
+            _end: Color.white,
+            _time: 1
+        ));
     }
-    IEnumerator turn_on_sprite(){
-        while(sprite.color != Color.white){
-            sprite.color = Color.Lerp(sprite.color, Color.white, Time.deltaTime * .5f * speed);
-            yield return null;
-        }
-        yield break;
+    public void set_on(List<int> numerals){
+        if(numerals==null)
+            return;
+        foreach(int numeral in numerals)
+            set_on(numeral);
     }
-
+    public void set_on(int i){
+        particles[i].gameObject.SetActive(true);
+        light2D[i].intensity = light_intensity[i];
+        sprite[i].color = Color.white;
+    }
     void handle_cutscene(Cutscene cutscene){
         switch(cutscene){
-            case ShrineAltarOneCutscene c:
-                switch(numeral){
-                    case 1: c.altar_numeral_on += turn_on; break;
-                }            
+            case ShrineAltarCutscene c:
+                c.turn_on_numeral += turn_on;
+                c.set_numerals += set_on;
                 break;
         }
     }

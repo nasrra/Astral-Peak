@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cutscenes;
 using Sounds;
@@ -80,13 +81,30 @@ public class MageBossRoom : BossRoomHandler{
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
-    
+    void fight_ended() => StartCoroutine(death_loop());
+    IEnumerator death_loop(){
+        yield return new WaitForSeconds(3);
+        UiManager.instance.play_enemy_vanquished();
+        yield return new WaitForSeconds(6);
+        CustomSceneManager.load_scene("Shrine");
+        CustomSceneManager.loaded_scene += play_altar_cutscene;
+        Player.instance.enter_cutscene_state();
+        yield break;
+    }
+
+    void play_altar_cutscene(){
+        CutsceneManager.play(new ShrineAltarTwoCutscene());
+        CustomSceneManager.loaded_scene -= play_altar_cutscene;
+    }
+
     void link_events(){
         get_mage().phase_transition += play_cutscene;
+        get_mage().death += fight_ended;
         cutscene_trigger.trigger_enter += on_trigger_enter;
     }
     void unlink_events(){
         get_mage().phase_transition += play_cutscene;
+        get_mage().death -= fight_ended;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Sounds;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using System.Collections.Generic;
 
 public class ShrineOpeningCutscene : Cutscene{
     public event Action 
@@ -125,33 +127,33 @@ public class ShrineOpeningCutscene : Cutscene{
     }
 }
 
-public class ShrineAltarOneCutscene : Cutscene{
+public abstract class ShrineAltarCutscene : Cutscene{
     public event Action
-        torches_on, altar_numeral_on;
+        torches_on; 
+    public event Action<List<int>>
+        turn_on_numeral, set_numerals;
+    public abstract List<int> get_set_numerals();
+    public abstract List<int> get_turn_on_numeral();
+    public abstract string get_previous_scene();
 
-    public override IEnumerator get_coroutine()
-    {
-        throw new NotImplementedException();
-    }
 
-    //public override void start() => CutsceneManager.set_coroutine(cutscene());
-
-    IEnumerator cutscene(){
+    public override IEnumerator get_coroutine(){
         AudioManager.play_music(SoundID.ALTAR_MUSIC);
         AudioManager.restore_sfx_smooth();
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
+        set_numerals?.Invoke(get_set_numerals());
         
         yield return new WaitForSeconds(2f);
         torches_on?.Invoke();
         
         yield return new WaitForSeconds(7);
-        altar_numeral_on?.Invoke();
+        turn_on_numeral?.Invoke(get_turn_on_numeral());
         
         yield return new WaitForSeconds(7);
         AudioManager.stop_music();
         GameManager.increment_world_state();
-        CustomSceneManager.load_scene("WolfBossRoom");
+        CustomSceneManager.load_scene(get_previous_scene());
         unlink();
         end();
         yield break;
@@ -159,6 +161,31 @@ public class ShrineAltarOneCutscene : Cutscene{
 
     void unlink(){
         torches_on          = null;
-        altar_numeral_on    = null;        
+        turn_on_numeral     = null;        
+    }    
+}
+
+public class ShrineAltarOneCutscene : ShrineAltarCutscene{
+    public override IEnumerator get_coroutine(){        
+        yield return base.get_coroutine();
     }
+
+    public override string get_previous_scene()=>"WolfBossRoom";
+
+    public override List<int> get_set_numerals() => null;
+    public override List<int> get_turn_on_numeral()=>new(){
+        0,
+    };
+}
+
+public class ShrineAltarTwoCutscene : ShrineAltarCutscene{
+    public override string get_previous_scene()=>"MageBossRoom";
+
+    public override List<int> get_set_numerals()=>new(){
+        0,
+    };
+
+    public override List<int> get_turn_on_numeral()=>new(){
+        1,
+    };
 }

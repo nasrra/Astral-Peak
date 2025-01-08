@@ -247,6 +247,7 @@ public class Mage : Boss<Movement>{
         CameraController.instance.stop_camera_shake();
         particles.stop_particle("yell");
         Destroy(gameObject, 3);
+        base.kill();
         yield break;
     }
 
