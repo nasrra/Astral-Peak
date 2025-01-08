@@ -158,6 +158,5 @@ public struct CameraEffectState{
     NONE        = new CameraEffectState(0,0,0, Color.white),
     NORMAL      = new CameraEffectState(0.05f,0,0.25f, Color.white),
     HURT        = new CameraEffectState(0.35f,-25,0.45f, Color.white),
-    FLASHBACK   = new CameraEffectState(.55f, -100, 1, Color.white);
-
+    FLASHBACK   = new CameraEffectState(.45f, -100, 1, Color.white);
 }

@@ -9625,7 +9625,8 @@ MonoBehaviour:
   cutscene_trigger: {fileID: 1197821283}
   song: 0
   phase: 0
-  mage: {fileID: 98641194}
+  mage_script: {fileID: 437290954900120641}
+  mage_object: {fileID: 98641194}
   background_mage: {fileID: 863697824}
   snow_controller: {fileID: 380871850}
   fog_controllers:
@@ -10145,6 +10146,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6195114758219728643, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
   m_PrefabInstance: {fileID: 437290954900120628}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &437290954900120641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+  m_PrefabInstance: {fileID: 437290954900120628}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98641194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5260562dc06f14f91800708cb84746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1973040482689557288
 PrefabInstance:
   m_ObjectHideFlags: 0

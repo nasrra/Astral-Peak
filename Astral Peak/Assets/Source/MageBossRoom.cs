@@ -6,7 +6,8 @@ using Sounds;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
-    [SerializeField] GameObject mage;
+    [SerializeField] Mage mage_script;
+    [SerializeField] GameObject mage_object;
     [SerializeField] GameObject background_mage;
     [SerializeField] SnowController snow_controller;
     [SerializeField] List<FogController> fog_controllers = new List<FogController>();
@@ -41,9 +42,9 @@ public class MageBossRoom : BossRoomHandler{
     void OnDestroy(){
         unlink_events();
     }
-    public void enable_mage(bool x) => mage.SetActive(x);
+    public void enable_mage(bool x) => mage_object.SetActive(x);
     public void enable_background_mage(bool x) => background_mage.SetActive(x);
-    public Mage get_mage() => mage.GetComponent<Mage>();
+    public Mage get_mage() => mage_script;
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
     protected override void check_world_state(){
         //throw new System.NotImplementedException();
@@ -98,13 +99,23 @@ public class MageBossRoom : BossRoomHandler{
     }
 
     void link_events(){
-        get_mage().phase_transition += play_cutscene;
-        get_mage().death += fight_ended;
+        link_mage();
         cutscene_trigger.trigger_enter += on_trigger_enter;
     }
     void unlink_events(){
-        get_mage().phase_transition += play_cutscene;
-        get_mage().death -= fight_ended;
+        unlink_mage();
         cutscene_trigger.trigger_enter -= on_trigger_enter;
+    }
+    void link_mage(){
+        mage_script.phase_transition    += play_cutscene;
+        mage_script.death               += fight_ended;
+        mage_script.death               += unlink_events;        
+    }
+    void unlink_mage(){
+        if(mage_script==null)
+            return;
+        mage_script.phase_transition    -= play_cutscene;
+        mage_script.death               -= fight_ended;
+        mage_script.death               -= unlink_events;
     }
 }

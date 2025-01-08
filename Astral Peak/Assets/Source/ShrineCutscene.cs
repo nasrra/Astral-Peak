@@ -142,6 +142,7 @@ public abstract class ShrineAltarCutscene : Cutscene{
         AudioManager.restore_sfx_smooth();
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
+        CameraController.instance.enable_audio_listener(true);
         set_numerals?.Invoke(get_set_numerals());
         
         yield return new WaitForSeconds(2f);

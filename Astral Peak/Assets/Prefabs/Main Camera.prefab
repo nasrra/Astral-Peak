@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 3240992609607372931}
   - component: {fileID: 4743182163311623664}
   - component: {fileID: 4605630826275873651}
+  - component: {fileID: 5954068334328316834}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -581,15 +582,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smooth_speed: 3.75
-  offset: {x: 0, y: 0, z: -10}
-  regulate: 1
-  left_x_bound: 0
-  right_x_bound: 0
-  bot_y_bound: 0
-  top_y_bound: 0
-  cam: {fileID: 7851200416157912661}
   original_size: 0
+  x_bounds: {x: 0, y: 0}
+  y_bounds: {x: 0, y: 0}
+  original_x_bounds: {x: 0, y: 0}
+  original_y_bounds: {x: 0, y: 0}
+  offset: {x: 0, y: 0, z: -10}
   original_offset: {x: 0, y: 0, z: 0}
+  regulate: 1
+  shake_locked: 0
+  cam: {fileID: 7851200416157912661}
+  audio_listener: {fileID: 5954068334328316834}
 --- !u!114 &4743182163311623664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +624,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 4743182163311623664}
   screen_transitions: {fileID: 3481514240348126280}
+  vignette: {fileID: 0}
+  colour: {fileID: 0}
+  film_grain: {fileID: 0}
+--- !u!81 &5954068334328316834
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248928238505897754}
+  m_Enabled: 0
 --- !u!1 &5624800701187372386
 GameObject:
   m_ObjectHideFlags: 0
