@@ -28,7 +28,7 @@ public class CavalryBossRoom : BossRoomHandler{
     public TheRider get_rider() => rider;
 
     protected override void check_world_state(){
-        if(GameManager.world_state >=1){
+        if(GameManager.get_boss_state(0)==true){
             feedback.enabled = false;
             feedback_collider.enabled = false;
             Player.instance.set_spawn_point(feedback.gameObject.name);

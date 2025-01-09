@@ -39,6 +39,7 @@ public class MageBossRoom : BossRoomHandler{
     };
     void Awake(){
         instance = this;
+        check_world_state();
         link_events();
     }
     void Start() => set_room_state(0);
@@ -51,7 +52,10 @@ public class MageBossRoom : BossRoomHandler{
     public MagicPlatformsController get_platforms()=>platforms;
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
     protected override void check_world_state(){
-        //throw new System.NotImplementedException();
+        if(GameManager.get_boss_state(1)==true){
+            cutscene_trigger.gameObject.SetActive(false);
+            Player.instance.set_spawn_point(respawn_point.name);
+        }
     }
     public void set_room_state(int x){
         AudioManager.play_ambience(ambience[x]);
@@ -87,11 +91,11 @@ public class MageBossRoom : BossRoomHandler{
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
     void death_started(){
-        Log.MethodCall(this);
         platforms.stop_loop();
         platforms.destroy_platforms();
         EnemyManager.instance.destroy_all();
         ProjectileManager.instance.destroy_all();
+        GameManager.set_boss_state(1,true);
     }
     void death_completed() => StartCoroutine(fight_ended());
     IEnumerator fight_ended(){

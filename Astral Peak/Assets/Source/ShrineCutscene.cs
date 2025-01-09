@@ -153,7 +153,6 @@ public abstract class ShrineAltarCutscene : Cutscene{
         
         yield return new WaitForSeconds(7);
         AudioManager.stop_music();
-        GameManager.increment_world_state();
         CustomSceneManager.load_scene(get_previous_scene());
         unlink();
         end();

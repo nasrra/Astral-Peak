@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public enum GameState{
@@ -13,10 +15,9 @@ public static class GameManager{
     public static Action<GameState> 
         entered_game_state, 
         exited_game_state;
-    public static int world_state = 0;
+    public static List<bool> boss_states = Enumerable.Repeat(false, 3).ToList();
 
     public static void initialize(){
-        world_state = 0;
         state = GameState.GAMEPLAY;
     }
 
@@ -35,9 +36,10 @@ public static class GameManager{
         exited_game_state?.Invoke(previous);
     }
 
-    static public void link_player() => Player.instance.death_completed += death_state;
-    static public void unlink_player() => Player.instance.death_completed -= death_state;
-    static public void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
-    static public void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
-    public static void increment_world_state() => ++world_state;
+    public static void link_player() => Player.instance.death_completed += death_state;
+    public static void unlink_player() => Player.instance.death_completed -= death_state;
+    public static void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
+    public static void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
+    public static void set_boss_state(int boss, bool completed) => boss_states[boss]=completed;
+    public static bool get_boss_state(int boss) => boss_states[boss];
 }
