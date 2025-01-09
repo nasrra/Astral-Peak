@@ -1,3 +1,4 @@
+using System.Collections;
 using Deluz;
 using UnityEngine;
 
@@ -20,10 +21,8 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
         }));
         base.Start();
     }
-
     public override void destroy(){
         movement.StopAllCoroutines();
-        movement.zero_velocity();
         base.destroy();
     }
 }

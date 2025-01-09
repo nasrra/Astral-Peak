@@ -51,7 +51,6 @@ public class Arrow : Projectile{
             SoundID.STEAM,
             audio_player: this, 
             AudioSourceSettings.DIEGETIC);
-        base.destroy();     
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }

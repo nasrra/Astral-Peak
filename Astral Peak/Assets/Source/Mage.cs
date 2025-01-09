@@ -257,8 +257,9 @@ public class Mage : Boss<Movement>{
         yield return new WaitForSeconds(4);
         CameraController.instance.stop_camera_shake();
         particles.stop_particle("yell");
+        yield return new WaitForSeconds(particles.get_particle("yell").main.startLifetime.constantMax  + 1);
         signature_reset();
-        Destroy(gameObject, 3);
+        Destroy(gameObject);
         invoke_death_completed();
         yield break;
     }
@@ -317,8 +318,8 @@ public class Mage : Boss<Movement>{
 
         movement.set_data(movement_presets["phase_2"]);
         link_health();
-        health.set_max_life(30);
-        health.set_current_life(30);
+        health.set_max_life(10);
+        health.set_current_life(10);
         health.death += kill;
         link_combat();
         link_ranged();

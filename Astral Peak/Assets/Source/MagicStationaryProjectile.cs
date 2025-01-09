@@ -3,6 +3,7 @@ using UnityEngine;
 public class MagicStationaryProjectile : Projectile{
     [Header("Magic Stationary Projectile")]
     [SerializeField] ParticleSystem ambience;
+    [SerializeField] SpriteRenderer sprite;
     [SerializeField] protected TrailRenderer trail;
     [SerializeField] bool destroy_on_hit = true;
     AudioSource source;
@@ -38,7 +39,6 @@ public class MagicStationaryProjectile : Projectile{
         stop_sound();
         enable_colliders(false);
         enable_sprites(false);
-        base.destroy();
-        Destroy(gameObject, ambience.main.duration);    
+        Destroy(gameObject, 2);    
     }
 }

@@ -7,7 +7,6 @@ public class LightningStrikeProjectile : Projectile{
     [SerializeField] float lifetime, move_speed;
 
     public override void destroy(){
-        base.destroy();
         Destroy(gameObject);
     }
 

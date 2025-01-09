@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 45.51, y: -2.2083333, z: 0}
-  m_LocalScale: {x: 0.6666666, y: 0.6666666, z: 0.79999995}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5890197516491776167}
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 10}
+  m_Size: {x: 0.1, y: 10}
   m_EdgeRadius: 0
 --- !u!61 &5144157962665142012
 BoxCollider2D:
@@ -125,7 +125,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 10}
+  m_Size: {x: 0.1, y: 10}
   m_EdgeRadius: 0
 --- !u!114 &2544572090120954023
 MonoBehaviour:

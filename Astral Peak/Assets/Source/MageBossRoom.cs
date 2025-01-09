@@ -55,6 +55,7 @@ public class MageBossRoom : BossRoomHandler{
         if(GameManager.get_boss_state(1)==true){
             cutscene_trigger.gameObject.SetActive(false);
             Player.instance.set_spawn_point(respawn_point.name);
+            exit.opened();
         }
     }
     public void set_room_state(int x){
@@ -91,6 +92,7 @@ public class MageBossRoom : BossRoomHandler{
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
     void death_started(){
+        Debug.Log(0);
         platforms.stop_loop();
         platforms.destroy_platforms();
         EnemyManager.instance.destroy_all();
@@ -99,7 +101,6 @@ public class MageBossRoom : BossRoomHandler{
     }
     void death_completed() => StartCoroutine(fight_ended());
     IEnumerator fight_ended(){
-        yield return new WaitForSeconds(3);
         UiManager.instance.play_enemy_vanquished();
         set_room_state(0);
         AudioClipHandler.fade_out(this,phase_2_ambient_lightning,.5f);

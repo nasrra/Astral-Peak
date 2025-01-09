@@ -1,4 +1,5 @@
 using System;
+using Deluz;
 using UnityEngine;
 
 public abstract class Door : MonoBehaviour{
@@ -23,6 +24,8 @@ public abstract class Door : MonoBehaviour{
     void Awake(){
         if(start_open == true)
             opened();
+        else
+            closed();
         link();
     }
     void OnDisable() => unlink();
@@ -44,6 +47,7 @@ public abstract class Door : MonoBehaviour{
             animator?.Play("open");
     }
     public void opened(){
+        Log.MethodCall(this);
         if(animator != null)
             animator.Play("opened");
         set_trigger();
@@ -54,6 +58,7 @@ public abstract class Door : MonoBehaviour{
             animator.Play("close");
     }
     public void closed(){
+        Log.MethodCall(this);
         if(animator != null)
             animator.Play("closed");
         set_solid();

@@ -20,7 +20,6 @@ public class MagicSlashProjectile : Projectile{
             destroy();
     }    
     public override void destroy(){
-        base.destroy();
         Destroy(gameObject);
     }
 }

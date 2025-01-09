@@ -13,6 +13,7 @@ public class MagicPlatformsController : MonoBehaviour{
 
     public void start_loop() => StartCoroutine(loop());
     public void stop_loop(){
+        StopAllCoroutines();
         foreach(ObjectScroller scroller in scrollers)
             scroller.StopAllCoroutines();
     }
