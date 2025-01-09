@@ -10,6 +10,7 @@ public class Platform : MonoBehaviour{
         remove_player();
         gameObject.SetActive(false);
     }
+
     public void enable(){
         gameObject.SetActive(true);
     }

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1825770515408288571}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 4, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,11 +130,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4197864141889085480}
   - component: {fileID: 2438958569921006859}
-  - component: {fileID: 1911003603568688063}
   - component: {fileID: 185010928610739219}
-  - component: {fileID: 7913597499973551963}
   - component: {fileID: 4187408469439435566}
-  m_Layer: 6
+  - component: {fileID: 2602173245254589912}
+  m_Layer: 10
   m_Name: Magic Platform
   m_TagString: Snow
   m_Icon: {fileID: 0}
@@ -173,7 +172,7 @@ EdgeCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16248
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -200,27 +199,6 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!114 &1911003603568688063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771696750861460665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  can_knockback: 1
-  can_dash: 1
-  is_dashing: 0
-  top_speed: 1
-  acceleration: 1
-  dash_cooldown: 1
-  deceleration: 1
-  move_direction: {x: 0, y: 0}
-  rb: {fileID: 7913597499973551963}
 --- !u!114 &185010928610739219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,33 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519424288a047c542895fbc66d4c7d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &7913597499973551963
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771696750861460665}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!251 &4187408469439435566
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -279,6 +230,28 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
+--- !u!95 &2602173245254589912
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771696750861460665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4410d33ca0dc3c446a8419ca7a1743e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6249647576654634440
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +263,7 @@ GameObject:
   - component: {fileID: 4534053920335460820}
   - component: {fileID: 3247395649522832980}
   m_Layer: 6
-  m_Name: Square
+  m_Name: MagicEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

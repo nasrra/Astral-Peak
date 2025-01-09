@@ -87,5 +87,8 @@ public abstract class Creature : MonoBehaviour{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
-    public virtual void kill() => death?.Invoke();
+    public virtual void kill(){
+        Log.MethodCall(this);
+        death?.Invoke();
+    }
 }

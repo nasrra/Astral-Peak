@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Deluz;
 using UnityEngine;
 
-public class MovingObjects : MonoBehaviour{
+public class ObjectOrbiter : MonoBehaviour{
     [SerializeField] List<GameObject> objects = new List<GameObject>();
     [SerializeField] MovingObjectsBehavior behaviour;
     [SerializeField] float rotation_speed;
     [SerializeField] float radius;
-    void OnEnable(){
+
+    void OnDisable() => StopAllCoroutines();
+
+    public void randomise_behaviour(){
+        int x = Random.Range(0,2);
+        behaviour = x==0?MovingObjectsBehavior.ANTI_CLOCKWISE_CIRCLE:MovingObjectsBehavior.CLOCKWISE_CIRCLE;
+    }
+    public void start_behaviour(){
         StopAllCoroutines();
         switch(behaviour){
             case MovingObjectsBehavior.CLOCKWISE_CIRCLE:
@@ -22,6 +30,7 @@ public class MovingObjects : MonoBehaviour{
     }
 
     public void set_behaviour(MovingObjectsBehavior _behaviour)=>behaviour=_behaviour;
+    public void set_objects(List<GameObject> _objects) => objects = _objects;
 
     IEnumerator circle(){
         float factor = behaviour == MovingObjectsBehavior.CLOCKWISE_CIRCLE? -1 : 1;
@@ -35,7 +44,7 @@ public class MovingObjects : MonoBehaviour{
                 if(objects[i]!=null)
                     objects[i].transform.position = new Vector3(x, y, 0);
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -51,7 +60,7 @@ public class MovingObjects : MonoBehaviour{
                 if(objects[i]!=null)
                     objects[i].transform.position = new Vector3(x,y, 0);
             }
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 }

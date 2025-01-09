@@ -30,13 +30,13 @@ public class LineParticleEmitter : MonoBehaviour{
     public ParticleSystem get_particles() => particles;
 
     protected void emit(int intermediate_particles){
-        Vector3 direction = end_point.position - start_point.position;
+        Vector3 distance = end_point.position - start_point.position;
         float factor = 1/intermediate_particles;
         float x = factor;
         emission_parameters.position = start_point.position;
         particles.Emit(emission_parameters, 1);
         while(x<1){
-            emission_parameters.position = start_point.position + direction * x;
+            emission_parameters.position = start_point.position + distance * x;
             x+=factor;
             particles.Emit(emission_parameters, 1);            
         }
@@ -47,8 +47,8 @@ public class LineParticleEmitter : MonoBehaviour{
         Vector3 start_pos = _start_pos ?? start_point.position;
         Vector3 end_pos = _end_pos ?? end_point.position;
         // Calculate the length of the line
-        Vector3 direction = end_pos - start_pos;
-        float line_length = direction.magnitude;
+        Vector3 distance = end_pos - start_pos;
+        float line_length = distance.magnitude;
         //float totalParticles = lineLength * particlesPerUnitLength/unit_length;
         int totalParticles = Mathf.FloorToInt(line_length * particles_per_unit / unit_length);
         float factor = 1f / (totalParticles + 1);
@@ -58,7 +58,7 @@ public class LineParticleEmitter : MonoBehaviour{
         particles.Emit(emission_parameters, 1);
         // emit intermediate.
         while(x<1){
-            emission_parameters.position = start_pos + direction * x;
+            emission_parameters.position = start_pos + distance * x;
             x+=factor;
             particles.Emit(emission_parameters, 1);            
         }

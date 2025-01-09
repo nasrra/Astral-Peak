@@ -142,8 +142,13 @@ public class Mage : Boss<Movement>{
 
 
     // phase 2.
-    public void enable_surrounding_projectiles() => surrounding_projectiles.SetActive(true);
-    public void disable_surrounding_projectiles() => surrounding_projectiles.SetActive(false);
+    public void enable_surrounding_projectiles(){
+        surrounding_projectiles.SetActive(true);
+        surrounding_projectiles.GetComponent<ObjectOrbiter>().start_behaviour();
+    }
+    public void disable_surrounding_projectiles(){
+        surrounding_projectiles.SetActive(false);
+    }
     private void idle_phase_2(){
         animator.Rebind();
         animator.Play("MageHover",0,0);
@@ -305,8 +310,8 @@ public class Mage : Boss<Movement>{
 
         movement.set_data(movement_presets["phase_2"]);
         link_health();
-        health.set_max_life(2);
-        health.set_current_life(2);
+        health.set_max_life(30);
+        health.set_current_life(30);
         health.death += death_state;
         link_combat();
         link_ranged();
