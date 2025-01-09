@@ -8,7 +8,10 @@ public class MagicSlashProjectile : Projectile{
         time: 5,
         time_out: destroy
     ));
-    void Start() => movement.movement_state(front_point.position-transform.position,speed);
+    protected override void Start(){
+        movement.movement_state(front_point.position-transform.position,speed);
+        base.Start();
+    }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer==LayersManager.PLAYER)
@@ -17,6 +20,7 @@ public class MagicSlashProjectile : Projectile{
             destroy();
     }    
     public override void destroy(){
+        base.destroy();
         Destroy(gameObject);
     }
 }

@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Deluz;
 using Deluz.Collections;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
 using UnityEngine;
 
 public class Mage : Boss<Movement>{
-    public event Action switch_to_idle, switch_to_follow_and_attack;
+    public event Action switch_to_idle = null, switch_to_follow_and_attack;
     public event Action<BossAttack> switch_to_attack;
     [Header("Mage")]
     [SerializedDictionary("id","Transform")]

@@ -7,10 +7,11 @@ public class LightningStrikeProjectile : Projectile{
     [SerializeField] float lifetime, move_speed;
 
     public override void destroy(){
+        base.destroy();
         Destroy(gameObject);
     }
 
-    void Awake(){
+    protected override void Start(){
         StartCoroutine(Util.timer(
             time: lifetime,
             time_out: destroy
@@ -21,6 +22,7 @@ public class LightningStrikeProjectile : Projectile{
             time_out: loop
         ));
         snap_to_floor();
+        base.Start();
     }
     void loop(){
         enable_colliders(true);

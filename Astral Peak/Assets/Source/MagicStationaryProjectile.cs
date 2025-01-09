@@ -7,8 +7,9 @@ public class MagicStationaryProjectile : Projectile{
     [SerializeField] bool destroy_on_hit = true;
     AudioSource source;
 
-    void Awake(){
+    protected override void Start(){
         play_sound();
+        base.Start();
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -37,6 +38,7 @@ public class MagicStationaryProjectile : Projectile{
         stop_sound();
         enable_colliders(false);
         enable_sprites(false);
+        base.destroy();
         Destroy(gameObject, ambience.main.duration);    
     }
 }

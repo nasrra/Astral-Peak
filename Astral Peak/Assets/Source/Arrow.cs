@@ -7,7 +7,7 @@ public class Arrow : Projectile{
     [SerializeField] ParticleSystem smoke, snow;
     [SerializeField] protected Transform front_point;
     [SerializeField] float move_time, rotation_speed, move_speed;
-    void Start(){
+    protected override void Start(){
        movement.move_to_target_state(front_point, move_speed);
         StartCoroutine(Util.timer(
             move_time, 
@@ -50,7 +50,8 @@ public class Arrow : Projectile{
         AudioClipHandler.play(
             SoundID.STEAM,
             audio_player: this, 
-            AudioSourceSettings.DIEGETIC);     
+            AudioSourceSettings.DIEGETIC);
+        base.destroy();     
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }

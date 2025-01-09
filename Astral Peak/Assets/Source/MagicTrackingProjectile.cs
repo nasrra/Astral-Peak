@@ -5,7 +5,7 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
     [Header("MagicTrackingProjectile")]
     [SerializeField] Transform front_point;
     [SerializeField] float rotate_speed, move_speed, buffer_time;
-    void Start(){
+    protected override void Start(){
         StartCoroutine(Util.timer(buffer_time,
             start_action: () => {
                 enable_colliders(false);
@@ -18,6 +18,7 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
                 enable_colliders(true);
                 transform.parent = null;
         }));
+        base.Start();
     }
 
     public override void destroy(){

@@ -11,7 +11,7 @@ public class FallArrow : Arrow{
         fall_speed;
 
 
-    void Start() => StartCoroutine(fall_arrow_behaviour());
+    protected override void Start() => StartCoroutine(fall_arrow_behaviour());
 
     IEnumerator fall_arrow_behaviour(){
         float rng = Random.Range(0,16);

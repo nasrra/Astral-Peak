@@ -71,7 +71,6 @@ namespace Cutscenes{
             room.get_platforms().start_loop();
             end();
             yield break;
-            //set_fly_pattern();
         }
 
         void prepare(){
