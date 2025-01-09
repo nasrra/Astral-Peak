@@ -82,7 +82,7 @@ public class MageBossRoom : BossRoomHandler{
         Player.instance.transform.position = cutscene_trigger.transform.position;
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
@@ -90,6 +90,8 @@ public class MageBossRoom : BossRoomHandler{
         Log.MethodCall(this);
         platforms.stop_loop();
         platforms.destroy_platforms();
+        EnemyManager.instance.destroy_all();
+        ProjectileManager.instance.destroy_all();
     }
     void death_completed() => StartCoroutine(fight_ended());
     IEnumerator fight_ended(){

@@ -26,9 +26,10 @@ public class Hollow : Enemy{
         if(target == null)
             target = origin;    
     }
-    void Start(){
+    protected override void Start(){
         movement.pathing_loop_state(paths);
         on_start?.Invoke();
+        base.Start();
     }
 
     void OnDestroy(){
@@ -56,6 +57,7 @@ public class Hollow : Enemy{
             },
             time_out: ()=>{
                 invoke_death_completed();
+                base.kill();
                 Destroy(gameObject);
             }
         ));

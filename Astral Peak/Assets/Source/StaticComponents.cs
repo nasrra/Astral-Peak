@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
 // this is a class for static components that are used everywhere within the game.
 // The [RuntimeInitializeOnLoadMethod] attribute will ensure InitializeOnStart is called as soon as the game starts.

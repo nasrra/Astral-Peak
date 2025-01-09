@@ -6131,10 +6131,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8055454059283054774, guid: e8b5da726ea76614cb88b93f8c279653, type: 3}
-      propertyPath: m_Intensity
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8954943663656312721, guid: e8b5da726ea76614cb88b93f8c279653, type: 3}
       propertyPath: m_Name
       value: OutsideGlobalLighting
@@ -9351,6 +9347,7 @@ GameObject:
   - component: {fileID: 2143389927}
   - component: {fileID: 2143389928}
   - component: {fileID: 2143389929}
+  - component: {fileID: 2143389930}
   m_Layer: 0
   m_Name: BossRoomHandler
   m_TagString: Untagged
@@ -9552,6 +9549,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 419471097024db84ba0c67cf3293e96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2143389930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143389923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331bafb6619f6134dbf538a373c91c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &437290954900120628

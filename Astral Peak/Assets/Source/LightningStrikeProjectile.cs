@@ -37,7 +37,7 @@ public class LightningStrikeProjectile : Projectile{
             audio_player: this,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
         );
-        SceneLighting.instance.set_intensity(id:"global",value:2f);
+        SceneLighting.instance.set_intensity(id:"global",value:3f);
         SceneLighting.instance.reset_lighting(_id: "global",_time:.2f);
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }

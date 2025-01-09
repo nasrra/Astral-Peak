@@ -261,7 +261,7 @@ public class Mage : Boss<Movement>{
 
     // VFX Calls
     public void signature_2_lighting(){
-        SceneLighting.instance.set_intensity("global", 2f);
+        SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
     }
     protected void play_weapon_flash(){

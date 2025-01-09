@@ -1,10 +1,9 @@
-using Deluz;
 using Deluz.Collections;
 using UnityEngine;
 
-public class ProjectileManager : MonoBehaviour{
-    public static ProjectileManager instance;
-    [SerializeField] SwapbackArray<Projectile> projectiles = new SwapbackArray<Projectile>();
+public class EnemyManager : MonoBehaviour{
+    public static EnemyManager instance;
+    SwapbackArray<Enemy> enemies = new SwapbackArray<Enemy>();
     void Awake(){
         instance = this;
         link_events();   
@@ -13,12 +12,16 @@ public class ProjectileManager : MonoBehaviour{
         instance = null;
         unlink_events();
     }
-    public void add(Projectile projectile) => projectiles.Add(projectile);
-    public void remove(Projectile projectile) => projectiles.Remove(projectile);
+    public void add(Enemy enemy){
+        enemies.Add(enemy);
+    }
+    public void remove(Enemy enemy){
+        enemies.Remove(enemy);
+    }
     public void destroy_all(){
-        for(int i = 0; i < projectiles.Count; ++i)
-            Destroy(projectiles[i].gameObject);
-        projectiles.Clear();
+        for(int i = 0; i < enemies.Count; ++i)
+            Destroy(enemies[i].gameObject);
+        enemies.Clear();
     }
     void entered_game_state(GameState state){
         if(state==GameState.CUTSCENE)

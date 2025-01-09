@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,9 +19,12 @@ public class Enemy : Boss<Movement>{
     public void play_summoning_animation() => summoning_animator.Play("turn_on");
     public void stop_summoning_animation() => summoning_animator.Play("turn_off");
 
+    protected virtual void Start(){
+        EnemyManager.instance?.add(this);
+    }
 
     public override void kill(){
         enemy_death?.Invoke(this);
-        base.kill();
+        EnemyManager.instance?.remove(this);
     }
 }

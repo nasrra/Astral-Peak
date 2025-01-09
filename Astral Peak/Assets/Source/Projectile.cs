@@ -6,9 +6,10 @@ public abstract class Projectile : MonoBehaviour{
     [SerializeField] List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     [SerializeField] protected SimpleMovement movement;
     public virtual void destroy(){
-        ProjectileManager.instance.remove_projectile(this);
+        ProjectileManager.instance.remove(this);
+        Destroy(gameObject);
     }
-    protected virtual void Start() => ProjectileManager.instance.add_projectile(this);
+    protected virtual void Start() => ProjectileManager.instance.add(this);
     
     protected void enable_colliders(bool enabled){
         foreach(Collider2D col in colliders)
