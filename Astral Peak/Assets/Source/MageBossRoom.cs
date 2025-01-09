@@ -101,6 +101,8 @@ public class MageBossRoom : BossRoomHandler{
     IEnumerator fight_ended(){
         yield return new WaitForSeconds(3);
         UiManager.instance.play_enemy_vanquished();
+        set_room_state(0);
+        AudioClipHandler.fade_out(this,phase_2_ambient_lightning,.5f);
         yield return new WaitForSeconds(6);
         CustomSceneManager.load_scene("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;

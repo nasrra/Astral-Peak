@@ -27,4 +27,12 @@ public class SummoningCircleHandler : MonoBehaviour{
         foreach(int i in circles)
             summoning_circles[i].Play("turn_off");
     }
+    public void off(){
+        foreach(Animator animator in summoning_circles)
+            animator.Play("off");        
+    }
+    public void on(){
+        foreach(Animator animator in summoning_circles)
+            animator.Play("on");        
+    }
 }

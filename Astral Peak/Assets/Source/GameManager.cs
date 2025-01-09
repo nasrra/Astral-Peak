@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +14,7 @@ public static class GameManager{
     public static Action<GameState> 
         entered_game_state, 
         exited_game_state;
-    public static List<bool> boss_states = Enumerable.Repeat(false, 3).ToList();
+    public static bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
 
     public static void initialize(){
         state = GameState.GAMEPLAY;

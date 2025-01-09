@@ -51,11 +51,11 @@ public class CameraController : MonoBehaviour{
     }
     public void set_target(Transform _target) => target = _target;
     public void shake_camera(float time, float amount, bool lock_shake){
-        if(shake_locked == false)
+        if(shake_locked == false || lock_shake == true)
             state_swtich(ref shake_state, camera_shake(time, amount, lock_shake));
     }
     public void start_camera_shake(float amount, bool lock_shake){
-        if(shake_locked == false)
+        if(shake_locked == false || lock_shake == true)
             state_swtich(ref shake_state, camera_shake(amount, lock_shake));
     }
     public void stop_camera_shake(){

@@ -63,15 +63,24 @@ public class Mage : Boss<Movement>{
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
-        movement.halt();
-        combat.halt();
-        combat.renew();
-        state.stop();
+        stop_all();
         switch_to_idle();
     } 
     public override void exit_cutscene_state() => exit_cutscene_states[current_phase]();
     protected override Dictionary<string,Action> get_phase_linker() => phase_linker;
     protected override Dictionary<string,Action> get_phase_unlinker() => phase_unlinker;
+    public void stop_all(){
+        movement.halt();
+        combat.halt();
+        combat.renew();
+        state.stop();
+        particles.stop_all_particles();
+        sound.stop_all_loops();
+        lighting.set_intensity(0);
+        stop_staff_lightning();
+        summoning_circles.off();
+        disable_surrounding_projectiles();     
+    }
 
 
 
@@ -227,11 +236,9 @@ public class Mage : Boss<Movement>{
     public override void kill() => StartCoroutine(death_loop());
     IEnumerator death_loop(){
         invoke_death_started();
-        state.stop();
-        movement.halt();
-        combat.halt();
-        enable_body_colliders(0);
-
+        enable_body_colliders(0); 
+        stop_all();
+        signature_adjust();
         teleport_death(new Vector2(0,0));
         animator.Play("MageDeath");
         particles.play_particle("yell");
@@ -250,6 +257,7 @@ public class Mage : Boss<Movement>{
         yield return new WaitForSeconds(4);
         CameraController.instance.stop_camera_shake();
         particles.stop_particle("yell");
+        signature_reset();
         Destroy(gameObject, 3);
         invoke_death_completed();
         yield break;
