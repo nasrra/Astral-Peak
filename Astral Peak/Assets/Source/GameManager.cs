@@ -35,8 +35,8 @@ public static class GameManager{
         exited_game_state?.Invoke(previous);
     }
 
-    static public void link_player() => Player.instance.death += death_state;
-    static public void unlink_player() => Player.instance.death -= death_state;
+    static public void link_player() => Player.instance.death_completed += death_state;
+    static public void unlink_player() => Player.instance.death_completed -= death_state;
     static public void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
     static public void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
     public static void increment_world_state() => ++world_state;

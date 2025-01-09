@@ -92,14 +92,14 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     void link(){
-        cavalry.death           += fight_ended;
-        rider.death             += phase_transition;
+        cavalry.death_completed += fight_ended;
+        rider.death_completed   += phase_transition;
         feedback.trigger_enter  += player_entered;
     }
 
     void unlink(){
-        cavalry.death           -= fight_ended;
-        rider.death             -= phase_transition;
+        cavalry.death_completed -= fight_ended;
+        rider.death_completed   -= phase_transition;
         feedback.trigger_enter  -= player_entered;
     }
 }

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cutscenes;
+using Deluz;
 using Sounds;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
@@ -14,6 +16,7 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
+    [SerializeField] MagicPlatformsController platforms;
     List<Action> lighting_states = new List<Action>(){
         ()=>{// 0
             SceneLighting.instance.enable_light(id: "lightning",  enable: false);
@@ -45,6 +48,7 @@ public class MageBossRoom : BossRoomHandler{
     public void enable_mage(bool x) => mage_object.SetActive(x);
     public void enable_background_mage(bool x) => background_mage.SetActive(x);
     public Mage get_mage() => mage_script;
+    public MagicPlatformsController get_platforms()=>platforms;
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
     protected override void check_world_state(){
         //throw new System.NotImplementedException();
@@ -82,8 +86,13 @@ public class MageBossRoom : BossRoomHandler{
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
-    void fight_ended() => StartCoroutine(death_loop());
-    IEnumerator death_loop(){
+    void death_started(){
+        Log.MethodCall(this);
+        platforms.stop_loop();
+        platforms.destroy_platforms();
+    }
+    void death_completed() => StartCoroutine(fight_ended());
+    IEnumerator fight_ended(){
         yield return new WaitForSeconds(3);
         UiManager.instance.play_enemy_vanquished();
         yield return new WaitForSeconds(6);
@@ -108,14 +117,16 @@ public class MageBossRoom : BossRoomHandler{
     }
     void link_mage(){
         mage_script.phase_transition    += play_cutscene;
-        mage_script.death               += fight_ended;
-        mage_script.death               += unlink_events;        
+        mage_script.death_started       += death_started;
+        mage_script.death_completed     += death_completed;        
+        mage_script.death_completed     += unlink_events;        
     }
     void unlink_mage(){
         if(mage_script==null)
             return;
         mage_script.phase_transition    -= play_cutscene;
-        mage_script.death               -= fight_ended;
-        mage_script.death               -= unlink_events;
+        mage_script.death_started       -= death_started;
+        mage_script.death_completed     -= death_completed;        
+        mage_script.death_completed     -= unlink_events; 
     }
 }

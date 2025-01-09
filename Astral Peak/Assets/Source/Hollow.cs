@@ -55,7 +55,7 @@ public class Hollow : Enemy{
                     StopCoroutine(stun_state);
             },
             time_out: ()=>{
-                base.kill();
+                invoke_death_completed();
                 Destroy(gameObject);
             }
         ));

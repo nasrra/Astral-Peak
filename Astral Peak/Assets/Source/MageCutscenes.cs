@@ -68,6 +68,7 @@ namespace Cutscenes{
             room.stop_attraction_particles();
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
+            room.get_platforms().start_loop();
             end();
             yield break;
             //set_fly_pattern();

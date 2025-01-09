@@ -21,10 +21,16 @@ public class ObjectScroller : MonoBehaviour{
             yield return new WaitForFixedUpdate(); 
         }
     }
+    public void reverse_scroll(){
+        Transform temp = start_point;
+        start_point = end_point;
+        end_point = temp; 
+    }
     public void instantiate_objects(){
         Vector3 distance = end_point.position - start_point.position;
         float factor = (float)1/amount;
         float x = factor;
+        objects.Clear();
         while(x<1){
             Vector3 pos = start_point.position + distance * x;
             objects.Add(Instantiate(prefab, pos, Quaternion.identity));

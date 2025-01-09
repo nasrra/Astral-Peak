@@ -11,7 +11,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Data
     public event Action
-        damaged_start, damaged_stop, death_start;
+        damaged_start, damaged_stop;
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
@@ -46,7 +46,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         Application.quitting -= unlink_events;
     }
     void OnCollisionEnter2D(Collision2D other){  
-        if(other.gameObject.layer == LayersManager.ENEMY)
+        int layer = other.gameObject.layer;
+        if(layer == LayersManager.ENEMY || layer == LayersManager.BOSS)
             handle_enemy_contact(other);
     }
     public void face_move_dir() => face_direction(movement.get_move_direction());
@@ -166,10 +167,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         sound.play_sound("damaged");
         sprite.play_death_effect(1.5f);
         animator.death();
-        death_start?.Invoke();
+        invoke_death_started();
         yield return new WaitForSeconds(3);
         //AudioManager.low_pass_audio(false);
-        base.kill();
+        invoke_death_completed();
     }
 
 

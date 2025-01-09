@@ -17,7 +17,8 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 /// It is also the class that defines all functionality for the inheritor class.
 /// </summary>
 public abstract class Creature : MonoBehaviour{
-    public event Action flipped_right, flipped_left, death;
+    public event Action flipped_right, flipped_left, death_started, death_completed;
+    Coroutine death_state;
 
     [Header("Creature")]
     [SerializeField] protected Health health;
@@ -87,8 +88,7 @@ public abstract class Creature : MonoBehaviour{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
-    public virtual void kill(){
-        Log.MethodCall(this);
-        death?.Invoke();
-    }
+    public virtual void kill() => Log.MethodNotImplemented(this);
+    protected void invoke_death_started() => death_started?.Invoke();
+    protected void invoke_death_completed() => death_completed?.Invoke();
 }

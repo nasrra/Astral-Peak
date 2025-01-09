@@ -225,14 +225,14 @@ public class Mage : Boss<Movement>{
                 transform.position = pos;
             }
         ));
-    public void death_state(){
+    public override void kill() => StartCoroutine(death_loop());
+    IEnumerator death_loop(){
+        invoke_death_started();
         state.stop();
         movement.halt();
         combat.halt();
-        StartCoroutine(death_loop());
-    }
-    IEnumerator death_loop(){
         enable_body_colliders(0);
+
         teleport_death(new Vector2(0,0));
         animator.Play("MageDeath");
         particles.play_particle("yell");
@@ -252,7 +252,7 @@ public class Mage : Boss<Movement>{
         CameraController.instance.stop_camera_shake();
         particles.stop_particle("yell");
         Destroy(gameObject, 3);
-        base.kill();
+        invoke_death_completed();
         yield break;
     }
 
@@ -312,7 +312,7 @@ public class Mage : Boss<Movement>{
         link_health();
         health.set_max_life(30);
         health.set_current_life(30);
-        health.death += death_state;
+        health.death += kill;
         link_combat();
         link_ranged();
         state = new StateQueue(this, fly_and_attack_state);

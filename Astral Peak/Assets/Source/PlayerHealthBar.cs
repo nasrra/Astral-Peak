@@ -13,14 +13,14 @@ public class PlayerHealthBar : MonoBehaviour
     void Start(){
         Player.instance.get_health().healed += health_updated;
         Player.instance.damaged_start       += health_updated;
-        Player.instance.death_start         += dead;
+        Player.instance.death_started       += dead;
         set_health(Player.instance.get_health().get_current_health());
         fade_in();
     }
     void OnDestroy(){
         Player.instance.get_health().healed -= health_updated;
         Player.instance.damaged_start       -= health_updated;
-        Player.instance.death_start         -= dead;
+        Player.instance.death_started       -= dead;
     }
 
     void health_updated() => set_health(Player.instance.get_health().get_current_health()); 
