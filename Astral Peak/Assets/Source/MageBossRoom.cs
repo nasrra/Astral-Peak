@@ -92,7 +92,6 @@ public class MageBossRoom : BossRoomHandler{
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
     void death_started(){
-        Debug.Log(0);
         platforms.stop_loop();
         platforms.destroy_platforms();
         EnemyManager.instance.destroy_all();
