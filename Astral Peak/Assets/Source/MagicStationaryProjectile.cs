@@ -29,10 +29,9 @@ public class MagicStationaryProjectile : Projectile{
             this,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
     protected void stop_sound() => 
-        AudioClipHandler.fade_out(
-        this,
+        StartCoroutine(AudioClipHandler.fade_out(
         source,
-        ambience.main.duration/8);  
+        ambience.main.duration/8));  
 
     public override void destroy(){
         ambience.Stop(true, ParticleSystemStopBehavior.StopEmitting);

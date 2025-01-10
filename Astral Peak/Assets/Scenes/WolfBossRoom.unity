@@ -6136,17 +6136,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss_points: []
-  respawn_point: {fileID: 0}
+  respawn_point: {fileID: 1839469611}
   cutscene_trigger: {fileID: 0}
   exit: {fileID: 0}
-  song: 0
   phase: 0
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
   cutscene_arrow: {fileID: 1404642685}
   background_wolf: {fileID: 8944879036396718998}
   wolf_impact_transition: {fileID: 1894936251}
-  feedback: {fileID: 1839469613}
+  feedback: {fileID: 1839469615}
   feedback_collider: {fileID: 1839469612}
   rider_start_point: {fileID: 1002998813}
   cavalry_start_point: {fileID: 757529339}
@@ -6638,10 +6637,6 @@ PrefabInstance:
       propertyPath: left_slider
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8993149940698182152, guid: 83071178484848040bfc2d72435dd883, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
     - target: {fileID: 9039090603802940495, guid: 83071178484848040bfc2d72435dd883, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99495274
@@ -7342,7 +7337,7 @@ GameObject:
   - component: {fileID: 1839469611}
   - component: {fileID: 1839469614}
   - component: {fileID: 1839469612}
-  - component: {fileID: 1839469613}
+  - component: {fileID: 1839469615}
   m_Layer: 0
   m_Name: RespawnPoint
   m_TagString: Untagged
@@ -7411,18 +7406,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 20}
   m_EdgeRadius: 0
---- !u!114 &1839469613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1839469609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250164712f31a8f428bc8eea943b1ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1839469614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7436,6 +7419,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: 6
+--- !u!114 &1839469615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839469609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250164712f31a8f428bc8eea943b1ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1894242932
 GameObject:
   m_ObjectHideFlags: 0

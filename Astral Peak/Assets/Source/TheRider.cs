@@ -54,33 +54,35 @@ public class TheRider : Boss<RiderMovement>{
             animator.Play("idle");
     }
 
+    void handle_death(){
+        movement.halt();
+        combat.halt();
+        transition_phase();
+    }
+
     protected void link_events(){
         movement.move_direction_changed         += face_direction;
         movement.move_direction_changed         += move_direction_changed;
-        health.death                            += kill;
-        health.death                            += movement.StopAllCoroutines;
+        health.death                            += handle_death;
         combat.attack_ended                     += idle;
         combat.attack_chosen                    += attack;
         health.damaged                          += sprites.play_damaged_flash;
         flipped_left                            += particles.flip_particles_left;
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
-        //phase_transition                        += combat.set_moveset;
         link_game_manager();
     }
 
     protected void unlink_events(){
         movement.move_direction_changed         -= face_direction;
         movement.move_direction_changed         -= move_direction_changed;
-        health.death                            -= kill;
-        health.death                            -= movement.StopAllCoroutines;
+        health.death                            -= handle_death;
         combat.attack_ended                     -= idle;
         combat.attack_chosen                    -= attack;
         health.damaged                          -= sprites.play_damaged_flash;
         flipped_left                            -= particles.flip_particles_left;
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
-        //phase_transition                        -= combat.set_moveset;
         unlink_game_manager();
     }
 }

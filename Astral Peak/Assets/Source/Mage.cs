@@ -12,7 +12,6 @@ public class Mage : Boss<Movement>{
     [Header("Mage")]
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points = new SerializedDictionary<string, Transform>();
-    [SerializeField] SerializedDictionary<string, MovementData> movement_presets = new SerializedDictionary<string, MovementData>();
     [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
     [SerializeField] GameObject surrounding_projectiles;
     [SerializeField] LineParticleEmitter teleport_trail;
@@ -63,6 +62,7 @@ public class Mage : Boss<Movement>{
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
+        Log.MethodCall();
         stop_all();
         switch_to_idle();
     } 
@@ -109,6 +109,7 @@ public class Mage : Boss<Movement>{
         state.stop();
         animator.Rebind();
         animator.Play("MageIdle",0,0);
+
     }
     private void attack_phase_1(BossAttack attack){
         movement.halt();
@@ -139,6 +140,7 @@ public class Mage : Boss<Movement>{
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)
             return;
+        Log.MethodCall();
         if(direction == Vector2.left || direction == Vector2.right)
             animator.Play("MageWalk",0,0);
         else if(direction == Vector2.zero)
@@ -290,54 +292,41 @@ public class Mage : Boss<Movement>{
     // phase link:
 
     private void link_phase_1(){
-        Log.MethodCall(this);
-        movement.set_data(movement_presets["phase_1"]);      
-        link_health();
+        Log.MethodCall();
+        set_phase_data("phase_1");
+        link_components();
         health.death += transition_phase;
-        link_movement();
-        link_combat();
-        link_ranged();
         state = new StateQueue(this, follow_and_attack_state);
         switch_to_idle = idle_phase_1;
         switch_to_follow_and_attack = follow_and_attack_state;
         switch_to_attack = attack_phase_1;
     }
     private void unlink_phase_1(){
-        Log.MethodCall(this);
-
-        sound.stop_all_loops();
-        particles.stop_all_particles();
-        unlink_health();
+        Log.MethodCall();
+        unlink_components();
         health.death -= transition_phase;
-        unlink_movement();
-        unlink_combat();
-        unlink_ranged();
     }
     private void link_phase_2(){
-        Log.MethodCall(this);
-
-        movement.set_data(movement_presets["phase_2"]);
-        link_health();
-        health.set_max_life(10);
-        health.set_current_life(10);
+        Log.MethodCall();
+        set_phase_data("phase_2");
+        link_components();
+        unlink_movement();
         health.death += kill;
-        link_combat();
-        link_ranged();
         state = new StateQueue(this, fly_and_attack_state);
         switch_to_idle = idle_phase_2;
         switch_to_follow_and_attack = fly_and_attack_state;
         switch_to_attack = attack_phase_2;
     }
     private void unlink_phase_2(){
-        Log.MethodCall(this);
-        unlink_health();
-        unlink_combat();
-        unlink_ranged();
+        Log.MethodCall();
+        unlink_components();
     }
     private void link_cutscene_opening(){
+        Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
     private void link_cutscene_transition(){
+        Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
 
@@ -350,10 +339,19 @@ public class Mage : Boss<Movement>{
     }
     protected void unlink_events(){
         unlink_game_manager();
+        unlink_components();
+    }
+    protected void link_components(){
+        link_health();
+        link_movement();
+        link_combat();
+        link_ranged();        
+    }
+    protected void unlink_components(){
         unlink_health();
         unlink_movement();
         unlink_combat();
-        unlink_ranged();
+        unlink_ranged();        
     }
     void link_health(){
         health.damaged += sprites.play_damaged_flash;
@@ -365,7 +363,7 @@ public class Mage : Boss<Movement>{
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
     }
-    public void unlink_movement(){
+    void unlink_movement(){
         movement.move_direction_changed -= face_direction;
         movement.move_direction_changed -= move_direction_changed;
     }

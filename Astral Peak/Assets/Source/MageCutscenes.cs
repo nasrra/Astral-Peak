@@ -1,4 +1,5 @@
 using System.Collections;
+using Deluz;
 using DocumentFormat.OpenXml.Packaging;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,10 +56,7 @@ namespace Cutscenes{
             yield return new WaitForSeconds(mage.animator.get_clip_length("MageYell")+1);
             room.set_room_state(1);
             mage.link_phase("phase_2");
-            mage.animator.Play("MagePhaseTransition");
-            mage.unlink_movement();
-            mage.get_movement().mod_speed(3);
-            mage.get_movement().mod_gravity(0);
+            mage.animator.Play("MagePhaseTransition",0,0);
             mage.get_movement().freeform_approach_to(room.get_boss_point(2));
             room.emit_attraction_particles();
             CameraController.instance.lerp_offset(null, 6,4);

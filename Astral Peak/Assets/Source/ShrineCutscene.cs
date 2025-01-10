@@ -24,7 +24,6 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
-        Log.MethodCall(this);
         AudioManager.play_music(SoundID.DOMINE_MUSIC);
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
@@ -42,7 +41,6 @@ public class ShrineOpeningCutscene : Cutscene{
     }
 
     IEnumerator middle(){
-        Log.MethodCall(this);
         CameraController.instance.lerp_zoom(3f, 10f);
         CameraController.instance.lerp_offset(-3, 0.25f, 10f);
         yield return new WaitForSeconds(10);
@@ -55,7 +53,6 @@ public class ShrineOpeningCutscene : Cutscene{
 
 
     IEnumerator ending(){
-        Log.MethodCall(this);
         torches_off?.Invoke();     
         yield return new WaitForSeconds(5);  
         Player.instance.exit_cutscene_state();
@@ -141,13 +138,13 @@ public abstract class ShrineAltarCutscene : Cutscene{
         CameraController.instance.enable_audio_listener(true);
         set_numerals?.Invoke(get_set_numerals());
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         torches_on?.Invoke();
         
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(8);
         turn_on_numeral?.Invoke(get_turn_on_numeral());
         
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(8);
         AudioManager.stop_music();
         CustomSceneManager.load_scene(get_previous_scene());
         unlink();

@@ -13,8 +13,10 @@ public static class Log{
     //    => Console.WriteLine($"[Class]: '{instance.GetType().Name}' [Method]: '{methodName}'.");
 
 
-    public static void MethodCall(object instance, [CallerMemberName] string methodName = "")
-        => Debug.Log($"[MethodCall]: {instance.GetType().Name} : {methodName}");
+    public static void MethodCall([CallerFilePath] string filePath = "", [CallerMemberName] string methodName = ""){
+        string class_name = System.IO.Path.GetFileNameWithoutExtension(filePath);
+        Debug.Log($"[MethodCall]: {class_name} : {methodName}");
+    }
 
 }
 }

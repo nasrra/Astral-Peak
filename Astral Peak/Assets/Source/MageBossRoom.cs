@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Cutscenes;
-using Deluz;
 using Sounds;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
@@ -29,17 +26,17 @@ public class MageBossRoom : BossRoomHandler{
             SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 2f);
             SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 2f);}
     };
-    Dictionary<string, Cutscene> cutscenes = new Dictionary<string, Cutscene>(){
-        {"opening",new MageOpening()},
-        {"phase_1",new MagePhaseTransition()}
-    };
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,
         SoundID.HEAVY_WIND,
     };
-    void Awake(){
-        instance = this;
-        check_world_state();
+//
+    protected override void Awake(){
+        base.Awake();
+        cutscenes = new Dictionary<string, Func<Cutscene>>(){
+            {"opening",()=>new Cutscenes.MageOpening()},
+            {"phase_1",()=>new Cutscenes.MagePhaseTransition()}
+        };
         link_events();
     }
     void Start() => set_room_state(0);
@@ -87,10 +84,9 @@ public class MageBossRoom : BossRoomHandler{
         Player.instance.transform.position = cutscene_trigger.transform.position;
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
 
-    void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);
     void death_started(){
         platforms.stop_loop();
         platforms.destroy_platforms();
@@ -102,7 +98,7 @@ public class MageBossRoom : BossRoomHandler{
     IEnumerator fight_ended(){
         UiManager.instance.play_enemy_vanquished();
         set_room_state(0);
-        AudioClipHandler.fade_out(this,phase_2_ambient_lightning,.5f);
+        StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
         yield return new WaitForSeconds(6);
         CustomSceneManager.load_scene("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;

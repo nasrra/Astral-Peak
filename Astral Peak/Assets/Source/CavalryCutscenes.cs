@@ -24,7 +24,7 @@ public class CavalryOpening : Cutscene{
         CameraController.instance.regulate_in_bounds(true);
 
         //
-        AudioManager.play_music(room.song);
+        AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_1);
         end();
         yield break;
     }
@@ -64,7 +64,7 @@ public class CavalryPhaseTransition : Cutscene{
         
         yield return new WaitForSeconds(3f);
         CameraController.instance.set_target(Player.instance.transform);
-        AudioManager.play_music(room.song);
+        AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_2);
         end(); 
         yield break;
     }

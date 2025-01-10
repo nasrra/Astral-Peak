@@ -12,30 +12,25 @@ public abstract class BossRoomHandler : MonoBehaviour{
     [SerializeField] protected Transform respawn_point;
     [SerializeField] protected Collider2DFeedback cutscene_trigger;
     [SerializeField] protected Door exit;
+    protected Dictionary<string, Func<Cutscene>> cutscenes;
     protected bool play_cinematic = false;
-    public SoundID song; 
     protected Cutscene cutscene; 
     public int phase = 0;
-    void Awake(){
+    protected virtual void Awake(){
         instance = this;
-        AudioManager.stop_music();
+//        AudioManager.stop_music();
+        check_world_state();
     }
 
     protected abstract void check_world_state();
 
     public void start_fight(){
-        phase_transition();
         fight_started?.Invoke();
     }
 
     public void stop_fight() => fight_stopped?.Invoke();
 
     public Transform get_boss_point(int index) => boss_points[index];
-    public virtual void prepare_phase_transition() => phase++;
-    public void phase_transition(){
-        prepare_phase_transition();
-        if(play_cinematic == true)
-            CutsceneManager.play(cutscene);
-    }
+    protected void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]());
     public void set_respawn_point() => Player.instance.set_respawn_point(respawn_point.name);    
 }

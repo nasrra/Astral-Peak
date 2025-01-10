@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using Deluz;
 using Deluz.Collections;
 using UnityEngine;
@@ -8,8 +9,10 @@ using UnityEngine;
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<string> phase_transition, phase_entered, phase_exited;
     [Header("Boss")]
-    [SerializeField] protected BossSpriteHandler sprites;
+    [SerializeField] protected SerializedDictionary<string, MovementData> movement_presets = new SerializedDictionary<string, MovementData>();    
+    [SerializeField] protected SerializedDictionary<string, HealthData> health_presets = new SerializedDictionary<string, HealthData>();    
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
+    [SerializeField] protected BossSpriteHandler sprites;
     [SerializeField] public AnimatorOverride animator;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
@@ -79,6 +82,11 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected override void exited_game_state(GameState state){
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
+    }
+    protected virtual void set_phase_data(string phase){
+        combat.set_moveset(phase);
+        movement.set_data(movement_presets[phase]);
+        health.set_data(health_presets[phase]);
     }
     public void link_phase(string phase){
         get_phase_linker()[phase]();

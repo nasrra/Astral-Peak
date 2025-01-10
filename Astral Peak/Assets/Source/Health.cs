@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using Deluz;
 using UnityEngine;
 
@@ -12,13 +13,12 @@ public class Health : MonoBehaviour{
         healed, death, damaged, now_invulnerable, now_vulnerable;
     public event Action<KnockbackData> 
         knockback;
-    [SerializeField] protected int
-        max_life, current_life;
+    [SerializeField] protected HealthData data;
     [SerializeField] public bool invulnerable;
     Coroutine invulnerable_state;
 
-    public int get_current_health() => current_life;
-    public int get_max_health() => max_life;
+    public ref int get_current_health() => ref data.current_life;
+    public ref int get_max_health() => ref data.max_life;
 
     public void state_switch(ref Coroutine state, IEnumerator coroutine){
         if(state!=null)
@@ -26,10 +26,12 @@ public class Health : MonoBehaviour{
         state = StartCoroutine(coroutine);
     }
 
+    public void set_data(HealthData _data) => data = _data;
+
     public void heal(int amt){
-        current_life += amt;
-        if(current_life > max_life)
-            current_life = max_life;
+        data.current_life += amt;
+        if(data.current_life > data.max_life)
+            data.current_life = data.max_life;
         else
             healed?.Invoke();
     }
@@ -53,8 +55,8 @@ public class Health : MonoBehaviour{
         }
     }
 
-    public void set_max_life(int amount) => max_life = amount;
-    public void set_current_life(int amount) => current_life = amount;
+    public void set_max_life(int amount) => data.max_life = amount;
+    public void set_current_life(int amount) => data.current_life = amount;
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public void damage(DamageData damage_data, KnockbackData knockback_data){
@@ -62,12 +64,21 @@ public class Health : MonoBehaviour{
             return;
         
         // deal damage.
-        current_life -= damage_data.damage;
-        Action action = current_life <= 0? death : damaged;
+        data.current_life -= damage_data.damage;
+        Action action = data.current_life <= 0? death : damaged;
         action?.Invoke();
 
         // invoke knockback if needed.
         if(knockback_data != null)
             knockback?.Invoke(knockback_data);
+    }
+}
+
+[Serializable]
+public struct HealthData{
+    public int max_life, current_life;
+    public HealthData(int _max_life, int _current_life){
+        max_life = _max_life;
+        current_life = _current_life;
     }
 }

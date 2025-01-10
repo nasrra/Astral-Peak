@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Sounds;
 
 public class CavalryBossRoom : BossRoomHandler{
@@ -12,14 +13,16 @@ public class CavalryBossRoom : BossRoomHandler{
     [SerializeField] Collider2D feedback_collider;
     [SerializeField] Transform rider_start_point, cavalry_start_point;
 
-    void Awake() => check_world_state();
-
-    void Start(){
+    protected override void Awake(){
+        base.Awake();
         link();
-        instance = this;
-        AudioManager.play_ambience(SoundID.SOFT_WIND);
+        cutscenes = new Dictionary<string, System.Func<Cutscene>>(){
+            {"opening",()=>new Cutscenes.CavalryOpening()},
+            {"phase_1",()=>new Cutscenes.CavalryPhaseTransition()}
+        };
     } 
 
+    void Start()=>AudioManager.play_ambience(SoundID.SOFT_WIND);
     void OnDestroy(){
         unlink();
     }
@@ -35,28 +38,10 @@ public class CavalryBossRoom : BossRoomHandler{
         }
     }
 
-    public override void prepare_phase_transition(){
-        base.prepare_phase_transition();
-        cavalry.gameObject.SetActive(false);
-        rider.gameObject.SetActive(false);
-        switch(phase){
-            case 1:  
-                song = SoundID.WOLF_BOSS_MUSIC_1;
-                cutscene = new Cutscenes.CavalryOpening();
-                play_cinematic = true;
-                break;
-            case 2: 
-                song = SoundID.WOLF_BOSS_MUSIC_2;
-                cutscene = new Cutscenes.CavalryPhaseTransition();
-                play_cinematic = true;
-                break;
-        }
-    }
-
     void player_entered(Collider2D col){//
         feedback.enabled = false;  
         feedback_collider.enabled = false;      
-        start_fight();
+        play_cutscene("opening");
     }
 
     public void phase_1(){
@@ -93,13 +78,13 @@ public class CavalryBossRoom : BossRoomHandler{
 
     void link(){
         cavalry.death_completed += fight_ended;
-        rider.death_completed   += phase_transition;
+        rider.phase_transition  += play_cutscene;
         feedback.trigger_enter  += player_entered;
     }
 
     void unlink(){
         cavalry.death_completed -= fight_ended;
-        rider.death_completed   -= phase_transition;
+        rider.phase_transition  -= play_cutscene;
         feedback.trigger_enter  -= player_entered;
     }
 }

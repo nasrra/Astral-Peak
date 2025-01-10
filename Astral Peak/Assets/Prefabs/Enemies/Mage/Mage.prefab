@@ -100,9 +100,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 2628764344551210761}
   movement: {fileID: 3031772494085979690}
-  sprites: {fileID: 3964623577995310139}
+  movement_presets:
+    _serializedList:
+    - Key: phase_1
+      Value:
+        speed: 3
+        accel: 0.5
+        decel: 0.25
+        gravity: 1
+        dash_cooldown: 1
+    - Key: phase_2
+      Value:
+        speed: 6
+        accel: 1
+        decel: 1
+        gravity: 0
+        dash_cooldown: 1
+  health_presets:
+    _serializedList:
+    - Key: phase_1
+      Value:
+        max_life: 10
+        current_life: 10
+    - Key: phase_2
+      Value:
+        max_life: 1
+        current_life: 1
   body_colliders:
   - {fileID: 7100196876858075490}
+  sprites: {fileID: 3964623577995310139}
   animator: {fileID: 2450987617186753991}
   particles: {fileID: 3264434816368927656}
   ranged: {fileID: 4450737455548280372}
@@ -124,22 +150,6 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: Mage2LeftRight
       Value: {fileID: 0}
-  movement_presets:
-    _serializedList:
-    - Key: phase_1
-      Value:
-        speed: 3
-        accel: 0.5
-        decel: 0.25
-        gravity: 1
-        dash_cooldown: 1
-    - Key: phase_2
-      Value:
-        speed: 6
-        accel: 1
-        decel: 1
-        gravity: 0
-        dash_cooldown: 1
   staff_lightning: []
   surrounding_projectiles: {fileID: 2740713537679043683}
   teleport_trail: {fileID: 253309762562350863}
@@ -156,8 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_life: 10
-  current_life: 10
+  data:
+    max_life: 0
+    current_life: 0
   invulnerable: 0
 --- !u!114 &3964623577995310139
 MonoBehaviour:

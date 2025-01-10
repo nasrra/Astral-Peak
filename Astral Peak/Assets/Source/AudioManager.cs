@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using Sounds;
+using Deluz;
+using Unity.VisualScripting;
+using DocumentFormat.OpenXml.Presentation;
 
 public static class AudioManager{
     static Coroutine 
         filter_state, 
         volume_state,
-        music_state;
+        music_loop_state,
+        music_fade_state,
+        ambience_fade_state,
+        ambience_loop_state;
 
     public const string
         MUSIC_VOLUME = "MusicVolume",
@@ -23,64 +29,88 @@ public static class AudioManager{
     static float original_sfx_volume = 0.0f;
 
     static AudioSource
-        music, ambience;
+        current_music, previous_music, current_ambience, previous_ambience;
 
-    static SoundID music_track;
+    static bool reverse_music_crossfade = false, reverse_ambience_crossfade = false;
 
     public static void on_start() => load_volume_settings();
-    public static void initialize(List<AudioSource> sources){
+    public static void initialize(){
         mixer           = Resources.Load<AudioMixer>("Audio/Mixer");
         master_mixer    = mixer.FindMatchingGroups("Master")[0];
         music_mixer     = mixer.FindMatchingGroups("Music")[0];
         sfx_mixer       = mixer.FindMatchingGroups("Sfx")[0];
         voice_mixer     = mixer.FindMatchingGroups("Voice")[0];
-        music           = sources[0];
-        ambience        = sources[1];
+        current_music         = UnityHook.instance.AddComponent<AudioSource>();
+        previous_music        = UnityHook.instance.AddComponent<AudioSource>();
+        current_ambience      = UnityHook.instance.AddComponent<AudioSource>();
+        previous_ambience     = UnityHook.instance.AddComponent<AudioSource>();
+        current_music    .outputAudioMixerGroup = music_mixer;
+        previous_music   .outputAudioMixerGroup = music_mixer;
+        current_ambience .outputAudioMixerGroup = sfx_mixer;
+        previous_ambience.outputAudioMixerGroup = sfx_mixer;
     }    
-    public static void uninitialize(){
-        music_track = SoundID.NONE;
-    }
     static void state_switch(ref Coroutine coroutine, IEnumerator _coroutine){
         if(coroutine != null)
             UnityHook.instance.StopCoroutine(coroutine);
-        coroutine = UnityHook.instance.StartCoroutine(_coroutine);
+        coroutine = _coroutine != null? UnityHook.instance.StartCoroutine(_coroutine) : null;
     }
 
 
 
 
 
-    // Music settings.
+    // Music settings.////
     public static void music_volume(float volume) => mixer.SetFloat(MUSIC_VOLUME,value_to_logarithmic(volume));
     public static void play_music(SoundID sound_id){
-        // play and loop crossfade music.
-        music_track = sound_id;
-            state_switch(ref music_state, music_coroutine(SoundLibrary.get_sound(music_track).clip().length-1)); // - 1 seccond for smooth cross fading.
-        AudioClipHandler.crossfade(UnityHook.instance, ref music, sound_id, 2f, AudioSourceSettings.NON_DIEGETIC);
+        state_switch(ref music_loop_state, music_coroutine(sound_id));       
     }
-    static IEnumerator music_coroutine(float clip_length){
-        // crossfade loop of music.
-        yield return new WaitForSeconds(clip_length);
-        play_music(music_track);
-        yield break;
+    static IEnumerator music_coroutine(SoundID sound_id){
+        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 2;
+        while (true){
+            if(reverse_music_crossfade == false)
+                yield return AudioClipHandler.crossfade(current_music, previous_music, sound_id, 1f);
+            else
+                yield return AudioClipHandler.crossfade(previous_music, current_music, sound_id, 1f);
+            reverse_music_crossfade = !reverse_music_crossfade;
+            yield return new WaitForSeconds(clip_length);
+        }
     }
     public static void stop_music(){
+        //state_switch(ref music_state, AudioClipHandler.fade_out(UnityHook.instance, current_music, 2f));
         // stop music from looping.
-        if(music_state != null){
-            UnityHook.instance.StopCoroutine(music_state);
-            AudioClipHandler.fade_out(UnityHook.instance, music, 2f);
-        }
+        Log.MethodCall();
+        if(music_loop_state!=null)
+            UnityHook.instance.StopCoroutine(music_loop_state);
+        state_switch(ref music_fade_state, AudioClipHandler.fade_out(current_music, 2f));
     }    
 
 
+    public static void play_ambience(SoundID sound_id){
+        state_switch(ref ambience_loop_state, ambience_coroutine(sound_id));       
+    }
+    static IEnumerator ambience_coroutine(SoundID sound_id){
+        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 2;
+        while (true){
+            if(reverse_ambience_crossfade == false)
+                yield return AudioClipHandler.crossfade(current_ambience, previous_ambience, sound_id, 1f);
+            else
+                yield return AudioClipHandler.crossfade(previous_ambience, current_ambience, sound_id, 1f);
+            reverse_ambience_crossfade = !reverse_ambience_crossfade;
+            yield return new WaitForSeconds(clip_length);
+        }
+    }
+    public static void stop_ambience(){
+        Log.MethodCall();
+        if(ambience_loop_state!=null)
+            UnityHook.instance.StopCoroutine(ambience_loop_state);
+        if(reverse_ambience_crossfade == false)
+            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out(current_ambience, 2f));
+        else
+            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out(previous_ambience, 2f));
+    }  
 
 
 
-    // Voice Settings.
-    public static void voice_volume(float volume) => mixer.SetFloat(VOICE_VOLUME, value_to_logarithmic(volume));
-
-
-    public static void play_ambience(SoundID sound_id) => AudioClipHandler.crossfade(UnityHook.instance, ref ambience, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC_LOOP);
     public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,value_to_logarithmic(volume));
 
 
@@ -93,6 +123,8 @@ public static class AudioManager{
     }
 
     public static void restore_sfx_smooth() => state_switch(ref volume_state, lerp_filter(SFX_VOLUME,value_to_logarithmic(original_sfx_volume), 2));
+    // Voice Settings.
+    public static void voice_volume(float volume) => mixer.SetFloat(VOICE_VOLUME, value_to_logarithmic(volume));
 
     static IEnumerator lerp_filter(string name, float value, float speed){
         float x = 0;

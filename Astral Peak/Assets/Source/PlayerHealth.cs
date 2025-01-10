@@ -16,7 +16,7 @@ public class PlayerHealth : Health{
     IEnumerator regen_timer(){
         yield return new WaitForSeconds(regen_time);        
         heal(1); 
-        if(current_life < max_life) // regen further if there is still more life to heal.
+        if(data.current_life < data.max_life) // regen further if there is still more life to heal.
             start_regen_timer();
         yield break;
     }
