@@ -19815,9 +19815,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-    _serializedList: []
-  hurt_material: {fileID: 2100000, guid: 55724e6b20d61a846b3c77a819d2371c, type: 2}
-  death_material: {fileID: 2100000, guid: c24cc88c3c1da8849a4438343b66a9b0, type: 2}
+    _serializedList:
+    - Key: body
+      Value: {fileID: 8993149940698182152}
+    - Key: sword
+      Value: {fileID: 4352429637972472122}
 --- !u!50 &8447699733019728571
 Rigidbody2D:
   serializedVersion: 5
@@ -30089,9 +30091,9 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7699241903101790123, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 226215159
-      objectReference: {fileID: 0}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -876546973899608171, guid: 868206ab863eed146b9f374c112d723d, type: 3}
     - target: {fileID: 7944623817817480074, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
       propertyPath: m_Name
       value: LBlush
@@ -30109,9 +30111,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+--- !u!212 &4352429637972472122 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3058447984367207577, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+  m_PrefabInstance: {fileID: 1591782288755832227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4905662928654352497 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5909655096487212498, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
+  m_PrefabInstance: {fileID: 1591782288755832227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8993149940698182152 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7699241903101790123, guid: d557ba4b1e32aaa4f86daf77eb468508, type: 3}
   m_PrefabInstance: {fileID: 1591782288755832227}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5656897681402194994

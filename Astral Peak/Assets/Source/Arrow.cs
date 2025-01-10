@@ -12,12 +12,15 @@ public class Arrow : Projectile{
         StartCoroutine(Util.timer(
             move_time, 
             time_out:()=>movement.rotate_to_direction_state(Vector2.down, rotation_speed))); 
+        base.Start();
     }
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
-            grounded();
-            damage_creature_and_self_destruct(other.GetComponent<Creature>());
+            Creature creature = other.GetComponent<Creature>();
+            creature.get_health().damaged += grounded;
+            damage_creature_and_self_destruct(creature);
+            creature.get_health().damaged -= grounded;
         }   
         else if(other.gameObject.layer == LayersManager.GROUND)
             StartCoroutine(
@@ -44,6 +47,7 @@ public class Arrow : Projectile{
 
     public override void destroy(){
         enable_sprites(false);
+        enable_colliders(false);
         ParticleSystem.ShapeModule shape = smoke.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();

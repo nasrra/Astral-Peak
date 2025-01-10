@@ -37,7 +37,8 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     protected virtual void attack(BossAttack attack){
-        no_state();
+        combat.halt();
+        movement.halt();        
         animator.Play(attack.animation_id);
     }
 

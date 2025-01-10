@@ -8,11 +8,13 @@ public class TheRider : Boss<RiderMovement>{
 
     void Awake(){
         instance = this;
-        sound.set_functions(new RiderSound(sound));
-        link_events();
-        idle(1);
     }
-
+    void Start(){
+        sound.set_functions(new RiderSound(sound));
+        combat.set_moveset("phase_1");
+        link_events();
+        check_game_state();
+    }
     void OnDestroy() => unlink_events();
 
     public override void enter_cutscene_state() => idle();
@@ -64,6 +66,7 @@ public class TheRider : Boss<RiderMovement>{
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
         //phase_transition                        += combat.set_moveset;
+        link_game_manager();
     }
 
     protected void unlink_events(){
@@ -78,5 +81,6 @@ public class TheRider : Boss<RiderMovement>{
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
         //phase_transition                        -= combat.set_moveset;
+        unlink_game_manager();
     }
 }

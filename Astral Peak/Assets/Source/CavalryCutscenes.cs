@@ -7,14 +7,15 @@ public class CavalryOpening : Cutscene{
     public override IEnumerator get_coroutine(){
         room.phase_1(); // enable rider
         room.set_positions(); // reset positions.
-
         room.cutscene_arrow.fire();
         CameraController.instance.lerp_zoom(8,2f);
-        //CameraController.instance.move_down_state(2,1);
-        CameraController.instance.regulate_in_bounds(false);
+        CameraController.instance.lerp_offset(3,-2,1);
         yield return new WaitForSeconds(3);
+        CameraController.instance.lerp_offset(0,-2,1);
         CameraController.instance.set_target(TheRider.instance.transform);
         yield return new WaitForSeconds(2);
+        CameraController.instance.lerp_offset(0,4,1);
+        CameraController.instance.lerp_zoom(14,2f);
         TheRider.instance.cutscene_yell();
         yield return new WaitForSeconds(3);
         CameraController.instance.set_target(Player.instance.transform);

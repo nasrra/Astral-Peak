@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Deluz;
 
 public class RiderCombat : BossCombat{
     BossAttack
@@ -50,6 +51,7 @@ public class RiderCombat : BossCombat{
         );
         protected override void create_movesets(){
             movesets = new Dictionary<string, Action>(){
+                {"test",()=>{test(round_shot);}},
                 {"phase_1",()=>{
                     front_moveset = new List<BossAttack>(){
                         signature,

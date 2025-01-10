@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -92,10 +93,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.is_invulnerable();//
     }
     private void dash_end(){
-        health.is_vulnerable();
-        
         if(movement.check_grounded() == true)
             grounded();
+        health.is_vulnerable();
     }
     private void grounded(){
         // bounce when hitting the ground.
@@ -141,8 +141,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Damaged and Health
     private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE;
-    private void vulnerable() => col.excludeLayers = new LayerMask();
+    private void vulnerable(){
+        // check if we have dashed into an enemy.
+        Collider2D other = Physics2D.OverlapCircle(transform.position, 1, LayersManager.BITWISE_BOSS | LayersManager.BITWISE_ENEMY);
+        if(other != null)
+            handle_enemy_contact(other);
+        col.excludeLayers = new LayerMask();
+    }
     private void handle_enemy_contact(Collision2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
+    private void handle_enemy_contact(Collider2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
     public override void kill() => StartCoroutine(death_state());
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
@@ -163,9 +170,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_health();
         invulnerable();
         //AudioManager.low_pass_audio(true);
+        movement.zero_velocity();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_sound("damaged");
-        sprite.play_death_effect(1.5f);
+        sprite.play_death_effect(3f);
         animator.death();
         invoke_death_started();
         yield return new WaitForSeconds(3);

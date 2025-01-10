@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public abstract class Projectile : MonoBehaviour{
@@ -10,10 +11,18 @@ public abstract class Projectile : MonoBehaviour{
     protected virtual void Start() => ProjectileManager.instance.add(this);
     
     protected void enable_colliders(bool enabled){
+        #if UNITY_EDITOR
+        if(colliders.Count <= 0)
+            throw new Exception("colliders is empty!");
+        #endif
         foreach(Collider2D col in colliders)
             col.enabled = enabled;
     }
     protected void enable_sprites(bool enabled){
+        #if UNITY_EDITOR
+        if(sprites.Count <= 0)
+            throw new Exception("sprites is empty!");
+        #endif
         foreach(SpriteRenderer sprite in sprites)
             sprite.enabled = enabled;
     }

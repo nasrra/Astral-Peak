@@ -6100,6 +6100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727715457}
   - component: {fileID: 727715458}
+  - component: {fileID: 727715459}
   m_Layer: 0
   m_Name: BossRoomHandler
   m_TagString: Untagged
@@ -6134,10 +6135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953c691381e3a344b18cca1a1679bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_start_point: {fileID: 713143996}
-  play_cinematic: 0
+  boss_points: []
+  respawn_point: {fileID: 0}
+  cutscene_trigger: {fileID: 0}
+  exit: {fileID: 0}
   song: 0
-  cinematic: 
   phase: 0
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
@@ -6148,6 +6150,18 @@ MonoBehaviour:
   feedback_collider: {fileID: 1839469612}
   rider_start_point: {fileID: 1002998813}
   cavalry_start_point: {fileID: 757529339}
+--- !u!114 &727715459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727715455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419471097024db84ba0c67cf3293e96d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &753332492
 GameObject:
   m_ObjectHideFlags: 0
@@ -7008,9 +7022,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret:
+    rotation_type: 1
     projectile_is_child: 0
-    fire_rate: 5
-    projectile: {fileID: 6752692394907920807, guid: 56a3177706bc09e4c8407f9d93648f0b, type: 3}
+    projectile: {fileID: 6752692394907920807, guid: f087511cd16359a438b9db8f15abc4b0, type: 3}
     fire_point: {fileID: 1404642684}
 --- !u!1 &1422358614
 GameObject:
@@ -7178,7 +7192,7 @@ PrefabInstance:
       objectReference: {fileID: 1453095824}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: offset.y
-      value: 2
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: x_bounds.x
