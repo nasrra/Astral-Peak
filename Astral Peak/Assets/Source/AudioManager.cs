@@ -56,7 +56,7 @@ public static class AudioManager{
         // play and loop crossfade music.
         music_track = sound_id;
             state_switch(ref music_state, music_coroutine(SoundLibrary.get_sound(music_track).clip().length-1)); // - 1 seccond for smooth cross fading.
-        AudioClipHandler.crossfade(UnityHook.instance, ref music, sound_id, 1f, AudioSourceSettings.NON_DIEGETIC);
+        AudioClipHandler.crossfade(UnityHook.instance, ref music, sound_id, 2f, AudioSourceSettings.NON_DIEGETIC);
     }
     static IEnumerator music_coroutine(float clip_length){
         // crossfade loop of music.
@@ -68,7 +68,7 @@ public static class AudioManager{
         // stop music from looping.
         if(music_state != null){
             UnityHook.instance.StopCoroutine(music_state);
-            AudioClipHandler.fade_out(UnityHook.instance, music, 1f);
+            AudioClipHandler.fade_out(UnityHook.instance, music, 2f);
         }
     }    
 
