@@ -44,13 +44,13 @@ public abstract class Creature : MonoBehaviour{
 
     // flip the sprite.
     protected void flip_left(){
-        if(flippable == true){
+        if(flippable == true){ 
             transform.rotation = Quaternion.Euler(0, 180, 0);
             flipped_left?.Invoke();
         }
     }
     protected void flip_right(){
-        if(flippable == true){
+        if(flippable == true){ 
             transform.rotation = Quaternion.Euler(0, 0, 0);
             flipped_right?.Invoke();
         }

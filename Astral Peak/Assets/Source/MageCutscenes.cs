@@ -61,7 +61,9 @@ namespace Cutscenes{
             mage.get_movement().mod_gravity(0);
             mage.get_movement().freeform_approach_to(room.get_boss_point(2));
             room.emit_attraction_particles();
+            CameraController.instance.lerp_offset(null, 6,4);
             yield return new WaitForSeconds(6);
+            CameraController.instance.reset_offset(2);
             mage.get_movement().reset_speed();
             mage.get_movement().clear_move_direction();
             mage.get_movement().zero_velocity();
@@ -77,8 +79,9 @@ namespace Cutscenes{
             MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
             Mage mage = (BossRoomHandler.instance as MageBossRoom).get_mage();
             mage.transform.position = room.get_boss_point(1).position;
-            room.set_respawn_point();
             Player.instance.set_enter_position();
+            mage.flip_to_target();
+            room.set_respawn_point();
             room.enable_mage(true);
             mage.unlink_phase("phase_1");
             mage.link_phase("cutscene_transition");

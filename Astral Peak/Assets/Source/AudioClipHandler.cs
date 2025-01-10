@@ -1,12 +1,10 @@
-using System.Collections;
 using UnityEngine;
 using Sounds;
+using Deluz;
 
 public static class AudioClipHandler{
-    static MonoBehaviour object_audio;
-
-    static AudioSource create_source(Sound sound, AudioSourceSettings settings){
-        AudioSource source = object_audio.gameObject.AddComponent<AudioSource>();
+    static AudioSource create_source(MonoBehaviour audio_player, Sound sound, AudioSourceSettings settings){
+        AudioSource source = audio_player.gameObject.AddComponent<AudioSource>();
         source.clip                  = sound.clip();
         source.volume                = sound.volume();
         source.pitch                 = sound.max_pitch();
@@ -30,60 +28,41 @@ public static class AudioClipHandler{
         return source;          
     }
 
-    public static void set_game_object(MonoBehaviour audio) => object_audio = audio;
-
-    public static AudioSource play(SoundID sound_id, MonoBehaviour audio_player,AudioSourceSettings settings){
+    public static AudioSource play(SoundID sound_id,MonoBehaviour audio_player,AudioSourceSettings settings){
         Sound sound = SoundLibrary.get_sound(sound_id);
-        set_game_object(audio_player);
-        AudioSource source = create_source(sound, settings);
+        AudioSource source = create_source(audio_player, sound, settings);
         source.Play();
         return source;
     }
 
-    public static void crossfade(MonoBehaviour audio, ref AudioSource source, SoundID sound_id, float fade_factor, AudioSourceSettings settings){
-        fade_out(audio, source, fade_factor);
-        source = fade_in(audio, sound_id, fade_factor, settings);
+    public static void crossfade(MonoBehaviour audio_player, ref AudioSource source, SoundID sound_id, float fade_factor, AudioSourceSettings settings){
+        fade_out(audio_player, source, fade_factor);
+        source = fade_in(audio_player, sound_id, fade_factor, settings);
     }
 
-    public static AudioSource fade_in(MonoBehaviour audio_player, SoundID sound_id, float fade_factor, AudioSourceSettings settings){
+    public static AudioSource fade_in(MonoBehaviour audio_player, SoundID sound_id, float time, AudioSourceSettings settings){
         Sound sound = SoundLibrary.get_sound(sound_id);
-        set_game_object(audio_player);
-        AudioSource source = create_source(sound, settings);
-        object_audio.StartCoroutine(fade_in_loop(source, fade_factor, sound));
+        AudioSource source = create_source(audio_player, sound, settings);
+        audio_player.StartCoroutine(Calc.lerp_value(
+            _val=>source.volume=_val,
+            _start:0,
+            _end:sound.volume(),
+            _time:time
+        ));        
         source.Play();
         return source;
     }
 
-    public static void fade_out(MonoBehaviour audio, AudioSource source, float fade_factor, bool destroy_source = false){
-        set_game_object(audio);
-        object_audio.StartCoroutine(fade_out_loop(source, fade_factor, destroy_source));
-    }
-
-    static IEnumerator fade_in_loop(AudioSource source, float fade_factor, Sound sound){
-        if(source == null)
-            yield break;
-        source.volume = 0;
-        while(source.volume < sound.volume()){
-            source.volume += Time.deltaTime * fade_factor;
-            yield return null;
-        }
-        source.volume = sound.volume();
-        yield break;        
-    }
-
-    static IEnumerator fade_out_loop(AudioSource source, float fade_factor, bool destroy_source){
-        if(source == null)
-            yield break;
-        float time_factor = source.volume;
-        while(source.volume > 0){
-            source.volume -= Time.deltaTime * fade_factor;
-            yield return null;
-        }
-        if(destroy_source == true)
-            GameObject.Destroy(source);
-        else
-            source.clip = null;
-        yield break;
-    }
+    public static void fade_out(MonoBehaviour audio_player, AudioSource source, float time, bool destroy_source = false)
+        =>audio_player.StartCoroutine(Calc.lerp_value(
+            _val=>source.volume=_val,
+            _start:source.volume,
+            _end:0,
+            _time:time,
+            _on_complete:()=>{
+                if(destroy_source==true)
+                    GameObject.Destroy(source);
+            }
+        ));
 }
 

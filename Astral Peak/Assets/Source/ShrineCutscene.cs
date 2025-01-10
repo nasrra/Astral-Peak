@@ -4,6 +4,7 @@ using UnityEngine;
 using Sounds;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using System.Collections.Generic;
+using Deluz;
 
 public class ShrineOpeningCutscene : Cutscene{
     public event Action 
@@ -21,42 +22,40 @@ public class ShrineOpeningCutscene : Cutscene{
         soul_constellation_on, 
         soul_constellation_off;
 
-    //public override void start(){
-    //    Player.instance.enter_cutscene_state();
-    //    AudioManager.play_music(SoundID.DOMINE_MUSIC);
-    //    DialogueHandler.instance.dialogue_ended += dialogue_ended;
-    //    DialogueHandler.instance.new_line += handle_new_line;
-    //    CutsceneManager.set_coroutine(starting_coroutine());
-    //}
-
-    IEnumerator starting_coroutine(){
+    public override IEnumerator get_coroutine() => start();
+    IEnumerator start(){
+        Log.MethodCall(this);
+        AudioManager.play_music(SoundID.DOMINE_MUSIC);
+        DialogueHandler.instance.dialogue_ended += dialogue_ended;
+        DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
-        //CameraController.instance.zoom_in_state(4.45f, .5f);
-        //CameraController.instance.move_vertical_state(2.2f, .5f);
+        CameraController.instance.lerp_zoom(4.45f, 5f);
+        CameraController.instance.lerp_offset(null, 2.2f, 5f);
         yield return new WaitForSeconds(5);
         DialogueHandler.instance.play_dialogue(3f);
         yield return new WaitForSeconds(3f);
-        //CameraController.instance.move_vertical_state(-2.5f, .2f);
+        CameraController.instance.lerp_offset(null,-2.5f, 20f);
         yield return new WaitForSeconds(40);
-        //CameraController.instance.reset_zoom_state(.2f);
-        //CameraController.instance.move_vertical_state(0, .2f);     
+        CameraController.instance.reset_zoom(20);
+        CameraController.instance.lerp_offset(null, 0, 20f);     
         yield break;
     }
 
-    IEnumerator middle_coroutine(){
-        //CameraController.instance.zoom_in_state(2.5f, .5f);
-        //CameraController.instance.move_horizontal_state(-3.25f, .4f);
-        yield return new WaitForSeconds(9);
-        //CameraController.instance.move_horizontal_state(3.25f, .3f);
-        yield return new WaitForSeconds(26);
-        //CameraController.instance.reset_zoom_state(.33f);
-        //CameraController.instance.move_horizontal_state(0f, .4f);
+    IEnumerator middle(){
+        Log.MethodCall(this);
+        CameraController.instance.lerp_zoom(3f, 10f);
+        CameraController.instance.lerp_offset(-3, 0.25f, 10f);
+        yield return new WaitForSeconds(10);
+        CameraController.instance.lerp_offset(3.4f,null, 25f);
+        yield return new WaitForSeconds(25);
+        CameraController.instance.reset_zoom(10f);
+        CameraController.instance.reset_offset(10f);
         yield break;
     }
 
-    //public void dialogue_ended() => CutsceneManager.set_coroutine(ending_couroutine());
 
-    IEnumerator ending_couroutine(){
+    IEnumerator ending(){
+        Log.MethodCall(this);
         torches_off?.Invoke();     
         yield return new WaitForSeconds(5);  
         Player.instance.exit_cutscene_state();
@@ -64,6 +63,7 @@ public class ShrineOpeningCutscene : Cutscene{
         unlink();
         end();
     }
+    public void dialogue_ended() => CutsceneManager.set_coroutine(ending());
     void handle_new_line(int line){
         switch(line){
             case 27: 
@@ -81,7 +81,7 @@ public class ShrineOpeningCutscene : Cutscene{
                 torches_on?.Invoke(); 
                 break;
             case 16: 
-                //CutsceneManager.set_coroutine(middle_coroutine()); 
+                CutsceneManager.set_coroutine(middle()); 
                 break;
             case 17: 
                 world_constellation_on?.Invoke(); 
@@ -121,10 +121,6 @@ public class ShrineOpeningCutscene : Cutscene{
         soul_constellation_off      = null;        
     }
 
-    public override IEnumerator get_coroutine()
-    {
-        throw new NotImplementedException();
-    }
 }
 
 public abstract class ShrineAltarCutscene : Cutscene{

@@ -21,7 +21,7 @@ public class AltarNumerals : MonoBehaviour{
     public void turn_on(int i){
         particles[i].gameObject.SetActive(true);
         AudioClipHandler.play(
-            SoundID.DEEP_THUMPING,
+            sound_id: SoundID.DEEP_THUMPING,
             audio_player: this, 
             AudioSourceSettings.DIEGETIC
         );

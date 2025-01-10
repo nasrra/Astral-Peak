@@ -11,9 +11,10 @@ public static class CutsceneManager{
         GameManager.state_changed(GameState.CUTSCENE);
         cutscene = _cutscene;
         started_cutscene?.Invoke(cutscene);
-        coroutines.StartCoroutine(cutscene.get_coroutine());
+        set_coroutine(cutscene.get_coroutine());
         cutscene.ended += cutscene_ended;
     }
+    public static void set_coroutine(IEnumerator coroutine) => coroutines.StartCoroutine(coroutine); 
     static void cutscene_ended() => GameManager.state_changed(GameState.GAMEPLAY);
 }
 

@@ -87,7 +87,7 @@ public class MageBossRoom : BossRoomHandler{
         Player.instance.transform.position = cutscene_trigger.transform.position;
         cutscene_trigger.enabled = false;
         cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("phase_1");
+        play_cutscene("opening");
     }
 
     void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]);

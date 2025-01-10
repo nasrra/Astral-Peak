@@ -5,8 +5,12 @@ using UnityEngine;
 // for things such as coroutines and other unity engine related tasks.
 public class UnityHook : MonoBehaviour{
     public static UnityHook instance;
+    public static AudioPlayer audio_player;
     public event Action
         start;
-    void Awake() => instance = this;
+    void Awake(){
+        instance = this;
+        audio_player = gameObject.AddComponent<AudioPlayer>();
+    } 
     void Start() => start?.Invoke();
 }

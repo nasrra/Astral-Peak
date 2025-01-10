@@ -47,7 +47,6 @@ public abstract class Door : MonoBehaviour{
             animator?.Play("open");
     }
     public void opened(){
-        Log.MethodCall(this);
         if(animator != null)
             animator.Play("opened");
         set_trigger();
@@ -58,7 +57,6 @@ public abstract class Door : MonoBehaviour{
             animator.Play("close");
     }
     public void closed(){
-        Log.MethodCall(this);
         if(animator != null)
             animator.Play("closed");
         set_solid();
