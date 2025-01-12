@@ -1,4 +1,4 @@
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 public class LightningStrikeProjectile : Projectile{

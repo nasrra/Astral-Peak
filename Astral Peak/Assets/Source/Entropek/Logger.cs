@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 
-namespace Deluz{
+namespace Entropek{
 public static class Log{
 
     public static NotImplementedException MethodNotImplemented(object instance, [CallerMemberName] string methodName = "") 

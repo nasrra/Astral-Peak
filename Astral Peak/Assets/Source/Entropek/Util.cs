@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Deluz{
+namespace Entropek{
 public static class Util{
     public static IEnumerator timer(float time, System.Action start_action = null, System.Action time_out = null){
         start_action?.Invoke();

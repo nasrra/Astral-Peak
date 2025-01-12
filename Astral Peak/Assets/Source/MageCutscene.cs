@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Deluz;
+using Entropek;
 
 public class MageCutscene : MonoBehaviour{
     [SerializeField] public Animator animator;

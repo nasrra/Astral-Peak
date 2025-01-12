@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Deluz;
+using Entropek;
 
 public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;

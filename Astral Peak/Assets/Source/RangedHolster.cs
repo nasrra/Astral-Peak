@@ -11,13 +11,15 @@ public class RangedHolster{
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected Transform fire_point;
     public virtual void fire_once(){
+        Quaternion rotation = rotation_type switch{
+            RotationType.Y_TO_Z => Quaternion.Euler(0, 0, fire_point.rotation.eulerAngles.y),
+            RotationType.Z => Quaternion.Euler(0, 0, fire_point.rotation.eulerAngles.z),
+            _ => fire_point.rotation
+        };
         GameObject x = GameObject.Instantiate(
             projectile, 
             fire_point.position, 
-            fire_point.rotation = rotation_type switch{
-                RotationType.Y_TO_Z => Quaternion.Euler(new Vector3(0, 0, fire_point.rotation.eulerAngles.y)),
-                _ => fire_point.rotation
-            });
+            rotation);
             //rotation_type == RotationType.Y
             //    ?fire_point.rotation
             //    :Quaternion.Euler(new Vector3(0,0,fire_point.rotation.eulerAngles.y))); // y rotation on z because projectiles rotate on the z axis. 
@@ -32,7 +34,7 @@ public class RangedHolster{
     public void set_fire_point(Transform _fire_point) => fire_point = _fire_point;
     protected void invoke_projectile_fired(GameObject x) => projectile_fired?.Invoke(x);
     enum RotationType{
-        Y_TO_Z,INHERIT
+        Y_TO_Z,Z,INHERIT
     }
 }
 

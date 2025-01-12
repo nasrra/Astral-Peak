@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Deluz;
+using Entropek;
 using AYellowpaper.SerializedCollections;
 
 public class SpriteHandler : MonoBehaviour{

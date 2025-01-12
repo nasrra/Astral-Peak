@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Deluz;
+using Entropek;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;

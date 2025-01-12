@@ -1,5 +1,5 @@
 using System.Collections;
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 public class MagicTrackingProjectile : MagicStationaryProjectile{

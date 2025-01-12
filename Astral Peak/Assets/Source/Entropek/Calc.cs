@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Deluz{
+namespace Entropek{
 public static class Calc{
     static public IEnumerator lerp_value(System.Action<float> _value, float _start, float _end, float _time, System.Action _on_complete = null){
         float elapsedTime = 0;

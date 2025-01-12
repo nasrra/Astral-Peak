@@ -1,6 +1,6 @@
 using UnityEngine;
 using Sounds;
-using Deluz;
+using Entropek;
 using System.Collections;
 public static class AudioClipHandler{
     static AudioSource create_source(MonoBehaviour audio_player, Sound sound, AudioSourceSettings settings){

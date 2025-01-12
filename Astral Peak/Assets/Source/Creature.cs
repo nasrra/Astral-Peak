@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 /// <summary>

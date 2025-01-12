@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Security.Cryptography;
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 // maybe create a creature or character class that has this component and a status effect component.

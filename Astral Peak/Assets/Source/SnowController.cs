@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Deluz;
+using Entropek;
 
 public class SnowController : MonoBehaviour{
     [SerializeField] List<SnowEmitterData> presets;

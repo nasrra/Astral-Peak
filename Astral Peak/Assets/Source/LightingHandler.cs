@@ -1,6 +1,6 @@
 using System;
 using AYellowpaper.SerializedCollections;
-using Deluz;
+using Entropek;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 

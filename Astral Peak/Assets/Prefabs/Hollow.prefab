@@ -283,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_life: 5
-  current_life: 5
+  data:
+    max_life: 10
+    current_life: 10
   invulnerable: 0
 --- !u!114 &5107477675233054662
 MonoBehaviour:
@@ -300,9 +301,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1194575375138677735}
   movement: {fileID: 9057505959519379731}
-  sprites: {fileID: 896696132830443372}
+  movement_presets:
+    _serializedList: []
+  health_presets:
+    _serializedList: []
   body_colliders:
   - {fileID: 7092131832697715823}
+  sprites: {fileID: 896696132830443372}
   animator: {fileID: 553567108010788096}
   particles: {fileID: 965367310683355375}
   ranged: {fileID: 0}
@@ -312,7 +317,6 @@ MonoBehaviour:
   lighting: {fileID: 0}
   target: {fileID: 8904305568839613953}
   current_phase: 1
-  queued_phase: 0
   paths:
   - movement: 2
     duration: 3

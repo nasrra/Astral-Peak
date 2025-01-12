@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Sounds;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using System.Collections.Generic;
-using Deluz;
 
 public class ShrineOpeningCutscene : Cutscene{
     public event Action 

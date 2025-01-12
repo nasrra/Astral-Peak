@@ -1,4 +1,4 @@
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 public class TheCavalry : Boss<CavalryMovement>{
@@ -9,6 +9,7 @@ public class TheCavalry : Boss<CavalryMovement>{
         instance = this;
         idle(2);
         sound.set_functions(new CavalrySound(sound));
+        set_phase_data("phase_1");
         link_events();
     } 
 
@@ -25,9 +26,9 @@ public class TheCavalry : Boss<CavalryMovement>{
     public override void exit_cutscene_state() => idle(1);
 
     public override void kill(){
-        animator.Play("death");
+        animator.Play("WolfDeath");
         StartCoroutine(Util.timer(
-            animator.get_clip_length("death") + 3,
+            animator.get_clip_length("WolfDeath")+3,
             start_action:()=>{
                 if(idle_state != null)
                     StopCoroutine(idle_state);
@@ -36,12 +37,13 @@ public class TheCavalry : Boss<CavalryMovement>{
                 disable_components();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
+                invoke_death_started();
             },
             time_out:()=>{
                 AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
-                base.kill();
                 gameObject.SetActive(false);
+                invoke_death_completed();
             }
         ));
     }
@@ -74,7 +76,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     }
 
     private void idle(){
-        animator.Play("idle");
+        animator.Play("WolfIdle");
         no_state();
     }
 
@@ -84,9 +86,9 @@ public class TheCavalry : Boss<CavalryMovement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("run",0,0);
+            animator.Play("WolfRun",0,0);
         else
-            animator.Play("idle");
+            animator.Play("WolfIdle");
     }
 
     protected void link_events(){

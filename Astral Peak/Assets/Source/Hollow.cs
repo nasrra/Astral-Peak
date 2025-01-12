@@ -1,5 +1,5 @@
 using System;
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 public class Hollow : Enemy{

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Deluz;
+using Entropek;
 using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 

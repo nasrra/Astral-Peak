@@ -1,6 +1,6 @@
 using UnityEngine;
 using Sounds;
-using Deluz;
+using Entropek;
 
 public class Arrow : Projectile{
     [Header("Arrow")]

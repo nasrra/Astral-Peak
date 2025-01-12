@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Deluz;
-using Deluz.Collections;
+using Entropek;
+using Entropek.Collections;
 using UnityEngine;
 
 public class Mage : Boss<Movement>{
@@ -140,7 +140,6 @@ public class Mage : Boss<Movement>{
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)
             return;
-        Log.MethodCall();
         if(direction == Vector2.left || direction == Vector2.right)
             animator.Play("MageWalk",0,0);
         else if(direction == Vector2.zero)
@@ -340,6 +339,8 @@ public class Mage : Boss<Movement>{
     protected void unlink_events(){
         unlink_game_manager();
         unlink_components();
+        health.death -= transition_phase;
+        health.death -= kill;
     }
     protected void link_components(){
         link_health();

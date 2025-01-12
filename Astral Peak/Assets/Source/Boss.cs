@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Deluz;
-using Deluz.Collections;
+using Entropek.Collections;
 using UnityEngine;
+using Entropek;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<string> phase_transition, phase_entered, phase_exited;
@@ -87,13 +87,13 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         combat.set_moveset(phase);
         movement.set_data(movement_presets[phase]);
         health.set_data(health_presets[phase]);
+        current_phase = phase;
     }
     public void link_phase(string phase){
         get_phase_linker()[phase]();
         if(phase.Contains("phase"))
             combat.set_moveset(phase);
         phase_entered?.Invoke(phase);
-        current_phase = phase;
     }
     public void unlink_phase(string phase){
         get_phase_unlinker()[phase]();

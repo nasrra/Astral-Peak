@@ -1,4 +1,4 @@
-using Deluz;
+using Entropek;
 using UnityEngine;
 
 public class TheRider : Boss<RiderMovement>{
@@ -8,6 +8,7 @@ public class TheRider : Boss<RiderMovement>{
 
     void Awake(){
         instance = this;
+        set_phase_data("phase_1");
     }
     void Start(){
         sound.set_functions(new RiderSound(sound));

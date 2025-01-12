@@ -1,4 +1,4 @@
-using Deluz.Collections;
+using Entropek.Collections;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour{

@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class FallArrow : Arrow{
     [Header("Fall Arrow")]
-    [SerializeField] float
-        rise_speed,
-        rise_time, 
-        rotate_speed,
-        rotate_time,
-        fall_speed;
+    [SerializeField] float rise_speed;
+    [SerializeField] float rise_time; 
+    [SerializeField] float rotate_speed;
+    [SerializeField] float rotate_time;
+    [SerializeField] float fall_speed;
 
 
     protected override void Start() => StartCoroutine(fall_arrow_behaviour());

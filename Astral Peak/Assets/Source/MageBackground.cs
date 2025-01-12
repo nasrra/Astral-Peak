@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Deluz;
+using Entropek;
 
 public class MageBackground : MonoBehaviour{
     [SerializeField] List<Transform> teleport_points = new List<Transform>();

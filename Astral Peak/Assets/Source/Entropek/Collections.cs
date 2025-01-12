@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Deluz.Collections{
+namespace Entropek.Collections{
 [Serializable]
 public class StateQueue{
     Coroutine state;

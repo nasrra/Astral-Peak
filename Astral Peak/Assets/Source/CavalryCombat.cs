@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CavalryCombat : BossCombat{
     BossAttack
         front_strike = new BossAttack(
-            "front_strike",
+            "WolfFrontSlash",
             chance:                50,
             player_distance:       6,
             arena_bound_distance:  2,
@@ -13,7 +13,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:       1),
 
         bite = new BossAttack(
-            "bite",
+            "WolfBite",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   10,
@@ -22,7 +22,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
 
         back_strike_forward = new BossAttack(
-            "back_strike_forward",
+            "WolfBackSlashForward",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,
@@ -31,7 +31,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         back_strike_backward = new BossAttack(
-            "back_strike_backward",
+            "WolfBackSlashBackward",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,
@@ -40,7 +40,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         ground_slam = new BossAttack(
-            "ground_slam",
+            "WolfSig",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   2,
@@ -49,7 +49,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         howl = new BossAttack(
-            "howl",
+            "WolfHowl",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   0,
@@ -58,7 +58,7 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        1),
         
         jump_away = new BossAttack(
-            "jump_away",
+            "WolfJump",
             chance:                 50,
             player_distance:        6,
             arena_bound_distance:   20,
@@ -67,8 +67,9 @@ public class CavalryCombat : BossCombat{
             combat_cooldown:        0);
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
-            {"test",()=>{test(ground_slam);}},
-            {"phase_1",()=>{
+            {"phase_1",
+                //()=>{test(ground_slam);
+                ()=>{
                 front_moveset = new List<BossAttack>(){
                     front_strike,
                     bite,

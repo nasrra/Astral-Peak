@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Sounds;
 using System.Collections.Generic;
-using Deluz;
+using Entropek;
 
 public class AltarNumerals : MonoBehaviour{
     [SerializeField] List<SpriteRenderer> sprite = new List<SpriteRenderer>();

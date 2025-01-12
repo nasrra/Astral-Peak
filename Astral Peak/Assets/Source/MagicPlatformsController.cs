@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Deluz;
 using UnityEngine;
 
 public class MagicPlatformsController : MonoBehaviour{
@@ -20,7 +19,7 @@ public class MagicPlatformsController : MonoBehaviour{
     IEnumerator loop(){
         while(true){
             enable_scroller();
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(50);
             disable_scroller();
             reverse_scroller();
             yield return new WaitForSeconds(10);
@@ -33,12 +32,12 @@ public class MagicPlatformsController : MonoBehaviour{
             List<GameObject> platforms = scroller.get_objects();
             foreach(GameObject o in platforms){
                 Animator a = o.GetComponent<Animator>();
-                a.Play("turn_on");
+                a.Play("turn_on");//
                 animators.Add(a);
             }
             scroller.start_scrolling();
         }
-    }
+    }//..//
     public void disable_scroller(){
         foreach(ObjectScroller scroller in scrollers)
             scroller.stop_scrolling();

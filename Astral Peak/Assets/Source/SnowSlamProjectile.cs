@@ -1,8 +1,7 @@
-using UnityEngine;
 using Entropek;
+using UnityEngine;
 
-
-public class MagicSlashProjectile : Projectile{
+public class SnowSlamProjectile : Projectile{
     [SerializeField] Transform front_point;
     [SerializeField] float speed;
     protected override void Start(){

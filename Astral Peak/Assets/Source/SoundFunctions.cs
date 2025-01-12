@@ -12,10 +12,10 @@ public abstract class SoundFunctions{
     protected MonoBehaviour audio_player;
     public void play_sound(string sound_id) => sound_functions[sound_id]();
     public void stop_sound(string sound_id){
-        //StartCoroutine(AudioClipHandler.fade_out(audio_player, looping_sources[sound_id], 1, true));
-        looping_sources[sound_id].Stop();
+        AudioSource source =looping_sources[sound_id];
+        source.Stop();
         looping_sources.Remove(sound_id);
-        GameObject.Destroy(looping_sources[sound_id]);
+        GameObject.Destroy(source);
     }
     public virtual void play_ground_effected_sound(string sound_id) => throw new Exception("This has not been implemented for this class!");
     protected abstract Dictionary<string, Action> create_sound_functions();
