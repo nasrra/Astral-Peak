@@ -7,15 +7,15 @@ using UnityEditor;
 
 public abstract class SoundFunctions{
     protected string ground;
+    protected MonoBehaviour entity;
     protected Dictionary<string, Action> sound_functions;
     [SerializeField] protected Dictionary<string, AudioSource> looping_sources = new Dictionary<string, AudioSource>();
     protected MonoBehaviour audio_player;
     public void play_sound(string sound_id) => sound_functions[sound_id]();
     public void stop_sound(string sound_id){
-        AudioSource source =looping_sources[sound_id];
-        source.Stop();
+        AudioSource source = looping_sources[sound_id];
         looping_sources.Remove(sound_id);
-        GameObject.Destroy(source);
+        entity.StartCoroutine(AudioClipHandler.fade_out(source, 1,true));
     }
     public virtual void play_ground_effected_sound(string sound_id) => throw new Exception("This has not been implemented for this class!");
     protected abstract Dictionary<string, Action> create_sound_functions();
@@ -39,6 +39,7 @@ public abstract class SoundFunctions{
                 stop_sound(key);
         }
     }
+    public void set_entity(MonoBehaviour _entity) => entity = _entity;
 }
 
 public class CavalrySound : SoundFunctions{

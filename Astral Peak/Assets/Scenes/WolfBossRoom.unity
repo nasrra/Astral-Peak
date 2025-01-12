@@ -460,7 +460,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
-      value: ClearDoor
+      value: Enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144157962665142012, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144157962665142012, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+      propertyPath: m_Offset.y
+      value: 6.26
       objectReference: {fileID: 0}
     - target: {fileID: 5472474015683243355, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
@@ -849,7 +857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5026348276079211433, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5183965939142762182, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_Sprite
@@ -6147,18 +6155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953c691381e3a344b18cca1a1679bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_points: []
-  respawn_point: {fileID: 1839469611}
-  cutscene_trigger: {fileID: 0}
-  exit: {fileID: 0}
-  phase: 0
+  boss_points:
+  - {fileID: 1002998813}
+  - {fileID: 757529339}
+  respawn_points:
+  - {fileID: 1839469611}
+  fight_start_trigger: {fileID: 1839469615}
+  exit: {fileID: 1129328446}
   cavalry: {fileID: 979067485}
   rider: {fileID: 682906028}
   cutscene_arrow: {fileID: 1404642685}
   background_wolf: {fileID: 8944879036396718998}
   wolf_impact_transition: {fileID: 1894936251}
-  feedback: {fileID: 1839469615}
-  feedback_collider: {fileID: 1839469612}
   rider_start_point: {fileID: 1002998813}
   cavalry_start_point: {fileID: 757529339}
 --- !u!114 &727715459
@@ -6290,7 +6298,7 @@ Transform:
   m_GameObject: {fileID: 757529338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 3, z: 0}
+  m_LocalPosition: {x: 0.02, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6424,11 +6432,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.010735035
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6866,7 +6874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: start_open
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: scene_to_load
@@ -6874,7 +6882,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
-      value: ClearDoor (1)
+      value: Exit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144157962665142012, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144157962665142012, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+      propertyPath: m_Offset.y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5472474015683243355, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
@@ -6894,6 +6910,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
   m_PrefabInstance: {fileID: 1129328444}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1129328446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
+  m_PrefabInstance: {fileID: 1129328444}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1150069385
 GameObject:
   m_ObjectHideFlags: 0
@@ -7353,7 +7380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1839469611
 Transform:
   m_ObjectHideFlags: 0
@@ -12827,11 +12854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.63
+      value: 5.58
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.23
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.z

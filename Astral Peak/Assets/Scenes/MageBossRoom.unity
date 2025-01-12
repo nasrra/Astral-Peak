@@ -8471,7 +8471,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9529,10 +9529,11 @@ MonoBehaviour:
   - {fileID: 1119600541}
   - {fileID: 1894398165}
   - {fileID: 671437740}
-  respawn_point: {fileID: 172043558}
-  cutscene_trigger: {fileID: 1197821283}
+  respawn_points:
+  - {fileID: 172043558}
+  - {fileID: 172043558}
+  fight_start_trigger: {fileID: 1197821283}
   exit: {fileID: 1613884119}
-  phase: 0
   mage_script: {fileID: 437290954900120641}
   mage_object: {fileID: 98641194}
   background_mage: {fileID: 863697824}

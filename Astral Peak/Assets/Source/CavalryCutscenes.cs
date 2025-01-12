@@ -1,22 +1,25 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cutscenes{
 public class CavalryOpening : Cutscene{
-    CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
     public override IEnumerator get_coroutine(){
-        room.phase_1(); // enable rider
-        room.set_positions(); // reset positions.
+        CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
+        Rider rider = room.get_rider();
+        rider.gameObject.SetActive(true);
+        rider.transform.position = room.get_boss_point(0).position;
+        Player.instance.set_enter_position();
         room.cutscene_arrow.fire();
         CameraController.instance.lerp_zoom(8,2f);
         CameraController.instance.lerp_offset(3,-2,1);
         yield return new WaitForSeconds(3);
         CameraController.instance.lerp_offset(0,-2,1);
-        CameraController.instance.set_target(TheRider.instance.transform);
+        CameraController.instance.set_target(rider.transform);
         yield return new WaitForSeconds(2);
         CameraController.instance.lerp_offset(0,4,1);
         CameraController.instance.lerp_zoom(14,2f);
-        TheRider.instance.cutscene_yell();
+        rider.cutscene_yell();
         yield return new WaitForSeconds(3);
         CameraController.instance.set_target(Player.instance.transform);
         CameraController.instance.reset_zoom(time:2);
@@ -31,21 +34,25 @@ public class CavalryOpening : Cutscene{
 }
 
 public class CavalryPhaseTransition : Cutscene{
-    CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
     public override IEnumerator get_coroutine(){
+        CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
+        Rider rider = room.get_rider();
+        Cavalry cavalry = room.get_cavalary();
         CameraEffects.instance.fade_to_black(fade_transition_time);
 
         yield return new WaitForSeconds(2f); 
-        room.phase_1();
-        room.set_positions();
-        TheRider.instance.flip_to_target();
+        cavalry.gameObject.SetActive(false);
+        rider.gameObject.SetActive(true);
+        rider.transform.position = room.get_boss_point(0).position;
+        Player.instance.set_enter_position();
+        rider.flip_to_target();
         CameraEffects.instance.fade_from_black(fade_transition_time);
         
         yield return new WaitForSeconds(1f);
-        CameraController.instance.set_target(TheRider.instance.transform);
+        CameraController.instance.set_target(rider.transform);
         
         yield return new WaitForSeconds(1);
-        TheRider.instance.cutscene_whistle();
+        rider.cutscene_whistle();
         
         // start playing background wolf animation.
         yield return new WaitForSeconds(2f);
@@ -55,12 +62,13 @@ public class CavalryPhaseTransition : Cutscene{
         
         yield return new WaitForSeconds(8.65f);
         room.background_wolf.SetActive(false);
-        room.phase_2();
-        TheCavalry.instance.sound.play_sound("slam_impact");
+        cavalry.gameObject.SetActive(true);
+        rider.gameObject.SetActive(false);
+        cavalry.transform.position = room.get_boss_point(1).position;
+        cavalry.sound.play_sound("slam_impact");
         CameraController.instance.regulate_in_bounds(true);
-        room.set_positions();
-        TheCavalry.instance.enter_cutscene_state();
-        CameraController.instance.set_target(TheCavalry.instance.transform);
+        cavalry.enter_cutscene_state();
+        CameraController.instance.set_target(cavalry.transform);
         
         yield return new WaitForSeconds(3f);
         CameraController.instance.set_target(Player.instance.transform);

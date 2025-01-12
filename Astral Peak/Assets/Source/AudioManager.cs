@@ -76,10 +76,12 @@ public static class AudioManager{
     public static void stop_music(){
         //state_switch(ref music_state, AudioClipHandler.fade_out(UnityHook.instance, current_music, 2f));
         // stop music from looping.
-        Log.MethodCall();
         if(music_loop_state!=null)
             UnityHook.instance.StopCoroutine(music_loop_state);
-        state_switch(ref music_fade_state, AudioClipHandler.fade_out(current_music, 2f));
+        if(reverse_music_crossfade == false)
+            state_switch(ref music_fade_state, AudioClipHandler.fade_out(current_music, 2f));
+        else
+            state_switch(ref music_fade_state, AudioClipHandler.fade_out(previous_music, 2f));
     }    
 
 
@@ -98,7 +100,6 @@ public static class AudioManager{
         }
     }
     public static void stop_ambience(){
-        Log.MethodCall();
         if(ambience_loop_state!=null)
             UnityHook.instance.StopCoroutine(ambience_loop_state);
         if(reverse_ambience_crossfade == false)

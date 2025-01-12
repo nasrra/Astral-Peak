@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Sounds;
 using System.Collections.Generic;
+using Entropek;
 
 public class ShrineOpeningCutscene : Cutscene{
     public event Action 
@@ -40,7 +41,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     IEnumerator middle(){
         CameraController.instance.lerp_zoom(3f, 10f);
-        CameraController.instance.lerp_offset(-3, 0.25f, 10f);
+        CameraController.instance.lerp_offset(-3, null, 10f);
         yield return new WaitForSeconds(10);
         CameraController.instance.lerp_offset(3.4f,null, 25f);
         yield return new WaitForSeconds(25);
@@ -53,10 +54,9 @@ public class ShrineOpeningCutscene : Cutscene{
     IEnumerator ending(){
         torches_off?.Invoke();     
         yield return new WaitForSeconds(5);  
-        Player.instance.exit_cutscene_state();
         AudioManager.stop_music();
         unlink();
-        end();
+        end();//
     }
     public void dialogue_ended() => CutsceneManager.set_coroutine(ending());
     void handle_new_line(int line){

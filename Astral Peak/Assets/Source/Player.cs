@@ -12,7 +12,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Data
     public event Action
-        damaged_start, damaged_stop;
+        damaged_start, damaged_stop, on_destroy;
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
@@ -44,6 +44,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameManager.unlink_player();
         set_respawn_point(""); // reset respawn point;
         unlink_events();
+        on_destroy?.Invoke();
         Application.quitting -= unlink_events;
     }
     void OnCollisionEnter2D(Collision2D other){  

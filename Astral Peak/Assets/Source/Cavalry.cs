@@ -1,17 +1,18 @@
 using Entropek;
 using UnityEngine;
 
-public class TheCavalry : Boss<CavalryMovement>{
-    public static TheCavalry instance;
+public class Cavalry : Boss<CavalryMovement>{
     Coroutine idle_state;
 
     void Awake(){
-        instance = this;
         idle(2);
         sound.set_functions(new CavalrySound(sound));
-        set_phase_data("phase_1");
         link_events();
     } 
+
+    void Start(){
+        set_phase_data("phase_1");
+    }
 
     void OnDestroy() {
         unlink_events();
@@ -92,6 +93,7 @@ public class TheCavalry : Boss<CavalryMovement>{
     }
 
     protected void link_events(){
+        link_game_manager();
         health.death                            += kill;
         health.death                            += movement.StopAllCoroutines;
         combat.attack_chosen                    += attack;
@@ -102,10 +104,10 @@ public class TheCavalry : Boss<CavalryMovement>{
         flipped_right                           += particles.flip_particles_right;
         health.damaged                          += sprites.play_damaged_flash;
         ranged.fired                            += projectile_fired;
-        //phase_transition                        += combat.set_moveset;
     }
 
     protected void unlink_events(){
+        unlink_game_manager();
         health.death                            -= kill;
         health.death                            -= movement.StopAllCoroutines;
         combat.attack_chosen                    -= attack;
@@ -116,6 +118,5 @@ public class TheCavalry : Boss<CavalryMovement>{
         flipped_right                           -= particles.flip_particles_right;
         health.damaged                          -= sprites.play_damaged_flash;
         ranged.fired                            -= projectile_fired;
-        //phase_transition                        -= combat.set_moveset;
     }
 }

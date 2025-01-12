@@ -1,22 +1,18 @@
 using Entropek;
 using UnityEngine;
 
-public class TheRider : Boss<RiderMovement>{
-    public static TheRider instance;
+public class Rider : Boss<RiderMovement>{
     public void yell_camera_shake() => CameraController.instance.shake_camera(time: 3, amount: 0.75f, lock_shake: false);
     protected Coroutine idle_state;
-
-    void Awake(){
-        instance = this;
-        set_phase_data("phase_1");
-    }
+    
     void Start(){
         sound.set_functions(new RiderSound(sound));
         combat.set_moveset("phase_1");
+        set_phase_data("phase_1");
         link_events();
         check_game_state();
     }
-    void OnDestroy() => unlink_events();
+    void OnDisable() => unlink_events();
 
     public override void enter_cutscene_state() => idle();
     public override void exit_cutscene_state() => idle(1);

@@ -15,6 +15,8 @@ public static class GameManager{
         entered_game_state, 
         exited_game_state;
     public static bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
+    //public static bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
+
 
     public static void initialize(){
         state = GameState.GAMEPLAY;

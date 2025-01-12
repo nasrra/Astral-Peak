@@ -64,7 +64,7 @@ public class MageCombat : BossCombat{
             chance:                50,
             player_distance:       20,
             arena_bound_distance:  2,
-            attack_cooldown:       8,
+            attack_cooldown:       16,
             idle_cooldown:         0,
             combat_cooldown:       6),
         right_left_phase_2 = new(
@@ -72,7 +72,7 @@ public class MageCombat : BossCombat{
             chance:                50,
             player_distance:       20,
             arena_bound_distance:  2,
-            attack_cooldown:       8,
+            attack_cooldown:       16,
             idle_cooldown:         0,
             combat_cooldown:       6)
         ;
@@ -94,9 +94,9 @@ public class MageCombat : BossCombat{
                 special_moveset = new List<BossAttack>(){
                     hollow_summon_phase_2,
                     projectile_summon_phase_2,
-                    //signature_phase_2,
-                    //left_right_phase_2,
-                    //right_left_phase_2,
+                    signature_phase_2,
+                    left_right_phase_2,
+                    right_left_phase_2,
                 };
             }}
         };

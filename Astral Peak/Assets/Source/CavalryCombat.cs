@@ -68,21 +68,21 @@ public class CavalryCombat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",
-                //()=>{test(ground_slam);
-                ()=>{
-                front_moveset = new List<BossAttack>(){
-                    front_strike,
-                    bite,
-                };
-                back_moveset = new List<BossAttack>(){
-                    back_strike_forward,
-                    back_strike_backward,
-                };
-                special_moveset = new List<BossAttack>(){
-                    howl,
-                    ground_slam,
-                    jump_away,
-                };
+                ()=>{test(jump_away);
+                //()=>{
+                //front_moveset = new List<BossAttack>(){
+                //    front_strike,
+                //    bite,
+                //};
+                //back_moveset = new List<BossAttack>(){
+                //    back_strike_forward,
+                //    back_strike_backward,
+                //};
+                //special_moveset = new List<BossAttack>(){
+                //    howl,
+                //    ground_slam,
+                //    jump_away,
+                //};
             }},
         };
     }

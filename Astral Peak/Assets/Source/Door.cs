@@ -20,7 +20,7 @@ public abstract class Door : MonoBehaviour{
 
 
     // Base.
-    void Awake(){
+    void Start(){
         if(start_open == true)
             opened();
         else
@@ -36,6 +36,7 @@ public abstract class Door : MonoBehaviour{
 
 
     // states:
+    public void set_start_open(bool open) => start_open = open;
     public abstract void enter();
     void exit(){
         opened();

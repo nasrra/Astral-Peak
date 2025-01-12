@@ -40,9 +40,7 @@ public class CameraEffects : MonoBehaviour{
 
     void OnDestroy(){
         none_state();
-        unlink_player();
-
-        // unlink for Door and BossRoom cutscene transitions.
+        // unlink for Door and BossRoom cutscene transitions, and scene transitions.
         started_fade_to_black = null;
         completed_fade_to_black = null;
         started_fade_from_black = null;
@@ -117,6 +115,7 @@ public class CameraEffects : MonoBehaviour{
             Debug.Log("no player!");
             return;
         }
+        Player.instance.on_destroy      += unlink_player;
         Player.instance.damaged_start   += hurt_state;
         Player.instance.damaged_stop    += normal_state;
         Player.instance.death_started   += hurt_state;
@@ -125,9 +124,10 @@ public class CameraEffects : MonoBehaviour{
 
     void unlink_player(){
         if(Player.instance == null){
-            //Debug.Log("no player!");
+            Debug.Log("no player!");
             return;
         }
+        Player.instance.on_destroy      -= unlink_player;
         Player.instance.damaged_start   -= hurt_state;
         Player.instance.damaged_stop    -= normal_state;  
         Player.instance.death_started   -= hurt_state;  

@@ -27,8 +27,8 @@ public class TheCavalryBackground : MonoBehaviour{
             
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
-    public void move_camera_up() => CameraController.instance.lerp_offset(x:null, y:20, 1.75f);
-    public void move_camera_down() => CameraController.instance.lerp_offset(x:null, y:-5, 0.5f);
+    public void move_camera_up() => CameraController.instance.lerp_offset(x:null, y:20, 2.25f);
+    public void move_camera_down() => CameraController.instance.lerp_offset(x:null, y:-7, 0.25f);
     public void reset_camera() => CameraController.instance.reset_offset(.5f);
     public void play_impact_sound() => 
         AudioClipHandler.play(
@@ -36,5 +36,5 @@ public class TheCavalryBackground : MonoBehaviour{
             audio_player:       this, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
-    public void play_camera_shake() => CameraController.instance.shake_camera(time: 0.3f, amount: 1.5f, lock_shake: false);
+    public void play_camera_shake() => CameraController.instance.shake_camera(time: 0.35f, amount: 2f, lock_shake: false);
 }

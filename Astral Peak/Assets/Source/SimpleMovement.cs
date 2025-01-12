@@ -23,6 +23,7 @@ public class SimpleMovement : MonoBehaviour{
     public void rotate_to_target_state(Transform target, float speed) => state_switch(ref rotate_state, rotate_to_target(target, speed));
     public void rotate_to_target_loop_state(Transform target, float speed) => state_switch(ref rotate_state, rotate_to_target_loop(target, speed));
     public void rotate_to_direction_state(Vector2 direction, float speed) => state_switch(ref rotate_state, rotate_to_direction(direction, speed));
+    public void stop_rotation_state() => state_switch(ref rotate_state, null);
     public void zero_velocity() => rb.linearVelocity = Vector3.zero;
 
 

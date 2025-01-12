@@ -67,7 +67,7 @@ public abstract class BossCombat : MonoBehaviour{
             attack_chosen?.Invoke(chosen_attack);
             is_attacking = true;
             state_switch(null);
-            yield break;
+            yield break;//
         }
         yield break;
     }

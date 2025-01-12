@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Entropek;
 using Sounds;
 using UnityEngine;
 
@@ -30,14 +31,21 @@ public class MageBossRoom : BossRoomHandler{
         SoundID.SOFT_WIND,
         SoundID.HEAVY_WIND,
     };
-//
     protected override void Awake(){
-        base.Awake();
+        link_events();
         cutscenes = new Dictionary<string, Func<Cutscene>>(){
             {"opening",()=>new Cutscenes.MageOpening()},
             {"phase_1",()=>new Cutscenes.MagePhaseTransition()}
         };
-        link_events();
+        base.Awake();
+    }
+    protected override void check_world_state(){
+        if(GameManager.get_boss_state(1)==true){
+            Log.MethodCall();
+            unlink_fight_start_trigger();
+            Player.instance.set_spawn_point(respawn_points[1].gameObject.name);
+            exit.set_start_open(true);
+        }
     }
     void Start() => set_room_state(0);
     void OnDestroy(){
@@ -48,13 +56,6 @@ public class MageBossRoom : BossRoomHandler{
     public Mage get_mage() => mage_script;
     public MagicPlatformsController get_platforms()=>platforms;
     public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
-    protected override void check_world_state(){
-        if(GameManager.get_boss_state(1)==true){
-            cutscene_trigger.gameObject.SetActive(false);
-            Player.instance.set_spawn_point(respawn_point.name);
-            exit.opened();
-        }
-    }
     public void set_room_state(int x){
         AudioManager.play_ambience(ambience[x]);
         foreach(FogController fog in fog_controllers)
@@ -75,16 +76,6 @@ public class MageBossRoom : BossRoomHandler{
         summoning_circles.turn_off(new(){0,1,4});
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
-    }
-
-
-    void on_trigger_enter(Collider2D other){
-        set_respawn_point();
-        Player.instance.get_movement().halt();
-        Player.instance.transform.position = cutscene_trigger.transform.position;
-        cutscene_trigger.enabled = false;
-        cutscene_trigger.trigger_enter -= on_trigger_enter;
-        play_cutscene("opening");
     }
 
     void death_started(){
@@ -113,11 +104,11 @@ public class MageBossRoom : BossRoomHandler{
 
     void link_events(){
         link_mage();
-        cutscene_trigger.trigger_enter += on_trigger_enter;
+        link_fight_start_trigger();
     }
     void unlink_events(){
         unlink_mage();
-        cutscene_trigger.trigger_enter -= on_trigger_enter;
+        unlink_fight_start_trigger();
     }
     void link_mage(){
         mage_script.phase_transition    += play_cutscene;

@@ -10,7 +10,10 @@ public class FallArrow : Arrow{
     [SerializeField] float fall_speed;
 
 
-    protected override void Start() => StartCoroutine(fall_arrow_behaviour());
+    protected override void Start(){
+        StartCoroutine(fall_arrow_behaviour());
+        ProjectileManager.instance.add(this);
+    }
 
     IEnumerator fall_arrow_behaviour(){
         float rng = Random.Range(0,16);
@@ -24,9 +27,10 @@ public class FallArrow : Arrow{
         yield return new WaitForSeconds(rise_time);
         movement.StopAllCoroutines();
         movement.zero_velocity();
-        movement.rotate_to_target_state(Player.instance.transform, rotate_speed);
+        movement.rotate_to_target_loop_state(Player.instance.transform, rotate_speed);
         yield return new WaitForSeconds(rotate_time);
+        movement.stop_rotation_state();
         movement.movement_state(front_point.position - transform.position, fall_speed);
         yield break;
     }
-}
+}//

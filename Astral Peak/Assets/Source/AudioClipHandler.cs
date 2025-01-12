@@ -43,7 +43,6 @@ public static class AudioClipHandler{
     }
 
     public static IEnumerator crossfade(AudioSource source_1, AudioSource source_2, SoundID sound_id, float fade_factor){
-        Log.MethodCall();
         Sound sound = SoundLibrary.get_sound(sound_id);
         source_2.clip = sound.clip();
         source_2.Play();

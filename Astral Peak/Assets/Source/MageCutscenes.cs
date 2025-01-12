@@ -76,7 +76,7 @@ namespace Cutscenes{
             mage.transform.position = room.get_boss_point(1).position;
             Player.instance.set_enter_position();
             mage.flip_to_target();
-            room.set_respawn_point();
+            room.set_respawn_point(1);
             room.enable_mage(true);
             mage.unlink_phase("phase_1");
             mage.link_phase("cutscene_transition");
