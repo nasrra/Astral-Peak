@@ -25,4 +25,5 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
         movement.StopAllCoroutines();
         base.destroy();
     }
+    //
 }
