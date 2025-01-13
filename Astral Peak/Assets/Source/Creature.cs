@@ -18,11 +18,13 @@ public abstract class CreatureInheritor<T> : Creature where T : Movement{
 /// </summary>
 public abstract class Creature : MonoBehaviour{
     public event Action flipped_right, flipped_left, death_started, death_completed;
+    public bool flipped = false;
     Coroutine death_state;
 
     [Header("Creature")]
     [SerializeField] protected Health health;
     protected bool flippable = true;
+    [SerializeField] Transform flip_objects; // objects that will be flipped when flipping;
 
     protected virtual void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
@@ -45,19 +47,21 @@ public abstract class Creature : MonoBehaviour{
     // flip the sprite.
     protected void flip_left(){
         if(flippable == true){ 
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            flip_objects.rotation = Quaternion.Euler(0, 180, 0);
+            flipped = true;
             flipped_left?.Invoke();
         }
     }
     protected void flip_right(){
         if(flippable == true){ 
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            flip_objects.rotation = Quaternion.Euler(0, 0, 0);
+            flipped = false;
             flipped_right?.Invoke();
         }
     }
     protected void flip(){
         if(flippable == true){
-            if(transform.rotation.y == 0)
+            if(flip_objects.rotation.y == 0)
                 flip_left();
             else
                 flip_right();

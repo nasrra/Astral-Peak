@@ -83,7 +83,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         Vector2 move_direction = movement.get_move_direction();
         movement.dash(
             (move_direction.x == 0)?
-                (transform.rotation.y == 0? Vector2.right : Vector2.left) :
+            (flipped==true? Vector2.right : Vector2.left) :
                 (move_direction.x == 1?     Vector2.right : Vector2.left) ,
             20, 
             0.25f); 

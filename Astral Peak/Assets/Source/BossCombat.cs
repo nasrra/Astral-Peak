@@ -7,6 +7,7 @@ using Entropek;
 public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
     public event Action<BossAttack> attack_chosen;
+    [SerializeField] Creature creature;
     [SerializeField] public bool on_cooldown = false, is_attacking = false;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
@@ -42,7 +43,6 @@ public abstract class BossCombat : MonoBehaviour{
                 yield return new WaitForFixedUpdate();
                 continue;
             }
-
             float target_distance = transform.position.x - target.position.x;
             float abs_distance = Mathf.Abs(target_distance);
             float left_bound_distance = dist_to_left_bound();
@@ -50,7 +50,7 @@ public abstract class BossCombat : MonoBehaviour{
 
             // Determine the appropriate moveset based on the boss's orientation and player's position.
             List<BossAttack> available_attacks = 
-                (transform.rotation.y == 0 && target_distance <= 0) || (transform.rotation.y != 0 && target_distance >= 0) 
+                (creature.flipped == false && target_distance <= 0) || (creature.flipped == true && target_distance >= 0) 
                 ? get_available_attacks(front_moveset , abs_distance, left_bound_distance, right_bound_distance)
                 : get_available_attacks(back_moveset, abs_distance, left_bound_distance, right_bound_distance);
 
