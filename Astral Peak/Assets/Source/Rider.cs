@@ -1,7 +1,7 @@
 using Entropek;
 using UnityEngine;
 
-public class Rider : Boss<RiderMovement>{
+public class Rider : Boss<Movement>{
     public void yell_camera_shake() => CameraController.instance.shake_camera(time: 3, amount: 0.75f, lock_shake: false);
     protected Coroutine idle_state;
     
@@ -11,8 +11,15 @@ public class Rider : Boss<RiderMovement>{
         set_phase_data("phase_1");
         link_events();
         check_game_state();
+        idle(1);
     }
     void OnDisable() => unlink_events();
+
+    // movement functions
+    public void forward_strike_lunge()      => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.30f);
+    public void signature_strike_lunge()    => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.30f);
+    public void jnd_jump_back()             => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.40f);
+    public void jnd_front_leap()            => movement.dash(flipped == false? Vector2.right : Vector2.left, 40, 0.30f);
 
     public override void enter_cutscene_state() => idle();
     public override void exit_cutscene_state() => idle(1);
