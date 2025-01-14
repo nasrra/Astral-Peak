@@ -654,33 +654,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5260562dc06f14f91800708cb84746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flipped: 0
   health: {fileID: 2628764344551210761}
+  flip_objects: {fileID: 0}
   movement: {fileID: 3031772494085979690}
-  sprites: {fileID: 3964623577995310139}
-  body_colliders:
-  - {fileID: 7100196876858075490}
-  animator: {fileID: 2450987617186753991}
-  particles: {fileID: 2124548225488711359}
-  ranged: {fileID: 2553571693241179179}
-  melee: {fileID: 3578281081255943858}
-  sound: {fileID: 2733793814216122303}
-  combat: {fileID: 6914361556193369870}
-  lighting: {fileID: 2640624942175576056}
-  target: {fileID: 0}
-  current_phase: 1
-  queued_phase: 0
-  teleport_points:
-    _serializedList:
-    - Key: Mage2RightLeft
-      Value: {fileID: 0}
-    - Key: Mage2LeftRight
-      Value: {fileID: 0}
-    - Key: Mage2Sig
-      Value: {fileID: 0}
-    - Key: figure_eight
-      Value: {fileID: 0}
-    - Key: figure_eight_reversed
-      Value: {fileID: 0}
   movement_presets:
     _serializedList:
     - Key: phase_1
@@ -697,6 +674,32 @@ MonoBehaviour:
         decel: 1
         gravity: 0
         dash_cooldown: 0
+  health_presets:
+    _serializedList: []
+  body_colliders:
+  - {fileID: 7100196876858075490}
+  sprites: {fileID: 3964623577995310139}
+  animator: {fileID: 2450987617186753991}
+  particles: {fileID: 2124548225488711359}
+  ranged: {fileID: 2553571693241179179}
+  melee: {fileID: 3578281081255943858}
+  sound: {fileID: 2733793814216122303}
+  combat: {fileID: 6914361556193369870}
+  lighting: {fileID: 2640624942175576056}
+  target: {fileID: 0}
+  current_phase: 1
+  teleport_points:
+    _serializedList:
+    - Key: Mage2RightLeft
+      Value: {fileID: 0}
+    - Key: Mage2LeftRight
+      Value: {fileID: 0}
+    - Key: Mage2Sig
+      Value: {fileID: 0}
+    - Key: figure_eight
+      Value: {fileID: 0}
+    - Key: figure_eight_reversed
+      Value: {fileID: 0}
   staff_lightning:
   - {fileID: 0}
   - {fileID: 0}
@@ -716,8 +719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eda6e1f1876f56448c4d1a56e5faa6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_life: 2
-  current_life: 2
+  data:
+    max_life: 0
+    current_life: 0
   invulnerable: 0
 --- !u!114 &7337751923581852116
 MonoBehaviour:
@@ -902,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bf9e91b0f2ae34db80e946bc33a812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creature: {fileID: 0}
   on_cooldown: 0
   is_attacking: 0
   chosen_attack:
@@ -6545,7 +6550,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42b03df63030f864d87048376a52208f, type: 2}
+  - {fileID: -876546973899608171, guid: 868206ab863eed146b9f374c112d723d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
