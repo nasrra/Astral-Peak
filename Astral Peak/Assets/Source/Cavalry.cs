@@ -92,6 +92,14 @@ public class Cavalry : Boss<CavalryMovement>{
             animator.Play("WolfIdle");
     }
 
+    // movement:
+    public void back_strike_forward_leap()  => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.75f);
+    public void back_strike_backward_jump() => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.6f);
+    public void jump_away_dash()            => movement.dash(flipped == false? Vector2.left : Vector2.right, 15, 0.55f);
+    public void bite_lunge()                => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.2f);
+
+
+
     protected void link_events(){
         link_game_manager();
         health.death                            += kill;
