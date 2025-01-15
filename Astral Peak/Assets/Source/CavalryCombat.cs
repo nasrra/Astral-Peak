@@ -71,17 +71,17 @@ public class CavalryCombat : BossCombat{
                 //()=>{test(jump_away);
                 ()=>{
                 front_moveset = new List<BossAttack>(){
-                    front_strike,
+                    //front_strike,
                     bite,
                 };
                 back_moveset = new List<BossAttack>(){
-                    back_strike_forward,
-                    back_strike_backward,
+                    //back_strike_forward,
+                    //back_strike_backward,
                 };
                 special_moveset = new List<BossAttack>(){
                     howl,
                     ground_slam,
-                    jump_away,
+                    //jump_away,
                 };
             }},
         };
