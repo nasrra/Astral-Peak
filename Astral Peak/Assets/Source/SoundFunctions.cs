@@ -101,6 +101,12 @@ public class CavalrySound : SoundFunctions{
             SoundID.MAGIC_EXPLOSION,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},
+        {"ping",()=>
+            AudioClipHandler.play(
+            SoundID.PING,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
+        },
     };
 }
 
@@ -153,6 +159,12 @@ public class RiderSound : SoundFunctions{
             SoundID.SNOW_IMPACT_HEAVY,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"ping",()=>
+            AudioClipHandler.play(
+            SoundID.PING,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
+        },
     };  
 }
 

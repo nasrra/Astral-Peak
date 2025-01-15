@@ -99,7 +99,6 @@ public class Cavalry : Boss<CavalryMovement>{
     public void bite_lunge()                => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.2f);
 
 
-
     protected void link_events(){
         link_game_manager();
         health.death                            += kill;

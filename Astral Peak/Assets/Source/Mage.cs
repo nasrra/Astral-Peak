@@ -274,11 +274,6 @@ public class Mage : Boss<Movement>{
         SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
     }
-    protected void play_weapon_flash(){
-        sprites.play_charged_flash("staff");
-        lighting.lerp_intensity("staff", start: 1, end: 0, time: 1); 
-        sound.play_sound("ping");
-    }
     protected void play_weapon_tip_flash(){
         lighting.lerp_intensity("staff_tip", start: 1, end: 0, time: .5f);
     }

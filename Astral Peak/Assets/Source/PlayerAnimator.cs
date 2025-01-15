@@ -37,7 +37,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
 
 
     // additive states that should not be returned to.
-    public void side_attack()    => play(SIDE_ATTACK, false); 
+    public void side_attack()   => play(SIDE_ATTACK, false); 
     public void up_attack()    => play(UP_ATTACK, false);      
 
     // used for the override animation layer to return to the none state

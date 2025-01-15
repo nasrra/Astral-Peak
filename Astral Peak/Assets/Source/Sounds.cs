@@ -718,7 +718,7 @@ public struct Ping : Sound{
     public AudioMixerGroup group()  => AudioManager.sfx_mixer;
     public float max_pitch()        => 1f;
     public float min_pitch()        => .85f;
-    public float volume()           => 1f;
+    public float volume()           => .5f;
 }
 
 }

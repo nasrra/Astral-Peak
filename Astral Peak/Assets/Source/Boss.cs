@@ -73,6 +73,12 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
             c.excludeLayers = bitwise_layer;
     }
 
+    protected void play_weapon_flash(string weapon){
+        sprites.play_charged_flash(weapon);
+        //lighting.lerp_intensity(weapon, start: 1, end: 0, time: 1); 
+        sound.play_sound("ping");
+    }
+
     public void set_target(Transform _target) => target = _target;
 
     protected override void entered_game_state(GameState state){

@@ -135,6 +135,7 @@ public struct CavalrySoundSet : SoundSet {
             sounds = new List<Sound>() {
                 new WolfBossMusic1(),
                 new WolfBossMusic2(),
+                new Ping(),
             };
         }
         return sounds;

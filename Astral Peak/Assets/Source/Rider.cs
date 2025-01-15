@@ -10,8 +10,8 @@ public class Rider : Boss<Movement>{
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();
-        check_game_state();
-        idle(1);
+//        check_game_state();
+//        idle(1);
     }
     void OnDisable() => unlink_events();
 
