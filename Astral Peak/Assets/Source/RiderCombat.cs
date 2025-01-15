@@ -7,7 +7,7 @@ public class RiderCombat : BossCombat{
         front_strike = new BossAttack(
             "front_strike",
             chance:                 50,
-            player_distance:        12,
+            player_distance:        4,
             arena_bound_distance:   7,
             attack_cooldown:        4,
             idle_cooldown:          2,
@@ -16,7 +16,7 @@ public class RiderCombat : BossCombat{
         signature = new BossAttack(
             "signature",
             chance:                 50,
-            player_distance:        5,
+            player_distance:        4,
             arena_bound_distance:   7,
             attack_cooldown:        4,
             idle_cooldown:          3,
@@ -25,7 +25,7 @@ public class RiderCombat : BossCombat{
         jump_n_dash = new BossAttack(
             "jump_n_dash",
             chance:                 50,
-            player_distance:        12,
+            player_distance:        4,
             arena_bound_distance:   10,
             attack_cooldown:        4,
             idle_cooldown:          2,
@@ -34,7 +34,7 @@ public class RiderCombat : BossCombat{
         back_shot = new BossAttack(
             "back_shot",
             chance:                 50,
-            player_distance:        12,
+            player_distance:        4,
             arena_bound_distance:   0,
             attack_cooldown:        4,
             idle_cooldown:          0,
@@ -43,7 +43,7 @@ public class RiderCombat : BossCombat{
         round_shot = new BossAttack(
             "round_shot",
             chance:                 50,
-            player_distance:        6,
+            player_distance:        4,
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          2,

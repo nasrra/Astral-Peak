@@ -36,7 +36,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
         Player.instance.get_movement().halt();
         Player.instance.transform.position = fight_start_trigger.transform.position;
         unlink_fight_start_trigger();
-        play_cutscene("phase_1");
+        play_cutscene("opening");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
