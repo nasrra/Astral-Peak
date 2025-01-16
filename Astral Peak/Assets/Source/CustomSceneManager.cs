@@ -23,6 +23,7 @@ public static class CustomSceneManager{
         
         // load temp
         load = SceneManager.LoadSceneAsync("temp", LoadSceneMode.Additive);
+        loading_scene?.Invoke();
         yield return load;
 
         // unload active

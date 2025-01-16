@@ -518,6 +518,34 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""RebindControls"",
+            ""id"": ""1a1797e4-7361-4902-80d3-32c3a880960e"",
+            ""actions"": [
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""5eec5c94-8a34-4753-8689-ae7c0eef4499"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f669589d-7180-4717-b25c-e871eeefc86e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -550,12 +578,16 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_DefaultControls_Exit = m_DefaultControls.FindAction("Exit", throwIfNotFound: true);
         m_DefaultControls_Debug = m_DefaultControls.FindAction("Debug", throwIfNotFound: true);
         m_DefaultControls_Up = m_DefaultControls.FindAction("Up", throwIfNotFound: true);
+        // RebindControls
+        m_RebindControls = asset.FindActionMap("RebindControls", throwIfNotFound: true);
+        m_RebindControls_Cancel = m_RebindControls.FindAction("Cancel", throwIfNotFound: true);
     }
 
     ~@Keybinds()
     {
         UnityEngine.Debug.Assert(!m_UserControls.enabled, "This will cause a leak and performance issues, Keybinds.UserControls.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DefaultControls.enabled, "This will cause a leak and performance issues, Keybinds.DefaultControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_RebindControls.enabled, "This will cause a leak and performance issues, Keybinds.RebindControls.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -881,6 +913,52 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         }
     }
     public DefaultControlsActions @DefaultControls => new DefaultControlsActions(this);
+
+    // RebindControls
+    private readonly InputActionMap m_RebindControls;
+    private List<IRebindControlsActions> m_RebindControlsActionsCallbackInterfaces = new List<IRebindControlsActions>();
+    private readonly InputAction m_RebindControls_Cancel;
+    public struct RebindControlsActions
+    {
+        private @Keybinds m_Wrapper;
+        public RebindControlsActions(@Keybinds wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_RebindControls_Cancel;
+        public InputActionMap Get() { return m_Wrapper.m_RebindControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RebindControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IRebindControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_RebindControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_RebindControlsActionsCallbackInterfaces.Add(instance);
+            @Cancel.started += instance.OnCancel;
+            @Cancel.performed += instance.OnCancel;
+            @Cancel.canceled += instance.OnCancel;
+        }
+
+        private void UnregisterCallbacks(IRebindControlsActions instance)
+        {
+            @Cancel.started -= instance.OnCancel;
+            @Cancel.performed -= instance.OnCancel;
+            @Cancel.canceled -= instance.OnCancel;
+        }
+
+        public void RemoveCallbacks(IRebindControlsActions instance)
+        {
+            if (m_Wrapper.m_RebindControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IRebindControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_RebindControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_RebindControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public RebindControlsActions @RebindControls => new RebindControlsActions(this);
     public interface IUserControlsActions
     {
         void OnRight(InputAction.CallbackContext context);
@@ -910,5 +988,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         void OnExit(InputAction.CallbackContext context);
         void OnDebug(InputAction.CallbackContext context);
         void OnUp(InputAction.CallbackContext context);
+    }
+    public interface IRebindControlsActions
+    {
+        void OnCancel(InputAction.CallbackContext context);
     }
 }

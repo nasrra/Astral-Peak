@@ -4,6 +4,7 @@ using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
 using Sounds;
 using AYellowpaper.SerializedCollections;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class UiManager : MonoBehaviour{
     public event Action
@@ -101,16 +102,25 @@ public class UiManager : MonoBehaviour{
 
     void entered_game_state(GameState state){
         if(state == GameState.CUTSCENE){
-            health_bar.fade_out();
+            fade_out();
             enable_black_bars();
         }
     }
 
     void exited_game_state(GameState state){
         if(state == GameState.CUTSCENE){
-            health_bar.fade_in();
+            fade_in();
             disable_black_bars();
         }
+    }
+
+    void fade_out(){
+        health_bar.fade_out();
+        foreach(Animator button in button_prompts.Values)
+            button.Play("off");
+    }
+    void fade_in(){
+        health_bar.fade_in();
     }
 
     void link_statics(){
@@ -119,8 +129,8 @@ public class UiManager : MonoBehaviour{
         InputManager.exit_performed                     += gameplay_ui;
     }
     void link_instances(){
-        CameraEffects.instance.started_fade_to_black    += health_bar.fade_out;
-        CameraEffects.instance.started_fade_from_black  += health_bar.fade_in;
+        CameraEffects.instance.started_fade_to_black    += fade_out;
+        CameraEffects.instance.started_fade_from_black  += fade_in;
     }
     void unlink_statics(){
         GameManager.entered_game_state                  -= entered_game_state;
@@ -128,8 +138,8 @@ public class UiManager : MonoBehaviour{
         InputManager.exit_performed                     -= gameplay_ui;
     }
     void unlink_instances(){
-        CameraEffects.instance.started_fade_to_black    -= health_bar.fade_out;
-        CameraEffects.instance.started_fade_from_black  -= health_bar.fade_in;
+        CameraEffects.instance.started_fade_to_black    -= fade_out;
+        CameraEffects.instance.started_fade_from_black  -= fade_in;
     }
 }
 

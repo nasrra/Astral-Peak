@@ -1,3 +1,4 @@
+using Entropek;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class ButtonPrompt : MonoBehaviour{
             : image_transform.localScale;
         image_icon.sprite = InputManager.get_input_binding_image(action, 0);
     }
-    private void uninitialize_wrapper(InputAction.CallbackContext context) => unitialize();
-    public virtual void unitialize() => action.performed -= uninitialize_wrapper;
+    public virtual void unitialize(){
+         image_transform.localScale = action.bindings[0].ToDisplayString()=="Space"
+            ? new Vector3(image_transform.localScale.x/1.75f,image_transform.localScale.y,image_transform.localScale.z)
+            : image_transform.localScale;
+    }
 }

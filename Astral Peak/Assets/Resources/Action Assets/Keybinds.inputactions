@@ -496,6 +496,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "RebindControls",
+            "id": "1a1797e4-7361-4902-80d3-32c3a880960e",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "5eec5c94-8a34-4753-8689-ae7c0eef4499",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f669589d-7180-4717-b25c-e871eeefc86e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

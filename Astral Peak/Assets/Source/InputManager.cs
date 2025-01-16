@@ -11,6 +11,7 @@ using UnityEngine;
 public static class InputManager{
     private static PlayerInput input;
     private static Keybinds keybinds;
+    private static InputActionRebindingExtensions.RebindingOperation rebinding_operation;
 
     public static event Action
         // Default keyboard events
@@ -51,10 +52,10 @@ public static class InputManager{
         keybinds = new Keybinds();
         keybinds.UserControls.Enable();
         // bind
-        bind_default_keyboard();
+        bind_keybinds();
     }
 
-    private static void bind_default_keyboard(){
+    private static void bind_keybinds(){
         keybinds.UserControls.Jump.performed            += on_jump_performed;
         keybinds.UserControls.Jump.canceled             += on_jump_cancelled;
         keybinds.UserControls.Right.performed           += on_right_performed;
@@ -70,9 +71,11 @@ public static class InputManager{
         keybinds.UserControls.ZoomIn.performed          += on_zoom_in;
         keybinds.UserControls.Exit.performed            += on_exit_performed;
         keybinds.UserControls.Debug.performed           += on_debug_performed;
+
+        keybinds.RebindControls.Cancel.performed        += on_cancel_performed;
     }
 
-    private static void unbind_default_keyboard(){
+    private static void unbind_keybinds(){
         keybinds.UserControls.Jump.performed            -= on_jump_performed;
         keybinds.UserControls.Jump.canceled             -= on_jump_cancelled;
         keybinds.UserControls.Right.performed           -= on_right_performed;
@@ -86,6 +89,8 @@ public static class InputManager{
         keybinds.UserControls.ZoomIn.performed          -= on_zoom_in;
         keybinds.UserControls.Exit.performed            -= on_exit_performed;
         keybinds.UserControls.Debug.performed           -= on_debug_performed;
+
+        keybinds.RebindControls.Cancel.performed        -= on_cancel_performed;
     }
     static void on_jump_performed(InputAction.CallbackContext ctx)          { jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
     static void on_jump_cancelled(InputAction.CallbackContext ctx)          { if(input_blocker[Actions.JUMP] == false) jump_cancelled?.Invoke();}
@@ -102,6 +107,7 @@ public static class InputManager{
     static void on_zoom_out(InputAction.CallbackContext ctx)                => CameraController.instance?.ZoomOut();
     static void on_zoom_in(InputAction.CallbackContext ctx)                 => CameraController.instance?.ZoomIn();
     static void on_debug_performed(InputAction.CallbackContext ctx)         => UiManager.instance?.start_dialogue();
+    static void on_cancel_performed(InputAction.CallbackContext ctx)        => cancel_rebind();
 
     public static InputAction get_input_action(string input_action){
         InputActionMap actionMap = keybinds.UserControls;
@@ -123,5 +129,33 @@ public static class InputManager{
                 throw new NullReferenceException($"Input binding image not found at: {asset_path}");
         #endif
         return Resources.Load<Sprite>("Sprites/Keybinds/Light/"+key_name);
+    }
+
+    public static void rebind_action(InputAction action, Action callback = null){        
+        keybinds.UserControls.Disable();
+        keybinds.RebindControls.Enable();
+        string original_binding = action.bindings[0].effectivePath;  // Store the original binding
+        rebinding_operation = action.PerformInteractiveRebinding()
+        .WithControlsExcluding("Mouse")
+        .WithControlsExcluding("<Keyboard>/Escape")
+        .WithControlsExcluding("<Keyboard>/anyKey")
+        .OnCancel(c =>{
+            Debug.Log("Rebinding operation was canceled.");
+            c.Dispose();
+            keybinds.UserControls.Enable();
+            keybinds.RebindControls.Disable();
+        })
+        .OnComplete(c =>{
+            Debug.Log("Rebind successful!");
+            c.Dispose();
+            keybinds.UserControls.Enable();
+            keybinds.RebindControls.Disable();
+            callback?.Invoke();
+        });
+        rebinding_operation.Start();
+    }
+
+    private static void cancel_rebind(){
+        rebinding_operation.Cancel();
     }
 }
