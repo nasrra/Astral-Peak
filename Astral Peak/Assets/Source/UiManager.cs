@@ -3,11 +3,13 @@ using System.Collections;
 using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
 using Sounds;
+using AYellowpaper.SerializedCollections;
 
 public class UiManager : MonoBehaviour{
     public event Action
         death_screen_ended;
     public static UiManager instance;
+    [SerializeField] SerializedDictionary<string, Animator> button_prompts = new SerializedDictionary<string, Animator>();
     [SerializeField] UiState state;
     [SerializeField] GameObject 
         death_screen,
@@ -56,6 +58,8 @@ public class UiManager : MonoBehaviour{
                 break;
         }
     }
+
+    public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
 
     public void enable_death_screen(){
         settings_menu.SetActive(false);

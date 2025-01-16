@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using UnityEngine;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -48,43 +49,43 @@ public static class InputManager{
         input = _input;
         // enable keyboard keybinds
         keybinds = new Keybinds();
-        keybinds.Keyboard.Enable();
+        keybinds.UserControls.Enable();
         // bind
         bind_default_keyboard();
     }
 
     private static void bind_default_keyboard(){
-        keybinds.Keyboard.Jump.performed            += on_jump_performed;
-        keybinds.Keyboard.Jump.canceled             += on_jump_cancelled;
-        keybinds.Keyboard.Right.performed           += on_right_performed;
-        keybinds.Keyboard.Right.canceled            += on_right_cancelled;
-        keybinds.Keyboard.Left.performed            += on_left_performed;
-        keybinds.Keyboard.Left.canceled             += on_left_cancelled;
-        keybinds.Keyboard.Up.performed              += on_up_performed;
-        keybinds.Keyboard.Up.canceled               += on_up_cancelled;
-        keybinds.Keyboard.Attack.performed          += on_attack_performed;
-        keybinds.Keyboard.Attack.canceled           += on_attack_cancelled;
-        keybinds.Keyboard.Dash.performed            += on_dash_performed;
-        keybinds.Keyboard.ZoomOut.performed         += on_zoom_out;
-        keybinds.Keyboard.ZoomIn.performed          += on_zoom_in;
-        keybinds.Keyboard.Exit.performed            += on_exit_performed;
-        keybinds.Keyboard.Debug.performed           += on_debug_performed;
+        keybinds.UserControls.Jump.performed            += on_jump_performed;
+        keybinds.UserControls.Jump.canceled             += on_jump_cancelled;
+        keybinds.UserControls.Right.performed           += on_right_performed;
+        keybinds.UserControls.Right.canceled            += on_right_cancelled;
+        keybinds.UserControls.Left.performed            += on_left_performed;
+        keybinds.UserControls.Left.canceled             += on_left_cancelled;
+        keybinds.UserControls.Up.performed              += on_up_performed;
+        keybinds.UserControls.Up.canceled               += on_up_cancelled;
+        keybinds.UserControls.Attack.performed          += on_attack_performed;
+        keybinds.UserControls.Attack.canceled           += on_attack_cancelled;
+        keybinds.UserControls.Dash.performed            += on_dash_performed;
+        keybinds.UserControls.ZoomOut.performed         += on_zoom_out;
+        keybinds.UserControls.ZoomIn.performed          += on_zoom_in;
+        keybinds.UserControls.Exit.performed            += on_exit_performed;
+        keybinds.UserControls.Debug.performed           += on_debug_performed;
     }
 
     private static void unbind_default_keyboard(){
-        keybinds.Keyboard.Jump.performed            -= on_jump_performed;
-        keybinds.Keyboard.Jump.canceled             -= on_jump_cancelled;
-        keybinds.Keyboard.Right.performed           -= on_right_performed;
-        keybinds.Keyboard.Right.canceled            -= on_right_cancelled;
-        keybinds.Keyboard.Left.performed            -= on_left_performed;
-        keybinds.Keyboard.Left.canceled             -= on_left_cancelled;
-        keybinds.Keyboard.Attack.performed          -= on_attack_performed;
-        keybinds.Keyboard.Attack.canceled           -= on_attack_cancelled;
-        keybinds.Keyboard.Dash.performed            -= on_dash_performed;
-        keybinds.Keyboard.ZoomOut.performed         -= on_zoom_out;
-        keybinds.Keyboard.ZoomIn.performed          -= on_zoom_in;
-        keybinds.Keyboard.Exit.performed            -= on_exit_performed;
-        keybinds.Keyboard.Debug.performed           -= on_debug_performed;
+        keybinds.UserControls.Jump.performed            -= on_jump_performed;
+        keybinds.UserControls.Jump.canceled             -= on_jump_cancelled;
+        keybinds.UserControls.Right.performed           -= on_right_performed;
+        keybinds.UserControls.Right.canceled            -= on_right_cancelled;
+        keybinds.UserControls.Left.performed            -= on_left_performed;
+        keybinds.UserControls.Left.canceled             -= on_left_cancelled;
+        keybinds.UserControls.Attack.performed          -= on_attack_performed;
+        keybinds.UserControls.Attack.canceled           -= on_attack_cancelled;
+        keybinds.UserControls.Dash.performed            -= on_dash_performed;
+        keybinds.UserControls.ZoomOut.performed         -= on_zoom_out;
+        keybinds.UserControls.ZoomIn.performed          -= on_zoom_in;
+        keybinds.UserControls.Exit.performed            -= on_exit_performed;
+        keybinds.UserControls.Debug.performed           -= on_debug_performed;
     }
     static void on_jump_performed(InputAction.CallbackContext ctx)          { jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
     static void on_jump_cancelled(InputAction.CallbackContext ctx)          { if(input_blocker[Actions.JUMP] == false) jump_cancelled?.Invoke();}
@@ -101,4 +102,26 @@ public static class InputManager{
     static void on_zoom_out(InputAction.CallbackContext ctx)                => CameraController.instance?.ZoomOut();
     static void on_zoom_in(InputAction.CallbackContext ctx)                 => CameraController.instance?.ZoomIn();
     static void on_debug_performed(InputAction.CallbackContext ctx)         => UiManager.instance?.start_dialogue();
-}//
+
+    public static InputAction get_input_action(string input_action){
+        InputActionMap actionMap = keybinds.UserControls;
+        InputAction action = actionMap.FindAction(input_action);
+        #if UNITY_EDITOR
+        if(action==null)
+            throw new NullReferenceException($"Input Action: '{input_action}' not found");
+        #endif
+        return action;
+    }
+    public static Sprite get_input_binding_image(InputAction action, int binding){
+        string key_name = action.bindings[binding].ToDisplayString()+"_Key_Light";
+
+        #if UNITY_EDITOR
+            // Editor-only validation to check if the file exists
+            string resource_path = $"Sprites/Keybinds/Light/{key_name}";
+            string asset_path = $"Assets/Resources/{resource_path}.png"; // Adjust extension as needed
+            if (!System.IO.File.Exists(asset_path))
+                throw new NullReferenceException($"Input binding image not found at: {asset_path}");
+        #endif
+        return Resources.Load<Sprite>("Sprites/Keybinds/Light/"+key_name);
+    }
+}

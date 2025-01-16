@@ -24,7 +24,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     ""name"": ""Keybinds"",
     ""maps"": [
         {
-            ""name"": ""Keyboard"",
+            ""name"": ""UserControls"",
             ""id"": ""7008b348-9410-4d3f-abc4-8733345db1ad"",
             ""actions"": [
                 {
@@ -270,29 +270,292 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""DefaultControls"",
+            ""id"": ""e008db53-c5cf-4003-ae65-b51106790581"",
+            ""actions"": [
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1270007-52f6-41c1-a2f9-d5c178f0ac40"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c23898e-aa0b-4864-9814-09a9b73ed4e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""db33ebf7-617f-47fc-ab98-1b050b931881"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""393cc77f-8e9f-405b-a707-16f598f4d44d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e2779ca-6a78-4d6c-bcb6-5790e775f0c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Parry"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce07408d-740f-4adc-92fe-7e798077a77f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f68de6a8-2fa5-4389-b22a-ddd0b9e76f81"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4f58498f-6418-434f-8cd6-db837bb72a54"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""59a6f256-87f2-449f-9035-9e5e25887465"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""505011f4-1ccf-4562-a92f-06b12fc51e85"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Debug"",
+                    ""type"": ""Button"",
+                    ""id"": ""a050f97e-72de-492e-8c8c-edbca54acf73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""5cc786f3-0cf5-4587-97c0-91129c66719a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4a608276-43b1-4999-a5cf-21e5a76c3614"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a168537a-05d0-4ff6-9519-81b7a7355e6b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39744989-4bc9-4beb-af41-fa19428fc34e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b06f2c7c-e45d-4c10-8682-50ecb8ff780c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94b78990-ac6a-4b47-b09b-055fc94a7eac"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2033e9cf-64e2-4144-93f3-1adebe95a093"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfa1a53c-26a9-4461-a6eb-8a19fd895682"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f478ec09-3b69-472d-b21f-dd85e189899d"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1254d7e-e9f2-4046-96d1-7818971991dc"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e63eb611-40cc-4649-9ecc-3490dec09d0e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ba67890-131b-4791-8d2e-4520cd9912f3"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51720879-186b-4abb-8382-c80e4a913a0f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Keyboard
-        m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
-        m_Keyboard_Right = m_Keyboard.FindAction("Right", throwIfNotFound: true);
-        m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
-        m_Keyboard_Left = m_Keyboard.FindAction("Left", throwIfNotFound: true);
-        m_Keyboard_Interact = m_Keyboard.FindAction("Interact", throwIfNotFound: true);
-        m_Keyboard_Attack = m_Keyboard.FindAction("Attack", throwIfNotFound: true);
-        m_Keyboard_Parry = m_Keyboard.FindAction("Parry", throwIfNotFound: true);
-        m_Keyboard_ZoomOut = m_Keyboard.FindAction("ZoomOut", throwIfNotFound: true);
-        m_Keyboard_ZoomIn = m_Keyboard.FindAction("ZoomIn", throwIfNotFound: true);
-        m_Keyboard_Dash = m_Keyboard.FindAction("Dash", throwIfNotFound: true);
-        m_Keyboard_Exit = m_Keyboard.FindAction("Exit", throwIfNotFound: true);
-        m_Keyboard_Debug = m_Keyboard.FindAction("Debug", throwIfNotFound: true);
-        m_Keyboard_Up = m_Keyboard.FindAction("Up", throwIfNotFound: true);
+        // UserControls
+        m_UserControls = asset.FindActionMap("UserControls", throwIfNotFound: true);
+        m_UserControls_Right = m_UserControls.FindAction("Right", throwIfNotFound: true);
+        m_UserControls_Jump = m_UserControls.FindAction("Jump", throwIfNotFound: true);
+        m_UserControls_Left = m_UserControls.FindAction("Left", throwIfNotFound: true);
+        m_UserControls_Interact = m_UserControls.FindAction("Interact", throwIfNotFound: true);
+        m_UserControls_Attack = m_UserControls.FindAction("Attack", throwIfNotFound: true);
+        m_UserControls_Parry = m_UserControls.FindAction("Parry", throwIfNotFound: true);
+        m_UserControls_ZoomOut = m_UserControls.FindAction("ZoomOut", throwIfNotFound: true);
+        m_UserControls_ZoomIn = m_UserControls.FindAction("ZoomIn", throwIfNotFound: true);
+        m_UserControls_Dash = m_UserControls.FindAction("Dash", throwIfNotFound: true);
+        m_UserControls_Exit = m_UserControls.FindAction("Exit", throwIfNotFound: true);
+        m_UserControls_Debug = m_UserControls.FindAction("Debug", throwIfNotFound: true);
+        m_UserControls_Up = m_UserControls.FindAction("Up", throwIfNotFound: true);
+        // DefaultControls
+        m_DefaultControls = asset.FindActionMap("DefaultControls", throwIfNotFound: true);
+        m_DefaultControls_Right = m_DefaultControls.FindAction("Right", throwIfNotFound: true);
+        m_DefaultControls_Jump = m_DefaultControls.FindAction("Jump", throwIfNotFound: true);
+        m_DefaultControls_Left = m_DefaultControls.FindAction("Left", throwIfNotFound: true);
+        m_DefaultControls_Interact = m_DefaultControls.FindAction("Interact", throwIfNotFound: true);
+        m_DefaultControls_Attack = m_DefaultControls.FindAction("Attack", throwIfNotFound: true);
+        m_DefaultControls_Parry = m_DefaultControls.FindAction("Parry", throwIfNotFound: true);
+        m_DefaultControls_ZoomOut = m_DefaultControls.FindAction("ZoomOut", throwIfNotFound: true);
+        m_DefaultControls_ZoomIn = m_DefaultControls.FindAction("ZoomIn", throwIfNotFound: true);
+        m_DefaultControls_Dash = m_DefaultControls.FindAction("Dash", throwIfNotFound: true);
+        m_DefaultControls_Exit = m_DefaultControls.FindAction("Exit", throwIfNotFound: true);
+        m_DefaultControls_Debug = m_DefaultControls.FindAction("Debug", throwIfNotFound: true);
+        m_DefaultControls_Up = m_DefaultControls.FindAction("Up", throwIfNotFound: true);
     }
 
     ~@Keybinds()
     {
-        UnityEngine.Debug.Assert(!m_Keyboard.enabled, "This will cause a leak and performance issues, Keybinds.Keyboard.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UserControls.enabled, "This will cause a leak and performance issues, Keybinds.UserControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DefaultControls.enabled, "This will cause a leak and performance issues, Keybinds.DefaultControls.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -351,46 +614,46 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Keyboard
-    private readonly InputActionMap m_Keyboard;
-    private List<IKeyboardActions> m_KeyboardActionsCallbackInterfaces = new List<IKeyboardActions>();
-    private readonly InputAction m_Keyboard_Right;
-    private readonly InputAction m_Keyboard_Jump;
-    private readonly InputAction m_Keyboard_Left;
-    private readonly InputAction m_Keyboard_Interact;
-    private readonly InputAction m_Keyboard_Attack;
-    private readonly InputAction m_Keyboard_Parry;
-    private readonly InputAction m_Keyboard_ZoomOut;
-    private readonly InputAction m_Keyboard_ZoomIn;
-    private readonly InputAction m_Keyboard_Dash;
-    private readonly InputAction m_Keyboard_Exit;
-    private readonly InputAction m_Keyboard_Debug;
-    private readonly InputAction m_Keyboard_Up;
-    public struct KeyboardActions
+    // UserControls
+    private readonly InputActionMap m_UserControls;
+    private List<IUserControlsActions> m_UserControlsActionsCallbackInterfaces = new List<IUserControlsActions>();
+    private readonly InputAction m_UserControls_Right;
+    private readonly InputAction m_UserControls_Jump;
+    private readonly InputAction m_UserControls_Left;
+    private readonly InputAction m_UserControls_Interact;
+    private readonly InputAction m_UserControls_Attack;
+    private readonly InputAction m_UserControls_Parry;
+    private readonly InputAction m_UserControls_ZoomOut;
+    private readonly InputAction m_UserControls_ZoomIn;
+    private readonly InputAction m_UserControls_Dash;
+    private readonly InputAction m_UserControls_Exit;
+    private readonly InputAction m_UserControls_Debug;
+    private readonly InputAction m_UserControls_Up;
+    public struct UserControlsActions
     {
         private @Keybinds m_Wrapper;
-        public KeyboardActions(@Keybinds wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Right => m_Wrapper.m_Keyboard_Right;
-        public InputAction @Jump => m_Wrapper.m_Keyboard_Jump;
-        public InputAction @Left => m_Wrapper.m_Keyboard_Left;
-        public InputAction @Interact => m_Wrapper.m_Keyboard_Interact;
-        public InputAction @Attack => m_Wrapper.m_Keyboard_Attack;
-        public InputAction @Parry => m_Wrapper.m_Keyboard_Parry;
-        public InputAction @ZoomOut => m_Wrapper.m_Keyboard_ZoomOut;
-        public InputAction @ZoomIn => m_Wrapper.m_Keyboard_ZoomIn;
-        public InputAction @Dash => m_Wrapper.m_Keyboard_Dash;
-        public InputAction @Exit => m_Wrapper.m_Keyboard_Exit;
-        public InputAction @Debug => m_Wrapper.m_Keyboard_Debug;
-        public InputAction @Up => m_Wrapper.m_Keyboard_Up;
-        public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
+        public UserControlsActions(@Keybinds wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Right => m_Wrapper.m_UserControls_Right;
+        public InputAction @Jump => m_Wrapper.m_UserControls_Jump;
+        public InputAction @Left => m_Wrapper.m_UserControls_Left;
+        public InputAction @Interact => m_Wrapper.m_UserControls_Interact;
+        public InputAction @Attack => m_Wrapper.m_UserControls_Attack;
+        public InputAction @Parry => m_Wrapper.m_UserControls_Parry;
+        public InputAction @ZoomOut => m_Wrapper.m_UserControls_ZoomOut;
+        public InputAction @ZoomIn => m_Wrapper.m_UserControls_ZoomIn;
+        public InputAction @Dash => m_Wrapper.m_UserControls_Dash;
+        public InputAction @Exit => m_Wrapper.m_UserControls_Exit;
+        public InputAction @Debug => m_Wrapper.m_UserControls_Debug;
+        public InputAction @Up => m_Wrapper.m_UserControls_Up;
+        public InputActionMap Get() { return m_Wrapper.m_UserControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(KeyboardActions set) { return set.Get(); }
-        public void AddCallbacks(IKeyboardActions instance)
+        public static implicit operator InputActionMap(UserControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IUserControlsActions instance)
         {
-            if (instance == null || m_Wrapper.m_KeyboardActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_KeyboardActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_UserControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UserControlsActionsCallbackInterfaces.Add(instance);
             @Right.started += instance.OnRight;
             @Right.performed += instance.OnRight;
             @Right.canceled += instance.OnRight;
@@ -429,7 +692,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Up.canceled += instance.OnUp;
         }
 
-        private void UnregisterCallbacks(IKeyboardActions instance)
+        private void UnregisterCallbacks(IUserControlsActions instance)
         {
             @Right.started -= instance.OnRight;
             @Right.performed -= instance.OnRight;
@@ -469,22 +732,171 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Up.canceled -= instance.OnUp;
         }
 
-        public void RemoveCallbacks(IKeyboardActions instance)
+        public void RemoveCallbacks(IUserControlsActions instance)
         {
-            if (m_Wrapper.m_KeyboardActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_UserControlsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IKeyboardActions instance)
+        public void SetCallbacks(IUserControlsActions instance)
         {
-            foreach (var item in m_Wrapper.m_KeyboardActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_UserControlsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_KeyboardActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_UserControlsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public KeyboardActions @Keyboard => new KeyboardActions(this);
-    public interface IKeyboardActions
+    public UserControlsActions @UserControls => new UserControlsActions(this);
+
+    // DefaultControls
+    private readonly InputActionMap m_DefaultControls;
+    private List<IDefaultControlsActions> m_DefaultControlsActionsCallbackInterfaces = new List<IDefaultControlsActions>();
+    private readonly InputAction m_DefaultControls_Right;
+    private readonly InputAction m_DefaultControls_Jump;
+    private readonly InputAction m_DefaultControls_Left;
+    private readonly InputAction m_DefaultControls_Interact;
+    private readonly InputAction m_DefaultControls_Attack;
+    private readonly InputAction m_DefaultControls_Parry;
+    private readonly InputAction m_DefaultControls_ZoomOut;
+    private readonly InputAction m_DefaultControls_ZoomIn;
+    private readonly InputAction m_DefaultControls_Dash;
+    private readonly InputAction m_DefaultControls_Exit;
+    private readonly InputAction m_DefaultControls_Debug;
+    private readonly InputAction m_DefaultControls_Up;
+    public struct DefaultControlsActions
+    {
+        private @Keybinds m_Wrapper;
+        public DefaultControlsActions(@Keybinds wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Right => m_Wrapper.m_DefaultControls_Right;
+        public InputAction @Jump => m_Wrapper.m_DefaultControls_Jump;
+        public InputAction @Left => m_Wrapper.m_DefaultControls_Left;
+        public InputAction @Interact => m_Wrapper.m_DefaultControls_Interact;
+        public InputAction @Attack => m_Wrapper.m_DefaultControls_Attack;
+        public InputAction @Parry => m_Wrapper.m_DefaultControls_Parry;
+        public InputAction @ZoomOut => m_Wrapper.m_DefaultControls_ZoomOut;
+        public InputAction @ZoomIn => m_Wrapper.m_DefaultControls_ZoomIn;
+        public InputAction @Dash => m_Wrapper.m_DefaultControls_Dash;
+        public InputAction @Exit => m_Wrapper.m_DefaultControls_Exit;
+        public InputAction @Debug => m_Wrapper.m_DefaultControls_Debug;
+        public InputAction @Up => m_Wrapper.m_DefaultControls_Up;
+        public InputActionMap Get() { return m_Wrapper.m_DefaultControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DefaultControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IDefaultControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DefaultControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DefaultControlsActionsCallbackInterfaces.Add(instance);
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Parry.started += instance.OnParry;
+            @Parry.performed += instance.OnParry;
+            @Parry.canceled += instance.OnParry;
+            @ZoomOut.started += instance.OnZoomOut;
+            @ZoomOut.performed += instance.OnZoomOut;
+            @ZoomOut.canceled += instance.OnZoomOut;
+            @ZoomIn.started += instance.OnZoomIn;
+            @ZoomIn.performed += instance.OnZoomIn;
+            @ZoomIn.canceled += instance.OnZoomIn;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Debug.started += instance.OnDebug;
+            @Debug.performed += instance.OnDebug;
+            @Debug.canceled += instance.OnDebug;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
+        }
+
+        private void UnregisterCallbacks(IDefaultControlsActions instance)
+        {
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Parry.started -= instance.OnParry;
+            @Parry.performed -= instance.OnParry;
+            @Parry.canceled -= instance.OnParry;
+            @ZoomOut.started -= instance.OnZoomOut;
+            @ZoomOut.performed -= instance.OnZoomOut;
+            @ZoomOut.canceled -= instance.OnZoomOut;
+            @ZoomIn.started -= instance.OnZoomIn;
+            @ZoomIn.performed -= instance.OnZoomIn;
+            @ZoomIn.canceled -= instance.OnZoomIn;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Debug.started -= instance.OnDebug;
+            @Debug.performed -= instance.OnDebug;
+            @Debug.canceled -= instance.OnDebug;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
+        }
+
+        public void RemoveCallbacks(IDefaultControlsActions instance)
+        {
+            if (m_Wrapper.m_DefaultControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDefaultControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DefaultControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DefaultControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DefaultControlsActions @DefaultControls => new DefaultControlsActions(this);
+    public interface IUserControlsActions
+    {
+        void OnRight(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnParry(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
+        void OnZoomIn(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
+        void OnDebug(InputAction.CallbackContext context);
+        void OnUp(InputAction.CallbackContext context);
+    }
+    public interface IDefaultControlsActions
     {
         void OnRight(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
