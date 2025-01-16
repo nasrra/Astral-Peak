@@ -52,15 +52,15 @@ public class RiderCombat : BossCombat{
         protected override void create_movesets(){
             movesets = new Dictionary<string, Action>(){
                 {"phase_1",()=>{
-                    //test(round_shot);
-                    front_moveset = new List<BossAttack>(){
-                        signature,
-                        jump_n_dash, 
-                    };
-                    back_moveset = new List<BossAttack>(){
-                        round_shot,             
-                    };
-                    special_moveset = new List<BossAttack>();
+                    test(signature);
+                    //front_moveset = new List<BossAttack>(){
+                    //    signature,
+                    //    jump_n_dash, 
+                    //};
+                    //back_moveset = new List<BossAttack>(){
+                    //    round_shot,             
+                    //};
+                    //special_moveset = new List<BossAttack>();
                 }},
             };
         }

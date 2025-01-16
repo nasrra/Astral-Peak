@@ -129,6 +129,11 @@ public class RiderSound : SoundFunctions{
             random_id(footsteps),
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"jump", ()=>
+            AudioClipHandler.play(
+            SoundID.SNOW_IMPACT_LIGHT,
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
         {"whistle",()=>
             AudioClipHandler.play(
             SoundID.WHISTLE_LONG,
