@@ -10,13 +10,13 @@ public class CharacterAnimatorOverride : MonoBehaviour{
         LEGS        = 2,
         OVERRIDE    = 3;
 
-    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD,0);}
-    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY,0);}
-    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS,0);}
+    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD);}
+    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY);}
+    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS);}
     protected void play_override(int animation_hash){animator.Play(animation_hash, OVERRIDE);}
 
     public void play(int animation_hash, bool set_state){
-        if(animator != null && gameObject.activeSelf == true && animator.enabled == true){
+        if(animator.isActiveAndEnabled == true){
             play_head(animation_hash);
             play_body(animation_hash);
             play_legs(animation_hash);

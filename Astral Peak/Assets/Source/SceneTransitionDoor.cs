@@ -13,7 +13,7 @@ public class SceneTransitionDoor : Door{
     IEnumerator enter_coroutine(){
         Player.instance.set_spawn_point(exit_point);
         Player.instance.door_enter_state();
-        CustomSceneManager.load_scene(scene_to_load); 
+        CustomSceneManager.load_scene_with_transitions(scene_to_load); 
         close();
         yield break;
     }

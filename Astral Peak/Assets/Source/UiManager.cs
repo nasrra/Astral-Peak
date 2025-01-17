@@ -1,21 +1,21 @@
 using System;
 using System.Collections;
-using DocumentFormat.OpenXml.Presentation;
 using UnityEngine;
 using Sounds;
 using AYellowpaper.SerializedCollections;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEngine.UI;
+using Entropek;
 
 public class UiManager : MonoBehaviour{
     public event Action
         death_screen_ended;
     public static UiManager instance;
     [SerializeField] SerializedDictionary<string, Animator> button_prompts = new SerializedDictionary<string, Animator>();
-    [SerializeField] UiState state;
     [SerializeField] GameObject 
         death_screen,
-        settings_menu,
+        pause_menu,
         hud,
+        settings_menu,
         enemy_vanquished;
     [SerializeField] Animator
         black_bars; 
@@ -36,34 +36,35 @@ public class UiManager : MonoBehaviour{
         GameManager.unlink_Ui();
         unlink_statics();
         unlink_instances();   
+        GameManager.pause_game(false);
     }
-
-    void gameplay_ui(){
-        if(GameManager.get_state() == GameState.CUTSCENE)
+//
+    public void toggle_gameplay_ui(){
+        if(GameManager.get_state() == GameState.CUTSCENE || GameManager.get_state() == GameState.DEATH)
             return;
-        death_screen.SetActive(false);
-        settings_menu.SetActive(false);
-        hud.SetActive(false);
-        switch(state){
-            case UiState.HUD:
-                settings_menu.SetActive(true);
-                state = UiState.SETTINGS;
-                GameManager.state_changed(GameState.MENU);
-                break;
-            case UiState.SETTINGS:
-                hud.SetActive(true);
-                state = UiState.HUD;
-                GameManager.state_changed(GameState.GAMEPLAY);
-                break;
-            default: 
-                break;
+        if(hud.activeSelf == true){
+            hud.SetActive(false);
+            pause_menu.SetActive(true);
+            GameManager.state_changed(GameState.MENU);
+            GameManager.pause_game(true);
+        }
+        else if(pause_menu.activeSelf == true){
+            pause_menu.SetActive(false);
+            hud.SetActive(true);
+            GameManager.state_changed(GameState.GAMEPLAY);
+            GameManager.pause_game(false);
+        }
+        else if(settings_menu.activeSelf == true){
+            settings_menu.SetActive(false);
+            pause_menu.SetActive(true);
         }
     }
 
     public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
 
     public void enable_death_screen(){
-        settings_menu.SetActive(false);
+        GameManager.state_changed(GameState.DEATH);
+        pause_menu.SetActive(false);
         hud.SetActive(false);
         play_death_screen();
     }
@@ -115,18 +116,22 @@ public class UiManager : MonoBehaviour{
     }
 
     void fade_out(){
-        health_bar.fade_out();
-        foreach(Animator button in button_prompts.Values)
-            button.Play("off");
+        if(GameManager.get_state() != GameState.CUTSCENE){
+            health_bar.fade_out();
+            foreach(Animator button in button_prompts.Values)
+                if(button.isActiveAndEnabled == true)
+                    button.Play("off");
+        }
     }
     void fade_in(){
-        health_bar.fade_in();
+        if(GameManager.get_state() != GameState.CUTSCENE){
+            health_bar.fade_in();
+        }
     }
 
     void link_statics(){
         GameManager.entered_game_state                  += entered_game_state;
         GameManager.exited_game_state                   += exited_game_state;
-        InputManager.exit_performed                     += gameplay_ui;
     }
     void link_instances(){
         CameraEffects.instance.started_fade_to_black    += fade_out;
@@ -135,17 +140,9 @@ public class UiManager : MonoBehaviour{
     void unlink_statics(){
         GameManager.entered_game_state                  -= entered_game_state;
         GameManager.exited_game_state                   -= exited_game_state;
-        InputManager.exit_performed                     -= gameplay_ui;
     }
     void unlink_instances(){
         CameraEffects.instance.started_fade_to_black    -= fade_out;
         CameraEffects.instance.started_fade_from_black  -= fade_in;
     }
-}
-
-public enum UiState{
-    HUD,
-    SETTINGS,
-    ENEMY_VANQUISHED,
-    DEATH,
 }

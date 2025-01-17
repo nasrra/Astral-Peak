@@ -83,7 +83,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         Vector2 move_direction = movement.get_move_direction();
         movement.dash(
             (move_direction.x == 0)?
-            (flipped==true? Vector2.right : Vector2.left) :
+            (flipped==false? Vector2.right : Vector2.left) :
                 (move_direction.x == 1?     Vector2.right : Vector2.left) ,
             20, 
             0.25f); 
@@ -200,17 +200,18 @@ public class Player : CreatureInheritor<CharacterMovement>{
         }
     }//
     public void door_enter_state(){
-        unlink_input();
+        InputManager.disable_user_input();
+        transform.parent = null;
     }
     IEnumerator door_exit_state(SpawnPoint spawn){
-        unlink_input();
         movement.clear_move_direction();//
         spawn.use_spawn();
         movement.movement(spawn.get_movement(), true);
         AudioManager.restore_sfx_smooth();  
+        InputManager.disable_user_input();
         yield return new WaitForSeconds(1);
         movement.movement(spawn.get_movement(), false);
-        link_input();
+        InputManager.enable_user_input();
         yield break;
     }
 
@@ -230,29 +231,19 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Game States.
     public override void enter_cutscene_state(){
-        unlink_input();
         unlink_movement();
         animator.force_idle();
-        movement.clear_move_direction();
     }
     public override void exit_cutscene_state(){
         movement.renew();
-        link_input();
         link_movement();
         movement.move_only_state();
     }
     protected override void entered_game_state(GameState state){
-        if(state == GameState.MENU){
-            unlink_input();
-            movement.clear_move_direction(); 
-        }
         if(state == GameState.CUTSCENE)
             enter_cutscene_state();
     }
     protected override void exited_game_state(GameState state){
-        if(state == GameState.MENU){
-            link_input();
-        }
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
@@ -268,6 +259,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_movement();
         link_health();
         link_game_manager();
+        link_scene_manager();
     }
     protected void unlink_events(){
         unlink_movement();
@@ -275,7 +267,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_melee();
         unlink_health();
         unlink_game_manager();
-    } 
+        unlink_scene_manager();   
+    }
     public void link_input(){
         InputManager.jump_performed        += start_jump;
         InputManager.jump_cancelled        += stop_jump;
@@ -312,11 +305,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 += dashed;
         movement.dash_end               += dash_end;
         movement.new_ground             += new_ground;
-        movement.clear_move_direction();
     }
+//
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
-        movement.move_direction_changed += face_direction; 
+        movement.move_direction_changed -= face_direction; 
         movement.move_direction_changed -= movement_animation;
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= not_grounded;
@@ -324,7 +317,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 -= dashed;
         movement.dash_end               -= dash_end;
         movement.new_ground             -= new_ground;
-        movement.clear_move_direction();
     }
     private void link_melee(){
         flipped_left            += particles.flip_particles_left;
@@ -351,5 +343,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.knockback        -= get_movement().knockback;
         health.death            -= kill;
         health.death            -= get_movement().StopAllCoroutines;    
+    }
+    protected void link_scene_manager(){
+        CustomSceneManager.loading_scene += unlink_events;
+    }
+    protected void unlink_scene_manager(){
+        CustomSceneManager.loading_scene -= unlink_events;
     }
 }

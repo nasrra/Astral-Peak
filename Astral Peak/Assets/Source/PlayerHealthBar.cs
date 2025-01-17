@@ -5,6 +5,8 @@ public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] List<HealthBarHeart> hearts;
 
+    bool off = false;
+
     void OnEnable(){
         if(Player.instance != null)
             set_health(Player.instance.get_health().get_current_health());
@@ -42,13 +44,13 @@ public class PlayerHealthBar : MonoBehaviour
     }
 
     public void fade_out(){
-        if(GameManager.get_state() != GameState.CUTSCENE && gameObject.activeSelf == true)
+        if(gameObject.activeSelf == true)
             foreach(HealthBarHeart heart in hearts)
                 heart.fade_out();
     }
 
     public void fade_in(){
-        if(GameManager.get_state() != GameState.CUTSCENE && gameObject.activeSelf == true)
+        if(gameObject.activeSelf == true)
             foreach(HealthBarHeart heart in hearts)
                 heart.fade_in();
     } 

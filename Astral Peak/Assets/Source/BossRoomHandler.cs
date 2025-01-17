@@ -33,10 +33,9 @@ public abstract class BossRoomHandler : MonoBehaviour{
     public void set_respawn_point(int index) => Player.instance.set_respawn_point(respawn_points[index].name);    
     protected void start_fight(Collider2D other){
         set_respawn_point(0);//
-        Player.instance.get_movement().halt();
         Player.instance.transform.position = fight_start_trigger.transform.position;
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;

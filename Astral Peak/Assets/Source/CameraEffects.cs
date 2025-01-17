@@ -81,6 +81,15 @@ public class CameraEffects : MonoBehaviour{
         film_grain = _film_grain;
     }
 
+    public void fade_to_black_unscaled(float time, Action time_out = null)
+        => state_switch(ref fade_state, screen_transition_unscaled_coroutine(
+            transition: "fade_to_black",
+            time: time, 
+            start_action: started_fade_to_black, 
+            time_out: ()=>{
+                time_out?.Invoke();
+                completed_fade_to_black?.Invoke();
+            }));
     public void fade_to_black(float time, Action time_out = null) 
         => state_switch(ref fade_state, screen_transition_coroutine(
             transition: "fade_to_black",
@@ -108,6 +117,21 @@ public class CameraEffects : MonoBehaviour{
                 start_action?.Invoke();                
             },
             time_out:()=>time_out?.Invoke()
+        );
+
+    IEnumerator screen_transition_unscaled_coroutine(string transition, float time, Action start_action, Action time_out) =>
+        Util.unscaled_timer(
+            time: time,
+            start_action:()=>{
+                screen_transitions.speed = time;
+                screen_transitions.updateMode = AnimatorUpdateMode.UnscaledTime;
+                screen_transitions.Play(transition);
+                start_action?.Invoke();                
+            },
+            time_out:()=>{
+                screen_transitions.updateMode = AnimatorUpdateMode.Normal;
+                time_out?.Invoke();
+            }
         );
 
     void link_player(){

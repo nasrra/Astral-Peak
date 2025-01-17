@@ -9,5 +9,11 @@ public static class Util{
         yield return new WaitForSeconds(time);
         time_out?.Invoke();
     }
+
+    public static IEnumerator unscaled_timer(float time, System.Action start_action = null, System.Action time_out = null){
+        start_action?.Invoke();
+        yield return new WaitForSecondsRealtime(time);
+        time_out?.Invoke();
+    }
 }
 }

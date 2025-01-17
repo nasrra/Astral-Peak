@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameState{
+    PAUSE,
     MENU,
     GAMEPLAY,
     DEATH,
@@ -19,7 +21,10 @@ public static class GameManager{
 
 
     public static void initialize(){
-        state = GameState.GAMEPLAY;
+        state_changed(GameState.MENU);
+        #if UNITY_EDITOR
+        state_changed(GameState.GAMEPLAY);
+        #endif
     }
 
     public static GameState get_state() => state;
@@ -31,10 +36,10 @@ public static class GameManager{
     static public void reload_scene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     static public void state_changed(GameState _state){
-        entered_game_state?.Invoke(_state);
         GameState previous = state;
-        state = _state;
         exited_game_state?.Invoke(previous);
+        entered_game_state?.Invoke(_state);
+        state = _state;
     }
 
     public static void link_player() => Player.instance.death_completed += death_state;
@@ -43,4 +48,5 @@ public static class GameManager{
     public static void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
     public static void set_boss_state(int boss, bool completed) => boss_states[boss]=completed;
     public static bool get_boss_state(int boss) => boss_states[boss];
+    public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : 1;
 }

@@ -28,6 +28,7 @@ public static class StaticComponents{
 
     static void uninitialize(){
         SoundLibrary.uninitialize();
+        InputManager.uninitialize();
     }
 
     // input initialization.

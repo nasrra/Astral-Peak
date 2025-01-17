@@ -546,6 +546,34 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuControls"",
+            ""id"": ""74e88906-d6e9-4c27-b1d9-5be9f23b2f58"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1e44e75-af8d-4fb4-adc5-31f4e07706aa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f789edf3-8982-44f6-b394-7e98ec933bfa"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -581,6 +609,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         // RebindControls
         m_RebindControls = asset.FindActionMap("RebindControls", throwIfNotFound: true);
         m_RebindControls_Cancel = m_RebindControls.FindAction("Cancel", throwIfNotFound: true);
+        // MenuControls
+        m_MenuControls = asset.FindActionMap("MenuControls", throwIfNotFound: true);
+        m_MenuControls_Exit = m_MenuControls.FindAction("Exit", throwIfNotFound: true);
     }
 
     ~@Keybinds()
@@ -588,6 +619,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_UserControls.enabled, "This will cause a leak and performance issues, Keybinds.UserControls.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DefaultControls.enabled, "This will cause a leak and performance issues, Keybinds.DefaultControls.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_RebindControls.enabled, "This will cause a leak and performance issues, Keybinds.RebindControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_MenuControls.enabled, "This will cause a leak and performance issues, Keybinds.MenuControls.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -959,6 +991,52 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         }
     }
     public RebindControlsActions @RebindControls => new RebindControlsActions(this);
+
+    // MenuControls
+    private readonly InputActionMap m_MenuControls;
+    private List<IMenuControlsActions> m_MenuControlsActionsCallbackInterfaces = new List<IMenuControlsActions>();
+    private readonly InputAction m_MenuControls_Exit;
+    public struct MenuControlsActions
+    {
+        private @Keybinds m_Wrapper;
+        public MenuControlsActions(@Keybinds wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Exit => m_Wrapper.m_MenuControls_Exit;
+        public InputActionMap Get() { return m_Wrapper.m_MenuControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+        }
+
+        private void UnregisterCallbacks(IMenuControlsActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+        }
+
+        public void RemoveCallbacks(IMenuControlsActions instance)
+        {
+            if (m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuControlsActions @MenuControls => new MenuControlsActions(this);
     public interface IUserControlsActions
     {
         void OnRight(InputAction.CallbackContext context);
@@ -992,5 +1070,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     public interface IRebindControlsActions
     {
         void OnCancel(InputAction.CallbackContext context);
+    }
+    public interface IMenuControlsActions
+    {
+        void OnExit(InputAction.CallbackContext context);
     }
 }
