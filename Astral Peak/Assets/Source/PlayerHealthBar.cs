@@ -5,8 +5,6 @@ public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] List<HealthBarHeart> hearts;
 
-    bool off = false;
-
     void OnEnable(){
         if(Player.instance != null)
             set_health(Player.instance.get_health().get_current_health());
@@ -38,7 +36,7 @@ public class PlayerHealthBar : MonoBehaviour
             if(i>a)
                 hearts[i].turn_off();
             else
-                hearts[i].turn_on();
+            hearts[i].turn_on();
             hearts[i].thump(i==a);
         }
     }

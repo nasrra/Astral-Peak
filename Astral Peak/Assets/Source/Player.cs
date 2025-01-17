@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Linq;
+using Entropek;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +15,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damaged_start, damaged_stop, on_destroy;
     // static fields for other classes to access.
     public static Player instance;
-    public static string spawn_point = "", respawn_point = ""; // respawn is temporary but spawn is forever.
+    public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
     [Header("Player")]
     [SerializeField] private PlayerAnimator animator;
     [SerializeField] protected MeleeHolsterHandler melee;
@@ -30,12 +30,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Base.
     void Awake(){
         instance = this;
-        Application.quitting += unlink_events;
-        SceneManager.sceneUnloaded += unloaded;
         sound.set_functions(new PlayerSound(sound));
         GameManager.link_player();
+        load_data();
     }
-    void unloaded(Scene s) => unlink_events(); 
     void Start(){   
         link_events();
         set_enter_position();
@@ -45,7 +43,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         set_respawn_point(""); // reset respawn point;
         unlink_events();
         on_destroy?.Invoke();
-        Application.quitting -= unlink_events;
     }
     void OnCollisionEnter2D(Collision2D other){  
         int layer = other.gameObject.layer;
@@ -252,7 +249,27 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
 
+    // data serialissation:
+    void load_data(){
+        if(GameManager.is_data_loaded()==false)
+            return;
+        GameData data = GameManager.get_game_data();
+        spawn_point = data.spawn_point;
+    }
+    void set_game_data(){
+        if(GameManager.get_state() == GameState.CUTSCENE)
+            return;
+        GameData data = GameManager.get_game_data();
+        data.spawn_point = spawn_point;
+    }
+
+
+
+
+
+
     // Linkage
+    private void unloaded_scene(Scene s) => unlink_events(); 
     protected void link_events(){
         link_input();
         link_melee();
@@ -260,6 +277,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_health();
         link_game_manager();
         link_scene_manager();
+        link_application();
     }
     protected void unlink_events(){
         unlink_movement();
@@ -267,7 +285,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_melee();
         unlink_health();
         unlink_game_manager();
-        unlink_scene_manager();   
+        unlink_scene_manager();
+        unlink_application();   
     }
     public void link_input(){
         InputManager.jump_performed        += start_jump;
@@ -306,7 +325,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dash_end               += dash_end;
         movement.new_ground             += new_ground;
     }
-//
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed -= face_direction; 
@@ -345,9 +363,25 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.death            -= get_movement().StopAllCoroutines;    
     }
     protected void link_scene_manager(){
+        SceneManager.sceneUnloaded += unloaded_scene;
         CustomSceneManager.loading_scene += unlink_events;
     }
     protected void unlink_scene_manager(){
+        SceneManager.sceneUnloaded -= unloaded_scene;
         CustomSceneManager.loading_scene -= unlink_events;
+    }
+    protected void link_application(){
+        Application.quitting += unlink_events;    
+    }
+    protected void unlink_application(){
+        Application.quitting -= unlink_events;
+    }
+    protected override void link_game_manager(){
+        base.link_game_manager();
+        GameManager.set_game_data += set_game_data;
+    }
+    protected override void unlink_game_manager(){
+        base.link_game_manager();
+        GameManager.set_game_data -= set_game_data;
     }
 }

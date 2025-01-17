@@ -6,6 +6,15 @@ using UnityEngine;
 public static class CustomSceneManager{
     static string scene_to_load;
     public static Action loading_scene, loaded_scene;
+
+    public static void initialize(){
+        GameManager.set_game_data += set_game_data;
+    }
+
+    public static void uninitialize(){
+        GameManager.set_game_data -= set_game_data;
+    }
+
     public static void load_scene(string _scene){
         scene_to_load = _scene;
         load_scene();
@@ -30,8 +39,9 @@ public static class CustomSceneManager{
         load = SceneManager.LoadSceneAsync("temp", LoadSceneMode.Additive);
         loading_scene?.Invoke();
         yield return load;
-
-        // unload active
+        
+        // unload active and save data.
+        GameManager.save_game_data();
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;
 
@@ -66,5 +76,10 @@ public static class CustomSceneManager{
             load_scene();
         yield break;
     } 
-    static void test() => Debug.Log(1);
+
+    static void set_game_data(){
+        if(scene_to_load == "MainMenu" || scene_to_load == "SplashScreen")
+            return;
+        GameManager.get_game_data().scene_to_load = scene_to_load;
+    }
 }

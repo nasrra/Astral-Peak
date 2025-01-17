@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Entropek;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,7 @@ public static class StaticComponents{
         audio();
         cutscene();
         scene_manager();
+        file_manager();
         game_manager();
         Application.quitting += uninitialize;
     }
@@ -29,6 +31,8 @@ public static class StaticComponents{
     static void uninitialize(){
         SoundLibrary.uninitialize();
         InputManager.uninitialize();
+        GameManager.uninitialize();
+        CustomSceneManager.uninitialize();
     }
 
     // input initialization.
@@ -58,10 +62,15 @@ public static class StaticComponents{
 
     static void scene_manager(){
         SceneManager.activeSceneChanged += scene_changed;
+        CustomSceneManager.initialize();
     }
     static void scene_changed(Scene scene_1, Scene scene_2){
         //AudioManager.restore_sfx_smooth();
         InputManager.reset_input_blockers(); // reset input blockers so the player cant mess up move direction when holding down keys.
+    }
+
+    static void file_manager(){
+        FileManager.set_default_file_path(Application.persistentDataPath, "SaveFile.json");
     }
 
     static void game_manager() => GameManager.initialize();

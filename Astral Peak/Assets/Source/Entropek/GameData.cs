@@ -1,0 +1,11 @@
+using System.Linq;
+using System.Text.Json.Serialization;
+
+public class GameData{
+    [JsonInclude]
+    public string 
+        scene_to_load = "Shrine",
+        spawn_point = "Enter";
+    [JsonInclude]
+    public bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
+}
