@@ -63,6 +63,25 @@ public static class FileManager{
     }
 
     public static bool file_exists() => File.Exists(default_path);
+    public static void delete_data() => delete_data(default_path);
+    public static void delete_data(string path){
+        try{
+            if (!File.Exists(path)){
+                #if UNITY_EDITOR
+                Debug.LogWarning($"File deleteion UNSUCCESSFUL, File not found: {path}");
+                #endif
+            }
+            else{
+                File.Delete(path);
+                #if UNITY_EDITOR
+                Debug.Log("File deletion SUCCESSFUL");
+                #endif
+            }
+        }
+        catch(Exception e){
+            throw new Exception($"Failed to load path: {path}. ",e);
+        }
+    }
 }
 
 }

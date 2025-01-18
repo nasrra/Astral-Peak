@@ -16,3 +16,4 @@ public class AudioReactiveParticleSystem : MonoBehaviour
     void Start() => sound.magnitude_updated += update_speed;
     void OnDestroy() => sound.magnitude_updated -= update_speed;
 }
+////

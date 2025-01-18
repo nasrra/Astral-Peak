@@ -234,9 +234,9 @@ public class Mage : Boss<Movement>{
                 transform.position = pos;
             }
         ));
-    public override void kill() => StartCoroutine(death_loop());
+
+    protected override void death_start() => StartCoroutine(death_loop());
     IEnumerator death_loop(){
-        invoke_death_started();
         enable_body_colliders(0); 
         stop_all();
         signature_adjust();
@@ -244,6 +244,7 @@ public class Mage : Boss<Movement>{
         animator.Play("MageDeath");
         particles.play_particle("yell");
         CameraController.instance.start_camera_shake(0.75f, true);
+        base.death_start();
         yield return new WaitForSeconds(1.5f);
         int count = 0;
         while(count < 5){
@@ -260,8 +261,8 @@ public class Mage : Boss<Movement>{
         particles.stop_particle("yell");
         yield return new WaitForSeconds(particles.get_particle("yell").main.startLifetime.constantMax  + 1);
         signature_reset();
+        base.death_complete();
         Destroy(gameObject);
-        invoke_death_completed();
         yield break;
     }
 

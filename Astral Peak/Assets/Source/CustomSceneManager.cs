@@ -42,6 +42,7 @@ public static class CustomSceneManager{
         yield return load;
         
         // unload active and save data.
+        GameManager.invoke_set_game_data();
         GameManager.save_game_data();
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;

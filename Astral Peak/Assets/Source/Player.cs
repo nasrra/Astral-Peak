@@ -147,9 +147,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
             handle_enemy_contact(other);
         col.excludeLayers = new LayerMask();
     }
-    private void handle_enemy_contact(Collision2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
-    private void handle_enemy_contact(Collider2D other) => health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
-    public override void kill() => StartCoroutine(death_state());
+    private void handle_enemy_contact(Collision2D other){
+        if(other.gameObject.tag != "Dead")
+            health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
+    }
+    private void handle_enemy_contact(Collider2D other){
+        if(other.gameObject.tag != "Dead")
+            health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
+    } 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
         sprite.play_damaged_flash();
@@ -162,6 +167,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damaged_stop?.Invoke();
         AudioManager.low_pass_audio(false);
     }
+    protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){
         unlink_movement();
         unlink_input();
@@ -174,10 +180,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         sound.play_sound("damaged");
         sprite.play_death_effect(3f);
         animator.death();
-        invoke_death_started();
+        base.death_start();
         yield return new WaitForSeconds(3);
         //AudioManager.low_pass_audio(false);
-        invoke_death_completed();
+        base.death_complete();
     }
 
 

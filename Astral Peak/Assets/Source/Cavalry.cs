@@ -26,7 +26,7 @@ public class Cavalry : Boss<CavalryMovement>{
     }
     public override void exit_cutscene_state() => idle(1);
 
-    public override void kill(){
+    protected override void death_start(){
         animator.Play("WolfDeath");
         StartCoroutine(Util.timer(
             animator.get_clip_length("WolfDeath")+3,
@@ -38,13 +38,13 @@ public class Cavalry : Boss<CavalryMovement>{
                 disable_components();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
-                invoke_death_started();
+                base.death_start();
             },
             time_out:()=>{
                 AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
                 gameObject.SetActive(false);
-                invoke_death_completed();
+                base.death_complete();//
             }
         ));
     }

@@ -23,8 +23,9 @@ public class Enemy : Boss<Movement>{
         EnemyManager.instance?.add(this);
     }
 
-    public override void kill(){
+    protected override void death_complete(){
         enemy_death?.Invoke(this);
         EnemyManager.instance?.remove(this);
+        base.death_complete();
     }
 }

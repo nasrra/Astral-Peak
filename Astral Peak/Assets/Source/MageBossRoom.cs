@@ -85,22 +85,13 @@ public class MageBossRoom : BossRoomHandler{
     }
 
     protected override int get_boss_id() => 1;
+    protected override Cutscene get_altar_cutscene() => new ShrineAltarTwoCutscene();
     
-    void death_completed() => StartCoroutine(fight_ended());
-    IEnumerator fight_ended(){
-        UiManager.instance.play_enemy_vanquished();
+
+    protected override void death_completed(){
         set_room_state(0);
         StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
-        yield return new WaitForSeconds(6);
-        CustomSceneManager.load_scene("Shrine");
-        CustomSceneManager.loaded_scene += play_altar_cutscene;
-        Player.instance.enter_cutscene_state();
-        yield break;
-    }
-
-    void play_altar_cutscene(){
-        CutsceneManager.play(new ShrineAltarTwoCutscene());
-        CustomSceneManager.loaded_scene -= play_altar_cutscene;
+        base.death_completed();
     }
 
     void link_events(){

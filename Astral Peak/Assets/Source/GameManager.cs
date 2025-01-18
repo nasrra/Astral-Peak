@@ -13,7 +13,7 @@ public enum GameState{
 }
 
 public static class GameManager{
-    public static Action set_game_data;
+    public static event Action set_game_data;
     static GameState state = GameState.GAMEPLAY;
     static GameData data = new GameData();
     static bool data_loaded = false;

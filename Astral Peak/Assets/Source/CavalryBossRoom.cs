@@ -39,20 +39,7 @@ public class CavalryBossRoom : BossRoomHandler{
     }
 
     protected override int get_boss_id() => 0;
-
-    void death_completed() => StartCoroutine(altar_cutscene());
-    IEnumerator altar_cutscene(){
-        yield return new WaitForSeconds(6);
-        CustomSceneManager.load_scene("Shrine");
-        CustomSceneManager.loaded_scene += play_altar_cutscene;
-        Player.instance.enter_cutscene_state();
-        yield break;
-    }
-
-    void play_altar_cutscene(){
-        CutsceneManager.play(new ShrineAltarOneCutscene());
-        CustomSceneManager.loaded_scene -= play_altar_cutscene;
-    }
+    protected override Cutscene get_altar_cutscene() => new ShrineAltarOneCutscene();
 
     void link(){
         link_fight_start_trigger();

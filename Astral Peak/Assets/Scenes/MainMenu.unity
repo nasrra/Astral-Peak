@@ -551,7 +551,11 @@ PrefabInstance:
       objectReference: {fileID: 391088047}
     - target: {fileID: 5351148219916933267, guid: 41a6084b8cdfda146836d71fa52f5a36, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: load_game
+      value: invoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 5351148219916933267, guid: 41a6084b8cdfda146836d71fa52f5a36, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NewGameButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7876491895354397339, guid: 41a6084b8cdfda146836d71fa52f5a36, type: 3}
       propertyPath: m_text

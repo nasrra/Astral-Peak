@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public abstract class BossRoomHandler : MonoBehaviour{
     public event Action 
@@ -55,9 +56,27 @@ public abstract class BossRoomHandler : MonoBehaviour{
         ProjectileManager.instance?.destroy_all();
         EnemyManager.instance?.destroy_all();
         GameManager.boss_states[get_boss_id()] = true;
-        GameManager.set_game_data();
+        GameManager.invoke_set_game_data();
         GameManager.save_game_data();
     }
 
+    protected virtual void death_completed(){
+        UiManager.instance.play_enemy_vanquished();
+        StartCoroutine(altar_cutscene());
+    }
+    protected IEnumerator altar_cutscene(){
+        yield return new WaitForSeconds(6);
+        CustomSceneManager.load_scene_with_transitions("Shrine");
+        CustomSceneManager.loaded_scene += play_altar_cutscene;
+        GameManager.state_changed(GameState.CUTSCENE);
+        yield break;
+    }
+
+    protected void play_altar_cutscene(){
+        CutsceneManager.play(get_altar_cutscene());
+        CustomSceneManager.loaded_scene -= play_altar_cutscene;
+    }
+
     protected abstract int get_boss_id();
+    protected abstract Cutscene get_altar_cutscene();
 }

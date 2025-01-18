@@ -41,12 +41,12 @@ public class Hollow : Enemy{
 
 
 
-    // States:
-    public override void kill(){
+    // States://
+    protected override void death_start(){
         unlink_events();
         animator.Play("HollowDeath",0,0);
         StartCoroutine(Util.timer(
-            animator.get_clip_length("HollowDeath") + 3,
+            animator.get_clip_length("HollowDeath")+3,
             start_action: ()=>{
                 movement.halt();
                 enable_body_colliders(0);
@@ -54,10 +54,10 @@ public class Hollow : Enemy{
                 sprites.play_death_effect(1.5f);
                 if(stun_state != null)
                     StopCoroutine(stun_state);
+                base.death_start();
             },
             time_out: ()=>{
-                invoke_death_completed();
-                base.kill();
+                base.death_complete();
                 Destroy(gameObject);
             }
         ));
