@@ -4,63 +4,92 @@ using Entropek;
 
 public class RiderCombat : BossCombat{
     BossAttack
-        front_strike = new BossAttack(
-            "front_strike",
+        signature = new BossAttack(
+            "RiderSignature",
             chance:                 50,
-            player_distance:        4,
+            max_player_distance:    4,
+            min_player_distance:    0,
             arena_bound_distance:   7,
             attack_cooldown:        4,
             idle_cooldown:          2,
-            combat_cooldown:        1
-        ),
-        signature = new BossAttack(
-            "signature",
-            chance:                 50,
-            player_distance:        4,
-            arena_bound_distance:   7,
-            attack_cooldown:        4,
-            idle_cooldown:          3,
-            combat_cooldown:        1
+            combat_cooldown:        2
         ),
         jump_n_dash = new BossAttack(
-            "jump_n_dash",
+            "RiderJumpNDash",
             chance:                 50,
-            player_distance:        4,
+            max_player_distance:    4,
+            min_player_distance:    0,
             arena_bound_distance:   10,
             attack_cooldown:        4,
             idle_cooldown:          2,
             combat_cooldown:        1
         ),
-        back_shot = new BossAttack(
-            "back_shot",
-            chance:                 50,
-            player_distance:        4,
-            arena_bound_distance:   0,
-            attack_cooldown:        4,
-            idle_cooldown:          0,
-            combat_cooldown:        1            
-        ),
         round_shot = new BossAttack(
-            "round_shot",
+            "RiderRoundShot",
             chance:                 50,
-            player_distance:        4,
+            max_player_distance:    4,
+            min_player_distance:    0,
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          2,
             combat_cooldown:        1
-        );
+        ),
+        front_jump_forward = new BossAttack(
+            "RiderJumpForward",
+            chance:                 50,
+            max_player_distance:    12,
+            min_player_distance:    9,
+            arena_bound_distance:   0,
+            attack_cooldown:        16,
+            idle_cooldown:          0,
+            combat_cooldown:        1
+        ),
+        back_jump_forward = new BossAttack(
+            "RiderJumpForward",
+            chance:                 50,
+            max_player_distance:    4,
+            min_player_distance:    0,
+            arena_bound_distance:   0,
+            attack_cooldown:        8,
+            idle_cooldown:          0,
+            combat_cooldown:        1
+        ),
+        jump_backward = new BossAttack(
+            "RiderJumpBackward",
+            chance:                 50,
+            max_player_distance:    5,
+            min_player_distance:    0,
+            arena_bound_distance:   0,
+            attack_cooldown:        16,
+            idle_cooldown:          0,
+            combat_cooldown:        1
+        ),  
+        walk_n_fire = new BossAttack(
+            "RiderWalkNFire",
+            chance:                 50,
+            max_player_distance:    6,
+            min_player_distance:    0,
+            arena_bound_distance:   0,
+            attack_cooldown:        8,
+            idle_cooldown:          0,
+            combat_cooldown:        2
+        )
+        ;
         protected override void create_movesets(){
             movesets = new Dictionary<string, Action>(){
                 {"phase_1",()=>{
-                    //test(signature);
                     front_moveset = new List<BossAttack>(){
                         signature,
-                        jump_n_dash, 
+                        front_jump_forward,
+                        walk_n_fire,
+                        jump_backward,
                     };
                     back_moveset = new List<BossAttack>(){
-                        round_shot,             
+                        back_jump_forward,     
                     };
-                    special_moveset = new List<BossAttack>();
+                    special_moveset = new List<BossAttack>(){
+                        round_shot,      
+                    };
                 }},
             };
         }

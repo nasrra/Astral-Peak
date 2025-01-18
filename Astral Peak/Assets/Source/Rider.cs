@@ -16,22 +16,25 @@ public class Rider : Boss<Movement>{
     void OnDisable() => unlink_events();
 
     // movement functions
-    public void forward_strike_lunge()          => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.33f);
+    public void forward_strike_lunge()   => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.33f);
     public void signature_lunge()        => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.33f);
     public void signature_jump_back()    => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.33f);
-    public void jnd_jump_back()                 => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.40f);
-    public void jnd_front_leap()                => movement.dash(flipped == false? Vector2.right : Vector2.left, 40, 0.30f);
+    public void jnd_jump_back()          => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.40f);
+    public void jnd_front_leap()         => movement.dash(flipped == false? Vector2.right : Vector2.left, 40, 0.30f);
+    public void jump_forward()           => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.5f);
+    public void jump_backward()          => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.5f);
+
 
     public override void enter_cutscene_state() => idle();
     public override void exit_cutscene_state() => idle(1);
 
     public void cutscene_yell(){
         no_state();
-        animator.Play("yell");
+        animator.Play("RiderYell");
     }
     public void cutscene_whistle(){
         no_state();
-        animator.Play("whistle");
+        animator.Play("RiderWhistle");
     }
 
     private void idle(float time) =>
@@ -44,7 +47,7 @@ public class Rider : Boss<Movement>{
     private void idle(){
         if(idle_state != null)
             StopCoroutine(idle_state);
-        animator.Play("idle");
+        animator.Play("RiderIdle");
         no_state();
     }
 
@@ -54,9 +57,9 @@ public class Rider : Boss<Movement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("run",0,0);
+            animator.Play("RiderWalk",0,0);
         else
-            animator.Play("idle");
+            animator.Play("RiderIdle");
     }
 
     void handle_death(){

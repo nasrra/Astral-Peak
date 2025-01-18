@@ -110,7 +110,7 @@ public class UiManager : MonoBehaviour{
 
     void exited_game_state(GameState state){
         if(state == GameState.CUTSCENE){
-            fade_in();
+            health_bar.fade_in();
             disable_black_bars();
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Entropek;
+using System.Security.Cryptography;
 
 public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
@@ -87,7 +88,7 @@ public abstract class BossCombat : MonoBehaviour{
 
         foreach(BossAttack attack in attacks)
             if(attack.enabled == true 
-                && td <= attack.player_distance
+                && td <= attack.max_player_distance && td >= attack.min_player_distance
                 && (transform.rotation.y == 0 && lbd >= attack.arena_bound_distance || 
                     transform.rotation.y != 0 && rbd >= attack.arena_bound_distance))
                 available_attacks.Add(attack);
@@ -98,7 +99,8 @@ public abstract class BossCombat : MonoBehaviour{
     float dist_to_right_bound() => Mathf.Abs(right_arena_bound.position.x - transform.position.x);
 
     protected void test(BossAttack attack){
-        attack.player_distance = 10;
+        attack.max_player_distance = 10;
+        attack.min_player_distance = 0;       
         attack.arena_bound_distance = 0;
         attack.combat_cooldown = 1;
         attack.attack_cooldown = 1;
