@@ -78,13 +78,14 @@ public class MageBossRoom : BossRoomHandler{
             particles.stop_particle("stone_"+i);
     }
 
-    void death_started(){
+    protected override void death_started(){
         platforms.stop_loop();
         platforms.destroy_platforms();
-        EnemyManager.instance.destroy_all();
-        ProjectileManager.instance.destroy_all();
-        GameManager.set_boss_state(1,true);
+        base.death_started();
     }
+
+    protected override int get_boss_id() => 1;
+    
     void death_completed() => StartCoroutine(fight_ended());
     IEnumerator fight_ended(){
         UiManager.instance.play_enemy_vanquished();

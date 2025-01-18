@@ -28,6 +28,7 @@ public static class CustomSceneManager{
         UnityHook.instance.StartCoroutine(load_scene_with_transitions_unscaled_coroutine());
     }
 
+
     static void load_scene() => UnityHook.instance.StartCoroutine(load_scene_coroutine());
     static IEnumerator load_scene_coroutine(){
         // Wait to unload scene

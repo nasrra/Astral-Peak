@@ -29,6 +29,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Base.
     void Awake(){
+        instance = null;
         instance = this;
         sound.set_functions(new PlayerSound(sound));
         GameManager.link_player();
@@ -377,11 +378,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         Application.quitting -= unlink_events;
     }
     protected override void link_game_manager(){
-        base.link_game_manager();
         GameManager.set_game_data += set_game_data;
+        base.link_game_manager();
     }
     protected override void unlink_game_manager(){
-        base.link_game_manager();
         GameManager.set_game_data -= set_game_data;
+        base.unlink_game_manager();
     }
 }

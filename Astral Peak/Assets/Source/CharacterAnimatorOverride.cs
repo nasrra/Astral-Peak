@@ -16,7 +16,7 @@ public class CharacterAnimatorOverride : MonoBehaviour{
     protected void play_override(int animation_hash){animator.Play(animation_hash, OVERRIDE);}
 
     public void play(int animation_hash, bool set_state){
-        if(animator.isActiveAndEnabled == true){
+        if( animator.isActiveAndEnabled == true){
             play_head(animation_hash);
             play_body(animation_hash);
             play_legs(animation_hash);

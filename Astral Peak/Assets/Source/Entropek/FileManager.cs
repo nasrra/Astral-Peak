@@ -49,7 +49,9 @@ public static class FileManager{
     public static T load_data<T>(string path) where T : new(){
         try{
             if (!File.Exists(path)){
-                Debug.Log($"File not found: {path}");
+                #if UNITY_EDITOR
+                Debug.LogWarning($"File not found: {path}");
+                #endif
                 return new T();
             }
             string jsonData = File.ReadAllText(path);
@@ -59,6 +61,8 @@ public static class FileManager{
             throw new Exception($"Failed to load data from {path}", e);
         }
     }
+
+    public static bool file_exists() => File.Exists(default_path);
 }
 
 }

@@ -66,7 +66,7 @@ public class Movement : MonoBehaviour{
     }
 
 
-
+//
 
 
     // state machine.

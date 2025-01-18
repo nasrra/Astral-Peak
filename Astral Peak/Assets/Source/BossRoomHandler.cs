@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
-using NUnit.Framework;
 
 public abstract class BossRoomHandler : MonoBehaviour{
     public event Action 
@@ -45,4 +44,20 @@ public abstract class BossRoomHandler : MonoBehaviour{
             fight_start_trigger.enabled = false;
         fight_start_trigger.trigger_enter -= start_fight;
     }
+
+    protected void phase_transition(string phase){
+        ProjectileManager.instance?.destroy_all();
+        EnemyManager.instance?.destroy_all();
+        play_cutscene(phase);
+    }
+
+    protected virtual void death_started(){
+        ProjectileManager.instance?.destroy_all();
+        EnemyManager.instance?.destroy_all();
+        GameManager.boss_states[get_boss_id()] = true;
+        GameManager.set_game_data();
+        GameManager.save_game_data();
+    }
+
+    protected abstract int get_boss_id();
 }

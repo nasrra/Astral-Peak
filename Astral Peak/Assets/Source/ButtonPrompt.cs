@@ -13,13 +13,11 @@ public class ButtonPrompt : MonoBehaviour{
     public virtual void initialize(){
         action = InputManager.get_input_action(input_action);
         image_transform.localScale = action.bindings[0].ToDisplayString()=="Space"
-            ? new Vector3(image_transform.localScale.x*1.75f,image_transform.localScale.y,image_transform.localScale.z)
-            : image_transform.localScale;
+            ? new Vector3(1.75f,1,1)
+            : new Vector3(1,1,1);
         image_icon.sprite = InputManager.get_input_binding_image(action, 0);
     }
     public virtual void unitialize(){
-         image_transform.localScale = action.bindings[0].ToDisplayString()=="Space"
-            ? new Vector3(image_transform.localScale.x/1.75f,image_transform.localScale.y,image_transform.localScale.z)
-            : image_transform.localScale;
+        image_transform.localScale = new Vector3(1,1,1);
     }
 }
