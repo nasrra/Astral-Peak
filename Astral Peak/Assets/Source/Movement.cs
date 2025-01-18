@@ -283,24 +283,24 @@ public class Movement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    public void move_in_faced_direction_state(){
-        state_switch(ref move_state, move());
-        state_switch(ref controller_state, move_in_faced_direction());        
-    }
-    protected IEnumerator move_in_faced_direction(){
-        while(true){
-            if(transform.rotation.eulerAngles.y == 0 && get_move_direction() != new Vector2(1,0)){
-                clear_move_direction();
-                move_right(true);
-            }
-            // if we are not moving left, move left.
-            if(transform.rotation.eulerAngles.y == 180 && get_move_direction() != new Vector2(-1,0)){
-                clear_move_direction();
-                move_left(true);
-            }        
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    //public void move_in_faced_direction_state(){
+    //    state_switch(ref move_state, move());
+    //    state_switch(ref controller_state, move_in_faced_direction());        
+    //}
+    //protected IEnumerator move_in_faced_direction(){
+    //    while(true){
+    //        if(transform.rotation.eulerAngles.y == 0 && get_move_direction() != new Vector2(1,0)){
+    //            clear_move_direction();
+    //            move_right(true);
+    //        }
+    //        // if we are not moving left, move left.
+    //        if(transform.rotation.eulerAngles.y == 180 && get_move_direction() != new Vector2(-1,0)){
+    //            clear_move_direction();
+    //            move_left(true);
+    //        }        
+    //        yield return new WaitForFixedUpdate();
+    //    }
+    //}
 
     protected virtual void link(){
         dash_end += end_dash;

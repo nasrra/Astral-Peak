@@ -51,7 +51,7 @@ public class Mage : Boss<Movement>{
         link_events();
         check_game_state();
         //switch_phase();
-        //idle(3);
+        ////idle(3);
     }
     void OnDestroy() => unlink_events();
     public void idle(float time){
@@ -112,11 +112,12 @@ public class Mage : Boss<Movement>{
 
     }
     private void attack_phase_1(BossAttack attack){
+        Log.MethodCall();
         movement.halt();
         combat.halt();
         state.queue_and_start(
             time: animator.get_clip_length(attack.animation_id),
-            start_action:()=>animator.Play(attack.animation_id,0,0));
+            start_action:()=>animator.Play(attack.animation_id));
     }
     public void teleport_phase_1(){
         float offset = UnityEngine.Random.Range(8,17);

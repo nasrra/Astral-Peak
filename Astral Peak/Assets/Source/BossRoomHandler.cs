@@ -79,4 +79,4 @@ public abstract class BossRoomHandler : MonoBehaviour{
 
     protected abstract int get_boss_id();
     protected abstract Cutscene get_altar_cutscene();
-}
+}//

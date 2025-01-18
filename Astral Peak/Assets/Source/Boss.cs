@@ -96,6 +96,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         current_phase = phase;
     }
     public void link_phase(string phase){
+        Log.MethodCall();
         get_phase_linker()[phase]();
         if(phase.Contains("phase"))
             combat.set_moveset(phase);
