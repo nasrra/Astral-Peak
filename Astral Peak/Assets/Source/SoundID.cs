@@ -16,6 +16,10 @@ namespace Sounds{
     MAGIC_1,
     MAGIC_EXPLOSION,
     WHOOSH_1,
+    MAGIC_FOOTSTEP_1,
+    MAGIC_FOOTSTEP_2,
+    MAGIC_FOOTSTEP_3,
+
 
     // electricity
     ELECTRICITY_1,

@@ -721,4 +721,31 @@ public struct Ping : Sound{
     public float volume()           => .5f;
 }
 
+public struct MagicFootstep1 : Sound{
+    public SoundID id()             => SoundID.MAGIC_FOOTSTEP_1;
+    public AudioClip clip()         => SoundLibrary.load_sfx("magic_footstep_1");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
+public struct MagicFootstep2 : Sound{
+    public SoundID id()             => SoundID.MAGIC_FOOTSTEP_2;
+    public AudioClip clip()         => SoundLibrary.load_sfx("magic_footstep_2");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
+public struct MagicFootstep3 : Sound{
+    public SoundID id()             => SoundID.MAGIC_FOOTSTEP_3;
+    public AudioClip clip()         => SoundLibrary.load_sfx("magic_footstep_3");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1f;
+}
+
 }

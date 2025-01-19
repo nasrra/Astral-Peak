@@ -184,6 +184,10 @@ public class PlayerSound : SoundFunctions{
         SoundID.STONE_FOOTSTEP_2,
         SoundID.STONE_FOOTSTEP_3,
         SoundID.STONE_FOOTSTEP_4};
+    private List<SoundID> magic_footsteps = new List<SoundID>(){
+        SoundID.MAGIC_FOOTSTEP_1,
+        SoundID.MAGIC_FOOTSTEP_2,
+        SoundID.MAGIC_FOOTSTEP_3,};
     public PlayerSound(MonoBehaviour _audio_player) : base(_audio_player){}
     public override void play_ground_effected_sound(string sound_id){
         if(ground == "" || ground == null)
@@ -212,6 +216,11 @@ public class PlayerSound : SoundFunctions{
             random_id(stone_footsteps),
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"Magic_footstep", ()=>
+            AudioClipHandler.play(
+            random_id(magic_footsteps),
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
         {"melee_hit", ()=> 
             AudioClipHandler.play(
             SoundID.MELEE_HIT,
@@ -225,6 +234,11 @@ public class PlayerSound : SoundFunctions{
         {"Stone_jump", ()=>
             AudioClipHandler.play(
             SoundID.STONE_IMPACT_LIGHT,
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC_RANDOMISED)},
+        {"Magic_jump", ()=>
+            AudioClipHandler.play(
+            random_id(magic_footsteps),
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
         {"damaged", ()=>
