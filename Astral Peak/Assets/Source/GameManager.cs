@@ -22,6 +22,7 @@ public static class GameManager{
         entered_game_state, 
         exited_game_state;
     public static bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
+    //public static bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
 
     public static void initialize(){
         state_changed(GameState.MENU);
@@ -57,7 +58,11 @@ public static class GameManager{
     public static bool get_boss_state(int boss) => boss_states[boss];
     public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : 1;
     public static GameData get_game_data() => data;
-    public static void save_game_data() => FileManager.save_data(data);
+    public static void save_game_data(){
+        Debug.Log(state);
+        if(state != GameState.CUTSCENE)
+            FileManager.save_data(data);
+    }
     public static GameData load_game_data(){
         data_loaded = true;
         CustomSceneManager.loaded_scene += link_loaded_scene_to_load_data;

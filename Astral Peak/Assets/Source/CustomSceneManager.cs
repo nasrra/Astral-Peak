@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections.Generic;
 
 public static class CustomSceneManager{
     static string scene_to_load;
     public static Action loading_scene, loaded_scene;
+
+    static readonly HashSet<string> dont_save_scenes = new HashSet<string> {
+        "MainMenu", "SplashScreen", "Credits", "DemoEnd"
+    };
 
     public static void initialize(){
         GameManager.set_game_data += set_game_data;
@@ -41,9 +46,6 @@ public static class CustomSceneManager{
         loading_scene?.Invoke();
         yield return load;
         
-        // unload active and save data.
-        GameManager.invoke_set_game_data();
-        GameManager.save_game_data();
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;
 
@@ -52,9 +54,13 @@ public static class CustomSceneManager{
         AudioManager.restore_sfx_smooth();
         yield return load;
         // add the title card scene here when necessary :)
-        if(scene_to_load != "MainMenu")
-            GameManager.state_changed(GameState.GAMEPLAY);
         loaded_scene?.Invoke();
+        if(dont_save_scenes.Contains(scene_to_load) == false){
+            if(CutsceneManager.in_cutscene() == false)
+                GameManager.state_changed(GameState.GAMEPLAY);
+            GameManager.invoke_set_game_data();
+            GameManager.save_game_data();
+        }
         yield break;
     }
 
@@ -80,7 +86,7 @@ public static class CustomSceneManager{
     } 
 
     static void set_game_data(){
-        if(scene_to_load == "MainMenu" || scene_to_load == "SplashScreen")
+        if(dont_save_scenes.Contains(scene_to_load) == true)
             return;
         GameManager.get_game_data().scene_to_load = scene_to_load;
     }

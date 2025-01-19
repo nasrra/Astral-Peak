@@ -5,7 +5,7 @@ using UnityEngine;
 public static class CutsceneManager{
     public static Action<Cutscene> started_cutscene;
     static MonoBehaviour coroutines;
-    private static Cutscene cutscene;
+    private static Cutscene cutscene = null;
     public static void initialize(MonoBehaviour _coroutines) => coroutines = _coroutines;
     public static void play(Cutscene _cutscene){
         GameManager.state_changed(GameState.CUTSCENE);
@@ -14,8 +14,13 @@ public static class CutsceneManager{
         set_coroutine(cutscene.get_coroutine());
         cutscene.ended += cutscene_ended;
     }
+    public static bool in_cutscene() => cutscene != null;
+
     public static void set_coroutine(IEnumerator coroutine) => coroutines.StartCoroutine(coroutine); 
-    static void cutscene_ended() => GameManager.state_changed(GameState.GAMEPLAY);
+    static void cutscene_ended(){
+        cutscene = null;
+        GameManager.state_changed(GameState.GAMEPLAY);
+    }
 }
 
 public abstract class Cutscene{
