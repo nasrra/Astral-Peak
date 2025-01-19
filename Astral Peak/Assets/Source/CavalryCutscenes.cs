@@ -48,20 +48,25 @@ public class CavalryPhaseTransition : Cutscene{
         Player.instance.set_enter_position();
         rider.flip_to_target();
         CameraEffects.instance.fade_from_black(fade_transition_time);
-        
-        yield return new WaitForSeconds(1f);
+        CameraController.instance.lerp_zoom(6,4);
+        CameraController.instance.lerp_offset(null, -1 ,4);
+
+        yield return new WaitForSeconds(2f);
         CameraController.instance.set_target(rider.transform);
-        
+
         yield return new WaitForSeconds(1);
-        rider.cutscene_whistle();
-        
+        rider.animator.Play("RiderPhaseTransition");
+        yield return new WaitForSeconds(2.5f);
+        CameraController.instance.lerp_offset(null, 45, 2);
+
         // start playing background wolf animation.
         yield return new WaitForSeconds(2f);
         room.background_wolf.SetActive(true);
+        yield return new WaitForSeconds(.25f);
         CameraController.instance.set_target(room.background_wolf.transform);
-        CameraController.instance.regulate_in_bounds(false);
-        
-        yield return new WaitForSeconds(8.65f);
+        CameraController.instance.reset_zoom(2);
+        CameraController.instance.reset_offset(2);
+        yield return new WaitForSeconds(8.4f);
         room.background_wolf.SetActive(false);
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);
@@ -72,6 +77,8 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.set_target(cavalry.transform);
         
         yield return new WaitForSeconds(3f);
+        CameraController.instance.reset_offset(2);
+        CameraController.instance.reset_zoom(2);
         CameraController.instance.set_target(Player.instance.transform);
         AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_2);
         end(); 

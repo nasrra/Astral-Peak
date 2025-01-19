@@ -10043,6 +10043,7 @@ Transform:
   - {fileID: 688874037414961038}
   - {fileID: 3163093875365088259}
   - {fileID: 4463500676708970526}
+  - {fileID: 2439191325142834295}
   m_Father: {fileID: 7791262957868086353}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5099105228817431107
@@ -10544,6 +10545,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holsters:
     _serializedList:
+    - Key: phase_transition
+      Value:
+        rotation_type: 2
+        projectile_is_child: 0
+        projectile: {fileID: 6752692394907920807, guid: bb8dd364d51f34945833be3a46496727, type: 3}
+        fire_point: {fileID: 2439191325142834295}
     - Key: signature
       Value:
         rotation_type: 0
@@ -25301,6 +25308,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8458626102798417127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2439191325142834295}
+  m_Layer: 0
+  m_Name: PhaseTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2439191325142834295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458626102798417127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.75, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3622673347450634023}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &8472848274859405371
 GameObject:
   m_ObjectHideFlags: 0

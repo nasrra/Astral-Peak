@@ -32,10 +32,6 @@ public class Rider : Boss<Movement>{
         no_state();
         animator.Play("RiderYell");
     }
-    public void cutscene_whistle(){
-        no_state();
-        animator.Play("RiderWhistle");
-    }
 
     private void idle(float time) =>
         state_switch(ref idle_state, Util.timer(
