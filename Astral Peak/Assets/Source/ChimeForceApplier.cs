@@ -3,12 +3,19 @@ using System.Collections;
 
 public class ChimeForceApplier : MonoBehaviour{
     [SerializeField] Rigidbody2D chime_end;
+    [SerializeField] float max_force = 7f;
+    [SerializeField] float oscilation_rate = 4;
     void Awake() => StartCoroutine(loop());
 
     IEnumerator loop(){
-        chime_end.AddForce(new Vector2(Random.Range(5f, 7f),0), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(4f);
-        yield return null;
+        while(true){
+            chime_end.AddForce(new Vector2(max_force * Mathf.Sin(Time.time),0), ForceMode2D.Force);
+            //chime_end.AddForce(new Vector2(Random.Range(min_force, max_force),0), ForceMode2D.Force);
+            //yield return new WaitForSeconds(time);
+            //chime_end.AddForce(new Vector2(Random.Range(-max_force, -min_force),0), ForceMode2D.Force);
+            //yield return new WaitForSeconds(time);
+            yield return new WaitForFixedUpdate();
+        }
     }
 
 }
