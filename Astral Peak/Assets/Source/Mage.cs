@@ -69,17 +69,11 @@ public class Mage : Boss<Movement>{
     public override void exit_cutscene_state() => exit_cutscene_states[current_phase]();
     protected override Dictionary<string,Action> get_phase_linker() => phase_linker;
     protected override Dictionary<string,Action> get_phase_unlinker() => phase_unlinker;
-    public void stop_all(){
-        movement.halt();
-        combat.halt();
-        combat.renew();
-        state.stop();
-        particles.stop_all_particles();
-        sound.stop_all_loops();
-        lighting.set_intensity(0);
-        stop_staff_lightning();
+    protected override void stop_all(){
         summoning_circles.off();
-        disable_surrounding_projectiles();     
+        stop_staff_lightning();
+        disable_surrounding_projectiles();
+        base.stop_all();    
     }
 
 

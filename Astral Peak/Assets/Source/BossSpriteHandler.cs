@@ -10,4 +10,9 @@ public class BossSpriteHandler : SpriteHandler{
     public void play_death_effect_reverse(float time)   => state_switch(ref dissolve_state, lerp_value("_dissolve_amount", 0, 1, time));
     public void play_charged_flash()                    => state_switch(ref charge_state, pulse_value("_charge_amount", 1, 1f));
     public void play_charged_flash(string sprite_id)    => state_switch(ref charge_state, pulse_value(sprite_id, "_charge_amount", 1, 1f));
+    public void renew(){
+        StopAllCoroutines();
+        set_value("_dissolve_amount",1);
+        set_value("_charge_amount",0);
+    }
 }

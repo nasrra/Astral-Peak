@@ -83,26 +83,15 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
+    protected void set_value(string value_id, float value){
+        foreach(string sprite in sprites.Keys)
+            set_value(sprite, value_id, value);
+    }
+    protected void set_value(string sprite_id, string value_id, float value) => sprites[sprite_id].material.SetFloat(value_id, value);
+
     public void enable_sprite(string id, bool enabled) => sprites[id].enabled = enabled;
     public void enable_sprite(bool enabled){
         foreach(SpriteRenderer sprite in sprites.Values)
             sprite.enabled = enabled;
     }
-
-    //protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
-    //    float elapsedTime = 0;
-    //    float t = 0;
-    //    foreach (SpriteRenderer s in sprites)
-    //        s.material.SetColor(value, start);
-    //    while (t < time) {
-    //        elapsedTime += Time.deltaTime;
-    //        t = elapsedTime / time;
-    //        foreach (SpriteRenderer s in sprites)
-    //            s.material.SetColor(value, Color.Lerp(start,end,1/time * t));
-    //        yield return null;
-    //    }
-    //    foreach (SpriteRenderer s in sprites)
-    //        s.material.SetColor(value, end);
-    //    yield break;
-    //}
 }

@@ -10,6 +10,10 @@ public class LightningStrikeProjectile : Projectile{
         Destroy(gameObject);
     }
 
+    void Awake(){
+        enable_colliders(false);
+    }
+
     protected override void Start(){
         StartCoroutine(Util.timer(
             time: lifetime,
@@ -17,7 +21,6 @@ public class LightningStrikeProjectile : Projectile{
         ));
         StartCoroutine(Util.timer(
             time: 1.5f,
-            start_action:()=> enable_colliders(false),
             time_out: loop
         ));
         snap_to_floor();

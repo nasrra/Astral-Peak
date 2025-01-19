@@ -109,6 +109,17 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected virtual Dictionary<string, Action> get_phase_unlinker(){throw Log.MethodNotImplemented(this);}
     protected virtual Dictionary<string, Action> get_phase_linker(){throw Log.MethodNotImplemented(this);}
 
+    protected virtual void stop_all(){
+        movement.halt();
+        combat.halt();
+        combat.renew();
+        state.stop();
+        particles.stop_all_particles();
+        sound.stop_all_loops();
+        lighting.set_intensity(0);
+        sprites.renew();     
+    }
+
     public string get_phase() => current_phase;
     public void transition_phase() => phase_transition?.Invoke(current_phase);
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
