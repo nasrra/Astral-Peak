@@ -5,7 +5,7 @@ public class EnemyDoorLock : MonoBehaviour{
     [SerializeField] List<Enemy> enemies = new List<Enemy>();
     [SerializeField] int enemy_kill_requirement;
     [SerializeField] Door door;
-    private int count;
+    [SerializeField] int count;
     void Start() => link_events();
     void OnDestroy() => unlink_events();
     

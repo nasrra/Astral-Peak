@@ -46,7 +46,7 @@ public class Hollow : Enemy{
         unlink_events();
         animator.Play("HollowDeath",0,0);
         StartCoroutine(Util.timer(
-            animator.get_clip_length("HollowDeath")+3,
+            animator.get_clip_length("HollowDeath")+2,
             start_action: ()=>{
                 movement.halt();
                 enable_body_colliders(0);

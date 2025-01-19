@@ -39,7 +39,7 @@ public abstract class Door : MonoBehaviour{
     public void set_start_open(bool open) => start_open = open;
     public abstract void enter();
     void exit(){
-        opened();
+        animator.Play("open");
         close();
     }
     public void open(){
