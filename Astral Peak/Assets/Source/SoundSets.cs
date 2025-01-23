@@ -261,8 +261,24 @@ public struct MageSoundSet : SoundSet{
         ?new List<Sound>(){
             new BellChimes1(),
             new Ping(),        
+            new MageBossMusic1(),
+            new MageBossMusic2(),
         }
         :sounds;
         return sounds;
     }
+}
+
+public struct IntroductionSoundSet : SoundSet{
+    private List<Sound> sounds;
+    public List<Sound> get_sounds(){
+        sounds = sounds == null
+        ?new List<Sound>(){
+            new SmallFire(),
+            new Steam(),
+            new Sounds.Introduction(),        
+        }
+        :sounds;
+        return sounds;
+    }    
 }

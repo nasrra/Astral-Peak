@@ -7,9 +7,12 @@ namespace Sounds{
     // MUSIC
     WOLF_BOSS_MUSIC_1,
     WOLF_BOSS_MUSIC_2,
+    MAGE_BOSS_MUSIC_1,
+    MAGE_BOSS_MUSIC_2,
     DOMINE_MUSIC,
     HOLLOW_MUSIC,
     ALTAR_MUSIC,
+    INTRODUCTION_MUSIC,
 
     // Magic
     LEATHER_CONTORT_1,

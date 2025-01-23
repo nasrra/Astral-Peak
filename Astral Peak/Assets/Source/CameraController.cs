@@ -38,8 +38,10 @@ public class CameraController : MonoBehaviour{
         original_size = cam.orthographicSize;
         original_x_bounds = x_bounds;
         original_y_bounds = y_bounds;
-        snap_to_target();
-        start_follow_state();
+        if(target!=null){
+            snap_to_target();
+            start_follow_state();
+        }
     }
 
     public void regulate_in_bounds(bool x) => regulate = x;

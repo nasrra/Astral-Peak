@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Entropek;
 using AYellowpaper.SerializedCollections;
+using System;
 
 public class SpriteHandler : MonoBehaviour{
     [SerializeField] protected SerializedDictionary<string,SpriteRenderer> sprites;
@@ -41,7 +42,7 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected IEnumerator lerp_value(string value, float start, float end, float time) {
+    protected IEnumerator lerp_value(string value, float start, float end, float time, Action callback = null) {
         List<bool> operations = new List<bool>();
         int index = 0;
         foreach(KeyValuePair<string, SpriteRenderer> kvp in sprites){
@@ -54,17 +55,13 @@ public class SpriteHandler : MonoBehaviour{
         while(operations.Contains(true)){
             yield return null;
         }
+        callback?.Invoke();
         yield break;
     }
 
-    protected IEnumerator lerp_value(string sprite_id, string value, float start, float end, float time) {
+    protected IEnumerator lerp_value(string sprite_id, string value, float start, float end, float time, Action callback = null) {
         sprites[sprite_id].material.SetFloat(value, start);
-        bool complete = false;
-        StartCoroutine(Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => complete = true));
-        while(complete == false){
-            yield return null;
-        }
-        yield break;
+        return Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => callback?.Invoke());
     }
 
     protected IEnumerator lerp_color(string value, Color start, Color end, float time) {

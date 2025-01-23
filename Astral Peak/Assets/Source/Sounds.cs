@@ -22,27 +22,47 @@ public struct None : Sound{
 }
 
 public struct WolfBossMusic1 : Sound{
-    AudioClip loaded_clip           => SoundLibrary.load_music("ABRN_run_part_1");
+    AudioClip loaded_clip           => SoundLibrary.load_music("wolf_boss_1");
     public SoundID id()             => SoundID.WOLF_BOSS_MUSIC_1;
     public AudioClip clip()         => loaded_clip;
     public AudioMixerGroup group()  => AudioManager.music_mixer;
     public float max_pitch()        => 1;
     public float min_pitch()        => 1;
-    public float volume()           => .8f;
+    public float volume()           => 1f;
 }
 
 public struct WolfBossMusic2 : Sound{
-    AudioClip loaded_clip           => SoundLibrary.load_music("ABRN_run_part_2");
+    AudioClip loaded_clip           => SoundLibrary.load_music("wolf_boss_2");
     public SoundID id()             => SoundID.WOLF_BOSS_MUSIC_2;
     public AudioClip clip()         => loaded_clip;
     public AudioMixerGroup group()  => AudioManager.music_mixer;
     public float max_pitch()        => 1;
     public float min_pitch()        => 1;
-    public float volume()           => .8f;
+    public float volume()           => 1f;
 }
 
+public struct MageBossMusic1 : Sound{
+    AudioClip loaded_clip           => SoundLibrary.load_music("mage_boss_1");
+    public SoundID id()             => SoundID.MAGE_BOSS_MUSIC_1;
+    public AudioClip clip()         => loaded_clip;
+    public AudioMixerGroup group()  => AudioManager.music_mixer;
+    public float max_pitch()        => 1;
+    public float min_pitch()        => 1;
+    public float volume()           => 1f;
+}
+
+public struct MageBossMusic2 : Sound{
+    AudioClip loaded_clip           => SoundLibrary.load_music("mage_boss_2");
+    public SoundID id()             => SoundID.MAGE_BOSS_MUSIC_2;
+    public AudioClip clip()         => loaded_clip;
+    public AudioMixerGroup group()  => AudioManager.music_mixer;
+    public float max_pitch()        => 1;
+    public float min_pitch()        => 1;
+    public float volume()           => 1f;
+}
+//
 public struct DomineMusic : Sound{
-    AudioClip loaded_clip           => SoundLibrary.load_music("domine_theme");
+    AudioClip loaded_clip           => SoundLibrary.load_music("domine_1");
     public SoundID id()             => SoundID.DOMINE_MUSIC;
     public AudioClip clip()         => loaded_clip;
     public AudioMixerGroup group()  => AudioManager.music_mixer;
@@ -68,6 +88,15 @@ public struct AltarMusic : Sound{
     public AudioMixerGroup group()  => AudioManager.music_mixer;
     public float max_pitch()        => 1;
     public float min_pitch()        => 1;
+    public float volume()           => .8f;
+}
+
+public struct Introduction : Sound{
+    public SoundID id()             => SoundID.INTRODUCTION_MUSIC;
+    public AudioClip clip()         => SoundLibrary.load_music("introduction");
+    public AudioMixerGroup group()  => AudioManager.music_mixer;
+    public float max_pitch()        => 1f;
+    public float min_pitch()        => 1f;
     public float volume()           => .8f;
 }
 

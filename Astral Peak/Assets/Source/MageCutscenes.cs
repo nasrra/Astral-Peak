@@ -35,6 +35,7 @@ namespace Cutscenes{
             CameraController.instance.reset_zoom(2f);
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
+            AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_1);
             end();//
             yield break;
         }
@@ -67,6 +68,7 @@ namespace Cutscenes{
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
             room.get_platforms().start_loop();
+            AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
             end();
             yield break;
         }

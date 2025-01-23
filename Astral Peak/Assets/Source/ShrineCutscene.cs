@@ -27,16 +27,16 @@ public class ShrineOpeningCutscene : Cutscene{
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
-        CameraController.instance.lerp_zoom(4.45f, 5f);
-        CameraController.instance.lerp_offset(null, 2.2f, 5f);
-        yield return new WaitForSeconds(5);
-        DialogueHandler.instance.play_dialogue(3f);
+        CameraController.instance.lerp_zoom(4.45f, 6f);
+        CameraController.instance.lerp_offset(null, 2.2f, 6f);
+        yield return new WaitForSeconds(6);
+        DialogueHandler.instance.play_dialogue(3.3f);
         yield return new WaitForSeconds(3f);
         CameraController.instance.lerp_offset(null,-2.5f, 20f);
         yield return new WaitForSeconds(40);
         CameraController.instance.reset_zoom(20);
         CameraController.instance.lerp_offset(null, 0, 20f);     
-        yield break;
+        yield break;//
     }
 
     IEnumerator middle(){
@@ -53,7 +53,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     IEnumerator ending(){
         torches_off?.Invoke();     
-        yield return new WaitForSeconds(5);  
+        yield return new WaitForSeconds(6);  
         AudioManager.stop_music();
         unlink();
         end();//

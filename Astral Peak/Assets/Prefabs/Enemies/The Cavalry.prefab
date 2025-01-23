@@ -34650,8 +34650,8 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 1
-        current_life: 1
+        max_life: 40
+        current_life: 40
   body_colliders:
   - {fileID: 7949152084270274066}
   - {fileID: 5771967865735890554}
@@ -34728,7 +34728,8 @@ MonoBehaviour:
   chosen_attack:
     animation_id: 0
     chance: 0
-    player_distance: 0
+    max_player_distance: 0
+    min_player_distance: 0
     arena_bound_distance: 0
     attack_cooldown: 0
     combat_cooldown: 0

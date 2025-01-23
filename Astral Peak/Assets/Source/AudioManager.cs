@@ -63,12 +63,12 @@ public static class AudioManager{
         state_switch(ref music_loop_state, music_coroutine(sound_id));       
     }
     static IEnumerator music_coroutine(SoundID sound_id){
-        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 2;
+        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 3;
         while (true){
             if(reverse_music_crossfade == false)
-                yield return AudioClipHandler.crossfade(current_music, previous_music, sound_id, 1f);
+                yield return AudioClipHandler.crossfade(current_music, previous_music, sound_id, 2f);
             else
-                yield return AudioClipHandler.crossfade(previous_music, current_music, sound_id, 1f);
+                yield return AudioClipHandler.crossfade(previous_music, current_music, sound_id, 2f);
             reverse_music_crossfade = !reverse_music_crossfade;
             yield return new WaitForSeconds(clip_length);
         }

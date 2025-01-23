@@ -57,4 +57,4 @@ public class Arrow : Projectile{
             AudioSourceSettings.DIEGETIC);
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
-}
+}//

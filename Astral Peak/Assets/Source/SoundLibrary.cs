@@ -44,6 +44,7 @@ public static class SoundLibrary{
     static readonly Dictionary<string, Func<List<Sound>>> scene_sounds = new Dictionary<string, Func<List<Sound>>>(){
         {"temp",            () => {return null;}},
         {"DemoEnd",         () => {return null;}},
+        {"Introduction",    () => {return new SceneSounds.Introduction().get_sounds();}},
         {"WolfBossRoom",    () => {return new SceneSounds.WolfBossRoom().get_sounds();}},
         {"SnowForest",      () => {return new SceneSounds.SnowForest().get_sounds();}},
         {"TutorialRoom",    () => {return new SceneSounds.TutorialRoom().get_sounds();}},
