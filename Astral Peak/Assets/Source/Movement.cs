@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour{
         can_knockback   = true,
         can_dash        = true,
         is_dashing      = false;
+    protected bool flipped = false;
     [SerializeField] protected MovementData data, base_data;
     [SerializeField] protected Vector2 move_direction = new Vector2();
     [SerializeField] protected Rigidbody2D rb;
@@ -46,7 +47,8 @@ public class Movement : MonoBehaviour{
     public void reset_accel() => data.accel = base_data.accel;
     public void reset_decel() => data.decel = base_data.decel;
     public void reset_gravity() => rb.gravityScale = base_data.gravity;
-
+    public void flip_left() => flipped = true;
+    public void flip_right() => flipped = false;
 
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public Vector2 get_move_direction() => move_direction;
@@ -283,24 +285,24 @@ public class Movement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    //public void move_in_faced_direction_state(){
-    //    state_switch(ref move_state, move());
-    //    state_switch(ref controller_state, move_in_faced_direction());        
-    //}
-    //protected IEnumerator move_in_faced_direction(){
-    //    while(true){
-    //        if(transform.rotation.eulerAngles.y == 0 && get_move_direction() != new Vector2(1,0)){
-    //            clear_move_direction();
-    //            move_right(true);
-    //        }
-    //        // if we are not moving left, move left.
-    //        if(transform.rotation.eulerAngles.y == 180 && get_move_direction() != new Vector2(-1,0)){
-    //            clear_move_direction();
-    //            move_left(true);
-    //        }        
-    //        yield return new WaitForFixedUpdate();
-    //    }
-    //}
+    public void move_in_faced_direction_state(){
+        state_switch(ref move_state, move());
+        state_switch(ref controller_state, move_in_faced_direction());        
+    }
+    protected IEnumerator move_in_faced_direction(){
+        while(true){
+            if(flipped == false && get_move_direction() != new Vector2(1,0)){
+                clear_move_direction();
+                move_right(true);
+            }
+            // if we are not moving left, move left.
+            if(flipped == true && get_move_direction() != new Vector2(-1,0)){
+                clear_move_direction();
+                move_left(true);
+            }        
+            yield return new WaitForFixedUpdate();
+        }
+    }
 
     protected virtual void link(){
         dash_end += end_dash;

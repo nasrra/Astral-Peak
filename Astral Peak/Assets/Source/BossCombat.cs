@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
     public event Action<BossAttack> attack_chosen;
-    [SerializeField] Creature creature;
+    bool flipped = false;
     [SerializeField] public bool on_cooldown = false, is_attacking = false;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
@@ -51,7 +51,7 @@ public abstract class BossCombat : MonoBehaviour{
 
             // Determine the appropriate moveset based on the boss's orientation and player's position.
             List<BossAttack> available_attacks = 
-                (creature.flipped == false && target_distance <= 0) || (creature.flipped == true && target_distance >= 0) 
+                (flipped == false && target_distance <= 0) || (flipped == true && target_distance >= 0) 
                 ? get_available_attacks(front_moveset , abs_distance, left_bound_distance, right_bound_distance)
                 : get_available_attacks(back_moveset, abs_distance, left_bound_distance, right_bound_distance);
 
@@ -89,8 +89,8 @@ public abstract class BossCombat : MonoBehaviour{
         foreach(BossAttack attack in attacks)
             if(attack.enabled == true 
                 && td <= attack.max_player_distance && td >= attack.min_player_distance
-                && (transform.rotation.y == 0 && lbd >= attack.arena_bound_distance || 
-                    transform.rotation.y != 0 && rbd >= attack.arena_bound_distance))
+                && (flipped == false && lbd >= attack.arena_bound_distance || 
+                    flipped == true && rbd >= attack.arena_bound_distance))
                 available_attacks.Add(attack);
         return available_attacks;
     }
@@ -106,4 +106,7 @@ public abstract class BossCombat : MonoBehaviour{
         attack.attack_cooldown = 1;
         special_moveset = new List<BossAttack>(){attack};
     }
+
+    public void flip_left()=>flipped=true;
+    public void flip_right()=>flipped=false;
 }

@@ -351,21 +351,25 @@ public class Mage : Boss<Movement>{
     void unlink_health(){
         health.damaged -= sprites.play_damaged_flash;
     }
-    void link_movement(){
+    protected override void link_movement(){
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
+        base.link_movement();
     }
-    void unlink_movement(){
+    protected override void unlink_movement(){
         movement.move_direction_changed -= face_direction;
         movement.move_direction_changed -= move_direction_changed;
+        base.unlink_movement();
     }
-    void link_combat(){
+    protected override void link_combat(){
         combat.attack_ended += idle;
         combat.attack_chosen += attack;
+        base.link_combat();
     }
-    void unlink_combat(){
+    protected override void unlink_combat(){
         combat.attack_ended -= idle;
         combat.attack_chosen -= attack;
+        base.unlink_combat();
     }
     void link_ranged(){
         for(int i = 1; i < 7; i++)

@@ -5,6 +5,7 @@ using AYellowpaper.SerializedCollections;
 using Entropek.Collections;
 using UnityEngine;
 using Entropek;
+using Sounds;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<string> phase_transition, phase_entered, phase_exited;
@@ -123,4 +124,20 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public string get_phase() => current_phase;
     public void transition_phase() => phase_transition?.Invoke(current_phase);
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
+    protected virtual void link_movement(){
+        flipped_left  += movement.flip_left;
+        flipped_right += movement.flip_right;
+    }
+    protected virtual void unlink_movement(){
+        flipped_left  -= movement.flip_left;
+        flipped_right -= movement.flip_right;        
+    }
+    protected virtual void link_combat(){
+        flipped_left  += combat.flip_left;
+        flipped_right += combat.flip_right;        
+    }
+    protected virtual void unlink_combat(){
+        flipped_left  -= combat.flip_left;
+        flipped_right -= combat.flip_right;        
+    }
 }

@@ -75,6 +75,8 @@ public class Rider : Boss<Movement>{
         flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
         link_game_manager();
+        link_combat();
+        link_movement();
     }
 
     protected void unlink_events(){
@@ -88,5 +90,7 @@ public class Rider : Boss<Movement>{
         flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
         unlink_game_manager();
+        unlink_combat();
+        unlink_movement();
     }
 }

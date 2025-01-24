@@ -83,7 +83,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             (move_direction.x == 0)?
             (flipped==false? Vector2.right : Vector2.left) :
                 (move_direction.x == 1?     Vector2.right : Vector2.left) ,
-            20, 
+            25, 
             0.25f); 
     }
     private void dashed(){
@@ -338,6 +338,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 += dashed;
         movement.dash_end               += dash_end;
         movement.new_ground             += new_ground;
+        flipped_left                    += movement.flip_left;
+        flipped_right                   += movement.flip_right;
     }
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
@@ -349,6 +351,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.dashed                 -= dashed;
         movement.dash_end               -= dash_end;
         movement.new_ground             -= new_ground;
+        flipped_left                    -= movement.flip_left;
+        flipped_right                   -= movement.flip_right;
     }
     private void link_melee(){
         flipped_left            += particles.flip_particles_left;
