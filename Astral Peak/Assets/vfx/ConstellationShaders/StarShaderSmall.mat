@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MoonMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 695f09913603fde42bf55dd4ff0c324b, type: 3}
+  m_Name: StarShaderSmall
+  m_Shader: {fileID: -6465566751694194690, guid: 82a1504d5e1c23d4c92688d8ec3bf935, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -18,16 +18,11 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 2c9c6390dfe7f2c41b946f502190a11d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -42,16 +37,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Detail: 6
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Size: 0.7
+    - _amount: 14
+    - _blink_speed: 0.0005
+    - _density: 500
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Speed: {r: 0, g: -0.05, b: 0, a: 0}
+    - _color: {r: 0.9339622, g: 1.625855, b: 2, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6143723637553286851
+--- !u!114 &5705065854583577397
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
