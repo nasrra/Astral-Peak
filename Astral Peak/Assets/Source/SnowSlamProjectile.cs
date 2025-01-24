@@ -12,7 +12,7 @@ public class SnowSlamProjectile : Projectile{
             time_out: destroy
         ));
         base.Start();
-        source = AudioClipHandler.play(Sounds.SoundID.SNOW_ROLLING, this, AudioSourceSettings.DIEGETIC);
+        source = AudioClipHandler.play(Sounds.SoundID.SNOW_ROLLING, this, AudioSourceSettings.DIEGETIC_RANDOMISED);
     }
 
     void OnTriggerEnter2D(Collider2D other){

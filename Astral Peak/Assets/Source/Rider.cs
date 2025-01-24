@@ -71,12 +71,11 @@ public class Rider : Boss<Movement>{
         combat.attack_ended                     += idle;
         combat.attack_chosen                    += attack;
         health.damaged                          += sprites.play_damaged_flash;
-        flipped_left                            += particles.flip_particles_left;
-        flipped_right                           += particles.flip_particles_right;
         ranged.fired                            += projectile_fired;
         link_game_manager();
         link_combat();
         link_movement();
+        link_particles();
     }
 
     protected void unlink_events(){
@@ -86,11 +85,10 @@ public class Rider : Boss<Movement>{
         combat.attack_ended                     -= idle;
         combat.attack_chosen                    -= attack;
         health.damaged                          -= sprites.play_damaged_flash;
-        flipped_left                            -= particles.flip_particles_left;
-        flipped_right                           -= particles.flip_particles_right;
         ranged.fired                            -= projectile_fired;
         unlink_game_manager();
         unlink_combat();
         unlink_movement();
+        unlink_particles();
     }
 }

@@ -337,13 +337,15 @@ public class Mage : Boss<Movement>{
         link_health();
         link_movement();
         link_combat();
-        link_ranged();        
+        link_ranged();   
+        link_particles();     
     }
     protected void unlink_components(){
         unlink_health();
         unlink_movement();
         unlink_combat();
         unlink_ranged();        
+        unlink_particles();     
     }
     void link_health(){
         health.damaged += sprites.play_damaged_flash;

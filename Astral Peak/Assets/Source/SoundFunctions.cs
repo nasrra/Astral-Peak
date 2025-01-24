@@ -383,5 +383,11 @@ public class MageSound : SoundFunctions{
             audio_player: audio_player,
             AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
         },
+        {"snow_magic",()=>
+            AudioClipHandler.play(
+            SoundID.MAGIC_SNOW_CAST,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)       
+        },
     };
 }

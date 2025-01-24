@@ -786,4 +786,13 @@ public struct SnowRolling : Sound{
     public float volume()           => 1;
 }
 
+public struct MagicSnowCast : Sound{
+    public SoundID id()             => SoundID.MAGIC_SNOW_CAST;
+    public AudioClip clip()         => SoundLibrary.load_sfx("magic_snow_cast");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1;
+    public float min_pitch()        => .8f;
+    public float volume()           => .75f;
+}
+
 }

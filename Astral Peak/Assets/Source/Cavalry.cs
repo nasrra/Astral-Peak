@@ -107,12 +107,11 @@ public class Cavalry : Boss<CavalryMovement>{
         combat.attack_ended                     += idle;
         movement.move_direction_changed         += face_direction;
         movement.move_direction_changed         += move_direction_changed;
-        flipped_left                            += particles.flip_particles_left;
-        flipped_right                           += particles.flip_particles_right;
         health.damaged                          += sprites.play_damaged_flash;
         ranged.fired                            += projectile_fired;
         link_combat();
         link_movement();
+        link_particles();
     }
 
     protected void unlink_events(){
@@ -123,10 +122,9 @@ public class Cavalry : Boss<CavalryMovement>{
         combat.attack_ended                     -= idle;
         movement.move_direction_changed         -= face_direction;
         movement.move_direction_changed         -= move_direction_changed;
-        flipped_left                            -= particles.flip_particles_left;
-        flipped_right                           -= particles.flip_particles_right;
         health.damaged                          -= sprites.play_damaged_flash;
         ranged.fired                            -= projectile_fired;
+        unlink_particles();
         unlink_combat();
         unlink_movement();
     }

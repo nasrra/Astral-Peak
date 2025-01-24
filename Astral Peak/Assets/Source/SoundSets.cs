@@ -49,6 +49,7 @@ public struct MagicSoundSet : SoundSet {
                 new MagicFootstep1(),
                 new MagicFootstep2(),
                 new MagicFootstep3(),
+                new MagicSnowCast(),
             };
         }
         return sounds;

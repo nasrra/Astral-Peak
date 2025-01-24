@@ -140,4 +140,14 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         flipped_left  -= combat.flip_left;
         flipped_right -= combat.flip_right;        
     }
+
+    protected virtual void link_particles(){
+        flipped_left  += particles.flip_particles_left;
+        flipped_right += particles.flip_particles_right;
+    }
+
+    protected virtual void unlink_particles(){
+        flipped_left  -= particles.flip_particles_left;
+        flipped_right -= particles.flip_particles_right;
+    }
 }
