@@ -6,4 +6,4 @@ public class CreatureDeathDialogueHandlerLink : MonoBehaviour{
     void play_dialogue() => dialogue_trigger.play_dialogue();
     void Awake() => creature.death_completed += play_dialogue;
     void OnDestroy() => creature.death_completed -= play_dialogue;
-}
+}//

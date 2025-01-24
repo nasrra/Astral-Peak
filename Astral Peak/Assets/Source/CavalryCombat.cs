@@ -76,20 +76,20 @@ public class CavalryCombat : BossCombat{
         movesets = new Dictionary<string, Action>(){
             {"phase_1",
                 ()=>{
-                    //test(front_strike);;
-                    front_moveset = new List<BossAttack>(){
-                        front_strike,
-                        bite,
-                    };
-                    back_moveset = new List<BossAttack>(){
-                        //back_strike_forward,
-                        //back_strike_backward,
-                    };
-                    special_moveset = new List<BossAttack>(){
-                        howl,
-                        ground_slam,
-                        jump_away,
-                    };
+                    test(ground_slam);
+                    //front_moveset = new List<BossAttack>(){
+                    //    front_strike,
+                    //    bite,
+                    //};
+                    //back_moveset = new List<BossAttack>(){
+                    //    //back_strike_forward,
+                    //    //back_strike_backward,
+                    //};
+                    //special_moveset = new List<BossAttack>(){
+                    //    howl,
+                    //    ground_slam,
+                    //    jump_away,
+                    //};
                 }
             },
         };

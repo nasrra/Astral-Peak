@@ -54,6 +54,7 @@ namespace Sounds{
     SNOW_JUMP,
     SNOW_IMPACT_HEAVY,
     SNOW_IMPACT_LIGHT,
+    SNOW_ROLLING,
     
     // The Cavalry
     WOLF_HOWL,

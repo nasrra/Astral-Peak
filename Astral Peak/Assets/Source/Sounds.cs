@@ -777,4 +777,13 @@ public struct MagicFootstep3 : Sound{
     public float volume()           => 1f;
 }
 
+public struct SnowRolling : Sound{
+    public SoundID id()             => SoundID.SNOW_ROLLING;
+    public AudioClip clip()         => SoundLibrary.load_sfx("snow_rolling");
+    public AudioMixerGroup group()  => AudioManager.sfx_mixer;
+    public float max_pitch()        => 1;
+    public float min_pitch()        => .85f;
+    public float volume()           => 1;
+}
+
 }

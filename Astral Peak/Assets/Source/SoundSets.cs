@@ -33,7 +33,8 @@ public struct SnowSoundSet : SoundSet {
                 new SnowFootstep3(),
                 new SnowFootstep4(),
                 new SnowImpactHeavy(),
-                new SnowImpactLight(),}
+                new SnowImpactLight(),
+                new SnowRolling(),}
             :sounds;
 }
 
