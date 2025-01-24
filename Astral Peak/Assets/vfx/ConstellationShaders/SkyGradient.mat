@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StarShaderSmall
-  m_Shader: {fileID: -6465566751694194690, guid: 82a1504d5e1c23d4c92688d8ec3bf935, type: 3}
+  m_Name: SkyGradient
+  m_Shader: {fileID: -6465566751694194690, guid: 7f238361b7e99fe4399bd286db7a1ee9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -18,16 +18,13 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_a4abc23fc5014a4a84ee53b79ccfdb22_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: d1334809f54d0c24daa134b4dbdefec2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SampleTexture2D_adf2e6f8dfa44cbcb98d1ece210ce1b7_Texture_1_Texture2D:
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: d1334809f54d0c24daa134b4dbdefec2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -45,15 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _amount: 14
-    - _blink_speed: 0.0005
-    - _density: 500
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _origin: -500
+    - _spread: 750
     m_Colors:
-    - _alphagradient: {r: 1, g: 3, b: 1, a: 1}
-    - _color: {r: 1.8679243, g: 3.2517097, b: 3.9999998, a: 0}
+    - _bottom_color: {r: 0.21568629, g: 0.42352945, b: 0.5176471, a: 1}
+    - _top_color: {r: 0.098039225, g: 0.18823531, b: 0.25882354, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &5705065854583577397
+--- !u!114 &1380570546874421579
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
