@@ -3,8 +3,6 @@ using System.Collections;
 using UnityEngine;
 using Sounds;
 using AYellowpaper.SerializedCollections;
-using UnityEngine.UI;
-using Entropek;
 
 public class UiManager : MonoBehaviour{
     public event Action

@@ -5,15 +5,17 @@ public class CharacterAnimatorOverride : MonoBehaviour{
     protected int state;
     public bool[] locked_layers = new bool[3];
     public readonly int
-        HEAD        = 0,
-        BODY        = 1,
-        LEGS        = 2,
-        OVERRIDE    = 3;
+        HEAD                = 0,
+        BODY                = 1,
+        LEGS                = 2,
+        BOUNCE_OVERRIDE     = 3,
+        BODY_OVERRIDE       = 4;
 
     protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD);}
     protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY);}
     protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS);}
-    protected void play_override(int animation_hash){animator.Play(animation_hash, OVERRIDE);}
+    protected void play_bounce_override(int animation_hash){animator.Play(animation_hash, BOUNCE_OVERRIDE);}
+    protected void play_body_override(int animation_hash){animator.Play(animation_hash, BODY_OVERRIDE);}
 
     public void play(int animation_hash, bool set_state){
         if( animator.isActiveAndEnabled == true){

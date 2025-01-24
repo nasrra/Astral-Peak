@@ -14,7 +14,8 @@ public class PlayerAnimator : CharacterAnimatorOverride{
         MBOUNCE     = Animator.StringToHash("medium_bounce"),
         HBOUNCE     = Animator.StringToHash("heavy_bounce"),
         NONE        = Animator.StringToHash("none"),
-        DEATH       = Animator.StringToHash("death");
+        DEATH       = Animator.StringToHash("death"),
+        UP_TOGGLE   = Animator.StringToHash("up_toggle");
 
     void Start() => state = IDLE;
     
@@ -34,7 +35,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     }
     public void jump(){
         play(FALL_START, true);
-        play_override(MBOUNCE);
+        play_bounce_override(MBOUNCE);
     }
 
 
@@ -42,11 +43,14 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void side_attack()   => play(SIDE_ATTACK, false); 
     public void up_attack()    => play(UP_ATTACK, false);      
 
+    //BOUNCE OVERRIDE STATES:
     // used for the override animation layer to return to the none state
-    public void none_state() => animator.Play(NONE, OVERRIDE);
+    public void stop_bounce() => animator.Play(NONE, BOUNCE_OVERRIDE);
+    public void light_bounce()  => play_bounce_override(LBOUNCE);
+    public void medium_bounce() => play_bounce_override(MBOUNCE);
 
-    // override states
-    public void light_bounce()  => play_override(LBOUNCE);
-    public void medium_bounce() => play_override(MBOUNCE);
+    public void up_toggle() => play_body_override(UP_TOGGLE);
+    public void stop_up_toggle() => animator.Play(NONE, BODY_OVERRIDE);
+
     public bool is_falling() => state == FALL_LOOP || state == FALL_START;
 }

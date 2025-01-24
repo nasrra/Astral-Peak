@@ -68,8 +68,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void start_right()  => movement.move_right(true);
     private void stop_left()    => movement.move_left(false);
     private void stop_right()   => movement.move_right(false);
-    private void start_up()     => up_toggle = true;
-    private void stop_up()      => up_toggle = false;
+    private void start_up()     => enabled_toggle_up();
+    private void stop_up()      => disabled_toggle_up();
     private void attack(){
         if(up_toggle == true)
             animator.up_attack();
@@ -134,7 +134,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
         animator.start_fall();
         transform.parent = null;
     }
-
+    private void enabled_toggle_up(){
+        up_toggle = true;
+        animator.up_toggle();
+    }
+    private void disabled_toggle_up(){
+        up_toggle = false;
+        animator.stop_up_toggle();
+    }
 
 
 
