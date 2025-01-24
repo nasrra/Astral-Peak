@@ -148,26 +148,26 @@ public class Hollow : Enemy{
         unlink_movement();
     }
 
-    private void link_combat(){
+    protected override void link_combat(){
         if(agro_area == null)
             return;
         agro_area.trigger_enter += player_in_range;
         agro_area.trigger_exit  += player_left_range;
     }
-    private void unlink_combat(){
+    protected override void unlink_combat(){
         if(agro_area == null)
             return;
         agro_area.trigger_enter -= player_in_range;
         agro_area.trigger_exit  -= player_left_range; 
     }
 
-    private void link_movement(){
+    protected override void link_movement(){
         movement.target_reached += target_reached;
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
     }
 
-    private void unlink_movement(){
+    protected override void unlink_movement(){
         movement.target_reached -= target_reached;
         movement.move_direction_changed -= face_direction;
         movement.move_direction_changed -= move_direction_changed;

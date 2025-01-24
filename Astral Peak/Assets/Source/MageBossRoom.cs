@@ -55,7 +55,7 @@ public class MageBossRoom : BossRoomHandler{
     public void enable_background_mage(bool x) => background_mage.SetActive(x);
     public Mage get_mage() => mage_script;
     public MagicPlatformsController get_platforms()=>platforms;
-    public MageBackground get_background_mage() => background_mage.GetComponent<MageBackground>();
+    public BackgroundMage get_background_mage() => background_mage.GetComponent<BackgroundMage>();
     public void set_room_state(int x){
         AudioManager.play_ambience(ambience[x]);
         foreach(FogController fog in fog_controllers)
