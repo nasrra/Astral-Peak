@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Hollow : Enemy{
     // Data:
-    public event Action on_start;
     [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
     bool alerted;
@@ -25,15 +24,13 @@ public class Hollow : Enemy{
         idle_movement();
         if(target == null)
             target = origin;    
+        movement.pathing_loop_state(paths);
     }
     protected override void Start(){
-        movement.pathing_loop_state(paths);
-        on_start?.Invoke();
         base.Start();
     }
 
     void OnDestroy(){
-        on_start = null;
         unlink_events();
     }
 
@@ -87,9 +84,11 @@ public class Hollow : Enemy{
     }
         
     public void summon_state(){
-        animator.Play("HollowSummon");
-        play_summoning_animation();
         movement.halt();
+        enable_body_colliders(0);
+        animator.Play("HollowSummon",0,0);
+        animator.UpdateLayer(0);
+        play_summoning_animation();
     }
 
     public void alert(){
@@ -126,7 +125,7 @@ public class Hollow : Enemy{
 
     void move_direction_changed(Vector2 move_direction){
         if(move_direction != Vector2.left && move_direction != Vector2.right)
-            animator.Play("HollowIdle");
+            animator.Play("HollowIdle",0,0);
         else
             animator.Play(alerted == true? "HollowRun" : "HollowWalk", 0, 0); // force the animation to play (0,0);
     }

@@ -130,7 +130,7 @@ public class Mage : Boss<Movement>{
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
-        hollow.on_start += hollow.summon_state;
+        hollow.summon_state(); 
     }
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)
