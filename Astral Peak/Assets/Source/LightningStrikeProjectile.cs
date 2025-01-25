@@ -29,18 +29,6 @@ public class LightningStrikeProjectile : Projectile{
     void loop(){
         enable_colliders(true);
         lightning.start_emitting();
-        AudioClipHandler.play(
-            sound_id: Sounds.SoundID.THUNDER_1,
-            audio_player: this,
-            AudioSourceSettings.DIEGETIC_RANDOMISED
-        );
-        AudioClipHandler.play(
-            sound_id: Sounds.SoundID.ELECTRICITY_LOOP,
-            audio_player: this,
-            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
-        );
-        SceneLighting.instance.set_intensity(id:"global",value:3f);
-        SceneLighting.instance.reset_lighting(_id: "global",_time:.2f);
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }
     

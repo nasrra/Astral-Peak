@@ -12,8 +12,8 @@ public class Mage : Boss<Movement>{
     [Header("Mage")]
     [SerializedDictionary("id","Transform")]
     [SerializeField] SerializedDictionary<string, Transform> teleport_points = new SerializedDictionary<string, Transform>();
-    [SerializeField] List<LineParticleEmitter> staff_lightning = new List<LineParticleEmitter>();
     [SerializeField] GameObject surrounding_projectiles;
+    [SerializeField] LineParticleEmittersHandler line_particle_emitters;
     [SerializeField] LineParticleEmitter teleport_trail;
     [SerializeField] SummoningCircleHandler summoning_circles;
     protected Dictionary<string, Action> phase_linker;
@@ -158,12 +158,12 @@ public class Mage : Boss<Movement>{
         animator.Play("MageHover",0,0);
     }   
     public void start_staff_lightning(){
-        foreach(LineParticleEmitter l in staff_lightning)
-            l.start_emitting();
+        for(int i = 0; i < 3; i++)
+            line_particle_emitters.start_emitting("staff_lightning_"+i);
     }
     public void stop_staff_lightning(){
-        foreach(LineParticleEmitter l in staff_lightning)
-            l.stop_emitting();
+        for(int i = 0; i < 3; i++)
+            line_particle_emitters.stop_emitting("staff_lightning_"+i);
     }
     public void turn_on_wailing_stones() => summoning_circles.turn_on(); 
     public void turn_off_wailing_stones() => summoning_circles.turn_off();
@@ -264,12 +264,6 @@ public class Mage : Boss<Movement>{
 
 
 
-
-    // VFX Calls
-    public void signature_2_lighting(){
-        SceneLighting.instance.set_intensity("global", 3f);
-        SceneLighting.instance.reset_lighting("global", .2f);
-    }
     protected void play_weapon_tip_flash(){
         lighting.lerp_intensity("staff_tip", start: 1, end: 0, time: .5f);
     }

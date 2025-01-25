@@ -16,15 +16,15 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] MagicPlatformsController platforms;
     List<Action> lighting_states = new List<Action>(){
         ()=>{// 0
-            SceneLighting.instance.enable_light(id: "lightning",  enable: false);
             SceneLighting.instance.enable_light(id: "global",     enable: true);
+            SceneLighting.instance.enable_light(id: "additive",  enable: false);
             SceneLighting.instance.lerp_preset(_id: "global",    _preset: 0, 4f);
-            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 0, 4f);},
+            SceneLighting.instance.lerp_preset(_id: "additive", _preset: 0, 4f);},
         () =>{// 1
-            SceneLighting.instance.enable_light(id: "lightning",  enable: true);
             SceneLighting.instance.enable_light(id: "global",     enable: true);
+            SceneLighting.instance.enable_light(id: "additive",  enable: true);
             SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 4f);
-            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 4f);}
+            SceneLighting.instance.lerp_preset(_id: "additive", _preset: 1, 4f);}
     };
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,

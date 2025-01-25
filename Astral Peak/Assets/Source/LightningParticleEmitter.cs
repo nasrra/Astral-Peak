@@ -1,5 +1,28 @@
 using UnityEngine;
 
 public class LightningParticleEmitter : LineParticleEmitter{
-    void Awake() => emitted = () => AudioClipHandler.play(Sounds.SoundID.THUNDER_1, this, AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
+    AudioSource source;
+    
+    protected override void emitted(){
+        AudioClipHandler.play(
+            sound_id: Sounds.SoundID.THUNDER_1,
+            audio_player: this,
+            AudioSourceSettings.DIEGETIC_RANDOMISED
+        );    
+        SceneLighting.instance.set_intensity("global", 3f);
+        SceneLighting.instance.reset_lighting("global", .2f);
+    }
+
+    protected override void emitting(){
+        source = AudioClipHandler.play(
+            sound_id: Sounds.SoundID.ELECTRICITY_LOOP,
+            audio_player: this,
+            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
+        ); 
+    }
+
+    protected override void ended(){
+        if(source !=null)
+            StartCoroutine(AudioClipHandler.fade_out(source, 2, destroy_source: true));
+    }
 }
