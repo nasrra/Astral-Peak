@@ -59,7 +59,6 @@ public static class GameManager{
     public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : 1;
     public static GameData get_game_data() => data;
     public static void save_game_data(){
-        Debug.Log(state);
         if(state != GameState.CUTSCENE)
             FileManager.save_data(data);
     }

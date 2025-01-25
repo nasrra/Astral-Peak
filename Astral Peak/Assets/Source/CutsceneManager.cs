@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Entropek;
 using UnityEngine;
 
 public static class CutsceneManager{

@@ -28,6 +28,8 @@ public class UiManager : MonoBehaviour{
 
     void Start(){
         link_instances();
+        if(GameManager.get_state() == GameState.CUTSCENE)
+            health_bar.off();
     }
 
     void OnDestroy(){
@@ -36,7 +38,7 @@ public class UiManager : MonoBehaviour{
         unlink_instances();   
         GameManager.pause_game(false);
     }
-//
+
     public void toggle_gameplay_ui(){
         if(GameManager.get_state() == GameState.CUTSCENE || GameManager.get_state() == GameState.DEATH)
             return;

@@ -34,9 +34,9 @@ public class PlayerHealthBar : MonoBehaviour
         int a = amt-1;
         for(int i = 0; i < Player.instance.get_health().get_max_health(); i++){
             if(i>a)
-                hearts[i].turn_off();
+                hearts[i].disable();
             else
-            hearts[i].turn_on();
+            hearts[i].enable();
             hearts[i].thump(i==a);
         }
     }
@@ -45,6 +45,12 @@ public class PlayerHealthBar : MonoBehaviour
         if(gameObject.activeSelf == true)
             foreach(HealthBarHeart heart in hearts)
                 heart.fade_out();
+    }
+
+    public void off(){
+        if(gameObject.activeSelf == true)
+            foreach(HealthBarHeart heart in hearts)
+                heart.off();            
     }
 
     public void fade_in(){
