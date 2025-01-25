@@ -15,4 +15,5 @@ public class BossSpriteHandler : SpriteHandler{
         set_value("_dissolve_amount",1);
         set_value("_charge_amount",0);
     }
+    public void lerp_charged_amount(float amount, float time) => state_switch(ref charge_state, lerp_value("_charge_amount",0,amount,time));
 }

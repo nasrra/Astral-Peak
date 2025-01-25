@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Entropek;
 using Sounds;
@@ -19,13 +18,13 @@ public class MageBossRoom : BossRoomHandler{
         ()=>{// 0
             SceneLighting.instance.enable_light(id: "lightning",  enable: false);
             SceneLighting.instance.enable_light(id: "global",     enable: true);
-            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 0, 2f);
-            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 0, 2f);},
+            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 0, 4f);
+            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 0, 4f);},
         () =>{// 1
             SceneLighting.instance.enable_light(id: "lightning",  enable: true);
             SceneLighting.instance.enable_light(id: "global",     enable: true);
-            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 2f);
-            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 2f);}
+            SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 4f);
+            SceneLighting.instance.lerp_preset(_id: "lightning", _preset: 1, 4f);}
     };
     List<SoundID> ambience = new List<SoundID>(){
         SoundID.SOFT_WIND,
@@ -59,10 +58,10 @@ public class MageBossRoom : BossRoomHandler{
     public void set_room_state(int x){
         AudioManager.play_ambience(ambience[x]);
         foreach(FogController fog in fog_controllers)
-            fog.lerp_preset(x);
+            fog.lerp_preset(x,4);
         snow_controller.lerp_preset(x);
         foreach(FogController fog in fog_controllers)
-            fog.lerp_preset(x);
+            fog.lerp_preset(x,4);
         lighting_states[x]();
         if(x == 1)
             phase_2_ambient_lightning.Play();

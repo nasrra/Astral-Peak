@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class LineParticleEmitter : MonoBehaviour{
+    protected Action emitted = null;
     [SerializeField] public ParticleSystem particles;
     ParticleSystem.EmitParams emission_parameters;
     [SerializeField] Transform start_point, end_point;
@@ -13,6 +15,7 @@ public class LineParticleEmitter : MonoBehaviour{
     public void start_emitting(){
         StopAllCoroutines();
         StartCoroutine(emission_loop());
+        emitted();        
     }
     public void stop_emitting(){
         StopAllCoroutines();
@@ -41,7 +44,8 @@ public class LineParticleEmitter : MonoBehaviour{
             particles.Emit(emission_parameters, 1);            
         }
         emission_parameters.position = end_point.position;
-        particles.Emit(emission_parameters, 1);        
+        particles.Emit(emission_parameters, 1);
+        emitted();        
     }
     protected void emit(int particles_per_unit, float unit_length, Vector3? _start_pos, Vector3? _end_pos){
         Vector3 start_pos = _start_pos ?? start_point.position;
@@ -64,11 +68,7 @@ public class LineParticleEmitter : MonoBehaviour{
         }
         // emit end.
         emission_parameters.position = end_pos;
-        particles.Emit(emission_parameters, 1);     
-        //    // Emit particles along the line
-        //    for (int i = 0; i <= totalParticles; i++){
-        //        emission_parameters.position = start_point.position + direction * (i * factor);
-        //        particles.Emit(emission_parameters, 1);
-        //    }
+        particles.Emit(emission_parameters, 1);    
+        emitted();
     }
 }

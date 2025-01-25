@@ -273,6 +273,9 @@ public class Mage : Boss<Movement>{
     protected void play_weapon_tip_flash(){
         lighting.lerp_intensity("staff_tip", start: 1, end: 0, time: .5f);
     }
+    public void phase_2_body_charged(){
+        sprites.lerp_charged_amount(.35f, 5);
+    }
 
 
 
@@ -307,7 +310,7 @@ public class Mage : Boss<Movement>{
         switch_to_follow_and_attack = fly_and_attack_state;
         switch_to_attack = attack_phase_2;
     }
-    private void unlink_phase_2(){
+    private void unlink_phase_2(){//
         Log.MethodCall();
         unlink_components();
     }

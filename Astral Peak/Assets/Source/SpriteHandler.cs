@@ -61,7 +61,7 @@ public class SpriteHandler : MonoBehaviour{
 
     protected IEnumerator lerp_value(string sprite_id, string value, float start, float end, float time, Action callback = null) {
         sprites[sprite_id].material.SetFloat(value, start);
-        return Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => callback?.Invoke());
+        yield return Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => callback?.Invoke());
     }
 
     protected IEnumerator lerp_color(string value, Color start, Color end, float time) {

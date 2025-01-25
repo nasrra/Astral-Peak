@@ -26,23 +26,13 @@ public class FogController : SpriteHandler{
         speed = data.speed;
     }
 
-    public void lerp_preset(int _preset){
+    public void lerp_preset(int _preset, float time){
         Material fog = sprites["main"].material;
         FogShaderData data = fog_presets[_preset];
-        state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, 2));
-        state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,2));
-        state_switch(ref speed_state, Calc.lerp_value(val => speed = val, speed, data.speed,2));
-        state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,2));
-    }
-
-    IEnumerator test(){
-        while(true){
-            yield return new WaitForSeconds(7);
-            lerp_preset(1);
-            yield return new WaitForSeconds(7);
-            lerp_preset(0);
-            yield return null;        
-        }
+        state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, time));
+        state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,time));
+        state_switch(ref speed_state, Calc.lerp_value(val => speed = val, speed, data.speed,time));
+        state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,time));
     }
 
     IEnumerator set_offset(){
