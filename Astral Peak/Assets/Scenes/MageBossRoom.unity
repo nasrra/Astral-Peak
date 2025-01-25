@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (1)
+      value: StonePointSummoningEffect (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -334,6 +334,22 @@ MonoBehaviour:
     speed: 0.3
     color: {r: 0.15686275, g: 0.84705883, b: 1, a: 0.5647059}
   speed: 0.125
+--- !u!114 &61456817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741554761089612701, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 466809419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &61456820 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 466809419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76365405
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,19 +427,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1533446352}
     m_Modifications:
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (5)
+      value: StonePointLightning (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.83
+      value: -0.2654546
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.13
+      value: 3.5300002
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -435,15 +451,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -542,6 +558,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172259448 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741554761089612701, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 1879058033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &172259451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 1879058033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199977849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5945,19 +5977,23 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 470520937}
     m_Modifications:
+    - target: {fileID: 2588208819612304056, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (3)
+      value: StonePointLightning (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.6
+      value: -0.0027265549
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.86
+      value: 2.014909
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5969,15 +6005,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5990,6 +6026,10 @@ PrefabInstance:
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8740012614306980986, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8993248722034348175, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6010,7 +6050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 470520937}
   m_Layer: 0
-  m_Name: StonePoint (2)
+  m_Name: StonePoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6030,7 +6070,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 726800708}
-  m_Father: {fileID: 1733914257}
+  - {fileID: 61456820}
+  m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &480442252
 GameObject:
@@ -6169,19 +6210,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1941933217}
     m_Modifications:
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (7)
+      value: StonePointLightning (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.49
+      value: 0.33218193
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.05
+      value: 2.4808183
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6193,15 +6234,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6224,6 +6265,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+--- !u!114 &511785039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741554761089612701, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 1547554960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &511785042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 1547554960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &513023295
 GameObject:
   m_ObjectHideFlags: 0
@@ -6370,7 +6427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (7)
+      value: StonePointSummoningEffect (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6899,7 +6956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (4)
+      value: StaffLightning (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_IsActive
@@ -6973,7 +7030,7 @@ PrefabInstance:
       objectReference: {fileID: 437850499}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (1)
+      value: StaffLightning (0)
       objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_IsActive
@@ -7126,7 +7183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (2)
+      value: StonePointSummoningEffect (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7202,40 +7259,6 @@ Transform:
   - {fileID: 859937060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &821992799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 821992800}
-  m_Layer: 0
-  m_Name: SummoningCircles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &821992800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 821992799}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1533446352}
-  - {fileID: 1941933217}
-  - {fileID: 1583119494}
-  m_Father: {fileID: 956338953}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &836059597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7294,7 +7317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (3)
+      value: StonePointSummoningEffect (0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7453,7 +7476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929932285}
   m_Layer: 0
-  m_Name: StonePoint (1)
+  m_Name: StonePoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7473,7 +7496,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 50951303}
-  m_Father: {fileID: 1733914257}
+  - {fileID: 172259451}
+  m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &932922477
 GameObject:
@@ -7628,9 +7652,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1658059462}
-  - {fileID: 821992800}
   - {fileID: 1105016429}
   - {fileID: 968357781}
+  - {fileID: 1583119494}
+  - {fileID: 1533446352}
+  - {fileID: 1941933217}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &956338954
@@ -7678,6 +7704,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 956338953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1047021699 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741554761089612701, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 484411482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1047021702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 484411482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1077204173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8153,7 +8195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (6)
+      value: StonePointSummoningEffect (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8223,7 +8265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (5)
+      value: StonePointSummoningEffect (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8312,7 +8354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1342483945}
   m_Layer: 0
-  m_Name: StonePoint (4)
+  m_Name: StonePoint (6)
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8332,7 +8374,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1894934152}
-  m_Father: {fileID: 1733914257}
+  m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343155208
 GameObject:
@@ -8743,7 +8785,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533446352}
   m_Layer: 0
-  m_Name: StonePoint (5)
+  m_Name: StonePoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8757,13 +8799,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533446351}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.02, y: 4.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1313043745}
-  m_Father: {fileID: 821992800}
+  - {fileID: 2080402881}
+  m_Father: {fileID: 956338953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1545575490 stripped
 Animator:
@@ -8776,19 +8819,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1583119494}
     m_Modifications:
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (6)
+      value: StonePointLightning (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.37
+      value: -0.3958187
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.93
+      value: 2.485818
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8800,15 +8843,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8841,7 +8884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583119494}
   m_Layer: 0
-  m_Name: StonePoint (7)
+  m_Name: StonePoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8855,13 +8898,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583119493}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.486, y: 1.996, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.486, y: 1.9959999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 546264377}
-  m_Father: {fileID: 821992800}
+  - {fileID: 511785042}
+  m_Father: {fileID: 956338953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1613884119 stripped
 MonoBehaviour:
@@ -9020,41 +9064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1733914256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1733914257}
-  m_Layer: 0
-  m_Name: SummoningCircles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1733914257
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733914256}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 929932285}
-  - {fileID: 470520937}
-  - {fileID: 2024994219}
-  - {fileID: 1342483945}
-  m_Father: {fileID: 1979594590}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1764098513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9077,7 +9086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning (2)
+      value: StaffLightning (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_IsActive
@@ -9319,19 +9328,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 929932285}
     m_Modifications:
     - target: {fileID: 3708373751440001827, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_Name
-      value: Lightning
+      value: StonePointLightning (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9
+      value: -0.12363672
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.67
+      value: 1.9271817
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9343,15 +9352,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9463,7 +9472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8718645033331996986, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
       propertyPath: m_Name
-      value: SummoningEffect (4)
+      value: StonePointSummoningEffect (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9577,7 +9586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941933217}
   m_Layer: 0
-  m_Name: StonePoint (6)
+  m_Name: StonePoint (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9591,13 +9600,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941933216}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 17.386, y: 1.201, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1287448961}
-  m_Father: {fileID: 821992800}
+  - {fileID: 1047021702}
+  m_Father: {fileID: 956338953}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979594588
 GameObject:
@@ -9686,7 +9696,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 442977554}
-  - {fileID: 1733914257}
+  - {fileID: 2024994219}
+  - {fileID: 929932285}
+  - {fileID: 470520937}
+  - {fileID: 1342483945}
   - {fileID: 1343155209}
   - {fileID: 1467522927}
   - {fileID: 858002164}
@@ -9716,7 +9729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024994219}
   m_Layer: 0
-  m_Name: StonePoint (3)
+  m_Name: StonePoint (0)
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9736,7 +9749,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 836059598}
-  m_Father: {fileID: 1733914257}
+  m_Father: {fileID: 1979594590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2032488919
 GameObject:
@@ -9773,6 +9786,22 @@ Transform:
 Animator:
   m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
   m_PrefabInstance: {fileID: 50951302}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2080402878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7741554761089612701, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 113731407}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8673f72a927e824e8cd4ba26ea5e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2080402881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4961702332313823321, guid: 40e3a630cd8a6bc4c8a48c7da366e5d2, type: 3}
+  m_PrefabInstance: {fileID: 113731407}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134385078
 GameObject:
@@ -9872,6 +9901,7 @@ MonoBehaviour:
   - {fileID: 55599693}
   - {fileID: 442977555}
   - {fileID: 1658059463}
+  line_particles: {fileID: 2143389931}
   summoning_circles: {fileID: 2143389928}
   particles: {fileID: 2143389927}
   phase_2_ambient_lightning: {fileID: 2143389926}
@@ -10006,13 +10036,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   summoning_circles:
-  - {fileID: 2062009361}
-  - {fileID: 1667838849}
   - {fileID: 912837941}
-  - {fileID: 1894934153}
-  - {fileID: 1313043746}
-  - {fileID: 1545575490}
   - {fileID: 546264378}
+  - {fileID: 2062009361}
+  - {fileID: 1313043746}
+  - {fileID: 1667838849}
+  - {fileID: 1545575490}
+  - {fileID: 1894934153}
 --- !u!114 &2143389929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10051,6 +10081,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitters:
     _serializedList:
+    - Key: stone_1_lightning
+      Value: {fileID: 511785039}
+    - Key: stone_2_lightning
+      Value: {fileID: 172259448}
+    - Key: stone_3_lightning
+      Value: {fileID: 2080402878}
+    - Key: stone_4_lightning
+      Value: {fileID: 61456817}
+    - Key: stone_5_lightning
+      Value: {fileID: 1047021699}
     - Key: staff_lightning_0
       Value: {fileID: 1377759552}
     - Key: staff_lightning_1
@@ -10573,6 +10613,14 @@ PrefabInstance:
       propertyPath: teleport_points._serializedList.Array.data[4].Value
       value: 
       objectReference: {fileID: 1243398188}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[1].Value.max_life
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[1].Value.current_life
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6619723628049759496, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -10904,8 +10952,3 @@ SceneRoots:
   - {fileID: 1197821285}
   - {fileID: 1973040482689557288}
   - {fileID: 806487590}
-  - {fileID: 1879058033}
-  - {fileID: 466809419}
-  - {fileID: 113731407}
-  - {fileID: 1547554960}
-  - {fileID: 484411482}

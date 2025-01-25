@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace Cutscenes{
@@ -78,6 +79,7 @@ namespace Cutscenes{
             CameraController.instance.set_target(Player.instance.transform);
             room.get_platforms().start_loop();
             AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
+            room.start_randomised_stone_lightning();
             end();
             yield break;
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Entropek;
 using Sounds;
@@ -10,6 +11,7 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] GameObject background_mage;
     [SerializeField] SnowController snow_controller;
     [SerializeField] List<FogController> fog_controllers = new List<FogController>();
+    [SerializeField] LineParticleEmittersHandler line_particles;
     [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
@@ -63,16 +65,18 @@ public class MageBossRoom : BossRoomHandler{
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
         lighting_states[x]();
-        if(x == 1)
+        if(x == 1){
             phase_2_ambient_lightning.Play();
+            phase_transition_lightning();
+        }
     }
     public void emit_attraction_particles(){
-        summoning_circles.turn_on(new(){0,1,4});
+        summoning_circles.turn_on(new(){2,3,4});
         for(int i = 1; i < 4; i++)
             particles.play_particle("stone_"+i);
     }
     public void stop_attraction_particles(){
-        summoning_circles.turn_off(new(){0,1,4});
+        summoning_circles.turn_off(new(){2,3,4});
         for(int i = 1; i < 4; i++)
             particles.stop_particle("stone_"+i);
     }
@@ -89,9 +93,32 @@ public class MageBossRoom : BossRoomHandler{
 
     protected override void death_completed(){
         set_room_state(0);
+        StopCoroutine(randomised_stone_lightning_loop());
         StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
         base.death_completed();
     }
+
+    public void phase_transition_lightning(){
+        StartCoroutine(Util.timer(2,time_out:()=>line_particles.emit_once("stone_2_lightning")));
+        StartCoroutine(Util.timer(3,time_out:()=>line_particles.emit_once("stone_4_lightning")));
+        StartCoroutine(Util.timer(4,time_out:()=>line_particles.emit_once("staff_lightning_0")));
+        StartCoroutine(Util.timer(4,time_out:()=>line_particles.emit_once("staff_lightning_1")));
+        StartCoroutine(Util.timer(4,time_out:()=>line_particles.emit_once("staff_lightning_2")));
+        StartCoroutine(Util.timer(5,time_out:()=>line_particles.emit_once("stone_2_lightning")));
+        StartCoroutine(Util.timer(5,time_out:()=>line_particles.emit_once("stone_3_lightning")));
+        StartCoroutine(Util.timer(5,time_out:()=>line_particles.emit_once("stone_4_lightning")));
+    }
+
+    public void start_randomised_stone_lightning() => StartCoroutine(randomised_stone_lightning_loop());
+    IEnumerator randomised_stone_lightning_loop(){
+        while(true){
+            yield return new WaitForSeconds(8.5f);
+            int x = UnityEngine.Random.Range(1,6);
+            line_particles.emit_once($"stone_{x}_lightning");
+            yield return null;
+        }
+    }
+
 
     void link_events(){
         link_mage();
