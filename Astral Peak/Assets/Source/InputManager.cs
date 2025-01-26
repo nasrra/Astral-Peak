@@ -63,13 +63,13 @@ public static class InputManager{
         bind_keybinds();
         GameManager.exited_game_state  += exited_game_state;
         GameManager.entered_game_state += entered_game_state;
+        load_player_prefs(keybinds.UserControls);
     }
     public static void uninitialize(){
         unbind_keybinds();
         GameManager.exited_game_state  -= exited_game_state;
         GameManager.entered_game_state -= entered_game_state;
     }
-
 
 
 
@@ -212,14 +212,30 @@ public static class InputManager{
             c.Dispose();
             keybinds.MenuControls.Enable();
             keybinds.RebindControls.Disable();
+            
+            // Save the rebinds
+            save_action_map(action.actionMap);            
             callback?.Invoke();
-        });
+        });////
         rebinding_operation.Start();
     }
     private static void cancel_rebind(){
         rebinding_operation.Cancel();
     }
-
+    private static void load_player_prefs(InputActionMap action_map) {
+        string overrides = PlayerPrefs.GetString("Rebinds_" + action_map.name, string.Empty);
+        if (!string.IsNullOrEmpty(overrides))
+            action_map.LoadBindingOverridesFromJson(overrides);
+    }
+    public static void reset_keybinds(string _action_map){
+        InputActionMap action_map = keybinds.asset.FindActionMap(_action_map); 
+        action_map.RemoveAllBindingOverrides();
+        save_action_map(action_map);            
+    }
+    private static void save_action_map(InputActionMap action_map){
+        string overrides = action_map.SaveBindingOverridesAsJson();
+        PlayerPrefs.SetString("Rebinds_" + action_map.name, overrides);        
+    }
 
 
 

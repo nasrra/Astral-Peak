@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DisplayResolutionDropDown : MonoBehaviour{
-    Dictionary<int, Action> resolutions = new Dictionary<int, Action>(){
-        {0, ()=>DisplaySettingsManager.set_resolution(new Vector2Int(1920,1080))},
-        {1, ()=>DisplaySettingsManager.set_resolution(new Vector2Int(2560,1440))},
-        {2, ()=>DisplaySettingsManager.set_resolution(new Vector2Int(3840,2160))},
-    };
-    public void resolution_changed(int selection) => resolutions[selection]();
+    [SerializeField] TMP_Dropdown dropdown;
+    void OnEnable() => dropdown.value = DisplaySettingsManager.get_resolution_preset();
+    public void resolution_changed(int selection) => DisplaySettingsManager.set_resolution(selection);
 }

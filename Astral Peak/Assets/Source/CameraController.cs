@@ -64,6 +64,10 @@ public class CameraController : MonoBehaviour{
         state_swtich(ref shake_state, null);
         shake_locked = false;
     }
+    public void set_target_display(int target_display){
+        cam.targetDisplay = target_display;
+        Debug.Log(cam.targetDisplay);
+    }
     // state switchers:
     void state_swtich(ref Coroutine state, IEnumerator n_state){
         if(state != null)

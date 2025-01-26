@@ -34,6 +34,7 @@ public static class StaticComponents{
         InputManager.uninitialize();
         GameManager.uninitialize();
         CustomSceneManager.uninitialize();
+        PlayerPrefs.Save();
     }
 
     // input initialization.

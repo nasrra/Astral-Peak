@@ -1,24 +1,35 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class DisplaySettingsManager{
-    static Vector2Int resolution = new Vector2Int(1920,1080);
-    static int display = 0;
-    static bool windowed = true;
+    static Dictionary<int, Vector2Int> resolutions = new Dictionary<int, Vector2Int>(){
+        {0, new Vector2Int(1920,1080)},
+        {1, new Vector2Int(2560,1440)},
+        {2, new Vector2Int(3840,2160)},
+    };
+    static int resolution_preset = 0;
+    static bool fullscreen = false;
     public static void initialize(){
-        set_resolution(resolution);
-        set_windowed(windowed);
-        set_display(display);
+        load_player_prefs();
+        set_resolution(resolution_preset);
+        set_fullscreen(fullscreen);
     }
-    public static void set_resolution(Vector2Int _resolution){
-        resolution = _resolution;
-        Screen.SetResolution(resolution.x, resolution.y, windowed);
+    public static void set_resolution(int preset){
+        resolution_preset = preset;
+        Vector2Int resolution = resolutions[preset];
+        Screen.SetResolution(resolution.x, resolution.y, fullscreen);
+        PlayerPrefs.SetInt("resolution_preset", resolution_preset);
     }
-    public static void set_windowed(bool _windowed){
-        windowed = _windowed;
-        Screen.fullScreenMode = windowed == true? FullScreenMode.Windowed : FullScreenMode.ExclusiveFullScreen;
+    public static void set_fullscreen(bool _fullscreen){
+        fullscreen = _fullscreen;
+        Screen.fullScreenMode = fullscreen == false? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
+        set_resolution(resolution_preset);
+        PlayerPrefs.SetInt("fullscreen", _fullscreen == true?1:0);
     }
-    public static void set_display(int _display){
-        display = _display;
-        Display.displays[_display].Activate();
+
+    public static void load_player_prefs(){
+        resolution_preset = PlayerPrefs.GetInt("resolution_preset", 0);
+        fullscreen = PlayerPrefs.GetInt("fullscreen",0) == 1? true: false;
     }
+    public static int get_resolution_preset() => resolution_preset;
 }
