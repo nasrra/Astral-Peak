@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Sounds;
+using UnityEngine.Audio;
 
 public static class SoundLibrary{
     static Dictionary<SoundID, Sound> loaded_sounds = new Dictionary<SoundID, Sound>();
@@ -27,9 +28,16 @@ public static class SoundLibrary{
         if(loaded_sounds.ContainsKey(SoundID.NONE) == false)
             loaded_sounds.Add(SoundID.NONE, new Sounds.None());
         foreach(Sound sound in sounds)
-            loaded_sounds.Add(sound.id(), sound);
+            loaded_sounds.Add(sound.id, sound);
     }
     static void unload_sounds(Scene scene) => loaded_sounds.Clear();
+
+    public static AudioClip load(AudioMixerGroup group, string clip){
+        if(group == AudioManager.music_mixer)
+            return load_music(clip);
+        else
+            return load_sfx(clip);
+    }
 
     public static AudioClip load_music(string audio_clip){
         AudioClip c = Resources.Load<AudioClip>("Audio/Music/"+audio_clip);

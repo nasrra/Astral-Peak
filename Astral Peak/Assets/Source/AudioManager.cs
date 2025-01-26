@@ -63,7 +63,7 @@ public static class AudioManager{
         state_switch(ref music_loop_state, music_coroutine(sound_id));       
     }
     static IEnumerator music_coroutine(SoundID sound_id){
-        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 3;
+        float clip_length = SoundLibrary.get_sound(sound_id).clip.length - 3;
         while (true){
             if(reverse_music_crossfade == false)
                 yield return AudioClipHandler.crossfade(current_music, previous_music, sound_id, 2f);
@@ -89,7 +89,7 @@ public static class AudioManager{
         state_switch(ref ambience_loop_state, ambience_coroutine(sound_id));       
     }
     static IEnumerator ambience_coroutine(SoundID sound_id){
-        float clip_length = SoundLibrary.get_sound(sound_id).clip().length - 2;
+        float clip_length = SoundLibrary.get_sound(sound_id).clip.length - 2;
         while (true){
             if(reverse_ambience_crossfade == false)
                 yield return AudioClipHandler.crossfade(current_ambience, previous_ambience, sound_id, 1f);

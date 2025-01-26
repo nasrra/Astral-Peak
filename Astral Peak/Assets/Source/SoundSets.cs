@@ -165,14 +165,13 @@ public struct DomineSoundSet : SoundSet {
     public List<Sound> get_sounds() {
         if (sounds == null) {
             sounds = new List<Sound>() {
-                new Daniel(),
                 new DomineMusic(),
                 // Opening Cutscene
                 new DomineAnOffering(),
                 new DomineBurnedWoman(),
                 new DomineCursedOne(),
                 new DomineDeadWoman(),
-                new DomineEnterRooom(),
+                new DomineEnterRoom(),
                 new DomineFixWoman(),
                 new DomineFoolOrBrave(),
                 new DomineItsExpensive(),
@@ -249,7 +248,6 @@ public struct HollowSoundSet : SoundSet {
                 new WoodenRattle1(),
                 new WoodenRattle2(),
                 new WoodenRattle4(),
-                new HollowMusic(),
             };
         }
         return sounds;
