@@ -25,6 +25,7 @@ public static class StaticComponents{
         scene_manager();
         file_manager();
         game_manager();
+        display_manager();
         Application.quitting += uninitialize;
     }
 
@@ -74,4 +75,5 @@ public static class StaticComponents{
     }
 
     static void game_manager() => GameManager.initialize();
+    static void display_manager() => DisplayResolutionManager.initialize();
 }

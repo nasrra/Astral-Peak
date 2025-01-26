@@ -87,7 +87,7 @@ public class AltarMusic : Sound{
 
 public class Introduction : Sound{
     public Introduction() : base(
-        _id:        SoundID.ALTAR_MUSIC,
+        _id:        SoundID.INTRODUCTION_MUSIC,
         _clip:      "introduction",
         _group:     AudioManager.music_mixer,
         _volume:    1f,
