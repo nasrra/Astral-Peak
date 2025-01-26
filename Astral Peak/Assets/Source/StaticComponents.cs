@@ -75,5 +75,5 @@ public static class StaticComponents{
     }
 
     static void game_manager() => GameManager.initialize();
-    static void display_manager() => DisplayResolutionManager.initialize();
+    static void display_manager() => DisplaySettingsManager.initialize();
 }

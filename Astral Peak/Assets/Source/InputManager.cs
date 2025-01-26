@@ -3,8 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEditor;
-using Entropek;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -17,12 +15,13 @@ public static class InputManager{
 
     public static event Action
         // Default keyboard events
-        jump_performed,     jump_cancelled, 
-        left_performed,     left_cancelled, 
-        right_performed,    right_cancelled, 
-        attack_performed,   attack_cancelled, 
-        up_performed,       up_cancelled,
-        dash_performed;
+        user_jump_performed,     user_jump_cancelled, 
+        user_left_performed,     user_left_cancelled, 
+        user_right_performed,    user_right_cancelled, 
+        user_attack_performed,   user_attack_cancelled, 
+        user_up_performed,       user_up_cancelled,
+        user_dash_performed,
+        menu_exit_performed;
 
     enum Actions{
         JUMP,
@@ -81,28 +80,28 @@ public static class InputManager{
         link_menu_controls();
     }
     private static void link_user_controls(){
-        keybinds.UserControls.Jump.performed            += user_jump_performed;
-        keybinds.UserControls.Jump.canceled             += user_jump_cancelled;
-        keybinds.UserControls.Right.performed           += user_right_performed;
-        keybinds.UserControls.Right.canceled            += user_right_cancelled;
-        keybinds.UserControls.Left.performed            += user_left_performed;
-        keybinds.UserControls.Left.canceled             += user_left_cancelled;
-        keybinds.UserControls.Up.performed              += user_up_performed;
-        keybinds.UserControls.Up.canceled               += user_up_cancelled;
-        keybinds.UserControls.Attack.performed          += user_attack_performed;
-        keybinds.UserControls.Attack.canceled           += user_attack_cancelled;
-        keybinds.UserControls.Dash.performed            += user_dash_performed;
-        keybinds.UserControls.Exit.performed            += user_exit_performed;
+        keybinds.UserControls.Jump.performed            += on_user_jump_performed;
+        keybinds.UserControls.Jump.canceled             += on_user_jump_cancelled;
+        keybinds.UserControls.Right.performed           += on_user_right_performed;
+        keybinds.UserControls.Right.canceled            += on_user_right_cancelled;
+        keybinds.UserControls.Left.performed            += on_user_left_performed;
+        keybinds.UserControls.Left.canceled             += on_user_left_cancelled;
+        keybinds.UserControls.Up.performed              += on_user_up_performed;
+        keybinds.UserControls.Up.canceled               += on_user_up_cancelled;
+        keybinds.UserControls.Attack.performed          += on_user_attack_performed;
+        keybinds.UserControls.Attack.canceled           += on_user_attack_cancelled;
+        keybinds.UserControls.Dash.performed            += on_user_dash_performed;
+        keybinds.UserControls.Exit.performed            += on_user_exit_performed;
         #if UNITY_EDITOR
-            keybinds.UserControls.ZoomOut.performed     += user_zoom_out;
-            keybinds.UserControls.ZoomIn.performed      += user_zoom_in;
+            keybinds.UserControls.ZoomOut.performed     += on_user_zoom_out;
+            keybinds.UserControls.ZoomIn.performed      += on_user_zoom_in;
         #endif
     }
     private static void link_rebind_controls(){
         keybinds.RebindControls.Cancel.performed        += rebind_cancel_performed;
     }
     private static void link_menu_controls(){
-        keybinds.MenuControls.Exit.performed            += menu_exit_performed;
+        keybinds.MenuControls.Exit.performed            += on_menu_exit_performed;
     }
     private static void unbind_keybinds(){
         unlink_user_controls();
@@ -110,26 +109,26 @@ public static class InputManager{
         unlink_menu_controls();
     }
     private static void unlink_user_controls(){
-        keybinds.UserControls.Jump.performed            -= user_jump_performed;
-        keybinds.UserControls.Jump.canceled             -= user_jump_cancelled;
-        keybinds.UserControls.Right.performed           -= user_right_performed;
-        keybinds.UserControls.Right.canceled            -= user_right_cancelled;
-        keybinds.UserControls.Left.performed            -= user_left_performed;
-        keybinds.UserControls.Left.canceled             -= user_left_cancelled;
-        keybinds.UserControls.Attack.performed          -= user_attack_performed;
-        keybinds.UserControls.Attack.canceled           -= user_attack_cancelled;
-        keybinds.UserControls.Dash.performed            -= user_dash_performed;
-        keybinds.UserControls.Exit.performed            -= user_exit_performed;
+        keybinds.UserControls.Jump.performed            -= on_user_jump_performed;
+        keybinds.UserControls.Jump.canceled             -= on_user_jump_cancelled;
+        keybinds.UserControls.Right.performed           -= on_user_right_performed;
+        keybinds.UserControls.Right.canceled            -= on_user_right_cancelled;
+        keybinds.UserControls.Left.performed            -= on_user_left_performed;
+        keybinds.UserControls.Left.canceled             -= on_user_left_cancelled;
+        keybinds.UserControls.Attack.performed          -= on_user_attack_performed;
+        keybinds.UserControls.Attack.canceled           -= on_user_attack_cancelled;
+        keybinds.UserControls.Dash.performed            -= on_user_dash_performed;
+        keybinds.UserControls.Exit.performed            -= on_user_exit_performed;
         #if UNITY_EDITOR
-            keybinds.UserControls.ZoomOut.performed     -= user_zoom_out;
-            keybinds.UserControls.ZoomIn.performed      -= user_zoom_in;
+            keybinds.UserControls.ZoomOut.performed     -= on_user_zoom_out;
+            keybinds.UserControls.ZoomIn.performed      -= on_user_zoom_in;
         #endif
     }
     private static void unlink_rebind_controls(){
         keybinds.RebindControls.Cancel.performed        -= rebind_cancel_performed;
     }
     private static void unlink_menu_controls(){
-        keybinds.MenuControls.Exit.performed            -= menu_exit_performed;
+        keybinds.MenuControls.Exit.performed            -= on_menu_exit_performed;
     }
 
 
@@ -158,21 +157,21 @@ public static class InputManager{
         keybinds.UserControls.Disable();
         reset_input_blockers();
     }
-    static void user_jump_performed(InputAction.CallbackContext ctx)    { jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
-    static void user_jump_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) jump_cancelled?.Invoke();}
-    static void user_left_performed(InputAction.CallbackContext ctx)    { left_performed?.Invoke(); input_blocker[Actions.LEFT] = false;}
-    static void user_left_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) left_cancelled?.Invoke();}
-    static void user_right_performed(InputAction.CallbackContext ctx)   { right_performed?.Invoke(); input_blocker[Actions.RIGHT] = false;}
-    static void user_right_cancelled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) right_cancelled?.Invoke();}
-    static void user_attack_performed(InputAction.CallbackContext ctx)  { attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
-    static void user_attack_cancelled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) attack_cancelled?.Invoke();}
-    static void user_up_performed(InputAction.CallbackContext ctx)      { up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
-    static void user_up_cancelled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) up_cancelled?.Invoke();}
-    static void user_dash_performed(InputAction.CallbackContext ctx)    => dash_performed?.Invoke();
-    static void user_exit_performed(InputAction.CallbackContext ctx)    => UiManager.instance.toggle_gameplay_ui();
+    static void on_user_jump_performed(InputAction.CallbackContext ctx)    { user_jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
+    static void on_user_jump_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) user_jump_cancelled?.Invoke();}
+    static void on_user_left_performed(InputAction.CallbackContext ctx)    { user_left_performed?.Invoke(); input_blocker[Actions.LEFT] = false;}
+    static void on_user_left_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) user_left_cancelled?.Invoke();}
+    static void on_user_right_performed(InputAction.CallbackContext ctx)   { user_right_performed?.Invoke(); input_blocker[Actions.RIGHT] = false;}
+    static void on_user_right_cancelled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) user_right_cancelled?.Invoke();}
+    static void on_user_attack_performed(InputAction.CallbackContext ctx)  { user_attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
+    static void on_user_attack_cancelled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) user_attack_cancelled?.Invoke();}
+    static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
+    static void on_user_up_cancelled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) user_up_cancelled?.Invoke();}
+    static void on_user_dash_performed(InputAction.CallbackContext ctx)    => user_dash_performed?.Invoke();
+    static void on_user_exit_performed(InputAction.CallbackContext ctx)    => UiManager.instance.toggle_gameplay_ui();
     #if UNITY_EDITOR
-        static void user_zoom_out(InputAction.CallbackContext ctx)      => CameraController.instance?.ZoomOut();
-        static void user_zoom_in(InputAction.CallbackContext ctx)       => CameraController.instance?.ZoomIn();
+        static void on_user_zoom_out(InputAction.CallbackContext ctx)      => CameraController.instance?.ZoomOut();
+        static void on_user_zoom_in(InputAction.CallbackContext ctx)       => CameraController.instance?.ZoomIn();
     #endif
     
 
@@ -186,7 +185,7 @@ public static class InputManager{
     public static void disable_menu_input(){
         keybinds.MenuControls.Disable();
     } 
-    static void menu_exit_performed(InputAction.CallbackContext ctx)   => UiManager.instance?.toggle_gameplay_ui();
+    static void on_menu_exit_performed(InputAction.CallbackContext ctx)   => menu_exit_performed?.Invoke();
 
 
 

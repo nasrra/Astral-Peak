@@ -132,6 +132,7 @@ public class UiManager : MonoBehaviour{
     void link_statics(){
         GameManager.entered_game_state                  += entered_game_state;
         GameManager.exited_game_state                   += exited_game_state;
+        InputManager.menu_exit_performed                += toggle_gameplay_ui;
     }
     void link_instances(){
         CameraEffects.instance.started_fade_to_black    += fade_out;
@@ -140,6 +141,7 @@ public class UiManager : MonoBehaviour{
     void unlink_statics(){
         GameManager.entered_game_state                  -= entered_game_state;
         GameManager.exited_game_state                   -= exited_game_state;
+        InputManager.menu_exit_performed                -= toggle_gameplay_ui;
     }
     void unlink_instances(){
         CameraEffects.instance.started_fade_to_black    -= fade_out;
