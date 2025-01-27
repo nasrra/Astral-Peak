@@ -112,7 +112,7 @@ public class SnowFootstep1 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_1,
         _clip:      "snow_footstep_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -122,7 +122,7 @@ public class SnowFootstep2 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_2,
         _clip:      "snow_footstep_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -132,7 +132,7 @@ public class SnowFootstep3 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_3,
         _clip:      "snow_footstep_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -142,7 +142,7 @@ public class SnowJump : Sound {
         _id:        SoundID.SNOW_JUMP,
         _clip:      "snow_jump",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -153,7 +153,7 @@ public class SnowFootstep4 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_4,
         _clip:      "snow_footstep_4",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -163,7 +163,7 @@ public class SnowImpactHeavy : Sound {
         _id:        SoundID.SNOW_IMPACT_HEAVY,
         _clip:      "snow_impact_heavy",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.6f,
+        _volume:    0.4f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -173,7 +173,7 @@ public class SnowImpactLight : Sound {
         _id:        SoundID.SNOW_IMPACT_LIGHT,
         _clip:      "snow_impact_light",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .4f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -183,7 +183,7 @@ public class StoneFootstep1 : Sound {
         _id:        SoundID.STONE_FOOTSTEP_1,
         _clip:      "stone_footstep_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -193,7 +193,7 @@ public class StoneFootstep2 : Sound {
         _id:        SoundID.STONE_FOOTSTEP_2,
         _clip:      "stone_footstep_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -203,7 +203,7 @@ public class StoneFootstep3 : Sound {
         _id:        SoundID.STONE_FOOTSTEP_3,
         _clip:      "stone_footstep_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -213,7 +213,7 @@ public class StoneFootstep4 : Sound {
         _id:        SoundID.STONE_FOOTSTEP_4,
         _clip:      "stone_footstep_4",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -223,7 +223,7 @@ public class StoneImpactLight : Sound {
         _id:        SoundID.STONE_IMPACT_LIGHT,
         _clip:      "stone_impact_light",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -233,7 +233,7 @@ public class SoftWind : Sound {
         _id:        SoundID.SOFT_WIND,
         _clip:      "soft_wind",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.8f,
+        _volume:    0.35f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -243,7 +243,7 @@ public class WolfHowl : Sound {
         _id:        SoundID.WOLF_HOWL,
         _clip:      "wolf_howl",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -253,7 +253,7 @@ public class MeleeHit : Sound {
         _id:        SoundID.MELEE_HIT,
         _clip:      "melee_hit",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -263,7 +263,7 @@ public class MeleeSwing1 : Sound {
         _id:        SoundID.MELEE_SWING_1,
         _clip:      "melee_swing_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -273,7 +273,7 @@ public class MeleeSwing2 : Sound {
         _id:        SoundID.MELEE_SWING_2,
         _clip:      "melee_swing_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -283,7 +283,7 @@ public class MeleeSwing3 : Sound {
         _id:        SoundID.MELEE_SWING_3,
         _clip:      "melee_swing_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -295,7 +295,7 @@ public class Magic1 : Sound {
         _id:        SoundID.MAGIC_1,
         _clip:      "magic_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -306,7 +306,7 @@ public class MagicExplosion : Sound {
         _id:        SoundID.MAGIC_EXPLOSION,
         _clip:      "magic_explosion",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -317,7 +317,7 @@ public class WhistleLong : Sound {
         _id:        SoundID.WHISTLE_LONG,
         _clip:      "whistle_long",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -328,7 +328,7 @@ public class Whoosh1 : Sound {
         _id:        SoundID.WHOOSH_1,
         _clip:      "whoosh_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -339,7 +339,7 @@ public class DogBark1 : Sound {
         _id:        SoundID.DOG_BARK_1,
         _clip:      "dog_bark_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -350,7 +350,7 @@ public class BowShot : Sound {
         _id:        SoundID.BOW_SHOT,
         _clip:      "bow_shot",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -361,7 +361,7 @@ public class CoinToss : Sound {
         _id:        SoundID.COIN_TOSS,
         _clip:      "coin_toss",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -373,7 +373,7 @@ public class RiderYell : Sound {
         _id:        SoundID.RIDER_YELL,
         _clip:      "rider_yell",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -384,7 +384,7 @@ public class WoodenPing : Sound {
         _id:        SoundID.WOODEN_PING,
         _clip:      "wooden_ping",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.7f,
+        _volume:    0.6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -395,7 +395,7 @@ public class DeepBoom : Sound {
         _id:        SoundID.DEEP_BOOM,
         _clip:      "deep_boom",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.8f,
+        _volume:    0.6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -406,7 +406,7 @@ public class Steam : Sound {
         _id:        SoundID.STEAM,
         _clip:      "steam",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.5f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -417,7 +417,7 @@ public class SmallFire : Sound {
         _id:        SoundID.SMALL_FIRE,
         _clip:      "small_fire",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.75f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -428,7 +428,7 @@ public class WoodenRattle1 : Sound {
         _id:        SoundID.WOODEN_RATTLE_1,
         _clip:      "wooden_rattle_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -440,8 +440,8 @@ public class WoodenRattle2 : Sound {
         _id:        SoundID.WOODEN_RATTLE_2,
         _clip:      "wooden_rattle_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1.0f,
-        _max_pitch: 1.0f,
+        _volume:    .5f,
+        _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
 }
@@ -451,8 +451,8 @@ public class WoodenRattle4 : Sound {
         _id:        SoundID.WOODEN_RATTLE_4,
         _clip:      "wooden_rattle_4",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1.0f,
-        _max_pitch: 1.0f,
+        _volume:    .5f,
+        _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
 }
@@ -462,7 +462,7 @@ public class DeepThumping : Sound {
         _id:        SoundID.DEEP_THUMPING,
         _clip:      "deep_thumping",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -473,7 +473,7 @@ public class DomineAnOffering : Sound {
         _id:        SoundID.DOMINE_AN_OFFERING,
         _clip:      "domine_an_offering",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -484,7 +484,7 @@ public class DomineBurnedWoman : Sound {
         _id:        SoundID.DOMINE_BURNED_WOMAN,
         _clip:      "domine_burned_woman",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -495,7 +495,7 @@ public class DomineCursedOne : Sound {
         _id:        SoundID.DOMINE_CURSED_ONE,
         _clip:      "domine_cursed_one",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -506,7 +506,7 @@ public class DomineDeadWoman : Sound {
         _id:        SoundID.DOMINE_DEAD_WOMAN,
         _clip:      "domine_dead_woman",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -517,7 +517,7 @@ public class DomineEdgeOfWorld : Sound {
         _id:        SoundID.DOMINE_EDGE_OF_WORLD,
         _clip:      "domine_edge_of_world",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -528,7 +528,7 @@ public class DomineEnterRoom : Sound {
         _id:        SoundID.DOMINE_ENTER_ROOM,
         _clip:      "domine_enter_room",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -539,7 +539,7 @@ public class DomineFixWoman : Sound {
         _id:        SoundID.DOMINE_FIX_WOMAN,
         _clip:      "domine_fix_woman",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -550,7 +550,7 @@ public class DomineFoolOrBrave : Sound {
         _id:        SoundID.DOMINE_FOOL_OR_BRAVE,
         _clip:      "domine_fool_or_brave",
         _group:     AudioManager.voice_mixer,
-        _volume:    1.0f,
+        _volume:    .5f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -563,7 +563,7 @@ public class DomineItsExpensive : Sound
         _id:        SoundID.DOMINE_ITS_EXPENSIVE,
         _clip:      "domine_its_expensive",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -575,7 +575,7 @@ public class DomineLostSoul : Sound
         _id:        SoundID.DOMINE_LOST_SOUL,
         _clip:      "domine_lost_soul",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -587,7 +587,7 @@ public class DomineNoHope : Sound
         _id:        SoundID.DOMINE_NO_HOPE,
         _clip:      "domine_no_hope",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -599,7 +599,7 @@ public class DomineOldDoor : Sound
         _id:        SoundID.DOMINE_OLD_DOOR,
         _clip:      "domine_old_door",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -611,7 +611,7 @@ public class DomineReviveWoman : Sound
         _id:        SoundID.DOMINE_REVIVE_WOMAN,
         _clip:      "domine_revive_woman",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -623,7 +623,7 @@ public class DomineSacrificeRitual : Sound
         _id:        SoundID.DOMINE_SACRIFICE_RITUAL,
         _clip:      "domine_sacrifice_ritual",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -635,7 +635,7 @@ public class DomineStrongWill : Sound
         _id:        SoundID.DOMINE_STRONG_WILL,
         _clip:      "domine_strong_will",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -647,7 +647,7 @@ public class DomineUnderArches : Sound
         _id:        SoundID.DOMINE_UNDER_ARCHES,
         _clip:      "domine_under_arches",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -659,7 +659,7 @@ public class DomineUnless : Sound
         _id:        SoundID.DOMINE_UNLESS,
         _clip:      "domine_unless",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -671,7 +671,7 @@ public class DomineWaitingMortal : Sound
         _id:        SoundID.DOMINE_WAITING_MORTAL,
         _clip:      "domine_waiting_mortal",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -684,7 +684,7 @@ public class DomineWalkAether : Sound
         _id:        SoundID.DOMINE_WALK_AETHER,
         _clip:      "domine_walk_aether",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -696,7 +696,7 @@ public class DomineWarning : Sound
         _id:        SoundID.DOMINE_WARNING,
         _clip:      "domine_warning",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -708,7 +708,7 @@ public class DomineNo : Sound
         _id:        SoundID.DOMINE_NO,
         _clip:      "domine_no",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -720,7 +720,7 @@ public class DomineYoureMortals : Sound
         _id:        SoundID.DOMINE_YOURE_MORTALS,
         _clip:      "domine_youre_mortals",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -732,7 +732,7 @@ public class DomineAshesToWind : Sound
         _id:        SoundID.DOMINE_ASHES_TO_WIND,
         _clip:      "domine_ashes_to_wind",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -744,7 +744,7 @@ public class DomineWhyHere : Sound
         _id:        SoundID.DOMINE_WHY_HERE,
         _clip:      "domine_why_here",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -756,7 +756,7 @@ public class DomineMountainSummit : Sound
         _id:        SoundID.DOMINE_MOUNTAIN_SUMMIT,
         _clip:      "domine_mountain_summit",
         _group:     AudioManager.voice_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}
@@ -768,7 +768,7 @@ public class Electricity1 : Sound
         _id:        SoundID.ELECTRICITY_1,
         _clip:      "electricity_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.5f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -780,7 +780,7 @@ public class Electricity2 : Sound
         _id:        SoundID.ELECTRICITY_2,
         _clip:      "electricity_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -792,7 +792,7 @@ public class Electricity3 : Sound
         _id:        SoundID.ELECTRICITY_3,
         _clip:      "electricity_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.2f,
+        _volume:    0.5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -804,7 +804,7 @@ public class BellChimes1 : Sound
         _id:        SoundID.BELL_CHIMES,
         _clip:      "bell_chimes_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 0.55f,
         _min_pitch: 0.40f
     ){}
@@ -816,7 +816,7 @@ public class Thunder1 : Sound
         _id:        SoundID.THUNDER_1,
         _clip:      "thunder_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    2f,
+        _volume:    1f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -828,7 +828,7 @@ public class Thunder2 : Sound
         _id:        SoundID.THUNDER_2,
         _clip:      "thunder_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    2f,
+        _volume:    .8f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -841,7 +841,7 @@ public class ThunderDistant : Sound
         _id:        SoundID.THUNDER_DISTANT,
         _clip:      "thunder_distant",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .65f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -853,7 +853,7 @@ public class HeavyWind : Sound
         _id:        SoundID.HEAVY_WIND,
         _clip:      "heavy_wind",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -865,7 +865,7 @@ public class ElectricityLoop : Sound
         _id:        SoundID.ELECTRICITY_LOOP,
         _clip:      "electricity_loop",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .5f,
         _max_pitch: 1f,
         _min_pitch: 0.84f
     ){}
@@ -877,7 +877,7 @@ public class ElectricBurst : Sound
         _id:        SoundID.ELECTRIC_BURST,
         _clip:      "electric_burst",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 0.9f,
         _min_pitch: 0.8f
     ){}
@@ -889,7 +889,7 @@ public class Ping : Sound
         _id:        SoundID.PING,
         _clip:      "ping",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.5f,
+        _volume:    0.6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -901,7 +901,7 @@ public class MagicFootstep1 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_1,
         _clip:      "magic_footstep_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -913,7 +913,7 @@ public class MagicFootstep2 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_2,
         _clip:      "magic_footstep_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -925,7 +925,7 @@ public class MagicFootstep3 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_3,
         _clip:      "magic_footstep_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -937,7 +937,7 @@ public class SnowRolling : Sound
         _id:        SoundID.SNOW_ROLLING,
         _clip:      "snow_rolling",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -949,7 +949,7 @@ public class MagicSnowCast : Sound
         _id:        SoundID.MAGIC_SNOW_CAST,
         _clip:      "magic_snow_cast",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.8f
     ){}

@@ -4,11 +4,19 @@ public class LightningParticleEmitter : LineParticleEmitter{
     AudioSource source;
     
     protected override void emitted(){
-        AudioClipHandler.play(
-            sound_id: Sounds.SoundID.THUNDER_1,
-            audio_player: this,
-            AudioSourceSettings.DIEGETIC_RANDOMISED
-        );    
+        int x = Random.Range(0,2);
+        if(x==0)
+            AudioClipHandler.play(
+                sound_id: Sounds.SoundID.THUNDER_1,
+                audio_player: this,
+                AudioSourceSettings.DIEGETIC_RANDOMISED
+            );
+        else  
+            AudioClipHandler.play(
+                sound_id: Sounds.SoundID.THUNDER_2,
+                audio_player: this,
+                AudioSourceSettings.DIEGETIC_RANDOMISED
+            );      
         SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
     }
