@@ -16,6 +16,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
+    bool i_frames = false;
     [Header("Player")]
     [SerializeField] private PlayerAnimator animator;
     [SerializeField] protected MeleeHolsterHandler melee;
@@ -94,7 +95,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void dash_end(){
         if(movement.check_grounded() == true)
             grounded();
-        health.is_vulnerable();
+        if(i_frames == false)
+            health.is_vulnerable();
     }
     private void grounded(){
         // bounce when hitting the ground.
@@ -155,24 +157,27 @@ public class Player : CreatureInheritor<CharacterMovement>{
         col.excludeLayers = new LayerMask();
     }
     private void handle_enemy_contact(Collision2D other){
-        if(other.gameObject.tag != "Dead")
+        if(other.gameObject.tag != "Dead" && i_frames == false)
             health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
     }
     private void handle_enemy_contact(Collider2D other){
-        if(other.gameObject.tag != "Dead")
+        if(other.gameObject.tag != "Dead" && i_frames == false)
             health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
     } 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
         sprite.play_damaged_flash();
-        health.is_invulnerable(invulnerable_time);
+        health.is_invulnerable();
         AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_sound("damaged");
+        i_frames = true;
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
-        damaged_stop?.Invoke();
+        i_frames = false;
         AudioManager.low_pass_audio(false);
+        damaged_stop?.Invoke();
+        health.is_vulnerable();
     }
     protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){

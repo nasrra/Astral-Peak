@@ -128,12 +128,13 @@ public static class AudioManager{
 
     private static IEnumerator lerp_value(string name, float value, float time){
         mixer.GetFloat(name, out float current_value);
-        yield return Calc.lerp_value(
+        state_switch(ref filter_state,Calc.lerp_value(
             val =>mixer.SetFloat(name, val),
             current_value,
             value,
             time
-        );
+        ));
+        yield break;
     }
 
     private static IEnumerator lerp_value_unscaled(string name, float value, float time){
