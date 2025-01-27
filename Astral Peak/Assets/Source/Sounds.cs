@@ -112,7 +112,7 @@ public class SnowFootstep1 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_1,
         _clip:      "snow_footstep_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .3f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -122,7 +122,7 @@ public class SnowFootstep2 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_2,
         _clip:      "snow_footstep_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .3f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -132,7 +132,7 @@ public class SnowFootstep3 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_3,
         _clip:      "snow_footstep_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .3f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -142,7 +142,7 @@ public class SnowJump : Sound {
         _id:        SoundID.SNOW_JUMP,
         _clip:      "snow_jump",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .3f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -153,7 +153,7 @@ public class SnowFootstep4 : Sound {
         _id:        SoundID.SNOW_FOOTSTEP_4,
         _clip:      "snow_footstep_4",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .3f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -163,7 +163,7 @@ public class SnowImpactHeavy : Sound {
         _id:        SoundID.SNOW_IMPACT_HEAVY,
         _clip:      "snow_impact_heavy",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.4f,
+        _volume:    0.55f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -173,7 +173,7 @@ public class SnowImpactLight : Sound {
         _id:        SoundID.SNOW_IMPACT_LIGHT,
         _clip:      "snow_impact_light",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .4f,
+        _volume:    .35f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -243,7 +243,7 @@ public class WolfHowl : Sound {
         _id:        SoundID.WOLF_HOWL,
         _clip:      "wolf_howl",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -339,7 +339,7 @@ public class DogBark1 : Sound {
         _id:        SoundID.DOG_BARK_1,
         _clip:      "dog_bark_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .65f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -350,7 +350,7 @@ public class BowShot : Sound {
         _id:        SoundID.BOW_SHOT,
         _clip:      "bow_shot",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .65f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -384,7 +384,7 @@ public class WoodenPing : Sound {
         _id:        SoundID.WOODEN_PING,
         _clip:      "wooden_ping",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.6f,
+        _volume:    0.5f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -406,7 +406,7 @@ public class Steam : Sound {
         _id:        SoundID.STEAM,
         _clip:      "steam",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .3f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -428,7 +428,7 @@ public class WoodenRattle1 : Sound {
         _id:        SoundID.WOODEN_RATTLE_1,
         _clip:      "wooden_rattle_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .2f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -440,18 +440,7 @@ public class WoodenRattle2 : Sound {
         _id:        SoundID.WOODEN_RATTLE_2,
         _clip:      "wooden_rattle_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
-        _max_pitch: 1f,
-        _min_pitch: 0.85f
-    ) {}
-}
-
-public class WoodenRattle4 : Sound {
-    public WoodenRattle4() : base(
-        _id:        SoundID.WOODEN_RATTLE_4,
-        _clip:      "wooden_rattle_4",
-        _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .4f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -829,8 +818,8 @@ public class Thunder2 : Sound
         _clip:      "thunder_2",
         _group:     AudioManager.sfx_mixer,
         _volume:    .8f,
-        _max_pitch: 1f,
-        _min_pitch: 0.85f
+        _max_pitch: 1.05f,
+        _min_pitch: .95f
     ){}
 }
 
@@ -843,7 +832,7 @@ public class ThunderDistant : Sound
         _group:     AudioManager.sfx_mixer,
         _volume:    .65f,
         _max_pitch: 1f,
-        _min_pitch: 0.85f
+        _min_pitch: 0.9f
     ){}
 }
 
@@ -901,7 +890,7 @@ public class MagicFootstep1 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_1,
         _clip:      "magic_footstep_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .55f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -913,7 +902,7 @@ public class MagicFootstep2 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_2,
         _clip:      "magic_footstep_2",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .55f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -925,7 +914,7 @@ public class MagicFootstep3 : Sound
         _id:        SoundID.MAGIC_FOOTSTEP_3,
         _clip:      "magic_footstep_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .55f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
@@ -937,7 +926,7 @@ public class SnowRolling : Sound
         _id:        SoundID.SNOW_ROLLING,
         _clip:      "snow_rolling",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .6f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}

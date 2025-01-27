@@ -247,7 +247,6 @@ public struct HollowSoundSet : SoundSet {
                 new RiderYell(),
                 new WoodenRattle1(),
                 new WoodenRattle2(),
-                new WoodenRattle4(),
             };
         }
         return sounds;

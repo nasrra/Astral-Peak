@@ -129,14 +129,10 @@ public static class AudioManager{
     private static IEnumerator lerp_value(string name, float value, float time){
         mixer.GetFloat(name, out float current_value);
         yield return Calc.lerp_value(
-            val =>{
-                Debug.Log(val);
-                mixer.SetFloat(name, val);
-            },
+            val =>mixer.SetFloat(name, val),
             current_value,
             value,
-            time,
-            ()=> Debug.Log(1)
+            time
         );
     }
 

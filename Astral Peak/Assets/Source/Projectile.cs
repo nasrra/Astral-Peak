@@ -7,8 +7,8 @@ public abstract class Projectile : MonoBehaviour{
     [SerializeField] List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     [SerializeField] protected SimpleMovement movement;
     public abstract void destroy();
-    void OnDestroy()=>ProjectileManager.instance.remove(this);
-    protected virtual void Start() => ProjectileManager.instance.add(this);
+    void OnDestroy()=>ProjectileManager.instance?.remove(this);
+    protected virtual void Start() => ProjectileManager.instance?.add(this);
     
     protected void enable_colliders(bool enabled){
         #if UNITY_EDITOR

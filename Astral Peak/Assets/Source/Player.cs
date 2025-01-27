@@ -176,9 +176,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){
+        GameManager.state_changed(GameState.DEATH);
         unlink_movement();
-        unlink_input();
-        unlink_melee();
         unlink_health();
         invulnerable();
         //AudioManager.low_pass_audio(true);
@@ -221,6 +220,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.disable_user_input();
         yield return new WaitForSeconds(1);
         movement.movement(spawn.get_movement(), false);
+        GameManager.state_changed(GameState.GAMEPLAY);
         InputManager.enable_user_input();
         yield break;
     }

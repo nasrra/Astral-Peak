@@ -48,6 +48,7 @@ public static class GameManager{
         exited_game_state?.Invoke(previous);
         entered_game_state?.Invoke(_state);
         state = _state;
+        Debug.Log($"state changed {_state}");
     }
 
     public static void link_player() => Player.instance.death_completed += death_state;

@@ -63,7 +63,6 @@ public class UiManager : MonoBehaviour{
     public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
 
     public void enable_death_screen(){
-        GameManager.state_changed(GameState.DEATH);
         pause_menu.SetActive(false);
         hud.SetActive(false);
         play_death_screen();
