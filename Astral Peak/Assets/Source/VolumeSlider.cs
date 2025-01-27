@@ -24,4 +24,4 @@ public class VolumeSlider : MonoBehaviour{
     void music_changed(float x) => AudioManager.music_volume(Calc.value_to_logarithmic(x));
     void sfx_changed(float x) => AudioManager.sfx_volume(Calc.value_to_logarithmic(x));
     void voice_changed(float x) => AudioManager.voice_volume(Calc.value_to_logarithmic(x));
-}//
+}

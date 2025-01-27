@@ -68,25 +68,31 @@ public static class AudioManager{
         float clip_length = SoundLibrary.get_sound(sound_id).clip.length - 3;
         while (true){
             if(reverse_music_crossfade == false)
-                yield return AudioClipHandler.crossfade(current_music, previous_music, sound_id, 2f);
+                state_switch(ref music_fade_state, AudioClipHandler.crossfade(current_music, previous_music, sound_id, 2f));
             else
-                yield return AudioClipHandler.crossfade(previous_music, current_music, sound_id, 2f);
+                state_switch(ref music_fade_state,AudioClipHandler.crossfade(previous_music, current_music, sound_id, 2f));
             reverse_music_crossfade = !reverse_music_crossfade;
             yield return new WaitForSeconds(clip_length);
         }
-    }
+    }//
     public static void stop_music(){
-        //state_switch(ref music_state, AudioClipHandler.fade_out(UnityHook.instance, current_music, 2f));
         // stop music from looping.
         if(music_loop_state!=null)
             UnityHook.instance.StopCoroutine(music_loop_state);
         if(reverse_music_crossfade == false)
-            state_switch(ref music_fade_state, AudioClipHandler.fade_out(current_music, 2f));
+            state_switch(ref music_fade_state, AudioClipHandler.fade_out_unscaled(current_music, 1f));
         else
-            state_switch(ref music_fade_state, AudioClipHandler.fade_out(previous_music, 2f));
+            state_switch(ref music_fade_state, AudioClipHandler.fade_out_unscaled(previous_music, 1f));
     }    
 
 
+    // SFX Settings
+    public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,volume);
+    public static void dim_sfx_volume(){
+        Log.MethodCall();
+        state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME,-80f, .5f));
+    }
+    public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), .5f));
     public static void play_ambience(SoundID sound_id){
         state_switch(ref ambience_loop_state, ambience_coroutine(sound_id));       
     }
@@ -105,16 +111,13 @@ public static class AudioManager{
         if(ambience_loop_state!=null)
             UnityHook.instance.StopCoroutine(ambience_loop_state);
         if(reverse_ambience_crossfade == false)
-            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out(current_ambience, 2f));
+            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out_unscaled(current_ambience, 1f));
         else
-            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out(previous_ambience, 2f));
+            state_switch(ref ambience_fade_state, AudioClipHandler.fade_out_unscaled(previous_ambience, 1f));
     }  
 
 
 
-    public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,volume);
-    public static void dim_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value(SFX_VOLUME, 0.001f, 2));
-    public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value(SFX_VOLUME, load_sfx_volume(), 2));
 
 
     public static void low_pass_audio(bool x) => state_switch(ref filter_state, lerp_value("LowpassFreq", x==true?800:22000, .5f));   
@@ -126,10 +129,28 @@ public static class AudioManager{
     private static IEnumerator lerp_value(string name, float value, float time){
         mixer.GetFloat(name, out float current_value);
         yield return Calc.lerp_value(
-            val => mixer.SetFloat(name, val),
+            val =>{
+                Debug.Log(val);
+                mixer.SetFloat(name, val);
+            },
             current_value,
             value,
-            time
+            time,
+            ()=> Debug.Log(1)
+        );
+    }
+
+    private static IEnumerator lerp_value_unscaled(string name, float value, float time){
+        mixer.GetFloat(name, out float current_value);
+        yield return Calc.lerp_value_unscaled(
+            val =>{
+                Debug.Log(val);
+                mixer.SetFloat(name, val);
+            },
+            current_value,
+            value,
+            time,
+            ()=> Debug.Log(1)
         );
     }
 

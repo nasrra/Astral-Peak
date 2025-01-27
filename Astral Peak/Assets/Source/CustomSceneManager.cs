@@ -34,7 +34,9 @@ public static class CustomSceneManager{
     }
 
 
-    static void load_scene() => UnityHook.instance.StartCoroutine(load_scene_coroutine());
+    static void load_scene(){
+        UnityHook.instance.StartCoroutine(load_scene_coroutine());
+    }
     static IEnumerator load_scene_coroutine(){
         // Wait to unload scene
         Scene active = SceneManager.GetActiveScene();
@@ -51,7 +53,7 @@ public static class CustomSceneManager{
 
         // laod scene.
         load = SceneManager.LoadSceneAsync(scene_to_load, LoadSceneMode.Single);
-        //AudioManager.restore_sfx_smooth();
+        AudioManager.restore_sfx_volume();
         yield return load;
         // add the title card scene here when necessary :)
         loaded_scene?.Invoke();
@@ -65,7 +67,7 @@ public static class CustomSceneManager{
     }
 
     static IEnumerator load_scene_with_transitions_coroutine(){
-        //AudioManager.dim_sfx_smooth();
+        AudioManager.dim_sfx_volume();
         if(CameraEffects.instance != null){
             CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
             CameraEffects.instance?.fade_to_black(1);
@@ -75,7 +77,7 @@ public static class CustomSceneManager{
         yield break;
     } 
     static IEnumerator load_scene_with_transitions_unscaled_coroutine(){
-        //AudioManager.dim_sfx_smooth();
+        AudioManager.dim_sfx_volume();
         if(CameraEffects.instance != null){
             CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
             CameraEffects.instance?.fade_to_black_unscaled(1);

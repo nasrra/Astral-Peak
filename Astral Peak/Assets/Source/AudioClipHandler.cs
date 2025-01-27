@@ -46,7 +46,7 @@ public static class AudioClipHandler{
         Sound sound = SoundLibrary.get_sound(sound_id);
         source_2.clip = sound.clip;
         source_2.Play();
-        yield return Calc.lerp_vector2(
+        yield return Calc.lerp_vector2_unscaled(
             val =>{
                 source_1.volume = val.x; // Fading out
                 source_2.volume = val.y; // Fading in
@@ -75,6 +75,19 @@ public static class AudioClipHandler{
 
     public static IEnumerator fade_out(AudioSource source, float time, bool destroy_source = false){
         yield return Calc.lerp_value(
+            _val=>source.volume=_val,
+            _start:source.volume,
+            _end:0,
+            _time:time,
+            _on_complete:()=>{
+                if(destroy_source==true)
+                    GameObject.Destroy(source);
+            }
+        );
+    }
+
+    public static IEnumerator fade_out_unscaled(AudioSource source, float time, bool destroy_source = false){
+        yield return Calc.lerp_value_unscaled(
             _val=>source.volume=_val,
             _start:source.volume,
             _end:0,
