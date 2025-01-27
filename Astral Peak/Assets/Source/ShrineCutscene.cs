@@ -130,7 +130,6 @@ public abstract class ShrineAltarCutscene : Cutscene{
 
     public override IEnumerator get_coroutine(){
         AudioManager.play_music(SoundID.ALTAR_MUSIC);
-        AudioManager.restore_sfx_smooth();
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
         CameraController.instance.enable_audio_listener(true);

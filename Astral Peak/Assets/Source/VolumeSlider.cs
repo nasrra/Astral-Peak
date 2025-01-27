@@ -1,3 +1,4 @@
+using Entropek;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,20 @@ public class VolumeSlider : MonoBehaviour{
         sfx_slider,
         voice_slider;
     void OnEnable(){
-        music_slider.value = PlayerPrefs.GetFloat(AudioManager.MUSIC_VOLUME, 1f);
-        music_slider.onValueChanged.AddListener(AudioManager.music_volume);
-        sfx_slider.value = PlayerPrefs.GetFloat(AudioManager.SFX_VOLUME, 1f);
-        sfx_slider.onValueChanged.AddListener(AudioManager.sfx_volume);
-        voice_slider.value = PlayerPrefs.GetFloat(AudioManager.VOICE_VOLUME, 1f);
-        voice_slider.onValueChanged.AddListener(AudioManager.voice_volume);
+        music_slider.value  = Calc.logarithmic_to_value(AudioManager.load_music_volume());
+        sfx_slider.value    = Calc.logarithmic_to_value(AudioManager.load_sfx_volume());
+        voice_slider.value  = Calc.logarithmic_to_value(AudioManager.load_voice_volume());
+        music_slider.onValueChanged.AddListener(music_changed);
+        sfx_slider.onValueChanged.AddListener(sfx_changed);
+        voice_slider.onValueChanged.AddListener(voice_changed);
     }
     void OnDisable(){
-        music_slider.onValueChanged.RemoveListener(AudioManager.music_volume);
-        sfx_slider.onValueChanged.RemoveListener(AudioManager.sfx_volume);
-        voice_slider.onValueChanged.RemoveListener(AudioManager.voice_volume);
-        PlayerPrefs.SetFloat(AudioManager.MUSIC_VOLUME, music_slider.value);
-        PlayerPrefs.SetFloat(AudioManager.SFX_VOLUME, sfx_slider.value);
-        PlayerPrefs.SetFloat(AudioManager.VOICE_VOLUME, voice_slider.value);
-    }//
-}
+        music_slider.onValueChanged.RemoveListener(music_changed);
+        sfx_slider.onValueChanged.RemoveListener(sfx_changed);
+        voice_slider.onValueChanged.RemoveListener(voice_changed);
+        AudioManager.save_volume_settings();
+    }
+    void music_changed(float x) => AudioManager.music_volume(Calc.value_to_logarithmic(x));
+    void sfx_changed(float x) => AudioManager.sfx_volume(Calc.value_to_logarithmic(x));
+    void voice_changed(float x) => AudioManager.voice_volume(Calc.value_to_logarithmic(x));
+}//

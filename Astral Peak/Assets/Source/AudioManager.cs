@@ -8,9 +8,12 @@ using Unity.VisualScripting;
 public static class AudioManager{
     static Coroutine 
         filter_state, 
-        volume_state,
+        sfx_volume_state,
+        sfx_filter_state,
+        music_volume_state,
         music_loop_state,
         music_fade_state,
+        ambience_volume_state,
         ambience_fade_state,
         ambience_loop_state;
 
@@ -24,7 +27,6 @@ public static class AudioManager{
         music_mixer,
         sfx_mixer,
         voice_mixer; 
-    static float original_sfx_volume = 0.0f;
 
     static AudioSource
         current_music, previous_music, current_ambience, previous_ambience;
@@ -58,7 +60,7 @@ public static class AudioManager{
 
 
     // Music settings.////
-    public static void music_volume(float volume) => mixer.SetFloat(MUSIC_VOLUME,value_to_logarithmic(volume));
+    public static void music_volume(float volume) => mixer.SetFloat(MUSIC_VOLUME,volume);
     public static void play_music(SoundID sound_id){
         state_switch(ref music_loop_state, music_coroutine(sound_id));       
     }
@@ -110,42 +112,42 @@ public static class AudioManager{
 
 
 
-    public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,value_to_logarithmic(volume));
+    public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,volume);
+    public static void dim_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value(SFX_VOLUME, 0.001f, 2));
+    public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value(SFX_VOLUME, load_sfx_volume(), 2));
 
 
-    public static void low_pass_audio(bool x) => state_switch(ref filter_state, lerp_filter("LowpassFreq", x==true?800:22000, 5));   
-    public static void dim_sfx_smooth(){
-        float x;
-        mixer.GetFloat(SFX_VOLUME, out x);
-        original_sfx_volume = logarithmic_to_value(x);
-        state_switch(ref volume_state, lerp_filter(SFX_VOLUME,value_to_logarithmic(0.001f), 1));
-    }
+    public static void low_pass_audio(bool x) => state_switch(ref filter_state, lerp_value("LowpassFreq", x==true?800:22000, .5f));   
 
-    public static void restore_sfx_smooth() => state_switch(ref volume_state, lerp_filter(SFX_VOLUME,value_to_logarithmic(original_sfx_volume), 2));
+
     // Voice Settings.
-    public static void voice_volume(float volume) => mixer.SetFloat(VOICE_VOLUME, value_to_logarithmic(volume));
+    public static void voice_volume(float volume) => mixer.SetFloat(VOICE_VOLUME, volume);
 
-    static IEnumerator lerp_filter(string name, float value, float speed){
-        float x = 0;
-        mixer.GetFloat(name, out x);
-        while (Mathf.Abs(x - value) > 1f){
-            mixer.GetFloat(name, out x);
-            mixer.SetFloat(name, Mathf.Lerp(x,value, Time.deltaTime * speed));
-            yield return null;
-        }
-        mixer.SetFloat(name, value);
-        yield break;
+    private static IEnumerator lerp_value(string name, float value, float time){
+        mixer.GetFloat(name, out float current_value);
+        yield return Calc.lerp_value(
+            val => mixer.SetFloat(name, val),
+            current_value,
+            value,
+            time
+        );
     }
-
-    // calc for mixer because volume levels are set by logarithmic values.
-    static float value_to_logarithmic(float value) => Mathf.Log10(value) * 20; 
-    static float logarithmic_to_value(float logarithmicValue) => Mathf.Pow(10, logarithmicValue / 20);
-
 
     public static void load_volume_settings(){
-        original_sfx_volume = PlayerPrefs.GetFloat(SFX_VOLUME, 1f);
-        sfx_volume(original_sfx_volume);
-        music_volume(PlayerPrefs.GetFloat(MUSIC_VOLUME, 1f));
-        voice_volume(PlayerPrefs.GetFloat(VOICE_VOLUME, 1f));
+        sfx_volume(load_sfx_volume());
+        music_volume(load_music_volume());
+        voice_volume(load_voice_volume());
     }
+    public static float load_sfx_volume()   => PlayerPrefs.GetFloat(SFX_VOLUME,     .5f);
+    public static float load_music_volume() => PlayerPrefs.GetFloat(MUSIC_VOLUME,   .5f);
+    public static float load_voice_volume() => PlayerPrefs.GetFloat(VOICE_VOLUME,   .5f);
+
+    public static void save_volume_settings(){
+        save_sfx_volume();
+        save_music_volume();
+        save_voice_volume();
+    }
+    public static void save_sfx_volume()    =>   PlayerPrefs.SetFloat(SFX_VOLUME,   mixer.GetFloat(SFX_VOLUME, out float v)? v : .5f);
+    public static void save_music_volume()  => PlayerPrefs.SetFloat(MUSIC_VOLUME, mixer.GetFloat(MUSIC_VOLUME, out float v)? v : .5f);
+    public static void save_voice_volume()  => PlayerPrefs.SetFloat(VOICE_VOLUME, mixer.GetFloat(VOICE_VOLUME, out float v)? v : .5f);
 }//

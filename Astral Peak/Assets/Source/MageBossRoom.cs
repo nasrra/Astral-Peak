@@ -93,7 +93,7 @@ public class MageBossRoom : BossRoomHandler{
 
     protected override void death_completed(){
         set_room_state(0);
-        StopCoroutine(randomised_stone_lightning_loop());
+        StopCoroutine("randomised_stone_lightning_loop");
         StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
         base.death_completed();
     }
@@ -109,7 +109,7 @@ public class MageBossRoom : BossRoomHandler{
         StartCoroutine(Util.timer(5,time_out:()=>line_particles.emit_once("stone_4_lightning")));
     }
 
-    public void start_randomised_stone_lightning() => StartCoroutine(randomised_stone_lightning_loop());
+    public void start_randomised_stone_lightning() => StartCoroutine("randomised_stone_lightning_loop");
     IEnumerator randomised_stone_lightning_loop(){
         while(true){
             yield return new WaitForSeconds(8.5f);

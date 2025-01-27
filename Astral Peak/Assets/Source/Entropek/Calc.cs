@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Entropek{
 public static class Calc{
+    static public float value_to_logarithmic(float value) => Mathf.Log10(value) * 20;
+    static public float logarithmic_to_value(float logarithmicValue) => Mathf.Pow(10, logarithmicValue / 20);
     static public IEnumerator lerp_value(System.Action<float> _value, float _start, float _end, float _time, System.Action _on_complete = null){
         float elapsedTime = 0;
         float t = 0;
@@ -43,5 +45,5 @@ public static class Calc{
         _on_complete?.Invoke();
         yield break;
     }//
-    }
+}
 }

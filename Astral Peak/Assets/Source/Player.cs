@@ -218,7 +218,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.clear_move_direction();//
         spawn.use_spawn();
         movement.movement(spawn.get_movement(), true);
-        AudioManager.restore_sfx_smooth();  
         InputManager.disable_user_input();
         yield return new WaitForSeconds(1);
         movement.movement(spawn.get_movement(), false);
