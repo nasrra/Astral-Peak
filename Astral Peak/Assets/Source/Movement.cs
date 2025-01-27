@@ -78,7 +78,10 @@ public class Movement : MonoBehaviour{
         state = _state != null ? StartCoroutine(_state) : null;
     }
     public virtual void clear_move_direction() => set_move_direction(Vector2.zero);
-    public void zero_velocity() => rb.linearVelocity = Vector3.zero;
+    public void zero_velocity(){
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = 0;
+    }
     public void clear_state(){
         state_switch(ref move_state, null);
         state_switch(ref controller_state, null);

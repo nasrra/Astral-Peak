@@ -27,7 +27,8 @@ public class Cavalry : Boss<CavalryMovement>{
     public override void exit_cutscene_state() => idle(1);
 
     protected override void death_start(){
-        animator.Play("WolfDeath");
+        animator.Play("WolfDeath",0,0);
+        no_state();
         StartCoroutine(Util.timer(
             animator.get_clip_length("WolfDeath")+3,
             start_action:()=>{
@@ -48,7 +49,7 @@ public class Cavalry : Boss<CavalryMovement>{
             }
         ));
     }
-
+//
     void disable_components(){
         particles.StopAllCoroutines();
         particles.enabled = false;

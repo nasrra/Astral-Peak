@@ -34,6 +34,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
     protected void start_fight(Collider2D other){
         set_respawn_point(0);//
         Player.instance.transform.position = fight_start_trigger.transform.position;
+        Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
         play_cutscene("phase_1");
     }

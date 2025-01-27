@@ -89,10 +89,9 @@ public static class AudioManager{
     // SFX Settings
     public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,volume);
     public static void dim_sfx_volume(){
-        Log.MethodCall();
-        state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME,-80f, .5f));
+        state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME,-80f, 1f));
     }
-    public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), .5f));
+    public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), 1f));
     public static void play_ambience(SoundID sound_id){
         state_switch(ref ambience_loop_state, ambience_coroutine(sound_id));       
     }
@@ -141,13 +140,11 @@ public static class AudioManager{
         mixer.GetFloat(name, out float current_value);
         yield return Calc.lerp_value_unscaled(
             val =>{
-                Debug.Log(val);
                 mixer.SetFloat(name, val);
             },
             current_value,
             value,
-            time,
-            ()=> Debug.Log(1)
+            time
         );
     }
 
