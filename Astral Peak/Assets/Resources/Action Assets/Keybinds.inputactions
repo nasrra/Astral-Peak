@@ -99,7 +99,7 @@
                     "name": "Debug",
                     "type": "Button",
                     "id": "b3178e13-4cd0-4b24-83bb-9e568b8647bc",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -548,6 +548,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CutsceneControls",
+            "id": "c3ce3d14-4a27-4657-8f41-ae8080359d19",
+            "actions": [
+                {
+                    "name": "Skip",
+                    "type": "Button",
+                    "id": "4a4f023d-3109-4b6c-8f49-86568264091e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "719e1b3e-eeca-43d3-ab87-8cc026ed4c30",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

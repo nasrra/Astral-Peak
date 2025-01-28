@@ -59,6 +59,7 @@ public class ShrineOpeningCutscene : Cutscene{
         AudioManager.stop_music();
         unlink();
         end();//
+        yield break;
     }
     public void dialogue_ended() => CutsceneManager.set_coroutine(ending());
     void handle_new_line(int line){

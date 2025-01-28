@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Entropek;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class Movement : MonoBehaviour{
     public event Action<Vector2> move_direction_changed;
@@ -81,8 +82,8 @@ public class Movement : MonoBehaviour{
         rb.angularVelocity = 0;
     }
     public void clear_state(){
-        StopCoroutine(move_state);
-        StopCoroutine(controller_state);
+        state_switch(ref move_state, null);
+        state_switch(ref controller_state, null);
     }
     public virtual void halt(){
         clear_move_direction();

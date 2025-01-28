@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -15,12 +16,13 @@ public static class InputManager{
 
     public static event Action
         // Default keyboard events
-        user_jump_performed,     user_jump_cancelled, 
-        user_left_performed,     user_left_cancelled, 
-        user_right_performed,    user_right_cancelled, 
-        user_attack_performed,   user_attack_cancelled, 
-        user_up_performed,       user_up_cancelled,
+        user_jump_performed,     user_jump_canceled, 
+        user_left_performed,     user_left_canceled, 
+        user_right_performed,    user_right_canceled, 
+        user_attack_performed,   user_attack_canceled, 
+        user_up_performed,       user_up_canceled,
         user_dash_performed,
+        cutscene_skip_performed, cutscene_skip_canceled,
         menu_exit_performed;
 
     enum Actions{
@@ -42,11 +44,13 @@ public static class InputManager{
     private static readonly Dictionary<GameState, Action> enable_input = new Dictionary<GameState, Action>(){
         {GameState.GAMEPLAY, enable_user_input},
         {GameState.MENU, enable_menu_input},
+        {GameState.CUTSCENE, enable_cutscene_input}
     };
 
     private static readonly Dictionary<GameState, Action> disable_input = new Dictionary<GameState, Action>(){
         {GameState.GAMEPLAY, disable_user_input},
         {GameState.MENU, disable_menu_input},
+        {GameState.CUTSCENE, disable_cutscene_input}
     };
 
     // Reset the input blockers
@@ -78,57 +82,13 @@ public static class InputManager{
         link_user_controls();
         link_rebind_controls();
         link_menu_controls();
-    }
-    private static void link_user_controls(){
-        keybinds.UserControls.Jump.performed            += on_user_jump_performed;
-        keybinds.UserControls.Jump.canceled             += on_user_jump_cancelled;
-        keybinds.UserControls.Right.performed           += on_user_right_performed;
-        keybinds.UserControls.Right.canceled            += on_user_right_cancelled;
-        keybinds.UserControls.Left.performed            += on_user_left_performed;
-        keybinds.UserControls.Left.canceled             += on_user_left_cancelled;
-        keybinds.UserControls.Up.performed              += on_user_up_performed;
-        keybinds.UserControls.Up.canceled               += on_user_up_cancelled;
-        keybinds.UserControls.Attack.performed          += on_user_attack_performed;
-        keybinds.UserControls.Attack.canceled           += on_user_attack_cancelled;
-        keybinds.UserControls.Dash.performed            += on_user_dash_performed;
-        keybinds.UserControls.Exit.performed            += on_user_exit_performed;
-        #if UNITY_EDITOR
-            keybinds.UserControls.ZoomOut.performed     += on_user_zoom_out;
-            keybinds.UserControls.ZoomIn.performed      += on_user_zoom_in;
-        #endif
-    }
-    private static void link_rebind_controls(){
-        keybinds.RebindControls.Cancel.performed        += rebind_cancel_performed;
-    }
-    private static void link_menu_controls(){
-        keybinds.MenuControls.Exit.performed            += on_menu_exit_performed;
+        link_cutscene_controls();
     }
     private static void unbind_keybinds(){
         unlink_user_controls();
         unlink_rebind_controls();
         unlink_menu_controls();
-    }
-    private static void unlink_user_controls(){
-        keybinds.UserControls.Jump.performed            -= on_user_jump_performed;
-        keybinds.UserControls.Jump.canceled             -= on_user_jump_cancelled;
-        keybinds.UserControls.Right.performed           -= on_user_right_performed;
-        keybinds.UserControls.Right.canceled            -= on_user_right_cancelled;
-        keybinds.UserControls.Left.performed            -= on_user_left_performed;
-        keybinds.UserControls.Left.canceled             -= on_user_left_cancelled;
-        keybinds.UserControls.Attack.performed          -= on_user_attack_performed;
-        keybinds.UserControls.Attack.canceled           -= on_user_attack_cancelled;
-        keybinds.UserControls.Dash.performed            -= on_user_dash_performed;
-        keybinds.UserControls.Exit.performed            -= on_user_exit_performed;
-        #if UNITY_EDITOR
-            keybinds.UserControls.ZoomOut.performed     -= on_user_zoom_out;
-            keybinds.UserControls.ZoomIn.performed      -= on_user_zoom_in;
-        #endif
-    }
-    private static void unlink_rebind_controls(){
-        keybinds.RebindControls.Cancel.performed        -= rebind_cancel_performed;
-    }
-    private static void unlink_menu_controls(){
-        keybinds.MenuControls.Exit.performed            -= on_menu_exit_performed;
+        unlink_cutscene_controls();
     }
 
 
@@ -157,16 +117,50 @@ public static class InputManager{
         keybinds.UserControls.Disable();
         reset_input_blockers();
     }
+    private static void link_user_controls(){
+        keybinds.UserControls.Jump.performed            += on_user_jump_performed;
+        keybinds.UserControls.Jump.canceled             += on_user_jump_canceled;
+        keybinds.UserControls.Right.performed           += on_user_right_performed;
+        keybinds.UserControls.Right.canceled            += on_user_right_canceled;
+        keybinds.UserControls.Left.performed            += on_user_left_performed;
+        keybinds.UserControls.Left.canceled             += on_user_left_canceled;
+        keybinds.UserControls.Up.performed              += on_user_up_performed;
+        keybinds.UserControls.Up.canceled               += on_user_up_canceled;
+        keybinds.UserControls.Attack.performed          += on_user_attack_performed;
+        keybinds.UserControls.Attack.canceled           += on_user_attack_canceled;
+        keybinds.UserControls.Dash.performed            += on_user_dash_performed;
+        keybinds.UserControls.Exit.performed            += on_user_exit_performed;
+        #if UNITY_EDITOR
+            keybinds.UserControls.ZoomOut.performed     += on_user_zoom_out;
+            keybinds.UserControls.ZoomIn.performed      += on_user_zoom_in;
+        #endif
+    }
+    private static void unlink_user_controls(){
+        keybinds.UserControls.Jump.performed            -= on_user_jump_performed;
+        keybinds.UserControls.Jump.canceled             -= on_user_jump_canceled;
+        keybinds.UserControls.Right.performed           -= on_user_right_performed;
+        keybinds.UserControls.Right.canceled            -= on_user_right_canceled;
+        keybinds.UserControls.Left.performed            -= on_user_left_performed;
+        keybinds.UserControls.Left.canceled             -= on_user_left_canceled;
+        keybinds.UserControls.Attack.performed          -= on_user_attack_performed;
+        keybinds.UserControls.Attack.canceled           -= on_user_attack_canceled;
+        keybinds.UserControls.Dash.performed            -= on_user_dash_performed;
+        keybinds.UserControls.Exit.performed            -= on_user_exit_performed;
+        #if UNITY_EDITOR
+            keybinds.UserControls.ZoomOut.performed     -= on_user_zoom_out;
+            keybinds.UserControls.ZoomIn.performed      -= on_user_zoom_in;
+        #endif
+    }
     static void on_user_jump_performed(InputAction.CallbackContext ctx)    { user_jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
-    static void on_user_jump_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) user_jump_cancelled?.Invoke();}
+    static void on_user_jump_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) user_jump_canceled?.Invoke();}
     static void on_user_left_performed(InputAction.CallbackContext ctx)    { user_left_performed?.Invoke(); input_blocker[Actions.LEFT] = false;}
-    static void on_user_left_cancelled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) user_left_cancelled?.Invoke();}
+    static void on_user_left_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) user_left_canceled?.Invoke();}
     static void on_user_right_performed(InputAction.CallbackContext ctx)   { user_right_performed?.Invoke(); input_blocker[Actions.RIGHT] = false;}
-    static void on_user_right_cancelled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) user_right_cancelled?.Invoke();}
+    static void on_user_right_canceled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) user_right_canceled?.Invoke();}
     static void on_user_attack_performed(InputAction.CallbackContext ctx)  { user_attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
-    static void on_user_attack_cancelled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) user_attack_cancelled?.Invoke();}
+    static void on_user_attack_canceled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) user_attack_canceled?.Invoke();}
     static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
-    static void on_user_up_cancelled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) user_up_cancelled?.Invoke();}
+    static void on_user_up_canceled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) user_up_canceled?.Invoke();}
     static void on_user_dash_performed(InputAction.CallbackContext ctx)    => user_dash_performed?.Invoke();
     static void on_user_exit_performed(InputAction.CallbackContext ctx)    => UiManager.instance.toggle_gameplay_ui();
     #if UNITY_EDITOR
@@ -185,13 +179,45 @@ public static class InputManager{
     public static void disable_menu_input(){
         keybinds.MenuControls.Disable();
     } 
+    private static void link_menu_controls(){
+        keybinds.MenuControls.Exit.performed            += on_menu_exit_performed;
+    }
+    private static void unlink_menu_controls(){
+        keybinds.MenuControls.Exit.performed            -= on_menu_exit_performed;
+    }
     static void on_menu_exit_performed(InputAction.CallbackContext ctx)   => menu_exit_performed?.Invoke();
 
 
 
 
 
+    // Cutscene Controls:
+    public static void enable_cutscene_input(){
+        keybinds.CutsceneControls.Enable();
+    }
+    public static void disable_cutscene_input(){
+        keybinds.CutsceneControls.Disable();
+    } 
+    static void link_cutscene_controls(){
+        keybinds.CutsceneControls.Skip.performed += on_custcene_skip_performed;
+        keybinds.CutsceneControls.Skip.canceled  += on_custcene_skip_canceled;
+    }
+    static void unlink_cutscene_controls(){
+        keybinds.CutsceneControls.Skip.performed -= on_custcene_skip_performed;
+        keybinds.CutsceneControls.Skip.canceled  -= on_custcene_skip_canceled;
+    }
+    static void on_custcene_skip_performed(InputAction.CallbackContext ctx) =>  cutscene_skip_performed?.Invoke();
+    static void on_custcene_skip_canceled(InputAction.CallbackContext ctx) =>  cutscene_skip_canceled?.Invoke();
+
+
+
     // Rebind Controls:
+    private static void link_rebind_controls(){
+        keybinds.RebindControls.Cancel.performed        += rebind_cancel_performed;
+    }
+    private static void unlink_rebind_controls(){
+        keybinds.RebindControls.Cancel.performed        -= rebind_cancel_performed;
+    }
     static void rebind_cancel_performed(InputAction.CallbackContext ctx)       => cancel_rebind();
     public static void rebind_action(InputAction action, Action callback = null){        
         keybinds.MenuControls.Disable();
@@ -216,7 +242,7 @@ public static class InputManager{
             // Save the rebinds
             save_action_map(action.actionMap);            
             callback?.Invoke();
-        });////
+        });
         rebinding_operation.Start();
     }
     private static void cancel_rebind(){

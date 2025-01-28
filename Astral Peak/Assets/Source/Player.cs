@@ -309,28 +309,28 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     public void link_input(){
         InputManager.user_jump_performed        += start_jump;
-        InputManager.user_jump_cancelled        += stop_jump;
+        InputManager.user_jump_canceled        += stop_jump;
         InputManager.user_left_performed        += start_left;
-        InputManager.user_left_cancelled        += stop_left;
+        InputManager.user_left_canceled        += stop_left;
         InputManager.user_right_performed       += start_right;
-        InputManager.user_right_cancelled       += stop_right;
+        InputManager.user_right_canceled       += stop_right;
         InputManager.user_attack_performed      += attack;
         InputManager.user_dash_performed        += dash; 
         InputManager.user_up_performed          += start_up;
-        InputManager.user_up_cancelled          += stop_up;
+        InputManager.user_up_canceled          += stop_up;
         InputManager.reset_input_blockers();
     }
     public void unlink_input(){
         InputManager.user_jump_performed        -= start_jump;
-        InputManager.user_jump_cancelled        -= stop_jump;
+        InputManager.user_jump_canceled        -= stop_jump;
         InputManager.user_left_performed        -= start_left;
-        InputManager.user_left_cancelled        -= stop_left;
+        InputManager.user_left_canceled        -= stop_left;
         InputManager.user_right_performed       -= start_right;
-        InputManager.user_right_cancelled       -= stop_right;
+        InputManager.user_right_canceled       -= stop_right;
         InputManager.user_attack_performed      -= attack;
         InputManager.user_dash_performed        -= dash;    
         InputManager.user_up_performed          -= start_up;
-        InputManager.user_up_cancelled          -= stop_up;
+        InputManager.user_up_canceled          -= stop_up;
         InputManager.reset_input_blockers();
     }
     protected void link_movement(){

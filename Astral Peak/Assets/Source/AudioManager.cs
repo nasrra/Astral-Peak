@@ -72,9 +72,9 @@ public static class AudioManager{
             else
                 state_switch(ref music_fade_state,AudioClipHandler.crossfade(previous_music, current_music, sound_id, 2f));
             reverse_music_crossfade = !reverse_music_crossfade;
-            yield return new WaitForSeconds(clip_length);
+            yield return new WaitForSecondsRealtime(clip_length);
         }
-    }//
+    }
     public static void stop_music(){
         // stop music from looping.
         if(music_loop_state!=null)
