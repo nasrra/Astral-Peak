@@ -69,7 +69,6 @@ public abstract class BossRoomHandler : MonoBehaviour{
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
         AudioManager.stop_ambience();
-        GameManager.state_changed(GameState.CUTSCENE);
         CustomSceneManager.load_scene_with_transitions("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;
         yield break;

@@ -9,26 +9,28 @@ public static class CutsceneManager{
     public static Action<Cutscene> started_cutscene;
     static MonoBehaviour coroutines;
     private static Cutscene cutscene = null;
-    public static void initialize(MonoBehaviour _coroutines) => coroutines = _coroutines;
+    public static void initialize(MonoBehaviour _coroutines){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.playModeStateChanged += handle_play_mode_state_changed;
+        #endif 
+        coroutines = _coroutines;
+    }
     public static void play(Cutscene _cutscene){
         GameManager.state_changed(GameState.CUTSCENE);
         cutscene = _cutscene;
         started_cutscene?.Invoke(cutscene);
         set_coroutine(cutscene.get_coroutine());
         cutscene.ended += cutscene_ended;
-        InputManager.cutscene_skip_performed += start_skip;
-        InputManager.cutscene_skip_canceled += stop_skip;
+        link_cutscene_skip();
     }
     public static bool in_cutscene() => cutscene != null;
 
     public static void set_coroutine(IEnumerator coroutine) => coroutines.StartCoroutine(coroutine); 
     static void cutscene_ended(){
-        Log.MethodCall();
         cutscene = null;
         GameManager.state_changed(GameState.GAMEPLAY);
         Time.timeScale = 1;
-        InputManager.cutscene_skip_performed -= start_skip;
-        InputManager.cutscene_skip_canceled -= stop_skip;
+        unlink_cutscene_skip();
     }
 
     static void start_skip()
@@ -43,9 +45,27 @@ public static class CutsceneManager{
 
     static void skip_cutscene(){
         Time.timeScale = 100;
-        InputManager.cutscene_skip_performed -= start_skip;
-        InputManager.cutscene_skip_canceled -= stop_skip;
+        unlink_cutscene_skip();
     }
+    
+    private static void link_cutscene_skip(){
+        InputManager.cutscene_skip_performed += start_skip;
+        InputManager.cutscene_skip_canceled  += stop_skip;        
+    }
+
+    private static void unlink_cutscene_skip(){
+        InputManager.cutscene_skip_performed -= start_skip;
+        InputManager.cutscene_skip_canceled  -= stop_skip;        
+    }
+
+    #if UNITY_EDITOR
+    private static void handle_play_mode_state_changed(UnityEditor.PlayModeStateChange state){
+        if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode){
+            UnityEditor.EditorApplication.playModeStateChanged -= handle_play_mode_state_changed;
+            unlink_cutscene_skip();
+        }
+    }
+    #endif
 }
 
 public abstract class Cutscene{

@@ -62,7 +62,6 @@ public class Mage : Boss<Movement>{
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
     public override void enter_cutscene_state(){
-        Log.MethodCall();
         stop_all();
         switch_to_idle();
     } 
