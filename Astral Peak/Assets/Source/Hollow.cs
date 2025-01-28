@@ -95,6 +95,8 @@ public class Hollow : Enemy{
     }
 
     public void alert(){
+        if(alerted == true)
+            return;
         movement.halt();
         animator.Play("HollowYell");
         alerted = true;

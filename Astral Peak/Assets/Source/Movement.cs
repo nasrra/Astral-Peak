@@ -81,8 +81,8 @@ public class Movement : MonoBehaviour{
         rb.angularVelocity = 0;
     }
     public void clear_state(){
-        state_switch(ref move_state, null);
-        state_switch(ref controller_state, null);
+        StopCoroutine(move_state);
+        StopCoroutine(controller_state);
     }
     public virtual void halt(){
         clear_move_direction();
