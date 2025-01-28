@@ -21,8 +21,6 @@ public static class GameManager{
     public static Action<GameState> 
         entered_game_state, 
         exited_game_state;
-    public static bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
-    //public static bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
 
     public static void initialize(){
         state_changed(GameState.MENU);
@@ -54,8 +52,8 @@ public static class GameManager{
     public static void unlink_player() => Player.instance.death_completed -= death_state;
     public static void link_Ui() => UiManager.instance.death_screen_ended += reload_scene;
     public static void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
-    public static void set_boss_state(int boss, bool completed) => boss_states[boss]=completed;
-    public static bool get_boss_state(int boss) => boss_states[boss];
+    public static void set_boss_state(int boss, bool completed) => data.boss_states[boss]=completed;
+    public static bool get_boss_state(int boss) => data.boss_states[boss];
     public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : 1;
     public static GameData get_game_data() => data;
     public static void save_game_data(){
@@ -73,10 +71,14 @@ public static class GameManager{
         CustomSceneManager.loaded_scene -= link_loaded_scene_to_load_data;
     }
     public static bool is_data_loaded() => data_loaded;
+    public static void new_game(){
+        FileManager.delete_data(); // delete the previous save file.
+        data = new GameData();        
+    }
     public static void invoke_set_game_data(){
         if(state != GameState.CUTSCENE){
-            data.boss_states = boss_states;
             set_game_data?.Invoke();
         }
     }
+    public static void boss_defeated(int boss) => data.boss_states[boss] = true;
 }

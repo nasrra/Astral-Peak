@@ -56,7 +56,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
     protected virtual void death_started(){
         ProjectileManager.instance?.destroy_all();
         EnemyManager.instance?.destroy_all();
-        GameManager.boss_states[get_boss_id()] = true;
+        GameManager.boss_defeated(get_boss_id());
         GameManager.invoke_set_game_data();
         GameManager.save_game_data();
     }
