@@ -20,6 +20,8 @@ public class DialogueHandler : MonoBehaviour{
 
     void Awake(){
         instance = this;
+    }
+    void Start(){
         if(dialogue_file != "" && dialoge_option != "")
             dialogue = ExcelReader.read_dialogue(dialogue_file, dialoge_option);
     }

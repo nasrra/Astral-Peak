@@ -72,6 +72,7 @@ namespace Sounds{
     STONE_FOOTSTEP_3,
     STONE_FOOTSTEP_4,
     STONE_IMPACT_LIGHT,
+    STONE_DOOR,
 
     // Fire
     SMALL_FIRE,

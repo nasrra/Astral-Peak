@@ -1,6 +1,4 @@
 using System;
-using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.Wordprocessing;
 using UnityEngine;
 
 [System.Serializable]

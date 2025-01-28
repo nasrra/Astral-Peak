@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hollow : Enemy{
     // Data:
+    public event Action on_start;
     [Header("Hollow")]
     [SerializeField] Collider2DFeedback agro_area;
     bool alerted;
@@ -18,20 +19,24 @@ public class Hollow : Enemy{
 
 
     // Base.
+
     void Awake(){
         sound.set_functions(new HollowSound(sound));
         link_events();
         idle_movement();
         if(target == null)
             target = origin;    
-        movement.pathing_loop_state(paths);
-    }
-    protected override void Start(){
-        base.Start();
     }
 
-    void OnDestroy(){
+    protected override void Start(){
+        movement.pathing_loop_state(paths);
+        base.Start();
+        on_start?.Invoke();
+    }
+
+    void OnDisable(){
         unlink_events();
+        on_start = null;
     }
 
 

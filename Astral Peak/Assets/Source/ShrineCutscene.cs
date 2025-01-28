@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Entropek;
 
 public class ShrineOpeningCutscene : Cutscene{
+    #pragma warning disable CS0414
     public event Action 
         open_shrine_door, 
         torches_on, 
@@ -20,6 +21,7 @@ public class ShrineOpeningCutscene : Cutscene{
         aether_constellation_off, 
         soul_constellation_on, 
         soul_constellation_off;
+    #pragma warning restore CS0414
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
@@ -79,22 +81,24 @@ public class ShrineOpeningCutscene : Cutscene{
                 CutsceneManager.set_coroutine(middle()); 
                 break;
             case 17: 
-                world_constellation_on?.Invoke(); 
+                //world_constellation_on?.Invoke();
+                gateway_constellation_on?.Invoke(); 
                 break;
-            case 18: 
-                world_constellation_off?.Invoke(); 
-                gateway_constellation_on?.Invoke();
-                break;
-            case 20:
-                gateway_constellation_off?.Invoke();
-                aether_constellation_on?.Invoke();
-                break;
-            case 21:
-                aether_constellation_off?.Invoke();
-                soul_constellation_on?.Invoke();
-                break;
+            //case 18: 
+            //    world_constellation_off?.Invoke(); 
+            //    gateway_constellation_on?.Invoke();
+            //    break;
+            //case 20:
+            //    gateway_constellation_off?.Invoke();
+            //    aether_constellation_on?.Invoke();
+            //    break;
+            //case 21:
+            //    aether_constellation_off?.Invoke();
+            //    soul_constellation_on?.Invoke();
+            //    break;
             case 22:
-                soul_constellation_off?.Invoke();
+                gateway_constellation_off?.Invoke();
+                //soul_constellation_off?.Invoke();
                 break;
 
         }

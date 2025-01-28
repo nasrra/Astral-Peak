@@ -153,16 +153,16 @@ public static class AudioManager{
         music_volume(load_music_volume());
         voice_volume(load_voice_volume());
     }
-    public static float load_sfx_volume()   => PlayerPrefs.GetFloat(SFX_VOLUME,     .5f);
-    public static float load_music_volume() => PlayerPrefs.GetFloat(MUSIC_VOLUME,   .5f);
-    public static float load_voice_volume() => PlayerPrefs.GetFloat(VOICE_VOLUME,   .5f);
+    public static float load_sfx_volume()   => PlayerPrefs.GetFloat(SFX_VOLUME,     -10f);
+    public static float load_music_volume() => PlayerPrefs.GetFloat(MUSIC_VOLUME,   -10f);
+    public static float load_voice_volume() => PlayerPrefs.GetFloat(VOICE_VOLUME,   -10f);
 
     public static void save_volume_settings(){
         save_sfx_volume();
         save_music_volume();
         save_voice_volume();
     }
-    public static void save_sfx_volume()    =>   PlayerPrefs.SetFloat(SFX_VOLUME,   mixer.GetFloat(SFX_VOLUME, out float v)? v : .5f);
-    public static void save_music_volume()  => PlayerPrefs.SetFloat(MUSIC_VOLUME, mixer.GetFloat(MUSIC_VOLUME, out float v)? v : .5f);
-    public static void save_voice_volume()  => PlayerPrefs.SetFloat(VOICE_VOLUME, mixer.GetFloat(VOICE_VOLUME, out float v)? v : .5f);
-}//
+    public static void save_sfx_volume()    =>   PlayerPrefs.SetFloat(SFX_VOLUME,   mixer.GetFloat(SFX_VOLUME, out float v)? v : -10f);
+    public static void save_music_volume()  => PlayerPrefs.SetFloat(MUSIC_VOLUME, mixer.GetFloat(MUSIC_VOLUME, out float v)? v : -10f);
+    public static void save_voice_volume()  => PlayerPrefs.SetFloat(VOICE_VOLUME, mixer.GetFloat(VOICE_VOLUME, out float v)? v : -10f);
+}////

@@ -16,6 +16,7 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioSource phase_2_ambient_lightning;
     [SerializeField] MagicPlatformsController platforms;
+    [SerializeField] GameObject button_prompt;
     List<Action> lighting_states = new List<Action>(){
         ()=>{// 0
             SceneLighting.instance.enable_light(id: "global",     enable: true);
@@ -70,6 +71,9 @@ public class MageBossRoom : BossRoomHandler{
             phase_transition_lightning();
         }
     }
+
+    public void enable_button_prompt() => button_prompt.SetActive(true);
+
     public void emit_attraction_particles(){
         summoning_circles.turn_on(new(){2,3,4});
         for(int i = 1; i < 4; i++)

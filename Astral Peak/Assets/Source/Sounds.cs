@@ -1,6 +1,5 @@
 using UnityEngine.Audio;
 using UnityEngine;
-using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
 
 namespace Sounds{
 public class Sound{
@@ -33,9 +32,9 @@ public class None : Sound{
 public class WolfBossMusic1 : Sound{
     public WolfBossMusic1() : base(
         _id:        SoundID.WOLF_BOSS_MUSIC_1,
-        _clip:      "wolf_boss_1",
+        _clip:      "abrn_run_1",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -44,9 +43,9 @@ public class WolfBossMusic1 : Sound{
 public class WolfBossMusic2 : Sound{
     public WolfBossMusic2() : base(
         _id:        SoundID.WOLF_BOSS_MUSIC_2,
-        _clip:      "wolf_boss_2",
+        _clip:      "abrn_run_2",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -55,9 +54,9 @@ public class WolfBossMusic2 : Sound{
 public class MageBossMusic1 : Sound{
     public MageBossMusic1() : base(
         _id:        SoundID.MAGE_BOSS_MUSIC_1,
-        _clip:      "mage_boss_1",
+        _clip:      "abrn_red_dress_1",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -66,9 +65,9 @@ public class MageBossMusic1 : Sound{
 public class MageBossMusic2 : Sound{
     public MageBossMusic2() : base(
         _id:        SoundID.MAGE_BOSS_MUSIC_2,
-        _clip:      "mage_boss_2",
+        _clip:      "abrn_red_dress_2",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -79,7 +78,7 @@ public class AltarMusic : Sound{
         _id:        SoundID.ALTAR_MUSIC,
         _clip:      "altar_theme",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .6f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -90,7 +89,7 @@ public class Introduction : Sound{
         _id:        SoundID.INTRODUCTION_MUSIC,
         _clip:      "introduction",
         _group:     AudioManager.music_mixer,
-        _volume:    1f,
+        _volume:    .75f,
         _max_pitch: 1f,
         _min_pitch: 1f
     ){}    
@@ -446,12 +445,23 @@ public class WoodenRattle2 : Sound {
     ) {}
 }
 
+public class WoodenRattle4 : Sound {
+    public WoodenRattle4() : base(
+        _id:        SoundID.WOODEN_RATTLE_4,
+        _clip:      "wooden_rattle_2",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .4f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
+
 public class DeepThumping : Sound {
     public DeepThumping() : base(
         _id:        SoundID.DEEP_THUMPING,
         _clip:      "deep_thumping",
         _group:     AudioManager.sfx_mixer,
-        _volume:    .5f,
+        _volume:    .8f,
         _max_pitch: 1.0f,
         _min_pitch: 1.0f
     ) {}
@@ -941,6 +951,17 @@ public class MagicSnowCast : Sound
         _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.8f
+    ){}
+}
+
+public class StoneDoor : Sound{
+    public StoneDoor() : base(
+        _id:        SoundID.STONE_DOOR,
+        _clip:      "stone_door_short",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .45f,
+        _max_pitch: .8f,
+        _min_pitch: 0.6f
     ){}
 }
 

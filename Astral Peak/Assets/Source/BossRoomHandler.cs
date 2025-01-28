@@ -36,7 +36,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("phase_1");
+        play_cutscene("opening");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -68,6 +68,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
     }
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
+        AudioManager.stop_ambience();
         GameManager.state_changed(GameState.CUTSCENE);
         CustomSceneManager.load_scene_with_transitions("Shrine");
         CustomSceneManager.loaded_scene += play_altar_cutscene;

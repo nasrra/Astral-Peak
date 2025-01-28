@@ -43,7 +43,7 @@ public abstract class Door : MonoBehaviour{
             animator.Play("open");
         close();
     }
-    public void open(){
+    public virtual void open(){
         if(animator != null)
             animator?.Play("open");
     }
@@ -53,7 +53,7 @@ public abstract class Door : MonoBehaviour{
         set_trigger();
     }
     public void finished_openening() => now_opened?.Invoke();
-    public void close(){
+    public virtual void close(){
         if(animator != null)
             animator.Play("close");
     }

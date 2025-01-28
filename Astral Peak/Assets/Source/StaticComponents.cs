@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Text;
 using Entropek;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,13 +8,18 @@ using UnityEngine.SceneManagement;
 // The [RuntimeInitializeOnLoadMethod] attribute will ensure InitializeOnStart is called as soon as the game starts.
 // The RuntimeInitializeLoadType.BeforeSceneLoad ensures the method runs before any scene loads, so it can be used to set up essential components at the start.
 
+
 public static class StaticComponents{
     public static GameObject main;
     static UnityHook hook_in;
+
+    
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     // initializing the managers of the game.
     static void initialize(){
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        // Call this once during application initialization
         main = GameObject.Instantiate(new GameObject());
         main.name = "Managers";
         GameObject.DontDestroyOnLoad(main);

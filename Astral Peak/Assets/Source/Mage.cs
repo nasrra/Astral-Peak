@@ -73,7 +73,7 @@ public class Mage : Boss<Movement>{
         summoning_circles.off();
         stop_staff_lightning();
         disable_surrounding_projectiles();
-        base.stop_all();    
+        base.stop_all();
     }
 
 
@@ -111,7 +111,7 @@ public class Mage : Boss<Movement>{
         combat.halt();
         state.queue_and_start(
             time: animator.get_clip_length(attack.animation_id),
-            start_action:()=>animator.Play(attack.animation_id));
+            start_action:()=>animator.Play(attack.animation_id,0,0));
     }
     public void teleport_phase_1(){
         float offset = UnityEngine.Random.Range(8,17);
@@ -123,14 +123,14 @@ public class Mage : Boss<Movement>{
         else
             transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
         teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
-        animator.Play("Mage1ExitTel");
+        animator.Play("Mage1ExitTel",0,0);
     }
     private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
     private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
-        hollow.summon_state(); 
+        hollow.on_start += hollow.summon_state;
     }
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)
@@ -232,6 +232,7 @@ public class Mage : Boss<Movement>{
 
     protected override void death_start() => StartCoroutine(death_loop());
     IEnumerator death_loop(){
+        no_state();
         enable_body_colliders(0); 
         stop_all();
         signature_adjust();

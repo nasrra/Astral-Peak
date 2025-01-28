@@ -84,7 +84,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             (move_direction.x == 0)?
             (flipped==false? Vector2.right : Vector2.left) :
                 (move_direction.x == 1?     Vector2.right : Vector2.left) ,
-            25, 
+            28, 
             0.25f); 
     }
     private void dashed(){

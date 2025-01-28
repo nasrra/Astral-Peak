@@ -79,6 +79,7 @@ namespace Cutscenes{
             room.get_platforms().start_loop();
             AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
             room.start_randomised_stone_lightning();
+            room.enable_button_prompt();
             end();
             yield break;
         }

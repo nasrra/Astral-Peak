@@ -2,8 +2,6 @@ using UnityEngine;
 using Sounds;
 using System.Collections.Generic;
 using System;
-using DocumentFormat.OpenXml.Presentation;
-using UnityEditor;
 
 public abstract class SoundFunctions{
     protected string ground;

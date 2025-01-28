@@ -1,6 +1,3 @@
-using DocumentFormat.OpenXml.Office.CustomUI;
-using DocumentFormat.OpenXml.Office.Drawing;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Sounds;
 using System.Collections.Generic;
 
@@ -220,6 +217,7 @@ public struct StoneSoundSet : SoundSet {
                 new StoneFootstep3(),
                 new StoneFootstep4(),
                 new StoneImpactLight(),
+                new StoneDoor(),
             };
         }
         return sounds;
@@ -247,6 +245,7 @@ public struct HollowSoundSet : SoundSet {
                 new RiderYell(),
                 new WoodenRattle1(),
                 new WoodenRattle2(),
+                new WoodenRattle4(),
             };
         }
         return sounds;

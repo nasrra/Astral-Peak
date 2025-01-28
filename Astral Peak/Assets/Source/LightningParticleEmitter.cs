@@ -17,6 +17,7 @@ public class LightningParticleEmitter : LineParticleEmitter{
                 audio_player: this,
                 AudioSourceSettings.DIEGETIC_RANDOMISED
             );      
+        CameraController.instance.shake_camera(.33f, .75f, false);
         SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
     }

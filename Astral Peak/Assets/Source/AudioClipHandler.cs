@@ -12,7 +12,7 @@ public static class AudioClipHandler{
 
         source.loop                  = settings.loop;
         if(source.loop == false)
-            Object.Destroy(source,sound.clip.length); // unscaled time btw
+            Object.Destroy(source,sound.clip.length+1); // unscaled time btw
         
         if(settings.randomise_pitch == true)
             source.pitch = sound.randomise_pitch();
