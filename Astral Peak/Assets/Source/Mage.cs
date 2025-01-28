@@ -106,7 +106,6 @@ public class Mage : Boss<Movement>{
 
     }
     private void attack_phase_1(BossAttack attack){
-        Log.MethodCall();
         movement.halt();
         combat.halt();
         state.queue_and_start(
@@ -130,7 +129,7 @@ public class Mage : Boss<Movement>{
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
-        hollow.on_start += hollow.summon_state;
+        hollow.summon_state();
     }
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)

@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour{
     protected Coroutine move_state, controller_state, dash_state;
 
     void Awake(){
-        move_only_state();
         base_data = data;
     }
     void Start() => link();
@@ -75,8 +74,6 @@ public class Movement : MonoBehaviour{
         if(state != null)
             StopCoroutine(state);
         state = _state != null ? StartCoroutine(_state) : null;
-        if(gameObject.layer == LayersManager.ENEMY)
-            Debug.Log("swap");
     }
     public virtual void clear_move_direction() => set_move_direction(Vector2.zero);
     public void zero_velocity(){
@@ -264,7 +261,6 @@ public class Movement : MonoBehaviour{
         int path_index = 0;
         while(true){
             // start movement.
-            Debug.Log(1);
             current_path = paths[path_index];
             movement(current_path.movement, true);
             yield return new WaitForSeconds(current_path.duration);

@@ -791,7 +791,7 @@ public class Electricity3 : Sound
         _id:        SoundID.ELECTRICITY_3,
         _clip:      "electricity_3",
         _group:     AudioManager.sfx_mixer,
-        _volume:    0.5f,
+        _volume:    0.4f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ){}
