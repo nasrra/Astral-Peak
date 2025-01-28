@@ -202,12 +202,13 @@ public class Mage : Boss<Movement>{
     }
     private void start_fly_pattern(string fly_pattern){
         movement.halt();
-        movement.figure_eight_state(reverse: fly_pattern=="figure_eight"?false:true);
+        movement.figure_eight_state(reverse:false);
+        //movement.figure_eight_state(reverse: fly_pattern=="figure_eight"?false:true);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");
         combat.chose_attack_state(target);
-    }
+    }//
 
 
 
