@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameState{
-    PAUSE,
     MENU,
     GAMEPLAY,
     DEATH,
@@ -39,7 +38,10 @@ public static class GameManager{
         UiManager.instance.enable_death_screen();
     }
 
-    static public void reload_scene() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    static public void reload_scene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        InputManager.enable_user_input();
+    }
 
     static public void state_changed(GameState _state){
         GameState previous = state;

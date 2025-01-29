@@ -50,7 +50,6 @@ public class PlayerHealthBar : MonoBehaviour{
         for(int i = 0; i < Player.instance.get_health().get_max_health(); i++)
             hearts[i].set_fill(0);
         if(Player.instance.get_health().get_current_health() > 0 && Player.instance.get_health().get_current_health() < Player.instance.get_health().get_max_health()){
-            Debug.Log(Player.instance.get_health().get_current_health());        
             for(int i = 0; i < Player.instance.get_health().get_max_health(); i++)
                 hearts[i].set_fill(0);
             hearts[Player.instance.get_health().get_current_health()].set_fill(Player.instance.get_intermediate_health());

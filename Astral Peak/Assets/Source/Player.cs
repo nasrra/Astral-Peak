@@ -194,6 +194,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         sound.play_sound("damaged");
         sprite.play_death_effect(3f);
         animator.death();
+        InputManager.disable_user_input();
         base.death_start();
         yield return new WaitForSeconds(3);
         //AudioManager.low_pass_audio(false);
@@ -244,11 +245,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.movement(spawn.get_movement(), false);
         unlink_door_input(); 
         link_gameplay_input();
-        Debug.Log(door_movement_queue.Count);
         foreach(Action action in door_movement_queue)
             action();
         door_movement_queue.Clear(); // here for relocation doors
-        //GameManager.state_changed(GameState.GAMEPLAY);
+        GameManager.state_changed(GameState.GAMEPLAY);
         exited_door?.Invoke();
         yield break;
     }
@@ -270,13 +270,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Melee
     public float get_intermediate_health() => intermediate_health; 
     void attack_hit(){
-        sound.play_sound("melee_hit");  
-        intermediate_health += .2f;
-        intermediate_health_updated?.Invoke();
-        if(intermediate_health >= 1f){
-            health.heal(1);
-            intermediate_health = 0;
-        }
+        sound.play_sound("melee_hit");
+        if(health.get_current_health() < health.get_max_health()){
+            intermediate_health += .1f;
+            intermediate_health_updated?.Invoke();
+            if(intermediate_health >= 1f){
+                health.heal(1);
+                intermediate_health = 0;
+            }
+        }  
     } 
 
 

@@ -13,7 +13,7 @@ public static class InputManager{
     private static PlayerInput input;
     private static Keybinds keybinds = new Keybinds();
     private static InputActionRebindingExtensions.RebindingOperation rebinding_operation;
-    private static GameState keybind_state;
+    private static GameState keybind_state = GameManager.get_state();
     private static Vector2 user_input_vector = Vector2.zero;
 
     public static event Action
@@ -68,13 +68,13 @@ public static class InputManager{
         keybinds.UserControls.Enable();
         // bind
         bind_keybinds();
-        GameManager.exited_game_state  += exited_game_state;
+        //GameManager.exited_game_state  += exited_game_state;
         GameManager.entered_game_state += entered_game_state;
         load_player_prefs(keybinds.UserControls);
     }
     public static void uninitialize(){
         unbind_keybinds();
-        GameManager.exited_game_state  -= exited_game_state;
+        //GameManager.exited_game_state  -= exited_game_state;
         GameManager.entered_game_state -= entered_game_state;
     }
 
@@ -102,16 +102,21 @@ public static class InputManager{
     static void entered_game_state(GameState state){
         // dont swap if game state is keybind state because it will break player input between scene loading. 
         // PlayerInput has in built input blockers that stop 'canceled' actions from occuring first; before a 'performed' action.
-        if(keybind_state != state && enable_input.ContainsKey(state))
-            enable_input[state]();
+        if(keybind_state != state && enable_input.ContainsKey(state)){
+            if(disable_input.ContainsKey(keybind_state))
+                disable_input[keybind_state]();
+            if(enable_input.ContainsKey(state))
+                enable_input[state]();
+        }
         keybind_state = state;
     }
-    static void exited_game_state(GameState state){
-        // dont swap if game state is keybind state because it will break player input between scene loading. 
-        // PlayerInput has in built input blockers that stop 'canceled' actions from occuring first; before a 'performed' action.
-        if(keybind_state != state && disable_input.ContainsKey(state))
-            disable_input[state]();
-    } 
+    //static void exited_game_state(GameState state){
+    //    // dont swap if game state is keybind state because it will break player input between scene loading. 
+    //    // PlayerInput has in built input blockers that stop 'canceled' actions from occuring first; before a 'performed' action.
+    //    if(keybind_state != state && disable_input.ContainsKey(state))
+    //    if(disable_input.ContainsKey(state))
+    //        disable_input[state]();
+    //} 
 
 
 
