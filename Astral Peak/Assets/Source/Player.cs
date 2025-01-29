@@ -13,7 +13,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Data
     public event Action
-        damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door;
+        damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door, intermediate_health_updated;
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
@@ -27,6 +27,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected Collider2D col;
     private HashSet<Action> door_movement_queue = new HashSet<Action>();
     private float invulnerable_time = 2;
+    [SerializeField] float intermediate_health = 0;
     [SerializeField] bool up_toggle = false;
 
     // Base.
@@ -67,12 +68,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.set_jumping(false);
         movement.end_jump();
     } 
-    private void start_left()  {Log.MethodCall(); movement.move_left(true);    }
-    private void start_right() {Log.MethodCall(); movement.move_right(true);   }
-    private void stop_left()   {Log.MethodCall(); movement.move_left(false);   }
-    private void stop_right()  {Log.MethodCall(); movement.move_right(false);  }
-    private void start_up()    {Log.MethodCall(); enabled_toggle_up();         }
-    private void stop_up()     {Log.MethodCall(); disabled_toggle_up();        }
+    private void start_left()  {movement.move_left(true);    }
+    private void start_right() {movement.move_right(true);   }
+    private void stop_left()   {movement.move_left(false);   }
+    private void stop_right()  {movement.move_right(false);  }
+    private void start_up()    {enabled_toggle_up();         }
+    private void stop_up()     {disabled_toggle_up();        }
     private void attack(){
         if(up_toggle == true)
             animator.up_attack();
@@ -204,12 +205,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
     // Spawn & Door.
-    private void queue_start_left()     { Log.MethodCall(); door_movement_queue.Add(start_left);     }
-    private void dequeue_start_left()   { Log.MethodCall(); door_movement_queue.Remove(start_left);  }
-    private void queue_start_right()    { Log.MethodCall(); door_movement_queue.Add(start_right);    }
-    private void dequeue_start_right()  { Log.MethodCall(); door_movement_queue.Remove(start_right); }
-    private void queue_start_jump()     { Log.MethodCall(); door_movement_queue.Add(start_jump);     }
-    private void dequeue_start_jump()   { Log.MethodCall(); door_movement_queue.Remove(start_jump);  }
+    private void queue_start_left()     { door_movement_queue.Add(start_left);     }
+    private void dequeue_start_left()   { door_movement_queue.Remove(start_left);  }
+    private void queue_start_right()    { door_movement_queue.Add(start_right);    }
+    private void dequeue_start_right()  { door_movement_queue.Remove(start_right); }
+    private void queue_start_jump()     { door_movement_queue.Add(start_jump);     }
+    private void dequeue_start_jump()   { door_movement_queue.Remove(start_jump);  }
 
     public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
     public void set_respawn_point(string _respawn_point) => respawn_point = _respawn_point;
@@ -267,8 +268,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
     // Melee
+    public float get_intermediate_health() => intermediate_health; 
     void attack_hit(){
         sound.play_sound("melee_hit");  
+        intermediate_health += .2f;
+        intermediate_health_updated?.Invoke();
+        if(intermediate_health >= 1f){
+            health.heal(1);
+            intermediate_health = 0;
+        }
     } 
 
 
