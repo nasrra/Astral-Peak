@@ -29,7 +29,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private float invulnerable_time = 2;
     [SerializeField] bool up_toggle = false;
 
-
     // Base.
     void Awake(){
         instance = null;

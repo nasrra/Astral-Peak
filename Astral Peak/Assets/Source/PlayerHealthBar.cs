@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthBar : MonoBehaviour
-{
+public class PlayerHealthBar : MonoBehaviour{
     [SerializeField] List<HealthBarHeart> hearts;
 
     void OnEnable(){

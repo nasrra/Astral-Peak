@@ -1,10 +1,6 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HealthBarHeart : MonoBehaviour
-{
-    [SerializeField] Image image;
+public class HealthBarHeart : ImageHandler{
     [SerializeField] Animator animator;
     State state = State.OFF;
 
@@ -33,6 +29,8 @@ public class HealthBarHeart : MonoBehaviour
         else animator.Play("enabled", MAIN);
     }
     public void thump(bool x) => animator.SetBool("thump", x);
+
+    public void set_fill(float amount) => set_value("_amount", amount);
 
     enum State{
         ON,OFF,THUMP
