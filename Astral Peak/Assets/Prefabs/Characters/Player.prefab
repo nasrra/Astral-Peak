@@ -19812,7 +19812,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -43.859634, y: -4.8277283}
+  m_ConnectedAnchor: {x: -25.961704, y: -5.4618373}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -20045,8 +20045,8 @@ MonoBehaviour:
           force: 10
           duration: 0.25
           transform: {fileID: 1730094031898389184}
-        self_knockback_force: 0
-        self_knockback_duration: 0
+        self_knockback_force: 10
+        self_knockback_duration: 0.25
     - Key: melee_up
       Value:
         hurt_box: {fileID: 4061606139430735869}
@@ -20057,8 +20057,8 @@ MonoBehaviour:
           force: 10
           duration: 0.25
           transform: {fileID: 1730094031898389184}
-        self_knockback_force: 0
-        self_knockback_duration: 0
+        self_knockback_force: 10
+        self_knockback_duration: 0.25
 --- !u!114 &8132975285012867528
 MonoBehaviour:
   m_ObjectHideFlags: 0
