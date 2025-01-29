@@ -21,7 +21,8 @@ public struct SnowForest : SceneSoundSet{
         new OutdoorAmbienceSoundSet(),
         new MeleeSoundSet(),
         new SnowSoundSet(),
-        new DomineSoundSet()
+        new DomineSoundSet(),
+        new StoneSoundSet(),
     };
 }
 

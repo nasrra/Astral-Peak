@@ -148,7 +148,7 @@ public class UiManager : MonoBehaviour{
             CutsceneManager.skip_buffer_time,
             start_action: ()=>{
                 skip_button.Play("held",0,0);
-                skip_button.playbackTime = 1/CutsceneManager.skip_buffer_time;
+                //skip_button.playbackTime = 1/CutsceneManager.skip_buffer_time;
             },
             time_out:()=>unlink_cutscene_skip()
         ));

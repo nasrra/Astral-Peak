@@ -24,8 +24,8 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void force_idle(){
         play(IDLE, true);
     }
-    public void idle()          {if(state != FALL_START && state != FALL_LOOP) play(IDLE, true);}
-    public void run()           {if(state != FALL_START && state != FALL_LOOP) play(RUN, true);}
+    public void idle()          {if(state != FALL_START && state != FALL_LOOP) play_instant(IDLE, true);}
+    public void run()           {if(state != FALL_START && state != FALL_LOOP) play_instant(RUN, true);}
     public void none()          => play(NONE, true);
     public void start_fall()    {if(is_falling() == false)play(FALL_START, true);}
     public void loop_fall()     => play(FALL_LOOP, false); // key event in jump start animation.

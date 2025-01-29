@@ -40,12 +40,11 @@ public static class GameManager{
 
     static public void reload_scene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        InputManager.enable_user_input();
+        InputManager.enable_user_input(); // here to re-enable player input that is turned off when player death starts.
     }
 
     static public void state_changed(GameState _state){
         GameState previous = state;
-        Debug.Log(_state);
         exited_game_state?.Invoke(previous);
         entered_game_state?.Invoke(_state);
         state = _state;

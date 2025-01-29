@@ -11,9 +11,12 @@ public class CharacterAnimatorOverride : MonoBehaviour{
         BOUNCE_OVERRIDE     = 3,
         BODY_OVERRIDE       = 4;
 
-    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD,0);}
-    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY,0);}
-    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS,0);}
+    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD);}
+    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY);}
+    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS);}
+    protected void play_head_instant(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD,0);}
+    protected void play_body_instant(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY,0);}
+    protected void play_legs_instant(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS,0);}
     protected void play_bounce_override(int animation_hash){animator.Play(animation_hash, BOUNCE_OVERRIDE);}
     protected void play_body_override(int animation_hash){animator.Play(animation_hash, BODY_OVERRIDE);}
 
@@ -22,6 +25,15 @@ public class CharacterAnimatorOverride : MonoBehaviour{
             play_head(animation_hash);
             play_body(animation_hash);
             play_legs(animation_hash);
+            state = set_state == true? animation_hash : state;
+        }
+    }
+
+    public void play_instant(int animation_hash, bool set_state){
+        if( animator.isActiveAndEnabled == true){
+            play_head_instant(animation_hash);
+            play_body_instant(animation_hash);
+            play_legs_instant(animation_hash);
             state = set_state == true? animation_hash : state;
         }
     }
