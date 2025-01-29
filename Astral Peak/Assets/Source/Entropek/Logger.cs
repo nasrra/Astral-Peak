@@ -18,6 +18,14 @@ public static class Log{
         Debug.Log($"[MethodCall]: {class_name} : {methodName}");
     }
 
+    public static void MethodCall(Action methodToCall, [CallerFilePath] string filePath = ""){
+        string method_name = methodToCall.Method.Name;
+        string class_name = System.IO.Path.GetFileNameWithoutExtension(filePath);
+        Debug.Log($"[MethodCall]: {class_name} : {method_name}");
+        // Call the passed method
+        methodToCall?.Invoke();
+    }
+
 }
-}//
+}
 

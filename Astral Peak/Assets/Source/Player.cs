@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Entropek;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Data
     public event Action
-        damaged_start, damaged_stop, on_destroy;
+        damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door;
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
@@ -24,6 +25,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected AudioPlayer sound;
     [SerializeField] protected Collider2D col;
+    private HashSet<Action> door_movement_queue = new HashSet<Action>();
     private float invulnerable_time = 2;
     [SerializeField] bool up_toggle = false;
 
@@ -66,12 +68,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.set_jumping(false);
         movement.end_jump();
     } 
-    private void start_left()   => movement.move_left(true);
-    private void start_right()  => movement.move_right(true);
-    private void stop_left()    => movement.move_left(false);
-    private void stop_right()   => movement.move_right(false);
-    private void start_up()     => enabled_toggle_up();
-    private void stop_up()      => disabled_toggle_up();
+    private void start_left()  {Log.MethodCall(); movement.move_left(true);    }
+    private void start_right() {Log.MethodCall(); movement.move_right(true);   }
+    private void stop_left()   {Log.MethodCall(); movement.move_left(false);   }
+    private void stop_right()  {Log.MethodCall(); movement.move_right(false);  }
+    private void start_up()    {Log.MethodCall(); enabled_toggle_up();         }
+    private void stop_up()     {Log.MethodCall(); disabled_toggle_up();        }
     private void attack(){
         if(up_toggle == true)
             animator.up_attack();
@@ -203,6 +205,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
     // Spawn & Door.
+    private void queue_start_left()     { Log.MethodCall(); door_movement_queue.Add(start_left);     }
+    private void dequeue_start_left()   { Log.MethodCall(); door_movement_queue.Remove(start_left);  }
+    private void queue_start_right()    { Log.MethodCall(); door_movement_queue.Add(start_right);    }
+    private void dequeue_start_right()  { Log.MethodCall(); door_movement_queue.Remove(start_right); }
+    private void queue_start_jump()     { Log.MethodCall(); door_movement_queue.Add(start_jump);     }
+    private void dequeue_start_jump()   { Log.MethodCall(); door_movement_queue.Remove(start_jump);  }
+
     public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
     public void set_respawn_point(string _respawn_point) => respawn_point = _respawn_point;
     public string get_spawn_point() => spawn_point;
@@ -216,21 +225,43 @@ public class Player : CreatureInheritor<CharacterMovement>{
         }
     }//
     public void door_enter_state(){
-        InputManager.disable_user_input();
+        ///store_move_direction();
+        unlink_gameplay_input();
+        entered_door?.Invoke();
+        //link_door_input(); 
         transform.parent = null;
     }
     IEnumerator door_exit_state(SpawnPoint spawn){
         movement.clear_move_direction();//
+        input_vector_to_door_input();   
         spawn.use_spawn();
         movement.movement(spawn.get_movement(), true);
-        InputManager.disable_user_input();
+        unlink_gameplay_input();
+        unlink_door_input(); 
+        link_door_input(); 
+        exiting_door?.Invoke();
         yield return new WaitForSeconds(1);
         movement.movement(spawn.get_movement(), false);
-        GameManager.state_changed(GameState.GAMEPLAY);
-        InputManager.enable_user_input();
+        unlink_door_input(); 
+        link_gameplay_input();
+        Debug.Log(door_movement_queue.Count);
+        foreach(Action action in door_movement_queue)
+            action();
+        door_movement_queue.Clear(); // here for relocation doors
+        //GameManager.state_changed(GameState.GAMEPLAY);
+        exited_door?.Invoke();
         yield break;
     }
-
+    //void store_move_direction() => move_direction = get_movement().get_move_direction_copy();
+    void input_vector_to_door_input(){
+        Vector2 move_direction = InputManager.get_user_input_vector();
+        if(move_direction.x<0)
+            queue_start_left();
+        else if(move_direction.x>0)
+            queue_start_right();
+        if(move_direction.y>0)
+            queue_start_jump();
+    }
 
 
 
@@ -290,7 +321,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Linkage
     private void unloaded_scene(Scene s) => unlink_events(); 
     protected void link_events(){
-        link_input();
+        link_gameplay_input();
         link_melee();
         link_movement();
         link_health();
@@ -300,38 +331,57 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected void unlink_events(){
         unlink_movement();
-        unlink_input();
+        unlink_gameplay_input();
+        unlink_door_input();
         unlink_melee();
         unlink_health();
         unlink_game_manager();
         unlink_scene_manager();
         unlink_application();   
     }
-    public void link_input(){
-        InputManager.user_jump_performed        += start_jump;
-        InputManager.user_jump_canceled        += stop_jump;
-        InputManager.user_left_performed        += start_left;
-        InputManager.user_left_canceled        += stop_left;
-        InputManager.user_right_performed       += start_right;
-        InputManager.user_right_canceled       += stop_right;
-        InputManager.user_attack_performed      += attack;
-        InputManager.user_dash_performed        += dash; 
-        InputManager.user_up_performed          += start_up;
-        InputManager.user_up_canceled          += stop_up;
-        InputManager.reset_input_blockers();
+    public void link_gameplay_input(){
+        InputManager.user_jump_performed    += start_jump;
+        InputManager.user_jump_canceled     += stop_jump;
+        InputManager.user_left_performed    += start_left;
+        InputManager.user_left_canceled     += stop_left;
+        InputManager.user_right_performed   += start_right;
+        InputManager.user_right_canceled    += stop_right;
+        InputManager.user_attack_performed  += attack;
+        InputManager.user_dash_performed    += dash; 
+        InputManager.user_up_performed      += start_up;
+        InputManager.user_up_canceled       += stop_up;
+        //InputManager.reset_input_blockers();
     }
-    public void unlink_input(){
-        InputManager.user_jump_performed        -= start_jump;
-        InputManager.user_jump_canceled        -= stop_jump;
-        InputManager.user_left_performed        -= start_left;
-        InputManager.user_left_canceled        -= stop_left;
-        InputManager.user_right_performed       -= start_right;
-        InputManager.user_right_canceled       -= stop_right;
-        InputManager.user_attack_performed      -= attack;
-        InputManager.user_dash_performed        -= dash;    
-        InputManager.user_up_performed          -= start_up;
-        InputManager.user_up_canceled          -= stop_up;
-        InputManager.reset_input_blockers();
+    public void unlink_gameplay_input(){
+        InputManager.user_jump_performed    -= start_jump;
+        InputManager.user_jump_canceled     -= stop_jump;
+        InputManager.user_left_performed    -= start_left;
+        InputManager.user_left_canceled     -= stop_left;
+        InputManager.user_right_performed   -= start_right;
+        InputManager.user_right_canceled    -= stop_right;
+        InputManager.user_attack_performed  -= attack;
+        InputManager.user_dash_performed    -= dash;    
+        InputManager.user_up_performed      -= start_up;
+        InputManager.user_up_canceled       -= stop_up;
+        //InputManager.reset_input_blockers();
+    }
+    public void link_door_input(){
+        InputManager.user_jump_performed    += queue_start_jump;
+        InputManager.user_jump_canceled     += dequeue_start_jump;
+        InputManager.user_left_performed    += queue_start_left;
+        InputManager.user_left_canceled     += dequeue_start_left;
+        InputManager.user_right_performed   += queue_start_right;
+        InputManager.user_right_canceled    += dequeue_start_right;
+        //InputManager.reset_input_blockers();
+    }
+    public void unlink_door_input(){
+        InputManager.user_jump_performed    -= queue_start_jump;
+        InputManager.user_jump_canceled     -= dequeue_start_jump;
+        InputManager.user_left_performed    -= queue_start_left;
+        InputManager.user_left_canceled     -= dequeue_start_left;
+        InputManager.user_right_performed   -= queue_start_right;
+        InputManager.user_right_canceled    -= dequeue_start_right;
+        //InputManager.reset_input_blockers();    
     }
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;

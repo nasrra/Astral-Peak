@@ -73,7 +73,7 @@ public static class StaticComponents{
     }
     static void scene_changed(Scene scene_1, Scene scene_2){
         //AudioManager.restore_sfx_smooth();
-        InputManager.reset_input_blockers(); // reset input blockers so the player cant mess up move direction when holding down keys.
+        //InputManager.reset_input_blockers(); // reset input blockers so the player cant mess up move direction when holding down keys.
     }
 
     static void file_manager(){

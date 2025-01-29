@@ -13,6 +13,8 @@ public static class InputManager{
     private static PlayerInput input;
     private static Keybinds keybinds = new Keybinds();
     private static InputActionRebindingExtensions.RebindingOperation rebinding_operation;
+    private static GameState keybind_state;
+    private static Vector2 user_input_vector = Vector2.zero;
 
     public static event Action
         // Default keyboard events
@@ -22,6 +24,7 @@ public static class InputManager{
         user_attack_performed,   user_attack_canceled, 
         user_up_performed,       user_up_canceled,
         user_dash_performed,
+        user_pause_performed,
         cutscene_skip_performed, cutscene_skip_canceled,
         menu_exit_performed;
 
@@ -34,11 +37,11 @@ public static class InputManager{
     }
 
     static Dictionary<Actions, bool> input_blocker = new Dictionary<Actions, bool>(){
-        {Actions.JUMP,    true},   
-        {Actions.LEFT,    true},
-        {Actions.RIGHT,   true},
-        {Actions.ATTACK,  true},
-        {Actions.UP,      true},
+        {Actions.JUMP,    false},   
+        {Actions.LEFT,    false},
+        {Actions.RIGHT,   false},
+        {Actions.ATTACK,  false},
+        {Actions.UP,      false},
     };
 
     private static readonly Dictionary<GameState, Action> enable_input = new Dictionary<GameState, Action>(){
@@ -54,10 +57,10 @@ public static class InputManager{
     };
 
     // Reset the input blockers
-    public static void reset_input_blockers(){
-        foreach (Actions action in input_blocker.Keys.ToList())
-            input_blocker[action] = true;
-    }
+    //public static void reset_input_blockers(){
+    //    foreach (Actions action in input_blocker.Keys.ToList())
+    //        input_blocker[action] = true;
+    //}
 
     public static void initialize(PlayerInput _input){
         input = _input;
@@ -97,11 +100,16 @@ public static class InputManager{
 
     // GameState:
     static void entered_game_state(GameState state){
-        if(enable_input.ContainsKey(state))
+        // dont swap if game state is keybind state because it will break player input between scene loading. 
+        // PlayerInput has in built input blockers that stop 'canceled' actions from occuring first; before a 'performed' action.
+        if(keybind_state != state && enable_input.ContainsKey(state))
             enable_input[state]();
+        keybind_state = state;
     }
     static void exited_game_state(GameState state){
-        if(disable_input.ContainsKey(state))
+        // dont swap if game state is keybind state because it will break player input between scene loading. 
+        // PlayerInput has in built input blockers that stop 'canceled' actions from occuring first; before a 'performed' action.
+        if(keybind_state != state && disable_input.ContainsKey(state))
             disable_input[state]();
     } 
 
@@ -110,12 +118,13 @@ public static class InputManager{
 
 
     // User Controls:
+    public static Vector2 get_user_input_vector() => user_input_vector; 
     public static void enable_user_input(){
         keybinds.UserControls.Enable();
     }
     public static void disable_user_input(){
         keybinds.UserControls.Disable();
-        reset_input_blockers();
+        //reset_input_blockers();
     }
     private static void link_user_controls(){
         keybinds.UserControls.Jump.performed            += on_user_jump_performed;
@@ -129,7 +138,7 @@ public static class InputManager{
         keybinds.UserControls.Attack.performed          += on_user_attack_performed;
         keybinds.UserControls.Attack.canceled           += on_user_attack_canceled;
         keybinds.UserControls.Dash.performed            += on_user_dash_performed;
-        keybinds.UserControls.Exit.performed            += on_user_exit_performed;
+        keybinds.UserControls.Pause.performed            += on_user_pause_performed;
         #if UNITY_EDITOR
             keybinds.UserControls.ZoomOut.performed     += on_user_zoom_out;
             keybinds.UserControls.ZoomIn.performed      += on_user_zoom_in;
@@ -145,24 +154,36 @@ public static class InputManager{
         keybinds.UserControls.Attack.performed          -= on_user_attack_performed;
         keybinds.UserControls.Attack.canceled           -= on_user_attack_canceled;
         keybinds.UserControls.Dash.performed            -= on_user_dash_performed;
-        keybinds.UserControls.Exit.performed            -= on_user_exit_performed;
+        keybinds.UserControls.Pause.performed           -= on_user_pause_performed;
         #if UNITY_EDITOR
             keybinds.UserControls.ZoomOut.performed     -= on_user_zoom_out;
             keybinds.UserControls.ZoomIn.performed      -= on_user_zoom_in;
         #endif
     }
-    static void on_user_jump_performed(InputAction.CallbackContext ctx)    { user_jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
-    static void on_user_jump_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) user_jump_canceled?.Invoke();}
-    static void on_user_left_performed(InputAction.CallbackContext ctx)    { user_left_performed?.Invoke(); input_blocker[Actions.LEFT] = false;}
-    static void on_user_left_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) user_left_canceled?.Invoke();}
-    static void on_user_right_performed(InputAction.CallbackContext ctx)   { user_right_performed?.Invoke(); input_blocker[Actions.RIGHT] = false;}
-    static void on_user_right_canceled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) user_right_canceled?.Invoke();}
-    static void on_user_attack_performed(InputAction.CallbackContext ctx)  { user_attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
-    static void on_user_attack_canceled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) user_attack_canceled?.Invoke();}
-    static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
-    static void on_user_up_canceled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) user_up_canceled?.Invoke();}
+    #region input blocker versions
+    //static void on_user_jump_performed(InputAction.CallbackContext ctx)    { user_jump_performed?.Invoke(); input_blocker[Actions.JUMP] = false;}
+    //static void on_user_jump_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.JUMP] == false) user_jump_canceled?.Invoke();}
+    //static void on_user_left_performed(InputAction.CallbackContext ctx)    { user_left_performed?.Invoke(); input_blocker[Actions.LEFT] = false;}
+    //static void on_user_left_canceled(InputAction.CallbackContext ctx)    { if(input_blocker[Actions.LEFT] == false) user_left_canceled?.Invoke();}
+    //static void on_user_right_performed(InputAction.CallbackContext ctx)   { user_right_performed?.Invoke(); input_blocker[Actions.RIGHT] = false;}
+    //static void on_user_right_canceled(InputAction.CallbackContext ctx)   { if(input_blocker[Actions.RIGHT] == false) user_right_canceled?.Invoke();}
+    //static void on_user_attack_performed(InputAction.CallbackContext ctx)  { user_attack_performed?.Invoke(); input_blocker[Actions.ATTACK] = false;}
+    //static void on_user_attack_canceled(InputAction.CallbackContext ctx)  { if(input_blocker[Actions.ATTACK] == false) user_attack_canceled?.Invoke();}
+    //static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke(); input_blocker[Actions.UP] = false;}
+    //static void on_user_up_canceled(InputAction.CallbackContext ctx)      { if(input_blocker[Actions.UP] == false) user_up_canceled?.Invoke();}
+    #endregion
+    static void on_user_jump_performed(InputAction.CallbackContext ctx)    { user_jump_performed?.Invoke();     user_input_vector.y += 1;}
+    static void on_user_jump_canceled(InputAction.CallbackContext ctx)     { user_jump_canceled?.Invoke();      user_input_vector.y -= 1;}
+    static void on_user_left_performed(InputAction.CallbackContext ctx)    { user_left_performed?.Invoke();     user_input_vector.x -= 1;}
+    static void on_user_left_canceled(InputAction.CallbackContext ctx)     { user_left_canceled?.Invoke();      user_input_vector.x += 1;}
+    static void on_user_right_performed(InputAction.CallbackContext ctx)   { user_right_performed?.Invoke();    user_input_vector.x += 1;}
+    static void on_user_right_canceled(InputAction.CallbackContext ctx)    { user_right_canceled?.Invoke();     user_input_vector.x -= 1;}
+    static void on_user_attack_performed(InputAction.CallbackContext ctx)  { user_attack_performed?.Invoke();   }
+    static void on_user_attack_canceled(InputAction.CallbackContext ctx)   { user_attack_canceled?.Invoke();    }
+    static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke();       }
+    static void on_user_up_canceled(InputAction.CallbackContext ctx)       { user_up_canceled?.Invoke();        }
     static void on_user_dash_performed(InputAction.CallbackContext ctx)    => user_dash_performed?.Invoke();
-    static void on_user_exit_performed(InputAction.CallbackContext ctx)    => UiManager.instance.toggle_gameplay_ui();
+    static void on_user_pause_performed(InputAction.CallbackContext ctx)    => user_pause_performed?.Invoke();
     #if UNITY_EDITOR
         static void on_user_zoom_out(InputAction.CallbackContext ctx)      => CameraController.instance?.ZoomOut();
         static void on_user_zoom_in(InputAction.CallbackContext ctx)       => CameraController.instance?.ZoomIn();

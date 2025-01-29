@@ -173,10 +173,10 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Exit"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""ce409df8-d32e-4357-9dfe-16f92bc8bbea"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
@@ -307,7 +307,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Exit"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -681,7 +681,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         m_UserControls_ZoomOut = m_UserControls.FindAction("ZoomOut", throwIfNotFound: true);
         m_UserControls_ZoomIn = m_UserControls.FindAction("ZoomIn", throwIfNotFound: true);
         m_UserControls_Dash = m_UserControls.FindAction("Dash", throwIfNotFound: true);
-        m_UserControls_Exit = m_UserControls.FindAction("Exit", throwIfNotFound: true);
+        m_UserControls_Pause = m_UserControls.FindAction("Pause", throwIfNotFound: true);
         m_UserControls_Debug = m_UserControls.FindAction("Debug", throwIfNotFound: true);
         m_UserControls_Up = m_UserControls.FindAction("Up", throwIfNotFound: true);
         // DefaultControls
@@ -800,7 +800,7 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_UserControls_ZoomOut;
     private readonly InputAction m_UserControls_ZoomIn;
     private readonly InputAction m_UserControls_Dash;
-    private readonly InputAction m_UserControls_Exit;
+    private readonly InputAction m_UserControls_Pause;
     private readonly InputAction m_UserControls_Debug;
     private readonly InputAction m_UserControls_Up;
     /// <summary>
@@ -851,9 +851,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Dash => m_Wrapper.m_UserControls_Dash;
         /// <summary>
-        /// Provides access to the underlying input action "UserControls/Exit".
+        /// Provides access to the underlying input action "UserControls/Pause".
         /// </summary>
-        public InputAction @Exit => m_Wrapper.m_UserControls_Exit;
+        public InputAction @Pause => m_Wrapper.m_UserControls_Pause;
         /// <summary>
         /// Provides access to the underlying input action "UserControls/Debug".
         /// </summary>
@@ -915,9 +915,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Exit.started += instance.OnExit;
-            @Exit.performed += instance.OnExit;
-            @Exit.canceled += instance.OnExit;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Debug.started += instance.OnDebug;
             @Debug.performed += instance.OnDebug;
             @Debug.canceled += instance.OnDebug;
@@ -962,9 +962,9 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Exit.started -= instance.OnExit;
-            @Exit.performed -= instance.OnExit;
-            @Exit.canceled -= instance.OnExit;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Debug.started -= instance.OnDebug;
             @Debug.performed -= instance.OnDebug;
             @Debug.canceled -= instance.OnDebug;
@@ -1580,12 +1580,12 @@ public partial class @Keybinds: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDash(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnExit(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Debug" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

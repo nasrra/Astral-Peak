@@ -49,22 +49,28 @@ public class UiManager : MonoBehaviour{
     public void toggle_gameplay_ui(){
         if(GameManager.get_state() == GameState.CUTSCENE || GameManager.get_state() == GameState.DEATH)
             return;
-        if(hud.activeSelf == true){
-            hud.SetActive(false);
-            pause_menu.SetActive(true);
-            GameManager.state_changed(GameState.MENU);
-            GameManager.pause_game(true);
-        }
-        else if(pause_menu.activeSelf == true){
-            pause_menu.SetActive(false);
-            hud.SetActive(true);
-            GameManager.state_changed(GameState.GAMEPLAY);
-            GameManager.pause_game(false);
-        }
+        if(hud.activeSelf == true)
+            enable_pause_menu();
+        else if(pause_menu.activeSelf == true)
+            disable_pause_menu();
         else if(settings_menu.activeSelf == true){
             settings_menu.SetActive(false);
             pause_menu.SetActive(true);
         }
+    }
+
+    private void enable_pause_menu(){
+        hud.SetActive(false);
+        pause_menu.SetActive(true);
+        GameManager.state_changed(GameState.MENU);
+        GameManager.pause_game(true);        
+    }
+
+    private void disable_pause_menu(){
+        pause_menu.SetActive(false);
+        hud.SetActive(true);
+        GameManager.state_changed(GameState.GAMEPLAY);
+        GameManager.pause_game(false);       
     }
 
     public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
@@ -152,6 +158,7 @@ public class UiManager : MonoBehaviour{
     private void handle_play_mode_state_changed(UnityEditor.PlayModeStateChange state){
         if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode){
             UnityEditor.EditorApplication.playModeStateChanged -= handle_play_mode_state_changed;
+            unlink_instances();
             unlink_cutscene_skip();
         }
     }
@@ -176,7 +183,8 @@ public class UiManager : MonoBehaviour{
     void link_statics(){
         GameManager.entered_game_state                  += entered_game_state;
         GameManager.exited_game_state                   += exited_game_state;
-        InputManager.menu_exit_performed                += toggle_gameplay_ui;
+        link_player();
+        link_pause_menu_toggle();
     }
     void link_instances(){
         CameraEffects.instance.started_fade_to_black    += fade_out;
@@ -185,10 +193,31 @@ public class UiManager : MonoBehaviour{
     void unlink_statics(){
         GameManager.entered_game_state                  -= entered_game_state;
         GameManager.exited_game_state                   -= exited_game_state;
-        InputManager.menu_exit_performed                -= toggle_gameplay_ui;
+        unlink_player();
+        unlink_pause_menu_toggle();
     }
     void unlink_instances(){
         CameraEffects.instance.started_fade_to_black    -= fade_out;
         CameraEffects.instance.started_fade_from_black  -= fade_in;
+    }
+    void link_player(){
+        Player.instance.entered_door                    += unlink_pause_menu_toggle;
+        Player.instance.entered_door                    += disable_pause_menu;
+        Player.instance.exiting_door                    += unlink_pause_menu_toggle;
+        Player.instance.exited_door                     += link_pause_menu_toggle;        
+    }
+    void unlink_player(){
+        Player.instance.entered_door                    -= unlink_pause_menu_toggle;
+        Player.instance.entered_door                    -= disable_pause_menu;
+        Player.instance.exiting_door                    -= unlink_pause_menu_toggle;
+        Player.instance.exited_door                     -= link_pause_menu_toggle;        
+    }
+    public void link_pause_menu_toggle(){
+        InputManager.user_pause_performed += toggle_gameplay_ui;
+        InputManager.menu_exit_performed += toggle_gameplay_ui;
+    }
+    public void unlink_pause_menu_toggle(){
+        InputManager.user_pause_performed -= toggle_gameplay_ui;
+        InputManager.menu_exit_performed -= toggle_gameplay_ui;
     }
 }

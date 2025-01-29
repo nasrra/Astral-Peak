@@ -43,6 +43,7 @@ public static class GameManager{
 
     static public void state_changed(GameState _state){
         GameState previous = state;
+        Debug.Log(_state);
         exited_game_state?.Invoke(previous);
         entered_game_state?.Invoke(_state);
         state = _state;

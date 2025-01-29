@@ -51,6 +51,7 @@ public class Movement : MonoBehaviour{
 
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public Vector2 get_move_direction() => move_direction;
+    public Vector2 get_move_direction_copy() => new Vector2(move_direction.x, move_direction.y);
     public void update_move_direction(Vector2 direction){
         move_direction += direction;
         move_direction_changed?.Invoke(move_direction);
