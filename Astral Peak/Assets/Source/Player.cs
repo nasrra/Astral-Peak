@@ -279,7 +279,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
                 intermediate_health = 0;
             }
         }  
-    } 
+    }
 
 
 
@@ -424,11 +424,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
         flipped_left            += particles.flip_particles_left;
         flipped_right           += particles.flip_particles_right;
         melee.hit               += attack_hit;
+        melee.self_knockback    += movement.knockback_additive;
     }
     private void unlink_melee(){
         flipped_left            -= particles.flip_particles_left;
         flipped_right           -= particles.flip_particles_right;
         melee.hit               -= attack_hit;
+        melee.self_knockback    -= movement.knockback_additive;
     }
     protected void link_health(){
         health.now_invulnerable += invulnerable;

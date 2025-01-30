@@ -158,7 +158,7 @@ public class Movement : MonoBehaviour{
             can_dash = false;
             can_knockback = false; // added here in bug case, so 'can_dash' returns back to true for bosses.
             is_dashing = true;
-            state_switch(ref move_state, apply_force_loop(dashed, dash_end, direction, force, duration));
+            state_switch(ref move_state, apply_force_loop_override(dashed, dash_end, direction, force, duration));
             state_switch(ref controller_state, null);
 
         }      
@@ -169,27 +169,52 @@ public class Movement : MonoBehaviour{
         can_knockback = true; // added here in bug case, so 'can_dash' returns back to true for bosses.
         StartCoroutine(Util.timer(data.dash_cooldown, time_out:()=>can_dash=true));
     }
+    // overrides movement state so that knockback stuns.
     public void knockback(KnockbackData data){
         if(can_knockback == true){
-            state_switch(ref move_state, apply_force_loop(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.25f,0)).normalized, data.force, data.duration));
+            state_switch(ref move_state, apply_force_loop_override(knockedback, knockback_ended, (transform.position - data.transform.position + new Vector3(0,2.25f,0)).normalized, data.force, data.duration));
             state_switch(ref controller_state, null);
         }
     }
-    protected IEnumerator apply_force_loop(Action start, Action end, Vector3 direction, float force, float time) 
+    // adds to movement state so that knock back adds.
+    public void knockback_additive(KnockbackData data){
+        if(can_knockback == true){
+            state_switch(ref move_state, move());
+            state_switch(ref controller_state, apply_force_loop_additive(knockedback, knockback_ended, (transform.position - data.transform.position).normalized, data.force, data.duration));
+        }
+    }
+    protected IEnumerator apply_force_loop_override(Action start, Action end, Vector3 direction, float force, float time) 
         => Util.timer(
             time,
             start_action:()=>{
-                rb.gravityScale = 0;
-                // Normalize the final knockback direction
+                mod_decel(1);
                 direction.Normalize();
+                mod_gravity(0);
                 // multiply by knock back force.
                 rb.linearVelocity = Vector2.zero;
                 rb.AddForce(direction * force, ForceMode2D.Impulse);
                 start?.Invoke();
             },
             time_out:()=>{
-                rb.gravityScale = base_data.gravity;
                 rb.linearVelocity = Vector2.zero;
+                reset_decel();
+                reset_gravity();
+                end?.Invoke();
+            }
+        );
+    protected IEnumerator apply_force_loop_additive(Action start, Action end, Vector3 direction, float force, float time) 
+        => Util.timer(
+            time,
+            start_action:()=>{
+                mod_decel(1);
+                reset_gravity();
+                direction.Normalize();
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
+                start?.Invoke();
+            },
+            time_out:()=>{
+                reset_decel();
+                reset_gravity();
                 end?.Invoke();
             }
         );

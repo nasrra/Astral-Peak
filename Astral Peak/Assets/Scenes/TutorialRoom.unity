@@ -7927,8 +7927,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1421768636}
-  - component: {fileID: 1421768638}
-  - component: {fileID: 1421768637}
   m_Layer: 0
   m_Name: DialogueTriggers
   m_TagString: Untagged
@@ -7954,33 +7952,6 @@ Transform:
   - {fileID: 985465929}
   m_Father: {fileID: 254337658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1421768637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421768635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 106e0f7b46fcfa04fb468f3729506f5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  line: 0300000004000000
---- !u!114 &1421768638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1421768635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9d93e87960a46342887044afb6a8c1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creature: {fileID: 1154081792}
-  dialogue_trigger: {fileID: 1421768637}
 --- !u!1001 &1484467843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9666,7 +9637,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1121117006334630562, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2055561552}
+      addedObject: {fileID: 2055561544}
   m_SourcePrefab: {fileID: 100100000, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
 --- !u!4 &2055561541 stripped
 Transform:
@@ -9684,7 +9655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b43983a33ea76e43b910a38ef5f8136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2055561552
+--- !u!114 &2055561544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9693,10 +9664,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1965837356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2cf1210ad504c94fa47f2d8f11a96cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 152182fa1b83a394bab03feef4387a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1154081792}
+  enemy_kill_requirement: 1
   door: {fileID: 2055561543}
+  count: 0
 --- !u!1001 &2072701602
 PrefabInstance:
   m_ObjectHideFlags: 0

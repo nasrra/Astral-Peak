@@ -8,6 +8,7 @@ using UnityEngine;
 [Serializable]
 public class MeleeHolster{
     public event Action hit_creature;
+    public event Action<KnockbackData> self_knockback;
     Dictionary<Creature, bool> hit_creatures = new Dictionary<Creature, bool>();
 
     [SerializeField] protected Collider2D hurt_box;
@@ -44,5 +45,6 @@ public class MeleeHolster{
         // add the creature to hit creatures;
         hit_creatures.Add(creature, true);
         hit_creature?.Invoke();
+        self_knockback?.Invoke(new KnockbackData(self_knockback_force, self_knockback_duration, other.transform));
     }
 }
