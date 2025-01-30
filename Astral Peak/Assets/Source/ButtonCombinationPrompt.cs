@@ -11,11 +11,16 @@ public class ButtonCombinationPromptUI : MonoBehaviour{
     protected void initialize(){
         foreach(ButtonPrompt button in buttons){
             button.initialize();
-            button.action.performed += handle_pressed_action;
-            button.action.canceled += handle_canceled_action;
             pressed.Add(button.action, false);
         }
         Application.quitting += uninitialize;
+    }
+
+    public void link_action(){
+        foreach(ButtonPrompt button in buttons){
+            button.action.performed += handle_pressed_action;
+            button.action.canceled  += handle_canceled_action;        
+        }
     }
 
     protected void handle_pressed_action(InputAction.CallbackContext ctx){

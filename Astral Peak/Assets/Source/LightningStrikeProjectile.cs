@@ -15,10 +15,10 @@ public class LightningStrikeProjectile : Projectile{
     }
 
     protected override void Start(){
-        StartCoroutine(Util.timer(
-            time: lifetime,
-            time_out: destroy
-        ));
+        //StartCoroutine(Util.timer(
+        //    time: lifetime,
+        //    time_out: destroy
+        //));
         StartCoroutine(Util.timer(
             time: 1.5f,
             time_out: loop
@@ -33,7 +33,10 @@ public class LightningStrikeProjectile : Projectile{
     }
     
     void OnTriggerEnter2D(Collider2D other){
-        if(other.gameObject.layer == LayersManager.PLAYER)
+        int layer = other.gameObject.layer; 
+        if(layer == LayersManager.PLAYER)
             damage_creature(other.GetComponent<Creature>());
+        else if(layer == LayersManager.PROJECTILE_DESTROYER)
+            destroy();
     }
 }

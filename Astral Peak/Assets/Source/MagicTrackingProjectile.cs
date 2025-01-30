@@ -21,9 +21,14 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
         }));
         base.Start();
     }
+    protected override void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer == LayersManager.GROUND)
+            destroy();
+        base.OnTriggerEnter2D(other);
+    }
     public override void destroy(){
         movement.StopAllCoroutines();
+        movement.zero_velocity();
         base.destroy();
     }
-    //
 }

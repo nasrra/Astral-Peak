@@ -13,7 +13,7 @@ public class MagicStationaryProjectile : Projectile{
         base.Start();
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    protected virtual void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer==LayersManager.PLAYER)
             if(destroy_on_hit == true)
                 damage_creature_and_self_destruct(other.GetComponent<Creature>());
