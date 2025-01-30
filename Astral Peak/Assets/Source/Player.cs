@@ -289,11 +289,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public override void enter_cutscene_state(){
         unlink_movement();
         animator.force_idle();
+        health.is_invulnerable();
     }
     public override void exit_cutscene_state(){
         movement.renew();
         link_movement();
         movement.move_only_state();
+        health.is_vulnerable();
     }
     protected override void entered_game_state(GameState state){
         if(state == GameState.CUTSCENE)
