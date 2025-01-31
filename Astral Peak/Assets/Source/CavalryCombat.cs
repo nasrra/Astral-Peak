@@ -81,10 +81,6 @@ public class CavalryCombat : BossCombat{
                         front_strike,
                         bite,
                     };
-                    back_moveset = new List<BossAttack>(){
-                        //back_strike_forward,
-                        //back_strike_backward,
-                    };
                     special_moveset = new List<BossAttack>(){
                         howl,
                         ground_slam,
