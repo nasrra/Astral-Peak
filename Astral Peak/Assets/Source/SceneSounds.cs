@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Sounds;
+using UnityEditor.SearchService;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace SceneSounds{
 
@@ -158,8 +160,23 @@ public struct Introduction : SceneSoundSet{
             sounds.AddRange(set.get_sounds());
         return sounds;
     }
-    List<SoundSet> sets => new List<SoundSet>(){
+    List<SoundSet> sets => new(){
         new IntroductionSoundSet(),
+    };
+}
+
+public struct FinalBossRoom : SceneSoundSet{
+    public List<Sound> get_sounds(){
+        List<Sound> sounds =new List<Sound>();
+        foreach(SoundSet set in sets)
+            sounds.AddRange(set.get_sounds());
+        return sounds;
+    }
+    List<SoundSet> sets => new(){
+        new StoneSoundSet(),
+        new MagicSoundSet(),
+        new MeleeSoundSet(),
+        new OutdoorAmbienceSoundSet(),
     };
 }
 
