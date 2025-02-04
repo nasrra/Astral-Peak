@@ -12,7 +12,7 @@ public class BossAttack{
         this.combat_cooldown = combat_cooldown;
         this.idle_cooldown = idle_cooldown;
         this.enabled = enabled;
-    }
+    } 
 
     public string animation_id;
     public float 

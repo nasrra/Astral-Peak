@@ -133,7 +133,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void new_ground(GameObject ground){
         sound.set_ground(ground.tag);
         particles.set_ground(ground.tag);
-        transform.parent = ground.transform;
+        if(ground.layer == LayersManager.PLATFORM)
+            transform.parent = ground.transform;
     }
     private void not_grounded(){
         animator.start_fall();
