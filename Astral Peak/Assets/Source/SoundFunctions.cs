@@ -389,3 +389,25 @@ public class MageSound : SoundFunctions{
         },
     };
 }
+
+public class GiantSound : SoundFunctions{
+    public GiantSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    private List<SoundID> footsteps = new List<SoundID>(){
+        SoundID.STONE_FOOTSTEP_1,
+        SoundID.STONE_FOOTSTEP_2,
+        SoundID.STONE_FOOTSTEP_3,
+        SoundID.STONE_FOOTSTEP_4};
+    protected override Dictionary<string, Action> create_sound_functions() => 
+        new Dictionary<string, Action>(){
+        {"yell", () =>
+            AudioClipHandler.play(
+            SoundID.RIDER_YELL,
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC)},
+        {"footstep",()=>
+            AudioClipHandler.play(
+            random_id(footsteps),
+            audio_player: audio_player, 
+            AudioSourceSettings.DIEGETIC)},
+        };
+}

@@ -16,7 +16,7 @@ public class RangedHolster{
         };
         GameObject x = GameObject.Instantiate(
             projectile, 
-            fire_point.position, 
+            new Vector3 (fire_point.position.x,fire_point.position.y, 0), 
             rotation);
             //rotation_type == RotationType.Y
             //    ?fire_point.rotation

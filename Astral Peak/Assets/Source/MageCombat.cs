@@ -91,9 +91,9 @@ public class MageCombat : BossCombat{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    projectile_summon_phase_1,
+                    //projectile_summon_phase_1,
                     teleport_phase_1,
-                    hollow_summon_phase_1,
+                    //hollow_summon_phase_1,
                     three_slash_phase_1,
                 };
             }},
