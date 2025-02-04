@@ -20,6 +20,7 @@ namespace Sounds{
     MAGIC_EXPLOSION,
     MAGIC_SNOW_CAST,
     WHOOSH_1,
+    WHOOSH_2,
     MAGIC_FOOTSTEP_1,
     MAGIC_FOOTSTEP_2,
     MAGIC_FOOTSTEP_3,
@@ -42,6 +43,9 @@ namespace Sounds{
     MELEE_SWING_1,
     MELEE_SWING_2,
     MELEE_SWING_3,
+
+    // Hammer
+    HAMMER_DOWN_1,
 
     // Ranged
     BOW_SHOT,

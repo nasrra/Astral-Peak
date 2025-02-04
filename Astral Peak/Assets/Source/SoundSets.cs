@@ -278,6 +278,8 @@ public struct GiantSoundSet : SoundSet{
         sounds = sounds == null
         ?new List<Sound>(){
             new Ping(),
+            new HammerDown1(),
+            new Whoosh2(),
         }
         :sounds;
         return sounds;

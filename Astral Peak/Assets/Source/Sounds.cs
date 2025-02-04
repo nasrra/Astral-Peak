@@ -219,7 +219,7 @@ public class StoneFootstep4 : Sound {
 }
 public class StoneHeavyFootstep1 : Sound {
     public StoneHeavyFootstep1() : base(
-        _id:        SoundID.STONE_HEAVY_FOOTSTEP_1,
+        _id:        SoundID.STONE_HEAVY_FOOTSTEP_1, 
         _clip:      "stone_heavy_footstep_1",
         _group:     AudioManager.sfx_mixer,
         _volume:    .6f,
@@ -368,6 +368,17 @@ public class Whoosh1 : Sound {
         _clip:      "whoosh_1",
         _group:     AudioManager.sfx_mixer,
         _volume:    .5f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
+
+public class Whoosh2 : Sound {
+    public Whoosh2() : base(
+        _id:        SoundID.WHOOSH_2,
+        _clip:      "whoosh_2",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    1f,
         _max_pitch: 1f,
         _min_pitch: 0.85f
     ) {}
@@ -1000,6 +1011,17 @@ public class StoneDoor : Sound{
         _clip:      "stone_door_short",
         _group:     AudioManager.sfx_mixer,
         _volume:    .45f,
+        _max_pitch: .8f,
+        _min_pitch: 0.6f
+    ){}
+}
+
+public class HammerDown1 : Sound{
+    public HammerDown1() : base(
+        _id:        SoundID.HAMMER_DOWN_1,
+        _clip:      "hammer_down_1",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    1f,
         _max_pitch: .8f,
         _min_pitch: 0.6f
     ){}

@@ -421,5 +421,17 @@ public class GiantSound : SoundFunctions{
             audio_player: audio_player,
             AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
         },
+        {"hammer_impact",()=>
+            AudioClipHandler.play(
+            SoundID.HAMMER_DOWN_1,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
+        {"hammer_whoosh",()=>
+            AudioClipHandler.play(
+            SoundID.WHOOSH_2,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
     };
 }
