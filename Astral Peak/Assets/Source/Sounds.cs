@@ -217,6 +217,46 @@ public class StoneFootstep4 : Sound {
         _min_pitch: 0.85f
     ) {}
 }
+public class StoneHeavyFootstep1 : Sound {
+    public StoneHeavyFootstep1() : base(
+        _id:        SoundID.STONE_HEAVY_FOOTSTEP_1,
+        _clip:      "stone_heavy_footstep_1",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .6f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
+public class StoneHeavyFootstep2 : Sound {
+    public StoneHeavyFootstep2() : base(
+        _id:        SoundID.STONE_HEAVY_FOOTSTEP_2,
+        _clip:      "stone_heavy_footstep_2",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .6f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
+public class StoneHeavyFootstep3 : Sound {
+    public StoneHeavyFootstep3() : base(
+        _id:        SoundID.STONE_HEAVY_FOOTSTEP_3,
+        _clip:      "stone_heavy_footstep_3",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .6f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
+public class StoneHeavyFootstep4 : Sound {
+    public StoneHeavyFootstep4() : base(
+        _id:        SoundID.STONE_HEAVY_FOOTSTEP_4,
+        _clip:      "stone_heavy_footstep_4",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .6f,
+        _max_pitch: 1f,
+        _min_pitch: 0.85f
+    ) {}
+}
 public class StoneImpactLight : Sound {
     public StoneImpactLight() : base(
         _id:        SoundID.STONE_IMPACT_LIGHT,

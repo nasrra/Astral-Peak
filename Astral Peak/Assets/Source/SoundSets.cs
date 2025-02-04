@@ -217,6 +217,10 @@ public struct StoneSoundSet : SoundSet {
                 new StoneFootstep2(),
                 new StoneFootstep3(),
                 new StoneFootstep4(),
+                new StoneHeavyFootstep1(),
+                new StoneHeavyFootstep2(),
+                new StoneHeavyFootstep3(),
+                new StoneHeavyFootstep4(),
                 new StoneImpactLight(),
                 new StoneDoor(),
             };

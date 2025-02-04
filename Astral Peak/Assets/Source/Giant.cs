@@ -10,6 +10,8 @@ public class Giant : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
+        //switch_phase();
+        idle(3);
     }
 
     private void idle(){
