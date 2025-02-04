@@ -415,5 +415,11 @@ public class GiantSound : SoundFunctions{
             random_id(footsteps),
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},
-        };
+        {"ping",()=>
+            AudioClipHandler.play(
+            SoundID.PING,
+            audio_player: audio_player,
+            AudioSourceSettings.NON_DIEGETIC_RANDOMISED)
+        },
+    };
 }

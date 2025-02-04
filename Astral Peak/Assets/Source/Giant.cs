@@ -1,8 +1,11 @@
 using UnityEngine;
 using Entropek;
+using System;
 
 public class Giant : Boss<Movement>{
     Coroutine idle_state;
+    [Header("TheGiant")]
+    [SerializeField] FinalBossRoomGroundHandler ground_handler;
 
     void Awake(){
         sound.set_functions(new GiantSound(sound));
@@ -42,7 +45,16 @@ public class Giant : Boss<Movement>{
             animator.Play("GiantIdle");
     }
 
+    int get_current_ground_piece(){
+        int x = -1;
+        Collider2D other = Physics2D.OverlapCircle(transform.position, .25f, LayersManager.BITWISE_GROUND);
+        if(other != null)
+            Int32.TryParse(other.name, out x);
+        return x;
+    }
 
+    public void down_slam_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
+    public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
 
     protected void link_events(){
         link_game_manager();

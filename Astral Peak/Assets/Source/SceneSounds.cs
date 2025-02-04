@@ -178,6 +178,7 @@ public struct FinalBossRoom : SceneSoundSet{
         new MagicSoundSet(),
         new MeleeSoundSet(),
         new OutdoorAmbienceSoundSet(),
+        new GiantSoundSet(),
     };
 }
 

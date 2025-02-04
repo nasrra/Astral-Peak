@@ -5,9 +5,9 @@ using UnityEngine;
 public class FinalBossRoomGroundHandler : MonoBehaviour{
     public Rigidbody2D[] grounds; // Array to hold all the squares
 
-    void Start(){
-        StartCoroutine(test());
-    }
+    //void Start(){
+    //    StartCoroutine(test());
+    //}
 
     // Method to add a new wave at a specific index
     public void start_wave(int index, bool move_left, float rate, float force){

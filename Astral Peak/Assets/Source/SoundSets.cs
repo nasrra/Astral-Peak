@@ -272,6 +272,18 @@ public struct MageSoundSet : SoundSet{
     }
 }
 
+public struct GiantSoundSet : SoundSet{
+    private List<Sound> sounds;
+    public List<Sound> get_sounds(){
+        sounds = sounds == null
+        ?new List<Sound>(){
+            new Ping(),
+        }
+        :sounds;
+        return sounds;
+    }
+}
+
 public struct IntroductionSoundSet : SoundSet{
     private List<Sound> sounds;
     public List<Sound> get_sounds(){
