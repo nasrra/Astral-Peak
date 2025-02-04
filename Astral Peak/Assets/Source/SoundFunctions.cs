@@ -249,6 +249,12 @@ public class PlayerSound : SoundFunctions{
             SoundID.MAGIC_EXPLOSION,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC)},   
+        {"healed", ()=>
+            AudioClipHandler.play(
+            SoundID.DEEP_THUMPING,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        }
     };
 }
 

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GiantCombat : BossCombat{
@@ -14,8 +16,8 @@ public class GiantCombat : BossCombat{
 
 
     protected override void create_movesets(){
-        special_moveset = new System.Collections.Generic.List<BossAttack>(){
-            //down_slam
+        movesets = new Dictionary<string, Action>(){
+            {"phase_1",()=> Debug.Log(1)},
         };
     }
 

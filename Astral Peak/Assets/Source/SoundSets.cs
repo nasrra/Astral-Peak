@@ -73,6 +73,7 @@ public struct UiSoundSet : SoundSet {
         if (sounds == null) {
             sounds = new List<Sound>() {
                 new DeepBoom(),
+                new DeepThumping(),
                 new WoodenPing(),
             };
         }

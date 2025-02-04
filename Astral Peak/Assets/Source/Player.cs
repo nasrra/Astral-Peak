@@ -151,7 +151,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
     // Damaged and Health
-    private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE;
+    private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE | LayersManager.BITWISE_BOSS;
     private void vulnerable(){
         // check if we have dashed into an enemy.
         Collider2D other = Physics2D.OverlapCircle(transform.position, 1, LayersManager.BITWISE_BOSS | LayersManager.BITWISE_ENEMY);
@@ -200,6 +200,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         //AudioManager.low_pass_audio(false);
         base.death_complete();
     }
+    private void healed() => sound.play_sound("healed");
 
 
 
@@ -439,6 +440,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.knockback        += get_movement().knockback;
         health.death            += kill;
         health.death            += get_movement().StopAllCoroutines;    
+        health.healed           += healed;  
     }
     protected void unlink_health(){
         health.now_invulnerable -= invulnerable;
@@ -446,7 +448,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         health.damaged          -= damaged;
         health.knockback        -= get_movement().knockback;
         health.death            -= kill;
-        health.death            -= get_movement().StopAllCoroutines;    
+        health.death            -= get_movement().StopAllCoroutines;  
+        health.healed           -= healed;  
     }
     protected void link_scene_manager(){
         SceneManager.sceneUnloaded += unloaded_scene;

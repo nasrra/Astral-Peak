@@ -173,6 +173,7 @@ public struct FinalBossRoom : SceneSoundSet{
         return sounds;
     }
     List<SoundSet> sets => new(){
+        new UiSoundSet(),
         new StoneSoundSet(),
         new MagicSoundSet(),
         new MeleeSoundSet(),
