@@ -9,11 +9,9 @@ public class MeleeHolsterHandler : MonoBehaviour{
     [SerializedDictionary("id","melee holster")]
     [SerializeField] SerializedDictionary<string, MeleeHolster> holsters = new SerializedDictionary<string, MeleeHolster>();
     public void enable_melee_hurtbox(string holster_id){
-        Log.MethodCall();
         holsters[holster_id].enable_hurt_box(true);
     }
     public void disable_melee_hurtbox(string holster_id){
-        Log.MethodCall();
         holsters[holster_id].enable_hurt_box(false);
     } 
 
