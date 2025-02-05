@@ -7,7 +7,7 @@ using Entropek;
 public abstract class BossCombat : MonoBehaviour{
     public event Action<float> attack_ended;
     public event Action<BossAttack> attack_chosen;
-    bool flipped = false;
+    [SerializeField] bool flipped = false;
     [SerializeField] public bool on_cooldown = false, is_attacking = false;
     [SerializeField] BossAttack chosen_attack;
     [SerializeField] protected List<BossAttack> front_moveset   = new List<BossAttack>();
@@ -108,4 +108,5 @@ public abstract class BossCombat : MonoBehaviour{
 
     public void flip_left()=>flipped=true;
     public void flip_right()=>flipped=false;
+    public void set_flip(bool _flipped) => flipped = _flipped;
 }

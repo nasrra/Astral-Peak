@@ -48,6 +48,7 @@ public class Movement : MonoBehaviour{
     public void reset_gravity() => rb.gravityScale = base_data.gravity;
     public void flip_left() => flipped = true;
     public void flip_right() => flipped = false;
+    public void set_flip(bool _flipped) => flipped = _flipped;
 
     public void is_knockbackable(int x) => can_knockback = x != 0;
     public Vector2 get_move_direction() => move_direction;

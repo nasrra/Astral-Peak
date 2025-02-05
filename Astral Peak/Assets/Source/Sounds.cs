@@ -1021,7 +1021,7 @@ public class HammerDown1 : Sound{
         _id:        SoundID.HAMMER_DOWN_1,
         _clip:      "hammer_down_1",
         _group:     AudioManager.sfx_mixer,
-        _volume:    1f,
+        _volume:    .85f,
         _max_pitch: .8f,
         _min_pitch: 0.6f
     ){}

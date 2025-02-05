@@ -9,8 +9,8 @@ public class GiantCombat : BossCombat{
         min_player_distance:   0,
         arena_bound_distance:  2,
         attack_cooldown:       6,
-        idle_cooldown:         2,
-        combat_cooldown:       6
+        idle_cooldown:         3,
+        combat_cooldown:       3
     ),
     jump_backward = new BossAttack(
         "GiantJumpBackward",
@@ -32,6 +32,16 @@ public class GiantCombat : BossCombat{
         idle_cooldown:          2,
         combat_cooldown:        4
     ),
+    back_jump_forward = new BossAttack(
+        "GiantJumpForward",
+        chance:                 50,
+        max_player_distance:    8,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        2,
+        idle_cooldown:          0,
+        combat_cooldown:        1
+    ),
     round_slam = new BossAttack(
         "GiantRoundSlam",
         chance:                 50,
@@ -48,7 +58,7 @@ public class GiantCombat : BossCombat{
         max_player_distance:    15,
         min_player_distance:    0,
         arena_bound_distance:   0,
-        attack_cooldown:        1,
+        attack_cooldown:        8,
         idle_cooldown:          0,
         combat_cooldown:        4
     )
@@ -57,13 +67,16 @@ public class GiantCombat : BossCombat{
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        //down_slam,
-                        //jump_backward,
-                        //front_jump_forward,
+                        down_slam,
+                        jump_backward,
+                        front_jump_forward,
+                    };
+                    back_moveset = new List<BossAttack>(){
+                        back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
                         walk_projectile,
-                        //round_slam,
+                        round_slam,
                     };
                 }
             },

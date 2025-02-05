@@ -127,6 +127,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected virtual void link_movement(){
         flipped_left  += movement.flip_left;
         flipped_right += movement.flip_right;
+        movement.set_flip(flipped);
     }
     protected virtual void unlink_movement(){
         flipped_left  -= movement.flip_left;
@@ -135,6 +136,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     protected virtual void link_combat(){
         flipped_left  += combat.flip_left;
         flipped_right += combat.flip_right;        
+        combat.set_flip(flipped);
     }
     protected virtual void unlink_combat(){
         flipped_left  -= combat.flip_left;
