@@ -53,16 +53,20 @@ public class Giant : Boss<Movement>{
         return x;
     }
 
+    // Camera
+    public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
+    public void jump_away_camera_shake() => CameraController.instance.shake_camera(.4f,.8f,false);
+    public void yell_camera_shake() => CameraController.instance.shake_camera(2f,.8f, true);
+
+    // ground waves.
     public void down_slam_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
     public void round_slam_left_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
     public void round_slam_right_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?1:-1), !flipped, .15f, 400f);
-    public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
     public void jump_away_ground_wave(){
         // left and right
         ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
         ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
     }
-    public void jump_away_camera_shake() => CameraController.instance.shake_camera(.4f,.8f,false);
 
     //movement.
     public void jump_forward() => movement.dash(flipped == false? Vector2.right : Vector2.left, 12.5f, 0.5f);

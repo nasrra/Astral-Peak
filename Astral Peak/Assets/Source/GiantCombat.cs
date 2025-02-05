@@ -26,7 +26,7 @@ public class GiantCombat : BossCombat{
         "GiantJumpForward",
         chance:                 50,
         max_player_distance:    16,
-        min_player_distance:    9,
+        min_player_distance:    8,
         arena_bound_distance:   0,
         attack_cooldown:        16,
         idle_cooldown:          2,
@@ -36,21 +36,34 @@ public class GiantCombat : BossCombat{
         "GiantRoundSlam",
         chance:                 50,
         max_player_distance:    10,
-        min_player_distance:    9,
+        min_player_distance:    0,
         arena_bound_distance:   0,
-        attack_cooldown:        1,
+        attack_cooldown:        24,
         idle_cooldown:          3,
         combat_cooldown:        6
+    ),
+    walk_projectile = new BossAttack(
+        "GiantWalkingProjectile",
+        chance:                 50,
+        max_player_distance:    15,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        1,
+        idle_cooldown:          0,
+        combat_cooldown:        4
     )
     ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        round_slam,
                         //down_slam,
                         //jump_backward,
                         //front_jump_forward,
+                    };
+                    special_moveset = new List<BossAttack>(){
+                        walk_projectile,
+                        //round_slam,
                     };
                 }
             },

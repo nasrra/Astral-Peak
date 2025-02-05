@@ -6,15 +6,6 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
     public Rigidbody2D[] grounds; // Array to hold all the squares
     public MeleeHolsterHandler holsters;
 
-    //void Start(){
-    //    StartCoroutine(test());
-    //}
-
-    // Method to add a new wave at a specific index
-
-    // TODO : use melee hoplsters, create a timer that times out 2 seconds after the add force
-    // eg : timer (i+2, start_action: turn on collider, time_out: turn off collider);
-
     public void start_wave(int index, bool move_left, float rate, float force){
         int count = 0;
         if(index >= grounds.Length)

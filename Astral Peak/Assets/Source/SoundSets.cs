@@ -234,7 +234,7 @@ public struct RiderSoundSet : SoundSet {
     public List<Sound> get_sounds() {
         if (sounds == null) {
             sounds = new List<Sound>() {
-                new RiderYell(),
+                new BossYell(),
                 new WhistleLong(),
             };
         }
@@ -247,7 +247,7 @@ public struct HollowSoundSet : SoundSet {
     public List<Sound> get_sounds() {
         if (sounds == null) {
             sounds = new List<Sound>() {
-                new RiderYell(),
+                new BossYell(),
                 new WoodenRattle1(),
                 new WoodenRattle2(),
                 new WoodenRattle4(),
@@ -280,6 +280,10 @@ public struct GiantSoundSet : SoundSet{
             new Ping(),
             new HammerDown1(),
             new Whoosh2(),
+            new BossYell(),
+            new WaterBubble(),
+            new WaterGurgleLoop(),
+            new WaterSplash(),
         }
         :sounds;
         return sounds;

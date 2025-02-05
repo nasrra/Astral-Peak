@@ -64,8 +64,13 @@ namespace Sounds{
     // The Cavalry
     WOLF_HOWL,
     DOG_BARK_1,
-    RIDER_YELL,
+    BOSS_YELL,
     WHISTLE_LONG,
+
+    // Water
+    WATER_BUBBLE,
+    WATER_GURGLE_LOOP,
+    WATER_SPLASH,
 
     // The Mage
     BELL_CHIMES,

@@ -418,10 +418,10 @@ public class CoinToss : Sound {
 }
 
 
-public class RiderYell : Sound {
-    public RiderYell() : base(
-        _id:        SoundID.RIDER_YELL,
-        _clip:      "rider_yell",
+public class BossYell : Sound {
+    public BossYell() : base(
+        _id:        SoundID.BOSS_YELL,
+        _clip:      "boss_yell",
         _group:     AudioManager.sfx_mixer,
         _volume:    .75f,
         _max_pitch: 1f,
@@ -1024,6 +1024,39 @@ public class HammerDown1 : Sound{
         _volume:    1f,
         _max_pitch: .8f,
         _min_pitch: 0.6f
+    ){}
+}
+
+public class WaterBubble : Sound{
+    public WaterBubble() : base(
+        _id:        SoundID.WATER_BUBBLE,
+        _clip:      "water_bubble",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .65f,
+        _max_pitch: 1.15f,
+        _min_pitch: 0.75f
+    ){}
+}
+
+public class WaterGurgleLoop : Sound{
+    public WaterGurgleLoop() : base(
+        _id:        SoundID.WATER_GURGLE_LOOP,
+        _clip:      "water_gurgle_loop",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .35f,
+        _max_pitch: 1.15f,
+        _min_pitch: 0.75f
+    ){}
+}
+
+public class WaterSplash : Sound{
+    public WaterSplash() : base(
+        _id:        SoundID.WATER_SPLASH,
+        _clip:      "water_splash",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .25f,
+        _max_pitch: 1f,
+        _min_pitch: 0.75f
     ){}
 }
 

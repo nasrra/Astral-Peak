@@ -144,7 +144,7 @@ public class RiderSound : SoundFunctions{
             AudioSourceSettings.DIEGETIC_RANDOMISED)},
         {"yell",()=>
             AudioClipHandler.play(
-            SoundID.RIDER_YELL,
+            SoundID.BOSS_YELL,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},
         {"bow_shot",()=>
@@ -274,7 +274,7 @@ public class HollowSound : SoundFunctions{
     => new Dictionary<string, Action>(){
         {"yell", () =>
             AudioClipHandler.play(
-            SoundID.RIDER_YELL,
+            SoundID.BOSS_YELL,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},  
         {"Stone_footstep",()=>
@@ -325,7 +325,7 @@ public class MageSound : SoundFunctions{
     => new Dictionary<string, Action>(){
         {"yell", () =>
             AudioClipHandler.play(
-            SoundID.RIDER_YELL,
+            SoundID.BOSS_YELL,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},    
         {"footstep",()=>
@@ -407,7 +407,7 @@ public class GiantSound : SoundFunctions{
         new Dictionary<string, Action>(){
         {"yell", () =>
             AudioClipHandler.play(
-            SoundID.RIDER_YELL,
+            SoundID.BOSS_YELL,
             audio_player: audio_player, 
             AudioSourceSettings.DIEGETIC)},
         {"footstep",()=>
@@ -430,6 +430,12 @@ public class GiantSound : SoundFunctions{
         {"hammer_whoosh",()=>
             AudioClipHandler.play(
             SoundID.WHOOSH_2,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
+        {"water_bubble",()=>
+            AudioClipHandler.play(
+            SoundID.WATER_BUBBLE,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)
         },

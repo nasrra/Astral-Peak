@@ -6,7 +6,7 @@ public class MagicStationaryProjectile : Projectile{
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] protected TrailRenderer trail;
     [SerializeField] bool destroy_on_hit = true;
-    AudioSource source;
+    protected AudioSource source;
 
     protected override void Start(){
         play_sound();
@@ -23,7 +23,7 @@ public class MagicStationaryProjectile : Projectile{
             destroy();
     }
 
-    protected void play_sound() =>
+    protected virtual void play_sound() =>
         source = AudioClipHandler.play(
             Sounds.SoundID.ELECTRICITY_3,
             this,
