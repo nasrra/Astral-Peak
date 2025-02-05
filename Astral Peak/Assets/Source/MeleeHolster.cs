@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 //create seperate classes for each atttack
@@ -19,6 +18,11 @@ public class MeleeHolster{
 
     [SerializeField]private float 
         self_knockback_force, self_knockback_duration;
+
+    // unlink
+    void OnDestroy(){
+        feedback.trigger_enter -= hit;
+    }
 
     public void enable_hurt_box(bool x){
         if(x == true){

@@ -1,5 +1,6 @@
 using System;
 using AYellowpaper.SerializedCollections;
+using Entropek;
 using UnityEngine;
 
 public class MeleeHolsterHandler : MonoBehaviour{
@@ -7,8 +8,14 @@ public class MeleeHolsterHandler : MonoBehaviour{
     public event Action<KnockbackData> self_knockback;
     [SerializedDictionary("id","melee holster")]
     [SerializeField] SerializedDictionary<string, MeleeHolster> holsters = new SerializedDictionary<string, MeleeHolster>();
-    public void enable_melee_hurtbox(string holster_id) => holsters[holster_id].enable_hurt_box(true);
-    public void disable_melee_hurtbox(string holster_id) => holsters[holster_id].enable_hurt_box(false);
+    public void enable_melee_hurtbox(string holster_id){
+        Log.MethodCall();
+        holsters[holster_id].enable_hurt_box(true);
+    }
+    public void disable_melee_hurtbox(string holster_id){
+        Log.MethodCall();
+        holsters[holster_id].enable_hurt_box(false);
+    } 
 
 
     void Awake(){
