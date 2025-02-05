@@ -1,29 +1,17 @@
 using System;
-using System.Collections;
 using Entropek;
 using UnityEngine;
 
-// maybe create a creature or character class that has this component and a status effect component.
-// enemies could hurt eachother and player can hurt them.
-// interactivity and all that.
-
 public class Health : MonoBehaviour{
     public event Action
-        healed, death, damaged, now_invulnerable, now_vulnerable;
+        healed, death, damaged, now_invulnerable, now_vulnerable, now_guarded;
     public event Action<KnockbackData> 
         knockback;
     [SerializeField] protected HealthData data;
-    [SerializeField] public bool invulnerable;
-    Coroutine invulnerable_state;
+    [SerializeField] HealthState state;
 
     public ref int get_current_health() => ref data.current_life;
     public ref int get_max_health() => ref data.max_life;
-
-    public void state_switch(ref Coroutine state, IEnumerator coroutine){
-        if(state!=null)
-            StopCoroutine(state);
-        state = StartCoroutine(coroutine);
-    }
 
     public void set_data(HealthData _data) => data = _data;
 
@@ -35,23 +23,19 @@ public class Health : MonoBehaviour{
             healed?.Invoke();
     }
 
-    public void is_invulnerable(){
-        invulnerable = true;
-        now_invulnerable?.Invoke();
+    public void set_guarded(){
+        state = HealthState.GUARDED;
+        now_guarded?.Invoke();
     }
-    public void is_invulnerable(float time) => 
-        state_switch(ref invulnerable_state, Util.timer(time,
-            start_action: ()=>is_invulnerable(),
-            time_out: ()=>{
-                invulnerable_state=null;
-                is_vulnerable();
-            }));
 
-    public void is_vulnerable(){
-        if(invulnerable_state == null){
-            invulnerable = false;
-            now_vulnerable?.Invoke();
-        }
+    public void set_vulnerable(){
+        state = HealthState.VULNERABLE;
+        now_vulnerable?.Invoke();
+    }
+
+    public void set_invulnerable(){
+        state = HealthState.INVULNERABLE;
+        now_invulnerable?.Invoke();
     }
 
     public void set_max_life(int amount) => data.max_life = amount;
@@ -59,17 +43,30 @@ public class Health : MonoBehaviour{
 
     // damage is an ambiguos function that handles damaging life values as well as guard.
     public void damage(DamageData damage_data, KnockbackData knockback_data){
-        if(invulnerable == true)
+        if(state == HealthState.INVULNERABLE)
             return;
-        
-        // deal damage.
-        data.current_life -= damage_data.damage;
-        Action action = data.current_life <= 0? death : damaged;
-        action?.Invoke();
-
+        if(damage_data.unblockable == true)
+            damage(damage_data.damage);
+        else if(state == HealthState.VULNERABLE)
+            damage(damage_data.damage);
         // invoke knockback if needed.
         if(knockback_data != null)
             knockback?.Invoke(knockback_data);
+    }
+
+    private void damage(int amount){
+        // deal damage.
+        data.current_life -= amount;
+        if(data.current_life <= 0)
+            death();
+        else
+            damaged();
+    }
+
+    enum HealthState : sbyte{
+        VULNERABLE,
+        GUARDED,
+        INVULNERABLE,
     }
 }
 

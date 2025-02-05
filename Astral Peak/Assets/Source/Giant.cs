@@ -50,7 +50,6 @@ public class Giant : Boss<Movement>{
         Collider2D other = Physics2D.OverlapCircle(transform.position, .5f, LayersManager.BITWISE_GROUND);
         if(other != null)
             Int32.TryParse(other.name, out x);
-        Debug.Log(x);
         return x;
     }
 

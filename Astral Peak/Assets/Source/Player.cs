@@ -93,13 +93,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void dashed(){
         sound.play_sound("dash");
         particles.emit_particle("dash");
-        health.is_invulnerable();//
+        health.set_guarded();//
     }
     private void dash_end(){
         if(movement.check_grounded() == true)
             grounded();
         if(i_frames == false)
-            health.is_vulnerable();
+            health.set_vulnerable();
     }
     private void grounded(){
         // bounce when hitting the ground.
@@ -171,7 +171,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
         sprite.play_damaged_flash();
-        health.is_invulnerable();
+        health.set_invulnerable();
         AudioManager.low_pass_audio(true);
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_sound("damaged");
@@ -181,7 +181,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         i_frames = false;
         AudioManager.low_pass_audio(false);
         damaged_stop?.Invoke();
-        health.is_vulnerable();
+        health.set_vulnerable();
     }
     protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){
@@ -291,13 +291,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public override void enter_cutscene_state(){
         unlink_movement();
         animator.force_idle();
-        health.is_invulnerable();
+        health.set_invulnerable();
     }
     public override void exit_cutscene_state(){
         movement.renew();
         link_movement();
         movement.move_only_state();
-        health.is_vulnerable();
+        health.set_vulnerable();
     }
     protected override void entered_game_state(GameState state){
         if(state == GameState.CUTSCENE)
