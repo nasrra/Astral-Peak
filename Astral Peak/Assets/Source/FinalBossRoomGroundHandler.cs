@@ -43,7 +43,7 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
             }
         ));
         StartCoroutine(Util.timer(
-            count * rate + .6f,
+            count * rate + .5f,
             time_out:() =>      holsters.disable_melee_hurtbox($"{selected}")
         ));
     }

@@ -31,15 +31,26 @@ public class GiantCombat : BossCombat{
         attack_cooldown:        16,
         idle_cooldown:          2,
         combat_cooldown:        4
+    ),
+    round_slam = new BossAttack(
+        "GiantRoundSlam",
+        chance:                 50,
+        max_player_distance:    10,
+        min_player_distance:    9,
+        arena_bound_distance:   0,
+        attack_cooldown:        1,
+        idle_cooldown:          3,
+        combat_cooldown:        6
     )
     ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        down_slam,
-                        jump_backward,
-                        front_jump_forward,
+                        round_slam,
+                        //down_slam,
+                        //jump_backward,
+                        //front_jump_forward,
                     };
                 }
             },

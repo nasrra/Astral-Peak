@@ -54,6 +54,8 @@ public class Giant : Boss<Movement>{
     }
 
     public void down_slam_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
+    public void round_slam_left_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
+    public void round_slam_right_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?1:-1), !flipped, .15f, 400f);
     public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
     public void jump_away_ground_wave(){
         // left and right
