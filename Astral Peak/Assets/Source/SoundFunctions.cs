@@ -8,7 +8,7 @@ public abstract class SoundFunctions{
     protected MonoBehaviour entity;
     protected Dictionary<string, Action> sound_functions;
     [SerializeField] protected Dictionary<string, AudioSource> looping_sources = new Dictionary<string, AudioSource>();
-    protected MonoBehaviour audio_player;
+    protected GameObject audio_player;
     public void play_sound(string sound_id) => sound_functions[sound_id]();
     public void stop_sound(string sound_id){
         AudioSource source = looping_sources[sound_id];
@@ -18,7 +18,7 @@ public abstract class SoundFunctions{
     public virtual void play_ground_effected_sound(string sound_id) => throw new Exception("This has not been implemented for this class!");
     protected abstract Dictionary<string, Action> create_sound_functions();
     protected SoundID random_id(List<SoundID> options) => options[UnityEngine.Random.Range(0, options.Count)];
-    public SoundFunctions(MonoBehaviour _audio_player){
+    public SoundFunctions(GameObject _audio_player){
         audio_player = _audio_player;   
         sound_functions = create_sound_functions();
     }
@@ -41,7 +41,7 @@ public abstract class SoundFunctions{
 }
 
 public class CavalrySound : SoundFunctions{
-    public CavalrySound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public CavalrySound(GameObject _audio_player) : base(_audio_player){}
     private List<SoundID> footsteps = new List<SoundID>(){
         SoundID.SNOW_FOOTSTEP_1,
         SoundID.SNOW_FOOTSTEP_2,
@@ -109,7 +109,7 @@ public class CavalrySound : SoundFunctions{
 }
 
 public class RiderSound : SoundFunctions{
-    public RiderSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public RiderSound(GameObject _audio_player) : base(_audio_player){}
     private List<SoundID> footsteps = new List<SoundID>(){
         SoundID.SNOW_FOOTSTEP_1,
         SoundID.SNOW_FOOTSTEP_2,
@@ -186,7 +186,7 @@ public class PlayerSound : SoundFunctions{
         SoundID.MAGIC_FOOTSTEP_1,
         SoundID.MAGIC_FOOTSTEP_2,
         SoundID.MAGIC_FOOTSTEP_3,};
-    public PlayerSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public PlayerSound(GameObject _audio_player) : base(_audio_player){}
     public override void play_ground_effected_sound(string sound_id){
         if(ground == "" || ground == null)
             return;
@@ -259,7 +259,7 @@ public class PlayerSound : SoundFunctions{
 }
 
 public class HollowSound : SoundFunctions{
-    public HollowSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public HollowSound(GameObject _audio_player) : base(_audio_player){}
     private List<SoundID> stone_footsteps = new List<SoundID>(){
         SoundID.STONE_FOOTSTEP_1,
         SoundID.STONE_FOOTSTEP_2,
@@ -311,7 +311,7 @@ public class HollowSound : SoundFunctions{
 }
 
 public class MageSound : SoundFunctions{
-    public MageSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public MageSound(GameObject _audio_player) : base(_audio_player){}
     private List<SoundID> snow_footsteps = new List<SoundID>(){
         SoundID.SNOW_FOOTSTEP_1,
         SoundID.SNOW_FOOTSTEP_2,
@@ -397,7 +397,7 @@ public class MageSound : SoundFunctions{
 }
 
 public class GiantSound : SoundFunctions{
-    public GiantSound(MonoBehaviour _audio_player) : base(_audio_player){}
+    public GiantSound(GameObject _audio_player) : base(_audio_player){}
     private List<SoundID> footsteps = new List<SoundID>(){
         SoundID.STONE_HEAVY_FOOTSTEP_1,
         SoundID.STONE_HEAVY_FOOTSTEP_2,

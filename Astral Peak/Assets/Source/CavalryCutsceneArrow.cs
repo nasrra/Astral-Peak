@@ -7,7 +7,7 @@ public class CavalryCutsceneArrow : MonoBehaviour{
         turret.fire_once();
         AudioClipHandler.play(
             SoundID.BOW_SHOT,
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);  
     }
 }

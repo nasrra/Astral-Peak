@@ -22,7 +22,7 @@ public class Mage : Boss<Movement>{
     
     // Base: 
     void Awake(){
-        sound.set_functions(new MageSound(sound));
+        sound.set_functions(new MageSound(gameObject));
         phase_linker = new Dictionary<string, Action>(){
             {"phase_1", link_phase_1},
             {"phase_2", link_phase_2},        

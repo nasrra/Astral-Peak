@@ -177,6 +177,26 @@ public class SnowImpactLight : Sound {
         _min_pitch: 0.85f
     ) {}
 }
+public class StoneDoor : Sound{
+    public StoneDoor() : base(
+        _id:        SoundID.STONE_DOOR,
+        _clip:      "stone_door_short",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .45f,
+        _max_pitch: .8f,
+        _min_pitch: 0.6f
+    ){}
+}
+public class StoneShiftFast : Sound{
+    public StoneShiftFast() : base(
+        _id:        SoundID.STONE_SHIFT_FAST,
+        _clip:      "stone_shift_fast",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .75f,
+        _max_pitch: .8f,
+        _min_pitch: 0.6f
+    ){}
+}
 public class StoneFootstep1 : Sound {
     public StoneFootstep1() : base(
         _id:        SoundID.STONE_FOOTSTEP_1,
@@ -1002,17 +1022,6 @@ public class MagicSnowCast : Sound
         _volume:    .55f,
         _max_pitch: 1f,
         _min_pitch: 0.8f
-    ){}
-}
-
-public class StoneDoor : Sound{
-    public StoneDoor() : base(
-        _id:        SoundID.STONE_DOOR,
-        _clip:      "stone_door_short",
-        _group:     AudioManager.sfx_mixer,
-        _volume:    .45f,
-        _max_pitch: .8f,
-        _min_pitch: 0.6f
     ){}
 }
 

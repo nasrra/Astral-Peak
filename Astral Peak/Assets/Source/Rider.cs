@@ -6,7 +6,7 @@ public class Rider : Boss<Movement>{
     protected Coroutine idle_state;
     
     void Start(){
-        sound.set_functions(new RiderSound(sound));
+        sound.set_functions(new RiderSound(gameObject));
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();

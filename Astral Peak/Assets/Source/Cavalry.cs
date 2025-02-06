@@ -6,7 +6,7 @@ public class Cavalry : Boss<CavalryMovement>{
 
     void Awake(){
         idle(2);
-        sound.set_functions(new CavalrySound(sound));
+        sound.set_functions(new CavalrySound(gameObject));
         link_events();
     } 
 

@@ -31,22 +31,13 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
             time_out:()=>{
                 grounds[selected].AddForce(new Vector2(0,force), ForceMode2D.Impulse);
                 holsters.enable_melee_hurtbox($"{selected}");
+                AudioClipHandler.play(Sounds.SoundID.STONE_SHIFT_FAST, grounds[selected].gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
             }
         ));
         StartCoroutine(Util.timer(
             count * rate + .5f,
             time_out:() =>      holsters.disable_melee_hurtbox($"{selected}")
         ));
-    }
-
-    IEnumerator test(){
-        while(true){
-            yield return new WaitForSeconds(4);
-            start_wave(7, true, .1f, 400);
-            yield return new WaitForSeconds(4);
-            start_wave(8, false, .1f, 400);
-            yield return null;
-        }
     }
 }
 

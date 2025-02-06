@@ -61,7 +61,7 @@ public class Torch : MonoBehaviour{
         smoke.Play();
         AudioClipHandler.play(
             SoundID.STEAM,
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.DIEGETIC);  
 
         fire_source.Stop();
@@ -75,7 +75,7 @@ public class Torch : MonoBehaviour{
         float x = 1;
         fire_source = AudioClipHandler.play(
             SoundID.SMALL_FIRE, 
-            audio_player: this,
+            audio_player: gameObject,
             AudioSourceSettings.DIEGETIC_LOOP);  
 
         embers.Emit(30);

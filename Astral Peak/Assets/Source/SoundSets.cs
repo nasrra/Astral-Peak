@@ -223,6 +223,7 @@ public struct StoneSoundSet : SoundSet {
                 new StoneHeavyFootstep4(),
                 new StoneImpactLight(),
                 new StoneDoor(),
+                new StoneShiftFast(),
             };
         }
         return sounds;

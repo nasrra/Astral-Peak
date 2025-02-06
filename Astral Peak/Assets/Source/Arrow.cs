@@ -41,7 +41,7 @@ public class Arrow : Projectile{
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_LIGHT,
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.DIEGETIC);        
     }
 
@@ -53,7 +53,7 @@ public class Arrow : Projectile{
         smoke.Play();
         AudioClipHandler.play(
             SoundID.STEAM,
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.DIEGETIC);
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }

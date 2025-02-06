@@ -85,7 +85,7 @@ public class UiManager : MonoBehaviour{
     IEnumerator enemy_vanquished_state(){
         AudioClipHandler.play(
             SoundID.WOODEN_PING,
-            audio_player:       this, 
+            audio_player:       gameObject, 
             AudioSourceSettings.NON_DIEGETIC);  
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
@@ -96,7 +96,7 @@ public class UiManager : MonoBehaviour{
     IEnumerator death_screen_state(){
         AudioClipHandler.play(
             SoundID.WOODEN_PING,
-            audio_player:       this, 
+            audio_player:       gameObject, 
             AudioSourceSettings.NON_DIEGETIC);  
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);

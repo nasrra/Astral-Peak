@@ -8,13 +8,13 @@ public class LightningParticleEmitter : LineParticleEmitter{
         if(x==0)
             AudioClipHandler.play(
                 sound_id: Sounds.SoundID.THUNDER_1,
-                audio_player: this,
+                audio_player: gameObject,
                 AudioSourceSettings.DIEGETIC_RANDOMISED
             );
         else  
             AudioClipHandler.play(
                 sound_id: Sounds.SoundID.THUNDER_2,
-                audio_player: this,
+                audio_player: gameObject,
                 AudioSourceSettings.DIEGETIC_RANDOMISED
             );      
         CameraController.instance.shake_camera(.33f, .75f, false);
@@ -25,7 +25,7 @@ public class LightningParticleEmitter : LineParticleEmitter{
     protected override void emitting(){
         source = AudioClipHandler.play(
             sound_id: Sounds.SoundID.ELECTRICITY_LOOP,
-            audio_player: this,
+            audio_player: gameObject,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
         ); 
     }

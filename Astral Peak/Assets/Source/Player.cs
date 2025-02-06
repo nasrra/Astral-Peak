@@ -34,7 +34,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void Awake(){
         instance = null;
         instance = this;
-        sound.set_functions(new PlayerSound(sound));
+        sound.set_functions(new PlayerSound(gameObject));
         GameManager.link_player();
         movement.move_only_state();
         load_data();

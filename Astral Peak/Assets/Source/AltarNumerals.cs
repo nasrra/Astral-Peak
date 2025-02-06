@@ -22,7 +22,7 @@ public class AltarNumerals : MonoBehaviour{
         particles[i].gameObject.SetActive(true);
         AudioClipHandler.play(
             sound_id: SoundID.DEEP_THUMPING,
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.DIEGETIC
         );
         StartCoroutine(Calc.lerp_value(

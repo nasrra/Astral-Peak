@@ -23,7 +23,7 @@ public class DomineVoiceLink : MonoBehaviour{
         SoundID sound = voice_lines.ContainsKey(x)? voice_lines[x] : SoundID.NONE; 
         source = AudioClipHandler.play(
             sound_id: sound, 
-            audio_player: this, 
+            audio_player: gameObject, 
             AudioSourceSettings.NON_DIEGETIC);  
     }
 

@@ -26,7 +26,7 @@ public class MagicStationaryProjectile : Projectile{
     protected virtual void play_sound() =>
         source = AudioClipHandler.play(
             Sounds.SoundID.ELECTRICITY_3,
-            this,
+            gameObject,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
     protected void stop_sound() => 
         StartCoroutine(AudioClipHandler.fade_out(

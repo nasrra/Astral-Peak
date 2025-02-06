@@ -27,7 +27,7 @@ public class FireController : SpriteHandler{
                 smoke.Play();
                 AudioClipHandler.play(
                     SoundID.STEAM,
-                    audio_player: this, 
+                    audio_player: gameObject, 
                     AudioSourceSettings.DIEGETIC);  
                 fire_source.Stop();
                 embers.Emit(30);
@@ -40,7 +40,7 @@ public class FireController : SpriteHandler{
     public void turn_on(){
         fire_source = AudioClipHandler.play(
             SoundID.SMALL_FIRE, 
-            audio_player: this,
+            audio_player: gameObject,
             AudioSourceSettings.DIEGETIC_LOOP);  
         embers.Emit(30);
         embers.Play();

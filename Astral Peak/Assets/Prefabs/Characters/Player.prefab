@@ -19674,7 +19674,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -28.33128, y: -6.4676065}
+  m_ConnectedAnchor: {x: -48.866753, y: -6.135789}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -19903,6 +19903,7 @@ MonoBehaviour:
         feedback: {fileID: 4365788086590555684}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 10
           duration: 0.25
@@ -19915,6 +19916,7 @@ MonoBehaviour:
         feedback: {fileID: 3348158437723506165}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 10
           duration: 0.25
@@ -19936,7 +19938,7 @@ MonoBehaviour:
   data:
     max_life: 5
     current_life: 5
-  invulnerable: 0
+  state: 0
 --- !u!70 &6680201311344748722
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -30372,11 +30374,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2477422328134167242, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
+      propertyPath: m_Size.x
+      value: 0.49
+      objectReference: {fileID: 0}
     - target: {fileID: 5908146315611828226, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
       propertyPath: m_Name
       value: GroundCheck
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4721954840937865997, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

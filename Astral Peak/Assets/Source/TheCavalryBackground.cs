@@ -16,13 +16,13 @@ public class TheCavalryBackground : MonoBehaviour{
     public void play_howl() => 
         AudioClipHandler.play(
             SoundID.WOLF_HOWL,
-            audio_player:       this, 
+            audio_player:       gameObject, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);  
  
     public void play_hop() => 
         AudioClipHandler.play(
             SoundID.MAGIC_1,
-            audio_player:       this, 
+            audio_player:       gameObject, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);  
             
     public void emit_hop_1() => hop_1.Emit(1);
@@ -33,7 +33,7 @@ public class TheCavalryBackground : MonoBehaviour{
     public void play_impact_sound() => 
         AudioClipHandler.play(
             SoundID.SNOW_IMPACT_HEAVY,
-            audio_player:       this, 
+            audio_player:       gameObject, 
             AudioSourceSettings.DIEGETIC_RANDOMISED);
 
     public void play_camera_shake() => CameraController.instance.shake_camera(time: 0.35f, amount: 2f, lock_shake: false);

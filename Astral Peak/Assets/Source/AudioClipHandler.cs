@@ -3,8 +3,8 @@ using Sounds;
 using Entropek;
 using System.Collections;
 public static class AudioClipHandler{
-    static AudioSource create_source(MonoBehaviour audio_player, Sound sound, AudioSourceSettings settings){
-        AudioSource source = audio_player.gameObject.AddComponent<AudioSource>();
+    static AudioSource create_source(GameObject audio_player, Sound sound, AudioSourceSettings settings){
+        AudioSource source = audio_player.AddComponent<AudioSource>();
         source.clip                  = sound.clip;
         source.volume                = sound.volume;
         source.pitch                 = sound.max_pitch;
@@ -28,7 +28,7 @@ public static class AudioClipHandler{
         return source;          
     }
 
-    public static AudioSource play(SoundID sound_id,MonoBehaviour audio_player,AudioSourceSettings settings){
+    public static AudioSource play(SoundID sound_id,GameObject audio_player,AudioSourceSettings settings){
         Sound sound = SoundLibrary.get_sound(sound_id);
         AudioSource source = create_source(audio_player, sound, settings);
         source.Play();

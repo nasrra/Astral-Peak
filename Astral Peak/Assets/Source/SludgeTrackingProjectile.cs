@@ -24,7 +24,7 @@ public class SludgeTrackingProjectile : MagicStationaryProjectile{
         base.Start();
     }
     protected override void play_sound() => 
-        source = AudioClipHandler.play(Sounds.SoundID.WATER_GURGLE_LOOP, this, AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
+        source = AudioClipHandler.play(Sounds.SoundID.WATER_GURGLE_LOOP, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
     
     protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.GROUND)
@@ -32,7 +32,7 @@ public class SludgeTrackingProjectile : MagicStationaryProjectile{
         base.OnTriggerEnter2D(other);
     }
     public override void destroy(){
-        AudioClipHandler.play(Sounds.SoundID.WATER_SPLASH, this, AudioSourceSettings.DIEGETIC_RANDOMISED);
+        AudioClipHandler.play(Sounds.SoundID.WATER_SPLASH, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
         ParticleSystem.ShapeModule shape = destroy_splash.shape;
         transform.rotation =  Quaternion.Euler(new Vector3(0,0,0));
         destroy_splash.Emit(20);
