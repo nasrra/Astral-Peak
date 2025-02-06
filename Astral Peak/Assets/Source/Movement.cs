@@ -297,19 +297,19 @@ public class Movement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    public void figure_eight_state(bool reverse = false){
+    public void figure_eight_state(float x_factor, float y_factor, bool reverse = false){
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, figure_eight(reverse));
+        state_switch(ref controller_state, figure_eight(x_factor, y_factor, reverse));
     }
-    protected IEnumerator figure_eight(bool reverse = false){
+    protected IEnumerator figure_eight(float x_factor, float y_factor, bool reverse = false){
         float elapsed_time = 0;
         float reverse_factor = reverse==false? 1 : -1;
-        float y_speed_factor = data.speed*10;
-        float x_speed_factor = y_speed_factor/2;
+        float y_speed_factor = data.speed/y_factor;
+        float x_speed_factor = data.speed/x_factor;
         while(true){
             elapsed_time += Time.deltaTime;
-            float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * x_speed_factor * reverse_factor);
-            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * y_speed_factor * reverse_factor);
+            float sin_x = Mathf.Sin(elapsed_time * Time.deltaTime * x_speed_factor * reverse_factor + Mathf.PI / 2);
+            float sin_y = Mathf.Sin(elapsed_time * Time.deltaTime * y_speed_factor * reverse_factor + Mathf.PI / 2);
             set_move_direction(new Vector2(sin_x, sin_y));
             yield return new WaitForFixedUpdate();
         }

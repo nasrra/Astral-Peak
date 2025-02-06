@@ -17,6 +17,7 @@ public class Giant2 : Boss<Movement>{
         set_phase_data("phase_1");
         //switch_phase();
         //idle(3);
+        movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);
     }
 
     private void idle(){
