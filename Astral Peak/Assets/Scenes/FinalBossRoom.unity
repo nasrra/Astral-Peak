@@ -573,6 +573,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!1 &44589510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44589511}
+  m_Layer: 0
+  m_Name: BossStartPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44589511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44589510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 763865096}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &77020521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7729,6 +7761,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!1 &763865095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763865096}
+  m_Layer: 0
+  m_Name: Giant2StartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &763865096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763865095}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 44589511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773155065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8530,7 +8593,7 @@ PrefabInstance:
       objectReference: {fileID: 1367429423}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: offset.y
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: x_bounds.x
@@ -8542,11 +8605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: y_bounds.x
-      value: -2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: y_bounds.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4248928238505897754, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: m_Name
@@ -13335,6 +13398,10 @@ PrefabInstance:
       propertyPath: right_arena_bound
       value: 
       objectReference: {fileID: 1355464410}
+    - target: {fileID: 5439271312347375090, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1367429423}
     - target: {fileID: 5925232912936859283, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.4
@@ -13347,6 +13414,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1367429423}
+    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: start_point
+      value: 
+      objectReference: {fileID: 763865096}
     - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: ground_handler
       value: 
@@ -13366,6 +13437,10 @@ PrefabInstance:
     - target: {fileID: 8274307454303091731, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274307454303091731, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9199403556694282620, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13473,3 +13548,4 @@ SceneRoots:
   - {fileID: 1871821278}
   - {fileID: 438374448}
   - {fileID: 2519792957642506068}
+  - {fileID: 44589511}

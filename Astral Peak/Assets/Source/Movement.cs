@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Entropek;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 public class Movement : MonoBehaviour{
     public event Action<Vector2> move_direction_changed;
@@ -27,7 +26,10 @@ public class Movement : MonoBehaviour{
         base_data = data;
     }
     void Start() => link();
-    void OnDestroy() => unlink();
+    void OnDestroy(){
+        unlink();
+        clear_actions();   
+    }
 
 
 
@@ -227,9 +229,10 @@ public class Movement : MonoBehaviour{
 
     protected IEnumerator freeform_move_towards(Transform target){
         while(target != null){
-            Vector3 direction = (target.position - transform.position).normalized; 
+            Vector3 distance = target.position - transform.position;
+            Vector3 direction = distance.normalized; 
             set_move_direction(direction);
-            if(Mathf.Abs(direction.magnitude) <= 0.05f)
+            if(Mathf.Abs(distance.magnitude) <= 0.1f)
                 target_reached?.Invoke();
             yield return new WaitForFixedUpdate();
         }
@@ -340,6 +343,14 @@ public class Movement : MonoBehaviour{
     protected virtual void unlink(){
         dash_end -= end_dash;
         knockback_ended -= move_only_state;
+    }
+    protected void clear_actions(){
+        move_direction_changed  = null; 
+        knockedback             = null; 
+        knockback_ended         = null;
+        dashed                  = null; 
+        dash_end                = null;
+        target_reached          = null;
     }
 }
 
