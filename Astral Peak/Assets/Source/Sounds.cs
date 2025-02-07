@@ -1058,6 +1058,17 @@ public class WaterBubble : Sound{
     ){}
 }
 
+public class WaterRushHeavy : Sound{
+    public WaterRushHeavy() : base(
+        _id:        SoundID.WATER_RUSH_HEAVY,
+        _clip:      "water_rush_heavy",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .65f,
+        _max_pitch: 1f,
+        _min_pitch: 0.75f
+    ){}
+}
+
 public class WaterGurgleLoop : Sound{
     public WaterGurgleLoop() : base(
         _id:        SoundID.WATER_GURGLE_LOOP,

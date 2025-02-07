@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class KillZone : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other){

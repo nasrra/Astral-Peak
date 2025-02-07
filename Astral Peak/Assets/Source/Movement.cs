@@ -63,6 +63,7 @@ public class Movement : MonoBehaviour{
         move_direction = direction;
         move_direction_changed?.Invoke(move_direction);        
     }
+    public void reset_data() => set_data(base_data);
     public void set_data(MovementData data){
         set_speed(data.speed);
         set_decel(data.decel);

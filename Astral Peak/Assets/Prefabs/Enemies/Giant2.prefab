@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9072706277764718512
 Transform:
   m_ObjectHideFlags: 0
@@ -469,11 +469,18 @@ MonoBehaviour:
   target: {fileID: 0}
   current_phase: 
   ground_handler: {fileID: 0}
+  move_to_point:
+    _serializedList:
+    - Key: Giant2FingerGun
+      Value: {fileID: 0}
+  left_hand_sludge_audio_player: {fileID: 5849555037681314492}
+  right_hand_sludge_audio_player: {fileID: 1744597487746961477}
   left_hand: {fileID: 1843128222251187375}
   right_hand: {fileID: 5805102678772172374}
   head: {fileID: 8266906294959302964}
   player_hover_point: {fileID: 6858501862606183263}
   start_point: {fileID: 0}
+  move_to_target: {fileID: 0}
   hand: 76
 --- !u!114 &7028003386779588413
 MonoBehaviour:
@@ -669,6 +676,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2291490670745477875}
     m_Modifications:
+    - target: {fileID: 304875371826438726, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 304875371826438726, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 304875371826438726, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 2489262347921859012, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
       propertyPath: main
       value: 
@@ -681,6 +700,10 @@ PrefabInstance:
       propertyPath: main
       value: 
       objectReference: {fileID: 7048331602739719785}
+    - target: {fileID: 5058160125907943443, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6228650080367425338, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12
@@ -741,6 +764,11 @@ PrefabInstance:
 --- !u!212 &1423802688545658423 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1695718302381070238, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+  m_PrefabInstance: {fileID: 309125287450231209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1744597487746961477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2052574785031737836, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
   m_PrefabInstance: {fileID: 309125287450231209}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5805102678772172374 stripped
@@ -856,6 +884,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6132259311841204688}
     m_Modifications:
+    - target: {fileID: 3961091126162500717, guid: d64c9f12bb8caf448a38f078684de500, type: 3}
+      propertyPath: m_Name
+      value: ShadowWater
+      objectReference: {fileID: 0}
     - target: {fileID: 4176234711288442567, guid: d64c9f12bb8caf448a38f078684de500, type: 3}
       propertyPath: m_Name
       value: Head
@@ -1167,6 +1199,11 @@ Transform:
 --- !u!4 &1954952064897961066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6228650080367425338, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+  m_PrefabInstance: {fileID: 5571514266766998352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5849555037681314492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2052574785031737836, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
   m_PrefabInstance: {fileID: 5571514266766998352}
   m_PrefabAsset: {fileID: 0}
 --- !u!212 &6546431187796602062 stripped

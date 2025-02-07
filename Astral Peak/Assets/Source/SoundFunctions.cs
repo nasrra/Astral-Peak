@@ -15,6 +15,11 @@ public abstract class SoundFunctions{
         looping_sources.Remove(sound_id);
         entity.StartCoroutine(AudioClipHandler.fade_out(source, 1,true));
     }
+    public void stop_sound_fast(string sound_id){
+        AudioSource source = looping_sources[sound_id];
+        looping_sources.Remove(sound_id);
+        entity.StartCoroutine(AudioClipHandler.fade_out(source, .5f,true));
+    }
     public virtual void play_ground_effected_sound(string sound_id) => throw new Exception("This has not been implemented for this class!");
     protected abstract Dictionary<string, Action> create_sound_functions();
     protected SoundID random_id(List<SoundID> options) => options[UnityEngine.Random.Range(0, options.Count)];
@@ -445,6 +450,20 @@ public class GiantSound : SoundFunctions{
             SoundID.WATER_BUBBLE,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
+        {"left_hand_water_rush",()=>
+            looping_sources.Add("left_hand_water_rush",
+            AudioClipHandler.play(
+            SoundID.WATER_RUSH_HEAVY,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP))
+        },
+        {"right_hand_water_rush",()=>
+            looping_sources.Add("right_hand_water_rush",
+            AudioClipHandler.play(
+            SoundID.WATER_RUSH_HEAVY,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP))
         },
     };
 }

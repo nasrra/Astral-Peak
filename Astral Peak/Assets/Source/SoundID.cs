@@ -71,6 +71,7 @@ namespace Sounds{
     WATER_BUBBLE,
     WATER_GURGLE_LOOP,
     WATER_SPLASH,
+    WATER_RUSH_HEAVY,
 
     // The Mage
     BELL_CHIMES,

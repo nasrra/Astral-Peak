@@ -1,23 +1,25 @@
 using UnityEngine;
 using Entropek;
 using System;
-
 using System.Collections.Generic;
 using Entropek.Collections;
+using AYellowpaper.SerializedCollections;
 
 public class Giant2 : Boss<Movement>{
     Coroutine idle_state;
     [Header("Giant2")]
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
-    [SerializeField] Transform left_hand, right_hand, head, player_hover_point, start_point;
-    [SerializeField] char hand = 'L';
+    [SerializeField] SerializedDictionary<string, Transform> move_to_point; // points attacks can move to.
     // which animation layer to be used for each attack.
     private HashSet<string> 
         head_attacks = new(){
             "Giant2YellProjectiles"
         },
-        hand_attacks = new(){
+        single_hand_attacks = new(){
             "Giant2FistSlam"
+        },
+        double_hand_attacks = new(){
+            "Giant2FingerGun",
         };
     // what behaviour occurs when calling said attack.
     private HashSet<string>
@@ -27,6 +29,9 @@ public class Giant2 : Boss<Movement>{
         idle_fly = new(){
             "Giant2YellProjectiles"
         };
+    [SerializeField] GameObject left_hand_sludge_audio_player, right_hand_sludge_audio_player;
+    [SerializeField] Transform left_hand, right_hand, head, player_hover_point, start_point, move_to_target;
+    [SerializeField] char hand = 'L';
 
     void Awake(){
         sound.set_functions(new GiantSound(gameObject));
@@ -49,39 +54,77 @@ public class Giant2 : Boss<Movement>{
     protected override void attack(BossAttack attack){
         string animation = attack.animation_id;
         combat.halt();
-        if(move_to_player.Contains(animation)){
+        if(move_to_player.Contains(animation))
+            state.queue_and_start(
+                time: 120, 
+                start_action:()=> move_to_player_begin(player_hover_point)
+            );
+        else if(move_to_point.ContainsKey(animation))
+            state.queue_and_start(
+                time: 120, 
+                start_action:()=> move_to_point_begin(move_to_point[animation])
+            );
+        else
+            state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>play_attack_animation(animation));
+    }
+
+    private void move_to_player_begin(Transform target){
+        move_to_target = target;
             state.queue_and_start(time: 120, 
                 start_action:()=>{
                     movement.mod_speed(8f);
-                    movement.freeform_move_to(player_hover_point);
-                    movement.target_reached += move_to_attack;
+                    movement.freeform_move_to(move_to_target);
+                    movement.target_reached += move_to_player_attack;
                 }
-            );
-        }
-        else{
-            if(hand_attacks.Contains(animation))
-                state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>hand_attack(animation));
-            else
-                state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>head_attack(animation));
-        }
+            );        
+    }
+
+    private void move_to_point_begin(Transform target){
+        move_to_target = target;
+            state.queue_and_start(time: 120, 
+                start_action:()=>{
+                    movement.mod_speed(8f);
+                    movement.freeform_approach_to(move_to_target);
+                    movement.target_reached += move_to_point_attack;
+                }
+            );        
     }
 
     // used for when moving towards to to attack.
     // play attack animation, then move back to starting point.
-    private void move_to_attack(){
-        movement.target_reached -= move_to_attack;
+    private void move_to_player_attack(){
+        movement.target_reached -= move_to_player_attack;
         string animation = combat.get_chosen_attack().animation_id;
         state.clear();
         state.queue_and_start(time: animator.get_clip_length(animation)+.5f, 
             start_action:()=>{
-                movement.freeform_move_to(player_hover_point);
-                hand_attack(animation);
+                movement.freeform_move_to(move_to_target);
+                play_attack_animation(animation);
             }
         );
         state.queue(time: 120, 
             start_action:()=>{
                 movement.freeform_move_to(start_point);
                 movement.target_reached += move_to_attack_finished;
+            }
+        );
+    }
+
+    private void move_to_point_attack(){
+        movement.target_reached -= move_to_point_attack;
+        string animation = combat.get_chosen_attack().animation_id;
+        state.clear();
+        state.queue_and_start(time: animator.get_clip_length(animation)+.5f, 
+            start_action:()=>{
+                play_attack_animation(animation);
+                move_to_point_camera_adjust();
+                movement.target_reached += move_to_attack_finished;
+            },
+            time_out:()=>move_to_point_camera_reset()
+        );
+        state.queue(time: 120, 
+            start_action:()=>{
+                movement.freeform_move_to(start_point);
             }
         );
     }
@@ -101,15 +144,36 @@ public class Giant2 : Boss<Movement>{
         hand = UnityEngine.Random.Range(0,2) == 0? 'L' : 'R';
         return hand;
     }
-    private void hand_attack(string animation){
+    private void play_attack_animation(string animation){
+        if(single_hand_attacks.Contains(animation))
+            single_hand_attack(animation);
+        else if(double_hand_attacks.Contains(animation))
+            double_hand_attack(animation);
+        else
+            head_attack(animation);
+    }
+    private void single_hand_attack(string animation){
         choose_hand();
-        sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
+        set_hand_audio_player();
         animator.Play(animation + hand);
     }
+    private void double_hand_attack(string animation){
+        //choose_hand();
+        //sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
+        animator.Play(animation + 'L');
+        animator.Play(animation + 'R');
+    }
     private void head_attack(string animation){
-        sound.set_audio_player(head.gameObject);
+        set_head_audio_player();
         animator.Play(animation);
     }
+
+    private void set_head_audio_player() => sound.set_audio_player(head.gameObject);
+    private void set_left_hand_audio_player() => sound.set_audio_player(left_hand.gameObject);
+    private void set_right_hand_audio_player() => sound.set_audio_player(right_hand.gameObject);
+    private void set_hand_audio_player() => sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
+    private void set_left_hand_sludge_audio_player() => sound.set_audio_player(left_hand_sludge_audio_player);
+    private void set_right_hand_sludge_audio_player() => sound.set_audio_player(right_hand_sludge_audio_player);
 
     int get_current_ground_piece(){
         int x = -1;
@@ -137,6 +201,16 @@ public class Giant2 : Boss<Movement>{
                 animator.Play("Giant2HandIdleR");
             }
         );
+    }
+
+    public void move_to_point_camera_adjust(){
+        CameraController.instance.lerp_zoom(size: 12, time: 2);
+        CameraController.instance.lerp_regulators(_x_bounds: new Vector2(-10,10), _y_bounds: new Vector2(-0.15f, -0.15f), time: 2);
+    }
+    public void move_to_point_camera_reset(){
+        CameraController.instance.reset_offset(2);
+        CameraController.instance.reset_zoom(2);
+        CameraController.instance.reset_regulators(2);
     }
 
     public void projectile_yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);

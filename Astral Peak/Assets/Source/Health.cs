@@ -45,13 +45,12 @@ public class Health : MonoBehaviour{
     public void damage(DamageData damage_data, KnockbackData knockback_data){
         if(state == HealthState.INVULNERABLE)
             return;
-        if(damage_data.unblockable == true)
+        if(damage_data.unblockable == true || state == HealthState.VULNERABLE){
             damage(damage_data.damage);
-        else if(state == HealthState.VULNERABLE)
-            damage(damage_data.damage);
+            if(knockback_data != null)
+                knockback?.Invoke(knockback_data);
+        }
         // invoke knockback if needed.
-        if(knockback_data != null)
-            knockback?.Invoke(knockback_data);
     }
 
     private void damage(int amount){

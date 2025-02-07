@@ -14,7 +14,17 @@ public class Giant2Combat : BossCombat{
         combat_cooldown:        2
     ),
     fist_slam = new(
-        "Giant2FistSlam", // using Left just to get the time.
+        "Giant2FistSlam",
+        chance:                 50,
+        max_player_distance:    30,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        4,
+        idle_cooldown:          0,
+        combat_cooldown:        2
+    ),
+    finger_gun = new(
+        "Giant2FingerGun",
         chance:                 50,
         max_player_distance:    30,
         min_player_distance:    0,
@@ -31,6 +41,7 @@ public class Giant2Combat : BossCombat{
                     special_moveset = new List<BossAttack>(){
                         yell_projectile,
                         fist_slam,
+                        finger_gun,
                     };
                 }
             }
