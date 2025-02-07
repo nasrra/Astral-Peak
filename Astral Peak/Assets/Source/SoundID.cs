@@ -4,6 +4,7 @@ namespace Sounds{
     //Default
     NONE,
 
+
     // MUSIC
     WOLF_BOSS_MUSIC_1,
     WOLF_BOSS_MUSIC_2,
@@ -66,6 +67,9 @@ namespace Sounds{
     DOG_BARK_1,
     BOSS_YELL,
     WHISTLE_LONG,
+
+    // The Giant.
+    HAND_CLAP_REVERB,
 
     // Water
     WATER_BUBBLE,

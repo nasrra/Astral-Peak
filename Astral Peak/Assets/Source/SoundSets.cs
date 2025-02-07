@@ -287,6 +287,7 @@ public struct GiantSoundSet : SoundSet{
             new WaterSplash(),
             new WoodenRattleImpact(),
             new WaterRushHeavy(),
+            new HandClapReverb(),
         }
         :sounds;
         return sounds;

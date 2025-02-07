@@ -20,11 +20,13 @@ public class Giant2 : Boss<Movement>{
         },
         double_hand_attacks = new(){
             "Giant2FingerGun",
+            "Giant2HandClap"
         };
     // what behaviour occurs when calling said attack.
     private HashSet<string>
         move_to_player = new(){
-            "Giant2FistSlam"
+            "Giant2FistSlam",
+            "Giant2HandClap"
         },
         idle_fly = new(){
             "Giant2YellProjectiles"
@@ -96,11 +98,12 @@ public class Giant2 : Boss<Movement>{
         movement.target_reached -= move_to_player_attack;
         string animation = combat.get_chosen_attack().animation_id;
         state.clear();
-        state.queue_and_start(time: animator.get_clip_length(animation)+.5f, 
+        state.queue_and_start(time: animator.get_clip_length(animation), 
             start_action:()=>{
                 movement.freeform_move_to(move_to_target);
                 play_attack_animation(animation);
-            }
+            },
+            time_out:()=>play_idle_animation()
         );
         state.queue(time: 120, 
             start_action:()=>{
@@ -114,16 +117,17 @@ public class Giant2 : Boss<Movement>{
         movement.target_reached -= move_to_point_attack;
         string animation = combat.get_chosen_attack().animation_id;
         state.clear();
-        state.queue_and_start(time: animator.get_clip_length(animation)+.5f, 
+        state.queue_and_start(time: animator.get_clip_length(animation), 
             start_action:()=>{
                 play_attack_animation(animation);
                 move_to_point_camera_adjust();
                 movement.target_reached += move_to_attack_finished;
             },
-            time_out:()=>move_to_point_camera_reset()
+            time_out:()=>play_idle_animation()
         );
         state.queue(time: 120, 
             start_action:()=>{
+                move_to_point_camera_reset();
                 movement.freeform_move_to(start_point);
             }
         );
@@ -185,6 +189,9 @@ public class Giant2 : Boss<Movement>{
     }
 
     public void fist_slam_camera_shake() => CameraController.instance.shake_camera(.8f,.65f,false);
+    public void clap_camera_shake() => CameraController.instance.shake_camera(.8f,.5f,false);
+
+
     public void fist_slam_ground_wave(){
         // left and right
         int ground_piece = get_current_ground_piece();
@@ -195,13 +202,15 @@ public class Giant2 : Boss<Movement>{
     private void idle(float time){
         state.queue_and_start(
             time: time,
-            start_action: ()=>{
-                animator.Rebind();
-                animator.Play("Giant2HeadIdle");
-                animator.Play("Giant2HandIdleL");
-                animator.Play("Giant2HandIdleR");
-            }
+            start_action: ()=> play_idle_animation()
         );
+    }
+
+    private void play_idle_animation(){
+        animator.Rebind();
+        animator.Play("Giant2HeadIdle");
+        animator.Play("Giant2HandIdleL");
+        animator.Play("Giant2HandIdleR");
     }
 
     public void move_to_point_camera_adjust(){

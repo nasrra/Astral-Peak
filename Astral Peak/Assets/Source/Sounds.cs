@@ -1,5 +1,6 @@
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace Sounds{
 public class Sound{
@@ -1088,6 +1089,17 @@ public class WaterSplash : Sound{
         _volume:    .25f,
         _max_pitch: 1f,
         _min_pitch: 0.75f
+    ){}
+}
+
+public class HandClapReverb : Sound{
+    public HandClapReverb() : base(
+        _id:        SoundID.HAND_CLAP_REVERB,
+        _clip:      "hand_clap_reverb",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    1f,
+        _max_pitch: 1.05f,
+        _min_pitch: 0.85f
     ){}
 }
 

@@ -465,5 +465,11 @@ public class GiantSound : SoundFunctions{
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP))
         },
+        {"hand_clap",()=>
+            AudioClipHandler.play(
+            SoundID.HAND_CLAP_REVERB,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)        
+        }
     };
 }

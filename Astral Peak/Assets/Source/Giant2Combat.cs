@@ -11,7 +11,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        4,
         idle_cooldown:          0,
-        combat_cooldown:        2
+        combat_cooldown:        4
     ),
     fist_slam = new(
         "Giant2FistSlam",
@@ -32,6 +32,16 @@ public class Giant2Combat : BossCombat{
         attack_cooldown:        16,
         idle_cooldown:          0,
         combat_cooldown:        4
+    ),
+    hand_clap = new(
+        "Giant2HandClap",
+        chance:                 50,
+        max_player_distance:    30,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        4,
+        idle_cooldown:          0,
+        combat_cooldown:        4
     )
     ;
 
@@ -42,6 +52,7 @@ public class Giant2Combat : BossCombat{
                         yell_projectile,
                         fist_slam,
                         finger_gun,
+                        hand_clap,
                     };
                 }
             }
