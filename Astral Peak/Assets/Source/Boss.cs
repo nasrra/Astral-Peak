@@ -74,12 +74,13 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
             c.excludeLayers = bitwise_layer;
     }
 
-    protected void play_weapon_flash(string weapon = null){
-        if(weapon == null || weapon == "")
-            sprites.play_charged_flash();
-        else
-            sprites.play_charged_flash(weapon);
-        //lighting.lerp_intensity(weapon, start: 1, end: 0, time: 1); 
+    protected void play_weapon_flash(string weapon){
+        sprites.play_charged_flash(weapon);
+        sound.play_sound("ping");
+    }
+
+    protected void play_weapon_flash(List<string> weapons){
+        sprites.play_charged_flash(weapons);
         sound.play_sound("ping");
     }
 

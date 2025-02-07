@@ -21,8 +21,19 @@ public class SpriteHandler : MonoBehaviour{
 
     protected IEnumerator pulse_value(string value, int pulses = 1, float time = 0.35f){
         int count = pulses;
+        List<string> renderers = new List<string>();
+        foreach(string renderer in sprites.Keys)
+            renderers.Add(renderer);
+        yield return pulse_value(renderers, value, pulses, time);
+    }
+
+    protected IEnumerator pulse_value(List<string> sprite_id, string value, int pulses = 1, float time = 0.35f){
+        int count = pulses;
+        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        foreach(string id in sprite_id)
+            renderers.Add(sprites[id]);
         while (count > 0){
-            yield return StartCoroutine(lerp_value(value, 1f, 0f, time));
+            yield return StartCoroutine(lerp_value(renderers, value, 1f, 0f, time));
             --count;
             yield return null;
         }
@@ -42,15 +53,22 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected IEnumerator lerp_value(string value, float start, float end, float time, Action callback = null) {
+    protected IEnumerator lerp_value(string value, float start, float end, float time, Action callback = null){
+        List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+        foreach(SpriteRenderer renderer in sprites.Values)
+            renderers.Add(renderer);
+        yield return lerp_value(renderers, value, start, end, time, callback);
+    }
+
+    protected IEnumerator lerp_value(List<SpriteRenderer> sprites, string value, float start, float end, float time, Action callback = null) {
         List<bool> operations = new List<bool>();
         int index = 0;
-        foreach(KeyValuePair<string, SpriteRenderer> kvp in sprites){
-            sprites[kvp.Key].material.SetFloat(value, start);
+        foreach(SpriteRenderer sprite in sprites){
+            sprite.material.SetFloat(value, start);
             int _index = index;
             index++;
             operations.Add(true); // operation is occuring
-            StartCoroutine(Calc.lerp_value(val => sprites[kvp.Key].material.SetFloat(value, val), start, end, time, () => operations[_index]=false));
+            StartCoroutine(Calc.lerp_value(val => sprite.material.SetFloat(value, val), start, end, time, () => operations[_index]=false));
         }
         while(operations.Contains(true)){
             yield return null;

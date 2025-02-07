@@ -144,6 +144,7 @@ public class Giant2 : Boss<Movement>{
         hand = UnityEngine.Random.Range(0,2) == 0? 'L' : 'R';
         return hand;
     }
+    public void play_hands_weapon_flash() => play_weapon_flash(new List<string>(){"left_hand","right_hand"});
     private void play_attack_animation(string animation){
         if(single_hand_attacks.Contains(animation))
             single_hand_attack(animation);

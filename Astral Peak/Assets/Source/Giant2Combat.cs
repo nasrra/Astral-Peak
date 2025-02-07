@@ -29,9 +29,9 @@ public class Giant2Combat : BossCombat{
         max_player_distance:    30,
         min_player_distance:    0,
         arena_bound_distance:   0,
-        attack_cooldown:        4,
+        attack_cooldown:        16,
         idle_cooldown:          0,
-        combat_cooldown:        2
+        combat_cooldown:        4
     )
     ;
 
