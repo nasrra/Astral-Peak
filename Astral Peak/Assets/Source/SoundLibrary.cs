@@ -27,10 +27,16 @@ public static class SoundLibrary{
             return;
         if(loaded_sounds.ContainsKey(SoundID.NONE) == false)
             loaded_sounds.Add(SoundID.NONE, new Sounds.None());
-        foreach(Sound sound in sounds)
+        foreach(Sound sound in sounds){
+            sound.clip.LoadAudioData();
             loaded_sounds.Add(sound.id, sound);
+        }
     }
-    static void unload_sounds(Scene scene) => loaded_sounds.Clear();
+    static void unload_sounds(Scene scene){
+        foreach(Sound sound in loaded_sounds.Values)
+            sound.clip.UnloadAudioData();
+        loaded_sounds.Clear();
+    }
 
     public static AudioClip load(AudioMixerGroup group, string clip){
         if(group == AudioManager.music_mixer)

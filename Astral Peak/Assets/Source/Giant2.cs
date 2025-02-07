@@ -9,9 +9,8 @@ public class Giant2 : Boss<Movement>{
     Coroutine idle_state;
     [Header("Giant2")]
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
-    [SerializeField] Transform left_hand, right_hand, player_hover_point, start_point;
+    [SerializeField] Transform left_hand, right_hand, head, player_hover_point, start_point;
     [SerializeField] char hand = 'L';
-    private int HEAD_LAYER = 0, LHAND_LAYER = 1, RHAND_LAYER = 2;
     // which animation layer to be used for each attack.
     private HashSet<string> 
         head_attacks = new(){
@@ -41,9 +40,9 @@ public class Giant2 : Boss<Movement>{
     }
 
     private void fly_and_attack_state(){
-        animator.Play("Giant2HeadIdle", HEAD_LAYER);
-        animator.Play("Giant2HandIdleL", LHAND_LAYER);
-        animator.Play("Giant2HandIdleR", RHAND_LAYER);
+        animator.Play("Giant2HeadIdle");
+        animator.Play("Giant2HandIdleL");
+        animator.Play("Giant2HandIdleR");
         combat.chose_attack_state(target);
     }
 
@@ -61,9 +60,9 @@ public class Giant2 : Boss<Movement>{
         }
         else{
             if(hand_attacks.Contains(animation))
-                hand_attack(animation);
+                state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>hand_attack(animation));
             else
-                state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>animator.Play(animation,HEAD_LAYER));
+                state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>head_attack(animation));
         }
     }
 
@@ -102,8 +101,16 @@ public class Giant2 : Boss<Movement>{
         hand = UnityEngine.Random.Range(0,2) == 0? 'L' : 'R';
         return hand;
     }
-    private void hand_attack(string animation) => animator.Play(animation + choose_hand());
-    
+    private void hand_attack(string animation){
+        choose_hand();
+        sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
+        animator.Play(animation + hand);
+    }
+    private void head_attack(string animation){
+        sound.set_audio_player(head.gameObject);
+        animator.Play(animation);
+    }
+
     int get_current_ground_piece(){
         int x = -1;
         Collider2D other = Physics2D.OverlapCircle(hand == 'L'?left_hand.position : right_hand.position, .5f, LayersManager.BITWISE_GROUND);
@@ -112,6 +119,7 @@ public class Giant2 : Boss<Movement>{
         return x;
     }
 
+    public void fist_slam_camera_shake() => CameraController.instance.shake_camera(.8f,.65f,false);
     public void fist_slam_ground_wave(){
         // left and right
         int ground_piece = get_current_ground_piece();
@@ -124,9 +132,9 @@ public class Giant2 : Boss<Movement>{
             time: time,
             start_action: ()=>{
                 animator.Rebind();
-                animator.Play("Giant2HeadIdle", HEAD_LAYER);
-                animator.Play("Giant2HandIdleL", LHAND_LAYER);
-                animator.Play("Giant2HandIdleR", RHAND_LAYER);
+                animator.Play("Giant2HeadIdle");
+                animator.Play("Giant2HandIdleL");
+                animator.Play("Giant2HandIdleR");
             }
         );
     }

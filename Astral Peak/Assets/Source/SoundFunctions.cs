@@ -37,7 +37,8 @@ public abstract class SoundFunctions{
                 stop_sound(key);
         }
     }
-    public void set_entity(MonoBehaviour _entity) => entity = _entity;
+    public void set_entity(MonoBehaviour _entity) => entity = _entity;  
+    public void set_audio_player(GameObject _audio_player) => audio_player = _audio_player;
 }
 
 public class CavalrySound : SoundFunctions{
@@ -430,6 +431,12 @@ public class GiantSound : SoundFunctions{
         {"hammer_whoosh",()=>
             AudioClipHandler.play(
             SoundID.WHOOSH_2,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
+        {"hand_impact",()=>
+            AudioClipHandler.play(
+            SoundID.WOODEN_RATTLE_IMPACT,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)
         },

@@ -27,7 +27,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.6333333
+        time: 1
         value: {x: 0, y: 0, z: 180.213}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -1363,7 +1363,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6333333
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1411,7 +1411,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6333333
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -1459,7 +1459,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6333333
+        time: 1
         value: 180.213
         inSlope: 0
         outSlope: 0
@@ -4976,7 +4976,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Main/LHand/Hand/LPalm
+    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -4988,7 +4988,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Main/LHand/Hand/LPalm
+    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5000,7 +5000,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Main/LHand/Hand/LPalm
+    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5228,7 +5228,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
+    path: Main/LHand/Hand/LPalm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5240,7 +5240,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
+    path: Main/LHand/Hand/LPalm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5252,7 +5252,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Main/LHand/Hand/LPalm/UPalm/R1/R2
+    path: Main/LHand/Hand/LPalm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5266,9 +5266,30 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.6666667
+    functionName: play_sound
+    data: hammer_whoosh
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.3333334
     functionName: fist_slam_ground_wave
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: fist_slam_camera_shake
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3333334
+    functionName: play_sound
+    data: hand_impact
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

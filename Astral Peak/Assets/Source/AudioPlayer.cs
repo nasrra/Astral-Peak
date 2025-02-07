@@ -10,4 +10,5 @@ public class AudioPlayer : MonoBehaviour{
     public void stop_all_loops()           => functions.stop_all_loops();
     public void play_ground_effected_sound(string sound_id) => functions.play_ground_effected_sound(sound_id);
     public void set_ground(string _ground) => functions.set_ground(_ground);
+    public void set_audio_player(GameObject _audio_player) => functions.set_audio_player(_audio_player);
 }

@@ -97,6 +97,7 @@ namespace Sounds{
     WOODEN_RATTLE_2,
     WOODEN_RATTLE_4,
     DEEP_THUMPING,
+    WOODEN_RATTLE_IMPACT,
 
     //Domine
     DANIEL,

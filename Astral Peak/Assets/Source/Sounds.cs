@@ -493,6 +493,17 @@ public class SmallFire : Sound {
     ) {}
 }
 
+public class WoodenRattleImpact : Sound{
+    public WoodenRattleImpact() : base(
+        _id:        SoundID.WOODEN_RATTLE_IMPACT,
+        _clip:      "wooden_rattle_impact",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .85f,
+        _max_pitch: .8f,
+        _min_pitch: 0.6f
+    ){}
+}
+
 public class WoodenRattle1 : Sound {
     public WoodenRattle1() : base(
         _id:        SoundID.WOODEN_RATTLE_1,
