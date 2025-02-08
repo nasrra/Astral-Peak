@@ -30,7 +30,7 @@ public class HealthBarHeart : ImageHandler{
     }
     public void thump(bool x) => animator.SetBool("thump", x);
 
-    public void set_fill(float amount) => set_value("_amount", amount);
+    public void set_fill(float amount) => set_material_value("_amount", amount);
 
     enum State{
         ON,OFF,THUMP

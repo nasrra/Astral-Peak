@@ -36,12 +36,12 @@ public class DialogueHandler : MonoBehaviour{
     public void next_line(){
         index++;
         StopAllCoroutines();
-        StartCoroutine(fade_loop(5));
+        StartCoroutine(fade_loop(4));
     }
     public void play_line(int x){
         index = x;
         StopAllCoroutines();
-        StartCoroutine(fade_loop(5));
+        StartCoroutine(fade_loop(4));
     }
     void set_text(){
         if(index < dialogue.Count){

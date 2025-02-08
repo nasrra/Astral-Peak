@@ -99,7 +99,7 @@ public class Introduction : Sound{
 public class DomineMusic : Sound{
     public DomineMusic() : base(
         _id:        SoundID.DOMINE_MUSIC,
-        _clip:      "domine_1",
+        _clip:      "domine(faster)",
         _group:     AudioManager.music_mixer,
         _volume:    1f,
         _max_pitch: 1f,

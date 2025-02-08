@@ -9,9 +9,9 @@ public class Giant2Combat : BossCombat{
         max_player_distance:    15,
         min_player_distance:    0,
         arena_bound_distance:   0,
-        attack_cooldown:        4,
+        attack_cooldown:        6,
         idle_cooldown:          0,
-        combat_cooldown:        4
+        combat_cooldown:        6
     ),
     fist_slam = new(
         "Giant2FistSlam",

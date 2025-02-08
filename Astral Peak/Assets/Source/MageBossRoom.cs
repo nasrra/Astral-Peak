@@ -139,8 +139,8 @@ public class MageBossRoom : BossRoomHandler{
         mage_script.death_completed     += unlink_events;        
     }
     void unlink_mage(){
-        if(mage_script==null)
-            return;
+        //if(mage_script==null)
+        //    return;
         mage_script.phase_transition    -= play_cutscene;
         mage_script.death_started       -= death_started;
         mage_script.death_completed     -= death_completed;        

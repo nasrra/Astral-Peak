@@ -32,19 +32,19 @@ public class ShrineOpeningCutscene : Cutscene{
         CameraController.instance.lerp_zoom(4.45f, 6f);
         CameraController.instance.lerp_offset(null, 2.2f, 6f);
         yield return new WaitForSeconds(6);
-        DialogueHandler.instance.play_dialogue(3.3f);
+        DialogueHandler.instance.play_dialogue(2.65f);
         yield return new WaitForSeconds(3f);
         CameraController.instance.lerp_offset(null,-2.5f, 20f);
-        yield return new WaitForSeconds(40);
+        yield return new WaitForSeconds(32);
         CameraController.instance.reset_zoom(20);
         CameraController.instance.lerp_offset(null, 0, 20f);     
         yield break;//
     }
 
     IEnumerator middle(){
-        CameraController.instance.lerp_zoom(3f, 10f);
-        CameraController.instance.lerp_offset(-3, null, 10f);
-        yield return new WaitForSeconds(10);
+        CameraController.instance.lerp_zoom(3f, 8f);
+        CameraController.instance.lerp_offset(-3, null, 8f);
+        yield return new WaitForSeconds(8);
         CameraController.instance.lerp_offset(3.4f,null, 25f);
         yield return new WaitForSeconds(25);
         CameraController.instance.reset_zoom(10f);
@@ -64,24 +64,24 @@ public class ShrineOpeningCutscene : Cutscene{
     public void dialogue_ended() => CutsceneManager.set_coroutine(ending());
     void handle_new_line(int line){
         switch(line){
-            case 27: 
+            case 20: 
                 open_shrine_door?.Invoke(); 
                 break;
-            case 10: 
+            case 8: 
                 enlargen_torches?.Invoke();
                 break;
-            case 11: 
+            case 9: 
                 reset_torches?.Invoke(); 
                 torches_off?.Invoke(); 
                 break;
-            case 12: 
+            case 10: 
                 reset_torches?.Invoke(); 
                 torches_on?.Invoke(); 
                 break;
-            case 16: 
+            case 13: 
                 CutsceneManager.set_coroutine(middle()); 
                 break;
-            case 17: 
+            case 14: 
                 //world_constellation_on?.Invoke();
                 gateway_constellation_on?.Invoke(); 
                 break;
@@ -97,7 +97,7 @@ public class ShrineOpeningCutscene : Cutscene{
             //    aether_constellation_off?.Invoke();
             //    soul_constellation_on?.Invoke();
             //    break;
-            case 22:
+            case 19:
                 gateway_constellation_off?.Invoke();
                 //soul_constellation_off?.Invoke();
                 break;
@@ -184,5 +184,17 @@ public class ShrineAltarTwoCutscene : ShrineAltarCutscene{
 
     public override List<int> get_turn_on_numeral()=>new(){
         1,
+    };
+}
+
+public class ShrineAltarThreeCutscene : ShrineAltarCutscene{
+    public override string get_previous_scene()=>"MageBossRoom";
+
+    public override List<int> get_set_numerals()=>new(){
+        0,1
+    };
+
+    public override List<int> get_turn_on_numeral()=>new(){
+        2,
     };
 }
