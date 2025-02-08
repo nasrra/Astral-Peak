@@ -285,6 +285,7 @@ public struct GiantSoundSet : SoundSet{
             new WaterBubble(),
             new WaterGurgleLoop(),
             new WaterSplash(),
+            new WaterSplashDeep(),
             new WoodenRattleImpact(),
             new WaterRushHeavy(),
             new HandClapReverb(),

@@ -8,7 +8,7 @@ public class GiantBossRoom : BossRoomHandler{
     [SerializeField] Giant1 giant1_script;
     [SerializeField] Giant2 giant2_script;
     [SerializeField] ConstellationController gateway_1, gateway_2;
-    [SerializeField] GameObject giant1_object, giant_2_object;
+    [SerializeField] GameObject giant1_object, giant2_object;
     [SerializeField] Transform domine_door;
 
     protected override void Awake(){
@@ -49,14 +49,20 @@ public class GiantBossRoom : BossRoomHandler{
         unlink_mage();
         unlink_fight_start_trigger();
     }
+
+    void enable_giant2(){
+        giant2_object.SetActive(true);
+        giant2_script.play_intro_animation();
+    }
+
     void link_mage(){
-        giant1_script.phase_transition    += play_cutscene;
+        giant1_script.death_completed     += enable_giant2;
         giant2_script.death_started       += death_started;
         giant2_script.death_completed     += death_completed;        
         giant2_script.death_completed     += unlink_events;        
     }
     void unlink_mage(){
-        giant1_script.phase_transition    -= play_cutscene;
+        giant1_script.death_completed     -= enable_giant2;
         giant2_script.death_started       -= death_started;
         giant2_script.death_completed     -= death_completed;        
         giant2_script.death_completed     -= unlink_events; 

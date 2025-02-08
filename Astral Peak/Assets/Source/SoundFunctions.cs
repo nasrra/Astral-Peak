@@ -470,6 +470,12 @@ public class GiantSound : SoundFunctions{
             SoundID.HAND_CLAP_REVERB,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)        
+        },
+        {"water_splash_deep",()=>
+            AudioClipHandler.play(
+            SoundID.WATER_SPLASH_DEEP,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
         }
     };
 }

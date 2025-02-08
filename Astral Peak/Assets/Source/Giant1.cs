@@ -67,6 +67,7 @@ public class Giant1 : Boss<Movement>{
     public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
     public void jump_away_camera_shake() => CameraController.instance.shake_camera(.4f,.8f,false);
     public void yell_camera_shake() => CameraController.instance.shake_camera(2f,.8f, true);
+    public void death_camera_shake() => CameraController.instance.shake_camera(.5f,.8f, true);
 
     // ground waves.
     public void down_slam_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
@@ -76,6 +77,26 @@ public class Giant1 : Boss<Movement>{
         // left and right
         ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
         ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+    }
+
+    protected override void death_start(){
+        animator.Play("Giant1Death",0,0);
+        no_state();
+        StartCoroutine(Util.timer(
+            animator.get_clip_length("Giant1Death")+3,
+            start_action:()=>{
+                if(idle_state != null)
+                    StopCoroutine(idle_state);
+                enable_body_colliders(0);
+                stop_all();
+                movement.zero_velocity(); // stop velocity in case the boss is dashing.
+                base.death_start();
+            },
+            time_out:()=>{
+                gameObject.SetActive(false);
+                base.death_complete();//
+            }
+        ));
     }
 
     //movement.

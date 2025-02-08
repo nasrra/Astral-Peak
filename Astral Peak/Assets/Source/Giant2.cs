@@ -43,7 +43,18 @@ public class Giant2 : Boss<Movement>{
     void Start(){
         set_phase_data("phase_1");
         //switch_phase();
-        idle(2);
+    }
+
+    protected override void entered_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            this.state.clear_and_stop();
+        base.entered_game_state(state);
+    }
+
+    protected override void exited_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            idle(2);
+        base.exited_game_state(state);
     }
 
     private void fly_and_attack_state(){
@@ -211,6 +222,12 @@ public class Giant2 : Boss<Movement>{
         animator.Play("Giant2HeadIdle");
         animator.Play("Giant2HandIdleL");
         animator.Play("Giant2HandIdleR");
+    }
+
+    public void play_intro_animation(){
+        animator.Play("Giant2HeadIntro");
+        animator.Play("Giant2HandIntroL");
+        animator.Play("Giant2HandIntroR");
     }
 
     public void move_to_point_camera_adjust(){

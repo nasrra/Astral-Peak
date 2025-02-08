@@ -36,7 +36,7 @@ public class Cavalry : Boss<CavalryMovement>{
                     StopCoroutine(idle_state);
                 enable_body_colliders(0);
                 sprites.play_death_effect(2f);
-                disable_components();
+                stop_all();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
                 base.death_start();
@@ -50,18 +50,18 @@ public class Cavalry : Boss<CavalryMovement>{
         ));
     }
 //
-    void disable_components(){
-        particles.StopAllCoroutines();
-        particles.enabled = false;
-        ranged.StopAllCoroutines();
-        ranged.enabled = false;
-        movement.StopAllCoroutines();
-        movement.enabled = false;
-        melee.StopAllCoroutines();
-        melee.enabled = false;
-        combat.StopAllCoroutines();
-        combat.enabled = false;
-    }
+    //void disable_components(){
+    //    particles.StopAllCoroutines();
+    //    particles.enabled = false;
+    //    ranged.StopAllCoroutines();
+    //    ranged.enabled = false;
+    //    movement.StopAllCoroutines();
+    //    movement.enabled = false;
+    //    melee.StopAllCoroutines();
+    //    melee.enabled = false;
+    //    combat.StopAllCoroutines();
+    //    combat.enabled = false;
+    //}
 
     private void stop_idle_loop(){
         if(idle_state != null)

@@ -1092,6 +1092,17 @@ public class WaterSplash : Sound{
     ){}
 }
 
+public class WaterSplashDeep : Sound{
+    public WaterSplashDeep() : base(
+        _id:        SoundID.WATER_SPLASH_DEEP,
+        _clip:      "water_splash_deep",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    1f,
+        _max_pitch: 1.05f,
+        _min_pitch: 1f
+    ){}
+}
+
 public class HandClapReverb : Sound{
     public HandClapReverb() : base(
         _id:        SoundID.HAND_CLAP_REVERB,
