@@ -44,7 +44,7 @@ public static class CutsceneManager{
     }
 
     static void skip_cutscene(){
-        Time.timeScale = 100;
+        Time.timeScale = 80;
         unlink_cutscene_skip();
     }
     

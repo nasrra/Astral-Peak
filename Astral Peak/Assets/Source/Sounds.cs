@@ -1092,14 +1092,25 @@ public class WaterSplash : Sound{
     ){}
 }
 
-public class WaterSplashDeep : Sound{
-    public WaterSplashDeep() : base(
-        _id:        SoundID.WATER_SPLASH_DEEP,
-        _clip:      "water_splash_deep",
+public class WaterSplashDeep1 : Sound{
+    public WaterSplashDeep1() : base(
+        _id:        SoundID.WATER_SPLASH_DEEP_1,
+        _clip:      "water_splash_deep_1",
         _group:     AudioManager.sfx_mixer,
         _volume:    1f,
         _max_pitch: 1.05f,
-        _min_pitch: 1f
+        _min_pitch: .95f
+    ){}
+}
+
+public class WaterSplashDeep2 : Sound{
+    public WaterSplashDeep2() : base(
+        _id:        SoundID.WATER_SPLASH_DEEP_2,
+        _clip:      "water_splash_deep_2",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .9f,
+        _max_pitch: 1.05f,
+        _min_pitch: .95f
     ){}
 }
 

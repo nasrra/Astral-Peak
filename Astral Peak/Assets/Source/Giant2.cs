@@ -44,6 +44,7 @@ public class Giant2 : Boss<Movement>{
         set_phase_data("phase_1");
         //switch_phase();
     }
+    void OnDestroy() => unlink_events();
 
     protected override void entered_game_state(GameState state){
         if(state == GameState.CUTSCENE)
@@ -148,9 +149,7 @@ public class Giant2 : Boss<Movement>{
     private void move_to_attack_finished(){
         movement.reset_speed();
         state.clear();
-        idle(0);
         combat.attack_end();
-        movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);
         movement.target_reached -= move_to_attack_finished;
     }
 
@@ -213,7 +212,10 @@ public class Giant2 : Boss<Movement>{
     private void idle(float time){
         state.queue_and_start(
             time: time,
-            start_action: ()=> play_idle_animation()
+            start_action: ()=>{
+                play_idle_animation(); 
+                movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
+            }
         );
     }
 

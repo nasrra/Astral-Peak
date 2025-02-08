@@ -471,9 +471,15 @@ public class GiantSound : SoundFunctions{
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)        
         },
-        {"water_splash_deep",()=>
+        {"water_splash_deep_1",()=>
             AudioClipHandler.play(
-            SoundID.WATER_SPLASH_DEEP,
+            SoundID.WATER_SPLASH_DEEP_1,
+            audio_player: audio_player,
+            AudioSourceSettings.DIEGETIC_RANDOMISED)
+        },
+        {"water_splash_deep_2",()=>
+            AudioClipHandler.play(
+            SoundID.WATER_SPLASH_DEEP_2,
             audio_player: audio_player,
             AudioSourceSettings.DIEGETIC_RANDOMISED)
         }

@@ -75,7 +75,8 @@ namespace Sounds{
     WATER_BUBBLE,
     WATER_GURGLE_LOOP,
     WATER_SPLASH,
-    WATER_SPLASH_DEEP,
+    WATER_SPLASH_DEEP_1,
+    WATER_SPLASH_DEEP_2,
     WATER_RUSH_HEAVY,
 
     // The Mage

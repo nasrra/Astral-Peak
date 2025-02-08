@@ -17,8 +17,10 @@ public class Giant1 : Boss<Movement>{
         //idle(3);
     }
 
+    void OnDestroy() => unlink_events();
+
     protected override void exited_game_state(GameState state){
-        idle(0);
+        idle(2);
         base.exited_game_state(state);
     }
 
@@ -93,6 +95,7 @@ public class Giant1 : Boss<Movement>{
                 base.death_start();
             },
             time_out:()=>{
+                unlink_events();
                 gameObject.SetActive(false);
                 base.death_complete();//
             }
