@@ -653,8 +653,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1 &44589510
 GameObject:
@@ -798,8 +798,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1 &142226353
 GameObject:
@@ -6179,8 +6179,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &241076773
 PrefabInstance:
@@ -6192,7 +6192,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -6266,7 +6266,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -6444,8 +6444,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &331957775
 PrefabInstance:
@@ -6457,7 +6457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -6868,7 +6868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &375137857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7097,7 +7097,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -7268,8 +7268,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &556974606
 PrefabInstance:
@@ -7281,7 +7281,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -7451,6 +7451,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7947897332925603635, guid: 678fa77d690ed794abfbe479d7b43b32, type: 3}
   m_PrefabInstance: {fileID: 567252313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &567252315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8201939035618743138, guid: 678fa77d690ed794abfbe479d7b43b32, type: 3}
+  m_PrefabInstance: {fileID: 567252313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16991f05639a5d74598cc40bb7b66d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &592001885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7461,7 +7472,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -8628,8 +8639,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &803058260
 PrefabInstance:
@@ -8886,8 +8897,11 @@ MonoBehaviour:
   exit: {fileID: 0}
   giant1_script: {fileID: 1096982683}
   giant2_script: {fileID: 1892445185}
+  gateway_1: {fileID: 567252315}
+  gateway_2: {fileID: 2146982518}
   giant1_object: {fileID: 1022403746}
   giant_2_object: {fileID: 1892445174}
+  domine_door: {fileID: 1212453696}
 --- !u!4 &845319753
 Transform:
   m_ObjectHideFlags: 0
@@ -9290,7 +9304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -9574,8 +9588,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1 &1022403746 stripped
 GameObject:
@@ -9848,7 +9862,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 166556227269942596, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.23
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 166556227269942596, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10284,9 +10298,14 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!4 &1212453696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7374346924369684785, guid: de9b90159f023ea4b9f8c80437d92182, type: 3}
+  m_PrefabInstance: {fileID: 8750971047283695832}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1216821773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11497,8 +11516,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &1503663692
 PrefabInstance:
@@ -11785,8 +11804,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &1558421363
 PrefabInstance:
@@ -12011,8 +12030,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &1647117627
 PrefabInstance:
@@ -12024,7 +12043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 15468019224269703, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2078326909263664118, guid: 098aa9cfbc736e34aa672029b6e6fe71, type: 3}
       propertyPath: m_Name
@@ -12469,8 +12488,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &1756115739
 PrefabInstance:
@@ -12717,8 +12736,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!1001 &1812452994
 PrefabInstance:
@@ -13104,8 +13123,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_SleepingMode: 2
+  m_CollisionDetection: 0
   m_Constraints: 5
 --- !u!20 &1971991241 stripped
 Camera:
@@ -13797,6 +13816,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2146982518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8201939035618743138, guid: 678fa77d690ed794abfbe479d7b43b32, type: 3}
+  m_PrefabInstance: {fileID: 615039935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16991f05639a5d74598cc40bb7b66d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2519792957642506068
 PrefabInstance:
   m_ObjectHideFlags: 0

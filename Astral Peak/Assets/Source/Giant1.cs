@@ -14,7 +14,17 @@ public class Giant1 : Boss<Movement>{
     void Start(){
         set_phase_data("phase_1");
         //switch_phase();
-        idle(3);
+        //idle(3);
+    }
+
+    protected override void exited_game_state(GameState state){
+        idle(0);
+        base.exited_game_state(state);
+    }
+
+    protected override void entered_game_state(GameState state){
+        no_state();
+        base.entered_game_state(state);
     }
 
     private void idle(){
