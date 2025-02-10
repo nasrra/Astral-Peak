@@ -239,37 +239,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &39344980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 39344981}
-  m_Layer: 0
-  m_Name: figure_eight_reverse
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &39344981
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39344980}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1356286902}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &50951302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8011,7 +7980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1170752381}
   m_Layer: 0
-  m_Name: figure_eight
+  m_Name: Idle
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -8587,7 +8556,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1170752381}
-  - {fileID: 39344981}
   - {fileID: 1326285703}
   - {fileID: 1243398188}
   - {fileID: 76365406}
@@ -10755,19 +10723,19 @@ PrefabInstance:
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[0].Value
       value: 
-      objectReference: {fileID: 1326285703}
+      objectReference: {fileID: 1170752381}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[1].Value
       value: 
-      objectReference: {fileID: 1170752381}
+      objectReference: {fileID: 1326285703}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[2].Value
       value: 
-      objectReference: {fileID: 39344981}
+      objectReference: {fileID: 76365406}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[3].Value
       value: 
-      objectReference: {fileID: 76365406}
+      objectReference: {fileID: 1243398188}
     - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: teleport_points._serializedList.Array.data[4].Value
       value: 

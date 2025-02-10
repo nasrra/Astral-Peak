@@ -38,9 +38,8 @@ public class Mage : Boss<Movement>{
                 idle(0);
             }},
             {"phase_2",()=>{
-                string fly_pattern = choose_fly_pattern();
-                teleport_phase_2(teleport_points[fly_pattern].position);
-                state.queue(()=>start_fly_pattern(fly_pattern));
+                teleport_phase_2(teleport_points["idle"].position);
+                state.queue(()=>idle_fly_pattern());
                 idle(6);                
             }}
         };
@@ -167,11 +166,10 @@ public class Mage : Boss<Movement>{
     public void turn_off_wailing_stones() => summoning_circles.turn_off();
     private void attack_phase_2(BossAttack attack){
         if(teleport_points.ContainsKey(attack.animation_id)){
-            string fly_pattern = choose_fly_pattern();
             teleport_phase_2(teleport_points[attack.animation_id].position);
             state.queue(time: animator.get_clip_length(attack.animation_id), start_action: () => animator.Play(attack.animation_id));
-            teleport_phase_2(teleport_points[fly_pattern].position);
-            state.queue(()=>start_fly_pattern(fly_pattern));
+            teleport_phase_2(teleport_points["idle"].position);
+            state.queue(()=>idle_fly_pattern());
             state.queue_and_start(combat.attack_end);
         }
         else
@@ -196,13 +194,9 @@ public class Mage : Boss<Movement>{
             }
         );
     }
-    private string choose_fly_pattern(){
-        int x = UnityEngine.Random.Range(0,2);
-        return x==0? "figure_eight" : "figure_eight_reversed";    
-    }
-    private void start_fly_pattern(string fly_pattern){
+    private void idle_fly_pattern(){
         movement.halt();
-        movement.figure_eight_state(x_factor: 10, y_factor: .5f, reverse: fly_pattern=="figure_eight"?false:true);
+        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2) == 0);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");

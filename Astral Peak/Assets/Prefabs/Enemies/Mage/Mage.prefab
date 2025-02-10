@@ -147,7 +147,7 @@ MonoBehaviour:
         dash_cooldown: 1
     - Key: phase_2
       Value:
-        speed: 6
+        speed: 4
         accel: 1
         decel: 1
         gravity: 0
@@ -176,11 +176,9 @@ MonoBehaviour:
   current_phase: 
   teleport_points:
     _serializedList:
+    - Key: idle
+      Value: {fileID: 0}
     - Key: Mage2Sig
-      Value: {fileID: 0}
-    - Key: figure_eight
-      Value: {fileID: 0}
-    - Key: figure_eight_reversed
       Value: {fileID: 0}
     - Key: Mage2RightLeft
       Value: {fileID: 0}
@@ -205,7 +203,7 @@ MonoBehaviour:
   data:
     max_life: 0
     current_life: 0
-  invulnerable: 0
+  state: 0
 --- !u!114 &3964623577995310139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96bf9e91b0f2ae34db80e946bc33a812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flipped: 0
   on_cooldown: 0
   is_attacking: 0
   chosen_attack:
