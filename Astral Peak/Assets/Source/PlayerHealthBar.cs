@@ -16,8 +16,8 @@ public class PlayerHealthBar : MonoBehaviour{
         Player.instance.get_health().healed         += health_updated;
         Player.instance.damaged_start               += health_updated;
         Player.instance.death_started               += dead;
-        set_health(Player.instance.get_health().get_current_health());
-        fade_in();
+        if(GameManager.get_state() != GameState.CUTSCENE)
+            set_health(Player.instance.get_health().get_current_health());
     }
     void OnDestroy(){
         Player.instance.intermediate_health_updated -= intermediate_health_updated;
@@ -66,6 +66,12 @@ public class PlayerHealthBar : MonoBehaviour{
         if(gameObject.activeSelf == true)
             foreach(HealthBarHeart heart in hearts)
                 heart.off();            
+    }
+
+    public void on(){
+        if(gameObject.activeSelf == true)
+            foreach(HealthBarHeart heart in hearts)
+                heart.enable();            
     }
 
     public void fade_in(){

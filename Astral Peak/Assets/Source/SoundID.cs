@@ -15,6 +15,15 @@ namespace Sounds{
     ALTAR_MUSIC,
     INTRODUCTION_MUSIC,
 
+    //Ambience
+    SOFT_WIND,
+    HEAVY_WIND,
+
+    //thunder
+    THUNDER_1,
+    THUNDER_2,
+    THUNDER_DISTANT,
+
     // Magic
     LEATHER_CONTORT_1,
     MAGIC_1,
@@ -38,6 +47,7 @@ namespace Sounds{
     WOODEN_PING,
     PING,
     DEEP_BOOM,
+    HEART_THUMP,
 
     // Melee
     MELEE_HIT,
@@ -133,14 +143,5 @@ namespace Sounds{
     DOMINE_ASHES_TO_WIND,
     DOMINE_MOUNTAIN_SUMMIT,
     DOMINE_WHY_HERE,
-
-    //thunder
-    THUNDER_1,
-    THUNDER_2,
-    THUNDER_DISTANT,
-
-    //Ambience
-    SOFT_WIND,
-    HEAVY_WIND,
 }
 }

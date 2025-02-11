@@ -550,6 +550,17 @@ public class DeepThumping : Sound {
     ) {}
 }
 
+public class HeartThump : Sound {
+    public HeartThump() : base(
+        _id:        SoundID.HEART_THUMP,
+        _clip:      "deep_thumping",
+        _group:     AudioManager.sfx_mixer,
+        _volume:    .8f,
+        _max_pitch: 1.0f,
+        _min_pitch: 1.0f
+    ) {}
+}
+
 public class DomineAnOffering : Sound {
     public DomineAnOffering() : base(
         _id:        SoundID.DOMINE_AN_OFFERING,

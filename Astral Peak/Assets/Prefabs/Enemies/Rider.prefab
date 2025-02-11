@@ -10181,6 +10181,7 @@ GameObject:
   - component: {fileID: 5833104458366469677}
   - component: {fileID: 8580107664884857992}
   - component: {fileID: 724059546516826845}
+  - component: {fileID: 8695350618710489015}
   m_Layer: 13
   m_Name: Rider
   m_TagString: Untagged
@@ -10366,7 +10367,7 @@ MonoBehaviour:
   melee: {fileID: 6639480894418382988}
   sound: {fileID: 4321475848782107192}
   combat: {fileID: 7413480390761594454}
-  lighting: {fileID: 0}
+  lighting: {fileID: 8695350618710489015}
   target: {fileID: 0}
   current_phase: 
 --- !u!114 &7413480390761594454
@@ -10381,6 +10382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a45a202450a8b428cf12873cda73d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flipped: 0
   on_cooldown: 0
   is_attacking: 0
   chosen_attack:
@@ -10413,7 +10415,7 @@ MonoBehaviour:
   data:
     max_life: 0
     current_life: 0
-  invulnerable: 0
+  state: 0
 --- !u!114 &1483956834082543531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10500,6 +10502,7 @@ MonoBehaviour:
         feedback: {fileID: 9000060885104195111}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -10512,6 +10515,7 @@ MonoBehaviour:
         feedback: {fileID: 2913741362603362949}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -10524,6 +10528,7 @@ MonoBehaviour:
         feedback: {fileID: 6376844841228243514}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -10628,6 +10633,20 @@ MonoBehaviour:
     dash_cooldown: 0
   move_direction: {x: 0, y: 0}
   rb: {fileID: 4396629497798196571}
+--- !u!114 &8695350618710489015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061221953122755816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86a078888aab8a4f96831c8f56a776b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+    _serializedList: []
 --- !u!1 &6286200776534538433
 GameObject:
   m_ObjectHideFlags: 0

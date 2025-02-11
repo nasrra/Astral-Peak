@@ -9,7 +9,7 @@ public static class CustomSceneManager{
     public static Action loading_scene, loaded_scene;
 
     static readonly HashSet<string> dont_save_scenes = new HashSet<string> {
-        "MainMenu", "SplashScreen", "Credits", "DemoEnd", "Introduction"
+        "MainMenu", "SplashScreen", "Credits", "DemoEnd", "Introduction", "AstralPlane"
     };
 
     public static void initialize(){

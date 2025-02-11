@@ -16,6 +16,7 @@ public static class GameManager{
     static GameState state = GameState.GAMEPLAY;
     static GameData data = new GameData();
     static bool data_loaded = false;
+    static float time_scale = 1;
 
     public static Action<GameState> 
         entered_game_state, 
@@ -56,7 +57,11 @@ public static class GameManager{
     public static void unlink_Ui() => UiManager.instance.death_screen_ended -= reload_scene;
     public static void set_boss_state(int boss, bool completed) => data.boss_states[boss]=completed;
     public static bool get_boss_state(int boss) => data.boss_states[boss];
-    public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : 1;
+    public static void pause_game(bool pause) => Time.timeScale = pause ? 0 : time_scale;
+    public static void set_time_scale(float _time_scale){
+        Time.timeScale = _time_scale;
+        time_scale = _time_scale;
+    }
     public static GameData get_game_data() => data;
     public static void save_game_data(){
         if(state != GameState.CUTSCENE)

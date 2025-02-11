@@ -5,9 +5,9 @@ using UnityEngine;
 public class ShrineCutsceneTorch : MonoBehaviour{
     [SerializeField] List<Torch> torches = new List<Torch>();
     AudioSource source;
-    void OnEnable() => link();
-    void OnDisable() => unlink();
-
+    void Awake(){
+        handle_cutscene();
+    } 
     void turn_on() => StartCoroutine(turn_on_coroutine());
     IEnumerator turn_on_coroutine(){
         foreach(Torch t in torches){
@@ -36,7 +36,10 @@ public class ShrineCutsceneTorch : MonoBehaviour{
             t.revert();  
     }
 
-    void handle_cutscene(Cutscene cutscene){
+    void handle_cutscene(){
+        Cutscene cutscene = CutsceneManager.get_cutscene();
+        if(cutscene == null)
+            return;
         switch(cutscene){
             case ShrineAltarCutscene c:
                 c.torches_on += turn_on;                
@@ -49,7 +52,4 @@ public class ShrineCutsceneTorch : MonoBehaviour{
                 break;
         }
     }
-
-    void link() => CutsceneManager.started_cutscene += handle_cutscene;
-    void unlink() => CutsceneManager.started_cutscene -= handle_cutscene;
 }

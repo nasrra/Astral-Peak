@@ -45,6 +45,19 @@ public static class Calc{
         _on_complete?.Invoke();
         yield break;
     }
+    static public IEnumerator lerp_vector3(System.Action<Vector3> _value, Vector3 _start, Vector3 _end, float _time, System.Action _on_complete = null){
+        float elapsedTime = 0;
+        float t = 0;
+        while (elapsedTime < _time) {
+            elapsedTime += Time.deltaTime;
+            t = elapsedTime / _time;
+            _value(Vector3.Lerp(_start,_end,t));
+            yield return null;
+        }
+        _value(_end);
+        _on_complete?.Invoke();
+        yield break;
+    }
     static public IEnumerator lerp_vector2_unscaled(System.Action<Vector2> _value, Vector2 _start, Vector2 _end, float _time, System.Action _on_complete = null){
         float elapsedTime = 0;
         float t = 0;

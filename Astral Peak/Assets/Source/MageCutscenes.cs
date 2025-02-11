@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Cutscenes{
     public class MageOpening : Cutscene{
         public override IEnumerator get_coroutine(){
-            MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
+            MageBossRoom room = RoomHandler.instance as MageBossRoom;
             BackgroundMage background_mage = room.get_background_mage();
             CameraController.instance.lerp_offset(x:null, y:0.9f, time:2f);
             CameraController.instance.lerp_zoom(size:8.65f, time:2f);
@@ -45,8 +45,8 @@ namespace Cutscenes{
     }
     public class MagePhaseTransition : Cutscene{            
         public override IEnumerator get_coroutine(){
-            MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
-            Mage mage = (BossRoomHandler.instance as MageBossRoom).get_mage();
+            MageBossRoom room = RoomHandler.instance as MageBossRoom;
+            Mage mage = room.get_mage();
             CameraEffects.instance.fade_to_black(fade_transition_time);
             room.enable_mage(false);
             yield return new WaitForSeconds(fade_transition_time);
@@ -85,8 +85,8 @@ namespace Cutscenes{
         }
 
         void prepare(){
-            MageBossRoom room = BossRoomHandler.instance as MageBossRoom;
-            Mage mage = (BossRoomHandler.instance as MageBossRoom).get_mage();
+            MageBossRoom room = RoomHandler.instance as MageBossRoom;
+            Mage mage = room.get_mage();
             mage.transform.position = room.get_boss_point(1).position;
             Player.instance.set_enter_position();
             mage.flip_to_target();

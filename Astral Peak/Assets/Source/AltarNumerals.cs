@@ -9,8 +9,9 @@ public class AltarNumerals : MonoBehaviour{
     [SerializeField] List<ParticleSystem> particles = new List<ParticleSystem>();
     [SerializeField] List<Light2D> light2D = new List<Light2D>();
     [SerializeField] List<float> light_intensity = new List<float>();
-    void OnEnable() => link();
-    void OnDisable() => unlink();
+    void Awake(){
+        handle_cutscene();
+    }
 
     public void turn_on(List<int> numerals){
         if(numerals==null)
@@ -49,7 +50,10 @@ public class AltarNumerals : MonoBehaviour{
         light2D[i].intensity = light_intensity[i];
         sprite[i].color = Color.white;
     }
-    void handle_cutscene(Cutscene cutscene){
+    void handle_cutscene(){
+        Cutscene cutscene = CutsceneManager.get_cutscene();
+        if(cutscene == null)
+            return;
         switch(cutscene){
             case ShrineAltarCutscene c:
                 c.turn_on_numeral += turn_on;
@@ -57,7 +61,4 @@ public class AltarNumerals : MonoBehaviour{
                 break;
         }
     }
-
-    void link() => CutsceneManager.started_cutscene += handle_cutscene;
-    void unlink() => CutsceneManager.started_cutscene -= handle_cutscene;
 }

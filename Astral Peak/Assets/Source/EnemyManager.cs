@@ -23,6 +23,10 @@ public class EnemyManager : MonoBehaviour{
             Destroy(enemies[i].gameObject);
         enemies.Clear();
     }
+    public void set_active_all(bool _active){
+        for(int i = 0; i < enemies.Count; ++i)
+            enemies[i].gameObject.SetActive(_active);
+    }
     void entered_game_state(GameState state){
         if(state==GameState.CUTSCENE)
             destroy_all();

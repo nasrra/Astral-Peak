@@ -29,7 +29,7 @@ public static class CutsceneManager{
     static void cutscene_ended(){
         cutscene = null;
         GameManager.state_changed(GameState.GAMEPLAY);
-        Time.timeScale = 1;
+        GameManager.set_time_scale(1);
         unlink_cutscene_skip();
     }
 
@@ -44,7 +44,7 @@ public static class CutsceneManager{
     }
 
     static void skip_cutscene(){
-        Time.timeScale = 80;
+        GameManager.set_time_scale(80);
         unlink_cutscene_skip();
     }
     
@@ -57,6 +57,8 @@ public static class CutsceneManager{
         InputManager.cutscene_skip_performed -= start_skip;
         InputManager.cutscene_skip_canceled  -= stop_skip;        
     }
+
+    public static Cutscene get_cutscene() => cutscene;
 
     #if UNITY_EDITOR
     private static void handle_play_mode_state_changed(UnityEditor.PlayModeStateChange state){

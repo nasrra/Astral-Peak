@@ -31,6 +31,8 @@ public static class AudioManager{
     static AudioSource
         current_music, previous_music, current_ambience, previous_ambience;
 
+    static SoundID ambience_sound_id;
+
     static bool reverse_music_crossfade = false, reverse_ambience_crossfade = false;
 
     public static void on_start() => load_volume_settings();
@@ -93,6 +95,9 @@ public static class AudioManager{
     }
     public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), 1f));
     public static void play_ambience(SoundID sound_id){
+        if(ambience_sound_id == sound_id)
+            return;
+        ambience_sound_id = sound_id;
         state_switch(ref ambience_loop_state, ambience_coroutine(sound_id));       
     }
     static IEnumerator ambience_coroutine(SoundID sound_id){

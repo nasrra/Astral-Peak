@@ -859,16 +859,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 993bf1d996c7ce643963a59529c9f7dc, type: 2}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1505791830}
+    - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: offset.y
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
-      propertyPath: original_y_bounds.x
+      propertyPath: y_bounds.x
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
-      propertyPath: original_y_bounds.y
+      propertyPath: y_bounds.y
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
+      propertyPath: original_x_bounds.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
+      propertyPath: original_x_bounds.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
+      propertyPath: original_y_bounds.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3240992609607372931, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
+      propertyPath: original_y_bounds.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4248928238505897754, guid: f22bfa7cba36d844f988e7db97630bd0, type: 3}
       propertyPath: m_Name
@@ -2668,6 +2688,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
+--- !u!4 &1505791830 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9076211804509394314, guid: de9b90159f023ea4b9f8c80437d92182, type: 3}
+  m_PrefabInstance: {fileID: 1244933016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1814565459
 PrefabInstance:
   m_ObjectHideFlags: 0

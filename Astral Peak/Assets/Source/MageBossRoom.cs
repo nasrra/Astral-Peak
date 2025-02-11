@@ -29,10 +29,6 @@ public class MageBossRoom : BossRoomHandler{
             SceneLighting.instance.lerp_preset(_id: "global",    _preset: 1, 4f);
             SceneLighting.instance.lerp_preset(_id: "additive", _preset: 1, 4f);}
     };
-    List<SoundID> ambience = new List<SoundID>(){
-        SoundID.SOFT_WIND,
-        SoundID.HEAVY_WIND,
-    };
     protected override void Awake(){
         link_events();
         cutscenes = new Dictionary<string, Func<Cutscene>>(){
@@ -49,7 +45,7 @@ public class MageBossRoom : BossRoomHandler{
             exit.set_start_open(true);
         }
     }
-    void Start() => set_room_state(0);
+    protected override void Start() => set_room_state(0);
     void OnDestroy(){
         unlink_events();
     }
@@ -59,7 +55,7 @@ public class MageBossRoom : BossRoomHandler{
     public MagicPlatformsController get_platforms()=>platforms;
     public BackgroundMage get_background_mage() => background_mage.GetComponent<BackgroundMage>();
     public void set_room_state(int x){
-        AudioManager.play_ambience(ambience[x]);
+        AudioManager.play_ambience(ambience_tracks[x]);
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
         snow_controller.lerp_preset(x);

@@ -132,8 +132,18 @@ public abstract class ShrineAltarCutscene : Cutscene{
     public abstract List<int> get_turn_on_numeral();
     public abstract string get_previous_scene();
 
-
     public override IEnumerator get_coroutine(){
+        CustomSceneManager.load_scene_with_transitions("Shrine");
+        CustomSceneManager.loaded_scene += start_altar_cutscene;
+        yield break;
+    }
+
+    void start_altar_cutscene(){
+        CustomSceneManager.loaded_scene -= start_altar_cutscene;
+        CutsceneManager.set_coroutine(altar_cutscene());
+    }
+
+    public IEnumerator altar_cutscene(){
         AudioManager.play_music(SoundID.ALTAR_MUSIC);
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();

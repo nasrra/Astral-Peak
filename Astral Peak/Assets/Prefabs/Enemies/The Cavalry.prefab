@@ -34547,6 +34547,7 @@ GameObject:
   - component: {fileID: 6425974341650075415}
   - component: {fileID: 4572095971363377138}
   - component: {fileID: 7543107966129033679}
+  - component: {fileID: 7861104998416197557}
   m_Layer: 13
   m_Name: The Cavalry
   m_TagString: Enemy
@@ -34661,7 +34662,7 @@ MonoBehaviour:
   melee: {fileID: 7543107966129033679}
   sound: {fileID: 6425974341650075415}
   combat: {fileID: 7306472689858852757}
-  lighting: {fileID: 0}
+  lighting: {fileID: 7861104998416197557}
   target: {fileID: 0}
   current_phase: 
 --- !u!114 &4346448695507625108
@@ -34708,7 +34709,7 @@ MonoBehaviour:
   data:
     max_life: 0
     current_life: 0
-  invulnerable: 0
+  state: 0
 --- !u!114 &7306472689858852757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34721,6 +34722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601b6e86ab22f7c469f063fda1f97560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flipped: 0
   on_cooldown: 0
   is_attacking: 0
   chosen_attack:
@@ -34755,6 +34757,7 @@ MonoBehaviour:
     feedback: {fileID: 0}
     damage_data:
       damage: 1
+      unblockable: 0
     knockback_data:
       force: 25
       duration: 0.25
@@ -34766,6 +34769,7 @@ MonoBehaviour:
     feedback: {fileID: 5632250104929940047}
     damage_data:
       damage: 1
+      unblockable: 0
     knockback_data:
       force: 25
       duration: 0.25
@@ -34777,6 +34781,7 @@ MonoBehaviour:
     feedback: {fileID: 1634893595159288097}
     damage_data:
       damage: 1
+      unblockable: 0
     knockback_data:
       force: 25
       duration: 0.25
@@ -34788,6 +34793,7 @@ MonoBehaviour:
     feedback: {fileID: 6883269117073972024}
     damage_data:
       damage: 1
+      unblockable: 0
     knockback_data:
       force: 25
       duration: 0.25
@@ -34961,6 +34967,7 @@ MonoBehaviour:
         feedback: {fileID: 2160683010757704375}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -34973,6 +34980,7 @@ MonoBehaviour:
         feedback: {fileID: 6883269117073972024}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -34985,6 +34993,7 @@ MonoBehaviour:
         feedback: {fileID: 5632250104929940047}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
@@ -34997,12 +35006,27 @@ MonoBehaviour:
         feedback: {fileID: 1634893595159288097}
         damage_data:
           damage: 1
+          unblockable: 0
         knockback_data:
           force: 20
           duration: 0.2
           transform: {fileID: 0}
         self_knockback_force: 0
         self_knockback_duration: 0
+--- !u!114 &7861104998416197557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5026348276079211433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86a078888aab8a4f96831c8f56a776b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+    _serializedList: []
 --- !u!1 &5671985292362036422
 GameObject:
   m_ObjectHideFlags: 0

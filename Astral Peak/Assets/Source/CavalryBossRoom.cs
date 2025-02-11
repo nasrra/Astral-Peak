@@ -20,7 +20,6 @@ public class CavalryBossRoom : BossRoomHandler{
         base.Awake();
     } 
 
-    void Start()=>AudioManager.play_ambience(SoundID.SOFT_WIND);
     void OnDestroy(){
         unlink();
     }

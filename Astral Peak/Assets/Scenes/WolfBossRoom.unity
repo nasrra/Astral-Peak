@@ -294,6 +294,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1064310548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &157521285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 157521286}
+  m_Layer: 0
+  m_Name: FinalCutsceneTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &157521286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157521285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 727715457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &201821997
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.57
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -917,6 +948,14 @@ PrefabInstance:
       objectReference: {fileID: 1453095824}
     - target: {fileID: 5770604696759256352, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770604696759256352, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770604696759256352, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5820853179433611965, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
@@ -6155,10 +6194,11 @@ Transform:
   m_GameObject: {fileID: 727715455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.43, y: 0, z: -0.046346355}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 157521286}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &727715458
@@ -6173,6 +6213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c953c691381e3a344b18cca1a1679bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ambience_tracks: 0900
+  final_cutscene_camera_target: {fileID: 157521286}
+  final_cutscene_camera_movement: 0
   boss_points:
   - {fileID: 1002998813}
   - {fileID: 757529339}

@@ -30,12 +30,11 @@ public class UiManager : MonoBehaviour{
         link_statics();
         instance = this;
         GameManager.link_Ui();
+        check_game_state();
     }
 
     void Start(){
         link_instances();
-        if(GameManager.get_state() == GameState.CUTSCENE)
-            health_bar.off();
     }
 
     void OnDestroy(){
@@ -73,6 +72,11 @@ public class UiManager : MonoBehaviour{
         GameManager.pause_game(false);       
     }
 
+    public void check_game_state(){
+        if(GameManager.get_state() == GameState.CUTSCENE)
+            cutscene_state_on();
+    }
+
     public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
 
     public void enable_death_screen(){
@@ -106,27 +110,47 @@ public class UiManager : MonoBehaviour{
         yield break;
     }
 
-    void enable_black_bars() => black_bars.Play("fade_in");
-    void disable_black_bars() => black_bars.Play("fade_out");
+    void fade_in_black_bars() => black_bars.Play("fade_in");
+    void fade_out_black_bars() => black_bars.Play("fade_out");
+    void black_bars_on() => black_bars.Play("on");
+    void black_bars_off() => black_bars.Play("off");
+
+    void fade_in_cutscene_state(){
+        fade_out();
+        fade_in_black_bars();
+        link_cutscene_skip();        
+    }
+
+    void fade_out_cutscene_state(){
+        health_bar.fade_in();
+        fade_out_black_bars();
+        unlink_cutscene_skip();
+    }
+
+    void cutscene_state_on(){
+        black_bars_on();
+        link_cutscene_skip();
+        health_bar.off();        
+    }
+
+    void cutscene_state_off(){
+        black_bars_on();
+        link_cutscene_skip();
+        health_bar.on();        
+    }
 
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
     public DialogueHandler get_dialogue_handler() => dialogue;
 
     void entered_game_state(GameState state){
-        if(state == GameState.CUTSCENE){
-            fade_out();
-            enable_black_bars();
-            link_cutscene_skip();
-        }
+        if(state == GameState.CUTSCENE)
+            fade_in_cutscene_state();
     }
 
     void exited_game_state(GameState state){
-        if(state == GameState.CUTSCENE){
-            health_bar.fade_in();
-            disable_black_bars();
-            unlink_cutscene_skip();
-        }
+        if(state == GameState.CUTSCENE)
+            fade_out_cutscene_state();
     }
 
     void fade_out(){

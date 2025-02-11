@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Cutscenes{
 public class CavalryOpening : Cutscene{
     public override IEnumerator get_coroutine(){
-        CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
+        CavalryBossRoom room = RoomHandler.instance as CavalryBossRoom;
         Rider rider = room.get_rider();
         rider.gameObject.SetActive(true);
         rider.transform.position = room.get_boss_point(0).position;
@@ -36,7 +36,7 @@ public class CavalryOpening : Cutscene{
 
 public class CavalryPhaseTransition : Cutscene{
     public override IEnumerator get_coroutine(){
-        CavalryBossRoom room = BossRoomHandler.instance as CavalryBossRoom;
+        CavalryBossRoom room = RoomHandler.instance as CavalryBossRoom;
         Rider rider = room.get_rider();
         Cavalry cavalry = room.get_cavalary();
         CameraEffects.instance.fade_to_black(fade_transition_time);

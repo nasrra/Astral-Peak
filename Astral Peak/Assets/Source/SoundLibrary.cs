@@ -64,7 +64,7 @@ public static class SoundLibrary{
         {"TutorialRoom",    () => {return new SceneSounds.TutorialRoom().get_sounds();}},
         {"Shrine",          () => {return new SceneSounds.Shrine().get_sounds();}},
         {"MainMenu",        () => {return new SceneSounds.MainMenu().get_sounds();}},
-        {"Tower1",          () => {return new SceneSounds.Tower1().get_sounds();}},
+        {"Tower",           () => {return new SceneSounds.Tower1().get_sounds();}},
         {"MageBossRoom",    () => {return new SceneSounds.MageBossRoom().get_sounds();}},
         {"SnowField",       () => {return new SceneSounds.SnowField().get_sounds();}},
         {"GiantBossRoom",   () => {return new SceneSounds.FinalBossRoom().get_sounds();}},

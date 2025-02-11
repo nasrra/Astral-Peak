@@ -3,19 +3,19 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public abstract class BossRoomHandler : MonoBehaviour{
+public abstract class BossRoomHandler : RoomHandler{
     public event Action 
         fight_started,
         fight_stopped;
-    public static BossRoomHandler instance;
+    [Header("BossRoomHandler")]
     [SerializeField] protected List<Transform> boss_points = new List<Transform>(); 
     [SerializeField] protected List<Transform> respawn_points = new List<Transform>();
     [SerializeField] protected Collider2DFeedback fight_start_trigger;
     [SerializeField] protected Door exit;
     protected Dictionary<string, Func<Cutscene>> cutscenes;
     protected Cutscene cutscene; 
-    protected virtual void Awake(){
-        instance = this;
+    protected override void Awake(){
+        base.Awake();
         AudioManager.stop_music();
         check_world_state();
     }
@@ -36,7 +36,7 @@ public abstract class BossRoomHandler : MonoBehaviour{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -69,14 +69,8 @@ public abstract class BossRoomHandler : MonoBehaviour{
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
         AudioManager.stop_ambience();
-        CustomSceneManager.load_scene_with_transitions("Shrine");
-        CustomSceneManager.loaded_scene += play_altar_cutscene;
-        yield break;
-    }
-
-    protected void play_altar_cutscene(){
         CutsceneManager.play(get_altar_cutscene());
-        CustomSceneManager.loaded_scene -= play_altar_cutscene;
+        yield break;
     }
 
     protected abstract int get_boss_id();

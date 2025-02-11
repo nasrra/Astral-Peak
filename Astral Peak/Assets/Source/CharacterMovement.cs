@@ -29,7 +29,6 @@ public class CharacterMovement : Movement{
     }
 
     public override void renew(){
-        Log.MethodCall();
         jumping = false;
         jump_time_counter = 0.0f;     
         base.renew();
@@ -84,7 +83,6 @@ public class CharacterMovement : Movement{
     public GameObject get_current_ground() => ground[ground.Count - 1];
 
     public void end_jump(){
-        Log.MethodCall();
         move_direction.y = 0;
         // ending a jump removes the ability to jump again.
         // Note:
@@ -103,7 +101,6 @@ public class CharacterMovement : Movement{
         if(jumping == true && Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
-                Log.MethodCall();
                 rb.linearVelocity = new Vector2(
                     rb.linearVelocity.x, 
                     move_direction.y * jump_force + (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
