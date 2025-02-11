@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cutscenes;
 using UnityEngine;
 
 public class ShrineCutsceneTorch : MonoBehaviour{
@@ -49,6 +50,9 @@ public class ShrineCutsceneTorch : MonoBehaviour{
                 c.torches_off       += turn_off;
                 c.enlargen_torches  += enlargen;
                 c.reset_torches     += reset_torches;
+                break;
+            case DomineDoorFinal c:
+                c.torches_on += turn_on;
                 break;
         }
     }

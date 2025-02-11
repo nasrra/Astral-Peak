@@ -19786,6 +19786,7 @@ MonoBehaviour:
   sprite: {fileID: 1158296529060902672}
   sound: {fileID: 9164329520582862864}
   col: {fileID: 6680201311344748722}
+  audio_listener: {fileID: 4956844195215153309}
   intermediate_health: 0
   up_toggle: 0
 --- !u!114 &1158296529060902672
@@ -20077,7 +20078,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2914469437714857443}
   - component: {fileID: 4956844195215153309}
-  - component: {fileID: 6831122705468892426}
   m_Layer: 7
   m_Name: AudioListener
   m_TagString: Untagged
@@ -20108,20 +20108,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7185595901938495459}
   m_Enabled: 1
---- !u!114 &6831122705468892426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7185595901938495459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ef292eb7f61f348a9672174a9aa4f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_script: {fileID: 1807350476830979228}
-  player_object: {fileID: 5816904732367949109}
 --- !u!1 &8785061149748549367
 GameObject:
   m_ObjectHideFlags: 0

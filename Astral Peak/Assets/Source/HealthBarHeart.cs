@@ -10,11 +10,9 @@ public class HealthBarHeart : ImageHandler{
         OVERRIDE    = 1;
 
     public void fade_out(){
-        Log.MethodCall();   
         animator.Play("fade_out", OVERRIDE);
     }
     public void fade_in(){
-        Log.MethodCall();   
         animator.Play("fade_in", OVERRIDE);
     }
     public void disable(){
@@ -25,12 +23,10 @@ public class HealthBarHeart : ImageHandler{
         else animator.Play("disabled", MAIN);
     }
     public void off(){
-        Log.MethodCall();
         animator.Play("off", OVERRIDE, 0);
         animator.Update(0f);
     }
     public void enable(){
-        Log.MethodCall();   
         if(state != State.ON){
             state = State.ON;
             animator.Play("enable", MAIN);

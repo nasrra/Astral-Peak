@@ -147,7 +147,6 @@ public abstract class ShrineAltarCutscene : Cutscene{
         AudioManager.play_music(SoundID.ALTAR_MUSIC);
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
-        CameraController.instance.enable_audio_listener(true);
         set_numerals?.Invoke(get_set_numerals());
         
         yield return new WaitForSeconds(4f);

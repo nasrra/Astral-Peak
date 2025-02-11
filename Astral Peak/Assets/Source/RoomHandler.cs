@@ -26,7 +26,7 @@ public class RoomHandler : MonoBehaviour{
         Player.instance.gameObject.SetActive(false);
         if(EnemyManager.instance != null){
             Debug.Log("called");
-            EnemyManager.instance.set_active_all(false);
+            EnemyManager.instance.set_start_all_inactive(true);
         }
         
     }
@@ -41,7 +41,7 @@ public class RoomHandler : MonoBehaviour{
     }
 
     enum FinalCutsceneCameraMovementOption{
-        LEFT,DOWN
+        LEFT,DOWN,NONE
     }
 }
 

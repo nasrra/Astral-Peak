@@ -22,7 +22,8 @@ public class DomineDoorOpening : Cutscene{
     }
 }
 
-public class DomineDoorTransition1 : Cutscene{
+public class DomineDoorFinal : Cutscene{
+    public Action torches_on, numerals_on;
     int current_level_pan_level = 0;
     string[] level_pan_levels = {
         "MageBossRoom",
@@ -45,7 +46,8 @@ public class DomineDoorTransition1 : Cutscene{
         yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        CustomSceneManager.loaded_scene += level_pan;
+        CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        //CustomSceneManager.loaded_scene += start_shrine_segment;
         yield break;
     }
     protected void play_transition_2(){
@@ -59,43 +61,75 @@ public class DomineDoorTransition1 : Cutscene{
         Player.instance.get_sprite().fade_from_black();
         yield return new WaitForSeconds(6);
         DialogueHandler.instance.play_dialogue(2.65f);
-        DialogueHandler.instance.dialogue_ended += level_pan;
+        DialogueHandler.instance.dialogue_ended += start_scene_swap_segment;
         yield break;        
     }
 
-    void level_pan(){
-        DialogueHandler.instance.dialogue_ended -= level_pan;
-        CustomSceneManager.loaded_scene -= level_pan;
-        pan_level();
+    void start_scene_swap_segment(){
+        DialogueHandler.instance.dialogue_ended -= start_scene_swap_segment;
+        CustomSceneManager.loaded_scene         -= start_scene_swap_segment;
+        scene_swap_logic();
     }
 
-    void pan_level(){
+    void scene_swap_logic(){
         if(current_level_pan_level < level_pan_levels.Length){
-            CustomSceneManager.loaded_scene += start_pan_level_loop;
+            CustomSceneManager.loaded_scene += start_scene_swap_coroutine;
             CustomSceneManager.load_scene_with_transitions(level_pan_levels[current_level_pan_level]);
             current_level_pan_level++;
         }
         else
-            CutsceneManager.set_coroutine(ending());    
+            start_shrine_segment();   
     }
-    void start_pan_level_loop(){
-        CustomSceneManager.loaded_scene -= start_pan_level_loop;
-        CutsceneManager.set_coroutine(pan_level_loop());
+    void start_scene_swap_coroutine(){
+        CustomSceneManager.loaded_scene -= start_scene_swap_coroutine;
+        CutsceneManager.set_coroutine(scene_swap_coroutine());
     }
 
-    IEnumerator pan_level_loop(){
+    IEnumerator scene_swap_coroutine(){
         RoomHandler room = RoomHandler.instance;
         room.game_cleared_room_state();
         yield return new WaitForSeconds(8);
-        pan_level();
+        scene_swap_logic();
+        yield break;
+    }
+
+    void start_shrine_segment(){
+        CustomSceneManager.loaded_scene -= start_shrine_segment;
+        DialogueHandler.instance.dialogue_ended -= start_shrine_segment;
+        CustomSceneManager.load_scene_with_transitions("Shrine");
+        CustomSceneManager.loaded_scene += start_shrine_segment_coroutine;
+    }
+
+    void start_shrine_segment_coroutine(){
+        CustomSceneManager.loaded_scene -= start_shrine_segment_coroutine;
+        CutsceneManager.set_coroutine(shrine_segement_coroutine());
+    }
+
+    IEnumerator shrine_segement_coroutine(){
+        RoomHandler room = RoomHandler.instance;
+        room.game_cleared_room_state();
+        numerals_on?.Invoke();
+        yield return new WaitForSeconds(3);
+        torches_on?.Invoke();
+        yield return new WaitForSeconds(3);
+        CameraController.instance.lerp_zoom(3,6);
+        CameraController.instance.lerp_offset(null,-2.5f,6);
+        yield return new WaitForSeconds(8);
         yield break;
     }
 
     IEnumerator ending(){
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
+        RoomHandler room = RoomHandler.instance;
         yield return new WaitForSeconds(6);
+        unlink();
         end();
         yield break;
+    }
+
+    void unlink(){
+        torches_on = null;
+        numerals_on = null;
     }
 }
 }

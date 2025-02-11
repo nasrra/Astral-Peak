@@ -29,7 +29,7 @@ public class DomineDoor : MonoBehaviour{
 
     void OnTriggerEnter2D(Collider2D other){
         cutscene_trigger.enabled = false;
-        CutsceneManager.play(new Cutscenes.DomineDoorTransition1());
+        CutsceneManager.play(new Cutscenes.DomineDoorFinal());
     }
 
     private void just_opened() => cutscene_trigger.enabled = true;

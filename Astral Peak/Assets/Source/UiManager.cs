@@ -133,12 +133,6 @@ public class UiManager : MonoBehaviour{
         health_bar.off();        
     }
 
-    void cutscene_state_off(){
-        black_bars_on();
-        link_cutscene_skip();
-        health_bar.on();        
-    }
-
     public void start_dialogue() => dialogue.start_dialogue();
     public void next_dialogue_line() => dialogue.next_line();
     public DialogueHandler get_dialogue_handler() => dialogue;

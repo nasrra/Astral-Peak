@@ -42,6 +42,12 @@ public class CameraController : MonoBehaviour{
             snap_to_target();
             start_follow_state();
         }
+        link();
+        handle_game_state(GameManager.get_state());
+    }
+
+    void OnDestroy(){
+        unlink();
     }
 
     public void regulate_in_bounds(bool x) => regulate = x;
@@ -200,6 +206,20 @@ public class CameraController : MonoBehaviour{
     }
     public void reset_regulators(float time) => lerp_regulators(original_x_bounds,original_y_bounds,time);
     public void enable_audio_listener(bool enable) => audio_listener.enabled = enable;
+
+    void handle_game_state(GameState state){
+        if(state == GameState.CUTSCENE)
+            audio_listener.enabled = true;
+        else if (state == GameState.GAMEPLAY)
+            audio_listener.enabled = false;
+    }
+
+    void link(){
+        GameManager.entered_game_state += handle_game_state;
+    }
+    void unlink(){
+        GameManager.entered_game_state -= handle_game_state;
+    }
 }
 
 public enum CameraFollowType{

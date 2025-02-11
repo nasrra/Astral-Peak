@@ -50,6 +50,13 @@ public class AltarNumerals : MonoBehaviour{
         light2D[i].intensity = light_intensity[i];
         sprite[i].color = Color.white;
     }
+    public void set_all_on(){
+        for(int i = 0; i < 3; ++i){
+            particles[i].gameObject.SetActive(true);
+            light2D[i].intensity = light_intensity[i];
+            sprite[i].color = Color.white;
+        }
+    }
     void handle_cutscene(){
         Cutscene cutscene = CutsceneManager.get_cutscene();
         if(cutscene == null)
@@ -58,6 +65,9 @@ public class AltarNumerals : MonoBehaviour{
             case ShrineAltarCutscene c:
                 c.turn_on_numeral += turn_on;
                 c.set_numerals += set_on;
+                break;
+            case Cutscenes.DomineDoorFinal c:
+                c.numerals_on += set_all_on;
                 break;
         }
     }

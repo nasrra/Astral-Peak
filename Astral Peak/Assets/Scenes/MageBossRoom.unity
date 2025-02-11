@@ -9433,10 +9433,6 @@ PrefabInstance:
       propertyPath: min_force
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 8478396754581365341, guid: 83071178484848040bfc2d72435dd883, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 15295
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6485622122962742998, guid: 83071178484848040bfc2d72435dd883, type: 3}
     m_RemovedGameObjects: []
@@ -10042,8 +10038,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8091c1aeb1024654bb6711c98e5dc0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambience_tracks: 0900
+  ambience_tracks: 09000a00
   final_cutscene_camera_target: {fileID: 1982145228}
+  final_cutscene_camera_movement: 0
   boss_points:
   - {fileID: 1119600541}
   - {fileID: 1894398165}

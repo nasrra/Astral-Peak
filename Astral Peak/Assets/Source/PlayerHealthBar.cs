@@ -75,6 +75,7 @@ public class PlayerHealthBar : MonoBehaviour{
     }
 
     public void fade_in(){
+        set_health(Player.instance.get_health().get_current_health());
         if(gameObject.activeSelf == true)
             foreach(HealthBarHeart heart in hearts)
                 heart.fade_in();

@@ -1,12 +1,18 @@
 using Entropek.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyManager : MonoBehaviour{
     public static EnemyManager instance;
+    [SerializeField] private bool start_all_inactive = false;
     SwapbackArray<Enemy> enemies = new SwapbackArray<Enemy>();
     void Awake(){
         instance = this;
         link_events();   
+    }
+    void Start(){
+        if(start_all_inactive == true)
+            set_active_all(false);
     }
     void OnDestroy(){
         instance = null;
@@ -31,6 +37,7 @@ public class EnemyManager : MonoBehaviour{
         if(state==GameState.CUTSCENE)
             destroy_all();
     }
+    public void set_start_all_inactive(bool _active) => start_all_inactive = _active;
     void link_events() => GameManager.entered_game_state += entered_game_state;
     void unlink_events() => GameManager.entered_game_state -= entered_game_state;
 }
