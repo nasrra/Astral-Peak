@@ -188,7 +188,7 @@ public class ShrineAltarTwoCutscene : ShrineAltarCutscene{
 }
 
 public class ShrineAltarThreeCutscene : ShrineAltarCutscene{
-    public override string get_previous_scene()=>"MageBossRoom";
+    public override string get_previous_scene()=>"GiantBossRoom";
 
     public override List<int> get_set_numerals()=>new(){
         0,1

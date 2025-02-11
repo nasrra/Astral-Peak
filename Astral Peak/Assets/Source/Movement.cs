@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour{
 
 
     // state machine.
-    private void state_switch(ref Coroutine state, IEnumerator _state){
+    protected void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
         state = _state != null ? StartCoroutine(_state) : null;
@@ -148,7 +148,7 @@ public class Movement : MonoBehaviour{
         state_switch(ref move_state, move());
         state_switch(ref controller_state, null);
     }
-    private IEnumerator move(){
+    protected IEnumerator move(){
         while(true){
             horizontal_move();
             vertical_move();
@@ -222,7 +222,7 @@ public class Movement : MonoBehaviour{
                 end?.Invoke();
             }
         );
-    public void freeform_move_to(Transform target){
+    public virtual void freeform_move_to(Transform target){
         clear_move_direction();
         state_switch(ref move_state, move());
         state_switch(ref controller_state, freeform_move_towards(target));
@@ -239,17 +239,17 @@ public class Movement : MonoBehaviour{
         }
     }
 
-    public void freeform_approach_to(Transform target){
+    public virtual void freeform_approach_to(Transform target){
         clear_move_direction();
         state_switch(ref move_state, move());
         state_switch(ref controller_state, freeform_approach_towards(target));
     }
     protected IEnumerator freeform_approach_towards(Transform target){
-        while(target != null){
+    while(target != null){
             Vector3 distance = target.position - transform.position;
             Vector3 direction = distance.normalized; 
             set_move_direction(direction);
-            if(Mathf.Abs(distance.magnitude) <= 0.1f){
+            if(Mathf.Abs(distance.magnitude) <= 0.15f){
                 halt();
                 transform.position = target.position;
                 target_reached?.Invoke();

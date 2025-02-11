@@ -67,7 +67,8 @@ public static class SoundLibrary{
         {"Tower1",          () => {return new SceneSounds.Tower1().get_sounds();}},
         {"MageBossRoom",    () => {return new SceneSounds.MageBossRoom().get_sounds();}},
         {"SnowField",       () => {return new SceneSounds.SnowField().get_sounds();}},
-        {"FinalBossRoom",   () => {return new SceneSounds.FinalBossRoom().get_sounds();}},
+        {"GiantBossRoom",   () => {return new SceneSounds.FinalBossRoom().get_sounds();}},
+        {"AstralPlane",     () => {return new SceneSounds.AstralPlane().get_sounds();}}
     };
 }
 

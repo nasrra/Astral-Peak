@@ -242,6 +242,33 @@ public class Giant2 : Boss<Movement>{
         CameraController.instance.reset_regulators(2);
     }
 
+    protected override void death_start(){
+        animator.Play("Giant2HeadDeath");
+        animator.Play("Giant2HandDeathL");
+        animator.Play("Giant2HandDeathR");
+        no_state();
+        state.clear_and_stop();
+        StartCoroutine(Util.timer(
+            animator.get_clip_length("Giant2HeadDeath")+3,
+            start_action:()=>{
+                if(idle_state != null)
+                    StopCoroutine(idle_state);
+                enable_body_colliders(0);
+                stop_all();
+                sprites.play_death_effect(4f);
+                movement.zero_velocity(); // stop velocity in case the boss is dashing.
+                particles.stop_all_particles();
+                base.death_start();
+            },
+            time_out:()=>{
+                AudioManager.stop_music();
+                UiManager.instance.play_enemy_vanquished();
+                gameObject.SetActive(false);
+                base.death_complete();
+            }
+        ));
+    }
+
     public void projectile_yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
 
     protected void link_events(){

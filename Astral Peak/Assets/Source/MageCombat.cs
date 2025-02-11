@@ -103,9 +103,9 @@ public class MageCombat : BossCombat{
                 special_moveset = new List<BossAttack>(){
                     hollow_summon_phase_2,
                     projectile_summon_phase_2,
-                    //signature_phase_2,
-                    //left_right_phase_2,
-                    //right_left_phase_2,
+                    signature_phase_2,
+                    left_right_phase_2,
+                    right_left_phase_2,
                 };
             }}
         };

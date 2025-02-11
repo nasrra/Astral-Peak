@@ -7,31 +7,31 @@ public class GiantBossRoom : BossRoomHandler{
 
     [SerializeField] Giant1 giant1_script;
     [SerializeField] Giant2 giant2_script;
+    [SerializeField] DomineDoor domine_door_script;
     [SerializeField] ConstellationController gateway_1, gateway_2;
     [SerializeField] GameObject giant1_object, giant2_object;
-    [SerializeField] Transform domine_door;
+    [SerializeField] Transform domine_door_transform;
 
     protected override void Awake(){
         link_events();
         cutscenes = new Dictionary<string, Func<Cutscene>>(){
             {"opening",()=>new Cutscenes.GiantOpening()},
-            {"phase_1",()=>new Cutscenes.GiantPhaseTransition()}
+            {"phase_1",()=>throw new Exception("no phase_1 cutscene for giant boss!")}
         };
         base.Awake();
     }
 
     protected override void check_world_state(){
         if(GameManager.get_boss_state(2)==true){
-            Log.MethodCall();
             unlink_fight_start_trigger();
-            Player.instance.set_spawn_point(fight_start_trigger.gameObject.name);
-            //exit.set_start_open(true);
+            Player.instance.set_spawn_point(respawn_points[0].gameObject.name);
+            CutsceneManager.play(new Cutscenes.DomineDoorOpening());
         }
     }
     protected override Cutscene get_altar_cutscene() => new ShrineAltarThreeCutscene();
     protected override int get_boss_id() => 2;
 
-    public Transform get_domine_door() => domine_door;
+    public DomineDoor get_domine_door() => domine_door_script;
     public ConstellationController get_gateway_1() => gateway_1;
     public ConstellationController get_gateway_2() => gateway_2;
     public void play_giant1_introduction(){

@@ -20,18 +20,18 @@ public class CharacterMovement : Movement{
     void Start() => link();
     void OnDestroy() => unlink();
 
+    public void set_jump_force(float force) => jump_force = force;
+
     public override void clear_move_direction(){
         jumping = false;
         end_jump();
         base.clear_move_direction();
     }
 
-    public override void halt(){
-        base.halt();
-    }
-
     public override void renew(){
-        jumping = false;        
+        Log.MethodCall();
+        jumping = false;
+        jump_time_counter = 0.0f;     
         base.renew();
     }
 
@@ -84,6 +84,7 @@ public class CharacterMovement : Movement{
     public GameObject get_current_ground() => ground[ground.Count - 1];
 
     public void end_jump(){
+        Log.MethodCall();
         move_direction.y = 0;
         // ending a jump removes the ability to jump again.
         // Note:
@@ -102,6 +103,7 @@ public class CharacterMovement : Movement{
         if(jumping == true && Mathf.Abs(move_direction.y) > 0.1f){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
+                Log.MethodCall();
                 rb.linearVelocity = new Vector2(
                     rb.linearVelocity.x, 
                     move_direction.y * jump_force + (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
@@ -123,8 +125,17 @@ public class CharacterMovement : Movement{
         }
         base.movement(option, flag);
     }
-    
 
+    public override void freeform_move_to(Transform target){
+        jump_time_counter = 0;
+        jumping = true;
+    }
+
+    public override void freeform_approach_to(Transform target){
+        base.freeform_approach_to(target);
+        jump_time_counter = 0;
+        jumping = true;
+    }
 
     protected override void decelerate(){
         // decelerate when grounded and not moving.

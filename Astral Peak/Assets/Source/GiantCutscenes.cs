@@ -1,11 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cutscenes{
 public class GiantOpening : Cutscene{
     GiantBossRoom room = BossRoomHandler.instance as GiantBossRoom;
     public override IEnumerator get_coroutine(){
-        CameraController.instance.set_target(room.get_domine_door());
+        DomineDoor domine_door = room.get_domine_door();
+        CameraController.instance.set_target(domine_door.transform);
         CameraController.instance.lerp_zoom(6,2);
         yield return new WaitForSeconds(4);
         room.get_gateway_1().fade_in();
@@ -23,13 +25,4 @@ public class GiantOpening : Cutscene{
         yield break;
     }
 }
-
-public class GiantPhaseTransition : Cutscene{
-    public override IEnumerator get_coroutine(){
-        Debug.Log("giant phase transition cutscene not implemented!");
-        end();
-        yield break;
-    }
-}
-
 }

@@ -32,7 +32,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Base.
     void Awake(){
-        instance = null;
         instance = this;
         sound.set_functions(new PlayerSound(gameObject));
         GameManager.link_player();
@@ -326,7 +325,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameData data = GameManager.get_game_data();
         data.spawn_point = spawn_point;
     }
-
+    public PlayerSpriteHandler get_sprite() => sprite; 
 
 
 

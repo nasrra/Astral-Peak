@@ -50,6 +50,7 @@ public class CameraEffects : MonoBehaviour{
     public void normal_state()      => lerp_preset(CameraEffectState.NORMAL,    .35f);
     public void hurt_state()        => lerp_preset(CameraEffectState.HURT,      .35f);
     public void flashback_state()   => set_preset(CameraEffectState.FLASHBACK);
+    public void astral_plane_state() => set_preset(CameraEffectState.ASTRAL_PLANE);
     public void none_state()        => set_preset(CameraEffectState.NONE);
 
     void state_switch(ref Coroutine state, IEnumerator _state){
@@ -179,8 +180,9 @@ public struct CameraEffectState{
         colour_filter = _colour_filter;
     }
     public readonly static CameraEffectState 
-    NONE        = new CameraEffectState(0,0,0, Color.white),
-    NORMAL      = new CameraEffectState(0.05f,0,0.25f, Color.white),
-    HURT        = new CameraEffectState(0.35f,-25,0.45f, Color.white),
-    FLASHBACK   = new CameraEffectState(.45f, -100, 1, Color.white);
+    NONE         = new CameraEffectState(0,0,0, Color.white),
+    NORMAL       = new CameraEffectState(0.05f,0,0.25f, Color.white),
+    HURT         = new CameraEffectState(0.35f,-25,0.45f, Color.white),
+    FLASHBACK    = new CameraEffectState(.45f, -100, 1, Color.white),
+    ASTRAL_PLANE = new CameraEffectState(0, -100, .25f, Color.white);
 }

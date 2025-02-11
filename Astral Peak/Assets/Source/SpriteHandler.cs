@@ -98,6 +98,13 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
+    protected void set_color(string value_id, Color color){
+        foreach(string sprite in sprites.Keys)
+            set_color(sprite, value_id, color);        
+    }
+
+    protected void set_color(string sprite_id, string value_id, Color color) => sprites[sprite_id].material.SetColor(value_id, color);
+
     protected void set_value(string value_id, float value){
         foreach(string sprite in sprites.Keys)
             set_value(sprite, value_id, value);
@@ -108,5 +115,17 @@ public class SpriteHandler : MonoBehaviour{
     public void enable_sprite(bool enabled){
         foreach(SpriteRenderer sprite in sprites.Values)
             sprite.enabled = enabled;
+    }
+
+    public void set_sorting_layer(int layer, int order){
+        foreach(SpriteRenderer sprite in sprites.Values){
+            sprite.sortingLayerID   = layer;
+            sprite.sortingOrder     = order;
+        }
+    }
+
+    public void set_sorting_layer(string sprite_id, int layer, int order){
+        sprites[sprite_id].sortingLayerID   = layer;
+        sprites[sprite_id].sortingOrder     = order;
     }
 }
