@@ -1,6 +1,5 @@
 using Entropek.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class EnemyManager : MonoBehaviour{
     public static EnemyManager instance;
