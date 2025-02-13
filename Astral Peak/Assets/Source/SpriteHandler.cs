@@ -8,26 +8,25 @@ using System;
 public class SpriteHandler : MonoBehaviour{
     [SerializeField] protected SerializedDictionary<string,SpriteRenderer> sprites;
 
-    protected void set_material(Material material){
+    public void set_material(Material material){
         foreach(SpriteRenderer sprite in sprites.Values)
             sprite.material = material;
     }
 
-    protected void state_switch(ref Coroutine state, IEnumerator _state){
+    public void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
         state = StartCoroutine(_state);
     }
 
-    protected IEnumerator pulse_value(string value, int pulses = 1, float time = 0.35f){
-        int count = pulses;
+    public IEnumerator pulse_value(string value, int pulses = 1, float time = 0.35f){
         List<string> renderers = new List<string>();
         foreach(string renderer in sprites.Keys)
             renderers.Add(renderer);
         yield return pulse_value(renderers, value, pulses, time);
     }
 
-    protected IEnumerator pulse_value(List<string> sprite_id, string value, int pulses = 1, float time = 0.35f){
+    public IEnumerator pulse_value(List<string> sprite_id, string value, int pulses = 1, float time = 0.35f){
         int count = pulses;
         List<SpriteRenderer> renderers = new List<SpriteRenderer>();
         foreach(string id in sprite_id)
@@ -42,7 +41,7 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected IEnumerator pulse_value(string sprite_id, string value, int pulses = 1, float time = 0.35f){
+    public IEnumerator pulse_value(string sprite_id, string value, int pulses = 1, float time = 0.35f){
         int count = pulses;
         while (count > 0){
             yield return StartCoroutine(lerp_value(sprite_id, value, 1f, 0f, time));
@@ -53,14 +52,14 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected IEnumerator lerp_value(string value, float start, float end, float time, Action callback = null){
+    public IEnumerator lerp_value(string value, float start, float end, float time, Action callback = null){
         List<SpriteRenderer> renderers = new List<SpriteRenderer>();
         foreach(SpriteRenderer renderer in sprites.Values)
             renderers.Add(renderer);
         yield return lerp_value(renderers, value, start, end, time, callback);
     }
 
-    protected IEnumerator lerp_value(List<SpriteRenderer> sprites, string value, float start, float end, float time, Action callback = null) {
+    public IEnumerator lerp_value(List<SpriteRenderer> sprites, string value, float start, float end, float time, Action callback = null) {
         List<bool> operations = new List<bool>();
         int index = 0;
         foreach(SpriteRenderer sprite in sprites){
@@ -77,12 +76,12 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected IEnumerator lerp_value(string sprite_id, string value, float start, float end, float time, Action callback = null) {
+    public IEnumerator lerp_value(string sprite_id, string value, float start, float end, float time, Action callback = null) {
         sprites[sprite_id].material.SetFloat(value, start);
         yield return Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => callback?.Invoke());
     }
 
-    protected IEnumerator lerp_color(string value, Color start, Color end, float time) {
+    public IEnumerator lerp_color(string value, Color start, Color end, float time) {
         List<bool> operations = new List<bool>();
         int index = 0;
         foreach(KeyValuePair<string, SpriteRenderer> kvp in sprites){
@@ -98,18 +97,18 @@ public class SpriteHandler : MonoBehaviour{
         yield break;
     }
 
-    protected void set_color(string value_id, Color color){
+    public void set_color(string value_id, Color color){
         foreach(string sprite in sprites.Keys)
             set_color(sprite, value_id, color);        
     }
 
-    protected void set_color(string sprite_id, string value_id, Color color) => sprites[sprite_id].material.SetColor(value_id, color);
+    public void set_color(string sprite_id, string value_id, Color color) => sprites[sprite_id].material.SetColor(value_id, color);
 
-    protected void set_value(string value_id, float value){
+    public void set_value(string value_id, float value){
         foreach(string sprite in sprites.Keys)
             set_value(sprite, value_id, value);
     }
-    protected void set_value(string sprite_id, string value_id, float value) => sprites[sprite_id].material.SetFloat(value_id, value);
+    public void set_value(string sprite_id, string value_id, float value) => sprites[sprite_id].material.SetFloat(value_id, value);
 
     public void enable_sprite(string id, bool enabled) => sprites[id].enabled = enabled;
     public void enable_sprite(bool enabled){

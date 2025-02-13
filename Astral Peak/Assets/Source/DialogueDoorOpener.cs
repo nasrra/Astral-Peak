@@ -1,18 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueDoorOpener : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class DialogueDoorOpener : MonoBehaviour{
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

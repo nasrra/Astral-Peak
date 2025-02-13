@@ -113,7 +113,7 @@ public class CameraEffects : MonoBehaviour{
         Util.timer(
             time: time,
             start_action:()=>{
-                screen_transitions.speed = time;
+                screen_transitions.speed = 1/time;
                 screen_transitions.Play(transition);
                 start_action?.Invoke();                
             },
@@ -124,7 +124,7 @@ public class CameraEffects : MonoBehaviour{
         Util.unscaled_timer(
             time: time,
             start_action:()=>{
-                screen_transitions.speed = time;
+                screen_transitions.speed = 1/time;
                 screen_transitions.updateMode = AnimatorUpdateMode.UnscaledTime;
                 screen_transitions.Play(transition);
                 start_action?.Invoke();                

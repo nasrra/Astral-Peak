@@ -89,6 +89,7 @@ public static class AudioManager{
 
 
     // SFX Settings
+    public static void mute_sfx_volume() => mixer.SetFloat(SFX_VOLUME, -80);
     public static void sfx_volume(float volume) => mixer.SetFloat(SFX_VOLUME,volume);
     public static void dim_sfx_volume(){
         state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME,-80f, 1f));

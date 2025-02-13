@@ -1136,4 +1136,15 @@ public class HandClapReverb : Sound{
     ){}
 }
 
+public class WomanGaspReverb : Sound{
+    public WomanGaspReverb() : base(
+        _id:        SoundID.WOMAN_GASP_REVERB,
+        _clip:      "woman_gasp_reverb",
+        _group:     AudioManager.voice_mixer,
+        _volume:    0.8f,
+        _max_pitch: 1f,
+        _min_pitch: 1f
+    ){}
+}
+
 }

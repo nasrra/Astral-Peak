@@ -37,6 +37,8 @@ public class ShrineCutsceneTorch : MonoBehaviour{
             t.revert();  
     }
 
+    
+
     void handle_cutscene(){
         Cutscene cutscene = CutsceneManager.get_cutscene();
         if(cutscene == null)

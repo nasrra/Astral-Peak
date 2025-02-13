@@ -46,8 +46,8 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        CustomSceneManager.loaded_scene += start_scene_swap_segment;
-        //CustomSceneManager.loaded_scene += start_shrine_segment;
+        //CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        CustomSceneManager.loaded_scene += start_shrine_segment;
         yield break;
     }
     protected void play_transition_2(){
@@ -106,8 +106,8 @@ public class DomineDoorFinal : Cutscene{
     }
 
     IEnumerator shrine_segement_coroutine(){
-        RoomHandler room = RoomHandler.instance;
-        room.game_cleared_room_state();
+        ShrineRoomHandler shrine_room = RoomHandler.instance as ShrineRoomHandler;
+        shrine_room.game_cleared_room_state();
         numerals_on?.Invoke();
         yield return new WaitForSeconds(3);
         torches_on?.Invoke();
@@ -115,13 +115,17 @@ public class DomineDoorFinal : Cutscene{
         CameraController.instance.lerp_zoom(3,6);
         CameraController.instance.lerp_offset(null,-2.5f,6);
         yield return new WaitForSeconds(8);
-        yield break;
-    }
-
-    IEnumerator ending(){
-        CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        RoomHandler room = RoomHandler.instance;
-        yield return new WaitForSeconds(6);
+        shrine_room.beatrice.awaken();
+        yield return new WaitForSeconds(8.9f);
+        AudioManager.mute_sfx_volume();
+        AudioClipHandler.play(Sounds.SoundID.WOMAN_GASP_REVERB, UnityHook.instance.gameObject, AudioSourceSettings.NON_DIEGETIC);
+        CameraEffects.instance.fade_to_black(0.01f);
+        yield return new WaitForSeconds(8f);
+        CustomSceneManager.load_scene("AstralPlane");
+        CameraEffects.instance.fade_from_black(4);
+        yield return new WaitForSeconds(2f);
+        AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
+        astral_room.play_end_credits();
         unlink();
         end();
         yield break;

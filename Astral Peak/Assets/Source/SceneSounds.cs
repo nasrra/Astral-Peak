@@ -83,7 +83,8 @@ public struct Shrine : SceneSoundSet{
         new StoneSoundSet(),
         new DomineSoundSet(),
         new FireSoundSet(),
-        new AltarCutsceneSoundSet()
+        new AltarCutsceneSoundSet(),
+        new BeatriceSoundSet(),
     };
 }
 

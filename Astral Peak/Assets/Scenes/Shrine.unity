@@ -2950,7 +2950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434137625}
-  - component: {fileID: 1434137626}
+  - component: {fileID: 1434137627}
   m_Layer: 0
   m_Name: RoomHandler
   m_TagString: Untagged
@@ -2974,7 +2974,7 @@ Transform:
   - {fileID: 2095266924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1434137626
+--- !u!114 &1434137627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2983,12 +2983,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1434137624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a3865395e999e40861c409f7b8d0b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d8678476f506bf4b901168da12f4487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ambience_tracks: 0000
   final_cutscene_camera_target: {fileID: 2095266924}
   final_cutscene_camera_movement: 2
+  beatrice: {fileID: 2014443718}
 --- !u!1001 &1438934098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4178,6 +4179,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 764138862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014443718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1043456369727055518, guid: 9de0a2c764bbdc844bfd4a72ea43740f, type: 3}
+  m_PrefabInstance: {fileID: 2123362376317098310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c8de07f4637ea45ba76426729eefb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2022727210
 PrefabInstance:
   m_ObjectHideFlags: 0

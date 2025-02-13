@@ -116,6 +116,9 @@ namespace Sounds{
     DEEP_THUMPING,
     WOODEN_RATTLE_IMPACT,
 
+    // Beatrice
+    WOMAN_GASP_REVERB,
+
     //Domine
     DANIEL,
     DOMINE_AN_OFFERING,
