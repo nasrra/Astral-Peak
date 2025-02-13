@@ -46,17 +46,20 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
+        CustomSceneManager.loaded_scene += astral_plane_segment;
         //CustomSceneManager.loaded_scene += start_scene_swap_segment;
-        CustomSceneManager.loaded_scene += start_shrine_segment;
+        //CustomSceneManager.loaded_scene += start_shrine_segment;
+        //CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
-    protected void play_transition_2(){
-        CustomSceneManager.loaded_scene -= play_transition_2;
+    protected void astral_plane_segment(){
+        CustomSceneManager.loaded_scene -= astral_plane_segment;
         CutsceneManager.set_coroutine(astral_plane_opening());
     }
     IEnumerator astral_plane_opening(){
         Player.instance.get_sprite().set_black();
-        CameraEffects.instance.astral_plane_state();
+        AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
+        astral_room.get_domine_door().opened();
         yield return new WaitForSeconds(2);
         Player.instance.get_sprite().fade_from_black();
         yield return new WaitForSeconds(6);
@@ -121,14 +124,25 @@ public class DomineDoorFinal : Cutscene{
         AudioClipHandler.play(Sounds.SoundID.WOMAN_GASP_REVERB, UnityHook.instance.gameObject, AudioSourceSettings.NON_DIEGETIC);
         CameraEffects.instance.fade_to_black(0.01f);
         yield return new WaitForSeconds(8f);
+        start_end_credits_segment();
+        yield break;
+    }
+
+    void start_end_credits_segment(){
+        CustomSceneManager.loaded_scene -= start_end_credits_segment;
+        DialogueHandler.instance.dialogue_ended -= start_end_credits_segment;
         CustomSceneManager.load_scene("AstralPlane");
-        CameraEffects.instance.fade_from_black(4);
-        yield return new WaitForSeconds(2f);
+        CustomSceneManager.loaded_scene += ending;
+    }
+
+    void ending(){
+        CustomSceneManager.loaded_scene -= ending;
+        DialogueHandler.instance.dialogue_ended -= ending;
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
-        astral_room.play_end_credits();
+        CameraEffects.instance.fade_from_black(4);
+        astral_room.end_credits_state();
         unlink();
         end();
-        yield break;
     }
 
     void unlink(){

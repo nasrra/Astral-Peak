@@ -17,8 +17,8 @@ public static class CutsceneManager{
     }
     public static void play(Cutscene _cutscene){
         GameManager.state_changed(GameState.CUTSCENE);
-        started_cutscene?.Invoke(cutscene);
         cutscene = _cutscene;
+        started_cutscene?.Invoke(cutscene);
         set_coroutine(cutscene.get_coroutine());
         cutscene.ended += cutscene_ended;
         link_cutscene_skip();

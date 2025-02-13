@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cutscenes;
+using Entropek;
 using UnityEngine;
 
 public class ShrineCutsceneTorch : MonoBehaviour{
     [SerializeField] List<Torch> torches = new List<Torch>();
     AudioSource source;
     void Awake(){
-        handle_cutscene();
-    } 
+        handle_cutscene(CutsceneManager.get_cutscene());
+        link();
+    }
+    void OnDestroy(){
+        unlink();        
+    }
     void turn_on() => StartCoroutine(turn_on_coroutine());
     IEnumerator turn_on_coroutine(){
         foreach(Torch t in torches){
@@ -39,15 +44,13 @@ public class ShrineCutsceneTorch : MonoBehaviour{
 
     
 
-    void handle_cutscene(){
-        Cutscene cutscene = CutsceneManager.get_cutscene();
-        if(cutscene == null)
-            return;
+    void handle_cutscene(Cutscene cutscene){
         switch(cutscene){
             case ShrineAltarCutscene c:
                 c.torches_on += turn_on;                
                 break;
             case ShrineOpeningCutscene c:
+                Log.MethodCall();
                 c.torches_on        += turn_on;
                 c.torches_off       += turn_off;
                 c.enlargen_torches  += enlargen;
@@ -56,6 +59,16 @@ public class ShrineCutsceneTorch : MonoBehaviour{
             case DomineDoorFinal c:
                 c.torches_on += turn_on;
                 break;
+            default:
+                return;
         }
+    }
+
+    void link(){
+        CutsceneManager.started_cutscene += handle_cutscene;
+    }
+
+    void unlink(){
+        CutsceneManager.started_cutscene -= handle_cutscene;
     }
 }
