@@ -14,6 +14,9 @@ public static class StaticComponents{
     static UnityHook hook_in;
 
     
+
+    static GameObject player_input;
+
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     // initializing the managers of the game.

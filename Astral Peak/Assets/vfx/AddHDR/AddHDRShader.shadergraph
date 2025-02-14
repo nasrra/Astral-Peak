@@ -8,6 +8,9 @@
         },
         {
             "m_Id": "dd6654e8f6fe408e897b3441e0f081a3"
+        },
+        {
+            "m_Id": "533ce3f996e1411197fecb2dfbc82cc2"
         }
     ],
     "m_Keywords": [],
@@ -879,6 +882,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "533ce3f996e1411197fecb2dfbc82cc2",
+    "m_Guid": {
+        "m_GuidSerialized": "5d2d07c4-6fb6-4799-b45f-6ed998e7c5b3"
+    },
+    "m_Name": "alpha",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "alpha",
+    "m_DefaultReferenceName": "_alpha",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "536ebe364ce04284ac6c88834387fb6b",
@@ -903,9 +934,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -358.0000915527344,
-            "y": -309.0000305175781,
-            "width": 128.00001525878907,
+            "x": -336.9999694824219,
+            "y": -310.0,
+            "width": 126.00001525878906,
             "height": 34.0
         }
     },
@@ -1167,7 +1198,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "8fa0d2873e444a0d9e9cdac6241ff466",
     "m_Id": 0,
-    "m_DisplayName": "HDRColor",
+    "m_DisplayName": "hdr_color",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1448,6 +1479,9 @@
         },
         {
             "m_Id": "dd6654e8f6fe408e897b3441e0f081a3"
+        },
+        {
+            "m_Id": "533ce3f996e1411197fecb2dfbc82cc2"
         }
     ]
 }
@@ -1552,10 +1586,10 @@
     "m_Guid": {
         "m_GuidSerialized": "4306bd64-3069-4ad4-9d50-f1d93148771b"
     },
-    "m_Name": "HDRColor",
+    "m_Name": "hdr_color",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "HDRColor",
-    "m_DefaultReferenceName": "_HDRColor",
+    "m_RefNameGeneratedByDisplayName": "hdr_color",
+    "m_DefaultReferenceName": "_hdr_color",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,

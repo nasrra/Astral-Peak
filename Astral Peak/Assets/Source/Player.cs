@@ -38,9 +38,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameManager.link_player();
         movement.move_only_state();
         load_data();
+        link_events();
     }
     void Start(){   
-        link_events();
         set_enter_position();
     }
     void OnDestroy(){

@@ -96,6 +96,7 @@ public static class AudioManager{
     }
     public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), 1f));
     public static void play_ambience(SoundID sound_id){
+        Log.MethodCall();
         if(ambience_sound_id == sound_id)
             return;
         ambience_sound_id = sound_id;
@@ -113,6 +114,7 @@ public static class AudioManager{
         }
     }
     public static void stop_ambience(){
+        Log.MethodCall();
         if(ambience_loop_state!=null)
             UnityHook.instance.StopCoroutine(ambience_loop_state);
         if(reverse_ambience_crossfade == false)

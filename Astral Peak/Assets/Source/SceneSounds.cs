@@ -195,6 +195,7 @@ public struct AstralPlane : SceneSoundSet{
         new StoneSoundSet(),
         new MagicSoundSet(),
         new MeleeSoundSet(),
+        new DomineSoundSet(),
     };
 }
 

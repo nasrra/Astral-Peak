@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -143,12 +141,13 @@ public static class InputManager{
         keybinds.UserControls.Attack.performed          += on_user_attack_performed;
         keybinds.UserControls.Attack.canceled           += on_user_attack_canceled;
         keybinds.UserControls.Dash.performed            += on_user_dash_performed;
-        keybinds.UserControls.Pause.performed            += on_user_pause_performed;
+        keybinds.UserControls.Pause.performed           += on_user_pause_performed;
         #if UNITY_EDITOR
             keybinds.UserControls.ZoomOut.performed     += on_user_zoom_out;
             keybinds.UserControls.ZoomIn.performed      += on_user_zoom_in;
         #endif
     }
+
     private static void unlink_user_controls(){
         keybinds.UserControls.Jump.performed            -= on_user_jump_performed;
         keybinds.UserControls.Jump.canceled             -= on_user_jump_canceled;
@@ -187,7 +186,7 @@ public static class InputManager{
     static void on_user_attack_canceled(InputAction.CallbackContext ctx)   { user_attack_canceled?.Invoke();    }
     static void on_user_up_performed(InputAction.CallbackContext ctx)      { user_up_performed?.Invoke();       }
     static void on_user_up_canceled(InputAction.CallbackContext ctx)       { user_up_canceled?.Invoke();        }
-    static void on_user_dash_performed(InputAction.CallbackContext ctx)    => user_dash_performed?.Invoke();
+    static void on_user_dash_performed(InputAction.CallbackContext ctx)     => user_dash_performed?.Invoke();
     static void on_user_pause_performed(InputAction.CallbackContext ctx)    => user_pause_performed?.Invoke();
     #if UNITY_EDITOR
         static void on_user_zoom_out(InputAction.CallbackContext ctx)      => CameraController.instance?.ZoomOut();

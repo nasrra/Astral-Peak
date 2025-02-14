@@ -46,10 +46,11 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        CustomSceneManager.loaded_scene += astral_plane_segment;
-        //CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        //CustomSceneManager.loaded_scene += astral_plane_segment;
+        CustomSceneManager.loaded_scene += start_scene_swap_segment;
         //CustomSceneManager.loaded_scene += start_shrine_segment;
         //CustomSceneManager.loaded_scene += start_end_credits_segment;
+        room.game_cleared_room_state();
         yield break;
     }
     protected void astral_plane_segment(){
