@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 2666390581207947752}
   - component: {fileID: 6397682691917227320}
   - component: {fileID: 3397526920180955950}
+  - component: {fileID: 8859420473547062109}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -329,7 +330,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 658704031250701010}
   - {fileID: 3159309843669094921}
   - {fileID: 4622185473335493503}
   m_Father: {fileID: 0}
@@ -392,7 +392,7 @@ MonoBehaviour:
   sprite: {fileID: 832611355594822930}
   sound: {fileID: 1482145228459230294}
   col: {fileID: 3397526920180955950}
-  audio_listener: {fileID: 9154550411627062820}
+  audio_listener: {fileID: 8859420473547062109}
   intermediate_health: 0
   up_toggle: 0
 --- !u!114 &832611355594822930
@@ -583,6 +583,14 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.6}
   m_Size: {x: 0.5, y: 2}
   m_Direction: 0
+--- !u!81 &8859420473547062109
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346144351632198270}
+  m_Enabled: 1
 --- !u!1 &1441291931536135820
 GameObject:
   m_ObjectHideFlags: 0
@@ -15645,46 +15653,6 @@ Transform:
   - {fileID: 2619315431953450424}
   m_Father: {fileID: 5480226563768941579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4177802862712796787
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 658704031250701010}
-  - component: {fileID: 9154550411627062820}
-  m_Layer: 7
-  m_Name: AudioListener
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &658704031250701010
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4177802862712796787}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6660382352086623647}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &9154550411627062820
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4177802862712796787}
-  m_Enabled: 1
 --- !u!1 &4286287011383823139
 GameObject:
   m_ObjectHideFlags: 0
@@ -15795,7 +15763,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -42.70962, y: -5.618769}
+  m_ConnectedAnchor: {x: 0.0153501555, y: -1.7745278}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:

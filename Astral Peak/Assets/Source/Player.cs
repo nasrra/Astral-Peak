@@ -294,7 +294,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         animator.force_idle();
         health.set_invulnerable();
         audio_listener.enabled = false;
-        Log.MethodCall();
     }
     public override void exit_cutscene_state(){
         movement.renew();

@@ -50,6 +50,7 @@ public static class AudioManager{
         previous_music   .outputAudioMixerGroup = music_mixer;
         current_ambience .outputAudioMixerGroup = sfx_mixer;
         previous_ambience.outputAudioMixerGroup = sfx_mixer;
+        CustomSceneManager.loaded_scene += play_sources;
     }    
     static void state_switch(ref Coroutine coroutine, IEnumerator _coroutine){
         if(coroutine != null)
@@ -57,8 +58,17 @@ public static class AudioManager{
         coroutine = _coroutine != null? UnityHook.instance.StartCoroutine(_coroutine) : null;
     }
 
-
-
+    // here so that whenchanging scenes, we continue playing the music.
+    static void play_sources(){
+        if(reverse_ambience_crossfade == false)
+            current_ambience.Play();
+        else
+            previous_ambience.Play();
+        if(reverse_music_crossfade == false)
+            current_music.Play();
+        else
+            previous_music.Play();
+    }
 
 
     // Music settings.////
@@ -96,7 +106,6 @@ public static class AudioManager{
     }
     public static void restore_sfx_volume() => state_switch(ref sfx_volume_state, lerp_value_unscaled(SFX_VOLUME, load_sfx_volume(), 1f));
     public static void play_ambience(SoundID sound_id){
-        Log.MethodCall();
         if(ambience_sound_id == sound_id)
             return;
         ambience_sound_id = sound_id;
@@ -170,7 +179,8 @@ public static class AudioManager{
         save_music_volume();
         save_voice_volume();
     }
-    public static void save_sfx_volume()    =>   PlayerPrefs.SetFloat(SFX_VOLUME,   mixer.GetFloat(SFX_VOLUME, out float v)? v : -10f);
+    public static void save_sfx_volume()    =>   PlayerPrefs.SetFloat(SFX_VOLUME, mixer.GetFloat(SFX_VOLUME, out float v)? v : -10f);
     public static void save_music_volume()  => PlayerPrefs.SetFloat(MUSIC_VOLUME, mixer.GetFloat(MUSIC_VOLUME, out float v)? v : -10f);
     public static void save_voice_volume()  => PlayerPrefs.SetFloat(VOICE_VOLUME, mixer.GetFloat(VOICE_VOLUME, out float v)? v : -10f);
+
 }////
