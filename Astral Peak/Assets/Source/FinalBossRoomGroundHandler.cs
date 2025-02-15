@@ -31,7 +31,7 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
             time_out:()=>{
                 grounds[selected].AddForce(new Vector2(0,force), ForceMode2D.Impulse);
                 holsters.enable_melee_hurtbox($"{selected}");
-                AudioClipHandler.play(Sounds.SoundID.STONE_SHIFT_FAST, grounds[selected].gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
+                // AudioClipHandler.play(Sounds.SoundID.STONE_SHIFT_FAST, grounds[selected].gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
             }
         ));
         StartCoroutine(Util.timer(

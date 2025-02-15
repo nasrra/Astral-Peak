@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entropek;
-using Sounds;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
@@ -55,7 +54,7 @@ public class MageBossRoom : BossRoomHandler{
     public MagicPlatformsController get_platforms()=>platforms;
     public BackgroundMage get_background_mage() => background_mage.GetComponent<BackgroundMage>();
     public void set_room_state(int x){
-        AudioManager.play_ambience(ambience_tracks[x]);
+        // AudioManager.play_ambience(ambience_tracks[x]);
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
         snow_controller.lerp_preset(x);
@@ -94,7 +93,7 @@ public class MageBossRoom : BossRoomHandler{
     protected override void death_completed(){
         set_room_state(0);
         StopCoroutine("randomised_stone_lightning_loop");
-        StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
+        // StartCoroutine(AudioClipHandler.fade_out(phase_2_ambient_lightning,.5f));
         base.death_completed();
     }
 

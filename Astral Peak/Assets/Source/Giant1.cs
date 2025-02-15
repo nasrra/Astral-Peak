@@ -8,7 +8,7 @@ public class Giant1 : Boss<Movement>{
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
 
     void Awake(){
-        sound.set_functions(new GiantSound(gameObject));
+        // sound.set_functions(new GiantSound(gameObject));
         link_events();
     }
     void Start(){

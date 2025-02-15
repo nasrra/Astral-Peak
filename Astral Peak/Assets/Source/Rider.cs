@@ -6,7 +6,7 @@ public class Rider : Boss<Movement>{
     protected Coroutine idle_state;
     
     void Start(){
-        sound.set_functions(new RiderSound(gameObject));
+        // sound.set_functions(new RiderSound(gameObject));
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();
@@ -47,7 +47,9 @@ public class Rider : Boss<Movement>{
         no_state();
     }
 
-    void projectile_fired(string x) => sound.play_sound("bow_shot");
+    void projectile_fired(string x){
+        // sound.play_sound("bow_shot");
+    }
 
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)

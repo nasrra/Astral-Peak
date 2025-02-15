@@ -5,7 +5,6 @@ using AYellowpaper.SerializedCollections;
 using Entropek.Collections;
 using UnityEngine;
 using Entropek;
-using Sounds;
 
 public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     public event Action<string> phase_transition, phase_entered, phase_exited;
@@ -18,7 +17,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
-    [SerializeField] public AudioPlayer sound;
+    // [SerializeField] public AudioPlayer sound;
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;
@@ -76,12 +75,12 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected void play_weapon_flash(string weapon){
         sprites.play_charged_flash(weapon);
-        sound.play_sound("ping");
+        // sound.play_sound("ping");
     }
 
     protected void play_weapon_flash(List<string> weapons){
         sprites.play_charged_flash(weapons);
-        sound.play_sound("ping");
+        // sound.play_sound("ping");
     }
 
     public void set_target(Transform _target) => target = _target;
@@ -120,7 +119,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         combat.renew();
         state.stop();
         particles.stop_all_particles();
-        sound.stop_all_loops();
+        // sound.stop_all_loops();
         lighting.set_intensity(0);
         sprites.renew();     
     }

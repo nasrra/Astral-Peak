@@ -29,11 +29,12 @@ public class BackgroundMage : MonoBehaviour{
             }
         ));
     }
-    void play_teleport_sound() =>
-        AudioClipHandler.play(
-        sound_id: Sounds.SoundID.ELECTRIC_BURST,
-        audio_player: gameObject,
-        AudioSourceSettings.NON_DIEGETIC_RANDOMISED);
+    void play_teleport_sound(){
+        // AudioClipHandler.play(
+        // sound_id: Sounds.SoundID.ELECTRIC_BURST,
+        // audio_player: gameObject,
+        // AudioSourceSettings.NON_DIEGETIC_RANDOMISED);
+    }
     public void flip() => flip_objects.transform.rotation = flip_objects.transform.rotation.eulerAngles.y == 0? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
 }
 

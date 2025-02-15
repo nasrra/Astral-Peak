@@ -37,12 +37,13 @@ public class DomineDoor : MonoBehaviour{
 
     public Transform get_player_point() => player_point;
 
-    private void play_sound() 
-    => AudioClipHandler.play(
-        Sounds.SoundID.STONE_DOOR,
-        gameObject,
-        AudioSourceSettings.NON_DIEGETIC_RANDOMISED
-    );
+    private void play_sound(){
+        // AudioClipHandler.play(
+        // Sounds.SoundID.STONE_DOOR,
+        // gameObject,
+        // AudioSourceSettings.NON_DIEGETIC_RANDOMISED
+        // );
+    }
     private void shake_camera() => CameraController.instance.shake_camera(5f,.75f,true);
 
 }

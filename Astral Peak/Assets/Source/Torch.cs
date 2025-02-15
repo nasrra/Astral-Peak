@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Sounds;
 
 public class Torch : MonoBehaviour{
     [SerializeField] Light2D light2D;
@@ -59,10 +58,10 @@ public class Torch : MonoBehaviour{
             s.gameObject.SetActive(false);
         }
         smoke.Play();
-        AudioClipHandler.play(
-            SoundID.STEAM,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);  
+        // AudioClipHandler.play(
+        //     SoundID.STEAM,
+        //     audio_player: gameObject, 
+        //     AudioSourceSettings.DIEGETIC);  
 
         fire_source.Stop();
         embers.Emit(30);
@@ -73,10 +72,10 @@ public class Torch : MonoBehaviour{
 
     IEnumerator turn_on_fire() {
         float x = 1;
-        fire_source = AudioClipHandler.play(
-            SoundID.SMALL_FIRE, 
-            audio_player: gameObject,
-            AudioSourceSettings.DIEGETIC_LOOP);  
+        // fire_source = AudioClipHandler.play(
+        //     SoundID.SMALL_FIRE, 
+        //     audio_player: gameObject,
+        //     AudioSourceSettings.DIEGETIC_LOOP);  
 
         embers.Emit(30);
         embers.Play();

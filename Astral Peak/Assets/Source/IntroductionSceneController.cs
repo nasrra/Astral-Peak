@@ -17,7 +17,7 @@ public class Introduction : Cutscene{
         controller.fire_2.off();
         yield return new WaitForSeconds(1);
         controller.title_card_text.Play("fade_in");
-        AudioManager.play_music(Sounds.SoundID.INTRODUCTION_MUSIC);
+        // AudioManager.play_music(Sounds.SoundID.INTRODUCTION_MUSIC);
         yield return new WaitForSeconds(10);
         controller.fire_1.turn_on();
         yield return new WaitForSeconds(4);
@@ -29,7 +29,7 @@ public class Introduction : Cutscene{
         yield return new WaitForSeconds(4);
         controller.fire_2.turn_off();
         yield return new WaitForSeconds(4);
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         yield return new WaitForSeconds(2);
         CustomSceneManager.load_scene_with_transitions("Shrine");
         end();

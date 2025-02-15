@@ -12,7 +12,7 @@ public class SnowSlamProjectile : Projectile{
         //    time_out: destroy
         //));
         base.Start();
-        source = AudioClipHandler.play(Sounds.SoundID.SNOW_ROLLING, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
+        // source = AudioClipHandler.play(Sounds.SoundID.SNOW_ROLLING, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
     }
 
     void OnTriggerEnter2D(Collider2D other){
@@ -25,7 +25,7 @@ public class SnowSlamProjectile : Projectile{
             destroy();
     }    
     public override void destroy(){
-        StartCoroutine(AudioClipHandler.fade_out(source, 2));
+        // StartCoroutine(AudioClipHandler.fade_out(source, 2));
         Destroy(gameObject, 2.1f);
     }
 }

@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Sounds;
 using System;
 
 public class DomineVoiceLink : MonoBehaviour{
-    [SerializeField] AudioSource source;
     [SerializeField] List<AudioSpectrum> audio_spectrum = new List<AudioSpectrum>();
     [SerializeField] DomineVoiceLinesID id;
+    [SerializeField] AudioPlayer audio_player;
     VoiceLines voice_lines;
 
-    void Awake() => voice_lines = create_voice_lines[id]();
+    void Awake(){
+        voice_lines = create_voice_lines[id]();
+        audio_player.initialize(create_audio_player[id]());
+    }   
 
     void Start(){
         DialogueHandler.instance.new_line += handle_new_line;
@@ -21,21 +23,22 @@ public class DomineVoiceLink : MonoBehaviour{
 
     void handle_new_line(int x){
         choose_voice(x);
-        foreach(AudioSpectrum a in audio_spectrum)
-            a.source = source;
+        //foreach(AudioSpectrum a in audio_spectrum)
+        //    a.source = source;
     }
 
     Dictionary<DomineVoiceLinesID, Func<VoiceLines>> create_voice_lines = new Dictionary<DomineVoiceLinesID, Func<VoiceLines>>(){
         {DomineVoiceLinesID.SHRINE,             ()=>{return new DomineShrineVoiceLines();}},
         {DomineVoiceLinesID.ASTRAL_PLANE,       ()=>{return new DomineAstralPlaneVoiceLines();}},
     };
+    Dictionary<DomineVoiceLinesID, Func<AudioPlayerEventDataPackage>> create_audio_player = new Dictionary<DomineVoiceLinesID, Func<AudioPlayerEventDataPackage>>(){
+        {DomineVoiceLinesID.SHRINE,             ()=>{return new DomineShrineAudioPlayerEventDataPackage();}},
+        {DomineVoiceLinesID.ASTRAL_PLANE,       ()=>{return new DomineAstralPlaneAudioPlayerEventDataPackage();}},        
+    };
 
     void choose_voice(int x){
-        SoundID sound = voice_lines.get_voice_lines().ContainsKey(x)? voice_lines.get_voice_lines()[x] : SoundID.NONE; 
-        source = AudioClipHandler.play(
-            sound_id: sound, 
-            audio_player: gameObject, 
-            AudioSourceSettings.NON_DIEGETIC);  
+        if(voice_lines.get_voice_lines().ContainsKey(x)){
+            audio_player.play_non_diegetic_one_shot(voice_lines.get_voice_lines()[x]);
     }
 }
 
@@ -45,59 +48,119 @@ public enum DomineVoiceLinesID : sbyte{
 }
 
 abstract class VoiceLines{
-    protected Dictionary<int, SoundID> voice_lines;
-    public Dictionary<int, SoundID> get_voice_lines() => voice_lines;
-}
-
-class DomineShrineVoiceLines : VoiceLines{
-    public DomineShrineVoiceLines(){
-        voice_lines = new Dictionary<int, SoundID>(){
-        {0, SoundID.DOMINE_DEAD_WOMAN},
-        {1, SoundID.DOMINE_SACRIFICE_RITUAL},
-        {2, SoundID.DOMINE_AN_OFFERING},
-        {3, SoundID.DOMINE_NO},
-        {4, SoundID.DOMINE_CURSED_ONE},
-        {5, SoundID.DOMINE_WHY_HERE},
-        {6, SoundID.DOMINE_LOST_SOUL},
-        {7, SoundID.DOMINE_BURNED_WOMAN},
-        {8, SoundID.DOMINE_ASHES_TO_WIND},
-        {9,SoundID.DOMINE_FOOL_OR_BRAVE},
-        {10,SoundID.DOMINE_UNLESS},
-        {11,SoundID.DOMINE_MOUNTAIN_SUMMIT}, // threshold of world.
-        {12,SoundID.DOMINE_UNDER_ARCHES}, // last inhabitants.
-        {13,SoundID.DOMINE_OLD_DOOR},
-        {14,SoundID.DOMINE_WALK_AETHER}, // journey there/ wish granted.
-        {15,SoundID.DOMINE_WARNING},
-        {16,SoundID.DOMINE_ITS_EXPENSIVE},
-        {17,SoundID.DOMINE_WAITING_MORTAL},
-        };
-    }
+    protected Dictionary<int, string> voice_lines;
+    public Dictionary<int, string> get_voice_lines() => voice_lines;
 }
 
 class DomineAstralPlaneVoiceLines : VoiceLines{
     public DomineAstralPlaneVoiceLines(){
-        voice_lines = new Dictionary<int, SoundID>(){
-        {1, SoundID.DOMINE_DEAD_WOMAN},
-        {2, SoundID.DOMINE_SACRIFICE_RITUAL},
-        {3, SoundID.DOMINE_AN_OFFERING},
-        {4, SoundID.DOMINE_NO},
-        {5, SoundID.DOMINE_CURSED_ONE},
-        {6, SoundID.DOMINE_WHY_HERE},
-        {7, SoundID.DOMINE_LOST_SOUL},
-        {8, SoundID.DOMINE_BURNED_WOMAN},
-        {9, SoundID.DOMINE_ASHES_TO_WIND},
-        {10,SoundID.DOMINE_FOOL_OR_BRAVE},
-        //11 ..
-        {12,SoundID.DOMINE_UNLESS},
-        //13 ...
-        {14,SoundID.DOMINE_MOUNTAIN_SUMMIT}, // threshold of world.
-        {15,SoundID.DOMINE_UNDER_ARCHES}, // last inhabitants.
-        {16,SoundID.DOMINE_OLD_DOOR},
-        {17,SoundID.DOMINE_WALK_AETHER}, // journey there/ wish granted.
-        {18,SoundID.DOMINE_WARNING},
-        {19,SoundID.DOMINE_ITS_EXPENSIVE},
-        // 20 ...
-        {21,SoundID.DOMINE_WAITING_MORTAL},            
+        voice_lines = new Dictionary<int, string>(){
+        {0, "domine_dead_woman"},
+        {1, "domine_sacrifice_ritual"},
+        {2, "domine_an_offering"},
+        {3, "domine_no"},
+        {4, "domine_cursed_one"},
+        {5, "domine_why_here"},
+        {6, "domine_lost_soul"},
+        {7, "domine_burned_woman"},
+        {8, "domine_ashes_to_wind"},
+        {9, "domine_fool_or_brave"},
+        {10,"domine_unless"},
+        {11,"domine_mountain_summit"}, // threshold of world.
+        {12,"domine_under_arches"}, // last inhabitants.
+        {13,"domine_old_door"},
+        {14,"domine_walk_aether"}, // journey there/ wish granted.
+        {15,"domine_warning"},
+        {16,"domine_its_expensive"},
+        {17,"domine_waiting_mortal"},
         };
     }
+}
+
+struct DomineAstralPlaneAudioPlayerEventDataPackage : AudioPlayerEventDataPackage{
+    public List<AudioPlayerEventData> get_event_instances(){
+        return new List<AudioPlayerEventData>();
+    }
+
+    public List<AudioPlayerEventData> get_event_references(){
+        return new List<AudioPlayerEventData>(){
+            new(FMODEventFolders.VOICE_DOMINE,"domine_dead_woman"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_sacrifice_ritual"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_an_offering"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_no"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_cursed_one"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_why_here"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_lost_soul"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_burned_woman"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_ashes_to_wind"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_fool_or_brave"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_unless"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_mountain_summit"), // threshold of world.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_under_arches"), // last inhabitants.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_old_door"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_walk_aether"), // journey there/ wish granted.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_warning"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_its_expensive"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_waiting_mortal"),
+        };
+    }
+}
+
+class DomineShrineVoiceLines : VoiceLines{
+    public DomineShrineVoiceLines(){
+        voice_lines = new Dictionary<int, string>(){
+        
+        {1, "domine_dead_woman"},
+        {2, "domine_sacrifice_ritual"},
+        {3, "domine_an_offering"},
+        {4, "domine_no"},
+        {5, "domine_cursed_one"},
+        {6, "domine_why_here"},
+        {7, "domine_lost_soul"},
+        {8, "domine_burned_woman"},
+        {9, "domine_ashes_to_wind"},
+        {10, "domine_fool_or_brave"},
+        //11...
+        {12,"domine_unless"},
+        //13...
+        {14,"domine_mountain_summit"}, // threshold of world.
+        {15,"domine_under_arches"}, // last inhabitants.
+        {16,"domine_old_door"},
+        {17,"domine_walk_aether"}, // journey there/ wish granted.
+        {18,"domine_warning"},
+        {19,"domine_its_expensive"},
+        //20...
+        {21,"domine_waiting_mortal"},
+        };       
+    }
+}
+
+struct DomineShrineAudioPlayerEventDataPackage : AudioPlayerEventDataPackage{
+    public List<AudioPlayerEventData> get_event_instances(){
+        return new List<AudioPlayerEventData>();
+    }
+
+    public List<AudioPlayerEventData> get_event_references(){
+        return new List<AudioPlayerEventData>(){
+            new(FMODEventFolders.VOICE_DOMINE,"domine_dead_woman"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_sacrifice_ritual"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_an_offering"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_no"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_cursed_one"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_why_here"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_lost_soul"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_burned_woman"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_ashes_to_wind"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_fool_or_brave"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_unless"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_mountain_summit"), // threshold of world.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_under_arches"), // last inhabitants.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_old_door"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_walk_aether"), // journey there/ wish granted.
+            new(FMODEventFolders.VOICE_DOMINE,"domine_warning"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_its_expensive"),
+            new(FMODEventFolders.VOICE_DOMINE,"domine_waiting_mortal"),
+        };
+    }
+}
 }

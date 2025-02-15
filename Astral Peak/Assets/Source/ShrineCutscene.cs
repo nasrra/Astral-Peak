@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using Sounds;
 using System.Collections.Generic;
 using Entropek;
 
@@ -25,7 +24,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
-        AudioManager.play_music(SoundID.DOMINE_MUSIC);
+        // AudioManager.play_music(SoundID.DOMINE_MUSIC);
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
@@ -56,7 +55,7 @@ public class ShrineOpeningCutscene : Cutscene{
     IEnumerator ending(){
         torches_off?.Invoke();     
         yield return new WaitForSeconds(6);  
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         unlink();
         end();//
         yield break;
@@ -144,7 +143,7 @@ public abstract class ShrineAltarCutscene : Cutscene{
     }
 
     public IEnumerator altar_cutscene(){
-        AudioManager.play_music(SoundID.ALTAR_MUSIC);
+        // AudioManager.play_music(SoundID.ALTAR_MUSIC);
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
         set_numerals?.Invoke(get_set_numerals());
@@ -156,7 +155,7 @@ public abstract class ShrineAltarCutscene : Cutscene{
         turn_on_numeral?.Invoke(get_turn_on_numeral());
         
         yield return new WaitForSeconds(8);
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         CustomSceneManager.load_scene_with_transitions(get_previous_scene());
         CustomSceneManager.loaded_scene += end;
         CustomSceneManager.loaded_scene += unlink;

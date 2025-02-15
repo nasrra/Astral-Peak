@@ -1843,11 +1843,11 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: play_sound
-    data: melee
+    functionName: lock_layer
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0
     functionName: can_flip
@@ -1857,21 +1857,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: lock_layer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 1
-    messageOptions: 0
-  - time: 0.033333335
-    functionName: enable_melee_hurtbox
-    data: melee_up
+    functionName: play_diegetic_one_shot
+    data: melee_swing_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.033333335
     functionName: emit_particle
+    data: melee_up
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.033333335
+    functionName: enable_melee_hurtbox
     data: melee_up
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

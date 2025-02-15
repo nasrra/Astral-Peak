@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Sounds;
 using Entropek;
 
 public class CavalryBossRoom : BossRoomHandler{

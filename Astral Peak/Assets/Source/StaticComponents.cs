@@ -38,7 +38,7 @@ public static class StaticComponents{
     }
 
     static void uninitialize(){
-        SoundLibrary.uninitialize();
+        // SoundLibrary.uninitialize();
         InputManager.uninitialize();
         GameManager.uninitialize();
         CustomSceneManager.uninitialize();
@@ -57,8 +57,8 @@ public static class StaticComponents{
 
     // initialize audio sources.
     static void audio(){
-        AudioManager.initialize();
-        SoundLibrary.initialize();
+        // AudioManager.initialize();
+        // SoundLibrary.initialize();
     }
 
     // cutscene manager.
@@ -67,7 +67,7 @@ public static class StaticComponents{
     // hook into unity engines runtime.
     static void hook(){
         hook_in = main.AddComponent<UnityHook>();
-        hook_in.start += AudioManager.on_start; // this only works when on start is called.
+        // hook_in.start += AudioManager.on_start; // this only works when on start is called.
     }
 
     static void scene_manager(){

@@ -6,7 +6,7 @@ public class Cavalry : Boss<CavalryMovement>{
 
     void Awake(){
         idle(2);
-        sound.set_functions(new CavalrySound(gameObject));
+        // sound.set_functions(new CavalrySound(gameObject));
         link_events();
     } 
 
@@ -42,7 +42,7 @@ public class Cavalry : Boss<CavalryMovement>{
                 base.death_start();
             },
             time_out:()=>{
-                AudioManager.stop_music();
+                // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
                 gameObject.SetActive(false);
                 base.death_complete();//
@@ -82,7 +82,9 @@ public class Cavalry : Boss<CavalryMovement>{
         no_state();
     }
 
-    void projectile_fired(string x) => sound.play_sound("bow_shot");
+    void projectile_fired(string x){
+        // sound.play_sound("bow_shot");
+    } 
 
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)

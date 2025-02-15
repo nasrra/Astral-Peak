@@ -36,7 +36,7 @@ public class Giant2 : Boss<Movement>{
     [SerializeField] char hand = 'L';
 
     void Awake(){
-        sound.set_functions(new GiantSound(gameObject));
+        // sound.set_functions(new GiantSound(gameObject));
         state = new StateQueue(this, fly_and_attack_state);
         link_events();
     }
@@ -169,7 +169,7 @@ public class Giant2 : Boss<Movement>{
     }
     private void single_hand_attack(string animation){
         choose_hand();
-        set_hand_audio_player();
+        // set_hand_audio_player();
         animator.Play(animation + hand);
     }
     private void double_hand_attack(string animation){
@@ -179,16 +179,16 @@ public class Giant2 : Boss<Movement>{
         animator.Play(animation + 'R');
     }
     private void head_attack(string animation){
-        set_head_audio_player();
+        // set_head_audio_player();
         animator.Play(animation);
     }
 
-    private void set_head_audio_player() => sound.set_audio_player(head.gameObject);
-    private void set_left_hand_audio_player() => sound.set_audio_player(left_hand.gameObject);
-    private void set_right_hand_audio_player() => sound.set_audio_player(right_hand.gameObject);
-    private void set_hand_audio_player() => sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
-    private void set_left_hand_sludge_audio_player() => sound.set_audio_player(left_hand_sludge_audio_player);
-    private void set_right_hand_sludge_audio_player() => sound.set_audio_player(right_hand_sludge_audio_player);
+    // private void set_head_audio_player()sound.set_audio_player(head.gameObject);
+    // private void set_left_hand_audio_player() => sound.set_audio_player(left_hand.gameObject);
+    // private void set_right_hand_audio_player() => sound.set_audio_player(right_hand.gameObject);
+    // private void set_hand_audio_player() => sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
+    // private void set_left_hand_sludge_audio_player() => sound.set_audio_player(left_hand_sludge_audio_player);
+    // private void set_right_hand_sludge_audio_player() => sound.set_audio_player(right_hand_sludge_audio_player);
 
     int get_current_ground_piece(){
         int x = -1;
@@ -261,7 +261,7 @@ public class Giant2 : Boss<Movement>{
                 base.death_start();
             },
             time_out:()=>{
-                AudioManager.stop_music();
+                // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
                 gameObject.SetActive(false);
                 base.death_complete();

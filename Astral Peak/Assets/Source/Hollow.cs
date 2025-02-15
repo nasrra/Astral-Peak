@@ -20,7 +20,7 @@ public class Hollow : Enemy{
     // Base.
 
     void Awake(){
-        sound.set_functions(new HollowSound(gameObject));
+        // sound.set_functions(new HollowSound(gameObject));
         link_events();
         idle_movement();
         movement.move_only_state();

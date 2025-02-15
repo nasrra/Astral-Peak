@@ -22,7 +22,7 @@ public class Mage : Boss<Movement>{
     
     // Base: 
     void Awake(){
-        sound.set_functions(new MageSound(gameObject));
+        // sound.set_functions(new MageSound(gameObject));
         phase_linker = new Dictionary<string, Action>(){
             {"phase_1", link_phase_1},
             {"phase_2", link_phase_2},        
@@ -213,7 +213,7 @@ public class Mage : Boss<Movement>{
             time: 0.5f,
             start_action: ()=>{
                 sprites.play_death_effect(0.5f);
-                sound.play_sound("electric_burst");
+                // sound.play_sound("electric_burst");
             },
             time_out: ()=>{
                 sprites.play_death_effect_reverse(0.5f);

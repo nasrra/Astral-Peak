@@ -208,10 +208,10 @@ public class CameraController : MonoBehaviour{
     public void enable_audio_listener(bool enable) => audio_listener.enabled = enable;
 
     void handle_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            audio_listener.enabled = true;
-        else if (state == GameState.GAMEPLAY)
-            audio_listener.enabled = false;
+        // if(state == GameState.CUTSCENE)
+        //     audio_listener.enabled = true;
+        // else if (state == GameState.GAMEPLAY)
+        //     audio_listener.enabled = false;
     }
 
     void link(){

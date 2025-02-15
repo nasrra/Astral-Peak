@@ -23,15 +23,17 @@ public class MagicStationaryProjectile : Projectile{
             destroy();
     }
 
-    protected virtual void play_sound() =>
-        source = AudioClipHandler.play(
-            Sounds.SoundID.ELECTRICITY_3,
-            gameObject,
-            AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
-    protected void stop_sound() => 
-        StartCoroutine(AudioClipHandler.fade_out(
-        source,
-        ambience.main.duration/8));  
+    protected virtual void play_sound(){
+        // source = AudioClipHandler.play(
+        //     Sounds.SoundID.ELECTRICITY_3,
+        //     gameObject,
+        //     AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
+    }
+    protected void stop_sound(){
+        // // StartCoroutine(AudioClipHandler.fade_out(
+        // source,
+        // ambience.main.duration/8));  
+    }
 
     public override void destroy(){
         ambience.Stop(true, ParticleSystemStopBehavior.StopEmitting);

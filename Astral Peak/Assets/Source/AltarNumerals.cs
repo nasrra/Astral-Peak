@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Sounds;
 using System.Collections.Generic;
 using Entropek;
 
@@ -21,11 +20,11 @@ public class AltarNumerals : MonoBehaviour{
     }
     public void turn_on(int i){
         particles[i].gameObject.SetActive(true);
-        AudioClipHandler.play(
-            sound_id: SoundID.DEEP_THUMPING,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC
-        );
+        // AudioClipHandler.play(
+        //     sound_id: SoundID.DEEP_THUMPING,
+        //     audio_player: gameObject, 
+        //     AudioSourceSettings.DIEGETIC
+        // );
         StartCoroutine(Calc.lerp_value(
             val=>light2D[i].intensity=val,
             _start: 0,

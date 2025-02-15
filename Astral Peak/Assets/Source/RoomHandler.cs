@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using Entropek;
-using Sounds;
 using UnityEngine;
 
 public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
     [Header("RoomHandler")]
-    [SerializeField] protected List<SoundID> ambience_tracks = new List<SoundID>();   
     [SerializeField] Transform final_cutscene_camera_target;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
@@ -18,7 +16,7 @@ public class RoomHandler : MonoBehaviour{
     }
 
     protected virtual void Start(){
-        AudioManager.play_ambience(ambience_tracks[0]);
+        // AudioManager.play_ambience(ambience_tracks[0]);
     }
 
     public virtual void game_cleared_room_state(){

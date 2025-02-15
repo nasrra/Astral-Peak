@@ -16,7 +16,7 @@ public abstract class BossRoomHandler : RoomHandler{
     protected Cutscene cutscene; 
     protected override void Awake(){
         base.Awake();
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         check_world_state();
     }
 
@@ -63,12 +63,12 @@ public abstract class BossRoomHandler : RoomHandler{
 
     protected virtual void death_completed(){
         UiManager.instance.play_enemy_vanquished();
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         StartCoroutine(altar_cutscene());
     }
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
-        AudioManager.stop_ambience();
+        // AudioManager.stop_ambience();
         CutsceneManager.play(get_altar_cutscene());
         yield break;
     }

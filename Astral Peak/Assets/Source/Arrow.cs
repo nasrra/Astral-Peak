@@ -1,5 +1,4 @@
 using UnityEngine;
-using Sounds;
 using Entropek;
 //
 public class Arrow : Projectile{
@@ -39,10 +38,10 @@ public class Arrow : Projectile{
         snow.Play();
         ParticleSystem.ShapeModule shape = snow.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
-        AudioClipHandler.play(
-            SoundID.SNOW_IMPACT_LIGHT,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);        
+        // AudioClipHandler.play(
+        //     SoundID.SNOW_IMPACT_LIGHT,
+        //     audio_player: gameObject, 
+        //     AudioSourceSettings.DIEGETIC);        
     }
 
     public override void destroy(){
@@ -51,10 +50,10 @@ public class Arrow : Projectile{
         ParticleSystem.ShapeModule shape = smoke.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();
-        AudioClipHandler.play(
-            SoundID.STEAM,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);
+        // AudioClipHandler.play(
+        //     SoundID.STEAM,
+        //     audio_player: gameObject, 
+        //     AudioSourceSettings.DIEGETIC);
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }//
