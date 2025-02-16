@@ -38,10 +38,11 @@ public static class StaticComponents{
     }
 
     static void uninitialize(){
-        // SoundLibrary.uninitialize();
+        Application.quitting -= uninitialize;
         InputManager.uninitialize();
         GameManager.uninitialize();
         CustomSceneManager.uninitialize();
+        AudioManager.uninitialize();
         PlayerPrefs.Save();
     }
 

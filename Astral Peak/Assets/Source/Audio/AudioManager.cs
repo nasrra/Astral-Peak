@@ -1,14 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using Entropek;
 using FMOD.Studio;
 using FMODUnity;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public static class AudioManager{
+    private static Bus 
+        master_bus,
+        music_bus,
+        voice_bus,
+        sfx_bus;
     static EventInstance music_track;
     static Dictionary<string,EventReference> loaded_references = new Dictionary<string, EventReference>();
     static Dictionary<string, sbyte> available_banks = new Dictionary<string, sbyte>();
@@ -18,7 +21,17 @@ public static class AudioManager{
         // load master banks.
         RuntimeManager.LoadBank("Master");
         RuntimeManager.LoadBank("Master.strings");
+        // get buses
+        master_bus = RuntimeManager.GetBus("bus:/");
+        music_bus = RuntimeManager.GetBus("bus:/music");
+        voice_bus = RuntimeManager.GetBus("bus:/voice");
+        sfx_bus = RuntimeManager.GetBus("bus:/sfx");
+        load_volume_settings();
         set_available_banks();
+    }
+
+    public static void uninitialize(){
+        save_volume_settings();
     }
 
     public static void set_available_banks(){
@@ -27,7 +40,7 @@ public static class AudioManager{
             foreach(var file in bank_files){
                 string file_name = Path.GetFileNameWithoutExtension(file);
                 available_banks.Add(file_name, (sbyte)available_banks.Count);
-                UnityEngine.Debug.Log("found bank: "+file_name);
+                //UnityEngine.Debug.Log("found bank: "+file_name);
             }
         }
         else{
@@ -35,11 +48,47 @@ public static class AudioManager{
         }
     }
 
+    public static float get_master_volume(){
+        master_bus.getVolume(out float _volume);
+        return _volume;
+    }
+    public static float get_music_volume(){
+        music_bus.getVolume(out float _volume);
+        return _volume;
+    }
+    public static float get_voice_volume(){
+        voice_bus.getVolume(out float _volume);
+        return _volume;
+    }
+    public static float get_sfx_volume(){   
+        sfx_bus.getVolume(out float _volume);
+        return _volume;
+    }
+
+    public static void set_master_volume(float _volume) => master_bus.setVolume(_volume);
+    public static void set_music_volume(float _volume) => music_bus.setVolume(_volume);
+    public static void set_voice_volume(float _volume) => voice_bus.setVolume(_volume);
+    public static void set_sfx_volume(float _volume) => sfx_bus.setVolume(_volume);
+
+    public static void save_volume_settings(){
+        Debug.Log(get_master_volume().ToString());
+        PlayerPrefs.SetString("master_volume", get_master_volume().ToString());
+        PlayerPrefs.SetString("music_volume", get_music_volume().ToString());
+        PlayerPrefs.SetString("voice_volume", get_voice_volume().ToString());
+        PlayerPrefs.SetString("sfx_volume", get_sfx_volume().ToString());
+        PlayerPrefs.Save();
+    }
+
+    public static void load_volume_settings(){
+        set_master_volume(float.Parse(PlayerPrefs.GetString("master_volume", get_master_volume().ToString())));
+        set_music_volume(float.Parse(PlayerPrefs.GetString("music_volume", get_music_volume().ToString())));
+        set_voice_volume(float.Parse(PlayerPrefs.GetString("voice_volume", get_voice_volume().ToString())));
+        set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
+    }
 
     public static void load_bank(string _bank_name){
         if(available_banks.ContainsKey(_bank_name) == false)
             return;
-        Log.MethodCall();
         RuntimeManager.LoadBank(_bank_name);
         Bank bank;
         FMOD.RESULT result = RuntimeManager.StudioSystem.getBank("bank:/"+_bank_name, out bank);
@@ -86,7 +135,6 @@ public static class AudioManager{
     };
 
     public static void play_music(string _event_name){
-        music_track = get_event_instance($"{FMODEventFolders.MUSIC}{_event_name}");
         music_track.start();
 
     }
@@ -109,18 +157,3 @@ public static class AudioManager{
     public static EventReference get_event_reference(string event_name_path)    => RuntimeManager.PathToEventReference(event_name_path);    
     public static EventInstance get_event_instance(string event_name_path)      => RuntimeManager.CreateInstance(get_event_reference(event_name_path));    
 }
-
-public static class FMODEventFolders{
-    public const string 
-        SFX             = "event:/sfx/",
-        MUSIC           = "event:/music/",
-        VOICE           = "event:/voice/",
-        SFX_SNOW        = SFX+"snow/",
-        SFX_STONE       = SFX+"stone/",
-        SFX_MELEE       = SFX+"melee/",
-        SFX_MOVEMENT    = SFX+"movement/",
-        VOICE_DOMINE    = VOICE+"domine/"
-    ;
-}
-
-//Path.GetFileNameWithoutExtension(path);
