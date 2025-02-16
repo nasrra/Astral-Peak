@@ -7031,7 +7031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6835137808263390013, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_TagString
-      value: Stone
+      value: stone
       objectReference: {fileID: 0}
     - target: {fileID: 8520966458550115303, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_Offset.y
@@ -7129,13 +7129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda0ebee8d63e7c4f99b41df202f3d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
   audio_spectrum:
   - {fileID: 1939021789}
   - {fileID: 1276591077}
   - {fileID: 1654911685}
   - {fileID: 2015863806}
   - {fileID: 2096332332}
+  id: 0
+  audio_player: {fileID: 0}
 --- !u!1 &1150833274
 GameObject:
   m_ObjectHideFlags: 0
@@ -8873,6 +8874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1779265710}
   - component: {fileID: 1779265709}
+  - component: {fileID: 1779265711}
   m_Layer: 0
   m_Name: RoomHandler
   m_TagString: Untagged
@@ -8892,7 +8894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a3865395e999e40861c409f7b8d0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambience_tracks: 0000
+  room_type: 0
+  ambience_track: []
   final_cutscene_camera_target: {fileID: 1377010071}
   final_cutscene_camera_movement: 0
 --- !u!4 &1779265710
@@ -8911,6 +8914,19 @@ Transform:
   - {fileID: 1377010071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1779265711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779265708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331bafb6619f6134dbf538a373c91c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start_all_inactive: 0
 --- !u!1 &1795746970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10042,6 +10058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShrineGround
       objectReference: {fileID: 0}
+    - target: {fileID: 9027750024357107881, guid: dda6ebf9b8146e54dabd54d15e6c75c5, type: 3}
+      propertyPath: m_TagString
+      value: stone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10149,8 +10169,8 @@ SceneRoots:
   - {fileID: 254337658}
   - {fileID: 1125764363}
   - {fileID: 2072701602}
+  - {fileID: 1779265710}
   - {fileID: 1150833275}
   - {fileID: 1915875116}
   - {fileID: 483480888}
-  - {fileID: 1779265710}
   - {fileID: 547690895}

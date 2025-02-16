@@ -6,7 +6,7 @@ public class Rider : Boss<Movement>{
     protected Coroutine idle_state;
     
     void Start(){
-        AudioManager.load_bank("rider");
+        AudioManager.load_bank("entity_rider");
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();

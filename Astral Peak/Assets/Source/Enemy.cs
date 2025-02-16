@@ -20,7 +20,7 @@ public class Enemy : Boss<Movement>{
     public void stop_summoning_animation() => summoning_animator.Play("turn_off");
 
     protected virtual void Start(){
-        EnemyManager.instance?.add(this);
+        EnemyManager.instance.add(this);
     }
 
     protected override void death_complete(){

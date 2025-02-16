@@ -39,7 +39,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Base.
     void Awake(){
         instance = this;
-        AudioManager.load_bank("player");
+        AudioManager.load_bank("entity_player");
+        AudioManager.load_bank("entity_creature");
         GameManager.link_player();
         movement.move_only_state();
         load_data();
@@ -49,7 +50,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         set_enter_position();
     }
     void OnDestroy(){
-        AudioManager.unload_bank("player");
+        AudioManager.unload_bank("entity_player");
+        AudioManager.unload_bank("entity_creature");
         GameManager.unlink_player();
         set_respawn_point(""); // reset respawn point;
         unlink_events();
