@@ -534,19 +534,19 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
+  HasSourceProject: 0
+  HasPlatforms: 0
   sourceProjectPath: ../../../FMOD Projects/Astral Peak FMOD Project/Astral Peak
     FMOD Project.fspro
-  sourceBankPath: ../../../FMOD Projects/Astral Peak FMOD Project/Build
+  sourceBankPath: Assets/StreamingAssets/FMOD Banks/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 1
   ShowBankRefreshWindow: 0
-  AutomaticEventLoading: 1
-  BankLoadType: 0
+  AutomaticEventLoading: 0
+  BankLoadType: 2
   AutomaticSampleLoading: 0
   EncryptionKey: 
-  ImportType: 0
+  ImportType: 1
   TargetAssetPath: FMODBanks
   TargetBankFolder: 
   EventLinkage: 0
@@ -563,7 +563,11 @@ MonoBehaviour:
   - Master
   Banks:
   - music
-  - Sfx
+  - player
+  - rider
+  - room_shrine
+  - room_snow
+  - sfx
   - voice
   BanksToLoad: []
   LiveUpdatePort: 9264

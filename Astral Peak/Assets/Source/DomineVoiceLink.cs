@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class DomineVoiceLink : MonoBehaviour{
     [SerializeField] List<AudioSpectrum> audio_spectrum = new List<AudioSpectrum>();
     [SerializeField] DomineVoiceLinesID id;
@@ -10,7 +11,6 @@ public class DomineVoiceLink : MonoBehaviour{
 
     void Awake(){
         voice_lines = create_voice_lines[id]();
-        audio_player.initialize(create_audio_player[id]());
     }   
 
     void Start(){
@@ -30,10 +30,6 @@ public class DomineVoiceLink : MonoBehaviour{
     Dictionary<DomineVoiceLinesID, Func<VoiceLines>> create_voice_lines = new Dictionary<DomineVoiceLinesID, Func<VoiceLines>>(){
         {DomineVoiceLinesID.SHRINE,             ()=>{return new DomineShrineVoiceLines();}},
         {DomineVoiceLinesID.ASTRAL_PLANE,       ()=>{return new DomineAstralPlaneVoiceLines();}},
-    };
-    Dictionary<DomineVoiceLinesID, Func<AudioPlayerEventDataPackage>> create_audio_player = new Dictionary<DomineVoiceLinesID, Func<AudioPlayerEventDataPackage>>(){
-        {DomineVoiceLinesID.SHRINE,             ()=>{return new DomineShrineAudioPlayerEventDataPackage();}},
-        {DomineVoiceLinesID.ASTRAL_PLANE,       ()=>{return new DomineAstralPlaneAudioPlayerEventDataPackage();}},        
     };
 
     void choose_voice(int x){
@@ -77,35 +73,6 @@ class DomineAstralPlaneVoiceLines : VoiceLines{
     }
 }
 
-struct DomineAstralPlaneAudioPlayerEventDataPackage : AudioPlayerEventDataPackage{
-    public List<AudioPlayerEventData> get_event_instances(){
-        return new List<AudioPlayerEventData>();
-    }
-
-    public List<AudioPlayerEventData> get_event_references(){
-        return new List<AudioPlayerEventData>(){
-            new(FMODEventFolders.VOICE_DOMINE,"domine_dead_woman"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_sacrifice_ritual"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_an_offering"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_no"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_cursed_one"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_why_here"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_lost_soul"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_burned_woman"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_ashes_to_wind"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_fool_or_brave"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_unless"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_mountain_summit"), // threshold of world.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_under_arches"), // last inhabitants.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_old_door"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_walk_aether"), // journey there/ wish granted.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_warning"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_its_expensive"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_waiting_mortal"),
-        };
-    }
-}
-
 class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
@@ -132,35 +99,6 @@ class DomineShrineVoiceLines : VoiceLines{
         //20...
         {21,"domine_waiting_mortal"},
         };       
-    }
-}
-
-struct DomineShrineAudioPlayerEventDataPackage : AudioPlayerEventDataPackage{
-    public List<AudioPlayerEventData> get_event_instances(){
-        return new List<AudioPlayerEventData>();
-    }
-
-    public List<AudioPlayerEventData> get_event_references(){
-        return new List<AudioPlayerEventData>(){
-            new(FMODEventFolders.VOICE_DOMINE,"domine_dead_woman"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_sacrifice_ritual"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_an_offering"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_no"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_cursed_one"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_why_here"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_lost_soul"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_burned_woman"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_ashes_to_wind"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_fool_or_brave"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_unless"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_mountain_summit"), // threshold of world.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_under_arches"), // last inhabitants.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_old_door"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_walk_aether"), // journey there/ wish granted.
-            new(FMODEventFolders.VOICE_DOMINE,"domine_warning"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_its_expensive"),
-            new(FMODEventFolders.VOICE_DOMINE,"domine_waiting_mortal"),
-        };
     }
 }
 }

@@ -24,7 +24,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
-        // AudioManager.play_music(SoundID.DOMINE_MUSIC);
+        AudioManager.play_music("domine");
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
@@ -55,7 +55,7 @@ public class ShrineOpeningCutscene : Cutscene{
     IEnumerator ending(){
         torches_off?.Invoke();     
         yield return new WaitForSeconds(6);  
-        // AudioManager.stop_music();
+        AudioManager.stop_music();
         unlink();
         end();//
         yield break;

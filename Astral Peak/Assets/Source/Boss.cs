@@ -17,7 +17,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected RangedHolsterHandler ranged;
     [SerializeField] protected MeleeHolsterHandler melee;
-    // [SerializeField] public AudioPlayer sound;
+    [SerializeField] public AudioPlayer sound;
     [SerializeField] protected BossCombat combat;
     [SerializeField] protected LightingHandler lighting;
     [SerializeField] protected Transform target;

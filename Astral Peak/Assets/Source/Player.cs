@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Entropek;
-using FMOD.Studio;
-using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,7 +39,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Base.
     void Awake(){
         instance = this;
-        sound.initialize(new PlayerAudioPlayerDataPackage());
+        AudioManager.load_bank("player");
         GameManager.link_player();
         movement.move_only_state();
         load_data();
@@ -53,6 +49,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         set_enter_position();
     }
     void OnDestroy(){
+        AudioManager.unload_bank("player");
         GameManager.unlink_player();
         set_respawn_point(""); // reset respawn point;
         unlink_events();
@@ -100,7 +97,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             0.25f); 
     }
     private void dashed(){
-        sound.play_diegetic_one_shot("dash_1");
+        sound.play_diegetic_one_shot("player_dash");
         particles.emit_particle("dash");
         health.set_guarded();//
     }
@@ -290,7 +287,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Melee
     public float get_intermediate_health() => intermediate_health; 
     void attack_hit(){
-        sound.play_diegetic_one_shot("melee_hit");
+        sound.play_diegetic_one_shot("player_sword_hit");
         if(health.get_current_health() < health.get_max_health()){
             intermediate_health += .1f;
             intermediate_health_updated?.Invoke();

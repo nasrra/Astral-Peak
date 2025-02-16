@@ -6,14 +6,15 @@ public class Rider : Boss<Movement>{
     protected Coroutine idle_state;
     
     void Start(){
-        // sound.set_functions(new RiderSound(gameObject));
+        AudioManager.load_bank("rider");
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();
-        //check_game_state();
-        //idle(1);
     }
     void OnDisable() => unlink_events();
+    void OnDestroy(){
+        AudioManager.unload_bank("rider");
+    }
 
     // movement functions
     public void forward_strike_lunge()   => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.33f);

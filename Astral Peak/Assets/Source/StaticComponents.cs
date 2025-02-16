@@ -57,7 +57,7 @@ public static class StaticComponents{
 
     // initialize audio sources.
     static void audio(){
-        // AudioManager.initialize();
+        AudioManager.initialize();
         // SoundLibrary.initialize();
     }
 
