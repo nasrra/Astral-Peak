@@ -6,6 +6,7 @@ public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
     [Header("RoomHandler")]
     [SerializeField] RoomType room_type;
+    [SerializeField] List<string> ambience_track = new List<string>();
     [SerializeField] Transform final_cutscene_camera_target;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
@@ -23,7 +24,8 @@ public class RoomHandler : MonoBehaviour{
     }
 
     protected virtual void Start(){
-        //AudioManager.play_ambience(ambience_tracks[0]);
+        if(ambience_track.Count > 0)
+            AudioManager.play_ambience(ambience_track[0]);
     }
 
     public virtual void game_cleared_room_state(){

@@ -24,14 +24,15 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
-        AudioManager.play_music("domine");
+        AudioManager.load_bank("cutscene_shrine");
+        AudioManager.play_music_one_shot("domine");
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
         CameraController.instance.lerp_zoom(4.45f, 6f);
         CameraController.instance.lerp_offset(null, 2.2f, 6f);
         yield return new WaitForSeconds(6);
-        DialogueHandler.instance.play_dialogue(2.65f);
+        DialogueHandler.instance.play_dialogue(2.7f);
         yield return new WaitForSeconds(3f);
         CameraController.instance.lerp_offset(null,-2.5f, 20f);
         yield return new WaitForSeconds(32);
@@ -55,9 +56,9 @@ public class ShrineOpeningCutscene : Cutscene{
     IEnumerator ending(){
         torches_off?.Invoke();     
         yield return new WaitForSeconds(6);  
-        AudioManager.stop_music();
+        AudioManager.unload_bank("cutscene_shrine");
         unlink();
-        end();//
+        end();
         yield break;
     }
     public void dialogue_ended() => CutsceneManager.set_coroutine(ending());

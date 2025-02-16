@@ -3,6 +3,7 @@ using System.IO;
 using Entropek;
 using FMOD.Studio;
 using FMODUnity;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -13,6 +14,9 @@ public static class AudioManager{
         voice_bus,
         sfx_bus;
     static EventInstance music_track;
+    static string current_music_track = "";
+    static EventInstance ambience_track;
+    static string current_ambience_track = "";
     static Dictionary<string,EventReference> loaded_references = new Dictionary<string, EventReference>();
     static Dictionary<string, sbyte> available_banks = new Dictionary<string, sbyte>();
 
@@ -71,7 +75,6 @@ public static class AudioManager{
     public static void set_sfx_volume(float _volume) => sfx_bus.setVolume(_volume);
 
     public static void save_volume_settings(){
-        Debug.Log(get_master_volume().ToString());
         PlayerPrefs.SetString("master_volume", get_master_volume().ToString());
         PlayerPrefs.SetString("music_volume", get_music_volume().ToString());
         PlayerPrefs.SetString("voice_volume", get_voice_volume().ToString());
@@ -86,9 +89,14 @@ public static class AudioManager{
         set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
     }
 
+    static bool bank_exists(string _bank_name) => available_banks.ContainsKey(_bank_name)? true : throw new System.Exception("Bank: "+_bank_name+" does note exist!");
+
     public static void load_bank(string _bank_name){
-        if(available_banks.ContainsKey(_bank_name) == false)
+        bank_exists(_bank_name);
+        if(RuntimeManager.HasBankLoaded(_bank_name)){
+            Debug.Log("Bank "+_bank_name+" has already been loaded!");
             return;
+        }
         RuntimeManager.LoadBank(_bank_name);
         Bank bank;
         FMOD.RESULT result = RuntimeManager.StudioSystem.getBank("bank:/"+_bank_name, out bank);
@@ -108,14 +116,13 @@ public static class AudioManager{
     }
 
     public static void unload_bank(string _bank_name){
-        if(available_banks.ContainsKey(_bank_name) == false)
-            return;
+        bank_exists(_bank_name);
         if(RuntimeManager.HasBankLoaded(_bank_name) == false){
             UnityEngine.Debug.Log("Bank ["+_bank_name+"] has already been unloaded!");
             return;
         }
         Bank bank;
-        RuntimeManager.StudioSystem.getBank(_bank_name, out bank);
+        RuntimeManager.StudioSystem.getBank("bank:/"+_bank_name, out bank);
         EventDescription[] descriptions;
         bank.getEventList(out descriptions);
         foreach(EventDescription description in descriptions){
@@ -134,14 +141,6 @@ public static class AudioManager{
         {RoomType.SNOW, "room_snow"},
     };
 
-    public static void play_music(string _event_name){
-        music_track.start();
-
-    }
-    public static void stop_music(){
-        music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        music_track.release();
-    }
 
     // play one shot non-diegetic reference
     public static void play_non_diegetic_one_shot(string _event_name){
@@ -154,6 +153,42 @@ public static class AudioManager{
         RuntimeManager.GetEventDescription(loaded_references[_event_name]).getLength(out int time);
         return time;
     } 
-    public static EventReference get_event_reference(string event_name_path)    => RuntimeManager.PathToEventReference(event_name_path);    
-    public static EventInstance get_event_instance(string event_name_path)      => RuntimeManager.CreateInstance(get_event_reference(event_name_path));    
+    public static EventInstance create_event_instance(string _event_name) => RuntimeManager.CreateInstance(loaded_references[_event_name]);    
+
+    public static void play_music_one_shot(string _event_name){
+        if(current_ambience_track == _event_name)
+            return;        
+        stop_music();
+        music_track = create_event_instance(_event_name);
+        music_track.start();
+        music_track.release();
+        current_music_track = _event_name;
+    }
+
+    public static void play_music(string _event_name){
+        if(current_ambience_track == _event_name)
+            return;            
+        stop_music();
+        music_track = create_event_instance(_event_name);
+        music_track.start();
+        current_music_track = _event_name;
+    }
+    public static void stop_music(){
+        music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        music_track.release();
+    }
+
+    public static void play_ambience(string _event_name){
+        if(current_ambience_track == _event_name)
+            return;
+        stop_ambience();
+        ambience_track = create_event_instance(_event_name);
+        ambience_track.start();
+        current_ambience_track = _event_name;
+    }
+    public static void stop_ambience(){
+        Log.MethodCall();
+        ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ambience_track.release();
+    }
 }
