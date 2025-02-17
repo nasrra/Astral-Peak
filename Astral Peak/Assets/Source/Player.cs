@@ -26,7 +26,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected AudioPlayer sound;
     [SerializeField] protected Collider2D col;
-    [SerializeField] protected AudioListener audio_listener;
+    [SerializeField] protected StudioListener audio_listener;
     private HashSet<Action> door_movement_queue = new HashSet<Action>();
     private float invulnerable_time = 2;
     [SerializeField] float intermediate_health = 0;
@@ -309,14 +309,14 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_movement();
         animator.force_idle();
         health.set_invulnerable();
-        // audio_listener.enabled = false;
+        audio_listener.enabled = false;
     }
     public override void exit_cutscene_state(){
         movement.renew();
         link_movement();
         movement.move_only_state();
         health.set_vulnerable();
-        // audio_listener.enabled = true;
+        audio_listener.enabled = true;
     }
     protected override void entered_game_state(GameState state){
         if(state == GameState.CUTSCENE)

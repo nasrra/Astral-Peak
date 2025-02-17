@@ -1,26 +1,25 @@
 using System.Collections.Generic;
 using System.IO;
 using Entropek;
-using FMOD;
 using FMOD.Studio;
 using FMODUnity;
-using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public static class AudioManager{
+    static Dictionary<string,EventReference> loaded_references = new Dictionary<string, EventReference>();
+    static Dictionary<string, sbyte> available_banks = new Dictionary<string, sbyte>();
     private static Bus 
         master_bus,
         music_bus,
         voice_bus,
         sfx_bus;
+    static StudioListener listener;
     static EventInstance music_track;
-    static string current_music_track = "";
     static EventInstance ambience_track;
+    static string current_music_track = "";
     static string current_ambience_track = "";
-    static Dictionary<string,EventReference> loaded_references = new Dictionary<string, EventReference>();
-    static Dictionary<string, sbyte> available_banks = new Dictionary<string, sbyte>();
 
     public static void initialize(){
         UnityEngine.Debug.Log(Settings.Instance.SourceBankPath+"/sfx");

@@ -23,6 +23,6 @@ public class AudioSpectrum : MonoBehaviour{
     //     magnitude_updated?.Invoke(smoothedMagnitude);
     // }
     void foo(){
-        magnitude_updated?.Invoke(2);
+        magnitude_updated?.Invoke(2 );
     }
 }

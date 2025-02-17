@@ -1,11 +1,13 @@
 using System.Collections;
 using Entropek;
+using FMODUnity;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour{
     public static CameraController instance;
 
     //[SerializeField] CameraFollowType follow_type = CameraFollowType.LockY;
+    [SerializeField] StudioListener audio_listener;
     [SerializeField] private Transform target;
     [SerializeField] private float 
         smooth_speed, 
@@ -21,7 +23,6 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private bool regulate;
     [SerializeField] private bool shake_locked = false;
     [SerializeField] Camera cam;
-    [SerializeField] AudioListener audio_listener;
 
     Coroutine
         follow_state,
@@ -205,13 +206,12 @@ public class CameraController : MonoBehaviour{
         state_swtich(ref y_bounds_state, Calc.lerp_vector2(val => y_bounds=val, y_bounds, _y_bounds.GetValueOrDefault(y_bounds), time));
     }
     public void reset_regulators(float time) => lerp_regulators(original_x_bounds,original_y_bounds,time);
-    public void enable_audio_listener(bool enable) => audio_listener.enabled = enable;
 
     void handle_game_state(GameState state){
-        // if(state == GameState.CUTSCENE)
-        //     audio_listener.enabled = true;
-        // else if (state == GameState.GAMEPLAY)
-        //     audio_listener.enabled = false;
+        if(state == GameState.CUTSCENE)
+            audio_listener.enabled = true;
+        else
+            audio_listener.enabled = false;
     }
 
     void link(){
