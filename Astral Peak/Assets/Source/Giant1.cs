@@ -106,6 +106,10 @@ public class Giant1 : Boss<Movement>{
     public void jump_forward() => movement.dash(flipped == false? Vector2.right : Vector2.left, 12.5f, 0.5f);
     public void jump_backward() => movement.dash(flipped == true? Vector2.right : Vector2.left, 12.5f, 0.5f);
 
+    protected void projectile_fired(string holster_id){
+        sound.play_diegetic_one_shot("water_bubble");
+    }
+
     protected void link_events(){
         link_game_manager();
         health.death                            += kill;
@@ -115,6 +119,7 @@ public class Giant1 : Boss<Movement>{
         movement.move_direction_changed         += face_direction;
         movement.move_direction_changed         += move_direction_changed;
         health.damaged                          += sprites.play_damaged_flash;
+        ranged.fired                            += projectile_fired;
         link_combat();
         link_movement();
         link_particles();
@@ -129,6 +134,7 @@ public class Giant1 : Boss<Movement>{
         movement.move_direction_changed         -= face_direction;
         movement.move_direction_changed         -= move_direction_changed;
         health.damaged                          -= sprites.play_damaged_flash;
+        ranged.fired                            -= projectile_fired;
         unlink_particles();
         unlink_combat();
         unlink_movement();

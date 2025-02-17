@@ -5,6 +5,7 @@ using UnityEngine;
 public class FinalBossRoomGroundHandler : MonoBehaviour{
     public Rigidbody2D[] grounds; // Array to hold all the squares
     public MeleeHolsterHandler holsters;
+    [SerializeField] AudioPlayer audio_player;
 
     public void start_wave(int index, bool move_left, float rate, float force){
         int count = 0;
@@ -31,7 +32,7 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
             time_out:()=>{
                 grounds[selected].AddForce(new Vector2(0,force), ForceMode2D.Impulse);
                 holsters.enable_melee_hurtbox($"{selected}");
-                // AudioClipHandler.play(Sounds.SoundID.STONE_SHIFT_FAST, grounds[selected].gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
+                audio_player.play_diegetic_one_shot("stone_shuffle");
             }
         ));
         StartCoroutine(Util.timer(
