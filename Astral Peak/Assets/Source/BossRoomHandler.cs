@@ -68,7 +68,7 @@ public abstract class BossRoomHandler : RoomHandler{
     }
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
-        // AudioManager.stop_ambience();
+        AudioManager.stop_ambience();
         CutsceneManager.play(get_altar_cutscene());
         yield break;
     }
