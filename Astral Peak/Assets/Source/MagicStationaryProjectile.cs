@@ -1,3 +1,4 @@
+using Entropek;
 using UnityEngine;
 
 public class MagicStationaryProjectile : Projectile{
@@ -22,6 +23,7 @@ public class MagicStationaryProjectile : Projectile{
         audio_player.play_diegetic_loop("electricity_crackle_soft");
     }
     protected void stop_sound(){
+        Log.MethodCall(); 
         audio_player.stop_loop("electricity_crackle_soft");  
     }
 

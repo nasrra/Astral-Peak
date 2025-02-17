@@ -4,6 +4,7 @@ using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioPlayer : MonoBehaviour{
     Dictionary<string, EventInstance> event_instances = new Dictionary<string, EventInstance>();
@@ -13,8 +14,7 @@ public class AudioPlayer : MonoBehaviour{
         StartCoroutine(update_event_instances());
     }
     void OnDestroy(){
-        foreach(KeyValuePair<string, EventInstance> kvp in event_instances)
-            stop_event_instance(kvp);
+        stop_all_loops();
     }
     public void play_diegetic_one_shot(string _event_name){
         AudioManager.play_diegetic_one_shot(_event_name, gameObject);
@@ -36,6 +36,12 @@ public class AudioPlayer : MonoBehaviour{
         stop_instance(instance);
         remove_instance(_event_name);
     }
+
+    public void stop_all_loops(){
+        foreach(KeyValuePair<string, EventInstance> kvp in event_instances)
+            stop_event_instance(kvp);
+    }
+
     private void stop_event_instance(KeyValuePair<string, EventInstance> kvp){        
         stop_instance(kvp.Value);
         remove_instance(kvp.Key);

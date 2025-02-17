@@ -119,7 +119,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         combat.renew();
         state.stop();
         particles.stop_all_particles();
-        // sound.stop_all_loops();
+        sound.stop_all_loops();
         lighting.set_intensity(0);
         sprites.renew();     
     }

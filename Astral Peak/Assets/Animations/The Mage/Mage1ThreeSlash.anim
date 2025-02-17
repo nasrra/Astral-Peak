@@ -19499,8 +19499,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: play_sound
-    data: footstep
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19513,15 +19513,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: play_weapon_flash
-    data: staff
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: flip_to_target
-    data: 
+    functionName: play_weapon_flash
+    data: staff
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8333333
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19533,16 +19540,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.8333333
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 1.4833333
-    functionName: play_sound
-    data: snow_magic
+    functionName: play_diegetic_one_shot
+    data: snow_magic_cast
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19562,14 +19562,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: play_particle
-    data: footstep
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: play_sound
+    functionName: play_particle
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -19590,29 +19590,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.3333333
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.3333333
     functionName: play_particle
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.3333333
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 2.9333334
-    functionName: play_sound
-    data: snow_magic
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.9333334
-    functionName: fire_projectile
-    data: three_piece
+    functionName: play_diegetic_one_shot
+    data: snow_magic_cast
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19624,23 +19617,23 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.9333334
+    functionName: fire_projectile
+    data: three_piece
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3
     functionName: play_particle
     data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.5
-    functionName: play_weapon_flash
-    data: staff
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19652,6 +19645,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 3.5
+    functionName: play_weapon_flash
+    data: staff
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.8333333
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3.8333333
     functionName: play_particle
     data: footstep
@@ -19659,16 +19666,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.8333333
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 4.4666667
-    functionName: fire_projectile
-    data: three_piece
+    functionName: play_diegetic_one_shot
+    data: snow_magic_cast
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19681,8 +19681,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 4.4666667
-    functionName: play_sound
-    data: snow_magic
+    functionName: fire_projectile
+    data: three_piece
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.5
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19694,22 +19701,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.5
-    functionName: play_sound
-    data: footstep
+  - time: 5.3333335
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 5.333333
+  - time: 5.3333335
     functionName: play_particle
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 5.333333
-    functionName: play_sound
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

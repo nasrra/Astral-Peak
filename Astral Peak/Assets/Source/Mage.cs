@@ -22,7 +22,6 @@ public class Mage : Boss<Movement>{
     
     // Base: 
     void Awake(){
-        // sound.set_functions(new MageSound(gameObject));
         phase_linker = new Dictionary<string, Action>(){
             {"phase_1", link_phase_1},
             {"phase_2", link_phase_2},        
@@ -213,12 +212,13 @@ public class Mage : Boss<Movement>{
             time: 0.5f,
             start_action: ()=>{
                 sprites.play_death_effect(0.5f);
-                // sound.play_sound("electric_burst");
+                sound.play_non_diegetic_one_shot("mage_teleport");
             },
             time_out: ()=>{
                 sprites.play_death_effect_reverse(0.5f);
                 teleport_trail.emit_once(transform.position, pos);
                 transform.position = pos;
+                sound.play_diegetic_one_shot("boss_yell");
             }
         ));
 

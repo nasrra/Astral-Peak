@@ -22,8 +22,10 @@ public class MagicTrackingProjectile : MagicStationaryProjectile{
     protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.GROUND)
             destroy();
-        base.OnTriggerEnter2D(other);
+        else
+            base.OnTriggerEnter2D(other);
     }
+    void OnDisable(){}
     public override void destroy(){
         movement.StopAllCoroutines();
         movement.zero_velocity();

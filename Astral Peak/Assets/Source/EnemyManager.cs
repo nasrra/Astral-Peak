@@ -45,12 +45,12 @@ public class EnemyManager : MonoBehaviour{
     void unlink_events() => GameManager.entered_game_state -= entered_game_state;
 
     void check_load_bank(){
-        if(enemies.Count <= 0)
+        if(enemies.Count == 0)
             AudioManager.load_bank("entity_hollow");
     }
 
     void check_unload_bank(){
-        if(enemies.Count <= 0)
+        if(enemies.Count == 0)
             AudioManager.unload_bank("entity_hollow");
     }
 }

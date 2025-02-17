@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LightningParticleEmitter : LineParticleEmitter{
     [SerializeField] AudioPlayer audio_player;
+    bool is_emitting = false;
 
     protected override void emitted(){
         int x = Random.Range(0,2);
@@ -13,9 +14,13 @@ public class LightningParticleEmitter : LineParticleEmitter{
 
     protected override void emitting(){
         audio_player.play_diegetic_loop("electricity_crackle_harsh");
+        is_emitting = true;
     }
 
     protected override void ended(){
-        audio_player.stop_loop("electricity_crackle_harsh");
+        if(is_emitting == true){
+            audio_player.stop_loop("electricity_crackle_harsh");
+            is_emitting = false;
+        }
     }
 }

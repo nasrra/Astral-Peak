@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 
 public class AudioSpectrum : MonoBehaviour{
-    public AudioSource source;
+    //public AudioSource source;
     public event Action<float> magnitude_updated;
-    public float[] samples = new float[64];
-    private float smoothedMagnitude = 0; // Smoothed magnitude
-    [SerializeField] private float smoothFactor = 0.5f; // 0 = no smoothing, 1 = very smooth
+    //public float[] samples = new float[64];
+    //private float smoothedMagnitude = 0; // Smoothed magnitude
+    //[SerializeField] private float smoothFactor = 0.5f; // 0 = no smoothing, 1 = very smooth
 
     // void FixedUpdate(){
     //     float rawMagnitude = 0;
@@ -22,4 +22,7 @@ public class AudioSpectrum : MonoBehaviour{
 
     //     magnitude_updated?.Invoke(smoothedMagnitude);
     // }
+    void foo(){
+        magnitude_updated?.Invoke(2);
+    }
 }
