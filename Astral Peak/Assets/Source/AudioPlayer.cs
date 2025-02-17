@@ -39,12 +39,8 @@ public class AudioPlayer : MonoBehaviour{
 
     public void stop_all_loops(){
         foreach(KeyValuePair<string, EventInstance> kvp in event_instances)
-            stop_event_instance(kvp);
-    }
-
-    private void stop_event_instance(KeyValuePair<string, EventInstance> kvp){        
-        stop_instance(kvp.Value);
-        remove_instance(kvp.Key);
+            stop_instance(kvp.Value);
+        event_instances.Clear();
     }
 
     private void stop_instance(EventInstance _instance){
