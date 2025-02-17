@@ -83,7 +83,7 @@ public class Cavalry : Boss<CavalryMovement>{
     }
 
     void projectile_fired(string x){
-        // sound.play_sound("bow_shot");
+        sound.play_diegetic_one_shot("rider_bow_shot");
     } 
 
     void move_direction_changed(Vector2 direction){

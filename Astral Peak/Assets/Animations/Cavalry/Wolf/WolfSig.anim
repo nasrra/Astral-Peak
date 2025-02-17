@@ -25699,8 +25699,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.75
-    functionName: play_sound
-    data: bark
+    functionName: play_diegetic_one_shot
+    data: wolf_bark
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25720,15 +25720,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: play_sound
-    data: slam_hop
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.5833334
-    functionName: play_sound
-    data: slam_hop
+    functionName: play_diegetic_one_shot
+    data: snow_impact_light
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25740,9 +25733,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1666667
-    functionName: play_sound
-    data: slam_hop
+  - time: 1.5833334
+    functionName: play_diegetic_one_shot
+    data: wolf_jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25750,6 +25743,13 @@ AnimationClip:
   - time: 2.1666667
     functionName: emit_particle
     data: slam_hop_2
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.1666667
+    functionName: play_diegetic_one_shot
+    data: wolf_jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25764,13 +25764,6 @@ AnimationClip:
   - time: 3.9666667
     functionName: fire_projectile
     data: slam_1
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.9666667
-    functionName: play_sound
-    data: slam_impact
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25792,6 +25785,13 @@ AnimationClip:
   - time: 3.9666667
     functionName: ground_slam_camera_shake
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.9666667
+    functionName: play_diegetic_one_shot
+    data: snow_impact_heavy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

@@ -6,8 +6,11 @@ public class Arrow : Projectile{
     [SerializeField] ParticleSystem smoke, snow;
     [SerializeField] protected Transform front_point;
     [SerializeField] float move_time, rotation_speed, move_speed;
+    void Awake(){
+        audio_player.play_diegetic_loop("fire_crackle_soft");
+    }
     protected override void Start(){
-       movement.move_to_target_state(front_point, move_speed);
+        movement.move_to_target_state(front_point, move_speed);
         StartCoroutine(Util.timer(
             move_time, 
             time_out:()=>movement.rotate_to_direction_state(Vector2.down, rotation_speed))); 
@@ -38,10 +41,7 @@ public class Arrow : Projectile{
         snow.Play();
         ParticleSystem.ShapeModule shape = snow.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
-        // AudioClipHandler.play(
-        //     SoundID.SNOW_IMPACT_LIGHT,
-        //     audio_player: gameObject, 
-        //     AudioSourceSettings.DIEGETIC);        
+        audio_player.play_diegetic_one_shot("snow_impact_light");        
     }
 
     public override void destroy(){
@@ -50,10 +50,8 @@ public class Arrow : Projectile{
         ParticleSystem.ShapeModule shape = smoke.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();
-        // AudioClipHandler.play(
-        //     SoundID.STEAM,
-        //     audio_player: gameObject, 
-        //     AudioSourceSettings.DIEGETIC);
+        audio_player.stop_loop("fire_crackle_soft");
+        audio_player.play_diegetic_one_shot("fire_extinguish");
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }//

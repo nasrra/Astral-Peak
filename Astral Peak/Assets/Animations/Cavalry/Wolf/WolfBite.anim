@@ -26221,8 +26221,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: play_sound
-    data: bark
+    functionName: play_diegetic_one_shot
+    data: wolf_bark
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -26277,6 +26277,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.7166667
+    functionName: play_diegetic_one_shot
+    data: wolf_bark
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.7166667
     functionName: play_particle
     data: snow_dash
     objectReferenceParameter: {fileID: 0}
@@ -26284,15 +26291,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.7166667
-    functionName: play_sound
-    data: bark
+    functionName: bite_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7166667
-    functionName: bite_lunge
-    data: 
+  - time: 1.8166667
+    functionName: emit_particle
+    data: bite_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -26307,13 +26314,6 @@ AnimationClip:
   - time: 1.8166667
     functionName: emit_particle
     data: bite_2
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.8166667
-    functionName: emit_particle
-    data: bite_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -26340,8 +26340,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.5
-    functionName: play_sound
-    data: bark
+    functionName: bite_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -26354,8 +26354,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.5
-    functionName: bite_lunge
-    data: 
+    functionName: play_diegetic_one_shot
+    data: wolf_bark
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

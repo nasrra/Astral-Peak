@@ -7,6 +7,7 @@ using FMODUnity;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public static class AudioManager{
     private static Bus 
@@ -33,9 +34,14 @@ public static class AudioManager{
         sfx_bus = RuntimeManager.GetBus("bus:/sfx");
         load_volume_settings();
         set_available_banks();
+        CustomSceneManager.loading_scene += unload_active_scene_bank;
+        CustomSceneManager.loaded_scene += load_active_scene_bank;
+        load_active_scene_bank();
     }
 
     public static void uninitialize(){
+        CustomSceneManager.loading_scene -= unload_active_scene_bank;
+        CustomSceneManager.loaded_scene -= load_active_scene_bank;
         save_volume_settings();
     }
 
@@ -148,12 +154,6 @@ public static class AudioManager{
     public static void play_diegetic_one_shot(string _event_name, GameObject _game_object) {
         RuntimeManager.PlayOneShotAttached(loaded_references[_event_name], _game_object);
     }
-    //public static EventInstance play_diegetic_loop(string _event_name, GameObject gameObject){
-    //    EventInstance instance = create_event_instance(_event_name);
-    //    instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject.transform));
-    //    instance.start();
-    //    return instance;
-    //}
     public static EventReference get_event_reference(string _event_name){
         return loaded_references[_event_name];
     }
@@ -164,6 +164,14 @@ public static class AudioManager{
         return time;
     } 
     public static EventInstance create_event_instance(string _event_name) => RuntimeManager.CreateInstance(loaded_references[_event_name]);    
+
+    private static void load_active_scene_bank(){
+        load_bank(SceneManager.GetActiveScene().name);
+    }
+
+    private static void unload_active_scene_bank(){
+        unload_bank(SceneManager.GetActiveScene().name);
+    }
 
     public static void play_music_one_shot(string _event_name){
         if(current_music_track == _event_name)

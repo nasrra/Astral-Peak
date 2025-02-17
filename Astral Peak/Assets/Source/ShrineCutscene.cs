@@ -176,7 +176,7 @@ public class ShrineAltarOneCutscene : ShrineAltarCutscene{
         yield return base.get_coroutine();
     }
 
-    public override string get_previous_scene()=>"WolfBossRoom";
+    public override string get_previous_scene()=>"CavalryBossRoom";
 
     public override List<int> get_set_numerals() => null;
     public override List<int> get_turn_on_numeral()=>new(){

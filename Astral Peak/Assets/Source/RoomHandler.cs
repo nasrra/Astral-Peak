@@ -17,14 +17,12 @@ public class RoomHandler : MonoBehaviour{
         }
         else
             AudioManager.load_bank(room_type);
-        AudioManager.load_bank(SceneManager.GetActiveScene().name);
         instance = this;
     }
 
     void OnDestroy(){
         instance = null;
         AudioManager.unload_bank(room_type);
-        AudioManager.unload_bank(SceneManager.GetActiveScene().name);
     }
 
     protected virtual void Start(){
