@@ -75,7 +75,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected void play_weapon_flash(string weapon){
         sprites.play_charged_flash(weapon);
-        // sound.play_sound("ping");
+        sound.play_non_diegetic_one_shot("boss_weapon_flash");
     }
 
     protected void play_weapon_flash(List<string> weapons){

@@ -6815,6 +6815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1404642684}
   - component: {fileID: 1404642685}
+  - component: {fileID: 1404642686}
   m_Layer: 0
   m_Name: cutscenearrow
   m_TagString: Untagged
@@ -6849,11 +6850,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d302b016f5eea04e951a0167df1eb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_player: {fileID: 1404642686}
   turret:
     rotation_type: 1
     projectile_is_child: 0
     projectile: {fileID: 6752692394907920807, guid: f087511cd16359a438b9db8f15abc4b0, type: 3}
     fire_point: {fileID: 1404642684}
+--- !u!114 &1404642686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404642682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1422358614
 GameObject:
   m_ObjectHideFlags: 0

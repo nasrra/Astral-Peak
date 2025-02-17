@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public abstract class Projectile : MonoBehaviour{
     [Header("Projectile")]
+    [SerializeField] protected AudioPlayer audio_player;
     [SerializeField] List<Collider2D> colliders = new List<Collider2D>();
     [SerializeField] List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     [SerializeField] protected SimpleMovement movement;

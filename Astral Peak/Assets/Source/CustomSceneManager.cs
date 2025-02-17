@@ -48,7 +48,6 @@ public static class CustomSceneManager{
         loading_scene?.Invoke();
         yield return load;
         
-        AudioManager.unload_bank(active.name);
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;
 

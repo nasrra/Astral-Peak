@@ -1,37 +1,21 @@
 using UnityEngine;
 
 public class LightningParticleEmitter : LineParticleEmitter{
-    AudioSource source;
-    
+    [SerializeField] AudioPlayer audio_player;
+
     protected override void emitted(){
         int x = Random.Range(0,2);
-        // if(x==0)
-        //     AudioClipHandler.play(
-        //         sound_id: Sounds.SoundID.THUNDER_1,
-        //         audio_player: gameObject,
-        //         AudioSourceSettings.DIEGETIC_RANDOMISED
-        //     );
-        // else  
-        //     AudioClipHandler.play(
-        //         sound_id: Sounds.SoundID.THUNDER_2,
-        //         audio_player: gameObject,
-        //         AudioSourceSettings.DIEGETIC_RANDOMISED
-        //     );      
+        audio_player.play_diegetic_one_shot("thunder_clap");
         CameraController.instance.shake_camera(.33f, .75f, false);
         SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
     }
 
     protected override void emitting(){
-        // source = AudioClipHandler.play(
-        //     sound_id: Sounds.SoundID.ELECTRICITY_LOOP,
-        //     audio_player: gameObject,
-        //     AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP
-        // ); 
+        audio_player.play_diegetic_loop("electricity_crackle_harsh");
     }
 
     protected override void ended(){
-        // if(source !=null)
-        //     StartCoroutine(AudioClipHandler.fade_out(source, 2, destroy_source: true));
+        audio_player.stop_loop("electricity_crackle_harsh");
     }
 }

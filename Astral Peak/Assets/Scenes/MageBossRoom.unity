@@ -8886,7 +8886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6835137808263390013, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_TagString
-      value: Snow
+      value: snow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10033,7 +10033,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8091c1aeb1024654bb6711c98e5dc0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambience_tracks: 09000a00
+  room_type: 1
+  ambience_track:
+  - ambience_wind
   final_cutscene_camera_target: {fileID: 1982145228}
   final_cutscene_camera_movement: 0
   boss_points:

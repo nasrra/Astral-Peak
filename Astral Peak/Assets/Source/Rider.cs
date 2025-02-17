@@ -6,15 +6,11 @@ public class Rider : Boss<Movement>{
     protected Coroutine idle_state;
     
     void Start(){
-        AudioManager.load_bank("entity_rider");
         combat.set_moveset("phase_1");
         set_phase_data("phase_1");
         link_events();
     }
     void OnDisable() => unlink_events();
-    void OnDestroy(){
-        AudioManager.unload_bank("rider");
-    }
 
     // movement functions
     public void forward_strike_lunge()   => movement.dash(flipped == false? Vector2.right : Vector2.left, 20, 0.33f);
@@ -49,7 +45,7 @@ public class Rider : Boss<Movement>{
     }
 
     void projectile_fired(string x){
-        // sound.play_sound("bow_shot");
+        sound.play_diegetic_one_shot("rider_bow_shot");
     }
 
     void move_direction_changed(Vector2 direction){

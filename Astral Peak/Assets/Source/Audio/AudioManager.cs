@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Entropek;
+using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using NUnit.Framework;
@@ -92,9 +93,8 @@ public static class AudioManager{
     static bool bank_exists(string _bank_name) => available_banks.ContainsKey(_bank_name)? true : throw new System.Exception("Bank: "+_bank_name+" does note exist!");
 
     public static void load_bank(string _bank_name){
-        bank_exists(_bank_name);
         if(RuntimeManager.HasBankLoaded(_bank_name)){
-            Debug.Log("Bank "+_bank_name+" has already been loaded!");
+            UnityEngine.Debug.Log("Bank "+_bank_name+" has already been loaded!");
             return;
         }
         RuntimeManager.LoadBank(_bank_name);
@@ -116,7 +116,6 @@ public static class AudioManager{
     }
 
     public static void unload_bank(string _bank_name){
-        bank_exists(_bank_name);
         if(RuntimeManager.HasBankLoaded(_bank_name) == false){
             UnityEngine.Debug.Log("Bank ["+_bank_name+"] has already been unloaded!");
             return;
@@ -149,6 +148,17 @@ public static class AudioManager{
     public static void play_diegetic_one_shot(string _event_name, GameObject _game_object) {
         RuntimeManager.PlayOneShotAttached(loaded_references[_event_name], _game_object);
     }
+    //public static EventInstance play_diegetic_loop(string _event_name, GameObject gameObject){
+    //    EventInstance instance = create_event_instance(_event_name);
+    //    instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject.transform));
+    //    instance.start();
+    //    return instance;
+    //}
+    public static EventReference get_event_reference(string _event_name){
+        return loaded_references[_event_name];
+    }
+
+
     public static float get_sound_length(string _event_name){
         RuntimeManager.GetEventDescription(loaded_references[_event_name]).getLength(out int time);
         return time;
@@ -156,7 +166,7 @@ public static class AudioManager{
     public static EventInstance create_event_instance(string _event_name) => RuntimeManager.CreateInstance(loaded_references[_event_name]);    
 
     public static void play_music_one_shot(string _event_name){
-        if(current_ambience_track == _event_name)
+        if(current_music_track == _event_name)
             return;        
         stop_music();
         music_track = create_event_instance(_event_name);

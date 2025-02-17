@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,7 +31,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private float invulnerable_time = 2;
     [SerializeField] float intermediate_health = 0;
     [SerializeField] bool up_toggle = false;
-
 
 
 

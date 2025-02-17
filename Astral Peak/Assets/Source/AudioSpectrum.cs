@@ -8,18 +8,18 @@ public class AudioSpectrum : MonoBehaviour{
     private float smoothedMagnitude = 0; // Smoothed magnitude
     [SerializeField] private float smoothFactor = 0.5f; // 0 = no smoothing, 1 = very smooth
 
-    void FixedUpdate(){
-        float rawMagnitude = 0;
-        if(source ==  null)
-            return;
-        source.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
-        foreach(float x in samples)
-            rawMagnitude += x;
-        rawMagnitude *= 10;
+    // void FixedUpdate(){
+    //     float rawMagnitude = 0;
+    //     if(source ==  null)
+    //         return;
+    //     source.GetSpectrumData(samples, 0, FFTWindow.BlackmanHarris);
+    //     foreach(float x in samples)
+    //         rawMagnitude += x;
+    //     rawMagnitude *= 10;
 
-        // Apply smoothing
-        smoothedMagnitude = Mathf.Lerp(smoothedMagnitude, rawMagnitude, smoothFactor);
+    //     // Apply smoothing
+    //     smoothedMagnitude = Mathf.Lerp(smoothedMagnitude, rawMagnitude, smoothFactor);
 
-        magnitude_updated?.Invoke(smoothedMagnitude);
-    }
+    //     magnitude_updated?.Invoke(smoothedMagnitude);
+    // }
 }

@@ -6,12 +6,6 @@ public class MagicStationaryProjectile : Projectile{
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] protected TrailRenderer trail;
     [SerializeField] bool destroy_on_hit = true;
-    protected AudioSource source;
-
-    protected override void Start(){
-        play_sound();
-        base.Start();
-    }
 
     protected virtual void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer==LayersManager.PLAYER)
@@ -24,15 +18,19 @@ public class MagicStationaryProjectile : Projectile{
     }
 
     protected virtual void play_sound(){
-        // source = AudioClipHandler.play(
-        //     Sounds.SoundID.ELECTRICITY_3,
-        //     gameObject,
-        //     AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
+        audio_player.play_diegetic_one_shot("electricity_burst_soft");
+        audio_player.play_diegetic_loop("electricity_crackle_soft");
     }
     protected void stop_sound(){
-        // // StartCoroutine(AudioClipHandler.fade_out(
-        // source,
-        // ambience.main.duration/8));  
+        audio_player.stop_loop("electricity_crackle_soft");  
+    }
+
+    void OnEnable(){
+        play_sound();
+    }
+
+    void OnDisable(){
+        stop_sound();    
     }
 
     public override void destroy(){
