@@ -80,4 +80,7 @@ public class LineParticleEmitter : MonoBehaviour{
     protected virtual void emitted(){}
     protected virtual void emitting(){}
     protected virtual void ended(){}
+    void OnDestroy(){
+        ended();
+    }
 }

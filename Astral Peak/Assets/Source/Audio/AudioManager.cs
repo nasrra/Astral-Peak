@@ -90,9 +90,9 @@ public static class AudioManager{
         set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
     }
 
-    static bool bank_exists(string _bank_name) => available_banks.ContainsKey(_bank_name)? true : throw new System.Exception("Bank: "+_bank_name+" does note exist!");
-
     public static void load_bank(string _bank_name){
+        if(available_banks.ContainsKey(_bank_name) == false)
+            return;
         if(RuntimeManager.HasBankLoaded(_bank_name)){
             UnityEngine.Debug.Log("Bank "+_bank_name+" has already been loaded!");
             return;
