@@ -80,7 +80,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
 
     protected void play_weapon_flash(List<string> weapons){
         sprites.play_charged_flash(weapons);
-        // sound.play_sound("ping");
+        sound.play_non_diegetic_one_shot("boss_weapon_flash");
     }
 
     public void set_target(Transform _target) => target = _target;

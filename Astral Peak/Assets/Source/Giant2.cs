@@ -8,8 +8,13 @@ using AYellowpaper.SerializedCollections;
 public class Giant2 : Boss<Movement>{
     Coroutine idle_state;
     [Header("Giant2")]
-    [SerializeField] FinalBossRoomGroundHandler ground_handler;
     [SerializeField] SerializedDictionary<string, Transform> move_to_point; // points attacks can move to.
+    [SerializeField] SludgeBeam left_hand_finger_beam;
+    [SerializeField] SludgeBeam right_hand_finger_beam;
+    [SerializeField] FinalBossRoomGroundHandler ground_handler;
+    [SerializeField] private AudioPlayer head_sound;
+    [SerializeField] private AudioPlayer left_hand_sound;
+    [SerializeField] private AudioPlayer right_hand_sound;
     // which animation layer to be used for each attack.
     private HashSet<string> 
         head_attacks = new(){
@@ -31,18 +36,15 @@ public class Giant2 : Boss<Movement>{
         idle_fly = new(){
             "Giant2YellProjectiles"
         };
-    [SerializeField] GameObject left_hand_sludge_audio_player, right_hand_sludge_audio_player;
     [SerializeField] Transform left_hand, right_hand, head, player_hover_point, start_point, move_to_target;
     [SerializeField] char hand = 'L';
 
     void Awake(){
-        // sound.set_functions(new GiantSound(gameObject));
         state = new StateQueue(this, fly_and_attack_state);
         link_events();
     }
     void Start(){
         set_phase_data("phase_1");
-        //switch_phase();
     }
     void OnDestroy() => unlink_events();
 
@@ -169,26 +171,32 @@ public class Giant2 : Boss<Movement>{
     }
     private void single_hand_attack(string animation){
         choose_hand();
-        // set_hand_audio_player();
         animator.Play(animation + hand);
     }
     private void double_hand_attack(string animation){
-        //choose_hand();
-        //sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
         animator.Play(animation + 'L');
         animator.Play(animation + 'R');
     }
     private void head_attack(string animation){
-        // set_head_audio_player();
         animator.Play(animation);
     }
 
-    // private void set_head_audio_player()sound.set_audio_player(head.gameObject);
-    // private void set_left_hand_audio_player() => sound.set_audio_player(left_hand.gameObject);
-    // private void set_right_hand_audio_player() => sound.set_audio_player(right_hand.gameObject);
-    // private void set_hand_audio_player() => sound.set_audio_player(hand == 'L'?left_hand.gameObject : right_hand.gameObject);
-    // private void set_left_hand_sludge_audio_player() => sound.set_audio_player(left_hand_sludge_audio_player);
-    // private void set_right_hand_sludge_audio_player() => sound.set_audio_player(right_hand_sludge_audio_player);
+    public void play_left_hand_diegetic_one_shot(string _event_name){
+        left_hand_sound.play_diegetic_one_shot(_event_name);
+    }
+
+    public void play_right_hand_diegetic_one_shot(string _event_name){
+        right_hand_sound.play_diegetic_one_shot(_event_name);
+    }
+
+    public void play_head_diegetic_one_shot(string _event_name){
+        head_sound.play_diegetic_one_shot(_event_name);
+    }
+
+    public void turn_on_left_finger_beam() => left_hand_finger_beam.turn_on();
+    public void turn_off_left_finger_beam() => left_hand_finger_beam.turn_off();
+    public void turn_on_right_finger_beam() => right_hand_finger_beam.turn_on();
+    public void turn_off_right_finger_beam() => right_hand_finger_beam.turn_off();
 
     int get_current_ground_piece(){
         int x = -1;
@@ -258,6 +266,8 @@ public class Giant2 : Boss<Movement>{
                 sprites.play_death_effect(4f);
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
+                turn_off_left_finger_beam();
+                turn_off_right_finger_beam();
                 base.death_start();
             },
             time_out:()=>{
