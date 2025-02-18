@@ -117,12 +117,12 @@ public static class AudioManager{
             path = Path.GetFileNameWithoutExtension(path);
             loaded_references.Add(path,reference);
         }
-        UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
     }
 
     public static void unload_bank(string _bank_name){
         if(RuntimeManager.HasBankLoaded(_bank_name) == false){
-            UnityEngine.Debug.Log("Bank ["+_bank_name+"] has already been unloaded!");
+            // UnityEngine.Debug.Log("Bank ["+_bank_name+"] has already been unloaded!");
             return;
         }
         Bank bank;
@@ -135,7 +135,7 @@ public static class AudioManager{
             loaded_references.Remove(Path.GetFileNameWithoutExtension(path));
         }
         RuntimeManager.UnloadBank(_bank_name);
-        UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
+        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
     }
 
     public static void load_bank(RoomType _room_type) => load_bank(room_type_banks[_room_type]);

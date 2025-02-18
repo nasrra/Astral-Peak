@@ -27,6 +27,7 @@ namespace Cutscenes{
             background_mage.destroy();
             room.enable_mage(true);
             Mage mage = room.get_mage();
+            // mage.get_sprite().play_death_effect_reverse(1);
             mage.flip_to_target();
             mage.link_phase("phase_1");
             CameraController.instance.set_target(mage.transform);

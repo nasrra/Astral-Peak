@@ -45,8 +45,9 @@ public class MageBossRoom : BossRoomHandler{
         }
     }
     protected override void Start() => set_room_state(0);
-    void OnDestroy(){
+    protected override void OnDestroy(){
         unlink_events();
+        base.OnDestroy();
     }
     public void enable_mage(bool x) => mage_object.SetActive(x);
     public void enable_background_mage(bool x) => background_mage.SetActive(x);

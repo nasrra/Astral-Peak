@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Entropek;
+using Unity.VisualScripting;
 
 public class BackgroundMage : MonoBehaviour{
+    [SerializeField] AudioPlayer audio_player;
     [SerializeField] public Animator animator;
     [SerializeField] List<Transform> teleport_points = new List<Transform>();
     [SerializeField] List<Transform> teleport_layers = new List<Transform>();
@@ -30,10 +32,7 @@ public class BackgroundMage : MonoBehaviour{
         ));
     }
     void play_teleport_sound(){
-        // AudioClipHandler.play(
-        // sound_id: Sounds.SoundID.ELECTRIC_BURST,
-        // audio_player: gameObject,
-        // AudioSourceSettings.NON_DIEGETIC_RANDOMISED);
+        audio_player.play_non_diegetic_one_shot("mage_teleport");
     }
     public void flip() => flip_objects.transform.rotation = flip_objects.transform.rotation.eulerAngles.y == 0? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
 }

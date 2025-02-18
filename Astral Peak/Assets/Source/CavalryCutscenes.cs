@@ -71,7 +71,6 @@ public class CavalryPhaseTransition : Cutscene{
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);
         cavalry.transform.position = room.get_boss_point(1).position;
-        // cavalry.sound.play_sound("slam_impact");
         CameraController.instance.regulate_in_bounds(true);
         cavalry.enter_cutscene_state();
         CameraController.instance.set_target(cavalry.transform);

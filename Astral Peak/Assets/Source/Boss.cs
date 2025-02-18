@@ -125,6 +125,7 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     public string get_phase() => current_phase;
+    public BossSpriteHandler get_sprite() => sprites;
     public void transition_phase() => phase_transition?.Invoke(current_phase);
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
     protected virtual void link_movement(){

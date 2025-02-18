@@ -20,9 +20,9 @@ public class RoomHandler : MonoBehaviour{
         instance = this;
     }
 
-    void OnDestroy(){
-        instance = null;
+    protected virtual void OnDestroy(){
         AudioManager.unload_bank(room_type);
+        instance = null;
     }
 
     protected virtual void Start(){
