@@ -8960,7 +8960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2431c9555c1ea74408b5feba129171cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambience_tracks: 0900
+  room_type: 0
+  ambience_track: []
   final_cutscene_camera_target: {fileID: 155284369}
   final_cutscene_camera_movement: 2
   boss_points:
@@ -13466,6 +13467,7 @@ GameObject:
   - component: {fileID: 1976846264}
   - component: {fileID: 1976846265}
   - component: {fileID: 1976846266}
+  - component: {fileID: 1976846267}
   m_Layer: 0
   m_Name: GroundBlocks
   m_TagString: Untagged
@@ -13530,6 +13532,7 @@ MonoBehaviour:
   - {fileID: 793321992}
   - {fileID: 1580157973}
   holsters: {fileID: 1976846266}
+  audio_player: {fileID: 1976846267}
 --- !u!114 &1976846266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13726,6 +13729,18 @@ MonoBehaviour:
           transform: {fileID: 1024338561}
         self_knockback_force: 0
         self_knockback_duration: 0
+--- !u!114 &1976846267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976846263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1996076947
 PrefabInstance:
   m_ObjectHideFlags: 0

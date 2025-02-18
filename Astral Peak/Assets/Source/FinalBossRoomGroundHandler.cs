@@ -27,12 +27,13 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
     }
 
     public void use_ground(float rate, float force, int count, int selected){
+        Rigidbody2D ground = grounds[selected];
         StartCoroutine(Util.timer(
             count * rate,
             time_out:()=>{
-                grounds[selected].AddForce(new Vector2(0,force), ForceMode2D.Impulse);
+                ground.AddForce(new Vector2(0,force), ForceMode2D.Impulse);
                 holsters.enable_melee_hurtbox($"{selected}");
-                audio_player.play_diegetic_one_shot("stone_shuffle");
+                AudioManager.play_diegetic_one_shot("stone_shuffle",ground.gameObject);
             }
         ));
         StartCoroutine(Util.timer(

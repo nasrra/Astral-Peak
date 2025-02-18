@@ -7,8 +7,8 @@ public class Arrow : Projectile{
     [SerializeField] protected Transform front_point;
     [SerializeField] float move_time, rotation_speed, move_speed;
     void Awake(){
-        audio_player.play_diegetic_loop("fire_crackle_soft");
-    }
+        play_sound();
+    }    
     protected override void Start(){
         movement.move_to_target_state(front_point, move_speed);
         StartCoroutine(Util.timer(
@@ -17,7 +17,16 @@ public class Arrow : Projectile{
         base.Start();
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    protected override void play_sound(){
+        audio_player.play_diegetic_loop("fire_crackle_soft");
+    }
+
+    protected override void stop_sound(){
+        audio_player.stop_loop("fire_crackle_soft");
+        audio_player.play_diegetic_one_shot("fire_extinguish");
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
             Creature creature = other.GetComponent<Creature>();
             creature.get_health().damaged += grounded;
@@ -50,8 +59,7 @@ public class Arrow : Projectile{
         ParticleSystem.ShapeModule shape = smoke.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();
-        audio_player.stop_loop("fire_crackle_soft");
-        audio_player.play_diegetic_one_shot("fire_extinguish");
+        stop_sound();
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }//

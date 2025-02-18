@@ -11,7 +11,7 @@ public class SnowSlamProjectile : Projectile{
         base.Start();
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    protected override void OnTriggerEnter2D(Collider2D other){
         int layer = other.gameObject.layer;
         if(layer==LayersManager.PLAYER)
             damage_creature(other.GetComponent<Creature>());

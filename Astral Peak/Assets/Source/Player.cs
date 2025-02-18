@@ -161,7 +161,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         animator.stop_up_toggle();
     }
     public void play_footstep_sound(){
-        if(ground != "")
+        if(string.IsNullOrEmpty(ground)!=true)
             sound.play_diegetic_one_shot($"{ground}_footstep");
     }
 

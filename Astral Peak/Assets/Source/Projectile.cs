@@ -7,10 +7,34 @@ public abstract class Projectile : MonoBehaviour{
     [SerializeField] List<Collider2D> colliders = new List<Collider2D>();
     [SerializeField] List<SpriteRenderer> sprites = new List<SpriteRenderer>();
     [SerializeField] protected SimpleMovement movement;
-    public abstract void destroy();
+    [SerializeField] bool destroy_on_hit = true;
+    private bool _is_being_destroyed = false; // here to stop multiple calls from OnTriggerEnter when colliding with two colliders simultaneously.
+
     void OnDestroy()=>ProjectileManager.instance?.remove(this);
     protected virtual void Start() => ProjectileManager.instance?.add(this);
     
+    protected virtual void play_sound(){}
+    protected virtual void stop_sound(){}
+    public virtual void destroy(){
+        if(_is_being_destroyed != false)
+            return;
+        _is_being_destroyed = true;
+        stop_sound();
+        enable_colliders(false);
+        enable_sprites(false);
+        movement.zero_velocity();
+        movement.StopAllCoroutines();
+        Destroy(gameObject, 2);
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D other){
+        if(other.gameObject.layer==LayersManager.PLAYER)
+            if(destroy_on_hit == true)
+                damage_creature_and_self_destruct(other.GetComponent<Creature>());
+            else
+                damage_creature(other.GetComponent<Creature>());
+    }
+
     protected void enable_colliders(bool enabled){
         #if UNITY_EDITOR
         if(colliders.Count <= 0)
