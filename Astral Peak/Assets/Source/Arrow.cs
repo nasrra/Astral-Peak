@@ -22,7 +22,7 @@ public class Arrow : Projectile{
     }
 
     protected override void stop_sound(){
-        audio_player.stop_loop("fire_crackle_soft");
+        audio_player.stop_diegetic_loop("fire_crackle_soft");
         audio_player.play_diegetic_one_shot("fire_extinguish");
     }
 

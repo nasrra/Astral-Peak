@@ -19,7 +19,7 @@ public class LightningParticleEmitter : LineParticleEmitter{
 
     protected override void ended(){
         if(is_emitting == true){
-            audio_player.stop_loop("electricity_crackle_harsh");
+            audio_player.stop_diegetic_loop("electricity_crackle_harsh");
             is_emitting = false;
         }
     }

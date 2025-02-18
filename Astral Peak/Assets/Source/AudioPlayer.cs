@@ -7,11 +7,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class AudioPlayer : MonoBehaviour{
-    Dictionary<string, EventInstance> event_instances = new Dictionary<string, EventInstance>();
+    Dictionary<string, EventInstance> diegetic_instances = new Dictionary<string, EventInstance>();
+    Dictionary<string, EventInstance> non_diegetic_instances = new Dictionary<string, EventInstance>();
 
-    void start_event_instance_loop(){
+    void start_diegetic_event_instance_loop(){
         StopAllCoroutines();
-        StartCoroutine(update_event_instances());
+        StartCoroutine(update_diegetic_instances());
     }
     void OnDestroy(){
         stop_all_loops();
@@ -25,22 +26,36 @@ public class AudioPlayer : MonoBehaviour{
     public void play_diegetic_loop(string _event_name){
         EventInstance instance = AudioManager.create_event_instance(_event_name);
         instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
-        if(event_instances.Count == 0){
-            start_event_instance_loop();
+        if(diegetic_instances.Count == 0){
+            start_diegetic_event_instance_loop();
         }
-        event_instances.Add(_event_name, instance);
+        diegetic_instances.Add(_event_name, instance);
         instance.start();
     }
-    public void stop_loop(string _event_name){
-        EventInstance instance = event_instances[_event_name];
+    public void play_non_diegetic_loop(string _event_name){
+        EventInstance instance = AudioManager.create_event_instance(_event_name);
+        non_diegetic_instances.Add(_event_name, instance);
+        instance.start();
+    }
+    public void stop_diegetic_loop(string _event_name){
+        EventInstance instance = diegetic_instances[_event_name];
         stop_instance(instance);
-        remove_instance(_event_name);
+        remove_diegetic_instance(_event_name);
+    }
+
+    public void stop_non_diegetic_loop(string _event_name){
+        EventInstance instance = non_diegetic_instances[_event_name];
+        stop_instance(instance);
+        remove_non_diegetic_instance(_event_name);
     }
 
     public void stop_all_loops(){
-        foreach(KeyValuePair<string, EventInstance> kvp in event_instances)
+        foreach(KeyValuePair<string, EventInstance> kvp in diegetic_instances)
             stop_instance(kvp.Value);
-        event_instances.Clear();
+        diegetic_instances.Clear();
+        foreach(KeyValuePair<string, EventInstance> kvp in non_diegetic_instances)
+            stop_instance(kvp.Value);
+        non_diegetic_instances.Clear();
     }
 
     private void stop_instance(EventInstance _instance){
@@ -48,17 +63,20 @@ public class AudioPlayer : MonoBehaviour{
         _instance.release();
     }
 
-    private void remove_instance(string _event_name){
-        event_instances.Remove(_event_name);
-        if(event_instances.Count == 0){
+    private void remove_diegetic_instance(string _event_name){
+        diegetic_instances.Remove(_event_name);
+        if(diegetic_instances.Count == 0){
             StopAllCoroutines();
         }
     }
-    IEnumerator update_event_instances(){
+    private void remove_non_diegetic_instance(string _event_name){
+        non_diegetic_instances.Remove(_event_name);
+    }
+    IEnumerator update_diegetic_instances(){
         while(true){
             ATTRIBUTES_3D instance_attributes = RuntimeUtils.To3DAttributes(transform);
             yield return new WaitForFixedUpdate();
-            foreach(EventInstance instance in event_instances.Values)
+            foreach(EventInstance instance in diegetic_instances.Values)
                 instance.set3DAttributes(instance_attributes);
         }
     }

@@ -225,4 +225,8 @@ public static class AudioManager{
         ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambience_track.release();
     }
+
+    public static void set_ambience_parameter(string _parameter, int _value){
+        ambience_track.setParameterByName(_parameter, _value);
+    }
 }

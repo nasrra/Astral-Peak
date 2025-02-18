@@ -12,7 +12,7 @@ public class MagicStationaryProjectile : Projectile{
         audio_player.play_diegetic_loop("electricity_crackle_soft");
     }
     protected override void stop_sound(){
-        audio_player.stop_loop("electricity_crackle_soft");  
+        audio_player.stop_diegetic_loop("electricity_crackle_soft");  
     }
 
     void OnEnable(){

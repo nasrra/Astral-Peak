@@ -32,7 +32,7 @@ public class SludgeTrackingProjectile : Projectile{
 
     protected override void stop_sound(){
         audio_player.play_diegetic_one_shot("water_splash_light");
-        audio_player.stop_loop("water_gurgle");
+        audio_player.stop_diegetic_loop("water_gurgle");
     }
     
     protected override void OnTriggerEnter2D(Collider2D other){

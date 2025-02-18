@@ -57,9 +57,9 @@ public class Health : MonoBehaviour{
         // deal damage.
         data.current_life -= amount;
         if(data.current_life <= 0)
-            death();
+            death?.Invoke();
         else
-            damaged();
+            damaged?.Invoke();
     }
 
     enum HealthState : sbyte{

@@ -21,7 +21,7 @@ public class SnowSlamProjectile : Projectile{
             destroy();
     }    
     public override void destroy(){
-        audio_player.stop_loop("snow_rolling");
+        audio_player.stop_diegetic_loop("snow_rolling");
         Destroy(gameObject, 2.1f);
     }
 }
