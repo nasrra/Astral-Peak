@@ -21,10 +21,13 @@ public static class AudioManager{
     static string current_ambience_track = "";
 
     public static void initialize(){
-        UnityEngine.Debug.Log(Settings.Instance.SourceBankPath+"/sfx");
         // load master banks.
+        set_available_banks();
         RuntimeManager.LoadBank("Master");
         RuntimeManager.LoadBank("Master.strings");
+        load_active_scene_bank();
+        load_bank("ui");
+        UnityEngine.Debug.Log(RuntimeManager.HasBankLoaded("ui"));
         // get buses
         master_bus      = RuntimeManager.GetBus("bus:/");
         music_bus       = RuntimeManager.GetBus("bus:/music");
@@ -32,10 +35,8 @@ public static class AudioManager{
         sfx_bus         = RuntimeManager.GetBus("bus:/sfx");
         ambience_bus    = RuntimeManager.GetBus("bus:/ambience");
         load_volume_settings();
-        set_available_banks();
         CustomSceneManager.loading_scene += unload_active_scene_bank;
         CustomSceneManager.loaded_scene += load_active_scene_bank;
-        load_active_scene_bank();
     }
 
     public static void uninitialize(){
@@ -135,6 +136,14 @@ public static class AudioManager{
             loaded_references.Add(path,reference);
         }
         //UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+    }
+
+    public static void enter_low_pass_filter(){
+        RuntimeManager.StudioSystem.setParameterByName("lowpass_filter", 1);
+    }
+
+    public static void exit_low_pass_filter(){
+        RuntimeManager.StudioSystem.setParameterByName("lowpass_filter", 0);
     }
 
     public static void unload_bank(string _bank_name){

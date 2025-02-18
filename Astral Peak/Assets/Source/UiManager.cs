@@ -20,6 +20,7 @@ public class UiManager : MonoBehaviour{
         black_bars; 
     [SerializeField] DialogueHandler dialogue; 
     [SerializeField] PlayerHealthBar health_bar;
+    [SerializeField] AudioPlayer audio_player;
     Coroutine skip_button_state;
 
     void Awake(){
@@ -86,10 +87,7 @@ public class UiManager : MonoBehaviour{
 
     public void play_enemy_vanquished() => StartCoroutine(enemy_vanquished_state());
     IEnumerator enemy_vanquished_state(){
-        // AudioClipHandler.play(
-        //     SoundID.WOODEN_PING,
-        //     audio_player:       gameObject, 
-        //     AudioSourceSettings.NON_DIEGETIC);  
+        audio_player.play_non_diegetic_one_shot("ui_death_screen");
         enemy_vanquished.SetActive(true);
         yield return new WaitForSeconds(4);
         yield break;
@@ -97,10 +95,7 @@ public class UiManager : MonoBehaviour{
 
     public void play_death_screen() => StartCoroutine(death_screen_state());
     IEnumerator death_screen_state(){
-        // AudioClipHandler.play(
-        //     SoundID.WOODEN_PING,
-        //     audio_player:       gameObject, 
-        //     AudioSourceSettings.NON_DIEGETIC);  
+        audio_player.play_non_diegetic_one_shot("ui_death_screen");
         death_screen.SetActive(true);
         yield return new WaitForSeconds(4);
         CameraEffects.instance.fade_to_black(1);

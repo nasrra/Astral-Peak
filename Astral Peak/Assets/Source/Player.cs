@@ -185,16 +185,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
     } 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
+        sound.play_non_diegetic_one_shot("player_damaged");
         sprite.play_damaged_flash();
         health.set_invulnerable();
-        // AudioManager.low_pass_audio(true);
+        AudioManager.enter_low_pass_filter();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
-        // sound.play_sound("damaged");
         i_frames = true;
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
         i_frames = false;
-        // AudioManager.low_pass_audio(false);
+        AudioManager.exit_low_pass_filter();
         damaged_stop?.Invoke();
         health.set_vulnerable();
     }
@@ -208,7 +208,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.reset_data();
         movement.zero_velocity();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
-        // sound.play_sound("damaged");
+        sound.play_non_diegetic_one_shot("player_damaged");
         sprite.play_death_effect(3f);
         animator.death();
         InputManager.disable_user_input();
