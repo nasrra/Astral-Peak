@@ -54,6 +54,9 @@ public class Arrow : Projectile{
     }
 
     public override void destroy(){
+        if(_is_being_destroyed == true)
+            return;
+        _is_being_destroyed = true;
         enable_sprites(false);
         enable_colliders(false);
         ParticleSystem.ShapeModule shape = smoke.shape;

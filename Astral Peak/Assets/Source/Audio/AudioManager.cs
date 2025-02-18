@@ -3,7 +3,6 @@ using System.IO;
 using Entropek;
 using FMOD.Studio;
 using FMODUnity;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,8 +13,8 @@ public static class AudioManager{
         master_bus,
         music_bus,
         voice_bus,
+        ambience_bus,
         sfx_bus;
-    static StudioListener listener;
     static EventInstance music_track;
     static EventInstance ambience_track;
     static string current_music_track = "";
@@ -27,10 +26,11 @@ public static class AudioManager{
         RuntimeManager.LoadBank("Master");
         RuntimeManager.LoadBank("Master.strings");
         // get buses
-        master_bus = RuntimeManager.GetBus("bus:/");
-        music_bus = RuntimeManager.GetBus("bus:/music");
-        voice_bus = RuntimeManager.GetBus("bus:/voice");
-        sfx_bus = RuntimeManager.GetBus("bus:/sfx");
+        master_bus      = RuntimeManager.GetBus("bus:/");
+        music_bus       = RuntimeManager.GetBus("bus:/music");
+        voice_bus       = RuntimeManager.GetBus("bus:/voice");
+        sfx_bus         = RuntimeManager.GetBus("bus:/sfx");
+        ambience_bus    = RuntimeManager.GetBus("bus:/ambience");
         load_volume_settings();
         set_available_banks();
         CustomSceneManager.loading_scene += unload_active_scene_bank;
@@ -74,17 +74,33 @@ public static class AudioManager{
         sfx_bus.getVolume(out float _volume);
         return _volume;
     }
+    public static float get_ambience_volume(){
+        ambience_bus.getVolume(out float _volume);
+        return _volume;
+    }
 
-    public static void set_master_volume(float _volume) => master_bus.setVolume(_volume);
-    public static void set_music_volume(float _volume) => music_bus.setVolume(_volume);
-    public static void set_voice_volume(float _volume) => voice_bus.setVolume(_volume);
-    public static void set_sfx_volume(float _volume) => sfx_bus.setVolume(_volume);
+    public static void set_master_volume(float _volume){
+        master_bus.setVolume(_volume);
+    } 
+    public static void set_music_volume(float _volume){
+        music_bus.setVolume(_volume);
+    } 
+    public static void set_voice_volume(float _volume){
+        voice_bus.setVolume(_volume);
+    } 
+    public static void set_sfx_volume(float _volume){
+        sfx_bus.setVolume(_volume);
+    } 
+    public static void set_ambience_volume(float _volume){
+        ambience_bus.setVolume(_volume);
+    }
 
     public static void save_volume_settings(){
         PlayerPrefs.SetString("master_volume", get_master_volume().ToString());
         PlayerPrefs.SetString("music_volume", get_music_volume().ToString());
         PlayerPrefs.SetString("voice_volume", get_voice_volume().ToString());
         PlayerPrefs.SetString("sfx_volume", get_sfx_volume().ToString());
+        PlayerPrefs.SetString("ambience_volume", get_ambience_volume().ToString());
         PlayerPrefs.Save();
     }
 
@@ -93,6 +109,7 @@ public static class AudioManager{
         set_music_volume(float.Parse(PlayerPrefs.GetString("music_volume", get_music_volume().ToString())));
         set_voice_volume(float.Parse(PlayerPrefs.GetString("voice_volume", get_voice_volume().ToString())));
         set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
+        set_ambience_volume(float.Parse(PlayerPrefs.GetString("ambience_volume", get_ambience_volume().ToString())));
     }
 
     public static void load_bank(string _bank_name){
