@@ -48,7 +48,9 @@ public class AudioPlayer : MonoBehaviour{
         stop_instance(instance);
         remove_non_diegetic_instance(_event_name);
     }
-
+    public void play_non_diegetic_one_shot_instance(string _event_name){
+        AudioManager.play_non_diegetic_one_shot_instance(_event_name);
+    }
     public void stop_all_loops(){
         foreach(KeyValuePair<string, EventInstance> kvp in diegetic_instances)
             stop_instance(kvp.Value);

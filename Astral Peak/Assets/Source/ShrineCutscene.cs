@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using Entropek;
+using FMODUnity;
 
 public class ShrineOpeningCutscene : Cutscene{
     #pragma warning disable CS0414
@@ -56,6 +57,7 @@ public class ShrineOpeningCutscene : Cutscene{
     IEnumerator ending(){
         torches_off?.Invoke();     
         yield return new WaitForSeconds(6);  
+        AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_shrine")));
         unlink();
         end();

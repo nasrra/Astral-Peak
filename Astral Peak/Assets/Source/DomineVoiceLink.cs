@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using FMODUnity;
 
 
 public class DomineVoiceLink : MonoBehaviour{
-    [SerializeField] List<AudioSpectrum> audio_spectrum = new List<AudioSpectrum>();
+    [SerializeField] AudioSpectrum audio_spectrum;
     [SerializeField] DomineVoiceLinesID id;
     [SerializeField] AudioPlayer audio_player;
     VoiceLines voice_lines;
@@ -14,17 +15,19 @@ public class DomineVoiceLink : MonoBehaviour{
     }   
 
     void Start(){
-        DialogueHandler.instance.new_line += handle_new_line;
+        DialogueHandler.instance.dialogue_started   += dialogue_started;
+        DialogueHandler.instance.new_line           += handle_new_line;
+        DialogueHandler.instance.dialogue_ended     += dialogue_ended;
     }
 
     void OnDestroy(){
-        DialogueHandler.instance.new_line -= handle_new_line;
+        DialogueHandler.instance.dialogue_started   -= dialogue_started;
+        DialogueHandler.instance.new_line           -= handle_new_line;
+        DialogueHandler.instance.dialogue_ended     -= dialogue_ended;
     }
 
     void handle_new_line(int x){
         choose_voice(x);
-        //foreach(AudioSpectrum a in audio_spectrum)
-        //    a.source = source;
     }
 
     Dictionary<DomineVoiceLinesID, Func<VoiceLines>> create_voice_lines = new Dictionary<DomineVoiceLinesID, Func<VoiceLines>>(){
@@ -32,9 +35,17 @@ public class DomineVoiceLink : MonoBehaviour{
         {DomineVoiceLinesID.ASTRAL_PLANE,       ()=>{return new DomineAstralPlaneVoiceLines();}},
     };
 
+    private void dialogue_started(){
+        audio_spectrum.initialize(RuntimeManager.GetBus("bus:/voice/domine"));
+    }
+
+    private void dialogue_ended(){
+        audio_spectrum.uninitialize();
+    }
+
     void choose_voice(int x){
         if(voice_lines.get_voice_lines().ContainsKey(x)){
-            audio_player.play_non_diegetic_one_shot(voice_lines.get_voice_lines()[x]);
+            audio_player.play_non_diegetic_one_shot_instance(voice_lines.get_voice_lines()[x]);
     }
 }
 
@@ -77,6 +88,7 @@ class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
         
+        {0, "domine_dead_woman"},
         {1, "domine_dead_woman"},
         {2, "domine_sacrifice_ritual"},
         {3, "domine_an_offering"},

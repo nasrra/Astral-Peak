@@ -27,16 +27,18 @@ public static class AudioManager{
         RuntimeManager.LoadBank("Master.strings");
         load_active_scene_bank();
         load_bank("ui");
-        UnityEngine.Debug.Log(RuntimeManager.HasBankLoaded("ui"));
-        // get buses
+        load_buses();
+        load_volume_settings();
+        CustomSceneManager.loading_scene += unload_active_scene_bank;
+        CustomSceneManager.loaded_scene += load_active_scene_bank;
+    }
+
+    private static void load_buses(){
         master_bus      = RuntimeManager.GetBus("bus:/");
         music_bus       = RuntimeManager.GetBus("bus:/music");
         voice_bus       = RuntimeManager.GetBus("bus:/voice");
         sfx_bus         = RuntimeManager.GetBus("bus:/sfx");
         ambience_bus    = RuntimeManager.GetBus("bus:/ambience");
-        load_volume_settings();
-        CustomSceneManager.loading_scene += unload_active_scene_bank;
-        CustomSceneManager.loaded_scene += load_active_scene_bank;
     }
 
     public static void uninitialize(){
@@ -178,6 +180,11 @@ public static class AudioManager{
     }
     public static void play_diegetic_one_shot(string _event_name, GameObject _game_object) {
         RuntimeManager.PlayOneShotAttached(loaded_references[_event_name], _game_object);
+    }
+    public static void play_non_diegetic_one_shot_instance(string _event_name) {
+        EventInstance instance = create_event_instance(_event_name);
+        instance.start();
+        instance.release();
     }
     public static EventReference get_event_reference(string _event_name){
         return loaded_references[_event_name];
