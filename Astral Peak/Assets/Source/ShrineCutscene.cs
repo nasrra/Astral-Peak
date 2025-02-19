@@ -148,6 +148,7 @@ public abstract class ShrineAltarCutscene : Cutscene{
     public IEnumerator altar_cutscene(){
         AudioManager.load_bank("cutscene_altar");
         AudioManager.play_music("music_altar");
+        AudioManager.stop_ambience();
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
         set_numerals?.Invoke(get_set_numerals());

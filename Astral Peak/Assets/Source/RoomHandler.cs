@@ -20,13 +20,6 @@ public class RoomHandler : MonoBehaviour{
         }
         current_room_type = room_type;
         instance = this;
-    }
-
-    protected virtual void OnDestroy(){
-        //AudioManager.unload_bank(room_type);
-    }
-
-    protected virtual void Start(){
         if(ambience_track.Count > 0)
             AudioManager.play_ambience(ambience_track[0]);
         else
@@ -35,6 +28,13 @@ public class RoomHandler : MonoBehaviour{
             AudioManager.play_music(music_track[0]);
         else
             AudioManager.stop_music();
+    }
+
+    protected virtual void OnDestroy(){
+        //AudioManager.unload_bank(room_type);
+    }
+
+    protected virtual void Start(){
     }
 
     public virtual void game_cleared_room_state(){
