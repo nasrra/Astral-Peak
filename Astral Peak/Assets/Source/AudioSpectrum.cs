@@ -3,6 +3,7 @@ using System.Collections;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // DSP - digital signal proessor.
@@ -31,9 +32,11 @@ public class AudioSpectrum : MonoBehaviour{
     }
 
     public void uninitialize(){
-        bus.unlockChannelGroup();
-        group.removeDSP(fft_dsp);
-        UnityHook.instance.StopCoroutine(audio_data_loop());
+        if(bus.IsUnityNull() == false){
+            bus.unlockChannelGroup();
+            group.removeDSP(fft_dsp);
+            UnityHook.instance.StopCoroutine(audio_data_loop());
+        }
     }
 
     IEnumerator audio_data_loop(){

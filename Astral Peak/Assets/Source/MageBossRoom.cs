@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entropek;
+using FMODUnity;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
@@ -14,6 +15,7 @@ public class MageBossRoom : BossRoomHandler{
     [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
     [SerializeField] AudioPlayer audio_player;
+    [SerializeField] AudioSpectrum audio_spectum;
     [SerializeField] MagicPlatformsController platforms;
     [SerializeField] GameObject button_prompt;
     List<Action> lighting_states = new List<Action>(){
@@ -66,6 +68,7 @@ public class MageBossRoom : BossRoomHandler{
         if(x == 1){
             audio_player.play_non_diegetic_loop("ambience_thunder");
             phase_transition_lightning();
+            audio_spectum.initialize(RuntimeManager.GetBus("bus:/ambience/additive"));
         }
     }
 
@@ -95,6 +98,7 @@ public class MageBossRoom : BossRoomHandler{
     protected override void death_completed(){
         set_room_state(0);
         audio_player.stop_non_diegetic_loop("ambience_thunder");
+        audio_spectum.uninitialize();
         StopCoroutine("randomised_stone_lightning_loop");
         base.death_completed();
     }

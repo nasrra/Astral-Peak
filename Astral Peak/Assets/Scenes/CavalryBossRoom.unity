@@ -6176,10 +6176,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727715457}
+  - component: {fileID: 727715460}
   - component: {fileID: 727715458}
   - component: {fileID: 727715459}
   m_Layer: 0
-  m_Name: BossRoomHandler
+  m_Name: SceneInfo (CavalryBossRoom)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6216,6 +6217,7 @@ MonoBehaviour:
   room_type: 1
   ambience_track:
   - ambience_wind
+  music_track: []
   final_cutscene_camera_target: {fileID: 157521286}
   final_cutscene_camera_movement: 0
   boss_points:
@@ -6244,6 +6246,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419471097024db84ba0c67cf3293e96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &727715460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727715455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d178da4a6e6cad4ebd28d49ea60d820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <saveable>k__BackingField: 1
+  <transition>k__BackingField: 0
 --- !u!1 &753332492
 GameObject:
   m_ObjectHideFlags: 0

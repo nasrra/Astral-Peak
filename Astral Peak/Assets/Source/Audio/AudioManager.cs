@@ -29,8 +29,10 @@ public static class AudioManager{
         load_bank("ui");
         load_buses();
         load_volume_settings();
-        CustomSceneManager.loading_scene += unload_active_scene_bank;
-        CustomSceneManager.loaded_scene += load_active_scene_bank;
+        CustomSceneManager.transitioning_scene  += stop_music;
+        CustomSceneManager.transitioning_scene  += stop_ambience;
+        CustomSceneManager.loading_scene        += unload_active_scene_bank;
+        CustomSceneManager.loaded_scene         += load_active_scene_bank;
     }
 
     private static void load_buses(){
@@ -42,8 +44,10 @@ public static class AudioManager{
     }
 
     public static void uninitialize(){
-        CustomSceneManager.loading_scene -= unload_active_scene_bank;
-        CustomSceneManager.loaded_scene -= load_active_scene_bank;
+        CustomSceneManager.transitioning_scene  -= stop_music;
+        CustomSceneManager.transitioning_scene  -= stop_ambience;
+        CustomSceneManager.loading_scene        -= unload_active_scene_bank;
+        CustomSceneManager.loaded_scene         -= load_active_scene_bank;
         save_volume_settings();
     }
 
@@ -224,6 +228,7 @@ public static class AudioManager{
         current_music_track = _event_name;
     }
     public static void stop_music(){
+        current_music_track = "";
         music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         music_track.release();
     }
@@ -237,12 +242,21 @@ public static class AudioManager{
         current_ambience_track = _event_name;
     }
     public static void stop_ambience(){
-        Log.MethodCall();
+        current_ambience_track = "";
         ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambience_track.release();
     }
 
     public static void set_ambience_parameter(string _parameter, int _value){
         ambience_track.setParameterByName(_parameter, _value);
+    }
+
+    public static void dim_sfx_audio(){
+        Log.MethodCall();
+        RuntimeManager.StudioSystem.setParameterByName("sfx_dim",1);
+    }
+    public static void restore_sfx_audio(){
+        Log.MethodCall();
+        RuntimeManager.StudioSystem.setParameterByName("sfx_dim",0);
     }
 }

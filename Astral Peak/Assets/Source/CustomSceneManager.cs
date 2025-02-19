@@ -2,15 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using System.Collections.Generic;
 
 public static class CustomSceneManager{
     static string scene_to_load;
-    public static Action loading_scene, loaded_scene;
-
-    static readonly HashSet<string> dont_save_scenes = new HashSet<string> {
-        "MainMenu", "SplashScreen", "Credits", "DemoEnd", "Introduction", "AstralPlane"
-    };
+    public static event Action loading_scene, loaded_scene, transitioning_scene;
 
     public static void initialize(){
         GameManager.set_game_data += set_game_data;
@@ -21,18 +16,25 @@ public static class CustomSceneManager{
     }
 
     public static void load_scene(string _scene){
-        scene_to_load = _scene;
+        prepare_for_scene_load(_scene);
         load_scene();
     }
+
     public static void load_scene_with_transitions(string _scene){
-        scene_to_load = _scene;
+        prepare_for_scene_load(_scene);
         UnityHook.instance.StartCoroutine(load_scene_with_transitions_coroutine());
     } 
     public static void load_scene_with_transitions_unscaled(string _scene){
-        scene_to_load = _scene;
+        prepare_for_scene_load(_scene);
         UnityHook.instance.StartCoroutine(load_scene_with_transitions_unscaled_coroutine());
     }
 
+    static void prepare_for_scene_load(string _scene){
+        scene_to_load = _scene;
+        AudioManager.dim_sfx_audio();
+        if(SceneInfo.instance.transition == true)
+            transitioning_scene?.Invoke();
+    }
 
     static void load_scene(){
         UnityHook.instance.StartCoroutine(load_scene_coroutine());
@@ -51,18 +53,18 @@ public static class CustomSceneManager{
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;
 
-        // laod scene.
+        // load scene.
         load = SceneManager.LoadSceneAsync(scene_to_load, LoadSceneMode.Single);
-        // AudioManager.restore_sfx_volume();
         yield return load;
-        // add the title card scene here when necessary :)
+
         loaded_scene?.Invoke();
-        if(dont_save_scenes.Contains(scene_to_load) == false){
+        if(SceneInfo.instance.saveable == true){
             if(CutsceneManager.in_cutscene() == false)
                 GameManager.state_changed(GameState.GAMEPLAY);
             GameManager.invoke_set_game_data();
             GameManager.save_game_data();
         }
+        AudioManager.restore_sfx_audio();
         yield break;
     }
 
@@ -88,8 +90,6 @@ public static class CustomSceneManager{
     } 
 
     static void set_game_data(){
-        if(dont_save_scenes.Contains(scene_to_load) == true)
-            return;
         GameManager.get_game_data().scene_to_load = scene_to_load;
     }
 }

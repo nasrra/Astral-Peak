@@ -2992,9 +2992,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434137625}
+  - component: {fileID: 1434137628}
   - component: {fileID: 1434137627}
   m_Layer: 0
-  m_Name: RoomHandler
+  m_Name: SceneInfo (shrine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3008,7 +3009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434137624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3029,10 +3030,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room_type: 0
-  ambience_track: []
+  ambience_track:
+  - ambience_shrine
+  music_track:
+  - music_shrine
   final_cutscene_camera_target: {fileID: 2095266924}
   final_cutscene_camera_movement: 2
   beatrice: {fileID: 2014443718}
+--- !u!114 &1434137628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434137624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d178da4a6e6cad4ebd28d49ea60d820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <saveable>k__BackingField: 1
+  <transition>k__BackingField: 1
 --- !u!1001 &1438934098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3920,7 +3938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1867263062
 Transform:
   m_ObjectHideFlags: 0
@@ -5162,16 +5180,20 @@ PrefabInstance:
       value: ShrineDoor
       objectReference: {fileID: 0}
     - target: {fileID: 1825265432607092858, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
+      propertyPath: load_zone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1825265432607092858, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
       propertyPath: exit_point
-      value: TutorialRoomEnter
+      value: Enter
       objectReference: {fileID: 0}
     - target: {fileID: 1825265432607092858, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
       propertyPath: start_open
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1825265432607092858, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
       propertyPath: scene_to_load
-      value: TutorialRoom
+      value: SnowForest
       objectReference: {fileID: 0}
     - target: {fileID: 5167347724440441296, guid: 49fc629481b73ba4eb67c787b211ae54, type: 3}
       propertyPath: m_LocalScale.x
@@ -5515,6 +5537,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1434137625}
   - {fileID: 1807801802}
   - {fileID: 1203517846}
   - {fileID: 4304151598997261659}
@@ -5526,5 +5549,4 @@ SceneRoots:
   - {fileID: 576084489}
   - {fileID: 845713897}
   - {fileID: 2024657073}
-  - {fileID: 1434137625}
   - {fileID: 1628195809}

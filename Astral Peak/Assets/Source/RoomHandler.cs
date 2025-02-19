@@ -1,33 +1,40 @@
 using System.Collections.Generic;
-using Entropek;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
+    public static RoomType current_room_type = RoomType.NONE;
     [Header("RoomHandler")]
     [SerializeField] RoomType room_type;
     [SerializeField] List<string> ambience_track = new List<string>();
+    [SerializeField] List<string> music_track = new List<string>();
     [SerializeField] Transform final_cutscene_camera_target;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
-        if(instance != null && instance.room_type != this.room_type){
-            AudioManager.unload_bank(instance.room_type);
-            AudioManager.load_bank(this.room_type);
-        }
-        else
+        Debug.Log(current_room_type+" "+room_type);
+        if (current_room_type == RoomType.NONE)
             AudioManager.load_bank(room_type);
+        else if(current_room_type != room_type){
+            AudioManager.unload_bank(current_room_type);
+            AudioManager.load_bank(room_type);
+        }
+        current_room_type = room_type;
         instance = this;
     }
 
     protected virtual void OnDestroy(){
-        AudioManager.unload_bank(room_type);
-        instance = null;
+        //AudioManager.unload_bank(room_type);
     }
 
     protected virtual void Start(){
         if(ambience_track.Count > 0)
             AudioManager.play_ambience(ambience_track[0]);
+        else
+            AudioManager.stop_ambience();
+        if(music_track.Count > 0)
+            AudioManager.play_music(music_track[0]);
+        else
+            AudioManager.stop_music();
     }
 
     public virtual void game_cleared_room_state(){
@@ -57,4 +64,5 @@ public class RoomHandler : MonoBehaviour{
 public enum RoomType{
     SHRINE,
     SNOW,
+    NONE,
 }
