@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.Linq;
+using System.IO;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -252,6 +254,15 @@ public static class InputManager{
         .WithControlsExcluding("Mouse")
         .WithControlsExcluding("<Keyboard>/Escape")
         .WithControlsExcluding("<Keyboard>/anyKey")
+        //.OnPotentialMatch( c => {
+        //    string file_path = c.selectedControl.path;
+        //    string relative_path = Path.GetFileNameWithoutExtension(file_path);
+        //    Debug.Log(file_path + " "+ relative_path +" "+ relative_path.Length + " " + relative_path.EndsWith("space") + " " + file_path.StartsWith("/Keyboard/"));
+        //    if(!file_path.StartsWith("/Keyboard/") || relative_path.Length > 1 && relative_path.EndsWith("space") == false){
+        //            Debug.Log("Invalid key rebind");
+        //            c.Cancel();
+        //        }
+        //})
         .OnCancel(c =>{
             Debug.Log("Rebinding operation was canceled.");
             c.Dispose();
