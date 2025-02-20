@@ -88,6 +88,7 @@ public static class AudioManager{
 
     public static void set_master_volume(float _volume){
         master_bus.setVolume(_volume);
+        Debug.Log(_volume);
     } 
     public static void set_music_volume(float _volume){
         music_bus.setVolume(_volume);
@@ -112,7 +113,7 @@ public static class AudioManager{
     }
 
     public static void load_volume_settings(){
-        set_master_volume(float.Parse(PlayerPrefs.GetString("master_volume", get_master_volume().ToString())));
+        //set_master_volume(float.Parse(PlayerPrefs.GetString("master_volume", get_master_volume().ToString())));
         set_music_volume(float.Parse(PlayerPrefs.GetString("music_volume", get_music_volume().ToString())));
         set_voice_volume(float.Parse(PlayerPrefs.GetString("voice_volume", get_voice_volume().ToString())));
         set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
