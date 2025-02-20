@@ -14,7 +14,8 @@ public static class AudioManager{
         music_bus,
         voice_bus,
         ambience_bus,
-        sfx_bus;
+        sfx_bus,
+        ui_bus;
     static EventInstance music_track;
     static EventInstance ambience_track;
     static string current_music_track = "";
@@ -41,6 +42,7 @@ public static class AudioManager{
         voice_bus       = RuntimeManager.GetBus("bus:/voice");
         sfx_bus         = RuntimeManager.GetBus("bus:/sfx");
         ambience_bus    = RuntimeManager.GetBus("bus:/ambience");
+        ui_bus          = RuntimeManager.GetBus("bus:/ui");
     }
 
     public static void uninitialize(){
@@ -85,6 +87,10 @@ public static class AudioManager{
         ambience_bus.getVolume(out float _volume);
         return _volume;
     }
+    public static float get_ui_volume(){
+        ui_bus.getVolume(out float _volume);
+        return _volume;
+    }
 
     public static void set_master_volume(float _volume){
         master_bus.setVolume(_volume);
@@ -102,6 +108,9 @@ public static class AudioManager{
     public static void set_ambience_volume(float _volume){
         ambience_bus.setVolume(_volume);
     }
+    public static void set_ui_volume(float _volume){
+        ui_bus.setVolume(_volume);
+    }
 
     public static void save_volume_settings(){
         PlayerPrefs.SetString("master_volume", get_master_volume().ToString());
@@ -109,6 +118,7 @@ public static class AudioManager{
         PlayerPrefs.SetString("voice_volume", get_voice_volume().ToString());
         PlayerPrefs.SetString("sfx_volume", get_sfx_volume().ToString());
         PlayerPrefs.SetString("ambience_volume", get_ambience_volume().ToString());
+        PlayerPrefs.SetString("ui_volume", get_ui_volume().ToString());
         PlayerPrefs.Save();
     }
 
@@ -118,6 +128,7 @@ public static class AudioManager{
         set_voice_volume(float.Parse(PlayerPrefs.GetString("voice_volume", get_voice_volume().ToString())));
         set_sfx_volume(float.Parse(PlayerPrefs.GetString("sfx_volume", get_sfx_volume().ToString())));
         set_ambience_volume(float.Parse(PlayerPrefs.GetString("ambience_volume", get_ambience_volume().ToString())));
+        set_ui_volume(float.Parse(PlayerPrefs.GetString("ui_volume", get_ui_volume().ToString())));
     }
 
     public static void load_bank(string _bank_name){
