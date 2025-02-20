@@ -54,16 +54,12 @@ public static class AudioManager{
     }
 
     public static void set_available_banks(){
-        if(Directory.Exists(Settings.Instance.SourceBankPath)){
-            string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
-            foreach(var file in bank_files){
-                string file_name = Path.GetFileNameWithoutExtension(file);
-                available_banks.Add(file_name, (sbyte)available_banks.Count);
-                //UnityEngine.Debug.Log("found bank: "+file_name);
-            }
-        }
-        else{
-            throw new System.Exception("Bank Path does not exist: "+Settings.Instance.SourceBankPath);
+        //string path = Application.streamingAssetsPath + "/FMOD Banks/Desktop/";
+        string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
+        foreach(var file in bank_files){
+            string file_name = Path.GetFileNameWithoutExtension(file);
+            available_banks.Add(file_name, (sbyte)available_banks.Count);
+            //UnityEngine.Debug.Log("found bank: "+file_name);
         }
     }
 

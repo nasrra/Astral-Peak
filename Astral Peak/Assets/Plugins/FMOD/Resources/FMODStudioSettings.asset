@@ -455,14 +455,14 @@ MonoBehaviour:
   active: 1
   Properties:
     LiveUpdate:
-      Value: 0
-      HasValue: 0
+      Value: 2
+      HasValue: 1
     LiveUpdatePort:
       Value: 9264
       HasValue: 1
     Overlay:
-      Value: 0
-      HasValue: 0
+      Value: 2
+      HasValue: 1
     OverlayPosition:
       Value: 0
       HasValue: 0
@@ -479,8 +479,8 @@ MonoBehaviour:
       Value: 
       HasValue: 0
     SpeakerMode:
-      Value: 0
-      HasValue: 0
+      Value: 3
+      HasValue: 1
     VirtualChannelCount:
       Value: 0
       HasValue: 0
@@ -546,9 +546,9 @@ MonoBehaviour:
   BankLoadType: 2
   AutomaticSampleLoading: 0
   EncryptionKey: 
-  ImportType: 1
-  TargetAssetPath: FMODBanks
-  TargetBankFolder: 
+  ImportType: 0
+  TargetAssetPath: 
+  TargetBankFolder: FMODBanks
   EventLinkage: 0
   LoggingLevel: 2
   SpeakerModeSettings: []
@@ -576,13 +576,13 @@ MonoBehaviour:
   - ui
   BanksToLoad: []
   LiveUpdatePort: 9264
-  EnableMemoryTracking: 0
+  EnableMemoryTracking: 1
   AndroidUseOBB: 0
   AndroidPatchBuild: 0
   MeterChannelOrdering: 0
   StopEventsOutsideMaxDistance: 0
   BoltUnitOptionsBuildPending: 0
-  EnableErrorCallback: 0
+  EnableErrorCallback: 1
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131846
