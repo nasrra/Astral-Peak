@@ -22,7 +22,8 @@ public static class DisplaySettingsManager{
     static int frame_rate_preset    = 0;
     static bool fullscreen          = false;
     static Coroutine change_buffer_coroutine;
-    static Action change_buffer_started, change_buffer_completed;
+    public static Action change_buffer_started, change_buffer_cancelled, change_buffer_accepted;
+    public static readonly float change_buffer_time = 6f;
 
     public static void initialize(){
         load_player_prefs();
@@ -33,11 +34,11 @@ public static class DisplaySettingsManager{
         set_frame_rate_preset(load_frame_rate_preset());
     }
 
-    private static int load_resolution_preset(){
+    public static int load_resolution_preset(){
         return PlayerPrefs.GetInt("resolution_preset", resolution_preset);
     }
 
-    private static bool load_fullscreen_preset(){
+    public static bool load_fullscreen_preset(){
         return PlayerPrefs.GetInt("fullscreen",0) == 1? true: false;
     }
 
@@ -52,11 +53,21 @@ public static class DisplaySettingsManager{
     }
 
     public static void begin_resolution_change(int _preset){
-        change_buffer_coroutine = UnityHook.instance.StartCoroutine(resolution_changed_buffer(_preset, load_resolution_preset()));
+        change_buffer_coroutine = UnityHook.instance.StartCoroutine(
+            settings_change_buffer(
+                _start_action:()=>{set_resolution(_preset);},
+                _time_out:()=>{set_resolution(load_resolution_preset());}
+            )
+        );
     }
 
     public static void begin_fullscreen_change(bool _preset){
-        change_buffer_coroutine = UnityHook.instance.StartCoroutine(fullscreen_changed_buffer(_preset, load_fullscreen_preset()));
+        change_buffer_coroutine = UnityHook.instance.StartCoroutine(
+            settings_change_buffer(
+                _start_action:()=>{set_fullscreen(_preset);},
+                _time_out:()=>{set_fullscreen(load_fullscreen_preset());}
+            )
+        );    
     }
 
     private static void set_resolution(int preset){
@@ -80,42 +91,33 @@ public static class DisplaySettingsManager{
     // so that the player doesnt softlock themselves from choosing a really high resolution.
 
     
-    static IEnumerator resolution_changed_buffer(int _selected_preset, int _previous_preset){
+    static IEnumerator settings_change_buffer(Action _start_action, Action _time_out){
         yield return Util.unscaled_timer(
-            time: 6,
+            time: change_buffer_time,
             start_action:()=>{
-                set_resolution(_selected_preset);
+                _start_action();
                 change_buffer_started?.Invoke();
             },
             time_out:()=>{
-                set_resolution(_previous_preset);
-                change_buffer_completed?.Invoke();
+                _time_out();
+                change_buffer_cancelled?.Invoke();
             } 
         );
     }
 
-    static IEnumerator fullscreen_changed_buffer(bool _selected_preset, bool _previous_preset){
-        yield return Util.unscaled_timer(
-            time: 6,
-            start_action:()=>{
-                set_fullscreen(_selected_preset);
-                change_buffer_started?.Invoke();
-            },
-            time_out:()=>{
-                set_fullscreen(_previous_preset);
-                change_buffer_completed?.Invoke();
-            }
-        );
-    }
-
-    public static void stop_display_settings_change_buffer(){
+    public static void accept_display_settings_change(){
         save_player_prefs();
+        change_buffer_accepted?.Invoke();
         UnityHook.instance.StopCoroutine(change_buffer_coroutine);
     }
 
+    public static void cancel_display_settings_change(){
+        //load_resolution_preset();
+        change_buffer_cancelled?.Invoke();
+        UnityHook.instance.StopCoroutine(change_buffer_coroutine);
+    }
 
     public static int get_resolution_preset()   => resolution_preset;
     public static bool get_is_fullscreen()      => fullscreen;
     public static int get_frame_rate_preset()   => frame_rate_preset;
-
 }
