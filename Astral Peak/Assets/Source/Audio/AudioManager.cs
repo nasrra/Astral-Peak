@@ -3,6 +3,7 @@ using System.IO;
 using Entropek;
 using FMOD.Studio;
 using FMODUnity;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -100,6 +101,8 @@ public static class AudioManager{
         current_music_track = _event_name;
     }
     public static void stop_music(){
+        if(current_music_track == "" || current_music_track == null)
+            return;
         current_music_track = "";
         music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         music_track.release();
@@ -114,6 +117,8 @@ public static class AudioManager{
         current_ambience_track = _event_name;
     }
     public static void stop_ambience(){
+        if(current_ambience_track == "" || current_ambience_track == null)
+            return;
         current_ambience_track = "";
         ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambience_track.release();
