@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5761476170320875084}
   - component: {fileID: 15468019224269703}
   - component: {fileID: 3972655245220967587}
+  - component: {fileID: 192276995142161652}
   m_Layer: 0
   m_Name: Shrine_Torch
   m_TagString: Untagged
@@ -110,10 +111,21 @@ MonoBehaviour:
   - {fileID: 6042547171969865755}
   smoke: {fileID: 2476747472272899110}
   embers: {fileID: 1296111240647129143}
-  fire_source: {fileID: 0}
-  smoke_source: {fileID: 0}
   enlarged_scale: {x: 25, y: 25, z: 0}
   original_scale: {x: 0, y: 0, z: 0}
+  audio_player: {fileID: 192276995142161652}
+--- !u!114 &192276995142161652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078326909263664118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2146126909386559276
 GameObject:
   m_ObjectHideFlags: 0

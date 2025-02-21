@@ -1,13 +1,16 @@
 using UnityEngine;
 using Entropek;
 
-public class SludgeTrackingProjectile : MagicStationaryProjectile{
-    [Header("MagicTrackingProjectile")]
+public class SludgeTrackingProjectile : Projectile{
+    [Header("SludgeTrackingProjectile")]
+    [SerializeField] TrailRenderer trail;
+    [SerializeField] ParticleSystem ambience;
     [SerializeField] ParticleSystem destroy_splash;
     [SerializeField] Transform front_point, top_point;
     [SerializeField] Vector2 buffer_direction;
     [SerializeField] float rotate_speed, move_speed, buffer_time, buffer_speed;
     protected override void Start(){
+        play_sound();
         StartCoroutine(Util.timer(buffer_time,
             start_action: () => {
                 enable_colliders(false);
@@ -23,21 +26,26 @@ public class SludgeTrackingProjectile : MagicStationaryProjectile{
         }));
         base.Start();
     }
-    protected override void play_sound() => 
-        source = AudioClipHandler.play(Sounds.SoundID.WATER_GURGLE_LOOP, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED_LOOP);
+    protected override void play_sound(){
+        audio_player.play_diegetic_loop("water_gurgle");
+    } 
+
+    protected override void stop_sound(){
+        audio_player.play_diegetic_one_shot("water_splash_light");
+        audio_player.stop_diegetic_loop("water_gurgle");
+    }
     
     protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.GROUND)
             destroy();
-        base.OnTriggerEnter2D(other);
+        else
+            base.OnTriggerEnter2D(other);
     }
     public override void destroy(){
-        AudioClipHandler.play(Sounds.SoundID.WATER_SPLASH, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
-        ParticleSystem.ShapeModule shape = destroy_splash.shape;
+        base.destroy();
         transform.rotation =  Quaternion.Euler(new Vector3(0,0,0));
         destroy_splash.Emit(20);
-        movement.StopAllCoroutines();
-        movement.zero_velocity();
-        base.destroy();
+        ambience.Stop(false, ParticleSystemStopBehavior.StopEmitting);
     }
+
 }

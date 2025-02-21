@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayResolutionFullscreenToggle : MonoBehaviour{
-    [SerializeField] Toggle toggle;
-    void OnEnable() => toggle.isOn = DisplaySettingsManager.get_is_fullscreen();
-    public void enable_fullscreen(bool toggle) => DisplaySettingsManager.set_fullscreen(toggle);
+public class DisplayResolutionFullscreenToggle : DisplaySettingsToggle
+{
+    protected override bool load_value(){
+        return DisplaySettingsManager.load_fullscreen_preset();
+    }
+
+    protected override void on_value_change(bool _selected){
+        DisplaySettingsManager.begin_fullscreen_change(_selected);
+    }
 }

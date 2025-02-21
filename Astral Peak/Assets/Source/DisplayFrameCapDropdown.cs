@@ -1,8 +1,12 @@
 using UnityEngine;
+using static TMPro.TMP_Dropdown;
 
-public class DisplayFrameCapDropdown : MonoBehaviour{
-    [SerializeField] TMPro.TMP_Dropdown dropdown;
-    void OnEnable() => dropdown.value = DisplaySettingsManager.get_frame_cap_preset();
-    public void frame_cap_changed(int selection) => DisplaySettingsManager.set_frame_cap_preset(selection);
+public class DisplayFrameRateDropdown : DisplaySettingsDropDown{
+    protected override int load_value(){
+        return DisplaySettingsManager.get_frame_rate_preset();
+    }
+
+    protected override void on_value_change(int _selection){
+        DisplaySettingsManager.set_frame_rate_preset(_selection);
+    }
 }
-//

@@ -10176,12 +10176,12 @@ GameObject:
   - component: {fileID: 4379368364017566873}
   - component: {fileID: 1483956834082543531}
   - component: {fileID: 6660011850679449445}
-  - component: {fileID: 4321475848782107192}
   - component: {fileID: 6639480894418382988}
   - component: {fileID: 5833104458366469677}
   - component: {fileID: 8580107664884857992}
   - component: {fileID: 724059546516826845}
   - component: {fileID: 8695350618710489015}
+  - component: {fileID: 8070503566188358608}
   m_Layer: 13
   m_Name: Rider
   m_TagString: Untagged
@@ -10365,7 +10365,7 @@ MonoBehaviour:
   particles: {fileID: 6660011850679449445}
   ranged: {fileID: 5833104458366469677}
   melee: {fileID: 6639480894418382988}
-  sound: {fileID: 4321475848782107192}
+  sound: {fileID: 8070503566188358608}
   combat: {fileID: 7413480390761594454}
   lighting: {fileID: 8695350618710489015}
   target: {fileID: 0}
@@ -10470,18 +10470,6 @@ MonoBehaviour:
       Value: {fileID: 299593416327530731}
     - Key: footstep
       Value: {fileID: 3894082005825061884}
---- !u!114 &4321475848782107192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061221953122755816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6639480894418382988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10647,6 +10635,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lights:
     _serializedList: []
+--- !u!114 &8070503566188358608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061221953122755816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6286200776534538433
 GameObject:
   m_ObjectHideFlags: 0

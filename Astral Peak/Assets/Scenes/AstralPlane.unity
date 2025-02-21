@@ -405,6 +405,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1364892457699260785, guid: 0c5c8885606b02e448bb376238c9cec1, type: 3}
   m_PrefabInstance: {fileID: 462021433}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &544623289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: music_track.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: ambience_track.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: 'ambience_track.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: final_cutscene_camera_movement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781971622970081959, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_Name
+      value: SceneInfo (Shrine)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100656851725724509, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+      propertyPath: <saveable>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2094186803478048517, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
 --- !u!1 &548280510
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +935,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Demo End
 
+
+    Made using FMOD Studio by Firelight Technologies Pty Ltd.
+
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b120c4c1f8da6a94da451818c9d51003, type: 2}
@@ -890,7 +971,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 16
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -922,7 +1003,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -507.12402, y: 0, z: -508.0368, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2159,7 +2240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6969d4cb48de0724e86acdbc8cdad666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ambience_tracks: 0000
+  room_type: 0
+  ambience_track: []
+  music_track: []
   final_cutscene_camera_target: {fileID: 1505791830}
   final_cutscene_camera_movement: 2
   domine_door: {fileID: 1244933018}
@@ -3023,7 +3106,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 250}
+  m_AnchoredPosition: {x: 0, y: 225}
   m_SizeDelta: {x: 2430, y: 1368}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1828601496
@@ -3046,7 +3129,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b8eb60285d4d33748a5f67c9483b9b4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a60207750259f8049bec1428f5775e15, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3736,3 +3819,4 @@ SceneRoots:
   - {fileID: 1516387556}
   - {fileID: 2135091503}
   - {fileID: 8014859553289910544}
+  - {fileID: 544623289}

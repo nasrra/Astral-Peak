@@ -15,10 +15,6 @@ public class LightningStrikeProjectile : Projectile{
     }
 
     protected override void Start(){
-        //StartCoroutine(Util.timer(
-        //    time: lifetime,
-        //    time_out: destroy
-        //));
         StartCoroutine(Util.timer(
             time: 1.5f,
             time_out: loop
@@ -26,13 +22,14 @@ public class LightningStrikeProjectile : Projectile{
         snap_to_floor();
         base.Start();
     }
+
     void loop(){
         enable_colliders(true);
         lightning.start_emitting();
         movement.movement_state(Player.instance.transform.position.x - transform.position.x <= 0? Vector2.left : Vector2.right, move_speed); 
     }
     
-    void OnTriggerEnter2D(Collider2D other){
+    protected override void OnTriggerEnter2D(Collider2D other){
         int layer = other.gameObject.layer; 
         if(layer == LayersManager.PLAYER)
             damage_creature(other.GetComponent<Creature>());

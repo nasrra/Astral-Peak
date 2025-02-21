@@ -22,6 +22,8 @@ public class CharacterMovement : Movement{
 
     public void set_jump_force(float force) => jump_force = force;
 
+    public bool is_grounded() => grounded;
+
     public override void clear_move_direction(){
         jumping = false;
         end_jump();

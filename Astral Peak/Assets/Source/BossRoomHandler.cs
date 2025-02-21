@@ -16,7 +16,7 @@ public abstract class BossRoomHandler : RoomHandler{
     protected Cutscene cutscene; 
     protected override void Awake(){
         base.Awake();
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         check_world_state();
     }
 
@@ -36,7 +36,7 @@ public abstract class BossRoomHandler : RoomHandler{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -63,7 +63,7 @@ public abstract class BossRoomHandler : RoomHandler{
 
     protected virtual void death_completed(){
         UiManager.instance.play_enemy_vanquished();
-        AudioManager.stop_music();
+        // AudioManager.stop_music();
         StartCoroutine(altar_cutscene());
     }
     protected IEnumerator altar_cutscene(){

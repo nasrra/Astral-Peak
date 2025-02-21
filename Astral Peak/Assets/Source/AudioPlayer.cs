@@ -1,15 +1,85 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
+using FMOD;
+using FMOD.Studio;
+using FMODUnity;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioPlayer : MonoBehaviour{
-    SoundFunctions functions;
-    void Start() => functions?.set_entity(this);
-    public void set_functions(SoundFunctions _functions) => functions = _functions;
-    public void play_sound(string sound_id) => functions.play_sound(sound_id);
-    public void stop_sound(string sound_id) => functions.stop_sound(sound_id);
-    public void stop_sound_fast(string sound_id) => functions.stop_sound_fast(sound_id);
-    public void stop_all_loops()           => functions.stop_all_loops();
-    public void play_ground_effected_sound(string sound_id) => functions.play_ground_effected_sound(sound_id);
-    public void set_ground(string _ground) => functions.set_ground(_ground);
-    public void set_audio_player(GameObject _audio_player) => functions.set_audio_player(_audio_player);
+    Dictionary<string, EventInstance> diegetic_instances = new Dictionary<string, EventInstance>();
+    Dictionary<string, EventInstance> non_diegetic_instances = new Dictionary<string, EventInstance>();
+
+    void start_diegetic_event_instance_loop(){
+        StopAllCoroutines();
+        StartCoroutine(update_diegetic_instances());
+    }
+    void OnDestroy(){
+        stop_all_loops();
+    }
+    public void play_diegetic_one_shot(string _event_name){
+        AudioManager.play_diegetic_one_shot(_event_name, gameObject);
+    }
+    public void play_non_diegetic_one_shot(string _event_name){
+        AudioManager.play_non_diegetic_one_shot(_event_name);
+    }
+    public void play_diegetic_loop(string _event_name){
+        EventInstance instance = AudioManager.create_event_instance(_event_name);
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        if(diegetic_instances.Count == 0){
+            start_diegetic_event_instance_loop();
+        }
+        diegetic_instances.Add(_event_name, instance);
+        instance.start();
+    }
+    public void play_non_diegetic_loop(string _event_name){
+        EventInstance instance = AudioManager.create_event_instance(_event_name);
+        non_diegetic_instances.Add(_event_name, instance);
+        instance.start();
+    }
+    public void stop_diegetic_loop(string _event_name){
+        EventInstance instance = diegetic_instances[_event_name];
+        stop_instance(instance);
+        remove_diegetic_instance(_event_name);
+    }
+
+    public void stop_non_diegetic_loop(string _event_name){
+        EventInstance instance = non_diegetic_instances[_event_name];
+        stop_instance(instance);
+        remove_non_diegetic_instance(_event_name);
+    }
+    public void play_non_diegetic_one_shot_instance(string _event_name){
+        AudioManager.play_non_diegetic_one_shot_instance(_event_name);
+    }
+    public void stop_all_loops(){
+        foreach(KeyValuePair<string, EventInstance> kvp in diegetic_instances)
+            stop_instance(kvp.Value);
+        diegetic_instances.Clear();
+        foreach(KeyValuePair<string, EventInstance> kvp in non_diegetic_instances)
+            stop_instance(kvp.Value);
+        non_diegetic_instances.Clear();
+    }
+
+    private void stop_instance(EventInstance _instance){
+        _instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _instance.release();
+    }
+
+    private void remove_diegetic_instance(string _event_name){
+        diegetic_instances.Remove(_event_name);
+        if(diegetic_instances.Count == 0){
+            StopAllCoroutines();
+        }
+    }
+    private void remove_non_diegetic_instance(string _event_name){
+        non_diegetic_instances.Remove(_event_name);
+    }
+    IEnumerator update_diegetic_instances(){
+        while(true){
+            ATTRIBUTES_3D instance_attributes = RuntimeUtils.To3DAttributes(transform);
+            yield return new WaitForFixedUpdate();
+            foreach(EventInstance instance in diegetic_instances.Values)
+                instance.set3DAttributes(instance_attributes);
+        }
+    }
 }

@@ -1,150 +1,150 @@
-using UnityEngine;
-namespace Sounds{
-    public enum SoundID : short{
-    //Default
-    NONE,
+// using UnityEngine;
+// namespace Sounds{
+//     public enum SoundID : short{
+//     //Default
+//     NONE,
 
 
-    // MUSIC
-    WOLF_BOSS_MUSIC_1,
-    WOLF_BOSS_MUSIC_2,
-    MAGE_BOSS_MUSIC_1,
-    MAGE_BOSS_MUSIC_2,
-    DOMINE_MUSIC,
-    HOLLOW_MUSIC,
-    ALTAR_MUSIC,
-    INTRODUCTION_MUSIC,
+//     // MUSIC
+//     WOLF_BOSS_MUSIC_1,
+//     WOLF_BOSS_MUSIC_2,
+//     MAGE_BOSS_MUSIC_1,
+//     MAGE_BOSS_MUSIC_2,
+//     DOMINE_MUSIC,
+//     HOLLOW_MUSIC,
+//     ALTAR_MUSIC,
+//     INTRODUCTION_MUSIC,
 
-    //Ambience
-    SOFT_WIND,
-    HEAVY_WIND,
+//     //Ambience
+//     SOFT_WIND,
+//     HEAVY_WIND,
 
-    //thunder
-    THUNDER_1,
-    THUNDER_2,
-    THUNDER_DISTANT,
+//     //thunder
+//     THUNDER_1,
+//     THUNDER_2,
+//     THUNDER_DISTANT,
 
-    // Magic
-    LEATHER_CONTORT_1,
-    MAGIC_1,
-    MAGIC_EXPLOSION,
-    MAGIC_SNOW_CAST,
-    WHOOSH_1,
-    WHOOSH_2,
-    MAGIC_FOOTSTEP_1,
-    MAGIC_FOOTSTEP_2,
-    MAGIC_FOOTSTEP_3,
+//     // Magic
+//     LEATHER_CONTORT_1,
+//     MAGIC_1,
+//     MAGIC_EXPLOSION,
+//     MAGIC_SNOW_CAST,
+//     WHOOSH_1,
+//     WHOOSH_2,
+//     MAGIC_FOOTSTEP_1,
+//     MAGIC_FOOTSTEP_2,
+//     MAGIC_FOOTSTEP_3,
 
 
-    // electricity
-    ELECTRICITY_1,
-    ELECTRICITY_2,
-    ELECTRICITY_3,
-    ELECTRICITY_LOOP,
-    ELECTRIC_BURST,
+//     // electricity
+//     ELECTRICITY_1,
+//     ELECTRICITY_2,
+//     ELECTRICITY_3,
+//     ELECTRICITY_LOOP,
+//     ELECTRIC_BURST,
 
-    //Ui
-    WOODEN_PING,
-    PING,
-    DEEP_BOOM,
-    HEART_THUMP,
+//     //Ui
+//     WOODEN_PING,
+//     PING,
+//     DEEP_BOOM,
+//     HEART_THUMP,
 
-    // Melee
-    MELEE_HIT,
-    MELEE_SWING_1,
-    MELEE_SWING_2,
-    MELEE_SWING_3,
+//     // Melee
+//     MELEE_HIT,
+//     MELEE_SWING_1,
+//     MELEE_SWING_2,
+//     MELEE_SWING_3,
 
-    // Hammer
-    HAMMER_DOWN_1,
+//     // Hammer
+//     HAMMER_DOWN_1,
 
-    // Ranged
-    BOW_SHOT,
-    COIN_TOSS,
+//     // Ranged
+//     BOW_SHOT,
+//     COIN_TOSS,
 
-    // Snow
-    SNOW_FOOTSTEP_1,
-    SNOW_FOOTSTEP_2,
-    SNOW_FOOTSTEP_3,
-    SNOW_FOOTSTEP_4,
-    SNOW_JUMP,
-    SNOW_IMPACT_HEAVY,
-    SNOW_IMPACT_LIGHT,
-    SNOW_ROLLING,
+//     // Snow
+//     SNOW_FOOTSTEP_1,
+//     SNOW_FOOTSTEP_2,
+//     SNOW_FOOTSTEP_3,
+//     SNOW_FOOTSTEP_4,
+//     SNOW_JUMP,
+//     SNOW_IMPACT_HEAVY,
+//     SNOW_IMPACT_LIGHT,
+//     SNOW_ROLLING,
     
-    // The Cavalry
-    WOLF_HOWL,
-    DOG_BARK_1,
-    BOSS_YELL,
-    WHISTLE_LONG,
+//     // The Cavalry
+//     WOLF_HOWL,
+//     DOG_BARK_1,
+//     BOSS_YELL,
+//     WHISTLE_LONG,
 
-    // The Giant.
-    HAND_CLAP_REVERB,
+//     // The Giant.
+//     HAND_CLAP_REVERB,
 
-    // Water
-    WATER_BUBBLE,
-    WATER_GURGLE_LOOP,
-    WATER_SPLASH,
-    WATER_SPLASH_DEEP_1,
-    WATER_SPLASH_DEEP_2,
-    WATER_RUSH_HEAVY,
+//     // Water
+//     WATER_BUBBLE,
+//     WATER_GURGLE_LOOP,
+//     WATER_SPLASH,
+//     WATER_SPLASH_DEEP_1,
+//     WATER_SPLASH_DEEP_2,
+//     WATER_RUSH_HEAVY,
 
-    // The Mage
-    BELL_CHIMES,
+//     // The Mage
+//     BELL_CHIMES,
 
-    // Stone
-    STONE_FOOTSTEP_1,
-    STONE_FOOTSTEP_2,
-    STONE_FOOTSTEP_3,
-    STONE_FOOTSTEP_4,
-    STONE_HEAVY_FOOTSTEP_1,
-    STONE_HEAVY_FOOTSTEP_2,
-    STONE_HEAVY_FOOTSTEP_3,
-    STONE_HEAVY_FOOTSTEP_4,
-    STONE_IMPACT_LIGHT,
-    STONE_DOOR,
-    STONE_SHIFT_FAST,
+//     // Stone
+//     STONE_FOOTSTEP_1,
+//     STONE_FOOTSTEP_2,
+//     STONE_FOOTSTEP_3,
+//     STONE_FOOTSTEP_4,
+//     STONE_HEAVY_FOOTSTEP_1,
+//     STONE_HEAVY_FOOTSTEP_2,
+//     STONE_HEAVY_FOOTSTEP_3,
+//     STONE_HEAVY_FOOTSTEP_4,
+//     STONE_IMPACT_LIGHT,
+//     STONE_DOOR,
+//     STONE_SHIFT_FAST,
 
-    // Fire
-    SMALL_FIRE,
-    STEAM,
+//     // Fire
+//     SMALL_FIRE,
+//     STEAM,
 
-    // Wooden
-    WOODEN_RATTLE_1,
-    WOODEN_RATTLE_2,
-    WOODEN_RATTLE_4,
-    DEEP_THUMPING,
-    WOODEN_RATTLE_IMPACT,
+//     // Wooden
+//     WOODEN_RATTLE_1,
+//     WOODEN_RATTLE_2,
+//     WOODEN_RATTLE_4,
+//     DEEP_THUMPING,
+//     WOODEN_RATTLE_IMPACT,
 
-    // Beatrice
-    WOMAN_GASP_REVERB,
+//     // Beatrice
+//     WOMAN_GASP_REVERB,
 
-    //Domine
-    DANIEL,
-    DOMINE_AN_OFFERING,
-    DOMINE_BURNED_WOMAN,
-    DOMINE_CURSED_ONE,
-    DOMINE_DEAD_WOMAN,
-    DOMINE_EDGE_OF_WORLD,
-    DOMINE_ENTER_ROOM,
-    DOMINE_FIX_WOMAN,
-    DOMINE_FOOL_OR_BRAVE,
-    DOMINE_ITS_EXPENSIVE,
-    DOMINE_LOST_SOUL,
-    DOMINE_NO_HOPE,
-    DOMINE_OLD_DOOR,
-    DOMINE_REVIVE_WOMAN,
-    DOMINE_SACRIFICE_RITUAL,
-    DOMINE_STRONG_WILL,
-    DOMINE_UNDER_ARCHES,
-    DOMINE_UNLESS,
-    DOMINE_WAITING_MORTAL,
-    DOMINE_WALK_AETHER,
-    DOMINE_WARNING,
-    DOMINE_NO,
-    DOMINE_YOURE_MORTALS,
-    DOMINE_ASHES_TO_WIND,
-    DOMINE_MOUNTAIN_SUMMIT,
-    DOMINE_WHY_HERE,
-}
-}
+//     //Domine
+//     DANIEL,
+//     DOMINE_AN_OFFERING,
+//     DOMINE_BURNED_WOMAN,
+//     DOMINE_CURSED_ONE,
+//     DOMINE_DEAD_WOMAN,
+//     DOMINE_EDGE_OF_WORLD,
+//     DOMINE_ENTER_ROOM,
+//     DOMINE_FIX_WOMAN,
+//     DOMINE_FOOL_OR_BRAVE,
+//     DOMINE_ITS_EXPENSIVE,
+//     DOMINE_LOST_SOUL,
+//     DOMINE_NO_HOPE,
+//     DOMINE_OLD_DOOR,
+//     DOMINE_REVIVE_WOMAN,
+//     DOMINE_SACRIFICE_RITUAL,
+//     DOMINE_STRONG_WILL,
+//     DOMINE_UNDER_ARCHES,
+//     DOMINE_UNLESS,
+//     DOMINE_WAITING_MORTAL,
+//     DOMINE_WALK_AETHER,
+//     DOMINE_WARNING,
+//     DOMINE_NO,
+//     DOMINE_YOURE_MORTALS,
+//     DOMINE_ASHES_TO_WIND,
+//     DOMINE_MOUNTAIN_SUMMIT,
+//     DOMINE_WHY_HERE,
+// }
+// }

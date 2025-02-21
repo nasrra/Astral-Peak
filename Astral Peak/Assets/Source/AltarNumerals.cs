@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Sounds;
 using System.Collections.Generic;
 using Entropek;
 
@@ -9,6 +8,7 @@ public class AltarNumerals : MonoBehaviour{
     [SerializeField] List<ParticleSystem> particles = new List<ParticleSystem>();
     [SerializeField] List<Light2D> light2D = new List<Light2D>();
     [SerializeField] List<float> light_intensity = new List<float>();
+    [SerializeField] AudioPlayer audio_player;
     void Awake(){
         handle_cutscene();
     }
@@ -21,11 +21,7 @@ public class AltarNumerals : MonoBehaviour{
     }
     public void turn_on(int i){
         particles[i].gameObject.SetActive(true);
-        AudioClipHandler.play(
-            sound_id: SoundID.DEEP_THUMPING,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC
-        );
+        audio_player.play_non_diegetic_one_shot("altar_numeral_thumping");
         StartCoroutine(Calc.lerp_value(
             val=>light2D[i].intensity=val,
             _start: 0,

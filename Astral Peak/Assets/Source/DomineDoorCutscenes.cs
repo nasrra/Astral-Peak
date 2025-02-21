@@ -121,8 +121,8 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(8);
         shrine_room.beatrice.awaken();
         yield return new WaitForSeconds(8.9f);
-        AudioManager.mute_sfx_volume();
-        AudioClipHandler.play(Sounds.SoundID.WOMAN_GASP_REVERB, UnityHook.instance.gameObject, AudioSourceSettings.NON_DIEGETIC);
+        // AudioManager.mute_sfx_volume();
+        // AudioClipHandler.play(Sounds.SoundID.WOMAN_GASP_REVERB, UnityHook.instance.gameObject, AudioSourceSettings.NON_DIEGETIC);
         CameraEffects.instance.fade_to_black(0.01f);
         yield return new WaitForSeconds(8f);
         start_end_credits_segment();

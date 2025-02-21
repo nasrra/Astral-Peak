@@ -24312,29 +24312,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: signature_lunge
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: play_sound
-    data: magic_dash
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
     functionName: play_particle
     data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1
+    functionName: signature_lunge
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.0833334
-    functionName: play_sound
-    data: melee
+    functionName: play_diegetic_one_shot
+    data: rider_sword_swing
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24361,15 +24354,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: stop_particle
-    data: snow_dash
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: flip_to_target
-    data: 
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24403,15 +24396,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 5.6666665
-    functionName: play_sound
-    data: jump
+    functionName: signature_lunge
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 5.6666665
-    functionName: signature_lunge
-    data: 
+    functionName: play_diegetic_one_shot
+    data: snow_impact_light
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24431,8 +24424,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 5.9166665
-    functionName: play_sound
-    data: melee
+    functionName: play_diegetic_one_shot
+    data: rider_sword_swing
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24445,22 +24438,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 5.983333
-    functionName: play_particle
-    data: signature_slam
+    functionName: play_diegetic_one_shot
+    data: snow_impact_heavy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 5.983333
-    functionName: play_sound
+    functionName: play_particle
     data: signature_slam
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 6.1
-    functionName: stop_particle
-    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24475,6 +24461,13 @@ AnimationClip:
   - time: 6.1
     functionName: disable_melee_hurtbox
     data: signature_strike
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.1
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24494,6 +24487,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 10.833333
+    functionName: play_diegetic_one_shot
+    data: snow_impact_light
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 10.833333
     functionName: signature_jump_back
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -24507,16 +24507,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 10.833333
-    functionName: play_sound
-    data: jump
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 11
-    functionName: play_sound
-    data: melee
+    functionName: play_diegetic_one_shot
+    data: rider_sword_swing
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -24536,14 +24529,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 11.666667
-    functionName: play_particle
-    data: jump
+    functionName: play_diegetic_one_shot
+    data: snow_impact_light
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 11.666667
-    functionName: play_sound
+    functionName: play_particle
     data: jump
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

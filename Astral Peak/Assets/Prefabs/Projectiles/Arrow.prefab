@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: -1484162936294777074}
   - component: {fileID: 3234079401489991468}
   - component: {fileID: 949120450998435116}
+  - component: {fileID: 1662065654731465988}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -301,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b46173cdd6188bf4a96ab7167f06ea00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_player: {fileID: 1662065654731465988}
   colliders:
   - {fileID: 3597924189513528832}
   sprites:
@@ -326,6 +328,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6600055358799903588}
+--- !u!114 &1662065654731465988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752692394907920807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8992184771182305914
 GameObject:
   m_ObjectHideFlags: 0

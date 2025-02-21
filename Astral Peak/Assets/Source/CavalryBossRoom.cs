@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Sounds;
 using Entropek;
 
 public class CavalryBossRoom : BossRoomHandler{
@@ -20,8 +19,9 @@ public class CavalryBossRoom : BossRoomHandler{
         base.Awake();
     } 
 
-    void OnDestroy(){
+    protected override void OnDestroy(){
         unlink();
+        base.OnDestroy();
     }
 
     public Cavalry get_cavalary() => cavalry;

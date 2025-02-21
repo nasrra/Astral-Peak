@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Sounds;
 
 public class Torch : MonoBehaviour{
     [SerializeField] Light2D light2D;
     [SerializeField] List<SpriteRenderer> fire;
     [SerializeField] ParticleSystem smoke, embers;
     Coroutine light_state, fire_state;
-    [SerializeField] AudioSource fire_source, smoke_source;
     [SerializeField] Vector3 enlarged_scale, original_scale;
+    [SerializeField] AudioPlayer audio_player;
     bool turned_on = false;
 
     void Awake() => original_scale = fire[0].transform.localScale;
@@ -58,26 +57,17 @@ public class Torch : MonoBehaviour{
             s.material.SetFloat("_Dim", 10);
             s.gameObject.SetActive(false);
         }
-        smoke.Play();
-        AudioClipHandler.play(
-            SoundID.STEAM,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);  
-
-        fire_source.Stop();
+        smoke.Play(); 
+        audio_player.play_diegetic_one_shot("fire_extinguish");
+        audio_player.stop_diegetic_loop("fire_crackle_soft");
         embers.Emit(30);
         embers.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        Destroy(fire_source);
         yield break;
     }
 
     IEnumerator turn_on_fire() {
         float x = 1;
-        fire_source = AudioClipHandler.play(
-            SoundID.SMALL_FIRE, 
-            audio_player: gameObject,
-            AudioSourceSettings.DIEGETIC_LOOP);  
-
+        audio_player.play_diegetic_loop("fire_crackle_soft");
         embers.Emit(30);
         embers.Play();
         foreach(SpriteRenderer s in fire){

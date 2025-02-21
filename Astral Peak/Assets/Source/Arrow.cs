@@ -1,5 +1,4 @@
 using UnityEngine;
-using Sounds;
 using Entropek;
 //
 public class Arrow : Projectile{
@@ -7,15 +6,27 @@ public class Arrow : Projectile{
     [SerializeField] ParticleSystem smoke, snow;
     [SerializeField] protected Transform front_point;
     [SerializeField] float move_time, rotation_speed, move_speed;
+    void Awake(){
+        play_sound();
+    }    
     protected override void Start(){
-       movement.move_to_target_state(front_point, move_speed);
+        movement.move_to_target_state(front_point, move_speed);
         StartCoroutine(Util.timer(
             move_time, 
             time_out:()=>movement.rotate_to_direction_state(Vector2.down, rotation_speed))); 
         base.Start();
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    protected override void play_sound(){
+        audio_player.play_diegetic_loop("fire_crackle_soft");
+    }
+
+    protected override void stop_sound(){
+        audio_player.stop_diegetic_loop("fire_crackle_soft");
+        audio_player.play_diegetic_one_shot("fire_extinguish");
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
             Creature creature = other.GetComponent<Creature>();
             creature.get_health().damaged += grounded;
@@ -39,22 +50,19 @@ public class Arrow : Projectile{
         snow.Play();
         ParticleSystem.ShapeModule shape = snow.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
-        AudioClipHandler.play(
-            SoundID.SNOW_IMPACT_LIGHT,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);        
+        audio_player.play_diegetic_one_shot("snow_impact_light");        
     }
 
     public override void destroy(){
+        if(_is_being_destroyed == true)
+            return;
+        _is_being_destroyed = true;
         enable_sprites(false);
         enable_colliders(false);
         ParticleSystem.ShapeModule shape = smoke.shape;
         shape.rotation = Quaternion.Inverse(transform.rotation).eulerAngles; // inverse so it is always emits up.
         smoke.Play();
-        AudioClipHandler.play(
-            SoundID.STEAM,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC);
+        stop_sound();
         Destroy(gameObject, smoke.GetComponent<ParticleSystem>().main.duration);    
     }
 }//

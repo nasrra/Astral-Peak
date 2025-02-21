@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class StoneDoorAniamtionHelper : MonoBehaviour{
-    public void invoke(){
-        AudioClipHandler.play(Sounds.SoundID.STONE_DOOR, gameObject, AudioSourceSettings.DIEGETIC_RANDOMISED);
+    [SerializeField] AudioPlayer sound;
+    public void invoke(){   
+        sound.play_diegetic_one_shot("stone_door");
         CameraController.instance.shake_camera(3f, .15f, false);
     }
 }

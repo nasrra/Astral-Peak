@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Entropek;
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,24 +17,30 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
+    private string ground;
     bool i_frames = false;
     [Header("Player")]
-    [SerializeField] private PlayerAnimator animator;
+    [SerializeField] protected PlayerAnimator animator;
     [SerializeField] protected MeleeHolsterHandler melee;
     [SerializeField] protected ParticleHandler particles;
     [SerializeField] protected PlayerSpriteHandler sprite;
     [SerializeField] protected AudioPlayer sound;
     [SerializeField] protected Collider2D col;
-    [SerializeField] protected AudioListener audio_listener;
+    [SerializeField] protected StudioListener audio_listener;
     private HashSet<Action> door_movement_queue = new HashSet<Action>();
     private float invulnerable_time = 2;
     [SerializeField] float intermediate_health = 0;
     [SerializeField] bool up_toggle = false;
 
+
+
+ 
+
     // Base.
     void Awake(){
         instance = this;
-        sound.set_functions(new PlayerSound(gameObject));
+        AudioManager.load_bank("entity_player");
+        AudioManager.load_bank("entity_creature");
         GameManager.link_player();
         movement.move_only_state();
         load_data();
@@ -44,6 +50,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
         set_enter_position();
     }
     void OnDestroy(){
+        AudioManager.unload_bank("entity_player");
+        AudioManager.unload_bank("entity_creature");
         GameManager.unlink_player();
         set_respawn_point(""); // reset respawn point;
         unlink_events();
@@ -91,7 +99,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
             0.25f); 
     }
     private void dashed(){
-        sound.play_sound("dash");
+        sound.play_diegetic_one_shot("player_dash");
         particles.emit_particle("dash");
         health.set_guarded();//
     }
@@ -105,7 +113,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         // bounce when hitting the ground.
         animator.medium_bounce();
         particles.play_ground_effected_particle("jump");
-        sound.play_ground_effected_sound("jump");
+        sound.play_diegetic_one_shot($"{ground}_impact_light");
 
         // reset to none so that the animator can play the run or idle animation.
         animator.none();
@@ -119,20 +127,24 @@ public class Player : CreatureInheritor<CharacterMovement>{
             animator.idle();
         }
     }
-    private void movement_animation(Vector2 direction){
-        if(direction.x > 0 || direction.x < 0)
+    private void movement_updated(Vector2 direction){
+        if(direction.x > 0 || direction.x < 0){
             animator.run(); // play run animation
-        else
+        }
+        else{
             animator.idle(); // play idle animation
+        }
+
     }
     private void jumped(){
         animator.jump();
         particles.play_ground_effected_particle("jump");
-        sound.play_ground_effected_sound("jump");
+        sound.play_diegetic_one_shot($"{ground}_impact_light");
     }
     private void new_ground(GameObject ground){
-        sound.set_ground(ground.tag);
+        // sound.set_ground(ground.tag);
         particles.set_ground(ground.tag);
+        this.ground = ground.tag;
         if(ground.layer == LayersManager.PLATFORM)
             transform.parent = ground.transform;
     }
@@ -148,7 +160,10 @@ public class Player : CreatureInheritor<CharacterMovement>{
         up_toggle = false;
         animator.stop_up_toggle();
     }
-
+    public void play_footstep_sound(){
+        if(string.IsNullOrEmpty(ground)!=true)
+            sound.play_diegetic_one_shot($"{ground}_footstep");
+    }
 
 
     // Damaged and Health
@@ -170,16 +185,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
     } 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
+        sound.play_non_diegetic_one_shot("player_damaged");
         sprite.play_damaged_flash();
         health.set_invulnerable();
-        AudioManager.low_pass_audio(true);
+        AudioManager.enter_low_pass_filter();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
-        sound.play_sound("damaged");
         i_frames = true;
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
         i_frames = false;
-        AudioManager.low_pass_audio(false);
+        AudioManager.exit_low_pass_filter();
         damaged_stop?.Invoke();
         health.set_vulnerable();
     }
@@ -193,7 +208,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.reset_data();
         movement.zero_velocity();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
-        sound.play_sound("damaged");
+        sound.play_non_diegetic_one_shot("player_damaged");
         sprite.play_death_effect(3f);
         animator.death();
         InputManager.disable_user_input();
@@ -202,7 +217,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         //AudioManager.low_pass_audio(false);
         base.death_complete();
     }
-    private void healed() => sound.play_sound("healed");
+    private void healed(){
+        // sound.play_sound("healed");
+    }
 
 
 
@@ -273,7 +290,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     // Melee
     public float get_intermediate_health() => intermediate_health; 
     void attack_hit(){
-        sound.play_sound("melee_hit");
+        sound.play_diegetic_one_shot("player_sword_hit");
         if(health.get_current_health() < health.get_max_health()){
             intermediate_health += .1f;
             intermediate_health_updated?.Invoke();
@@ -343,7 +360,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         link_health();
         link_game_manager();
         link_scene_manager();
-        link_application();
     }
     protected void unlink_events(){
         unlink_movement();
@@ -353,7 +369,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_health();
         unlink_game_manager();
         unlink_scene_manager();
-        unlink_application();   
     }
     public void link_gameplay_input(){
         InputManager.user_jump_performed    += start_jump;
@@ -366,7 +381,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.user_dash_performed    += dash; 
         InputManager.user_up_performed      += start_up;
         InputManager.user_up_canceled       += stop_up;
-        //InputManager.reset_input_blockers();
     }
     public void unlink_gameplay_input(){
         InputManager.user_jump_performed    -= start_jump;
@@ -379,7 +393,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.user_dash_performed    -= dash;    
         InputManager.user_up_performed      -= start_up;
         InputManager.user_up_canceled       -= stop_up;
-        //InputManager.reset_input_blockers();
     }
     public void link_door_input(){
         InputManager.user_jump_performed    += queue_start_jump;
@@ -388,7 +401,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.user_left_canceled     += dequeue_start_left;
         InputManager.user_right_performed   += queue_start_right;
         InputManager.user_right_canceled    += dequeue_start_right;
-        //InputManager.reset_input_blockers();
     }
     public void unlink_door_input(){
         InputManager.user_jump_performed    -= queue_start_jump;
@@ -397,12 +409,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
         InputManager.user_left_canceled     -= dequeue_start_left;
         InputManager.user_right_performed   -= queue_start_right;
         InputManager.user_right_canceled    -= dequeue_start_right;
-        //InputManager.reset_input_blockers();    
     }
     protected void link_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed += face_direction; 
-        movement.move_direction_changed += movement_animation;
+        movement.move_direction_changed += movement_updated;
         movement.now_grounded           += grounded;
         movement.not_grounded           += not_grounded;
         movement.jumped                 += jumped;
@@ -415,7 +426,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void unlink_movement(){
         CharacterMovement movement = get_movement() as CharacterMovement;
         movement.move_direction_changed -= face_direction; 
-        movement.move_direction_changed -= movement_animation;
+        movement.move_direction_changed -= movement_updated;
         movement.now_grounded           -= grounded;
         movement.not_grounded           -= not_grounded;
         movement.jumped                 -= jumped;
@@ -463,12 +474,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         SceneManager.sceneUnloaded -= unloaded_scene;
         CustomSceneManager.loading_scene -= unlink_events;
     }
-    protected void link_application(){
-        Application.quitting += unlink_events;    
-    }
-    protected void unlink_application(){
-        Application.quitting -= unlink_events;
-    }
     protected override void link_game_manager(){
         GameManager.set_game_data += set_game_data;
         entered_game_state(GameManager.get_state());
@@ -478,4 +483,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameManager.set_game_data -= set_game_data;
         base.unlink_game_manager();
     }
+
+
+
+
+
 }

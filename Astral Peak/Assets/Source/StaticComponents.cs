@@ -12,11 +12,6 @@ using UnityEngine.SceneManagement;
 public static class StaticComponents{
     public static GameObject main;
     static UnityHook hook_in;
-
-    
-
-    static GameObject player_input;
-
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     // initializing the managers of the game.
@@ -38,11 +33,16 @@ public static class StaticComponents{
     }
 
     static void uninitialize(){
-        SoundLibrary.uninitialize();
         InputManager.uninitialize();
         GameManager.uninitialize();
         CustomSceneManager.uninitialize();
+        AudioManager.uninitialize();
         PlayerPrefs.Save();
+        Application.quitting -= uninitialize;
+        // here to avoid memory leak when quitting built versions of the game.
+        if (!Application.isEditor){
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
     }
 
     // input initialization.
@@ -58,7 +58,7 @@ public static class StaticComponents{
     // initialize audio sources.
     static void audio(){
         AudioManager.initialize();
-        SoundLibrary.initialize();
+        // SoundLibrary.initialize();
     }
 
     // cutscene manager.
@@ -67,7 +67,7 @@ public static class StaticComponents{
     // hook into unity engines runtime.
     static void hook(){
         hook_in = main.AddComponent<UnityHook>();
-        hook_in.start += AudioManager.on_start; // this only works when on start is called.
+        // hook_in.start += AudioManager.on_start; // this only works when on start is called.
     }
 
     static void scene_manager(){

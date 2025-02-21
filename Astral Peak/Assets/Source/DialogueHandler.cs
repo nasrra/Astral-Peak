@@ -7,7 +7,7 @@ using UnityEngine;
 public class DialogueHandler : MonoBehaviour{
     public static DialogueHandler instance;
     public event Action<int> new_line, line_ended;
-    public event Action dialogue_ended;
+    public event Action dialogue_ended, dialogue_started;
     [SerializeField] string 
         dialogue_file,
         dialoge_option;
@@ -31,6 +31,7 @@ public class DialogueHandler : MonoBehaviour{
         next_line();
     }
     public void play_dialogue(float text_time){
+        dialogue_started?.Invoke();
         StartCoroutine(dialogue_loop(text_time));
     }
     public void next_line(){
@@ -58,6 +59,7 @@ public class DialogueHandler : MonoBehaviour{
 
     IEnumerator fade_loop(float text_time){
         Color transparent = new Color(1, 1, 1, 0);
+        set_text();
         // fade out.
         while (Mathf.Abs(text.color.a - transparent.a) > 0.01f){
             text.color = Color.Lerp(text.color, transparent, Time.deltaTime * 5); // Smooth fade
@@ -66,7 +68,6 @@ public class DialogueHandler : MonoBehaviour{
         text.color = transparent;
 
         // fade in.
-        set_text();
         yield return new WaitForSeconds(0.5f);
         while (Mathf.Abs(text.color.a - 1f) > 0.01f){
             text.color = Color.Lerp(text.color, Color.white, Time.deltaTime * 2.5f); // Smooth fade

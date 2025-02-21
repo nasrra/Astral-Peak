@@ -64,8 +64,8 @@ public abstract class BossCombat : MonoBehaviour{
             }
             int index = UnityEngine.Random.Range(0, available_attacks.Count);
             chosen_attack = available_attacks[index]; 
-            attack_chosen?.Invoke(chosen_attack);
             is_attacking = true;
+            attack_chosen?.Invoke(chosen_attack);
             state_switch(null);
             yield break;//
         }

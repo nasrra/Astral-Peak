@@ -6,7 +6,7 @@ public class Cavalry : Boss<CavalryMovement>{
 
     void Awake(){
         idle(2);
-        sound.set_functions(new CavalrySound(gameObject));
+        // sound.set_functions(new CavalrySound(gameObject));
         link_events();
     } 
 
@@ -35,33 +35,20 @@ public class Cavalry : Boss<CavalryMovement>{
                 if(idle_state != null)
                     StopCoroutine(idle_state);
                 enable_body_colliders(0);
-                sprites.play_death_effect(2f);
                 stop_all();
                 movement.zero_velocity(); // stop velocity in case the boss is dashing.
                 particles.stop_all_particles();
+                sprites.play_death_effect(2f);
                 base.death_start();
             },
             time_out:()=>{
-                AudioManager.stop_music();
+                // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
                 gameObject.SetActive(false);
                 base.death_complete();//
             }
         ));
     }
-//
-    //void disable_components(){
-    //    particles.StopAllCoroutines();
-    //    particles.enabled = false;
-    //    ranged.StopAllCoroutines();
-    //    ranged.enabled = false;
-    //    movement.StopAllCoroutines();
-    //    movement.enabled = false;
-    //    melee.StopAllCoroutines();
-    //    melee.enabled = false;
-    //    combat.StopAllCoroutines();
-    //    combat.enabled = false;
-    //}
 
     private void stop_idle_loop(){
         if(idle_state != null)
@@ -82,7 +69,9 @@ public class Cavalry : Boss<CavalryMovement>{
         no_state();
     }
 
-    void projectile_fired(string x) => sound.play_sound("bow_shot");
+    void projectile_fired(string x){
+        sound.play_diegetic_one_shot("rider_bow_shot");
+    } 
 
     void move_direction_changed(Vector2 direction){
         if(combat.is_attacking == true)

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using Sounds;
 
 public class FireController : SpriteHandler{
     [SerializeField] ParticleSystem embers, smoke;
@@ -25,10 +24,10 @@ public class FireController : SpriteHandler{
             callback:()=>{
                 enable_sprite(false);
                 smoke.Play();
-                AudioClipHandler.play(
-                    SoundID.STEAM,
-                    audio_player: gameObject, 
-                    AudioSourceSettings.DIEGETIC);  
+                // AudioClipHandler.play(
+                //     SoundID.STEAM,
+                //     audio_player: gameObject, 
+                //     AudioSourceSettings.DIEGETIC);  
                 fire_source.Stop();
                 embers.Emit(30);
                 embers.Stop(true, ParticleSystemStopBehavior.StopEmitting);
@@ -38,10 +37,10 @@ public class FireController : SpriteHandler{
     }
 
     public void turn_on(){
-        fire_source = AudioClipHandler.play(
-            SoundID.SMALL_FIRE, 
-            audio_player: gameObject,
-            AudioSourceSettings.DIEGETIC_LOOP);  
+        // fire_source = AudioClipHandler.play(
+        //     SoundID.SMALL_FIRE, 
+        //     audio_player: gameObject,
+        //     AudioSourceSettings.DIEGETIC_LOOP);  
         embers.Emit(30);
         embers.Play();
         enable_sprite(true);

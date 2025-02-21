@@ -17,8 +17,8 @@ public class ParticleHandler : MonoBehaviour{
     private void flip_emitter_right(ParticleSystemRenderer emitter) => emitter.flip = new Vector3(0, emitter.flip.y, 0);
     public void set_ground(string _ground) => ground = _ground;
     public void stop_all_particles(){
-        foreach(string p in particles.Keys)
-            stop_particle(p);
+        foreach(ParticleSystem p in particles.Values)
+            p.Stop(false,ParticleSystemStopBehavior.StopEmitting);
     }
     public void flip_particles_right(){
         if(particles.Count <= 0)

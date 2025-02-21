@@ -6,22 +6,32 @@ public class VolumeSlider : MonoBehaviour{
     [SerializeField] Slider 
         music_slider,
         sfx_slider,
-        voice_slider;
+        ambience_slider,
+        voice_slider,
+        ui_slider;
     void OnEnable(){
-        music_slider.value  = Calc.logarithmic_to_value(AudioManager.load_music_volume());
-        sfx_slider.value    = Calc.logarithmic_to_value(AudioManager.load_sfx_volume());
-        voice_slider.value  = Calc.logarithmic_to_value(AudioManager.load_voice_volume());
+        music_slider.value      = AudioManager.get_music_volume();
+        sfx_slider.value        = AudioManager.get_sfx_volume();
+        voice_slider.value      = AudioManager.get_voice_volume();
+        ambience_slider.value   = AudioManager.get_ambience_volume();
+        ui_slider.value         = AudioManager.get_ui_volume();
         music_slider.onValueChanged.AddListener(music_changed);
         sfx_slider.onValueChanged.AddListener(sfx_changed);
         voice_slider.onValueChanged.AddListener(voice_changed);
+        ambience_slider.onValueChanged.AddListener(ambience_changed);
+        ui_slider.onValueChanged.AddListener(ui_changed);
     }
     void OnDisable(){
         music_slider.onValueChanged.RemoveListener(music_changed);
         sfx_slider.onValueChanged.RemoveListener(sfx_changed);
         voice_slider.onValueChanged.RemoveListener(voice_changed);
+        ambience_slider.onValueChanged.RemoveListener(ambience_changed);
+        ui_slider.onValueChanged.RemoveListener(ui_changed);
         AudioManager.save_volume_settings();
     }
-    void music_changed(float x) => AudioManager.music_volume(Calc.value_to_logarithmic(x));
-    void sfx_changed(float x) => AudioManager.sfx_volume(Calc.value_to_logarithmic(x));
-    void voice_changed(float x) => AudioManager.voice_volume(Calc.value_to_logarithmic(x));
+    void music_changed(float x)     => AudioManager.set_music_volume(x);
+    void sfx_changed(float x)       => AudioManager.set_sfx_volume(x);
+    void voice_changed(float x)     => AudioManager.set_voice_volume(x);
+    void ambience_changed(float x)  => AudioManager.set_ambience_volume(x); 
+    void ui_changed(float x)        => AudioManager.set_ui_volume(x);
 }

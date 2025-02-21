@@ -27,6 +27,7 @@ namespace Cutscenes{
             background_mage.destroy();
             room.enable_mage(true);
             Mage mage = room.get_mage();
+            // mage.get_sprite().play_death_effect_reverse(1);
             mage.flip_to_target();
             mage.link_phase("phase_1");
             CameraController.instance.set_target(mage.transform);
@@ -38,7 +39,7 @@ namespace Cutscenes{
             CameraController.instance.reset_zoom(2f);
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
-            AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_1);
+            // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_1);
             end();//
             yield break;
         }
@@ -77,7 +78,7 @@ namespace Cutscenes{
             yield return new WaitForSeconds(3);
             CameraController.instance.set_target(Player.instance.transform);
             room.get_platforms().start_loop();
-            AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
+            // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
             room.start_randomised_stone_lightning();
             room.enable_button_prompt();
             end();

@@ -28,7 +28,7 @@ public class CavalryOpening : Cutscene{
         CameraController.instance.regulate_in_bounds(true);
 
         //
-        AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_1);
+        // AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_1);
         end();
         yield break;
     }
@@ -71,7 +71,6 @@ public class CavalryPhaseTransition : Cutscene{
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);
         cavalry.transform.position = room.get_boss_point(1).position;
-        cavalry.sound.play_sound("slam_impact");
         CameraController.instance.regulate_in_bounds(true);
         cavalry.enter_cutscene_state();
         CameraController.instance.set_target(cavalry.transform);
@@ -80,7 +79,7 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.reset_offset(2);
         CameraController.instance.reset_zoom(2);
         CameraController.instance.set_target(Player.instance.transform);
-        AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_2);
+        // AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_2);
         end(); 
         yield break;
     }

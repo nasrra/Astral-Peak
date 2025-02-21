@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.IO;
 
 // Use Case:
 // This class is used to encapsulate all input functionality.
@@ -12,7 +13,6 @@ public static class InputManager{
     private static Keybinds keybinds = new Keybinds();
     private static InputActionRebindingExtensions.RebindingOperation rebinding_operation;
     private static GameState keybind_state = GameManager.get_state();
-    private static Vector2 user_input_vector = Vector2.zero;
 
     public static event Action
         // Default keyboard events
@@ -24,7 +24,10 @@ public static class InputManager{
         user_dash_performed,
         user_pause_performed,
         cutscene_skip_performed, cutscene_skip_canceled,
-        menu_exit_performed;
+        menu_exit_performed,
+        rebind_started, rebind_failed, rebind_completed;
+
+    static Vector2 user_input_vector = Vector2.zero;
 
     enum Actions{
         JUMP,
@@ -121,7 +124,6 @@ public static class InputManager{
 
 
     // User Controls:
-    public static Vector2 get_user_input_vector() => user_input_vector; 
     public static void enable_user_input(){
         keybinds.UserControls.Enable();
     }
@@ -238,25 +240,36 @@ public static class InputManager{
 
     // Rebind Controls:
     private static void link_rebind_controls(){
-        keybinds.RebindControls.Cancel.performed        += rebind_cancel_performed;
+        //keybinds.RebindControls.Cancel.performed        += rebind_cancel_performed;
     }
     private static void unlink_rebind_controls(){
-        keybinds.RebindControls.Cancel.performed        -= rebind_cancel_performed;
+        //keybinds.RebindControls.Cancel.performed        -= rebind_cancel_performed;
     }
     static void rebind_cancel_performed(InputAction.CallbackContext ctx)       => cancel_rebind();
     public static void rebind_action(InputAction action, Action callback = null){        
         keybinds.MenuControls.Disable();
         keybinds.RebindControls.Enable();
+        rebind_started?.Invoke();
         string original_binding = action.bindings[0].effectivePath;  // Store the original binding
         rebinding_operation = action.PerformInteractiveRebinding()
         .WithControlsExcluding("Mouse")
-        .WithControlsExcluding("<Keyboard>/Escape")
+        //.WithControlsExcluding("<Keyboard>/Escape")
         .WithControlsExcluding("<Keyboard>/anyKey")
+        .OnPotentialMatch( c => {
+            string file_path = c.selectedControl.path;
+            string relative_path = Path.GetFileNameWithoutExtension(file_path);
+            if(!file_path.StartsWith("/Keyboard/") || relative_path.Length > 1 && (relative_path.EndsWith("space") == false || relative_path.EndsWith("backspace") == true)){
+                c.Dispose();
+                rebind_failed?.Invoke();
+                rebind_action(action, callback);
+            }
+        })
         .OnCancel(c =>{
             Debug.Log("Rebinding operation was canceled.");
             c.Dispose();
             keybinds.MenuControls.Enable();
             keybinds.RebindControls.Disable();
+            rebind_completed?.Invoke();
         })
         .OnComplete(c =>{
             Debug.Log("Rebind successful!");
@@ -266,6 +279,7 @@ public static class InputManager{
             
             // Save the rebinds
             save_action_map(action.actionMap);            
+            rebind_completed?.Invoke();
             callback?.Invoke();
         });
         rebinding_operation.Start();
@@ -292,6 +306,7 @@ public static class InputManager{
 
 
     // Util:
+    public static Vector2 get_user_input_vector() => user_input_vector;
     public static InputAction get_input_action(string input_action){
         InputActionMap actionMap = keybinds.UserControls;
         InputAction action = actionMap.FindAction(input_action);

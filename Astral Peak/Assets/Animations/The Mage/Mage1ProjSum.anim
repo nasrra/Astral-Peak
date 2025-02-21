@@ -16849,13 +16849,6 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: play_particle
     data: footstep
     objectReferenceParameter: {fileID: 0}
@@ -16869,9 +16862,16 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: play_diegetic_loop
+    data: mage_bells
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.46666667
-    functionName: play_sound
-    data: staff_ambience
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16884,36 +16884,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: play_sound
+    functionName: play_particle
     data: footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8333333
-    functionName: play_particle
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.98333335
-    functionName: play_sound
-    data: small_magic_summon
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: fire_projectile
-    data: round_3
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1
-    functionName: fire_projectile
-    data: round_5
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16927,7 +16906,14 @@ AnimationClip:
     messageOptions: 0
   - time: 1
     functionName: fire_projectile
-    data: round_1
+    data: round_5
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1
+    functionName: fire_projectile
+    data: round_3
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16939,9 +16925,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.5
-    functionName: play_sound
-    data: footstep
+  - time: 1
+    functionName: fire_projectile
+    data: round_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16949,6 +16935,13 @@ AnimationClip:
   - time: 1.5
     functionName: play_particle
     data: footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16961,22 +16954,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.3333333
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.4833333
-    functionName: play_sound
-    data: small_magic_summon
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5
     functionName: fire_projectile
-    data: round_5
+    data: round_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16990,7 +16976,7 @@ AnimationClip:
     messageOptions: 0
   - time: 2.5
     functionName: fire_projectile
-    data: round_3
+    data: round_5
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -17004,56 +16990,42 @@ AnimationClip:
     messageOptions: 0
   - time: 2.5
     functionName: fire_projectile
-    data: round_1
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3
-    functionName: play_particle
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.85
-    functionName: play_sound
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.85
-    functionName: play_particle
-    data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 3.9833333
-    functionName: play_sound
-    data: small_magic_summon
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4
-    functionName: fire_projectile
-    data: round_1
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 4
-    functionName: fire_projectile
     data: round_3
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: play_particle
+    data: footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.85
+    functionName: play_particle
+    data: footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.85
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4
+    functionName: fire_projectile
+    data: round_4
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -17074,14 +17046,14 @@ AnimationClip:
     messageOptions: 0
   - time: 4
     functionName: fire_projectile
-    data: round_4
+    data: round_3
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.5
-    functionName: play_sound
-    data: footstep
+  - time: 4
+    functionName: fire_projectile
+    data: round_1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -17093,9 +17065,16 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 4.5
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 5.3333335
-    functionName: play_sound
-    data: footstep
+    functionName: play_diegetic_one_shot
+    data: snow_footstep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -17103,13 +17082,6 @@ AnimationClip:
   - time: 5.3333335
     functionName: play_particle
     data: footstep
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 5.483333
-    functionName: stop_sound
-    data: staff_ambience
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -17117,6 +17089,13 @@ AnimationClip:
   - time: 5.483333
     functionName: stop_particle
     data: staff_ambience
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.483333
+    functionName: stop_diegetic_loop
+    data: mage_bells
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

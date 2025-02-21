@@ -1,13 +1,10 @@
 using UnityEngine;
-using Sounds;
 
 public class CavalryCutsceneArrow : MonoBehaviour{
+    [SerializeField] AudioPlayer audio_player;
     [SerializeField] RangedHolster turret;
     public void fire(){
         turret.fire_once();
-        AudioClipHandler.play(
-            SoundID.BOW_SHOT,
-            audio_player: gameObject, 
-            AudioSourceSettings.DIEGETIC_RANDOMISED);  
+        audio_player.play_diegetic_one_shot("rider_bow_shot");
     }
 }
