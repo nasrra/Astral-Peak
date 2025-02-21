@@ -12,12 +12,6 @@ using UnityEngine.SceneManagement;
 public static class StaticComponents{
     public static GameObject main;
     static UnityHook hook_in;
-
-    
-
-    static GameObject player_input;
-    static bool should_quit = false;
-
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     // initializing the managers of the game.

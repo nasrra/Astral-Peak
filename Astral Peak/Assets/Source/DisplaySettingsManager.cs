@@ -6,9 +6,10 @@ using UnityEngine;
 
 public static class DisplaySettingsManager{
     static Dictionary<int, Vector2Int> resolutions = new Dictionary<int, Vector2Int>(){
-        {0, new Vector2Int(1920,1080)},
-        {1, new Vector2Int(2560,1440)},
-        {2, new Vector2Int(3840,2160)},
+        {0, new Vector2Int(1280,720)},
+        {1, new Vector2Int(1920,1080)},
+        {2, new Vector2Int(2560,1440)},
+        {3, new Vector2Int(3840,2160)},
     };
     static Dictionary<int, int> frame_caps = new Dictionary<int, int>(){
         {0, -1},
@@ -50,6 +51,7 @@ public static class DisplaySettingsManager{
         PlayerPrefs.SetInt("frame_cap_preset",frame_rate_preset);
         PlayerPrefs.SetInt("fullscreen", fullscreen == true?1:0);
         PlayerPrefs.SetInt("resolution_preset", resolution_preset);
+        PlayerPrefs.Save();
     }
 
     public static void begin_resolution_change(int _preset){
@@ -78,7 +80,7 @@ public static class DisplaySettingsManager{
     private static void set_fullscreen(bool _fullscreen){
         fullscreen = _fullscreen;
         Screen.fullScreenMode = fullscreen == false? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
-        //set_resolution(resolution_preset);
+        set_resolution(resolution_preset);
     }
     public static void set_frame_rate_preset(int preset){
         frame_rate_preset = preset;
@@ -112,7 +114,7 @@ public static class DisplaySettingsManager{
     }
 
     public static void cancel_display_settings_change(){
-        //load_resolution_preset();
+        load_player_prefs();        
         change_buffer_cancelled?.Invoke();
         UnityHook.instance.StopCoroutine(change_buffer_coroutine);
     }

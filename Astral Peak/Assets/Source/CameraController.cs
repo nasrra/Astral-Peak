@@ -34,6 +34,7 @@ public class CameraController : MonoBehaviour{
         shake_state;
 
     void Awake(){
+        Camera.main.aspect = 16f / 9f;
         instance = this;
         original_offset = offset;
         original_size = cam.orthographicSize;
