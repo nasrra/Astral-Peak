@@ -16,6 +16,7 @@ public static class StaticComponents{
     
 
     static GameObject player_input;
+    static bool should_quit = false;
 
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -38,12 +39,16 @@ public static class StaticComponents{
     }
 
     static void uninitialize(){
-        Application.quitting -= uninitialize;
         InputManager.uninitialize();
         GameManager.uninitialize();
         CustomSceneManager.uninitialize();
         AudioManager.uninitialize();
         PlayerPrefs.Save();
+        Application.quitting -= uninitialize;
+        // here to avoid memory leak when quitting built versions of the game.
+        if (!Application.isEditor){
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
     }
 
     // input initialization.
