@@ -505,11 +505,6 @@ Transform:
   - {fileID: 513023296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &98641194 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3426246615804681694, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
-  m_PrefabInstance: {fileID: 437290954900120628}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &113731407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7493,11 +7488,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
   m_PrefabInstance: {fileID: 859937059}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &863697824 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3731993456105699275, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
-  m_PrefabInstance: {fileID: 1973040482689557288}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &912837941 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3888305229049127549, guid: fc45da4f2b2400148b1620d140c65e54, type: 3}
@@ -9972,9 +9962,8 @@ MonoBehaviour:
   - {fileID: 172043558}
   fight_start_trigger: {fileID: 1197821283}
   exit: {fileID: 1613884119}
-  mage_script: {fileID: 437290954900120641}
-  mage_object: {fileID: 98641194}
-  background_mage: {fileID: 863697824}
+  <mage>k__BackingField: {fileID: 437290954900120641}
+  <background_mage>k__BackingField: {fileID: 1973040482689557289}
   snow_controller: {fileID: 380871850}
   fog_controllers:
   - {fileID: 55599693}
@@ -9983,7 +9972,6 @@ MonoBehaviour:
   line_particles: {fileID: 2143389931}
   summoning_circles: {fileID: 2143389928}
   particles: {fileID: 2143389927}
-  audio_player: {fileID: 2143389932}
   audio_spectum: {fileID: 2143389934}
   platforms: {fileID: 480442255}
   button_prompt: {fileID: 133058147}
@@ -10753,7 +10741,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
   m_PrefabInstance: {fileID: 437290954900120628}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98641194}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea5260562dc06f14f91800708cb84746, type: 3}
@@ -10944,6 +10932,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+--- !u!114 &1973040482689557289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2560234769422457182, guid: 07bea63ff0452a148af64d81094efa7b, type: 3}
+  m_PrefabInstance: {fileID: 1973040482689557288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb40947c145a6d4181714786cd51778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

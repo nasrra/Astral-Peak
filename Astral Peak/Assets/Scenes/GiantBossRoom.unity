@@ -9023,13 +9023,11 @@ MonoBehaviour:
   - {fileID: 1014386279}
   fight_start_trigger: {fileID: 375137857}
   exit: {fileID: 0}
-  giant1_script: {fileID: 1096982683}
-  giant2_script: {fileID: 1892445185}
+  <giant1>k__BackingField: {fileID: 1096982683}
+  giant2: {fileID: 1892445185}
   domine_door_script: {fileID: 1661535840}
   gateway_1: {fileID: 567252315}
   gateway_2: {fileID: 2146982518}
-  giant1_object: {fileID: 1022403746}
-  giant2_object: {fileID: 1892445174}
   domine_door_transform: {fileID: 155284369}
 --- !u!4 &845319753
 Transform:
@@ -9770,11 +9768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: 6
---- !u!1 &1022403746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6955050913431477534, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
-  m_PrefabInstance: {fileID: 1096982669}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1024338560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10116,10 +10109,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1562750181}
     - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
-      propertyPath: movement
-      value: 
-      objectReference: {fileID: 1096982670}
-    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
@@ -10184,23 +10173,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
---- !u!114 &1096982670 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7360909750031361993, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
-  m_PrefabInstance: {fileID: 1096982669}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022403746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1096982683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
   m_PrefabInstance: {fileID: 1096982669}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022403746}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b57fa11ddf5a3404183318b31c6b0b99, type: 3}
@@ -13356,17 +13334,12 @@ Transform:
   - {fileID: 1177382835}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1892445174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8274307454303091731, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-  m_PrefabInstance: {fileID: 2519792957642506068}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1892445185 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
   m_PrefabInstance: {fileID: 2519792957642506068}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892445174}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d63c14084381be459a3ab75269d736d, type: 3}

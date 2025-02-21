@@ -6,15 +6,13 @@ using FMODUnity;
 using UnityEngine;
 
 public class MageBossRoom : BossRoomHandler{
-    [SerializeField] Mage mage_script;
-    [SerializeField] GameObject mage_object;
-    [SerializeField] GameObject background_mage;
+    [field: SerializeField] public Mage mage {get; private set;}
+    [field: SerializeField] public BackgroundMage background_mage {get; private set;}
     [SerializeField] SnowController snow_controller;
     [SerializeField] List<FogController> fog_controllers = new List<FogController>();
     [SerializeField] LineParticleEmittersHandler line_particles;
     [SerializeField] SummoningCircleHandler summoning_circles;
     [SerializeField] ParticleHandler particles;
-    [SerializeField] AudioPlayer audio_player;
     [SerializeField] AudioSpectrum audio_spectum;
     [SerializeField] MagicPlatformsController platforms;
     [SerializeField] GameObject button_prompt;
@@ -54,11 +52,7 @@ public class MageBossRoom : BossRoomHandler{
         unlink_events();
         base.OnDestroy();
     }
-    public void enable_mage(bool x) => mage_object.SetActive(x);
-    public void enable_background_mage(bool x) => background_mage.SetActive(x);
-    public Mage get_mage() => mage_script;
     public MagicPlatformsController get_platforms()=>platforms;
-    public BackgroundMage get_background_mage() => background_mage.GetComponent<BackgroundMage>();
     public void set_room_state(int x){
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
@@ -66,8 +60,8 @@ public class MageBossRoom : BossRoomHandler{
         lighting_states[x]();
         AudioManager.set_ambience_parameter("intensity",x);
         if(x == 1){
-            audio_player.play_non_diegetic_loop("ambience_thunder");
             phase_transition_lightning();
+            AudioManager.play_additive_ambience("ambience_thunder");
             audio_spectum.initialize(RuntimeManager.GetBus("bus:/ambience/additive"));
         }
     }
@@ -97,7 +91,7 @@ public class MageBossRoom : BossRoomHandler{
 
     protected override void death_completed(){
         set_room_state(0);
-        audio_player.stop_non_diegetic_loop("ambience_thunder");
+        AudioManager.stop_additive_ambience();
         audio_spectum.uninitialize();
         StopCoroutine("randomised_stone_lightning_loop");
         base.death_completed();
@@ -134,15 +128,15 @@ public class MageBossRoom : BossRoomHandler{
         unlink_fight_start_trigger();
     }
     void link_mage(){
-        mage_script.phase_transition    += play_cutscene;
-        mage_script.death_started       += death_started;
-        mage_script.death_completed     += death_completed;        
-        mage_script.death_completed     += unlink_events;        
+        mage.phase_transition    += play_cutscene;
+        mage.death_started       += death_started;
+        mage.death_completed     += death_completed;        
+        mage.death_completed     += unlink_events;        
     }
     void unlink_mage(){
-        mage_script.phase_transition    -= play_cutscene;
-        mage_script.death_started       -= death_started;
-        mage_script.death_completed     -= death_completed;        
-        mage_script.death_completed     -= unlink_events; 
+        mage.phase_transition    -= play_cutscene;
+        mage.death_started       -= death_started;
+        mage.death_completed     -= death_completed;        
+        mage.death_completed     -= unlink_events; 
     }
 }

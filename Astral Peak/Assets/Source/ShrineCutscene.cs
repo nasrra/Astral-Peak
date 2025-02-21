@@ -56,6 +56,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     IEnumerator ending(){
         torches_off?.Invoke();     
+        stop_skip();
         yield return new WaitForSeconds(6);  
         AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_shrine")));
@@ -163,12 +164,14 @@ public abstract class ShrineAltarCutscene : Cutscene{
         AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_altar")));
         CustomSceneManager.load_scene_with_transitions(get_previous_scene());
+        CustomSceneManager.loaded_scene += stop_skip;
         CustomSceneManager.loaded_scene += end;
         CustomSceneManager.loaded_scene += unlink;
         yield break;
     }
     
     void unlink(){
+        CustomSceneManager.loaded_scene -= stop_skip;
         CustomSceneManager.loaded_scene -= end;
         CustomSceneManager.loaded_scene -= unlink;
         torches_on          = null;

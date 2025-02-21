@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Entropek;
 
 public class CavalryBossRoom : BossRoomHandler{
-    [SerializeField] Cavalry cavalry;
-    [SerializeField] Rider rider;
-    [SerializeField] public CavalryCutsceneArrow cutscene_arrow;
-    [SerializeField] public GameObject background_wolf;
-    [SerializeField] public ParticleSystem wolf_impact_transition;
+    [field: SerializeField] public Cavalry cavalry {get; private set;}
+    [field: SerializeField] public Rider rider {get; private set;}
+    [field: SerializeField] public CavalryCutsceneArrow cutscene_arrow {get; private set;}
+    [field: SerializeField] public GameObject background_wolf {get; private set;}
+    [field: SerializeField] public ParticleSystem wolf_impact_transition {get; private set;}
     [SerializeField] Transform rider_start_point, cavalry_start_point;
 
     protected override void Awake(){
@@ -23,9 +23,6 @@ public class CavalryBossRoom : BossRoomHandler{
         unlink();
         base.OnDestroy();
     }
-
-    public Cavalry get_cavalary() => cavalry;
-    public Rider get_rider() => rider;
 
     protected override void check_world_state(){
         if(GameManager.get_boss_state(0)==true){

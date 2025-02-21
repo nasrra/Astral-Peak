@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class GiantBossRoom : BossRoomHandler{
 
-    [SerializeField] Giant1 giant1_script;
-    [SerializeField] Giant2 giant2_script;
+    [field: SerializeField] public Giant1 giant1 {get ; private set;}
+    [SerializeField] Giant2 giant2;
     [SerializeField] DomineDoor domine_door_script;
     [SerializeField] ConstellationController gateway_1, gateway_2;
-    [SerializeField] GameObject giant1_object, giant2_object;
     [SerializeField] Transform domine_door_transform;
 
     protected override void Awake(){
@@ -34,12 +33,6 @@ public class GiantBossRoom : BossRoomHandler{
     public DomineDoor get_domine_door() => domine_door_script;
     public ConstellationController get_gateway_1() => gateway_1;
     public ConstellationController get_gateway_2() => gateway_2;
-    public void play_giant1_introduction(){
-        CameraController.instance.set_target(giant1_object.transform);
-        giant1_object.SetActive(true);
-        giant1_script.animator.Play("Giant1Intro");
-        StartCoroutine(Util.timer(2, time_out:()=>giant1_script.animator.Play("Giant1Yell")));
-    }
 
     void link_events(){
         link_mage();
@@ -50,21 +43,21 @@ public class GiantBossRoom : BossRoomHandler{
         unlink_fight_start_trigger();
     }
 
-    void enable_giant2(){
-        giant2_object.SetActive(true);
-        giant2_script.play_intro_animation();
+    public void enable_giant2(){
+        giant2.gameObject.SetActive(true);
+        giant2.play_intro_animation();
     }
 
     void link_mage(){
-        giant1_script.death_completed     += enable_giant2;
-        giant2_script.death_started       += death_started;
-        giant2_script.death_completed     += death_completed;        
-        giant2_script.death_completed     += unlink_events;        
+        giant1.death_completed     += enable_giant2;
+        giant2.death_started       += death_started;
+        giant2.death_completed     += death_completed;        
+        giant2.death_completed     += unlink_events;        
     }
     void unlink_mage(){
-        giant1_script.death_completed     -= enable_giant2;
-        giant2_script.death_started       -= death_started;
-        giant2_script.death_completed     -= death_completed;        
-        giant2_script.death_completed     -= unlink_events; 
+        giant1.death_completed     -= enable_giant2;
+        giant2.death_started       -= death_started;
+        giant2.death_completed     -= death_completed;        
+        giant2.death_completed     -= unlink_events; 
     }
 }

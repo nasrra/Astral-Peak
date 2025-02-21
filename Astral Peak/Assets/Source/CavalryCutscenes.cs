@@ -6,7 +6,7 @@ namespace Cutscenes{
 public class CavalryOpening : Cutscene{
     public override IEnumerator get_coroutine(){
         CavalryBossRoom room = RoomHandler.instance as CavalryBossRoom;
-        Rider rider = room.get_rider();
+        Rider rider = room.rider;
         rider.gameObject.SetActive(true);
         rider.transform.position = room.get_boss_point(0).position;
         Player.instance.set_enter_position();
@@ -21,7 +21,9 @@ public class CavalryOpening : Cutscene{
         yield return new WaitForSeconds(.5f);
         CameraController.instance.lerp_offset(0,4,3);
         CameraController.instance.lerp_zoom(14,5f);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
+        stop_skip();
+        yield return new WaitForSeconds(1);
         CameraController.instance.set_target(Player.instance.transform);
         CameraController.instance.reset_zoom(time:2);
         CameraController.instance.reset_offset(time:2);
@@ -37,8 +39,8 @@ public class CavalryOpening : Cutscene{
 public class CavalryPhaseTransition : Cutscene{
     public override IEnumerator get_coroutine(){
         CavalryBossRoom room = RoomHandler.instance as CavalryBossRoom;
-        Rider rider = room.get_rider();
-        Cavalry cavalry = room.get_cavalary();
+        Rider rider = room.rider;
+        Cavalry cavalry = room.cavalry;
         CameraEffects.instance.fade_to_black(fade_transition_time);
 
         yield return new WaitForSeconds(2f); 
@@ -75,7 +77,9 @@ public class CavalryPhaseTransition : Cutscene{
         cavalry.enter_cutscene_state();
         CameraController.instance.set_target(cavalry.transform);
         
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        stop_skip();
+        yield return new WaitForSeconds(1f);
         CameraController.instance.reset_offset(2);
         CameraController.instance.reset_zoom(2);
         CameraController.instance.set_target(Player.instance.transform);

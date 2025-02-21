@@ -34539,7 +34539,6 @@ GameObject:
   - component: {fileID: 4346448695507625108}
   - component: {fileID: 8221373605123083948}
   - component: {fileID: 7306472689858852757}
-  - component: {fileID: 1923654166500241026}
   - component: {fileID: 7013410532821330717}
   - component: {fileID: 96296124482934205}
   - component: {fileID: 6351003334427394550}
@@ -34655,16 +34654,16 @@ MonoBehaviour:
   body_colliders:
   - {fileID: 7949152084270274066}
   - {fileID: 5771967865735890554}
-  sprites: {fileID: 96296124482934205}
-  animator: {fileID: 7013410532821330717}
-  particles: {fileID: 8646045649270209178}
-  ranged: {fileID: 4572095971363377138}
-  melee: {fileID: 7543107966129033679}
-  sound: {fileID: 6425974341650075415}
-  combat: {fileID: 7306472689858852757}
-  lighting: {fileID: 7861104998416197557}
+  <sprites>k__BackingField: {fileID: 96296124482934205}
+  <animator>k__BackingField: {fileID: 7013410532821330717}
+  <particles>k__BackingField: {fileID: 8646045649270209178}
+  <ranged>k__BackingField: {fileID: 4572095971363377138}
+  <melee>k__BackingField: {fileID: 7543107966129033679}
+  <sound>k__BackingField: {fileID: 6425974341650075415}
+  <combat>k__BackingField: {fileID: 7306472689858852757}
+  <lighting>k__BackingField: {fileID: 7861104998416197557}
   target: {fileID: 0}
-  current_phase: 
+  <current_phase>k__BackingField: 
 --- !u!114 &4346448695507625108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34740,66 +34739,6 @@ MonoBehaviour:
   special_moveset: []
   left_arena_bound: {fileID: 0}
   right_arena_bound: {fileID: 0}
---- !u!114 &1923654166500241026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5026348276079211433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b2025cbefd65240b06d5debd245bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  front_strike:
-    hurt_box: {fileID: 0}
-    feedback: {fileID: 0}
-    damage_data:
-      damage: 1
-      unblockable: 0
-    knockback_data:
-      force: 25
-      duration: 0.25
-      transform: {fileID: 2694134218538119565}
-    self_knockback_force: 0
-    self_knockback_duration: 0
-  back_strike_backward:
-    hurt_box: {fileID: 801522168139239909}
-    feedback: {fileID: 5632250104929940047}
-    damage_data:
-      damage: 1
-      unblockable: 0
-    knockback_data:
-      force: 25
-      duration: 0.25
-      transform: {fileID: 2694134218538119565}
-    self_knockback_force: 0
-    self_knockback_duration: 0
-  back_strike_forward:
-    hurt_box: {fileID: 3629182238405792111}
-    feedback: {fileID: 1634893595159288097}
-    damage_data:
-      damage: 1
-      unblockable: 0
-    knockback_data:
-      force: 25
-      duration: 0.25
-      transform: {fileID: 2694134218538119565}
-    self_knockback_force: 0
-    self_knockback_duration: 0
-  bite:
-    hurt_box: {fileID: 7723417078298070469}
-    feedback: {fileID: 6883269117073972024}
-    damage_data:
-      damage: 1
-      unblockable: 0
-    knockback_data:
-      force: 25
-      duration: 0.25
-      transform: {fileID: 2694134218538119565}
-    self_knockback_force: 0
-    self_knockback_duration: 0
 --- !u!114 &7013410532821330717
 MonoBehaviour:
   m_ObjectHideFlags: 0

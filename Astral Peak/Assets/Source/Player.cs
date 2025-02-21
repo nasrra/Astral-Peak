@@ -307,6 +307,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Game States.
     public override void enter_cutscene_state(){
+        movement.StopAllCoroutines(); // here to stop player from going vulnerable during dash_end.
+        movement.renew();
         unlink_movement();
         animator.force_idle();
         health.set_invulnerable();
