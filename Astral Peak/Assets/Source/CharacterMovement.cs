@@ -125,12 +125,12 @@ public class CharacterMovement : Movement{
         base.movement(option, flag);
     }
 
-    public override void freeform_move_to(Transform target){
+    public override void freeform_move_to(Transform target, Action _callback = null){
         jump_time_counter = 0;
         jumping = true;
     }
 
-    public override void freeform_approach_to(Transform target){
+    public override void freeform_approach_to(Transform target, Action _callback = null){
         base.freeform_approach_to(target);
         jump_time_counter = 0;
         jumping = true;

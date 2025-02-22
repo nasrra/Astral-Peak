@@ -7,10 +7,12 @@ public class Giant2Hand : MonoBehaviour{
     [SerializeField] SerializedDictionary<string, Transform> move_to_point = new SerializedDictionary<string, Transform>();
     [field: SerializeField] public AnimatorOverride animator {get; private set;}
     [field: SerializeField] public BossSpriteHandler sprite {get; private set;}
+    public Rigidbody2D rb;
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
     [SerializeField] SludgeBeam finger_beam;
     [SerializeField] Movement movement;
     [SerializeField] Transform head_follower;
+    [SerializeField] Transform head_anchor;
     [SerializeField] AudioPlayer audio_player;
     Transform move_to_target;
     private StateQueue state;
@@ -18,6 +20,7 @@ public class Giant2Hand : MonoBehaviour{
 
     void Awake(){
         state = new StateQueue(this, idle);
+        state.start();
         link();
     }
 
@@ -27,7 +30,7 @@ public class Giant2Hand : MonoBehaviour{
 
     public void idle(){
         animator.Play("GiantHandIdle");
-        movement.freeform_move_to(head_follower);
+        movement.freeform_approach_to(head_anchor, ()=>hook_to_parent(head_anchor));
     }
 
     public void attack(string animation){
@@ -41,37 +44,49 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     private void move_to_point_begin(Transform target){
+        // unhook from head socket and approach to desired position.
+        unhook_from_parent();
         move_to_target = target;
             state.queue_and_start(time: 120, 
                 start_action:()=>{
-                    movement.mod_speed(8f);
-                    movement.freeform_approach_to(move_to_target);
-                    movement.target_reached += move_to_point_attack;
+                    movement.freeform_approach_to(move_to_target, move_to_point_attack);
                 }
             );        
     }
 
     private void move_to_point_attack(){
-        movement.target_reached -= move_to_point_attack;
+        // hook into the desired point.
         state.clear();
+        hook_to_parent(move_to_target);
         state.queue_and_start(time: animator.get_clip_length(current_animation), 
             start_action:()=>{
-                movement.freeform_move_to(move_to_target);
                 animator.Play(current_animation);
             },
             time_out:()=>animator.Play("GiantHandIdle")
         );
+
+        // unhook from point and return to hand socket on head.
         state.queue(time: 120, 
             start_action:()=>{
-                movement.freeform_move_to(head_follower);
-                movement.target_reached += move_to_attack_finished;
+                unhook_from_parent();
+                movement.freeform_move_to(head_anchor,()=>{
+                    state.clear();
+                    hook_to_parent(head_anchor);
+                });
             }
         );
     }
 
-    private void move_to_attack_finished(){
-        state.clear();
-        movement.target_reached -= move_to_attack_finished;
+    public void hook_to_parent(Transform _parent){
+        rb.bodyType = RigidbodyType2D.Kinematic; 
+        transform.parent = _parent;
+        movement.halt();
+    }
+
+    public void unhook_from_parent(){
+        rb.bodyType = RigidbodyType2D.Dynamic; 
+        transform.parent = null;
+        movement.halt();
     }
 
     public void turn_on_finger_beam() => finger_beam.turn_on();

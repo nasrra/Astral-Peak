@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Giant2Combat : BossCombat{
     BossAttack
     yell_projectile = new BossAttack(
-        "Giant2YellProjectile",
+        "Giant2Projectile",
         chance:                 50,
         max_player_distance:    15,
         min_player_distance:    0,
