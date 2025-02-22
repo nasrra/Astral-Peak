@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FinalBossRoomGroundHandler : MonoBehaviour{
     public Rigidbody2D[] grounds; // Array to hold all the squares
-    public SludgeBeam[] beams;
+    public SludgeGeyser[] geysers;
     public MeleeHolsterHandler holsters;
     [SerializeField] AudioPlayer audio_player;
-    Coroutine beams_state;
+    Coroutine geysers_state;
 
     void Awake(){
         //StartCoroutine(test());
@@ -59,32 +59,32 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
     }
 
     public void use_geysers(){
-        if(beams_state != null)
-            StopCoroutine(beams_state);
-        beams_state = StartCoroutine(beams_coroutine());
+        if(geysers_state != null)
+            StopCoroutine(geysers_state);
+        geysers_state = StartCoroutine(beams_coroutine());
     }
 
     IEnumerator beams_coroutine(){
-        for(int i = 0; i < beams.Length; i++){
-            beams[i].turn_on();
-            beams[i].lerp_length(1,.25f);
+        for(int i = 0; i < geysers.Length; i++){
+            geysers[i].turn_on();
+            geysers[i].lerp_length(1,.25f);
         }
         CameraController.instance.shake_camera(1f, 0.45f, true);
         yield return new WaitForSeconds(1f);
-        for(int i = 0; i < beams.Length; i++){
-            beams[i].lerp_length(15,.25f);
-            beams[i].set_sound_intensity(1);
-            beams[i].play_bust_sound();
+        for(int i = 0; i < geysers.Length; i++){
+            geysers[i].lerp_length(15,.25f);
+            geysers[i].set_sound_intensity(1);
+            geysers[i].play_bust_sound();
         }
         CameraController.instance.shake_camera(2f, 0.85f, true);
         yield return new WaitForSeconds(2);
-        for(int i = 0; i < beams.Length; i++){
-            beams[i].lerp_length(0,.25f);
-            beams[i].set_sound_intensity(0);
+        for(int i = 0; i < geysers.Length; i++){
+            geysers[i].lerp_length(0,.25f);
+            geysers[i].set_sound_intensity(0);
         }
         yield return new WaitForSeconds(.25f);
-        for(int i = 0; i < beams.Length; i++){
-            beams[i].turn_off();
+        for(int i = 0; i < geysers.Length; i++){
+            geysers[i].turn_off();
         }       
     }
 }

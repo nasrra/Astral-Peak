@@ -9,8 +9,8 @@ public class Giant1Combat : BossCombat{
         min_player_distance:   0,
         arena_bound_distance:  2,
         attack_cooldown:       6,
-        idle_cooldown:         3,
-        combat_cooldown:       3
+        idle_cooldown:         0,
+        combat_cooldown:       2
     ),
     jump_backward = new BossAttack(
         "Giant1JumpBackward",
@@ -19,8 +19,8 @@ public class Giant1Combat : BossCombat{
         min_player_distance:    0,
         arena_bound_distance:   0,
         attack_cooldown:        16,
-        idle_cooldown:          2,
-        combat_cooldown:        4
+        idle_cooldown:          0,
+        combat_cooldown:        1
     ),
     front_jump_forward = new BossAttack(
         "Giant1JumpForward",
@@ -29,8 +29,8 @@ public class Giant1Combat : BossCombat{
         min_player_distance:    8,
         arena_bound_distance:   0,
         attack_cooldown:        16,
-        idle_cooldown:          2,
-        combat_cooldown:        4
+        idle_cooldown:          0,
+        combat_cooldown:        1
     ),
     back_jump_forward = new BossAttack(
         "Giant1JumpForward",
@@ -49,8 +49,8 @@ public class Giant1Combat : BossCombat{
         min_player_distance:    0,
         arena_bound_distance:   0,
         attack_cooldown:        24,
-        idle_cooldown:          3,
-        combat_cooldown:        6
+        idle_cooldown:          1,
+        combat_cooldown:        2
     ),
     walk_projectile = new BossAttack(
         "Giant1WalkingProjectile",
@@ -77,16 +77,16 @@ public class Giant1Combat : BossCombat{
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        //down_slam,
-                        //jump_backward,
-                        //front_jump_forward,
+                        down_slam,
+                        jump_backward,
+                        front_jump_forward,
                     };
                     back_moveset = new List<BossAttack>(){
-                        //back_jump_forward,
+                        back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
-                        //walk_projectile,
-                        //round_slam,
+                        walk_projectile,
+                        round_slam,
                         geyser,
                     };
                 }
