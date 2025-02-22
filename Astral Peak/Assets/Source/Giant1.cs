@@ -80,6 +80,7 @@ public class Giant1 : Boss<Movement>{
         ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
         ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
     }
+    public void start_geysers() => ground_handler.use_geysers();
 
     protected override void death_start(){
         animator.Play("Giant1Death",0,0);

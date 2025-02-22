@@ -528,10 +528,11 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 8794739451967957109}
   MinDistance: 1
   MaxDistance: 35
-  Length: 7200
+  Length: 0
 --- !u!114 &-7764010657775784217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,7 +2548,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638758347812451670
+  lastModified: 638758528181431817
   FileSizes: []
   Exists: 1
 --- !u!114 &-2185571173844143384
@@ -3756,7 +3757,7 @@ MonoBehaviour:
   - {fileID: -7764010657775784217}
   StringsBanks:
   - {fileID: 4408179852280411705}
-  cacheTime: 638758347812451670
+  cacheTime: 638758528181431817
   cacheVersion: 131846
 --- !u!114 &4545918480723168
 MonoBehaviour:
@@ -7656,6 +7657,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1080
+--- !u!114 &8794739451967957109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/water_rushing/intensity
+  m_EditorClassIdentifier: 
+  Name: intensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3030222322
+    data2: 260780284
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - soft
+  - heavy
+  Exists: 1
 --- !u!114 &8872426450350758434
 MonoBehaviour:
   m_ObjectHideFlags: 0

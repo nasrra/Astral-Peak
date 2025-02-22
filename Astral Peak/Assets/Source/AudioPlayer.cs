@@ -97,4 +97,12 @@ public class AudioPlayer : MonoBehaviour{
                 instance.set3DAttributes(instance_attributes);
         }
     }
+
+    public void set_non_diegetic_instance_parameter(string _instance, string _paramter, float _value){
+        non_diegetic_instances[_instance].setParameterByName(_paramter, _value);
+    }
+
+    public void set_diegetic_instance_parameter(string _instance, string _paramter, float _value){
+        diegetic_instances[_instance].setParameterByName(_paramter, _value);
+    }
 }

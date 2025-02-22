@@ -61,22 +61,33 @@ public class Giant1Combat : BossCombat{
         attack_cooldown:        8,
         idle_cooldown:          0,
         combat_cooldown:        2
+    ),
+    geyser = new BossAttack(
+        "Giant1Geyser",
+        chance:                 50,
+        max_player_distance:    15,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        8,
+        idle_cooldown:          0,
+        combat_cooldown:        2
     )
     ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        down_slam,
-                        jump_backward,
-                        front_jump_forward,
+                        //down_slam,
+                        //jump_backward,
+                        //front_jump_forward,
                     };
                     back_moveset = new List<BossAttack>(){
-                        back_jump_forward,
+                        //back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
-                        walk_projectile,
-                        round_slam,
+                        //walk_projectile,
+                        //round_slam,
+                        geyser,
                     };
                 }
             },
