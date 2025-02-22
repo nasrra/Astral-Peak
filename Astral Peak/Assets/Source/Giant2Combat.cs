@@ -59,11 +59,11 @@ public class Giant2Combat : BossCombat{
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=>{
                     special_moveset = new List<BossAttack>(){
-                        yell_projectile,
+                        //yell_projectile,
                         //fist_slam,
                         //finger_gun,
                         //hand_clap,
-                        //multi_slam,
+                        multi_slam,
                     };
                 }
             }

@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using Entropek;
 using Entropek.Collections;
 using UnityEngine;
 
 public class Giant2Hand : MonoBehaviour{
     [SerializeField] SerializedDictionary<string, Transform> move_to_point = new SerializedDictionary<string, Transform>();
+    [SerializeField] List<Collider2D> colliders = new List<Collider2D>();
     [field: SerializeField] public AnimatorOverride animator {get; private set;}
     [field: SerializeField] public BossSpriteHandler sprite {get; private set;}
     [field: SerializeField] public ParticleHandler particles {get; private set;}
@@ -31,7 +34,7 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     public void idle(){
-        animator.Play("GiantHandIdle");
+        animator.Play("Giant2IdleHand");
         movement.freeform_approach_to(head_anchor, ()=>hook_to_parent(head_anchor));
     }
 
@@ -121,7 +124,12 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     public void death(){
-        throw new Exception("hand does not have death yet!");
+        state.clear_and_stop();
+        turn_off_finger_beam();
+        particles.stop_all_particles();
+        sprite.renew();
+        animator.Play("Giant2DeathHand");
+        sprite.play_death_effect(4);
     }
 
     protected void entered_game_state(GameState state){
@@ -139,6 +147,12 @@ public class Giant2Hand : MonoBehaviour{
         audio_player.play_non_diegetic_one_shot("boss_weapon_flash");
     }
 
+    public void enable_colliders(int _enabled){
+        Log.MethodCall();
+        bool enabled = _enabled == 1? true :false;
+        foreach(Collider2D collider in colliders)
+            collider.enabled = enabled;
+    }
 
     void link(){
         GameManager.entered_game_state += entered_game_state;

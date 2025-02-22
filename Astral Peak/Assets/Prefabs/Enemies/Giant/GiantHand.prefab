@@ -59,9 +59,13 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: Giant2MultiSlam2Hand
       Value: {fileID: 0}
+  colliders:
+  - {fileID: 483191898311819294}
+  - {fileID: 3140518171479722688}
+  - {fileID: 5877214949133986817}
   <animator>k__BackingField: {fileID: 2037447550881342118}
   <sprite>k__BackingField: {fileID: 7205773376449782249}
-  <particles>k__BackingField: {fileID: 0}
+  <particles>k__BackingField: {fileID: 4932227139444354531}
   rb: {fileID: 6705406028762836244}
   ground_handler: {fileID: 0}
   finger_beam: {fileID: 2647024497286399957}
@@ -205,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles:
     _serializedList:
+    - Key: ambience
+      Value: {fileID: 564627227407523506}
     - Key: intro_gush
       Value: {fileID: 2445919756291065498}
     - Key: fist_impact
@@ -501,6 +507,11 @@ PrefabInstance:
       addedObject: {fileID: 5956541305550568919}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+--- !u!61 &483191898311819294 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5386185712742777304, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+  m_PrefabInstance: {fileID: 5479534011856994758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1451133482160514919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6352398812634556065, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
@@ -522,6 +533,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a883153c4cbeb7944a067a7920ea6412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &3140518171479722688 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7466523453934078726, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+  m_PrefabInstance: {fileID: 5479534011856994758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5877214949133986817 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2133361510332198343, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
+  m_PrefabInstance: {fileID: 5479534011856994758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6594204341306201688 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1695718302381070238, guid: 330e792d7b3795b4f8dbdd2f4c5af10c, type: 3}
@@ -700,6 +721,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bcb88cb03631644b45b27e0dc3fb22, type: 3}
+--- !u!198 &564627227407523506 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6850359717162920635, guid: a6bcb88cb03631644b45b27e0dc3fb22, type: 3}
+  m_PrefabInstance: {fileID: 6396422805936124937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5781158750001559867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 648067435693100338, guid: a6bcb88cb03631644b45b27e0dc3fb22, type: 3}

@@ -43,7 +43,7 @@ public class Giant2 : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
-        idle(1);
+        //idle(1);
     }
     void OnDestroy() => unlink_events();
 

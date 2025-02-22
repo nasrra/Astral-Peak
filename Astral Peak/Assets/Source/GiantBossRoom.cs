@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using Entropek;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GiantBossRoom : BossRoomHandler{
 
     [field: SerializeField] public Giant1 giant1 {get ; private set;}
     [SerializeField] Giant2 giant2;
+    [SerializeField] Giant2Hand left_hand, right_hand;
     [SerializeField] DomineDoor domine_door_script;
     [SerializeField] ConstellationController gateway_1, gateway_2;
     [SerializeField] Transform domine_door_transform;
@@ -45,6 +47,8 @@ public class GiantBossRoom : BossRoomHandler{
 
     public void enable_giant2(){
         giant2.gameObject.SetActive(true);
+        left_hand.gameObject.SetActive(true);
+        right_hand.gameObject.SetActive(true);
         giant2.play_intro_animation();
     }
 
