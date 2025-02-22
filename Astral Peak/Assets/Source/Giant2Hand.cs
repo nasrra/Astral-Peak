@@ -7,12 +7,14 @@ public class Giant2Hand : MonoBehaviour{
     [SerializeField] SerializedDictionary<string, Transform> move_to_point = new SerializedDictionary<string, Transform>();
     [field: SerializeField] public AnimatorOverride animator {get; private set;}
     [field: SerializeField] public BossSpriteHandler sprite {get; private set;}
+    [field: SerializeField] public ParticleHandler particles {get; private set;}
     public Rigidbody2D rb;
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
     [SerializeField] SludgeBeam finger_beam;
     [SerializeField] Movement movement;
     [SerializeField] Transform head_follower;
     [SerializeField] Transform head_anchor;
+    [SerializeField] Transform ground_checker;
     [SerializeField] AudioPlayer audio_player;
     Transform move_to_target;
     private StateQueue state;
@@ -24,7 +26,7 @@ public class Giant2Hand : MonoBehaviour{
         link();
     }
 
-    void Oestroy(){
+    void OnDestroy(){
         unlink();
     }
 
@@ -95,7 +97,7 @@ public class Giant2Hand : MonoBehaviour{
     int get_current_ground_piece(){
         int x = -1;
         // cahnge to raycast 2d down.
-        Collider2D other = Physics2D.OverlapCircle(transform.position, .5f, LayersManager.BITWISE_GROUND);
+        Collider2D other = Physics2D.OverlapCircle(ground_checker.position, .5f, LayersManager.BITWISE_GROUND);
         if(other != null)
             Int32.TryParse(other.name, out x);
         return x;
@@ -125,6 +127,12 @@ public class Giant2Hand : MonoBehaviour{
         if(state == GameState.CUTSCENE)
             this.state.start();
     }
+
+    protected void play_weapon_flash(){
+        sprite.play_charged_flash();
+        audio_player.play_non_diegetic_one_shot("boss_weapon_flash");
+    }
+
 
     void link(){
         GameManager.entered_game_state += entered_game_state;
