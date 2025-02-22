@@ -19576,15 +19576,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: flip_to_target
-    data: 
+    functionName: play_weapon_flash
+    data: staff
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
-    functionName: play_weapon_flash
-    data: staff
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19604,6 +19604,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.9333334
+    functionName: fire_projectile
+    data: three_piece
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.9333334
     functionName: play_diegetic_one_shot
     data: snow_magic_cast
     objectReferenceParameter: {fileID: 0}
@@ -19613,13 +19620,6 @@ AnimationClip:
   - time: 2.9333334
     functionName: emit_particle
     data: staff_three_piece
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.9333334
-    functionName: fire_projectile
-    data: three_piece
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -19715,7 +19715,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6
+  - time: 5.983333
     functionName: attack_end
     data: 
     objectReferenceParameter: {fileID: 0}

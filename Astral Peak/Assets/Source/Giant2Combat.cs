@@ -62,8 +62,8 @@ public class Giant2Combat : BossCombat{
                         yell_projectile,
                         //fist_slam,
                         //finger_gun,
-                        hand_clap,
-                        multi_slam,
+                        //hand_clap,
+                        //multi_slam,
                     };
                 }
             }
