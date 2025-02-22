@@ -42,7 +42,13 @@ public class Giant2Hand : MonoBehaviour{
                 time: 120, 
                 start_action:()=> move_to_point_begin(move_to_point[animation])
             );
-        animator.Play(animation);
+        else{
+            state.queue_and_start(
+                time: animator.get_clip_length(animation),
+                start_action:()=>{animator.Play(animation);}
+                //time_out:()=>{attack_ended?.Invoke();}
+            );
+        }
     }
 
     private void move_to_point_begin(Transform target){

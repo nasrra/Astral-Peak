@@ -42,6 +42,16 @@ public class Giant2Combat : BossCombat{
         attack_cooldown:        4,
         idle_cooldown:          0,
         combat_cooldown:        4
+    ),
+    multi_slam = new(
+        "Giant2MultiSlam",
+        chance:                 50,
+        max_player_distance:    30,
+        min_player_distance:    0,
+        arena_bound_distance:   0,
+        attack_cooldown:        8,
+        idle_cooldown:          0,
+        combat_cooldown:        6
     )
     ;
 
@@ -50,9 +60,10 @@ public class Giant2Combat : BossCombat{
             {"phase_1",()=>{
                     special_moveset = new List<BossAttack>(){
                         yell_projectile,
-                        fist_slam,
-                        finger_gun,
+                        //fist_slam,
+                        //finger_gun,
                         hand_clap,
+                        multi_slam,
                     };
                 }
             }

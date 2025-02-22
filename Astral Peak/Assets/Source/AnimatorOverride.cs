@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class AnimatorOverride : MonoBehaviour{
     [SerializeField] protected Animator animator;
-    Dictionary<string, AnimationClip> clips = new Dictionary<string, AnimationClip>();
+    public Dictionary<string, AnimationClip> clips {get; private set;}
     void Awake() => create_clip_dictionary();
     public void create_clip_dictionary(){
+        clips = new Dictionary<string, AnimationClip>();
         foreach(AnimationClip clip in animator.runtimeAnimatorController.animationClips)
             clips.Add(clip.name, clip);
     }
+
     public float get_clip_length(string id) => clips[id].length;
     public void SetBool(string boolean, bool value) => animator.SetBool(boolean,value);
     public void SetTrigger(string trigger) => animator.SetTrigger(trigger);

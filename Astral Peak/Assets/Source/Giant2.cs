@@ -6,7 +6,6 @@ using Entropek.Collections;
 using AYellowpaper.SerializedCollections;
 
 public class Giant2 : Boss<Movement>{
-    Coroutine idle_state;
     [Header("Giant2")]
     [SerializeField] SerializedDictionary<string, Transform> move_to_point; // points attacks can move to.
     [SerializeField] Giant2Hand left_hand, right_hand;
@@ -18,9 +17,12 @@ public class Giant2 : Boss<Movement>{
         single_hand_attacks = new(){
             "Giant2Slam"
         },
-        double_hand_attacks = new(){
+        double_hand_synced_attacks = new(){
             "Giant2Gun",
             "Giant2Clap"
+        },
+        double_hand_asynced_attacks = new(){
+            "Giant2MultiSlam",
         };
     // what behaviour occurs when calling said attack.
     private HashSet<string>
@@ -29,9 +31,11 @@ public class Giant2 : Boss<Movement>{
             "Giant2Clap"
         },
         idle_fly = new(){
-            "Giant2Projectiles"
+            "Giant2Projectiles",
+            "Giant2MultiSlam"
         };
     [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
+    bool is_idle_flying = false;
 
     void Awake(){
         state = new StateQueue(this, fly_and_attack_state);
@@ -65,18 +69,24 @@ public class Giant2 : Boss<Movement>{
     protected override void attack(BossAttack attack){
         string animation = attack.animation_id;
         combat.halt();
-        if(move_to_player.Contains(animation))
+        if(move_to_player.Contains(animation)){
+            is_idle_flying = false;
             state.queue_and_start(
                 time: 120, 
                 start_action:()=> move_to_player_begin(player_hover_point)
             );
-        else if(move_to_point.ContainsKey(animation))
+        }
+        else if(move_to_point.ContainsKey(animation)){
+            is_idle_flying = false;
             state.queue_and_start(
                 time: 120, 
                 start_action:()=> move_to_point_begin(move_to_point[animation])
             );
-        else
-            state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>play_attack_animation(animation));
+        }
+        else{
+            is_idle_flying = true;
+            state.queue_and_start(time: animator.get_clip_length($"{animation}"),start_action:()=>play_attack_animation(animation),time_out:()=>combat.attack_end());
+        }
     }
 
     private void move_to_player_begin(Transform target){
@@ -144,16 +154,24 @@ public class Giant2 : Boss<Movement>{
     }
 
     private void play_attack_animation(string animation){
+        if(animator.clips.ContainsKey(animation+"Head")){
+            animator.Play(animation+"Head");
+        }
         if(single_hand_attacks.Contains(animation)){
             Giant2Hand hand = UnityEngine.Random.Range(0,2) == 0? left_hand : right_hand;
             hand.attack(animation+"Hand");
         }
-        else if(double_hand_attacks.Contains(animation)){
-            left_hand.attack(animation+"Hand");
-            right_hand.attack(animation+"Hand");
+        else if(double_hand_synced_attacks.Contains(animation)){
+            left_hand.attack($"{animation}Hand");
+            right_hand.attack($"{animation}Hand");
+        }
+        else if(double_hand_asynced_attacks.Contains(animation)){
+            int x = UnityEngine.Random.Range(0,2);
+            left_hand.attack($"{animation}{(x==0?1:2)}Hand");
+            right_hand.attack($"{animation}{(x==0?2:1)}Hand");
         }
         else
-            animator.Play(animation+"Head");
+            animator.Play($"{animation}Head");
     }
 
     private void idle(float time){
@@ -161,7 +179,8 @@ public class Giant2 : Boss<Movement>{
             time: time,
             start_action: ()=>{
                 play_idle_animation(); 
-                movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
+                if(is_idle_flying == false)
+                    movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
             }
         );
     }
@@ -169,8 +188,8 @@ public class Giant2 : Boss<Movement>{
     private void play_idle_animation(){
         animator.Rebind();
         animator.Play("Giant2IdleHead");
-        left_hand.animator.Play("Giant2IdleHand");
-        right_hand.animator.Play("Giant2IdleHand");
+        //left_hand.animator.Play("Giant2IdleHand");
+        //right_hand.animator.Play("Giant2IdleHand");
     }
 
     public void play_intro_animation(){
@@ -198,8 +217,6 @@ public class Giant2 : Boss<Movement>{
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant2DeathHead")+3,
             start_action:()=>{
-                if(idle_state != null)
-                    StopCoroutine(idle_state);
                 enable_body_colliders(0);
                 stop_all();
                 sprites.play_death_effect(4f);
@@ -216,7 +233,7 @@ public class Giant2 : Boss<Movement>{
         ));
     }
 
-    public void projectile_yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
+    public void yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
 
     protected void link_events(){
         link_game_manager();
