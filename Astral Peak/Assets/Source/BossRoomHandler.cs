@@ -63,7 +63,7 @@ public abstract class BossRoomHandler : RoomHandler{
 
     protected virtual void death_completed(){
         UiManager.instance.play_enemy_vanquished();
-        // AudioManager.stop_music();
+        AudioManager.stop_music();
         StartCoroutine(altar_cutscene());
     }
     protected IEnumerator altar_cutscene(){

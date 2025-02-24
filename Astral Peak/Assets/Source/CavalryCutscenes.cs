@@ -30,7 +30,7 @@ public class CavalryOpening : Cutscene{
         CameraController.instance.regulate_in_bounds(true);
 
         //
-        // AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_1);
+        AudioManager.play_music("music_the_cavalry_1");
         end();
         yield break;
     }
@@ -83,7 +83,7 @@ public class CavalryPhaseTransition : Cutscene{
         CameraController.instance.reset_offset(2);
         CameraController.instance.reset_zoom(2);
         CameraController.instance.set_target(Player.instance.transform);
-        // AudioManager.play_music(Sounds.SoundID.WOLF_BOSS_MUSIC_2);
+        AudioManager.play_music("music_the_cavalry_2");
         end(); 
         yield break;
     }
