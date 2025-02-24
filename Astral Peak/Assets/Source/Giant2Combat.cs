@@ -5,7 +5,6 @@ public class Giant2Combat : BossCombat{
     BossAttack
     yell_projectile = new BossAttack(
         "Giant2Projectile",
-        chance:                 50,
         max_player_distance:    15,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -15,7 +14,6 @@ public class Giant2Combat : BossCombat{
     ),
     fist_slam = new(
         "Giant2Slam",
-        chance:                 50,
         max_player_distance:    30,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -25,7 +23,6 @@ public class Giant2Combat : BossCombat{
     ),
     finger_gun = new(
         "Giant2Gun",
-        chance:                 50,
         max_player_distance:    30,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -35,7 +32,6 @@ public class Giant2Combat : BossCombat{
     ),
     hand_clap = new(
         "Giant2Clap",
-        chance:                 50,
         max_player_distance:    30,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -45,7 +41,6 @@ public class Giant2Combat : BossCombat{
     ),
     multi_slam = new(
         "Giant2MultiSlam",
-        chance:                 50,
         max_player_distance:    30,
         min_player_distance:    0,
         arena_bound_distance:   0,

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class Giant1Combat : BossCombat{
     BossAttack down_slam = new(
         "Giant1DownSlam",
-        chance:                50,
         max_player_distance:   10,
         min_player_distance:   0,
         arena_bound_distance:  2,
@@ -14,7 +13,6 @@ public class Giant1Combat : BossCombat{
     ),
     jump_backward = new BossAttack(
         "Giant1JumpBackward",
-        chance:                 50,
         max_player_distance:    10,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -24,7 +22,6 @@ public class Giant1Combat : BossCombat{
     ),
     front_jump_forward = new BossAttack(
         "Giant1JumpForward",
-        chance:                 50,
         max_player_distance:    16,
         min_player_distance:    8,
         arena_bound_distance:   0,
@@ -34,7 +31,6 @@ public class Giant1Combat : BossCombat{
     ),
     back_jump_forward = new BossAttack(
         "Giant1JumpForward",
-        chance:                 50,
         max_player_distance:    8,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -44,7 +40,6 @@ public class Giant1Combat : BossCombat{
     ),
     round_slam = new BossAttack(
         "Giant1RoundSlam",
-        chance:                 50,
         max_player_distance:    10,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -54,7 +49,6 @@ public class Giant1Combat : BossCombat{
     ),
     walk_projectile = new BossAttack(
         "Giant1WalkingProjectile",
-        chance:                 50,
         max_player_distance:    15,
         min_player_distance:    0,
         arena_bound_distance:   0,
@@ -64,30 +58,39 @@ public class Giant1Combat : BossCombat{
     ),
     geyser = new BossAttack(
         "Giant1Geyser",
-        chance:                 50,
         max_player_distance:    15,
         min_player_distance:    0,
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
         combat_cooldown:        2
+    ),
+    three_piece = new BossAttack(
+        "Giant1ThreePiece",
+        max_player_distance:    15,
+        min_player_distance:    0, 
+        arena_bound_distance:   0,
+        attack_cooldown:        1,
+        idle_cooldown:          0,
+        combat_cooldown:        1
     )
     ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
                     front_moveset = new List<BossAttack>(){
-                        down_slam,
-                        jump_backward,
-                        front_jump_forward,
+                        //down_slam,
+                        //jump_backward,
+                        //front_jump_forward,
+                        three_piece,
                     };
                     back_moveset = new List<BossAttack>(){
-                        back_jump_forward,
+                        //back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
-                        walk_projectile,
-                        round_slam,
-                        geyser,
+                        //walk_projectile,
+                        //round_slam,
+                        //geyser,
                     };
                 }
             },

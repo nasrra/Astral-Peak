@@ -106,6 +106,8 @@ public class Giant1 : Boss<Movement>{
     //movement.
     public void jump_forward() => movement.dash(flipped == false? Vector2.right : Vector2.left, 12.5f, 0.5f);
     public void jump_backward() => movement.dash(flipped == true? Vector2.right : Vector2.left, 12.5f, 0.5f);
+    public void three_piece_jump() => movement.dash(flipped == false? Vector2.right : Vector2.left, 18f, 0.5f);
+    public void three_piece_lunge() => movement.dash(flipped == false? Vector2.right : Vector2.left, 18.5f, 0.3f);
 
     protected void projectile_fired(string holster_id){
         sound.play_diegetic_one_shot("water_bubble");
