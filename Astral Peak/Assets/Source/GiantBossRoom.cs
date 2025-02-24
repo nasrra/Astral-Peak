@@ -46,6 +46,7 @@ public class GiantBossRoom : BossRoomHandler{
     }
 
     public void enable_giant2(){
+        set_room_state(1);
         giant2.gameObject.SetActive(true);
         left_hand.gameObject.SetActive(true);
         right_hand.gameObject.SetActive(true);

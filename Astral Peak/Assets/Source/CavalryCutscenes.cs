@@ -60,7 +60,7 @@ public class CavalryPhaseTransition : Cutscene{
         rider.animator.Play("RiderPhaseTransition");
         yield return new WaitForSeconds(2.5f);
         CameraController.instance.lerp_offset(null, 45, 2);
-
+        room.set_room_state(1);
         // start playing background wolf animation.
         yield return new WaitForSeconds(2f);
         room.background_wolf.SetActive(true);
