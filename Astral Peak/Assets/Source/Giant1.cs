@@ -8,7 +8,6 @@ public class Giant1 : Boss<Movement>{
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
 
     void Awake(){
-        // sound.set_functions(new GiantSound(gameObject));
         link_events();
     }
     void Start(){
@@ -19,14 +18,12 @@ public class Giant1 : Boss<Movement>{
 
     void OnDestroy() => unlink_events();
 
-    protected override void exited_game_state(GameState state){
+    protected override void exit_cutscene_state(){
         idle(2);
-        base.exited_game_state(state);
     }
 
-    protected override void entered_game_state(GameState state){
+    protected override void enter_cutscene_state(){
         no_state();
-        base.entered_game_state(state);
     }
 
     private void idle(){

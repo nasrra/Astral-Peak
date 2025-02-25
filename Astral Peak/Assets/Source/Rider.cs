@@ -22,8 +22,12 @@ public class Rider : Boss<Movement>{
     public void jump_backward()          => movement.dash(flipped == false? Vector2.left : Vector2.right, 20, 0.5f);
 
 
-    public override void enter_cutscene_state() => idle();
-    public override void exit_cutscene_state() => idle(1);
+    protected override void enter_cutscene_state(){
+        idle();
+    } 
+    protected override void exit_cutscene_state(){
+        idle(1);
+    } 
 
     public void cutscene_yell(){
         no_state();

@@ -74,7 +74,6 @@ public class CavalryPhaseTransition : Cutscene{
         rider.gameObject.SetActive(false);
         cavalry.transform.position = room.get_boss_point(1).position;
         CameraController.instance.regulate_in_bounds(true);
-        cavalry.enter_cutscene_state();
         CameraController.instance.set_target(cavalry.transform);
         
         yield return new WaitForSeconds(2f);
