@@ -13,7 +13,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
     // Data
     public event Action
-        damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door, intermediate_health_updated;
+        damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door, intermediate_health_updated, intermediate_health_gained;
     // static fields for other classes to access.
     public static Player instance;
     public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
@@ -293,11 +293,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
         sound.play_diegetic_one_shot("player_sword_hit");
         if(health.get_current_health() < health.get_max_health()){
             intermediate_health += .1f;
-            intermediate_health_updated?.Invoke();
             if(intermediate_health >= 1f){
-                health.heal(1);
                 intermediate_health = 0;
+                health.heal(1);
+                intermediate_health_updated?.Invoke();
             }
+            else
+                intermediate_health_gained?.Invoke();
         }  
     }
 

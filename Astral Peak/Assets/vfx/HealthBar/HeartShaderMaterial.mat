@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MagicPlatform
-  m_Shader: {fileID: -6465566751694194690, guid: 6f8a4b94edc266a4eafea182cdec063b, type: 3}
+  m_Name: HeartShaderMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 8cddd4ad6e69ab24081b23f2fda5f648, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: d1334809f54d0c24daa134b4dbdefec2, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbff36452539bae4eaf40060b80af9cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -41,14 +41,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _amount: 0.1
+    - _amount: 0.99
     - _detail: 7.5
+    - _intensity: 1
     m_Colors:
-    - _color: {r: 1, g: 1, b: 1, a: 0}
+    - _color: {r: 0.8907395, g: 0.8907395, b: 0.8907395, a: 0}
     - _speed: {r: 0, g: -0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &2493325658673843000
+--- !u!114 &8877943217085929713
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

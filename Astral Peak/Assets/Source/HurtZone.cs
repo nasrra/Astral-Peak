@@ -8,7 +8,7 @@ public class HurtZone : MonoBehaviour{
         CreatureLink link = other.GetComponent<CreatureLink>();
         Creature creature = direct!=null? direct : link.get_creature();
         if(creature != null && creature.gameObject.layer == LayersManager.PLAYER){
-            creature.get_health().damage(damage, knockback);
+            creature.health.damage(damage, knockback);
         }
     }
 }

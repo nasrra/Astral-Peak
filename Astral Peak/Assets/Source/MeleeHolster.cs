@@ -45,7 +45,7 @@ public class MeleeHolster{
         string name = creature.gameObject.name;
         if(hit_creatures.ContainsKey(creature) == true)
             return;
-        creature.get_health().damage(damage_data, knockback_data);
+        creature.health.damage(damage_data, knockback_data);
         // add the creature to hit creatures;
         hit_creatures.Add(creature, true);
         hit_creature?.Invoke();

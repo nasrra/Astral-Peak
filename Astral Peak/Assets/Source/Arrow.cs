@@ -29,9 +29,9 @@ public class Arrow : Projectile{
     protected override void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.layer == LayersManager.PLAYER){
             Creature creature = other.GetComponent<Creature>();
-            creature.get_health().damaged += grounded;
+            creature.health.damaged += grounded;
             damage_creature_and_self_destruct(creature);
-            creature.get_health().damaged -= grounded;
+            creature.health.damaged -= grounded;
         }   
         else if(other.gameObject.layer == LayersManager.GROUND)
             StartCoroutine(

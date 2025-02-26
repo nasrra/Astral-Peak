@@ -6,6 +6,7 @@ using AYellowpaper.SerializedCollections;
 using System;
 
 public class SpriteHandler : MonoBehaviour{
+    // time = 0.35f.
     [SerializeField] protected SerializedDictionary<string,SpriteRenderer> sprites;
 
     public void set_material(Material material){
@@ -19,36 +20,36 @@ public class SpriteHandler : MonoBehaviour{
         state = StartCoroutine(_state);
     }
 
-    public IEnumerator pulse_value(string value, int pulses = 1, float time = 0.35f){
+    public IEnumerator pulse_value(string _value, float _start, float _end, float _time, int _pulses){
         List<string> renderers = new List<string>();
         foreach(string renderer in sprites.Keys)
             renderers.Add(renderer);
-        yield return pulse_value(renderers, value, pulses, time);
+        yield return pulse_value(renderers, _value, _start, _end, _time, _pulses);
     }
 
-    public IEnumerator pulse_value(List<string> sprite_id, string value, int pulses = 1, float time = 0.35f){
-        int count = pulses;
+    public IEnumerator pulse_value(List<string> _sprite_id, string _value, float _start, float _end, float _time, int _pulses){
+        int count = _pulses;
         List<SpriteRenderer> renderers = new List<SpriteRenderer>();
-        foreach(string id in sprite_id)
+        foreach(string id in _sprite_id)
             renderers.Add(sprites[id]);
         while (count > 0){
-            yield return StartCoroutine(lerp_value(renderers, value, 1f, 0f, time));
+            yield return StartCoroutine(lerp_value(renderers, _value, _start, _end, _time));
             --count;
             yield return null;
         }
         foreach (SpriteRenderer s in sprites.Values)
-            s.material.SetFloat(value, 0);
+            s.material.SetFloat(_value, _end);
         yield break;
     }
 
-    public IEnumerator pulse_value(string sprite_id, string value, int pulses = 1, float time = 0.35f){
-        int count = pulses;
+    public IEnumerator pulse_value(string _sprite_id, string _value, float _start, float _end, float _time, int _pulses){
+        int count = _pulses;
         while (count > 0){
-            yield return StartCoroutine(lerp_value(sprite_id, value, 1f, 0f, time));
+            yield return StartCoroutine(lerp_value(_sprite_id, _value, _start, _end, _time));
             --count;
             yield return null;
         }
-        sprites[sprite_id].material.SetFloat(value, 0);
+        sprites[_sprite_id].material.SetFloat(_value, _end);
         yield break;
     }
 

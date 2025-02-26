@@ -21,7 +21,7 @@ public abstract class Creature : MonoBehaviour{
     public bool flipped = false;
 
     [Header("Creature")]
-    [SerializeField] protected Health health;
+    [field: SerializeField] public Health health {get; private set;}
     protected bool flippable = true;
     [SerializeField] Transform flip_objects; // objects that will be flipped when flipping;
 
@@ -31,7 +31,6 @@ public abstract class Creature : MonoBehaviour{
         state = StartCoroutine(_state);
     }
 
-    public Health get_health() => health;
     // the inheritor class returns which movement it is using.
     public abstract Movement get_movement();
 
