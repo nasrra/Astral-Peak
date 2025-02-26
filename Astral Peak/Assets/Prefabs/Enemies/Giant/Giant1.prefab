@@ -442,7 +442,6 @@ GameObject:
   - component: {fileID: 5115391359876237113}
   - component: {fileID: 8222125714095349274}
   - component: {fileID: 603120735476272623}
-  - component: {fileID: 7360909750031361993}
   m_Layer: 13
   m_Name: Giant1
   m_TagString: Untagged
@@ -483,7 +482,7 @@ MonoBehaviour:
   flipped: 1
   health: {fileID: 3002839359913507795}
   flip_objects: {fileID: 5446253857888041164}
-  movement: {fileID: 7360909750031361993}
+  movement: {fileID: 6999202768798039158}
   movement_presets:
     _serializedList:
     - Key: phase_1
@@ -558,7 +557,7 @@ MonoBehaviour:
     gravity: 0
     dash_cooldown: 0
   move_direction: {x: 0, y: 0}
-  rb: {fileID: 603120735476272623}
+  <rb>k__BackingField: {fileID: 603120735476272623}
 --- !u!114 &5899589558759130967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,35 +783,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7360909750031361993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6955050913431477534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a4b3070f709dc45ac59fef3247f78e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  can_knockback: 1
-  can_dash: 1
-  is_dashing: 0
-  data:
-    speed: 0
-    accel: 0
-    decel: 0
-    gravity: 0
-    dash_cooldown: 0
-  base_data:
-    speed: 0
-    accel: 0
-    decel: 0
-    gravity: 0
-    dash_cooldown: 0
-  move_direction: {x: 0, y: 0}
-  rb: {fileID: 603120735476272623}
 --- !u!1 &6999728000545725505
 GameObject:
   m_ObjectHideFlags: 0

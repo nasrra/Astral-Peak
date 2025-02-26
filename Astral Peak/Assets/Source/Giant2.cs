@@ -44,20 +44,16 @@ public class Giant2 : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
-        idle(1);
+        //idle(1);
     }
     void OnDestroy() => unlink_events();
 
-    protected override void entered_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            this.state.clear_and_stop();
-        base.entered_game_state(state);
+    protected override void enter_cutscene_state(){
+        this.state.clear_and_stop();
     }
 
-    protected override void exited_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            idle(2);
-        base.exited_game_state(state);
+    protected override void exit_cutscene_state(){
+        idle(2);
     }
 
     private void fly_and_attack_state(){
@@ -194,9 +190,9 @@ public class Giant2 : Boss<Movement>{
     }
 
     public void play_intro_animation(){
+        left_hand.animator.Play("Giant2Intro1Hand",0,0);
+        right_hand.animator.Play("Giant2Intro2Hand",0,0);
         animator.Play("Giant2IntroHead");
-        left_hand.animator.Play("Giant2Intro1Hand");
-        right_hand.animator.Play("Giant2Intro2Hand");
     }
 
     public void move_to_point_camera_adjust(){
@@ -214,17 +210,16 @@ public class Giant2 : Boss<Movement>{
         left_hand.death();
         right_hand.death();
         no_state();
+        stop_all();
         state.clear_and_stop();
+        state = null;
+        enable_body_colliders(0);
+        sprites.play_death_effect(4f);
+        movement.zero_velocity(); // stop velocity in case the boss is dashing.
+        particles.stop_all_particles();
+        base.death_start();
         StartCoroutine(Util.timer(
-            animator.get_clip_length("Giant2DeathHead")+3,
-            start_action:()=>{
-                enable_body_colliders(0);
-                stop_all();
-                sprites.play_death_effect(4f);
-                movement.zero_velocity(); // stop velocity in case the boss is dashing.
-                particles.stop_all_particles();
-                base.death_start();
-            },
+            animator.get_clip_length("Giant2DeathHead")+1,
             time_out:()=>{
                 // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();

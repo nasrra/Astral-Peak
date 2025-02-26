@@ -12,7 +12,6 @@ public class Giant1 : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
-        //switch_phase();
         //idle(3);
     }
 
@@ -80,8 +79,9 @@ public class Giant1 : Boss<Movement>{
     public void start_geysers() => ground_handler.use_geysers();
 
     protected override void death_start(){
-        animator.Play("Giant1Death",0,0);
+        StopAllCoroutines();
         no_state();
+        animator.Play("Giant1Death",0,0);
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant1Death")+3,
             start_action:()=>{
