@@ -25,7 +25,6 @@ public class SludgeBeam : SludgeGeyser{
         while(true){
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 100, LayersManager.BITWISE_GROUND);
             if(hit == true){
-                Debug.Log(hit.transform.gameObject.name);
                 update_length((hit.point - new Vector2(transform.position.x,transform.position.y)).magnitude);
             }
             else

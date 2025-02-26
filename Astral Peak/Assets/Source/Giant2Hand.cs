@@ -6,12 +6,12 @@ using Entropek.Collections;
 using UnityEngine;
 
 public class Giant2Hand : MonoBehaviour{
+    public event Action attack_ended;
     [SerializeField] SerializedDictionary<string, Transform> move_to_point = new SerializedDictionary<string, Transform>();
     [SerializeField] List<Collider2D> colliders = new List<Collider2D>();
     [field: SerializeField] public AnimatorOverride animator {get; private set;}
     [field: SerializeField] public BossSpriteHandler sprite {get; private set;}
     [field: SerializeField] public ParticleHandler particles {get; private set;}
-    public Rigidbody2D rb;
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
     [SerializeField] SludgeBeam finger_beam;
     [SerializeField] Movement movement;
@@ -73,7 +73,10 @@ public class Giant2Hand : MonoBehaviour{
             start_action:()=>{
                 animator.Play(current_animation);
             },
-            time_out:()=>animator.Play("GiantHandIdle")
+            time_out:()=>{
+                attack_ended?.Invoke();
+                animator.Play("Giant2IdleHand");
+            }
         );
 
         // unhook from point and return to hand socket on head.
@@ -81,7 +84,7 @@ public class Giant2Hand : MonoBehaviour{
             start_action:()=>{
                 unhook_from_parent();
                 movement.freeform_move_to(head_anchor,()=>{
-                    state.clear();
+                    state.clear_and_stop();
                     hook_to_parent(head_anchor);
                 });
             }
@@ -89,13 +92,13 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     public void hook_to_parent(Transform _parent){
-        rb.bodyType = RigidbodyType2D.Kinematic; 
+        movement.rb.bodyType = RigidbodyType2D.Kinematic; 
         transform.parent = _parent;
         movement.halt();
     }
 
     public void unhook_from_parent(){
-        rb.bodyType = RigidbodyType2D.Dynamic; 
+        movement.rb.bodyType = RigidbodyType2D.Dynamic; 
         transform.parent = null;
         movement.halt();
     }
@@ -115,6 +118,7 @@ public class Giant2Hand : MonoBehaviour{
     public void fist_slam_camera_shake()    => CameraController.instance.shake_camera(.8f,.65f,false);
     public void clap_camera_shake()         => CameraController.instance.shake_camera(.8f,.5f,false);
 
+    public void use_geysers() => ground_handler.use_geysers(); 
 
     public void fist_slam_ground_wave(){
         // left and right

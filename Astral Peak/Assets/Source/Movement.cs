@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour{
     protected bool flipped = false;
     [SerializeField] protected MovementData data, base_data;
     [SerializeField] protected Vector2 move_direction = new Vector2();
-    [SerializeField] protected Rigidbody2D rb;
+    [field: SerializeField] public Rigidbody2D rb {get; private set;}
     protected Coroutine move_state, controller_state, dash_state;
 
     void Awake(){

@@ -19,7 +19,8 @@ public class Giant2 : Boss<Movement>{
         },
         double_hand_synced_attacks = new(){
             "Giant2Gun",
-            "Giant2Clap"
+            "Giant2Clap",
+            "Giant2Geyser"
         },
         double_hand_asynced_attacks = new(){
             "Giant2MultiSlam",
@@ -29,11 +30,11 @@ public class Giant2 : Boss<Movement>{
         move_to_player = new(){
             "Giant2Slam",
             "Giant2Clap"
-        },
-        idle_fly = new(){
-            "Giant2Projectiles",
-            "Giant2MultiSlam"
         };
+        //idle_fly = new(){
+        //    "Giant2Projectiles",
+        //    "Giant2MultiSlam"
+        //};
     [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
     bool is_idle_flying = false;
 
@@ -43,7 +44,7 @@ public class Giant2 : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
-        //idle(1);
+        idle(1);
     }
     void OnDestroy() => unlink_events();
 
@@ -85,7 +86,7 @@ public class Giant2 : Boss<Movement>{
         }
         else{
             is_idle_flying = true;
-            state.queue_and_start(time: animator.get_clip_length($"{animation}"),start_action:()=>play_attack_animation(animation),time_out:()=>combat.attack_end());
+            state.queue_and_start(time: animator.get_clip_length($"{animation}"),start_action:()=>play_attack_animation(animation));
         }
     }
 
@@ -241,7 +242,11 @@ public class Giant2 : Boss<Movement>{
         health.death                            += movement.StopAllCoroutines;
         combat.attack_chosen                    += attack;
         combat.attack_ended                     += idle;
+        left_hand.attack_ended                  += combat.attack_end;
+        right_hand.attack_ended                 += combat.attack_end;
         health.damaged                          += sprites.play_damaged_flash;
+        health.damaged                          += left_hand.sprite.play_damaged_flash;
+        health.damaged                          += right_hand.sprite.play_damaged_flash;
         link_combat();
         link_movement();
         link_particles();
@@ -253,7 +258,11 @@ public class Giant2 : Boss<Movement>{
         health.death                            -= movement.StopAllCoroutines;
         combat.attack_chosen                    -= attack;
         combat.attack_ended                     -= idle;
+        left_hand.attack_ended                  -= combat.attack_end;
+        right_hand.attack_ended                 -= combat.attack_end;
         health.damaged                          -= sprites.play_damaged_flash;
+        health.damaged                          -= left_hand.sprite.play_damaged_flash;
+        health.damaged                          -= right_hand.sprite.play_damaged_flash;
         unlink_particles();
         unlink_combat();
         unlink_movement();

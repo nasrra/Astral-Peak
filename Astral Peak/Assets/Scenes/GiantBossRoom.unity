@@ -1937,7 +1937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &375137857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3258,6 +3258,10 @@ PrefabInstance:
       propertyPath: move_to_point._serializedList.Array.data[1].Value
       value: 
       objectReference: {fileID: 2519792957642506073}
+    - target: {fileID: 704857996119878628, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
+      propertyPath: move_to_point._serializedList.Array.data[2].Value
+      value: 
+      objectReference: {fileID: 2519792957642506073}
     - target: {fileID: 1624423715649030210, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3272,7 +3276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2407305708372363941, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2758965422565772736, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: main
@@ -4455,13 +4459,17 @@ PrefabInstance:
       propertyPath: move_to_point._serializedList.Array.data[1].Value
       value: 
       objectReference: {fileID: 2519792957642506072}
+    - target: {fileID: 704857996119878628, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
+      propertyPath: move_to_point._serializedList.Array.data[2].Value
+      value: 
+      objectReference: {fileID: 2519792957642506072}
     - target: {fileID: 2407305708372363941, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: m_Name
       value: RightGiantHand
       objectReference: {fileID: 0}
     - target: {fileID: 2407305708372363941, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2758965422565772736, guid: 61d86ca0ff2b70d48bfdf81802eef709, type: 3}
       propertyPath: main
@@ -10958,26 +10966,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.32
       objectReference: {fileID: 0}
-    - target: {fileID: 915689399469868220, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: sprites._serializedList.Array.data[2].Key
-      value: left_hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 915689399469868220, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: sprites._serializedList.Array.data[3].Key
-      value: right_hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 915689399469868220, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: sprites._serializedList.Array.data[4].Key
-      value: right_hand
-      objectReference: {fileID: 0}
-    - target: {fileID: 915689399469868220, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: sprites._serializedList.Array.data[2].Value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 915689399469868220, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: sprites._serializedList.Array.data[3].Value
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 968101186360375272, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_Layer
       value: 13
@@ -11107,17 +11095,21 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: move_to_point._serializedList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: move_to_point._serializedList.Array.data[1].Key
+      value: Giant2Geyser
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: move_to_point._serializedList.Array.data[0].Value
       value: 
       objectReference: {fileID: 1455948045}
     - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: move_to_point._serializedList.Array.data[1].Value
+      value: 
+      objectReference: {fileID: 1455948045}
     - target: {fileID: 7123206553178724163, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.09859924
@@ -11144,7 +11136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8274307454303091731, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9199403556694282620, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_LocalRotation.w

@@ -731,8 +731,8 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 40
-        current_life: 40
+        max_life: 50
+        current_life: 50
   body_colliders:
   - {fileID: 6560337411556749621}
   - {fileID: 1237300024902159838}
@@ -800,7 +800,7 @@ MonoBehaviour:
     gravity: 0
     dash_cooldown: 0
   move_direction: {x: 0, y: 0}
-  rb: {fileID: 2115266525673927342}
+  <rb>k__BackingField: {fileID: 2115266525673927342}
 --- !u!114 &915689399469868220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +921,6 @@ MonoBehaviour:
   is_attacking: 0
   chosen_attack:
     animation_id: 
-    chance: 0
     max_player_distance: 0
     min_player_distance: 0
     arena_bound_distance: 0

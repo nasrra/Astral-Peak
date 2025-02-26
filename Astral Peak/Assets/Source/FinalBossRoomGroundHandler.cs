@@ -60,7 +60,7 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
 
     public void use_geysers(){
         if(geysers_state != null)
-            StopCoroutine(geysers_state);
+            return;
         geysers_state = StartCoroutine(beams_coroutine());
     }
 
@@ -85,7 +85,8 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
         yield return new WaitForSeconds(.25f);
         for(int i = 0; i < geysers.Length; i++){
             geysers[i].turn_off();
-        }       
+        }     
+        geysers_state = null;  
     }
 }
 

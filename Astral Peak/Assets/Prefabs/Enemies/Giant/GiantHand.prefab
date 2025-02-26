@@ -59,6 +59,8 @@ MonoBehaviour:
       Value: {fileID: 0}
     - Key: Giant2MultiSlam2Hand
       Value: {fileID: 0}
+    - Key: Giant2GeyserHand
+      Value: {fileID: 0}
   colliders:
   - {fileID: 483191898311819294}
   - {fileID: 3140518171479722688}
@@ -66,7 +68,6 @@ MonoBehaviour:
   <animator>k__BackingField: {fileID: 2037447550881342118}
   <sprite>k__BackingField: {fileID: 7205773376449782249}
   <particles>k__BackingField: {fileID: 4932227139444354531}
-  rb: {fileID: 6705406028762836244}
   ground_handler: {fileID: 0}
   finger_beam: {fileID: 4857375132174235803}
   movement: {fileID: 8213262083365055783}
@@ -155,7 +156,7 @@ MonoBehaviour:
     gravity: 0
     dash_cooldown: 0
   move_direction: {x: 0, y: 0}
-  rb: {fileID: 6705406028762836244}
+  <rb>k__BackingField: {fileID: 6705406028762836244}
 --- !u!50 &6705406028762836244
 Rigidbody2D:
   serializedVersion: 5
