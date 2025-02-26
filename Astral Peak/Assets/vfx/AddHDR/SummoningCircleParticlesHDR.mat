@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MagicTrackingProjectileHDR
+  m_Name: SummoningCircleParticlesHDR
   m_Shader: {fileID: -6465566751694194690, guid: 95822a89596171845bd59f66694a769c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -45,10 +45,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _HDRColor: {r: 0, g: 1.5764706, b: 2, a: 1}
+    - _HDRColor: {r: 0, g: 1.0067976, b: 1.2772806, a: 1}
+    - _hdr_color: {r: 1.7814789, g: 1.7814789, b: 1.7814789, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8185969832359198450
+--- !u!114 &6257812426966870567
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
