@@ -11,15 +11,16 @@ public class CavalryOpening : Cutscene{
         rider.transform.position = room.get_boss_point(0).position;
         Player.instance.set_enter_position();
         room.cutscene_arrow.fire();
+        rider.animator.Play("RiderOpening");
         CameraController.instance.lerp_zoom(6,2f);
-        CameraController.instance.lerp_offset(3,-2,1);
+        CameraController.instance.lerp_offset(3,-5,1);
         yield return new WaitForSeconds(3);
-        CameraController.instance.lerp_offset(0,-2,1);
+        CameraController.instance.lerp_offset(0,null,1);
         CameraController.instance.set_target(rider.transform);
         yield return new WaitForSeconds(2);
         rider.cutscene_yell();
         yield return new WaitForSeconds(.5f);
-        CameraController.instance.lerp_offset(0,4,3);
+        CameraController.instance.lerp_offset(0,2,3);
         CameraController.instance.lerp_zoom(14,5f);
         yield return new WaitForSeconds(4);
         stop_skip();
@@ -51,7 +52,7 @@ public class CavalryPhaseTransition : Cutscene{
         rider.flip_to_target();
         CameraEffects.instance.fade_from_black(fade_transition_time);
         CameraController.instance.lerp_zoom(6,4);
-        CameraController.instance.lerp_offset(null, -1 ,4);
+        CameraController.instance.lerp_offset(null, -4 ,4);
 
         yield return new WaitForSeconds(2f);
         CameraController.instance.set_target(rider.transform);
@@ -59,7 +60,7 @@ public class CavalryPhaseTransition : Cutscene{
         yield return new WaitForSeconds(1);
         rider.animator.Play("RiderPhaseTransition");
         yield return new WaitForSeconds(2.5f);
-        CameraController.instance.lerp_offset(null, 45, 2);
+        CameraController.instance.lerp_offset(null, 19, 1f);
         room.set_room_state(1);
         // start playing background wolf animation.
         yield return new WaitForSeconds(2f);

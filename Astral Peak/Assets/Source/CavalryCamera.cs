@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CavalryCamera : MonoBehaviour{
      public void ground_slam_camera_adjust(){
-        CameraController.instance.lerp_offset(x:null,y:9,time:1.5f);
+        CameraController.instance.lerp_offset(x:null,y:5f,time:1.5f);
         CameraController.instance.lerp_zoom(14, 1.5f);
     }
     public void ground_slam_camera_reset(){
