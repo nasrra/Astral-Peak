@@ -35,6 +35,9 @@ public class HealthBarHeart : SpriteHandler{
         else animator.Play("enabled", MAIN);
     }
     public void thump(bool x) => animator.SetBool("thump", x);
+    public void disabled_thump(){
+        animator.Play("disabled_thump");
+    }
 
     public void set_fill(float amount) => set_value("_amount", amount);
 

@@ -57,7 +57,9 @@ public class PlayerHealthBar : MonoBehaviour{
     }
 
     public void intermediate_health_gained(){
-        hearts[health.get_current_health()].health_gained_flash();
+        HealthBarHeart heart = hearts[health.get_current_health()]; 
+        heart.health_gained_flash();
+        heart.disabled_thump();
         set_intermediate_health();
     }
 
