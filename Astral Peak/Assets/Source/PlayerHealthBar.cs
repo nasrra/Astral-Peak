@@ -6,12 +6,12 @@ public class PlayerHealthBar : MonoBehaviour{
     [SerializeField] List<HealthBarHeart> hearts;
     int health_amount = 0;
 
-    //void OnEnable(){
-    //    if(Player.instance != null){
-    //        health = Player.instance.health;
-    //        set_hearts();
-    //    }
-    //}
+    void OnEnable(){
+        if(Player.instance != null){
+            health = Player.instance.health;
+            set_hearts();
+        }
+    }
 
     void Start(){
         health = Player.instance.health;

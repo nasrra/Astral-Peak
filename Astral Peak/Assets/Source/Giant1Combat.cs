@@ -88,9 +88,9 @@ public class Giant1Combat : BossCombat{
                         //back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
-                        //walk_projectile,
+                        walk_projectile,
                         //round_slam,
-                        geyser,
+                        //geyser,
                     };
                 }
             },

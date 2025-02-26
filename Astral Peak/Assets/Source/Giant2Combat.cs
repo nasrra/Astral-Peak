@@ -63,11 +63,11 @@ public class Giant2Combat : BossCombat{
             {"phase_1",()=>{
                     special_moveset = new List<BossAttack>(){
                         yell_projectile,
-                        fist_slam,
-                        finger_gun,
-                        hand_clap,
-                        multi_slam,
-                        geyser,
+                        //fist_slam,
+                        //finger_gun,
+                        //hand_clap,
+                        //multi_slam,
+                        //geyser,
                     };
                 }
             }
