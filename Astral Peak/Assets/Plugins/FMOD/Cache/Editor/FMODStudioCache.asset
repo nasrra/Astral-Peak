@@ -602,7 +602,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638757408598269451
+  lastModified: 638761745819079807
   FileSizes: []
   Exists: 1
 --- !u!114 &-7705769581100269135
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638760141717826307
+  lastModified: 638761753043210025
   FileSizes: []
   Exists: 1
 --- !u!114 &-2185571173844143384
@@ -2955,6 +2955,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 6000
+--- !u!114 &-1855396162201979960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ambience/ambience_water
+  m_EditorClassIdentifier: 
+  Path: event:/ambience/ambience_water
+  Guid:
+    Data1: 1796578872
+    Data2: 1082545300
+    Data3: -1757111624
+    Data4: -1525617389
+  Banks:
+  - {fileID: -2208767533061771326}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 538122967836921804}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1820011016452533743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3941,6 +3969,7 @@ MonoBehaviour:
   - {fileID: -4004531885186207577}
   - {fileID: 377710258119997344}
   - {fileID: -3241849836570812036}
+  - {fileID: -1855396162201979960}
   EditorParameters:
   - {fileID: -5023178244398163476}
   - {fileID: -3913607239544261590}
@@ -3948,7 +3977,7 @@ MonoBehaviour:
   - {fileID: -7764010657775784217}
   StringsBanks:
   - {fileID: 4408179852280411705}
-  cacheTime: 638760141718442211
+  cacheTime: 638761753043210025
   cacheVersion: 131846
 --- !u!114 &4545918480723168
 MonoBehaviour:
@@ -4139,6 +4168,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &538122967836921804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ambience_water/intensity
+  m_EditorClassIdentifier: 
+  Name: intensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3030222322
+    data2: 260780284
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - soft
+  - heavy
+  Exists: 1
 --- !u!114 &541694647731850514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4204,8 +4259,8 @@ MonoBehaviour:
     Data4: -1412308430
   Banks:
   - {fileID: 4159909058810648680}
-  - {fileID: -2208767533061771326}
   - {fileID: 8322565838983538549}
+  - {fileID: -2208767533061771326}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6028,10 +6083,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638760141717895284
+  lastModified: 638761745819089844
   FileSizes:
   - Name: 
-    Value: 5758
+    Value: 5804
   Exists: 1
 --- !u!114 &4482661411375543288
 MonoBehaviour:
@@ -6657,8 +6712,8 @@ MonoBehaviour:
     Data4: -926645589
   Banks:
   - {fileID: 4159909058810648680}
-  - {fileID: -2208767533061771326}
   - {fileID: 8322565838983538549}
+  - {fileID: -2208767533061771326}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1

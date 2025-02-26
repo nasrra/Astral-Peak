@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SludgeBeam : SludgeGeyser{
     public override void turn_on(){
-        play_bust_sound();
+        play_burst_sound();
         StartCoroutine("calcuate_length");
         base.turn_on();
     }

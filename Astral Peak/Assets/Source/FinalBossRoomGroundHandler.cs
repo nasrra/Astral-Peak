@@ -74,7 +74,7 @@ public class FinalBossRoomGroundHandler : MonoBehaviour{
         for(int i = 0; i < geysers.Length; i++){
             geysers[i].lerp_length(15,.25f);
             geysers[i].set_sound_intensity(1);
-            geysers[i].play_bust_sound();
+            geysers[i].play_burst_sound();
         }
         CameraController.instance.shake_camera(2f, 0.85f, true);
         yield return new WaitForSeconds(2);

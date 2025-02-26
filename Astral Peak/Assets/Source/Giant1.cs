@@ -81,17 +81,13 @@ public class Giant1 : Boss<Movement>{
     protected override void death_start(){
         StopAllCoroutines();
         no_state();
+        stop_all();
+        enable_body_colliders(0);
+        movement.zero_velocity(); // stop velocity in case the boss is dashing.
         animator.Play("Giant1Death",0,0);
+        base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant1Death")+3,
-            start_action:()=>{
-                if(idle_state != null)
-                    StopCoroutine(idle_state);
-                enable_body_colliders(0);
-                stop_all();
-                movement.zero_velocity(); // stop velocity in case the boss is dashing.
-                base.death_start();
-            },
             time_out:()=>{
                 unlink_events();
                 gameObject.SetActive(false);

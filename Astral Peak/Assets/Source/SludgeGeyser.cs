@@ -42,7 +42,7 @@ public class SludgeGeyser : MonoBehaviour{
         audio_player.set_diegetic_instance_parameter("water_rushing", "intensity", _intensity);
     }
 
-    public void play_bust_sound(){
+    public void play_burst_sound(){
         audio_player.play_diegetic_one_shot("water_gush");
     }
 
