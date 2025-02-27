@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ReturnToMainMenuButton : MonoBehaviour{
     public void invoke(){
-        // AudioManager.stop_music();
+        AudioManager.stop_music();
         AudioManager.stop_ambience();
         AudioManager.stop_additive_ambience();
         AudioManager.exit_low_pass_filter();

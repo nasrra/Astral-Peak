@@ -268,7 +268,7 @@ public static class AudioManager{
             path = Path.GetFileNameWithoutExtension(path);
             loaded_references.Add(path,reference);
         }
-        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+        UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
     }
 
     public static void unload_bank(string _bank_name){
