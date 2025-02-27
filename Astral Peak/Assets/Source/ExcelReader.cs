@@ -6,7 +6,7 @@ using UnityEngine;
 using System.Linq.Expressions;
 
 public static class ExcelReader{
-    public static List<string> read_dialogue(string file, string column){
+    public static List<string> read_file(string file, string column){
         List<string> dialogue = new List<string>();
         string path = Path.Combine(Application.streamingAssetsPath, $"{file}.xlsb");
         //string path = $"Assets/Resources/Dialogue/{file}.xlsb";

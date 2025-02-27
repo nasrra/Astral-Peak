@@ -8,9 +8,6 @@ public class DialogueHandler : MonoBehaviour{
     public static DialogueHandler instance;
     public event Action<int> new_line, line_ended;
     public event Action dialogue_ended, dialogue_started;
-    [SerializeField] string 
-        dialogue_file,
-        dialoge_option;
     List<string> dialogue = new List<string>();
     public TextMeshProUGUI text;    
     int index = -1;
@@ -21,9 +18,9 @@ public class DialogueHandler : MonoBehaviour{
     void Awake(){
         instance = this;
     }
-    void Start(){
-        if(dialogue_file != "" && dialoge_option != "")
-            dialogue = ExcelReader.read_dialogue(dialogue_file, dialoge_option);
+
+    public void set_dialogue(List<string> _dialogue){
+        dialogue = _dialogue;
     }
 
     public void start_dialogue(){

@@ -1,10 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class IntroductionSceneController : MonoBehaviour{
     public Animator lore_text, title_card_text;
+    [SerializeField] protected List<TextMeshProUGUI> text = new();
     public FireController fire_1, fire_2;
-    void Start() => CutsceneManager.play(new Introduction(this));
+    void Start(){
+        List<string> dialogue = ExcelReader.read_file("Dialogue", "IntroductionLore");
+        for(int i = 0; i < dialogue.Count; i++)
+            text[i].text = dialogue[i];
+        CutsceneManager.play(new Introduction(this));
+    }
 }
 
 public class Introduction : Cutscene{

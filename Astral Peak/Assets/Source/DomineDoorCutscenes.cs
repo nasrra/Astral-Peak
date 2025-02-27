@@ -64,6 +64,7 @@ public class DomineDoorFinal : Cutscene{
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.get_domine_door().opened();
         yield return new WaitForSeconds(2);
+        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
         Player.instance.get_sprite().fade_from_black();
         yield return new WaitForSeconds(6);
         DialogueHandler.instance.play_dialogue(2.65f);

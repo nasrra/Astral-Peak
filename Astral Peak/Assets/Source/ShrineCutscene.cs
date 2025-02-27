@@ -23,6 +23,7 @@ public class ShrineOpeningCutscene : Cutscene{
         AudioManager.stop_ambience();
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
+        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineShrine"));
         torches_on?.Invoke();
         CameraController.instance.lerp_zoom(4.45f, 6f);
         CameraController.instance.lerp_offset(null, 2.2f, 6f);
