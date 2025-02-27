@@ -10,10 +10,8 @@ public class KillZone : MonoBehaviour{
             if(creature.gameObject.layer == LayersManager.ENEMY)
                 creature.kill();
             else if(creature.gameObject.layer == LayersManager.PLAYER){
-                creature.get_health().damage(new DamageData(1), null);
-                if(creature.get_health().get_current_health() <= 0)
-                    Player.instance.enter_cutscene_state();
-                else
+                creature.health.damage(new DamageData(1), null);
+                if(creature.health.get_current_health() >= 0)
                     StartCoroutine(hit_player());
             }
         }

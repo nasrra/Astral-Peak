@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FireController : SpriteHandler{
     [SerializeField] ParticleSystem embers, smoke;
-    AudioSource fire_source;
+    [SerializeField] AudioPlayer audio_player;
 
     public void off(){
         set_value("_Dim",10);
@@ -24,23 +24,16 @@ public class FireController : SpriteHandler{
             callback:()=>{
                 enable_sprite(false);
                 smoke.Play();
-                // AudioClipHandler.play(
-                //     SoundID.STEAM,
-                //     audio_player: gameObject, 
-                //     AudioSourceSettings.DIEGETIC);  
-                fire_source.Stop();
+                audio_player.play_diegetic_one_shot("fire_extinguish");
+                audio_player.stop_all_loops();  
                 embers.Emit(30);
                 embers.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                Destroy(fire_source);
             }
         ));
     }
 
     public void turn_on(){
-        // fire_source = AudioClipHandler.play(
-        //     SoundID.SMALL_FIRE, 
-        //     audio_player: gameObject,
-        //     AudioSourceSettings.DIEGETIC_LOOP);  
+        audio_player.play_diegetic_loop("fire_crackle_soft");    
         embers.Emit(30);
         embers.Play();
         enable_sprite(true);

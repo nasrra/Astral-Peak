@@ -51,11 +51,11 @@ public abstract class Projectile : MonoBehaviour{
         foreach(SpriteRenderer sprite in sprites)
             sprite.enabled = enabled;
     }
-    protected void damage_creature(Creature creature) => creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
+    protected void damage_creature(Creature creature) => creature.health.damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
     protected void damage_creature_and_self_destruct(Creature creature){
-        creature.get_health().damaged += destroy;
-        creature.get_health().damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
-        creature.get_health().damaged -= destroy;
+        creature.health.damaged += destroy;
+        creature.health.damage(new DamageData(1), new KnockbackData(20, 0.25f, transform));
+        creature.health.damaged -= destroy;
     }
     protected void snap_to_floor(){
         RaycastHit2D hit;

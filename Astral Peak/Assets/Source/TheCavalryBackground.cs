@@ -19,8 +19,8 @@ public class TheCavalryBackground : MonoBehaviour{
             
     public void emit_hop_1() => hop_1.Emit(1);
     public void emit_hop_2() => hop_2.Emit(1);
-    public void move_camera_up() => CameraController.instance.lerp_offset(x:null, y:20, 2.25f);
-    public void move_camera_down() => CameraController.instance.lerp_offset(x:null, y:-7, 0.25f);
+    public void move_camera_up() => CameraController.instance.lerp_offset(x:null, y:14, 2.25f);
+    public void move_camera_down() => CameraController.instance.lerp_offset(x:null, y:-9, 0.25f);
     public void reset_camera() => CameraController.instance.reset_offset(.5f);
     public void play_impact_sound(){
         audio_player.play_non_diegetic_one_shot("snow_impact_heavy");  

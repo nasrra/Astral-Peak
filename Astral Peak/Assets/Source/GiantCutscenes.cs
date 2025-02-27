@@ -17,10 +17,16 @@ public class GiantOpening : Cutscene{
         room.get_gateway_2().fade_out();
         CameraController.instance.reset_zoom(4);
         yield return new WaitForSeconds(4);
-        room.play_giant1_introduction();
-        yield return new WaitForSeconds(7);
+        room.giant1.gameObject.SetActive(true);
+        room.giant1.animator.Play("Giant1Intro");
+        CameraController.instance.set_target(room.giant1.gameObject.transform);
+        yield return new WaitForSeconds(1.5f);
+        room.giant1.animator.Play("Giant1Yell");
+        yield return new WaitForSeconds(4);
+        stop_skip();
+        room.giant1.particles.stop_particle("yell");
         CameraController.instance.set_target(Player.instance.transform);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         end();
         yield break;
     }

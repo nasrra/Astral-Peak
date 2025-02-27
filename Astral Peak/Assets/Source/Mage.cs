@@ -59,11 +59,13 @@ public class Mage : Boss<Movement>{
         );
     }
     protected override void attack(BossAttack attack) => switch_to_attack?.Invoke(attack);
-    public override void enter_cutscene_state(){
+    protected override void enter_cutscene_state(){
         stop_all();
         switch_to_idle();
     } 
-    public override void exit_cutscene_state() => exit_cutscene_states[current_phase]();
+    protected override void exit_cutscene_state(){
+        exit_cutscene_states[current_phase]();
+    } 
     protected override Dictionary<string,Action> get_phase_linker() => phase_linker;
     protected override Dictionary<string,Action> get_phase_unlinker() => phase_unlinker;
     protected override void stop_all(){

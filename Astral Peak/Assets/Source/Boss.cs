@@ -12,16 +12,16 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     [SerializeField] protected SerializedDictionary<string, MovementData> movement_presets = new SerializedDictionary<string, MovementData>();    
     [SerializeField] protected SerializedDictionary<string, HealthData> health_presets = new SerializedDictionary<string, HealthData>();    
     [SerializeField] protected List<Collider2D> body_colliders = new List<Collider2D>();
-    [SerializeField] protected BossSpriteHandler sprites;
-    [SerializeField] public AnimatorOverride animator;
-    [SerializeField] protected ParticleHandler particles;
-    [SerializeField] protected RangedHolsterHandler ranged;
-    [SerializeField] protected MeleeHolsterHandler melee;
-    [SerializeField] public AudioPlayer sound;
-    [SerializeField] protected BossCombat combat;
-    [SerializeField] protected LightingHandler lighting;
+    [field: SerializeField] public BossSpriteHandler sprites {get; private set;}
+    [field: SerializeField] public AnimatorOverride animator {get; private set;}
+    [field: SerializeField] public ParticleHandler particles {get; private set;}
+    [field: SerializeField] public RangedHolsterHandler ranged  {get; private set;}
+    [field: SerializeField] public MeleeHolsterHandler melee {get; private set;}
+    [field: SerializeField] public AudioPlayer sound {get; private set;}
+    [field: SerializeField] public BossCombat combat {get; private set;}
+    [field: SerializeField] public LightingHandler lighting {get; private set;}
     [SerializeField] protected Transform target;
-    [SerializeField] protected string current_phase;
+    [field: SerializeField] public string current_phase {get; private set;}
     protected StateQueue state  = new StateQueue(null, null);
     
 
@@ -125,7 +125,6 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
     }
 
     public string get_phase() => current_phase;
-    public BossSpriteHandler get_sprite() => sprites;
     public void transition_phase() => phase_transition?.Invoke(current_phase);
     protected virtual void create_phase_linkage(){Log.MethodNotImplemented(this);}
     protected virtual void link_movement(){

@@ -56,6 +56,7 @@ public class CameraController : MonoBehaviour{
 
     // external functions
     public void set_offset(Vector3 _offset, bool _override_original_offset){
+        Log.MethodCall();
         offset = _offset;
         original_offset = _override_original_offset == true? _offset : original_offset;
     }

@@ -5,8 +5,8 @@ public class Cavalry : Boss<CavalryMovement>{
     Coroutine idle_state;
 
     void Awake(){
-        idle(2);
-        // sound.set_functions(new CavalrySound(gameObject));
+        //idle(2);
+        entered_game_state(GameManager.get_state());
         link_events();
     } 
 
@@ -20,11 +20,13 @@ public class Cavalry : Boss<CavalryMovement>{
     }
 
     // states: 
-    public override void enter_cutscene_state(){
+    protected override void enter_cutscene_state(){
         stop_idle_loop();    
         idle();
     }
-    public override void exit_cutscene_state() => idle(1);
+    protected override void exit_cutscene_state(){
+        idle(1);
+    }   
 
     protected override void death_start(){
         animator.Play("WolfDeath",0,0);

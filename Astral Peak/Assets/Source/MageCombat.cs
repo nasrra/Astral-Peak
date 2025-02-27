@@ -5,7 +5,6 @@ public class MageCombat : BossCombat{
     BossAttack
         projectile_summon_phase_1 = new(
             "Mage1ProjSum",
-            chance:                50,
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -14,7 +13,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       2),
         teleport_phase_1 = new(
             "Mage1EnterTel",
-            chance:                50,
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  0,
@@ -23,7 +21,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       2),
         hollow_summon_phase_1 = new(
             "Mage1HolSum",
-            chance:                50,
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  6,
@@ -32,7 +29,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       3),
         three_slash_phase_1 = new(
             "Mage1ThreeSlash",
-            chance:                50,
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -41,7 +37,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       2),
         hollow_summon_phase_2 = new(
             "Mage2HolSum",
-            chance:                50,
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  6,
@@ -50,7 +45,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       8),
         projectile_summon_phase_2 = new(
             "Mage2ProjSum",
-            chance:                50,
             max_player_distance:   20,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -59,7 +53,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       6),
         signature_phase_2 = new(
             "Mage2Sig",
-            chance:                50,
             max_player_distance:   20,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -68,7 +61,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       8),
         left_right_phase_2 = new(
             "Mage2LeftRight",
-            chance:                50,
             max_player_distance:   20,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -77,7 +69,6 @@ public class MageCombat : BossCombat{
             combat_cooldown:       6),
         right_left_phase_2 = new(
             "Mage2RightLeft",
-            chance:                50,
             max_player_distance:   20,
             min_player_distance:   0,
             arena_bound_distance:  2,
@@ -104,7 +95,7 @@ public class MageCombat : BossCombat{
                     hollow_summon_phase_2,
                     projectile_summon_phase_2,
                     signature_phase_2,
-                    left_right_phase_2,
+                    left_right_phase_2,     
                     right_left_phase_2,
                 };
             }}

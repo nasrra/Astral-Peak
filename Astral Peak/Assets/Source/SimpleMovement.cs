@@ -51,6 +51,7 @@ public class SimpleMovement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
+    
     public void set_velocity(Vector2 velocity) => rb.linearVelocity = velocity;
 
 
@@ -127,4 +128,5 @@ public class SimpleMovement : MonoBehaviour{
         transform.rotation = targetRotation;
         yield break;
     }
+    
 }

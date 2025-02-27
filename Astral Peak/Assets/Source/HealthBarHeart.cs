@@ -1,9 +1,10 @@
 using Entropek;
 using UnityEngine;
 
-public class HealthBarHeart : ImageHandler{
+public class HealthBarHeart : SpriteHandler{
     [SerializeField] Animator animator;
     State state = State.OFF;
+    Coroutine flash_state;
 
     readonly int
         MAIN        = 0,
@@ -13,7 +14,7 @@ public class HealthBarHeart : ImageHandler{
         animator.Play("fade_out", OVERRIDE);
     }
     public void fade_in(){
-        animator.Play("fade_in", OVERRIDE);
+        animator.Play ("fade_in", OVERRIDE);
     }
     public void disable(){
         if(state != State.OFF){
@@ -34,8 +35,15 @@ public class HealthBarHeart : ImageHandler{
         else animator.Play("enabled", MAIN);
     }
     public void thump(bool x) => animator.SetBool("thump", x);
+    public void disabled_thump(){
+        animator.Play("disabled_thump");
+    }
 
-    public void set_fill(float amount) => set_material_value("_amount", amount);
+    public void set_fill(float amount) => set_value("_amount", amount);
+
+    public void health_gained_flash(){
+        state_switch(ref flash_state, pulse_value("_intensity", 2f, 1f, 0.5f, 1));
+    }
 
     enum State{
         ON,OFF,THUMP

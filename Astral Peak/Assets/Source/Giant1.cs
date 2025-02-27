@@ -8,25 +8,21 @@ public class Giant1 : Boss<Movement>{
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
 
     void Awake(){
-        // sound.set_functions(new GiantSound(gameObject));
         link_events();
     }
     void Start(){
         set_phase_data("phase_1");
-        //switch_phase();
         //idle(3);
     }
 
     void OnDestroy() => unlink_events();
 
-    protected override void exited_game_state(GameState state){
+    protected override void exit_cutscene_state(){
         idle(2);
-        base.exited_game_state(state);
     }
 
-    protected override void entered_game_state(GameState state){
+    protected override void enter_cutscene_state(){
         no_state();
-        base.entered_game_state(state);
     }
 
     private void idle(){
@@ -80,20 +76,18 @@ public class Giant1 : Boss<Movement>{
         ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
         ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
     }
+    public void start_geysers() => ground_handler.use_geysers();
 
     protected override void death_start(){
-        animator.Play("Giant1Death",0,0);
+        StopAllCoroutines();
         no_state();
+        stop_all();
+        enable_body_colliders(0);
+        movement.zero_velocity(); // stop velocity in case the boss is dashing.
+        animator.Play("Giant1Death",0,0);
+        base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant1Death")+3,
-            start_action:()=>{
-                if(idle_state != null)
-                    StopCoroutine(idle_state);
-                enable_body_colliders(0);
-                stop_all();
-                movement.zero_velocity(); // stop velocity in case the boss is dashing.
-                base.death_start();
-            },
             time_out:()=>{
                 unlink_events();
                 gameObject.SetActive(false);
@@ -105,6 +99,8 @@ public class Giant1 : Boss<Movement>{
     //movement.
     public void jump_forward() => movement.dash(flipped == false? Vector2.right : Vector2.left, 12.5f, 0.5f);
     public void jump_backward() => movement.dash(flipped == true? Vector2.right : Vector2.left, 12.5f, 0.5f);
+    public void three_piece_jump() => movement.dash(flipped == false? Vector2.right : Vector2.left, 18f, 0.5f);
+    public void three_piece_lunge() => movement.dash(flipped == false? Vector2.right : Vector2.left, 18.5f, 0.3f);
 
     protected void projectile_fired(string holster_id){
         sound.play_diegetic_one_shot("water_bubble");

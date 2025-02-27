@@ -1,22 +1,35 @@
+using System.Collections;
+using TreeEditor;
 using UnityEngine;
 
-public class SludgeBeam : MonoBehaviour{
-    [SerializeField] Collider2D hurtbox;
-    [SerializeField] LineRenderer graphics;
-    [SerializeField] ParticleSystem emitter_particle;
-    [SerializeField] AudioPlayer audio_player;
-
-    public void turn_on(){
-        hurtbox.enabled = true;
-        graphics.enabled = true;
-        emitter_particle.Play();
-        audio_player.play_diegetic_loop("water_rushing");
+public class SludgeBeam : SludgeGeyser{
+    public override void turn_on(){
+        play_burst_sound();
+        StartCoroutine("calcuate_length");
+        base.turn_on();
     }
 
-    public void turn_off(){
-        hurtbox.enabled = false;
-        graphics.enabled = false;
-        emitter_particle.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-        audio_player.stop_all_loops();
+    public override void turn_off(){
+        StopCoroutine("calcuate_length");
+        base.turn_off();
+    }
+
+    public override void update_length(float _length){
+        line.SetPosition(1, new Vector3(0,0,_length*2.5f));
+        hurtbox.size    = new Vector2(hurtbox.size.x,_length*2.5f);
+        hurtbox.offset  = new Vector2(0,_length*2.5f/2);
+        end_particle.transform.position = transform.position + transform.up * _length;
+    }
+
+    IEnumerator calcuate_length(){
+        while(true){
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 100, LayersManager.BITWISE_GROUND);
+            if(hit == true){
+                update_length((hit.point - new Vector2(transform.position.x,transform.position.y)).magnitude);
+            }
+            else
+                update_length(2);
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipped: 0
-  health: {fileID: 2628764344551210761}
+  <health>k__BackingField: {fileID: 2628764344551210761}
   flip_objects: {fileID: 8941898535882027964}
   movement: {fileID: 9157569654504765810}
   movement_presets:
@@ -156,24 +156,24 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 40
-        current_life: 40
+        max_life: 50
+        current_life: 50
     - Key: phase_2
       Value:
-        max_life: 40
-        current_life: 40
+        max_life: 50
+        current_life: 50
   body_colliders:
   - {fileID: 7100196876858075490}
-  sprites: {fileID: 3964623577995310139}
-  animator: {fileID: 2450987617186753991}
-  particles: {fileID: 3264434816368927656}
-  ranged: {fileID: 4450737455548280372}
-  melee: {fileID: 0}
-  sound: {fileID: 2733793814216122303}
-  combat: {fileID: 3367401352343840995}
-  lighting: {fileID: 2640624942175576056}
+  <sprites>k__BackingField: {fileID: 3964623577995310139}
+  <animator>k__BackingField: {fileID: 2450987617186753991}
+  <particles>k__BackingField: {fileID: 3264434816368927656}
+  <ranged>k__BackingField: {fileID: 4450737455548280372}
+  <melee>k__BackingField: {fileID: 0}
+  <sound>k__BackingField: {fileID: 2733793814216122303}
+  <combat>k__BackingField: {fileID: 3367401352343840995}
+  <lighting>k__BackingField: {fileID: 2640624942175576056}
   target: {fileID: 0}
-  current_phase: 
+  <current_phase>k__BackingField: 
   teleport_points:
     _serializedList:
     - Key: idle
@@ -541,7 +541,6 @@ MonoBehaviour:
   is_attacking: 0
   chosen_attack:
     animation_id: 
-    chance: 0
     max_player_distance: 0
     min_player_distance: 0
     arena_bound_distance: 0
@@ -582,7 +581,7 @@ MonoBehaviour:
     gravity: 0
     dash_cooldown: 0
   move_direction: {x: 0, y: 0}
-  rb: {fileID: 1179165287237134916}
+  <rb>k__BackingField: {fileID: 1179165287237134916}
 --- !u!1 &7624618172426725430
 GameObject:
   m_ObjectHideFlags: 0

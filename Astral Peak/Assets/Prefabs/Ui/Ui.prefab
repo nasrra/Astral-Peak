@@ -135,7 +135,7 @@ Canvas:
   m_GameObject: {fileID: 502435888237148574}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -146,7 +146,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1256757227
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &8063081542678824374
@@ -1858,6 +1858,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4959676595284317946, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b59e4c8aa3232214e9ba81f1a338dd3a, type: 2}
     - target: {fileID: 9130627780835320907, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
       propertyPath: m_Name
       value: HealthBarHeart (4)
@@ -2162,6 +2166,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4959676595284317946, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5d898aa6e1f96af4497ccfe01fec355b, type: 2}
     - target: {fileID: 9130627780835320907, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
       propertyPath: m_Name
       value: HealthBarHeart (1)
@@ -3058,6 +3066,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4959676595284317946, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 24864f63849a788489bbff0a9969216f, type: 2}
     - target: {fileID: 9130627780835320907, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
       propertyPath: m_Name
       value: HealthBarHeart (3)
@@ -3175,6 +3187,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4959676595284317946, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f9358b595ea68d64997b52dec8a33efe, type: 2}
     - target: {fileID: 9130627780835320907, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
       propertyPath: m_Name
       value: HealthBarHeart (2)
@@ -3292,10 +3308,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9030999368490759372, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: bbff36452539bae4eaf40060b80af9cc, type: 3}
     - target: {fileID: 9130627780835320907, guid: a8567e09cdc37e340ac82c943bf7fb8f, type: 3}
       propertyPath: m_Name
       value: HealthBarHeart

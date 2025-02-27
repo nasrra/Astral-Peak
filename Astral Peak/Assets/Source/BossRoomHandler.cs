@@ -8,8 +8,10 @@ public abstract class BossRoomHandler : RoomHandler{
         fight_started,
         fight_stopped;
     [Header("BossRoomHandler")]
+    [SerializeField] protected List<FogController> fog_controllers = new List<FogController>();
     [SerializeField] protected List<Transform> boss_points = new List<Transform>(); 
     [SerializeField] protected List<Transform> respawn_points = new List<Transform>();
+    [SerializeField] protected SnowController snow_controller;
     [SerializeField] protected Collider2DFeedback fight_start_trigger;
     [SerializeField] protected Door exit;
     protected Dictionary<string, Func<Cutscene>> cutscenes;
@@ -18,6 +20,11 @@ public abstract class BossRoomHandler : RoomHandler{
         base.Awake();
         // AudioManager.stop_music();
         check_world_state();
+    }
+
+    protected override void Start(){
+        set_room_state(0);
+        base.Start();
     }
 
     protected abstract void check_world_state();
@@ -36,7 +43,7 @@ public abstract class BossRoomHandler : RoomHandler{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("phase_1");
+        play_cutscene("opening");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -59,18 +66,28 @@ public abstract class BossRoomHandler : RoomHandler{
         GameManager.boss_defeated(get_boss_id());
         GameManager.invoke_set_game_data();
         GameManager.save_game_data();
+        CameraController.instance.reset_offset(1);
+        CameraController.instance.reset_zoom(1);
     }
 
     protected virtual void death_completed(){
         UiManager.instance.play_enemy_vanquished();
-        // AudioManager.stop_music();
+        AudioManager.stop_music();
         StartCoroutine(altar_cutscene());
+        set_room_state(0);
     }
     protected IEnumerator altar_cutscene(){
         yield return new WaitForSeconds(6);
         AudioManager.stop_ambience();
         CutsceneManager.play(get_altar_cutscene());
         yield break;
+    }
+
+    public virtual void set_room_state(int x){
+        foreach(FogController fog in fog_controllers)
+            fog.lerp_preset(x,4);
+        snow_controller.lerp_preset(x);
+        AudioManager.set_ambience_parameter("intensity",x);
     }
 
     protected abstract int get_boss_id();

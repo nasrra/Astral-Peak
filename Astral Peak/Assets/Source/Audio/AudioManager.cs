@@ -19,8 +19,10 @@ public static class AudioManager{
         ui_bus;
     static EventInstance music_track;
     static EventInstance ambience_track;
+    static EventInstance additive_ambience_track;
     static string current_music_track = "";
     static string current_ambience_track = "";
+    static string current_additive_ambience_track = "";
 
     public static void initialize(){
         // load master banks.
@@ -126,6 +128,22 @@ public static class AudioManager{
 
     public static void set_ambience_parameter(string _parameter, int _value){
         ambience_track.setParameterByName(_parameter, _value);
+    }
+
+    public static void play_additive_ambience(string _event_name){
+        if(current_additive_ambience_track == _event_name)
+            return;
+        stop_additive_ambience();
+        additive_ambience_track = create_event_instance(_event_name);
+        additive_ambience_track.start();
+        current_additive_ambience_track = _event_name;
+    }
+    public static void stop_additive_ambience(){
+        if(current_additive_ambience_track == "" || current_additive_ambience_track == null)
+            return;
+        current_additive_ambience_track = "";
+        additive_ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        additive_ambience_track.release();
     }
 
 
@@ -250,7 +268,7 @@ public static class AudioManager{
             path = Path.GetFileNameWithoutExtension(path);
             loaded_references.Add(path,reference);
         }
-        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+        UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
     }
 
     public static void unload_bank(string _bank_name){

@@ -8,8 +8,7 @@ public class Movement : MonoBehaviour{
     public event Action<Vector2> move_direction_changed;
     public event Action 
         knockedback, knockback_ended,
-        dashed, dash_end,
-        target_reached;
+        dashed, dash_end;
 
     [Header("Movement")]
     [SerializeField] protected bool 
@@ -19,7 +18,7 @@ public class Movement : MonoBehaviour{
     protected bool flipped = false;
     [SerializeField] protected MovementData data, base_data;
     [SerializeField] protected Vector2 move_direction = new Vector2();
-    [SerializeField] protected Rigidbody2D rb;
+    [field: SerializeField] public Rigidbody2D rb {get; private set;}
     protected Coroutine move_state, controller_state, dash_state;
 
     void Awake(){
@@ -222,51 +221,51 @@ public class Movement : MonoBehaviour{
                 end?.Invoke();
             }
         );
-    public virtual void freeform_move_to(Transform target){
+    public virtual void freeform_move_to(Transform _target, Action _callback = null){
         clear_move_direction();
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, freeform_move_towards(target));
+        state_switch(ref controller_state, freeform_move_towards(_target, _callback));
     }
 
-    protected IEnumerator freeform_move_towards(Transform target){
-        while(target != null){
-            Vector3 distance = target.position - transform.position;
+    protected IEnumerator freeform_move_towards(Transform _target, Action _callback){
+        while(_target != null){
+            Vector3 distance = _target.position - transform.position;
             Vector3 direction = distance.normalized; 
             set_move_direction(direction);
             if(Mathf.Abs(distance.magnitude) <= 0.1f)
-                target_reached?.Invoke();
+                _callback?.Invoke();
             yield return new WaitForFixedUpdate();
         }
     }
 
-    public virtual void freeform_approach_to(Transform target){
+    public virtual void freeform_approach_to(Transform _target, Action _callback = null){
         clear_move_direction();
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, freeform_approach_towards(target));
+        state_switch(ref controller_state, freeform_approach_towards(_target, _callback));
     }
-    protected IEnumerator freeform_approach_towards(Transform target){
-    while(target != null){
-            Vector3 distance = target.position - transform.position;
+    protected IEnumerator freeform_approach_towards(Transform _target, Action _callback){
+    while(_target != null){
+            Vector3 distance = _target.position - transform.position;
             Vector3 direction = distance.normalized; 
             set_move_direction(direction);
             if(Mathf.Abs(distance.magnitude) <= 0.15f){
                 halt();
-                transform.position = target.position;
-                target_reached?.Invoke();
+                transform.position = _target.position;
+                _callback?.Invoke();
                 yield break;
             }   
             yield return new WaitForFixedUpdate();
         }
     }
 
-    public void move_to(Transform target) {
+    public void move_to(Transform _target, Action _callback = null) {
         clear_move_direction();
         state_switch(ref move_state, move());
-        state_switch(ref controller_state, move_towards(target));
+        state_switch(ref controller_state, move_towards(_target, _callback));
     }
-    protected IEnumerator move_towards(Transform target){
-        while(target != null){
-            float dist = (transform.position - target.position).x;
+    protected IEnumerator move_towards(Transform _target, Action _callback){
+        while(_target != null){
+            float dist = (transform.position - _target.position).x;
             // if we are not moving right, move right.
             if(dist < 0 && get_move_direction() != new Vector2(1,0)){
                 clear_move_direction();
@@ -278,7 +277,7 @@ public class Movement : MonoBehaviour{
                 move_left(true);
             }
             if(Mathf.Abs(dist) <= 0.1f)
-                target_reached?.Invoke();
+                _callback?.Invoke();
             yield return new WaitForFixedUpdate();
         }
         yield break;
@@ -351,7 +350,6 @@ public class Movement : MonoBehaviour{
         knockback_ended         = null;
         dashed                  = null; 
         dash_end                = null;
-        target_reached          = null;
     }
 }
 

@@ -6,27 +6,21 @@ using Entropek;
 using FMODUnity;
 
 public class ShrineOpeningCutscene : Cutscene{
+    ShrineRoomHandler room = RoomHandler.instance as ShrineRoomHandler;
     #pragma warning disable CS0414
     public event Action 
         open_shrine_door, 
         torches_on, 
         torches_off, 
         enlargen_torches, 
-        reset_torches,
-        world_constellation_on, 
-        world_constellation_off, 
-        gateway_constellation_on, 
-        gateway_constellation_off, 
-        aether_constellation_on, 
-        aether_constellation_off, 
-        soul_constellation_on, 
-        soul_constellation_off;
+        reset_torches;
     #pragma warning restore CS0414
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
         AudioManager.load_bank("cutscene_shrine");
         AudioManager.play_music_one_shot("music_domine");
+        AudioManager.stop_ambience();
         DialogueHandler.instance.dialogue_ended += dialogue_ended;
         DialogueHandler.instance.new_line += handle_new_line;
         torches_on?.Invoke();
@@ -43,7 +37,7 @@ public class ShrineOpeningCutscene : Cutscene{
     }
 
     IEnumerator middle(){
-        CameraController.instance.lerp_zoom(3f, 8f);
+        CameraController.instance.lerp_zoom(2f, 8f);
         CameraController.instance.lerp_offset(-3, null, 8f);
         yield return new WaitForSeconds(8);
         CameraController.instance.lerp_offset(3.4f,null, 25f);
@@ -56,8 +50,10 @@ public class ShrineOpeningCutscene : Cutscene{
 
     IEnumerator ending(){
         torches_off?.Invoke();     
+        stop_skip();
         yield return new WaitForSeconds(6);  
         AudioManager.stop_music();
+        AudioManager.play_ambience("ambience_shrine");
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_shrine")));
         unlink();
         end();
@@ -85,23 +81,10 @@ public class ShrineOpeningCutscene : Cutscene{
                 break;
             case 14: 
                 //world_constellation_on?.Invoke();
-                gateway_constellation_on?.Invoke(); 
+                room.gateway_constellation.fade_in();
                 break;
-            //case 18: 
-            //    world_constellation_off?.Invoke(); 
-            //    gateway_constellation_on?.Invoke();
-            //    break;
-            //case 20:
-            //    gateway_constellation_off?.Invoke();
-            //    aether_constellation_on?.Invoke();
-            //    break;
-            //case 21:
-            //    aether_constellation_off?.Invoke();
-            //    soul_constellation_on?.Invoke();
-            //    break;
             case 19:
-                gateway_constellation_off?.Invoke();
-                //soul_constellation_off?.Invoke();
+                room.gateway_constellation.fade_out();
                 break;
 
         }
@@ -112,15 +95,7 @@ public class ShrineOpeningCutscene : Cutscene{
         torches_on                  = null;
         torches_off                 = null;
         enlargen_torches            = null;
-        reset_torches               = null;
-        world_constellation_on      = null; 
-        world_constellation_off     = null; 
-        gateway_constellation_on    = null; 
-        gateway_constellation_off   = null; 
-        aether_constellation_on     = null; 
-        aether_constellation_off    = null;
-        soul_constellation_on       = null; 
-        soul_constellation_off      = null;        
+        reset_torches               = null;        
     }
 
 }
@@ -163,12 +138,14 @@ public abstract class ShrineAltarCutscene : Cutscene{
         AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_altar")));
         CustomSceneManager.load_scene_with_transitions(get_previous_scene());
+        CustomSceneManager.loaded_scene += stop_skip;
         CustomSceneManager.loaded_scene += end;
         CustomSceneManager.loaded_scene += unlink;
         yield break;
     }
     
     void unlink(){
+        CustomSceneManager.loaded_scene -= stop_skip;
         CustomSceneManager.loaded_scene -= end;
         CustomSceneManager.loaded_scene -= unlink;
         torches_on          = null;

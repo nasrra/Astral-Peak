@@ -83,6 +83,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3486599777616432684, guid: cfed3a7840467f44f952d393bc2a9dc9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486599777616432684, guid: cfed3a7840467f44f952d393bc2a9dc9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486599777616432684, guid: cfed3a7840467f44f952d393bc2a9dc9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4937053571805033081, guid: cfed3a7840467f44f952d393bc2a9dc9, type: 3}
       propertyPath: m_Name
       value: MagicTrackingProjectile Variant
@@ -130,10 +142,10 @@ MonoBehaviour:
   sprites:
   - {fileID: 5507257437311705678}
   movement: {fileID: 1742615418644789280}
+  destroy_on_hit: 1
   ambience: {fileID: 8141265407332979660}
   sprite: {fileID: 0}
   trail: {fileID: 3130556220743697769}
-  destroy_on_hit: 1
   front_point: {fileID: 7929281239913479928}
   buffer_direction: {x: 0, y: 0}
   rotate_speed: 2

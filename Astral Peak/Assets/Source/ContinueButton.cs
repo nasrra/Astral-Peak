@@ -14,6 +14,7 @@ public class ContinueButton : MonoBehaviour{
             inactive_button.SetActive(true);
     }
     public void load_game(){
+        AudioManager.stop_music();
         CustomSceneManager.load_scene_with_transitions(GameManager.load_game_data().scene_to_load);
     }
 }

@@ -50,7 +50,10 @@ public class StateQueue{
         queue(items);
         state_switch();
     }
-    public void clear() => states.Clear();
+    public void clear(){
+        states.Clear();
+        state = null;
+    } 
     public void stop(){
         if(state!=null)
             entity.StopCoroutine(state);

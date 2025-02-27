@@ -5,11 +5,12 @@ namespace Cutscenes{
     public class MageOpening : Cutscene{
         public override IEnumerator get_coroutine(){
             MageBossRoom room = RoomHandler.instance as MageBossRoom;
-            BackgroundMage background_mage = room.get_background_mage();
+            Mage mage = room.mage;
+            BackgroundMage background_mage = room.background_mage;
             CameraController.instance.lerp_offset(x:null, y:0.9f, time:2f);
             CameraController.instance.lerp_zoom(size:8.65f, time:2f);
             yield return new WaitForSeconds(2.5f);
-            room.enable_background_mage(true);
+            background_mage.gameObject.SetActive(true);
             background_mage.teleport(0);
             yield return new WaitForSeconds(2+background_mage.teleport_time);
             background_mage.teleport(1);
@@ -25,19 +26,20 @@ namespace Cutscenes{
             yield return new WaitForSeconds(background_mage.teleport_time/2);
             background_mage.enable_sprite(false);
             background_mage.destroy();
-            room.enable_mage(true);
-            Mage mage = room.get_mage();
+            mage.gameObject.SetActive(true);
             // mage.get_sprite().play_death_effect_reverse(1);
             mage.flip_to_target();
             mage.link_phase("phase_1");
-            CameraController.instance.set_target(mage.transform);
+            CameraController.instance.set_target(mage.gameObject.transform);
             CameraController.instance.lerp_offset(x:null, y:-3.5f, time:.15f);
             yield return new WaitForSeconds(1f);
             mage.animator.Play("MageYell");
             yield return new WaitForSeconds(1f);
             CameraController.instance.reset_offset(2f);
             CameraController.instance.reset_zoom(2f);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
+            stop_skip();
+            yield return new WaitForSeconds(1);
             CameraController.instance.set_target(Player.instance.transform);
             // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_1);
             end();//
@@ -47,9 +49,9 @@ namespace Cutscenes{
     public class MagePhaseTransition : Cutscene{            
         public override IEnumerator get_coroutine(){
             MageBossRoom room = RoomHandler.instance as MageBossRoom;
-            Mage mage = room.get_mage();
+            Mage mage = room.mage;
             CameraEffects.instance.fade_to_black(fade_transition_time);
-            room.enable_mage(false);
+            mage.gameObject.SetActive(false);
             yield return new WaitForSeconds(fade_transition_time);
             prepare();
             CameraEffects.instance.fade_from_black(fade_transition_time);
@@ -75,7 +77,9 @@ namespace Cutscenes{
             mage.get_movement().reset_speed();
             mage.get_movement().clear_move_direction();
             mage.get_movement().zero_velocity();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
+            stop_skip();
+            yield return new WaitForSeconds(1);
             CameraController.instance.set_target(Player.instance.transform);
             room.get_platforms().start_loop();
             // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
@@ -87,12 +91,12 @@ namespace Cutscenes{
 
         void prepare(){
             MageBossRoom room = RoomHandler.instance as MageBossRoom;
-            Mage mage = room.get_mage();
+            Mage mage = room.mage;
             mage.transform.position = room.get_boss_point(1).position;
             Player.instance.set_enter_position();
             mage.flip_to_target();
             room.set_respawn_point(1);
-            room.enable_mage(true);
+            room.mage.gameObject.SetActive(true);
             mage.unlink_phase("phase_1");
             mage.link_phase("cutscene_transition");
             mage.animator.Play("MageIdle",0,0);

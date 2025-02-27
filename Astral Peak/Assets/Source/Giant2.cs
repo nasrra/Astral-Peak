@@ -6,38 +6,37 @@ using Entropek.Collections;
 using AYellowpaper.SerializedCollections;
 
 public class Giant2 : Boss<Movement>{
-    Coroutine idle_state;
     [Header("Giant2")]
     [SerializeField] SerializedDictionary<string, Transform> move_to_point; // points attacks can move to.
-    [SerializeField] SludgeBeam left_hand_finger_beam;
-    [SerializeField] SludgeBeam right_hand_finger_beam;
-    [SerializeField] FinalBossRoomGroundHandler ground_handler;
-    [SerializeField] private AudioPlayer head_sound;
-    [SerializeField] private AudioPlayer left_hand_sound;
-    [SerializeField] private AudioPlayer right_hand_sound;
+    [SerializeField] Giant2Hand left_hand, right_hand;
     // which animation layer to be used for each attack.
     private HashSet<string> 
         head_attacks = new(){
-            "Giant2YellProjectiles"
+            "Giant2Projectiles"
         },
         single_hand_attacks = new(){
-            "Giant2FistSlam"
+            "Giant2Slam"
         },
-        double_hand_attacks = new(){
-            "Giant2FingerGun",
-            "Giant2HandClap"
+        double_hand_synced_attacks = new(){
+            "Giant2Gun",
+            "Giant2Clap",
+            "Giant2Geyser"
+        },
+        double_hand_asynced_attacks = new(){
+            "Giant2MultiSlam",
         };
     // what behaviour occurs when calling said attack.
     private HashSet<string>
         move_to_player = new(){
-            "Giant2FistSlam",
-            "Giant2HandClap"
-        },
-        idle_fly = new(){
-            "Giant2YellProjectiles"
+            "Giant2Slam",
+            "Giant2Clap"
         };
-    [SerializeField] Transform left_hand, right_hand, head, player_hover_point, start_point, move_to_target;
-    [SerializeField] char hand = 'L';
+        //idle_fly = new(){
+        //    "Giant2Projectiles",
+        //    "Giant2MultiSlam"
+        //};
+    [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
+    bool is_idle_flying = false;
 
     void Awake(){
         state = new StateQueue(this, fly_and_attack_state);
@@ -45,43 +44,46 @@ public class Giant2 : Boss<Movement>{
     }
     void Start(){
         set_phase_data("phase_1");
+        //idle(1);
     }
     void OnDestroy() => unlink_events();
 
-    protected override void entered_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            this.state.clear_and_stop();
-        base.entered_game_state(state);
+    protected override void enter_cutscene_state(){
+        this.state.clear_and_stop();
     }
 
-    protected override void exited_game_state(GameState state){
-        if(state == GameState.CUTSCENE)
-            idle(2);
-        base.exited_game_state(state);
+    protected override void exit_cutscene_state(){
+        idle(2);
     }
 
     private void fly_and_attack_state(){
-        animator.Play("Giant2HeadIdle");
-        animator.Play("Giant2HandIdleL");
-        animator.Play("Giant2HandIdleR");
+        animator.Play("Giant2IdleHead");
+        left_hand.animator.Play("Giant2IdleHand");
+        right_hand.animator.Play("Giant2IdleHand");
         combat.chose_attack_state(target);
     }
 
     protected override void attack(BossAttack attack){
         string animation = attack.animation_id;
         combat.halt();
-        if(move_to_player.Contains(animation))
+        if(move_to_player.Contains(animation)){
+            is_idle_flying = false;
             state.queue_and_start(
                 time: 120, 
                 start_action:()=> move_to_player_begin(player_hover_point)
             );
-        else if(move_to_point.ContainsKey(animation))
+        }
+        else if(move_to_point.ContainsKey(animation)){
+            is_idle_flying = false;
             state.queue_and_start(
                 time: 120, 
                 start_action:()=> move_to_point_begin(move_to_point[animation])
             );
-        else
-            state.queue_and_start(time: animator.get_clip_length(animation),start_action:()=>play_attack_animation(animation));
+        }
+        else{
+            is_idle_flying = true;
+            state.queue_and_start(time: animator.get_clip_length($"{animation}"),start_action:()=>play_attack_animation(animation));
+        }
     }
 
     private void move_to_player_begin(Transform target){
@@ -89,8 +91,7 @@ public class Giant2 : Boss<Movement>{
             state.queue_and_start(time: 120, 
                 start_action:()=>{
                     movement.mod_speed(8f);
-                    movement.freeform_move_to(move_to_target);
-                    movement.target_reached += move_to_player_attack;
+                    movement.freeform_move_to(move_to_target, move_to_player_attack);
                 }
             );        
     }
@@ -100,8 +101,7 @@ public class Giant2 : Boss<Movement>{
             state.queue_and_start(time: 120, 
                 start_action:()=>{
                     movement.mod_speed(8f);
-                    movement.freeform_approach_to(move_to_target);
-                    movement.target_reached += move_to_point_attack;
+                    movement.freeform_approach_to(move_to_target, move_to_point_attack);
                 }
             );        
     }
@@ -109,7 +109,6 @@ public class Giant2 : Boss<Movement>{
     // used for when moving towards to to attack.
     // play attack animation, then move back to starting point.
     private void move_to_player_attack(){
-        movement.target_reached -= move_to_player_attack;
         string animation = combat.get_chosen_attack().animation_id;
         state.clear();
         state.queue_and_start(time: animator.get_clip_length(animation), 
@@ -121,28 +120,25 @@ public class Giant2 : Boss<Movement>{
         );
         state.queue(time: 120, 
             start_action:()=>{
-                movement.freeform_move_to(start_point);
-                movement.target_reached += move_to_attack_finished;
+                movement.freeform_move_to(start_point, move_to_attack_finished);
             }
         );
     }
 
     private void move_to_point_attack(){
-        movement.target_reached -= move_to_point_attack;
         string animation = combat.get_chosen_attack().animation_id;
         state.clear();
         state.queue_and_start(time: animator.get_clip_length(animation), 
             start_action:()=>{
                 play_attack_animation(animation);
                 move_to_point_camera_adjust();
-                movement.target_reached += move_to_attack_finished;
             },
             time_out:()=>play_idle_animation()
         );
         state.queue(time: 120, 
             start_action:()=>{
                 move_to_point_camera_reset();
-                movement.freeform_move_to(start_point);
+                movement.freeform_move_to(start_point, move_to_attack_finished);
             }
         );
     }
@@ -152,69 +148,27 @@ public class Giant2 : Boss<Movement>{
         movement.reset_speed();
         state.clear();
         combat.attack_end();
-        movement.target_reached -= move_to_attack_finished;
     }
 
-    // random left or right hand attack.
-    private char choose_hand(){
-        hand = UnityEngine.Random.Range(0,2) == 0? 'L' : 'R';
-        return hand;
-    }
-    public void play_hands_weapon_flash() => play_weapon_flash(new List<string>(){"left_hand","right_hand"});
     private void play_attack_animation(string animation){
-        if(single_hand_attacks.Contains(animation))
-            single_hand_attack(animation);
-        else if(double_hand_attacks.Contains(animation))
-            double_hand_attack(animation);
+        if(animator.clips.ContainsKey(animation+"Head")){
+            animator.Play(animation+"Head");
+        }
+        if(single_hand_attacks.Contains(animation)){
+            Giant2Hand hand = UnityEngine.Random.Range(0,2) == 0? left_hand : right_hand;
+            hand.attack(animation+"Hand");
+        }
+        else if(double_hand_synced_attacks.Contains(animation)){
+            left_hand.attack($"{animation}Hand");
+            right_hand.attack($"{animation}Hand");
+        }
+        else if(double_hand_asynced_attacks.Contains(animation)){
+            int x = UnityEngine.Random.Range(0,2);
+            left_hand.attack($"{animation}{(x==0?1:2)}Hand");
+            right_hand.attack($"{animation}{(x==0?2:1)}Hand");
+        }
         else
-            head_attack(animation);
-    }
-    private void single_hand_attack(string animation){
-        choose_hand();
-        animator.Play(animation + hand);
-    }
-    private void double_hand_attack(string animation){
-        animator.Play(animation + 'L');
-        animator.Play(animation + 'R');
-    }
-    private void head_attack(string animation){
-        animator.Play(animation);
-    }
-
-    public void play_left_hand_diegetic_one_shot(string _event_name){
-        left_hand_sound.play_diegetic_one_shot(_event_name);
-    }
-
-    public void play_right_hand_diegetic_one_shot(string _event_name){
-        right_hand_sound.play_diegetic_one_shot(_event_name);
-    }
-
-    public void play_head_diegetic_one_shot(string _event_name){
-        head_sound.play_diegetic_one_shot(_event_name);
-    }
-
-    public void turn_on_left_finger_beam() => left_hand_finger_beam.turn_on();
-    public void turn_off_left_finger_beam() => left_hand_finger_beam.turn_off();
-    public void turn_on_right_finger_beam() => right_hand_finger_beam.turn_on();
-    public void turn_off_right_finger_beam() => right_hand_finger_beam.turn_off();
-
-    int get_current_ground_piece(){
-        int x = -1;
-        Collider2D other = Physics2D.OverlapCircle(hand == 'L'?left_hand.position : right_hand.position, .5f, LayersManager.BITWISE_GROUND);
-        if(other != null)
-            Int32.TryParse(other.name, out x);
-        return x;
-    }
-
-    public void fist_slam_camera_shake() => CameraController.instance.shake_camera(.8f,.65f,false);
-    public void clap_camera_shake() => CameraController.instance.shake_camera(.8f,.5f,false);
-
-
-    public void fist_slam_ground_wave(){
-        // left and right
-        int ground_piece = get_current_ground_piece();
-        ground_handler.start_wave(ground_piece + -1, true, .15f, 400f);
-        ground_handler.start_wave(ground_piece + 1, false, .15f, 400f);
+            animator.Play($"{animation}Head");
     }
 
     private void idle(float time){
@@ -222,22 +176,23 @@ public class Giant2 : Boss<Movement>{
             time: time,
             start_action: ()=>{
                 play_idle_animation(); 
-                movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
+                if(is_idle_flying == false)
+                    movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
             }
         );
     }
 
     private void play_idle_animation(){
         animator.Rebind();
-        animator.Play("Giant2HeadIdle");
-        animator.Play("Giant2HandIdleL");
-        animator.Play("Giant2HandIdleR");
+        animator.Play("Giant2IdleHead");
+        //left_hand.animator.Play("Giant2IdleHand");
+        //right_hand.animator.Play("Giant2IdleHand");
     }
 
     public void play_intro_animation(){
-        animator.Play("Giant2HeadIntro");
-        animator.Play("Giant2HandIntroL");
-        animator.Play("Giant2HandIntroR");
+        left_hand.animator.Play("Giant2Intro1Hand",0,0);
+        right_hand.animator.Play("Giant2Intro2Hand",0,0);
+        animator.Play("Giant2IntroHead");
     }
 
     public void move_to_point_camera_adjust(){
@@ -251,25 +206,20 @@ public class Giant2 : Boss<Movement>{
     }
 
     protected override void death_start(){
-        animator.Play("Giant2HeadDeath");
-        animator.Play("Giant2HandDeathL");
-        animator.Play("Giant2HandDeathR");
+        animator.Play("Giant2DeathHead");
+        left_hand.death();
+        right_hand.death();
         no_state();
+        stop_all();
         state.clear_and_stop();
+        state = null;
+        enable_body_colliders(0);
+        sprites.play_death_effect(4f);
+        movement.zero_velocity(); // stop velocity in case the boss is dashing.
+        particles.stop_all_particles();
+        base.death_start();
         StartCoroutine(Util.timer(
-            animator.get_clip_length("Giant2HeadDeath")+3,
-            start_action:()=>{
-                if(idle_state != null)
-                    StopCoroutine(idle_state);
-                enable_body_colliders(0);
-                stop_all();
-                sprites.play_death_effect(4f);
-                movement.zero_velocity(); // stop velocity in case the boss is dashing.
-                particles.stop_all_particles();
-                turn_off_left_finger_beam();
-                turn_off_right_finger_beam();
-                base.death_start();
-            },
+            animator.get_clip_length("Giant2DeathHead")+1,
             time_out:()=>{
                 // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
@@ -279,7 +229,7 @@ public class Giant2 : Boss<Movement>{
         ));
     }
 
-    public void projectile_yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
+    public void yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
 
     protected void link_events(){
         link_game_manager();
@@ -287,7 +237,11 @@ public class Giant2 : Boss<Movement>{
         health.death                            += movement.StopAllCoroutines;
         combat.attack_chosen                    += attack;
         combat.attack_ended                     += idle;
+        left_hand.attack_ended                  += combat.attack_end;
+        right_hand.attack_ended                 += combat.attack_end;
         health.damaged                          += sprites.play_damaged_flash;
+        health.damaged                          += left_hand.sprite.play_damaged_flash;
+        health.damaged                          += right_hand.sprite.play_damaged_flash;
         link_combat();
         link_movement();
         link_particles();
@@ -299,7 +253,11 @@ public class Giant2 : Boss<Movement>{
         health.death                            -= movement.StopAllCoroutines;
         combat.attack_chosen                    -= attack;
         combat.attack_ended                     -= idle;
+        left_hand.attack_ended                  -= combat.attack_end;
+        right_hand.attack_ended                 -= combat.attack_end;
         health.damaged                          -= sprites.play_damaged_flash;
+        health.damaged                          -= left_hand.sprite.play_damaged_flash;
+        health.damaged                          -= right_hand.sprite.play_damaged_flash;
         unlink_particles();
         unlink_combat();
         unlink_movement();

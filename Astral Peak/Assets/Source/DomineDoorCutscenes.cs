@@ -16,7 +16,9 @@ public class DomineDoorOpening : Cutscene{
         yield return new WaitForSeconds(4);
         CameraController.instance.reset_zoom(4);
         CameraController.instance.set_target(Player.instance.transform);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
+        stop_skip();
+        yield return new WaitForSeconds(1);
         end();
         yield break;
     }
@@ -143,6 +145,7 @@ public class DomineDoorFinal : Cutscene{
         CameraEffects.instance.fade_from_black(4);
         astral_room.end_credits_state();
         unlink();
+        stop_skip();
         end();
     }
 

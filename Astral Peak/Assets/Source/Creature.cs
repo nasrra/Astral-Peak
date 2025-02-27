@@ -21,7 +21,7 @@ public abstract class Creature : MonoBehaviour{
     public bool flipped = false;
 
     [Header("Creature")]
-    [SerializeField] protected Health health;
+    [field: SerializeField] public Health health {get; private set;}
     protected bool flippable = true;
     [SerializeField] Transform flip_objects; // objects that will be flipped when flipping;
 
@@ -31,7 +31,6 @@ public abstract class Creature : MonoBehaviour{
         state = StartCoroutine(_state);
     }
 
-    public Health get_health() => health;
     // the inheritor class returns which movement it is using.
     public abstract Movement get_movement();
 
@@ -73,8 +72,8 @@ public abstract class Creature : MonoBehaviour{
 /// this should only be used on Awake(), Start(), OnEnable(), to check what the game state is that the creature has initialized into.
     /// </summary>
     protected void check_game_state() => entered_game_state(GameManager.get_state());
-    public virtual void enter_cutscene_state(){Log.MethodNotImplemented(this);}
-    public virtual void exit_cutscene_state(){Log.MethodNotImplemented(this);}
+    protected virtual void enter_cutscene_state(){Log.MethodNotImplemented(this);}
+    protected virtual void exit_cutscene_state(){Log.MethodNotImplemented(this);}
     protected virtual void link_game_manager(){
         GameManager.entered_game_state += entered_game_state;
         GameManager.exited_game_state  += exited_game_state;
