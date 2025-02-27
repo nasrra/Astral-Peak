@@ -556,7 +556,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638760141718232018
+  lastModified: 638762643108232058
   FileSizes: []
   Exists: 1
 --- !u!114 &-7979965896255384231
@@ -602,7 +602,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638762624935132435
+  lastModified: 638762632347820591
   FileSizes: []
   Exists: 1
 --- !u!114 &-7705769581100269135
@@ -2332,7 +2332,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 131764
+  Length: 131832
 --- !u!114 &-3213637094695159013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3064,6 +3064,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 156552
+--- !u!114 &-1668436802273658744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Introduction.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/Introduction.bank
+  Name: Introduction
+  StudioPath: bank:/Introduction
+  lastModified: 638762639916454422
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-1652854271186667096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3885,6 +3903,7 @@ MonoBehaviour:
   - {fileID: -271450594696593388}
   - {fileID: 3560803959410008138}
   - {fileID: 2943209805992964211}
+  - {fileID: -1668436802273658744}
   EditorEvents:
   - {fileID: 6059754312993890118}
   - {fileID: 613946916560253763}
@@ -3972,6 +3991,7 @@ MonoBehaviour:
   - {fileID: -3241849836570812036}
   - {fileID: -1855396162201979960}
   - {fileID: 5856351771364376957}
+  - {fileID: 2371168629522327841}
   EditorParameters:
   - {fileID: -5023178244398163476}
   - {fileID: -3913607239544261590}
@@ -3979,7 +3999,7 @@ MonoBehaviour:
   - {fileID: -7764010657775784217}
   StringsBanks:
   - {fileID: 4408179852280411705}
-  cacheTime: 638762624972123155
+  cacheTime: 638762643108232058
   cacheVersion: 131846
 --- !u!114 &4545918480723168
 MonoBehaviour:
@@ -4115,7 +4135,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 166089
+  Length: 166152
 --- !u!114 &501475372859669719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4260,9 +4280,9 @@ MonoBehaviour:
     Data3: -1310484348
     Data4: -1412308430
   Banks:
-  - {fileID: 4159909058810648680}
   - {fileID: 8322565838983538549}
   - {fileID: -2208767533061771326}
+  - {fileID: 4159909058810648680}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4538,7 +4558,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_shrine.bank
   Name: cutscene_shrine
   StudioPath: bank:/cutscene_shrine
-  lastModified: 638760141718156500
+  lastModified: 638762642995409364
   FileSizes: []
   Exists: 1
 --- !u!114 &1032120538094557688
@@ -5155,6 +5175,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10896
+--- !u!114 &2371168629522327841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_introduction
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_introduction
+  Guid:
+    Data1: -280597009
+    Data2: 1166761862
+    Data3: -2045048407
+    Data4: -1144245046
+  Banks:
+  - {fileID: -1668436802273658744}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 98664
 --- !u!114 &2399102669424165021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6004,7 +6051,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/CavalryBossRoom.bank
   Name: CavalryBossRoom
   StudioPath: bank:/CavalryBossRoom
-  lastModified: 638760141717796217
+  lastModified: 638762634659162693
   FileSizes: []
   Exists: 1
 --- !u!114 &4184585984747267195
@@ -6103,10 +6150,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638762624935153202
+  lastModified: 638762632347841183
   FileSizes:
   - Name: 
-    Value: 5882
+    Value: 5968
   Exists: 1
 --- !u!114 &4482661411375543288
 MonoBehaviour:
@@ -6156,6 +6203,7 @@ MonoBehaviour:
     Data4: 1448724782
   Banks:
   - {fileID: 4159909058810648680}
+  - {fileID: -1668436802273658744}
   - {fileID: -8013749517701935551}
   IsStream: 0
   Is3D: 1
@@ -6184,6 +6232,7 @@ MonoBehaviour:
     Data4: 1988523309
   Banks:
   - {fileID: 4159909058810648680}
+  - {fileID: -1668436802273658744}
   - {fileID: -8013749517701935551}
   IsStream: 0
   Is3D: 1
@@ -6758,9 +6807,9 @@ MonoBehaviour:
     Data3: 1352543630
     Data4: -926645589
   Banks:
-  - {fileID: 4159909058810648680}
   - {fileID: 8322565838983538549}
   - {fileID: -2208767533061771326}
+  - {fileID: 4159909058810648680}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -7676,8 +7725,8 @@ MonoBehaviour:
     Data3: 1903472294
     Data4: 994110959
   Banks:
-  - {fileID: -8013749517701935551}
   - {fileID: -271450594696593388}
+  - {fileID: -8013749517701935551}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
