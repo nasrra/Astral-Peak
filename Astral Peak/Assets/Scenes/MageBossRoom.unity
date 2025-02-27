@@ -2408,7 +2408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: exit_point
-      value: 
+      value: Enter
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: start_open
@@ -2416,7 +2416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: scene_to_load
-      value: DemoEnd
+      value: Interlude3
       objectReference: {fileID: 0}
     - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
@@ -5658,6 +5658,14 @@ PrefabInstance:
       propertyPath: teleport_points._serializedList.Array.data[4].Value
       value: 
       objectReference: {fileID: 1243398188}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[1].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[1].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6619723628049759496, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
