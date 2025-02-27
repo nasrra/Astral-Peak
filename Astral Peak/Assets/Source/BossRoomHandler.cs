@@ -43,7 +43,7 @@ public abstract class BossRoomHandler : RoomHandler{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -66,6 +66,8 @@ public abstract class BossRoomHandler : RoomHandler{
         GameManager.boss_defeated(get_boss_id());
         GameManager.invoke_set_game_data();
         GameManager.save_game_data();
+        CameraController.instance.reset_offset(1);
+        CameraController.instance.reset_zoom(1);
     }
 
     protected virtual void death_completed(){

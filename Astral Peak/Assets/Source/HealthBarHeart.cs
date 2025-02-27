@@ -14,7 +14,7 @@ public class HealthBarHeart : SpriteHandler{
         animator.Play("fade_out", OVERRIDE);
     }
     public void fade_in(){
-        animator.Play("fade_in", OVERRIDE);
+        animator.Play ("fade_in", OVERRIDE);
     }
     public void disable(){
         if(state != State.OFF){
