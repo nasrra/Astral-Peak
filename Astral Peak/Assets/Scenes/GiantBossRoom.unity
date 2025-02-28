@@ -5743,7 +5743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 603120735476272623, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_GravityScale
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1598790024942419991, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: left_arena_bound
@@ -5769,6 +5769,14 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4806183750753091257, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_Size.y
       value: 0.12

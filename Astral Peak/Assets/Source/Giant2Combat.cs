@@ -10,7 +10,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        6,
         idle_cooldown:          0,
-        combat_cooldown:        5
+        combat_cooldown:        1
     ),
     fist_slam = new(
         "Giant2Slam",
@@ -28,7 +28,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        16,
         idle_cooldown:          0,
-        combat_cooldown:        3
+        combat_cooldown:        2
     ),
     hand_clap = new(
         "Giant2Clap",
@@ -37,7 +37,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        4,
         idle_cooldown:          0,
-        combat_cooldown:        3
+        combat_cooldown:        1
     ),
     multi_slam = new(
         "Giant2MultiSlam",
@@ -46,7 +46,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
-        combat_cooldown:        5
+        combat_cooldown:        2
     ),
     geyser = new(
         "Giant2Geyser",
@@ -54,13 +54,14 @@ public class Giant2Combat : BossCombat{
         min_player_distance: 0,
         arena_bound_distance: 0,
         attack_cooldown:      8,
-        combat_cooldown:      5
+        combat_cooldown:      1
     )
     ;
 
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=>{
+                    // test(finger_gun);
                     special_moveset = new List<BossAttack>(){
                         yell_projectile,
                         fist_slam,

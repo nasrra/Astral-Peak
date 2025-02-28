@@ -41,7 +41,7 @@ namespace Cutscenes{
             stop_skip();
             yield return new WaitForSeconds(1);
             CameraController.instance.set_target(Player.instance.transform);
-            // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_1);
+            AudioManager.play_music("music_the_mage_1");
             end();//
             yield break;
         }
@@ -82,7 +82,7 @@ namespace Cutscenes{
             yield return new WaitForSeconds(1);
             CameraController.instance.set_target(Player.instance.transform);
             room.get_platforms().start_loop();
-            // AudioManager.play_music(Sounds.SoundID.MAGE_BOSS_MUSIC_2);
+            AudioManager.play_music("music_the_mage_2");
             room.start_randomised_stone_lightning();
             room.enable_button_prompt();
             end();

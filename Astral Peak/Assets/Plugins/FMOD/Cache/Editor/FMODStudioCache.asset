@@ -135,6 +135,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 4728
+--- !u!114 &-8448066528638228925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_giant_2
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_giant_2
+  Guid:
+    Data1: -65437739
+    Data2: 1242645979
+    Data3: -1093749603
+    Data4: 962901659
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 119232
 --- !u!114 &-8413256524142465220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +240,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
+--- !u!114 &-7741107742412982269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/electricity/electricity_burst_soft
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/electricity/electricity_burst_soft
+  Guid:
+    Data1: -360032073
+    Data2: 1155070046
+    Data3: 136886189
+    Data4: 2142733198
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 1520
 --- !u!114 &-7735709278696353168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +366,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6909402422007935523
+--- !u!114 &-6913431059172784355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -322,23 +376,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/mage/mage_bells
+  m_Name: event:/sfx/magic/magic_footstep
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/mage/mage_bells
+  Path: event:/sfx/magic/magic_footstep
   Guid:
-    Data1: 2031588315
-    Data2: 1227159312
-    Data3: -1312017734
-    Data4: -412757002
+    Data1: 1343788441
+    Data2: 1270254900
+    Data3: -500873847
+    Data4: -1233719564
   Banks:
   - {fileID: -1199358877090321752}
   IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
+  Is3D: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 9624
+  MaxDistance: 20
+  Length: 1080
 --- !u!114 &-6776011629352066327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +447,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6678453029541836842
+--- !u!114 &-6454125156409964814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -403,23 +457,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_crackle_soft
+  m_Name: event:/sfx/thunder/thunder_clap
   m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_crackle_soft
+  Path: event:/sfx/thunder/thunder_clap
   Guid:
-    Data1: -1608521175
-    Data2: 1258034358
-    Data3: 657290162
-    Data4: -1129431129
+    Data1: -201388829
+    Data2: 1119681063
+    Data3: -1107809664
+    Data4: 1158854777
   Banks:
   - {fileID: -1199358877090321752}
   IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
+  Is3D: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 5041
+  MaxDistance: 40
+  Length: 8200
 --- !u!114 &-6432616814909868593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +489,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638763511264421050
+  lastModified: 638763651261906351
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -539,6 +593,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
+--- !u!114 &-5492271262660430094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_mage_2
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_mage_2
+  Guid:
+    Data1: -2040253147
+    Data2: 1337355953
+    Data3: -1211092585
+    Data4: -902786475
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 119232
 --- !u!114 &-5233619598671024114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,10 +1202,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638763511264431545
+  lastModified: 638763651261906351
   FileSizes:
   - Name: 
-    Value: 6016
+    Value: 6190
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1141,36 +1222,9 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/entity_creature.bank
   Name: entity_creature
   StudioPath: bank:/entity_creature
-  lastModified: 638762672885143371
+  lastModified: 638763663391862530
   FileSizes: []
   Exists: 1
---- !u!114 &-1456132509710324362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/thunder/thunder_clap
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/thunder/thunder_clap
-  Guid:
-    Data1: -201388829
-    Data2: 1119681063
-    Data3: -1107809664
-    Data4: 1158854777
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 40
-  Length: 8200
 --- !u!114 &-1455369554362517336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,7 +1321,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MageBossRoom.bank
   Name: MageBossRoom
   StudioPath: bank:/MageBossRoom
-  lastModified: 638762672884898342
+  lastModified: 638763651397684512
   FileSizes: []
   Exists: 1
 --- !u!114 &-974223011989813858
@@ -1324,6 +1378,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-780962250867317138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_mage_1
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_mage_1
+  Guid:
+    Data1: 1264238883
+    Data2: 1166232198
+    Data3: -1146513005
+    Data4: -1421955203
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 66336
+--- !u!114 &-668757787238128899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/electricity/electricity_crackle_harsh
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/electricity/electricity_crackle_harsh
+  Guid:
+    Data1: 1754516644
+    Data2: 1082464356
+    Data3: 2053579693
+    Data4: -1818946968
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 2586
 --- !u!114 &-573412480396026316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,33 +1459,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-151748343477055561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/magic/magic_impact_light
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/magic/magic_impact_light
-  Guid:
-    Data1: -786315273
-    Data2: 1078869814
-    Data3: 100951708
-    Data4: -518611725
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1080
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,15 +1552,6 @@ MonoBehaviour:
   - {fileID: 2560825264167563864}
   - {fileID: -6277680731841273976}
   - {fileID: 5992836656288874982}
-  - {fileID: 3129075687536899057}
-  - {fileID: 8464643013676240207}
-  - {fileID: -6678453029541836842}
-  - {fileID: 8486501079997867911}
-  - {fileID: 2848897010957025812}
-  - {fileID: 3864036308733593581}
-  - {fileID: -6909402422007935523}
-  - {fileID: -1456132509710324362}
-  - {fileID: -151748343477055561}
   - {fileID: -4129944128686250798}
   - {fileID: 377567603870311856}
   - {fileID: -2909013221424621494}
@@ -1496,6 +1568,19 @@ MonoBehaviour:
   - {fileID: 2668327938981146815}
   - {fileID: 2584838497792574147}
   - {fileID: -7178158262075843451}
+  - {fileID: 3217067466705830715}
+  - {fileID: 7070284886081672070}
+  - {fileID: -780962250867317138}
+  - {fileID: -5492271262660430094}
+  - {fileID: 7152442963978020657}
+  - {fileID: -6913431059172784355}
+  - {fileID: -668757787238128899}
+  - {fileID: -7741107742412982269}
+  - {fileID: 728985965188455855}
+  - {fileID: -6454125156409964814}
+  - {fileID: 5509624686610302784}
+  - {fileID: 6767369716258589678}
+  - {fileID: -8448066528638228925}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1503,7 +1588,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638763511265240854
+  cacheTime: 638763663391862530
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -1613,6 +1698,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 720
+--- !u!114 &728985965188455855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/mage/mage_bells
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/mage/mage_bells
+  Guid:
+    Data1: 2031588315
+    Data2: 1227159312
+    Data3: -1312017734
+    Data4: -412757002
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 9624
 --- !u!114 &990133301624612997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1998,34 +2110,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2848897010957025812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_crackle_harsh
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_crackle_harsh
-  Guid:
-    Data1: 1754516644
-    Data2: 1082464356
-    Data3: 2053579693
-    Data4: -1818946968
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 2586
---- !u!114 &3129075687536899057
+--- !u!114 &3217067466705830715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2136,33 +2221,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 3408
---- !u!114 &3864036308733593581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_burst_soft
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_burst_soft
-  Guid:
-    Data1: -360032073
-    Data2: 1155070046
-    Data3: 136886189
-    Data4: 2142733198
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 1520
 --- !u!114 &3950220307022132306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2425,6 +2483,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &5509624686610302784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/magic/magic_impact_light
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/magic/magic_impact_light
+  Guid:
+    Data1: -786315273
+    Data2: 1078869814
+    Data3: 100951708
+    Data4: -518611725
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1080
 --- !u!114 &5546108897788681636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2494,7 +2579,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638762672884843102
+  lastModified: 638763651397192654
   FileSizes: []
   Exists: 1
 --- !u!114 &5647012999505795646
@@ -2616,6 +2701,33 @@ MonoBehaviour:
   lastModified: 638762672884898342
   FileSizes: []
   Exists: 1
+--- !u!114 &6767369716258589678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_giant_1
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_giant_1
+  Guid:
+    Data1: 1647354955
+    Data2: 1122231148
+    Data3: -37098109
+    Data4: -1118078341
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 66336
 --- !u!114 &6984867779110156841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2643,6 +2755,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7070284886081672070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/mage/mage_teleport
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/mage/mage_teleport
+  Guid:
+    Data1: 2107872290
+    Data2: 1154623539
+    Data3: -831938424
+    Data4: -1269426426
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2376
+--- !u!114 &7152442963978020657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/electricity/electricity_crackle_soft
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/electricity/electricity_crackle_soft
+  Guid:
+    Data1: -1608521175
+    Data2: 1258034358
+    Data3: 657290162
+    Data4: -1129431129
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 5041
 --- !u!114 &7161364910685328330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2824,60 +2990,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &8464643013676240207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/mage/mage_teleport
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/mage/mage_teleport
-  Guid:
-    Data1: 2107872290
-    Data2: 1154623539
-    Data3: -831938424
-    Data4: -1269426426
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2376
---- !u!114 &8486501079997867911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/magic/magic_footstep
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/magic/magic_footstep
-  Guid:
-    Data1: 1343788441
-    Data2: 1270254900
-    Data3: -500873847
-    Data4: -1233719564
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1080
 --- !u!114 &8553326654869120141
 MonoBehaviour:
   m_ObjectHideFlags: 0

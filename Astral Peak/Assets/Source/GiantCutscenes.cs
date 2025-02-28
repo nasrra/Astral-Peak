@@ -27,6 +27,7 @@ public class GiantOpening : Cutscene{
         room.giant1.particles.stop_particle("yell");
         CameraController.instance.set_target(Player.instance.transform);
         yield return new WaitForSeconds(1);
+        AudioManager.play_music("music_the_giant_1");
         end();
         yield break;
     }

@@ -51,6 +51,7 @@ public class GiantBossRoom : BossRoomHandler{
         left_hand.gameObject.SetActive(true);
         right_hand.gameObject.SetActive(true);
         giant2.play_intro_animation();
+        AudioManager.play_music("music_the_giant_2");
     }
 
     void link_mage(){
