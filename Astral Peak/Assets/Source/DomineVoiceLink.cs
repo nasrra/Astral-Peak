@@ -105,8 +105,8 @@ class DomineShrineVoiceLines : VoiceLines{
         {14,"domine_mountain_summit"}, // threshold of world.
         {15,"domine_under_arches"}, // last inhabitants.
         {16,"domine_old_door"},
-        {17,"domine_walk_aether"}, // journey there/ wish granted.
-        {18,"domine_warning"},
+        {17,"domine_warning"},
+        //18...
         {19,"domine_its_expensive"},
         //20...
         {21,"domine_waiting_mortal"},
