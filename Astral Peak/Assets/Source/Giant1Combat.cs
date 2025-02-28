@@ -78,21 +78,21 @@ public class Giant1Combat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
-                    test(three_piece);
-                    //front_moveset = new List<BossAttack>(){
-                    //   down_slam,
-                    //   jump_backward,
-                    //   front_jump_forward,
-                    //   three_piece,
-                    //};
-                    //back_moveset = new List<BossAttack>(){
-                    //   back_jump_forward,
-                    //};
-                    //special_moveset = new List<BossAttack>(){
-                    //   walk_projectile,
-                    //   round_slam,
-                    //   geyser,
-                    //};
+                    //test(three_piece);
+                    front_moveset = new List<BossAttack>(){
+                       down_slam,
+                       jump_backward,
+                       front_jump_forward,
+                       three_piece,
+                    };
+                    back_moveset = new List<BossAttack>(){
+                       back_jump_forward,
+                    };
+                    special_moveset = new List<BossAttack>(){
+                       walk_projectile,
+                       round_slam,
+                       geyser,
+                    };
                 }
             },
         };

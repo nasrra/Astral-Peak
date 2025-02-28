@@ -775,6 +775,7 @@ GameObject:
   - component: {fileID: 5115391359876237113}
   - component: {fileID: 8222125714095349274}
   - component: {fileID: 603120735476272623}
+  - component: {fileID: 5107051056095870989}
   m_Layer: 13
   m_Name: Giant1
   m_TagString: Untagged
@@ -815,7 +816,7 @@ MonoBehaviour:
   flipped: 1
   <health>k__BackingField: {fileID: 3002839359913507795}
   flip_objects: {fileID: 5446253857888041164}
-  movement: {fileID: 6999202768798039158}
+  movement: {fileID: 5107051056095870989}
   movement_presets:
     _serializedList:
     - Key: phase_1
@@ -1122,6 +1123,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5107051056095870989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955050913431477534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c915a5fd1a398c4ba8a974a5172cadd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  can_knockback: 1
+  can_dash: 1
+  is_dashing: 0
+  data:
+    speed: 0
+    accel: 0
+    decel: 0
+    gravity: 0
+    dash_cooldown: 0
+  base_data:
+    speed: 0
+    accel: 0
+    decel: 0
+    gravity: 0
+    dash_cooldown: 0
+  move_direction: {x: 0, y: 0}
+  <rb>k__BackingField: {fileID: 603120735476272623}
+  grounded: 0
+  jumping: 0
+  can_jump: 1
+  jump_time: 0
+  jump_force: 0
+  jump_force_multiplier: 0
+  jump_time_counter: 0
+  ground_checker: {fileID: 4729196954330368489}
 --- !u!1 &6999728000545725505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,6 +2370,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
+--- !u!114 &4729196954330368489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2410014321226685850, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
+  m_PrefabInstance: {fileID: 6977039903232791667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250164712f31a8f428bc8eea943b1ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7597024400067039652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 701824472265655767, guid: 144113174b5c93644bb8a8842ca48ebe, type: 3}
