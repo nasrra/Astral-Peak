@@ -40,7 +40,6 @@ public class PlayerHealthBar : MonoBehaviour{
         // if(gameObject.activeSelf == false)
         //     return;
         health_amount = health.get_current_health()-1;
-        Debug.Log(health_amount);
         for(int i = 0; i < health.get_max_health(); i++){
             if(i>health_amount)
                 hearts[i].disable();

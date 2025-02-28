@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 73367879}
   - component: {fileID: 73367878}
   m_Layer: 0
-  m_Name: WolfBossArea 1
+  m_Name: CavalryBossRoom(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,12 +180,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6968c32d977aa3d41ba287516bebbe46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b1b8761008fc7c4580b8a9e475bb1c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 21.599998}
+  m_Size: {x: 57.6, y: 21.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 73367877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 113936187}
   - component: {fileID: 113936186}
   m_Layer: 0
-  m_Name: WolfBossArea 0
+  m_Name: CavalryBossRoom(0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,12 +268,12 @@ SpriteRenderer:
   m_SortingLayerID: 1940388453
   m_SortingLayer: 11
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5dfde35578384e4697aa3f71216b69e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac22665fc78ee94409cac9678bd2a1f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 73.16, y: 28.07801}
+  m_Size: {x: 66.98, y: 28.07}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 113936185}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.8, z: 0}
+  m_LocalPosition: {x: 0, y: 2.1, z: 0}
   m_LocalScale: {x: 1.2, y: 1.25, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 201821998}
   - component: {fileID: 201822000}
   m_Layer: 0
-  m_Name: WolfBossArea 2
+  m_Name: CavalryBossRoom(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -387,12 +387,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -1
-  m_Sprite: {fileID: -5372133605581788168, guid: 163ce68adb47bdc4ea0ff36fe8931592, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77e813e82ab91f04cb9a2d865a7fa633, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 17.49}
+  m_Size: {x: 57.6, y: 21.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -407,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 201821997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -443,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: -4.35
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -689,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2694134218538119565, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8100002
+      value: -6.82
       objectReference: {fileID: 0}
     - target: {fileID: 2694134218538119565, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 628773157}
   - component: {fileID: 628773159}
   m_Layer: 0
-  m_Name: WolfBossArea 3
+  m_Name: CavalryBossRoom(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,12 +1159,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -2
-  m_Sprite: {fileID: 5044315319188838032, guid: a670d5b78d0cefe4493125c0a89f38fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 362dcbe6691bf244ab9ca282ae9075b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 20.9}
+  m_Size: {x: 57.6, y: 21.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1179,7 +1179,7 @@ Transform:
   m_GameObject: {fileID: 628773156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1225,7 +1225,7 @@ Transform:
   m_GameObject: {fileID: 713143995}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.04, y: -2.68, z: 0}
+  m_LocalPosition: {x: 6.04, y: -7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1359,7 +1359,7 @@ Transform:
   m_GameObject: {fileID: 753332492}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33, y: 1, z: 0}
+  m_LocalPosition: {x: -33, y: -3.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1449,7 +1449,7 @@ Transform:
   m_GameObject: {fileID: 757529338}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 954706310}
   - component: {fileID: 954706312}
   m_Layer: 0
-  m_Name: WolfBossArea 4
+  m_Name: CavalryBossRoom(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1635,12 +1635,12 @@ SpriteRenderer:
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
   m_SortingOrder: -3
-  m_Sprite: {fileID: 560565420306335895, guid: c120d60ba507da9409effe92a7ea5627, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 492b0852ce0b4e14f951254fa919c8d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 57.6, y: 19.96}
+  m_Size: {x: 57.6, y: 21.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1655,7 +1655,7 @@ Transform:
   m_GameObject: {fileID: 954706309}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1696,71 +1696,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2694134218538119565, guid: 13f9803b149f7194ebae12503ce1dc33, type: 3}
   m_PrefabInstance: {fileID: 357513246}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &995555875
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1064310548}
-    m_Modifications:
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6835137808263390013, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_Name
-      value: Ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 6835137808263390013, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-      propertyPath: m_TagString
-      value: snow
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
 --- !u!1 &1002998812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,7 +1881,7 @@ Transform:
   m_GameObject: {fileID: 1064310547}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1962,12 +1897,74 @@ Transform:
   - {fileID: 753332493}
   - {fileID: 1894242934}
   - {fileID: 713143996}
-  - {fileID: 1173117389}
   - {fileID: 7237110684577146834}
   - {fileID: 1671291404}
   - {fileID: 979067506}
+  - {fileID: 1102111991}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1102111990
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1064310548}
+    m_Modifications:
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5599752556420039163, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+      propertyPath: m_Name
+      value: Ground (Snow)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+--- !u!4 &1102111991 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 637879864219326969, guid: cad526323ec6c3444803b0843e7de64e, type: 3}
+  m_PrefabInstance: {fileID: 1102111990}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1129328444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1982,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.57
+      value: -4.35
       objectReference: {fileID: 0}
     - target: {fileID: 1370163290346454125, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2026,7 +2023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2544572090120954023, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: scene_to_load
-      value: SnowField
+      value: SnowInterlude2
       objectReference: {fileID: 0}
     - target: {fileID: 4913080578057651136, guid: 9f5c74661488cd846a21344fdbb69d6d, type: 3}
       propertyPath: m_Name
@@ -2147,11 +2144,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 1409482898754346854, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
   m_PrefabInstance: {fileID: 1139462860}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1173117389 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
-  m_PrefabInstance: {fileID: 995555875}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1404642682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,7 +2171,7 @@ Transform:
   m_GameObject: {fileID: 1404642682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 3.56, y: -2.61, z: 0}
+  m_LocalPosition: {x: 3.56, y: -7.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2299,7 +2291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7271115104089157121, guid: 69d33a9a70a77824e85f9061f4815085, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7271115104089157121, guid: 69d33a9a70a77824e85f9061f4815085, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2502,7 +2494,7 @@ Transform:
   m_GameObject: {fileID: 1839469609}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.720001, y: -3.31, z: 0}
+  m_LocalPosition: {x: -13.720001, y: -7.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2652,7 +2644,7 @@ Transform:
   m_GameObject: {fileID: 1894242932}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.5, y: 1, z: 0}
+  m_LocalPosition: {x: 32.5, y: -3.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7660,7 +7652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3733731886750898513, guid: 0cc4346edc2dd9a4382e531d375ca7a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.23
+      value: -7.08
       objectReference: {fileID: 0}
     - target: {fileID: 3733731886750898513, guid: 0cc4346edc2dd9a4382e531d375ca7a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7878,11 +7870,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.45
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.45
+      value: -4.2
       objectReference: {fileID: 0}
     - target: {fileID: 1748510014887930322, guid: 5d193db31278aa040976a40176709beb, type: 3}
       propertyPath: m_LocalPosition.z

@@ -68,6 +68,7 @@ public abstract class BossRoomHandler : RoomHandler{
         GameManager.save_game_data();
         CameraController.instance.reset_offset(1);
         CameraController.instance.reset_zoom(1);
+        CameraController.instance.set_target(Player.instance.transform);
     }
 
     protected virtual void death_completed(){

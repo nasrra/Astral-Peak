@@ -255,7 +255,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638762904018659107
+  lastModified: 638763511264972234
   FileSizes: []
   Exists: 1
 --- !u!114 &-7221845261254922665
@@ -435,7 +435,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638762904018092282
+  lastModified: 638763511264421050
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -539,24 +539,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
---- !u!114 &-5490933486536438319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SnowForest.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowForest.bank
-  Name: SnowForest
-  StudioPath: bank:/SnowForest
-  lastModified: 638762672884898342
-  FileSizes: []
-  Exists: 1
 --- !u!114 &-5233619598671024114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +746,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4183711372715096688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SnowInterlude3.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude3.bank
+  Name: SnowInterlude3
+  StudioPath: bank:/SnowInterlude3
+  lastModified: 638763511264223682
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-4129944128686250798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,24 +996,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 1018
---- !u!114 &-2973954088484573180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Interlude3.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/StreamingAssets/FMOD Banks/Desktop/Interlude3.bank
-  Name: Interlude3
-  StudioPath: bank:/Interlude3
-  lastModified: 638762904018973592
-  FileSizes: []
-  Exists: 1
 --- !u!114 &-2909013221424621494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,8 +1015,9 @@ MonoBehaviour:
     Data3: 1393321887
     Data4: 1920778168
   Banks:
-  - {fileID: -2973954088484573180}
   - {fileID: -7376905227913506980}
+  - {fileID: 1103525165598753600}
+  - {fileID: -4183711372715096688}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1138,10 +1121,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638762904018107389
+  lastModified: 638763511264431545
   FileSizes:
   - Name: 
-    Value: 6018
+    Value: 6016
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1422,9 +1405,9 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   - {fileID: -7376905227913506980}
   - {fileID: 8137673862642026946}
-  - {fileID: -5490933486536438319}
   - {fileID: 5898306791894782635}
-  - {fileID: -2973954088484573180}
+  - {fileID: 1103525165598753600}
+  - {fileID: -4183711372715096688}
   EditorEvents:
   - {fileID: 509110276680760438}
   - {fileID: 2379126354797618401}
@@ -1520,7 +1503,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638762904018973592
+  cacheTime: 638763511265240854
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -1675,6 +1658,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1103525165598753600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SnowInterlude1.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude1.bank
+  Name: SnowInterlude1
+  StudioPath: bank:/SnowInterlude1
+  lastModified: 638763511265240854
+  FileSizes: []
+  Exists: 1
 --- !u!114 &1144837275224071666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,7 +2127,6 @@ MonoBehaviour:
     Data3: 1903472294
     Data4: 994110959
   Banks:
-  - {fileID: -5490933486536438319}
   - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 1
@@ -2769,8 +2769,9 @@ MonoBehaviour:
     Data3: -1963898724
     Data4: -1432843914
   Banks:
-  - {fileID: -2973954088484573180}
   - {fileID: -7376905227913506980}
+  - {fileID: 1103525165598753600}
+  - {fileID: -4183711372715096688}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
