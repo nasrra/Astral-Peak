@@ -321,14 +321,14 @@ public static class AudioManager{
     private static void link_events(){
         CustomSceneManager.transitioning_scene  += stop_music;
         CustomSceneManager.transitioning_scene  += stop_ambience;
-        CustomSceneManager.unloading_scene      += unload_active_scene_bank;
+        CustomSceneManager.unloaded_scene       += unload_bank;
         CustomSceneManager.loading_scene        += load_bank;
     }
 
     private static void unlink_events(){
         CustomSceneManager.transitioning_scene  -= stop_music;
         CustomSceneManager.transitioning_scene  -= stop_ambience;
-        CustomSceneManager.unloading_scene      -= unload_active_scene_bank;
+        CustomSceneManager.unloaded_scene       -= unload_bank;
         CustomSceneManager.loading_scene        -= load_bank;
     }
 

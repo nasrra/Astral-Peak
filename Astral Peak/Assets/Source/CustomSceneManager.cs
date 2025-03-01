@@ -5,8 +5,8 @@ using UnityEngine;
 
 public static class CustomSceneManager{
     static string scene_to_load;
-    public static event Action unloading_scene, unloaded_scene, loaded_scene, transitioning_scene;
-    public static event Action<string> loading_scene;
+    public static event Action unloading_scene, loaded_scene, transitioning_scene, temp_scene;
+    public static event Action<string> loading_scene, unloaded_scene;
 
     public static void initialize(){
         GameManager.set_game_data += set_game_data;
@@ -43,6 +43,7 @@ public static class CustomSceneManager{
     static IEnumerator load_scene_coroutine(){
         // Wait to unload scene
         Scene active = SceneManager.GetActiveScene();
+        string previous_scene = active.name;
         AsyncOperation load;
         AsyncOperation unload;
         
@@ -55,7 +56,8 @@ public static class CustomSceneManager{
         yield return unload;
 
         // load scene.
-        unloaded_scene?.Invoke();
+        temp_scene?.Invoke(); //now in temp scene.
+        unloaded_scene?.Invoke(previous_scene);
         loading_scene?.Invoke(scene_to_load);
         load = SceneManager.LoadSceneAsync(scene_to_load, LoadSceneMode.Single);
         yield return load;

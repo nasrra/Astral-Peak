@@ -16,7 +16,6 @@ public class DisplaySettingsChangedPopup : MonoBehaviour{
     }
 
     void enable_pop_up(){
-        Log.MethodCall();
         graphics.SetActive(true);
         timer = StartCoroutine(timer_text_coroutine(DisplaySettingsManager.change_buffer_time));
     }

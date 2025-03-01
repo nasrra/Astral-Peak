@@ -103,7 +103,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
 public abstract class ShrineAltarCutscene : Cutscene{
     public event Action
-        torches_on; 
+        torches_on, torches_off;
     public event Action<List<int>>
         turn_on_numeral, set_numerals;
     public abstract List<int> get_set_numerals();
@@ -136,20 +136,23 @@ public abstract class ShrineAltarCutscene : Cutscene{
         yield return new WaitForSeconds(8);
         turn_on_numeral?.Invoke(get_turn_on_numeral());
         
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(6);
+        torches_off?.Invoke();
+        yield return new WaitForSeconds(6);
         AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_altar")));
         CustomSceneManager.load_scene_with_transitions(get_previous_scene());
-        CustomSceneManager.unloaded_scene += stop_skip;
-        CustomSceneManager.unloaded_scene += end;
-        CustomSceneManager.unloaded_scene += unlink;
+        CustomSceneManager.temp_scene += stop_skip;
+        CustomSceneManager.temp_scene += end;
+        CustomSceneManager.temp_scene += unlink;
         yield break;
     }
     
     void unlink(){
-        CustomSceneManager.unloaded_scene -= stop_skip;
-        CustomSceneManager.unloaded_scene -= end;
-        CustomSceneManager.unloaded_scene -= unlink;
+        CustomSceneManager.temp_scene -= stop_skip;
+        CustomSceneManager.temp_scene -= end;
+        CustomSceneManager.temp_scene -= unlink;
+        torches_off         = null;
         torches_on          = null;
         turn_on_numeral     = null;        
     }    
