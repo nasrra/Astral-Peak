@@ -97,6 +97,5 @@ public abstract class Creature : MonoBehaviour{
     }
     protected virtual void death_complete(){
         death_completed?.Invoke();
-        Destroy(gameObject);
     }
 }

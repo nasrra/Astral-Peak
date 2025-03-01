@@ -38,7 +38,7 @@ public class Giant2 : Boss<Movement>{
     [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
     bool is_idle_flying = false;
 
-    void Awake(){
+    void OnEnable(){
         state = new StateQueue(this, fly_and_attack_state);
         link_events();
     }
@@ -46,7 +46,7 @@ public class Giant2 : Boss<Movement>{
         set_phase_data("phase_1");
         //idle(1);
     }
-    void OnDestroy() => unlink_events();
+    void OnDisable() => unlink_events();
 
     protected override void enter_cutscene_state(){
         this.state.clear_and_stop();
