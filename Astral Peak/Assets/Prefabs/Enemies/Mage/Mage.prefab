@@ -514,6 +514,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles:
     _serializedList:
+    - Key: death_explosion
+      Value: {fileID: 6564296378436340030}
+    - Key: death_ambience
+      Value: {fileID: 772737688681697500}
     - Key: staff_three_piece
       Value: {fileID: 1694686843388675815}
     - Key: staff_ambience
@@ -845,6 +849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb9c7ebfddfe0043adfd4ded484a372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &772737688681697500 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 163148668767369240, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
+  m_PrefabInstance: {fileID: 647056051192539332}
+  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1694686843388675815 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2269377398597021219, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
@@ -858,6 +867,11 @@ ParticleSystem:
 --- !u!4 &5887513930526950897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6435196044528594229, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
+  m_PrefabInstance: {fileID: 647056051192539332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6564296378436340030 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6044920084228334074, guid: 894cd3753f1bf9c489ac6f3de3bb3a0e, type: 3}
   m_PrefabInstance: {fileID: 647056051192539332}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &8746834899515297389 stripped
@@ -1198,11 +1212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1980766131829552826, guid: c632223975fb5d44f9f52cf714ebe483, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 9.988416
+      value: 0.011583829
       objectReference: {fileID: 0}
     - target: {fileID: 1980766131829552826, guid: c632223975fb5d44f9f52cf714ebe483, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -6.088546
+      value: 2.0114543
       objectReference: {fileID: 0}
     - target: {fileID: 4035429587393605277, guid: c632223975fb5d44f9f52cf714ebe483, type: 3}
       propertyPath: m_SortingLayer
@@ -1302,11 +1316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511967899873793116, guid: c632223975fb5d44f9f52cf714ebe483, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 11.217676
+      value: -1.2176757
       objectReference: {fileID: 0}
     - target: {fileID: 7511967899873793116, guid: c632223975fb5d44f9f52cf714ebe483, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -7.4123063
+      value: 0.68769395
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

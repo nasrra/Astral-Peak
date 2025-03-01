@@ -220,10 +220,11 @@ public class Giant2 : Boss<Movement>{
         particles.stop_all_particles();
         base.death_start();
         StartCoroutine(Util.timer(
-            animator.get_clip_length("Giant2DeathHead")+1,
+            animator.get_clip_length("Giant2DeathHead")+3,
             time_out:()=>{
                 // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
+                gameObject.SetActive(false);
                 base.death_complete();
             }
         ));

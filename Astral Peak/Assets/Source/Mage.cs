@@ -232,6 +232,7 @@ public class Mage : Boss<Movement>{
         signature_adjust();
         teleport_death(new Vector2(0,0));
         animator.Play("MageDeath");
+        particles.play_particle("death_ambience");
         particles.play_particle("yell");
         CameraController.instance.start_camera_shake(0.75f, true);
         base.death_start();
@@ -246,9 +247,13 @@ public class Mage : Boss<Movement>{
         }
         teleport_death(new Vector2(0,2));
         sprites.play_death_effect(4);
-        yield return new WaitForSeconds(4);
-        CameraController.instance.stop_camera_shake();
+        yield return new WaitForSeconds(3.25f);
+        sound.play_diegetic_one_shot("creature_death");
+        yield return new WaitForSeconds(.85f);
+        particles.play_particle("death_explosion");
+        particles.stop_particle("death_ambience");
         particles.stop_particle("yell");
+        CameraController.instance.stop_camera_shake();
         yield return new WaitForSeconds(particles.get_particle("yell").main.startLifetime.constantMax  + 1);
         signature_reset();
         base.death_complete();
