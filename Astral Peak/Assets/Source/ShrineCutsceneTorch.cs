@@ -51,7 +51,6 @@ public class ShrineCutsceneTorch : MonoBehaviour{
                 c.torches_on    += turn_on;                
                 break;
             case ShrineOpeningCutscene c:
-                Log.MethodCall();
                 c.torches_on        += turn_on;
                 c.torches_off       += turn_off;
                 c.enlargen_torches  += enlargen;

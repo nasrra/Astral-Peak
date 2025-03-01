@@ -1,8 +1,6 @@
 using System.Collections;
 using Entropek;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SludgeGeyser : MonoBehaviour{
     [SerializeField] protected BoxCollider2D hurtbox;
