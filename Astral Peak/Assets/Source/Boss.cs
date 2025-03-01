@@ -93,6 +93,11 @@ public abstract class Boss<T> : CreatureInheritor<T> where T : Movement{
         if(state == GameState.CUTSCENE)
             exit_cutscene_state();
     }
+
+    protected override void enter_cutscene_state(){
+        movement.zero_velocity();
+    }
+
     protected virtual void set_phase_data(string phase){
         combat.set_moveset(phase);
         movement.set_data(movement_presets[phase]);

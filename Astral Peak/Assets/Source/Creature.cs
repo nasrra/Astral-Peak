@@ -72,8 +72,8 @@ public abstract class Creature : MonoBehaviour{
 /// this should only be used on Awake(), Start(), OnEnable(), to check what the game state is that the creature has initialized into.
     /// </summary>
     protected void check_game_state() => entered_game_state(GameManager.get_state());
-    protected virtual void enter_cutscene_state(){Log.MethodNotImplemented(this);}
-    protected virtual void exit_cutscene_state(){Log.MethodNotImplemented(this);}
+    protected virtual void enter_cutscene_state(){}
+    protected virtual void exit_cutscene_state() {}
     protected virtual void link_game_manager(){
         GameManager.entered_game_state += entered_game_state;
         GameManager.exited_game_state  += exited_game_state;

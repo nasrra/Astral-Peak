@@ -310,6 +310,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected override void enter_cutscene_state(){
         movement.StopAllCoroutines(); // here to stop player from going vulnerable during dash_end.
         movement.renew();
+        movement.zero_velocity();
         unlink_movement();
         animator.force_idle();
         health.set_invulnerable();
@@ -475,7 +476,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected void unlink_scene_manager(){
         SceneManager.sceneUnloaded -= unloaded_scene;
-        CustomSceneManager.preparing_scene_load -= unlink_events;
+        CustomSceneManager.unloading_scene -= unlink_events;
     }
     protected override void link_game_manager(){
         GameManager.set_game_data += set_game_data;
