@@ -16,8 +16,9 @@ public abstract class BossRoomHandler : RoomHandler{
     [SerializeField] protected Door exit;
     protected Dictionary<string, Func<Cutscene>> cutscenes;
     protected Cutscene cutscene; 
-    protected virtual void Awake(){
+    protected override void Awake(){
         // AudioManager.stop_music();
+        base.Awake();
         check_world_state();
     }
 
@@ -42,7 +43,7 @@ public abstract class BossRoomHandler : RoomHandler{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;

@@ -489,7 +489,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638763651261906351
+  lastModified: 638764231393523153
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -967,7 +967,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/entity_hollow.bank
   Name: entity_hollow
   StudioPath: bank:/entity_hollow
-  lastModified: 638762672885143371
+  lastModified: 638764266797935048
   FileSizes: []
   Exists: 1
 --- !u!114 &-3655661117982130466
@@ -1202,10 +1202,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638763651261906351
+  lastModified: 638764231393533153
   FileSizes:
   - Name: 
-    Value: 6190
+    Value: 6366
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MageBossRoom.bank
   Name: MageBossRoom
   StudioPath: bank:/MageBossRoom
-  lastModified: 638763651397684512
+  lastModified: 638764268054061010
   FileSizes: []
   Exists: 1
 --- !u!114 &-974223011989813858
@@ -1581,6 +1581,10 @@ MonoBehaviour:
   - {fileID: 5509624686610302784}
   - {fileID: 6767369716258589678}
   - {fileID: -8448066528638228925}
+  - {fileID: 7201104037349066105}
+  - {fileID: 2824895540810843988}
+  - {fileID: 9012728332702393522}
+  - {fileID: 2062679436745817565}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1588,7 +1592,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638763663391862530
+  cacheTime: 638764268054061010
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -1740,7 +1744,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/CavalryBossRoom.bank
   Name: CavalryBossRoom
   StudioPath: bank:/CavalryBossRoom
-  lastModified: 638762672884743181
+  lastModified: 638764268052974733
   FileSizes: []
   Exists: 1
 --- !u!114 &1095959780618285751
@@ -1947,6 +1951,35 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &2062679436745817565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/boss/boss_yell_non_diegetic
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/boss/boss_yell_non_diegetic
+  Guid:
+    Data1: 1835757188
+    Data2: 1197590066
+    Data3: 280666782
+    Data4: 1736807248
+  Banks:
+  - {fileID: 990133301624612997}
+  - {fileID: 5582867981456367483}
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4627
 --- !u!114 &2105207644133845358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2110,6 +2143,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2824895540810843988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/giant/giant_death
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/giant/giant_death
+  Guid:
+    Data1: 2049066597
+    Data2: 1288039052
+    Data3: -878093173
+    Data4: 1937731132
+  Banks:
+  - {fileID: -3944923002963776796}
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 2952
 --- !u!114 &3217067466705830715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,9 +2244,9 @@ MonoBehaviour:
     Data3: 164679574
     Data4: 1988523309
   Banks:
-  - {fileID: 990133301624612997}
   - {fileID: 9137474274058199416}
   - {fileID: -7376905227913506980}
+  - {fileID: 990133301624612997}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -2579,7 +2640,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638763651397192654
+  lastModified: 638764268053563971
   FileSizes: []
   Exists: 1
 --- !u!114 &5647012999505795646
@@ -2855,9 +2916,9 @@ MonoBehaviour:
     Data3: 1175700367
     Data4: 1448724782
   Banks:
-  - {fileID: 990133301624612997}
   - {fileID: 9137474274058199416}
   - {fileID: -7376905227913506980}
+  - {fileID: 990133301624612997}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2865,6 +2926,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 1824
+--- !u!114 &7201104037349066105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/giant/giant_chatter
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/giant/giant_chatter
+  Guid:
+    Data1: -1514620659
+    Data2: 1167043066
+    Data3: -879432775
+    Data4: -1795592423
+  Banks:
+  - {fileID: -3944923002963776796}
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 2952
 --- !u!114 &7282657673317743593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3044,6 +3133,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &9012728332702393522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_domine_door
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_domine_door
+  Guid:
+    Data1: -683583544
+    Data2: 1227451961
+    Data3: 1812024208
+    Data4: 984055402
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 16065
 --- !u!114 &9137474274058199416
 MonoBehaviour:
   m_ObjectHideFlags: 0

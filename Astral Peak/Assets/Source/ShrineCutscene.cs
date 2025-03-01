@@ -123,8 +123,9 @@ public abstract class ShrineAltarCutscene : Cutscene{
 
     public IEnumerator altar_cutscene(){
         AudioManager.load_bank("cutscene_altar");
-        AudioManager.play_music("music_altar");
         AudioManager.stop_ambience();
+        AudioManager.stop_music();
+        AudioManager.play_music("music_altar");
         Player.instance.gameObject.SetActive(false);
         CameraEffects.instance.flashback_state();
         set_numerals?.Invoke(get_set_numerals());
@@ -180,7 +181,8 @@ public class ShrineAltarTwoCutscene : ShrineAltarCutscene{
 }
 
 public class ShrineAltarThreeCutscene : ShrineAltarCutscene{
-    public override string get_previous_scene()=>"GiantBossRoom";
+    // public override string get_previous_scene()=>"GiantBossRoom";
+    public override string get_previous_scene()=>"DemoEnd";
 
     public override List<int> get_set_numerals()=>new(){
         0,1

@@ -61,14 +61,14 @@ public class Giant2Combat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=>{
-                    // test(finger_gun);
+                    //test(finger_gun);
                     special_moveset = new List<BossAttack>(){
-                        yell_projectile,
-                        fist_slam,
+                        //yell_projectile,
+                        //fist_slam,
                         finger_gun,
-                        hand_clap,
-                        multi_slam,
-                        geyser,
+                        //hand_clap,
+                        //multi_slam,
+                        //geyser,
                     };
                 }
             }

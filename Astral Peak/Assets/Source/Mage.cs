@@ -220,7 +220,7 @@ public class Mage : Boss<Movement>{
                 sprites.play_death_effect_reverse(0.5f);
                 teleport_trail.emit_once(transform.position, pos);
                 transform.position = pos;
-                sound.play_diegetic_one_shot("boss_yell");
+                sound.play_non_diegetic_one_shot("boss_yell_non_diegetic");
             }
         ));
 

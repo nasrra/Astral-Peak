@@ -25,10 +25,10 @@ public class ProjectileManager : MonoBehaviour{
     }
     void link_events(){
         GameManager.entered_game_state += entered_game_state;
-        CustomSceneManager.loading_scene += destroy_all;
+        CustomSceneManager.unloading_scene += destroy_all;
     }
     void unlink_events(){
         GameManager.entered_game_state -= entered_game_state;
-        CustomSceneManager.loading_scene -= destroy_all; 
+        CustomSceneManager.unloading_scene -= destroy_all; 
     }
 }

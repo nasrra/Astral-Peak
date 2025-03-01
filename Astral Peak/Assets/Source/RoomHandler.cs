@@ -6,12 +6,11 @@ public class RoomHandler : MonoBehaviour{
     public static RoomType current_room_type = RoomType.NONE;
     [Header("RoomHandler")]
     [SerializeField] RoomType room_type;
-    [SerializeField] List<string> ambience_track = new List<string>();
-    [SerializeField] List<string> music_track = new List<string>();
+    public string ambience_track;
+    public string music_track;
     [SerializeField] Transform final_cutscene_camera_target;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
-    protected virtual void Start(){
-        // Debug.Log(current_room_type+" "+room_type);
+    protected virtual void Awake(){
         if (current_room_type == RoomType.NONE)
             AudioManager.load_bank(room_type);
         else if(current_room_type != room_type){
@@ -20,14 +19,18 @@ public class RoomHandler : MonoBehaviour{
         }
         current_room_type = room_type;
         instance = this;
-        if(ambience_track.Count > 0)
-            AudioManager.play_ambience(ambience_track[0]);
+        if(ambience_track != "" && ambience_track != null)
+            AudioManager.play_ambience(ambience_track);
         else
             AudioManager.stop_ambience();
-        if(music_track.Count > 0)
-            AudioManager.play_music(music_track[0]);
+        if(music_track != "" && music_track != null)
+            AudioManager.play_music(music_track);
         else
             AudioManager.stop_music();
+    }
+    
+    protected virtual void Start(){
+        // Debug.Log(current_room_type+" "+room_type);
     }
 
     protected virtual void OnDestroy(){

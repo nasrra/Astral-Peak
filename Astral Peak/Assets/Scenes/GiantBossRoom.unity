@@ -2093,68 +2093,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3292086910786513939, guid: f626b60265a784e4792bcb9a5e613b16, type: 3}
   m_PrefabInstance: {fileID: 403275343}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &403802853
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: final_cutscene_camera_movement
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781971622970081959, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_Name
-      value: SceneInfo (Shrine)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2094186803478048517, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
 --- !u!1001 &422510102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4195,7 +4133,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 845319753}
+  - component: {fileID: 845319754}
   - component: {fileID: 845319752}
+  - component: {fileID: 845319755}
   m_Layer: 0
   m_Name: BossRoomHandler
   m_TagString: Untagged
@@ -4216,9 +4156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room_type: 0
-  ambience_track:
-  - ambience_water
-  music_track: []
+  ambience_track: ambience_water
+  music_track: 
   final_cutscene_camera_target: {fileID: 155284369}
   final_cutscene_camera_movement: 2
   fog_controllers:
@@ -4253,8 +4192,35 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1850732414}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &845319754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845319751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d178da4a6e6cad4ebd28d49ea60d820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <saveable>k__BackingField: 1
+  <transition>k__BackingField: 1
+--- !u!114 &845319755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845319751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 331bafb6619f6134dbf538a373c91c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start_all_inactive: 0
 --- !u!1001 &847225543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5769,6 +5735,14 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4806183750753091257, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_Size.y
       value: 0.12
@@ -9527,7 +9501,6 @@ Transform:
   - {fileID: 1355464410}
   - {fileID: 1976846264}
   - {fileID: 44589511}
-  - {fileID: 845319753}
   - {fileID: 1123340137}
   m_Father: {fileID: 455877245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11114,6 +11087,14 @@ PrefabInstance:
       propertyPath: move_to_point._serializedList.Array.data[1].Value
       value: 
       objectReference: {fileID: 1455948045}
+    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7123206553178724163, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.09859924
@@ -11355,6 +11336,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1996076947}
-  - {fileID: 403802853}
+  - {fileID: 845319753}
   - {fileID: 1413109400}
   - {fileID: 455877245}

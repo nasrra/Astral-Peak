@@ -2694,6 +2694,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1
+    functionName: play_diegetic_one_shot
+    data: giant_chatter
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.35
     functionName: play_particle
     data: head
@@ -2779,15 +2786,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.8833334
-    functionName: fire_projectile
+    functionName: play_particle
     data: head
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.8833334
-    functionName: play_particle
+    functionName: fire_projectile
     data: head
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: play_diegetic_one_shot
+    data: giant_chatter
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

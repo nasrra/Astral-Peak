@@ -9,6 +9,7 @@ public class GiantOpening : Cutscene{
         DomineDoor domine_door = room.get_domine_door();
         CameraController.instance.set_target(domine_door.transform);
         CameraController.instance.lerp_zoom(6,2);
+        AudioManager.play_music("music_domine_door");
         yield return new WaitForSeconds(4);
         room.get_gateway_1().fade_in();
         room.get_gateway_2().fade_in();
@@ -16,6 +17,7 @@ public class GiantOpening : Cutscene{
         room.get_gateway_1().fade_out();
         room.get_gateway_2().fade_out();
         CameraController.instance.reset_zoom(4);
+        AudioManager.stop_music();
         yield return new WaitForSeconds(4);
         room.giant1.gameObject.SetActive(true);
         room.giant1.animator.Play("Giant1Intro");

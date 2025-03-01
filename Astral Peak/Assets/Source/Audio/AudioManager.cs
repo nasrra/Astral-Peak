@@ -105,9 +105,9 @@ public static class AudioManager{
     public static void stop_music(){
         if(current_music_track == "" || current_music_track == null)
             return;
-        current_music_track = "";
         music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         music_track.release();
+        current_music_track = "";
     }
 
     public static void play_ambience(string _event_name){
@@ -121,9 +121,9 @@ public static class AudioManager{
     public static void stop_ambience(){
         if(current_ambience_track == "" || current_ambience_track == null)
             return;
-        current_ambience_track = "";
         ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambience_track.release();
+        current_ambience_track = "";
     }
 
     public static void set_ambience_parameter(string _parameter, int _value){
@@ -321,15 +321,15 @@ public static class AudioManager{
     private static void link_events(){
         CustomSceneManager.transitioning_scene  += stop_music;
         CustomSceneManager.transitioning_scene  += stop_ambience;
-        CustomSceneManager.loading_scene        += unload_active_scene_bank;
-        CustomSceneManager.loaded_scene         += load_active_scene_bank;
+        CustomSceneManager.unloading_scene      += unload_active_scene_bank;
+        CustomSceneManager.loading_scene        += load_bank;
     }
 
     private static void unlink_events(){
         CustomSceneManager.transitioning_scene  -= stop_music;
         CustomSceneManager.transitioning_scene  -= stop_ambience;
-        CustomSceneManager.loading_scene        -= unload_active_scene_bank;
-        CustomSceneManager.loaded_scene         -= load_active_scene_bank;
+        CustomSceneManager.unloading_scene      -= unload_active_scene_bank;
+        CustomSceneManager.loading_scene        -= load_bank;
     }
 
 

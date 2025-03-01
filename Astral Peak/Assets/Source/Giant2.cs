@@ -215,6 +215,7 @@ public class Giant2 : Boss<Movement>{
         state = null;
         enable_body_colliders(0);
         sprites.play_death_effect(4f);
+        StartCoroutine(sprites.lerp_value("shadow_water", "_amount", .5f, -0.2f, 3f ));
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
         particles.stop_all_particles();
         base.death_start();
@@ -223,7 +224,6 @@ public class Giant2 : Boss<Movement>{
             time_out:()=>{
                 // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();
-                gameObject.SetActive(false);
                 base.death_complete();
             }
         ));

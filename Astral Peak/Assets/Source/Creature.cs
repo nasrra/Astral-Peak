@@ -95,5 +95,8 @@ public abstract class Creature : MonoBehaviour{
         gameObject.tag = "Dead";
         death_started?.Invoke();
     }
-    protected virtual void death_complete() => death_completed?.Invoke();
+    protected virtual void death_complete(){
+        death_completed?.Invoke();
+        Destroy(gameObject);
+    }
 }
