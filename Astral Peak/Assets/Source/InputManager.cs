@@ -317,15 +317,17 @@ public static class InputManager{
         return action;
     }
     public static Sprite get_input_binding_image(InputAction action, int binding){
-        string key_name = action.bindings[binding].ToDisplayString()+"_Key_Light";
+        // string key_name = action.bindings[binding].ToDisplayString()+"_Key_Light";
+        string key_name = action.bindings[binding].ToDisplayString()+"_Key_Dark";
 
         #if UNITY_EDITOR
             // Editor-only validation to check if the file exists
-            string resource_path = $"Sprites/Keybinds/Light/{key_name}";
+            string resource_path = $"Sprites/Keybinds/Dark/{key_name}";
             string asset_path = $"Assets/Resources/{resource_path}.png"; // Adjust extension as needed
             if (!System.IO.File.Exists(asset_path))
                 throw new NullReferenceException($"Input binding image not found at: {asset_path}");
         #endif
-        return Resources.Load<Sprite>("Sprites/Keybinds/Light/"+key_name);
+        // return Resources.Load<Sprite>("Sprites/Keybinds/Light/"+key_name);
+        return Resources.Load<Sprite>("Sprites/Keybinds/Dark/"+key_name);
     }
 }

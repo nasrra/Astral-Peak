@@ -1592,14 +1592,14 @@ RectTransform:
   m_GameObject: {fileID: 7862558559983908133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1193358315377244250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3700385834467804956
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3757749526154952031, guid: 3d4c226c53f85d944aec46af778f7bd2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c41f1adf409edb64c9b4f7498053ea99, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2298,9 +2298,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpAttackButtonCombinationPrompt
       objectReference: {fileID: 0}
+    - target: {fileID: 2012844126769870389, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 2652371238402908512, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
       propertyPath: input_action
       value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764580155657501046, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764580155657501046, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9283759
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764580155657501046, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4292453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299043028245759575, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4756367889118820235, guid: 7a6665411d101ba4b9017777e753f535, type: 3}
       propertyPath: input_action
