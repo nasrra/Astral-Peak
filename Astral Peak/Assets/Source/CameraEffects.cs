@@ -143,8 +143,8 @@ public class CameraEffects : MonoBehaviour{
         Player.instance.on_destroy      += unlink_player;
         Player.instance.damaged_stop    += normal_state;
         Player.instance.damaged_start   += hurt_state;
-        Player.instance.death_started   += hurt_state;
-        Player.instance.death_completed += normal_state; 
+        //Player.instance.death_started   += hurt_state;
+        //Player.instance.death_completed += normal_state; 
     }
 
     void unlink_player(){
@@ -155,8 +155,8 @@ public class CameraEffects : MonoBehaviour{
         Player.instance.on_destroy      -= unlink_player;
         Player.instance.damaged_stop    -= normal_state;  
         Player.instance.damaged_start   -= hurt_state;
-        Player.instance.death_started   -= hurt_state;  
-        Player.instance.death_completed -= normal_state;    
+        //Player.instance.death_started   -= hurt_state;  
+        //Player.instance.death_completed -= normal_state;    
     }
 }
 

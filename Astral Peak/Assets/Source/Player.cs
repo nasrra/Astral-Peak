@@ -204,17 +204,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
         unlink_movement();
         unlink_health();
         health.set_invulnerable();
-        //AudioManager.low_pass_audio(true);
+        AudioManager.enter_low_pass_filter();
         movement.reset_data();
         movement.zero_velocity();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
         sound.play_non_diegetic_one_shot("player_damaged");
-        sprite.play_death_effect(3f);
         animator.death();
         InputManager.disable_user_input();
         base.death_start();
         yield return new WaitForSeconds(3);
-        //AudioManager.low_pass_audio(false);
+        AudioManager.exit_low_pass_filter();
         base.death_complete();
     }
     private void healed(){

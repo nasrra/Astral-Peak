@@ -284,7 +284,7 @@ public static class AudioManager{
             loaded_references.Remove(Path.GetFileNameWithoutExtension(path));
         }
         RuntimeManager.UnloadBank(_bank_name);
-        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
+        // UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
     }
 
     public static void load_bank(RoomType _room_type) => load_bank(room_type_banks[_room_type]);

@@ -140,16 +140,16 @@ public abstract class ShrineAltarCutscene : Cutscene{
         AudioManager.stop_music();
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_altar")));
         CustomSceneManager.load_scene_with_transitions(get_previous_scene());
-        CustomSceneManager.loaded_scene += stop_skip;
-        CustomSceneManager.loaded_scene += end;
-        CustomSceneManager.loaded_scene += unlink;
+        CustomSceneManager.unloaded_scene += stop_skip;
+        CustomSceneManager.unloaded_scene += end;
+        CustomSceneManager.unloaded_scene += unlink;
         yield break;
     }
     
     void unlink(){
-        CustomSceneManager.loaded_scene -= stop_skip;
-        CustomSceneManager.loaded_scene -= end;
-        CustomSceneManager.loaded_scene -= unlink;
+        CustomSceneManager.unloaded_scene -= stop_skip;
+        CustomSceneManager.unloaded_scene -= end;
+        CustomSceneManager.unloaded_scene -= unlink;
         torches_on          = null;
         turn_on_numeral     = null;        
     }    

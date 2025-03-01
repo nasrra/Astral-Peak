@@ -11,17 +11,17 @@ public class HealthBarHeart : SpriteHandler{
         OVERRIDE    = 1;
 
     public void fade_out(){
-        animator.Play("fade_out", OVERRIDE);
+        animator.Play("fade_out", OVERRIDE,0);
     }
     public void fade_in(){
-        animator.Play ("fade_in", OVERRIDE);
+        animator.Play ("fade_in", OVERRIDE,0);
     }
     public void disable(){
         if(state != State.OFF){
             state = State.OFF;
-            animator.Play("disable", MAIN);
+            animator.Play("disable", MAIN,0);
         }
-        else animator.Play("disabled", MAIN);
+        else animator.Play("disabled", MAIN,0);
     }
     public void off(){
         animator.Play("off", OVERRIDE, 0);
@@ -30,9 +30,9 @@ public class HealthBarHeart : SpriteHandler{
     public void enable(){
         if(state != State.ON){
             state = State.ON;
-            animator.Play("enable", MAIN);
+            animator.Play("enable", MAIN,0);
         }
-        else animator.Play("enabled", MAIN);
+        else animator.Play("enabled", MAIN,0);
     }
     public void thump(bool x) => animator.SetBool("thump", x);
     public void disabled_thump(){

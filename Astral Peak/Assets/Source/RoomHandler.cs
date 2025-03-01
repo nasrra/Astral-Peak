@@ -34,7 +34,8 @@ public class RoomHandler : MonoBehaviour{
     }
 
     protected virtual void OnDestroy(){
-        //AudioManager.unload_bank(room_type);
+        if(SceneInfo.instance.transition == true)
+            AudioManager.unload_bank(room_type);
     }
 
     public virtual void game_cleared_room_state(){
