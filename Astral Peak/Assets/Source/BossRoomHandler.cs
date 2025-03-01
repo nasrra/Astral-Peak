@@ -64,8 +64,6 @@ public abstract class BossRoomHandler : RoomHandler{
         ProjectileManager.instance?.destroy_all();
         EnemyManager.instance?.destroy_all();
         GameManager.boss_defeated(get_boss_id());
-        GameManager.invoke_set_game_data();
-        GameManager.save_game_data();
         CameraController.instance.reset_offset(1);
         CameraController.instance.reset_zoom(1);
         CameraController.instance.set_target(Player.instance.transform);
