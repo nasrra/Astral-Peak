@@ -30,7 +30,7 @@ public static class GameManager{
     }
     public static void uninitialize(){
         CustomSceneManager.loaded_scene    -= link_loaded_scene_to_load_data;
-        CustomSceneManager.unloading_scene += invoke_set_game_data;
+        CustomSceneManager.preparing_scene_load += invoke_set_game_data;
     }
 
     public static GameState get_state() => state;

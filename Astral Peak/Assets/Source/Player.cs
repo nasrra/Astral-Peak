@@ -471,11 +471,11 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected void link_scene_manager(){
         SceneManager.sceneUnloaded += unloaded_scene;
-        CustomSceneManager.unloading_scene += unlink_events;
+        CustomSceneManager.preparing_scene_load += unlink_events;
     }
     protected void unlink_scene_manager(){
         SceneManager.sceneUnloaded -= unloaded_scene;
-        CustomSceneManager.unloading_scene -= unlink_events;
+        CustomSceneManager.preparing_scene_load -= unlink_events;
     }
     protected override void link_game_manager(){
         GameManager.set_game_data += set_game_data;

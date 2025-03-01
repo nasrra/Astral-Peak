@@ -318,9 +318,15 @@ public static class AudioManager{
     // Linkage
 
 
+    private static void force_update(){
+        Log.MethodCall();
+        RuntimeManager.CoreSystem.update();
+    }
+
     private static void link_events(){
         CustomSceneManager.transitioning_scene  += stop_music;
         CustomSceneManager.transitioning_scene  += stop_ambience;
+        CustomSceneManager.temp_scene           += force_update;
         CustomSceneManager.unloaded_scene       += unload_bank;
         CustomSceneManager.loading_scene        += load_bank;
     }
@@ -328,6 +334,7 @@ public static class AudioManager{
     private static void unlink_events(){
         CustomSceneManager.transitioning_scene  -= stop_music;
         CustomSceneManager.transitioning_scene  -= stop_ambience;
+        CustomSceneManager.temp_scene           -= force_update;
         CustomSceneManager.unloaded_scene       -= unload_bank;
         CustomSceneManager.loading_scene        -= load_bank;
     }

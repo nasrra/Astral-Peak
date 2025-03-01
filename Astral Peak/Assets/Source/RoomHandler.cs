@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Entropek;
 using UnityEngine;
 
 public class RoomHandler : MonoBehaviour{
@@ -34,8 +35,9 @@ public class RoomHandler : MonoBehaviour{
     }
 
     protected virtual void OnDestroy(){
-        if(SceneInfo.instance.transition == true)
+        if(SceneInfo.instance.transition == true){
             AudioManager.unload_bank(room_type);
+        }
     }
 
     public virtual void game_cleared_room_state(){

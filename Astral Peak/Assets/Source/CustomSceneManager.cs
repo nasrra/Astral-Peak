@@ -5,7 +5,7 @@ using UnityEngine;
 
 public static class CustomSceneManager{
     static string scene_to_load;
-    public static event Action unloading_scene, loaded_scene, transitioning_scene, temp_scene;
+    public static event Action preparing_scene_load, unloading_scene, loaded_scene, transitioning_scene, temp_scene;
     public static event Action<string> loading_scene, unloaded_scene;
 
     public static void initialize(){
@@ -49,9 +49,10 @@ public static class CustomSceneManager{
         
         // load temp
         load = SceneManager.LoadSceneAsync("temp", LoadSceneMode.Additive);
-        unloading_scene?.Invoke();
+        preparing_scene_load?.Invoke();
         yield return load;
         
+        unloading_scene?.Invoke();
         unload = SceneManager.UnloadSceneAsync(active);
         yield return unload;
 
