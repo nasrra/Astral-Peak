@@ -44,6 +44,7 @@ public class Hollow : Enemy{
     protected override void death_start(){
         unlink_events();
         animator.Play("HollowDeath",0,0);
+        gameObject.tag = "Dead";
         StartCoroutine(Util.timer(
             animator.get_clip_length("HollowDeath")+2,
             start_action: ()=>{
@@ -91,6 +92,10 @@ public class Hollow : Enemy{
         animator.Play("HollowSummon",0,0);
         animator.UpdateLayer(0);
         play_summoning_animation();
+    }
+
+    public void set_tag(string _tag){
+        gameObject.tag = _tag;
     }
 
     public void alert(){

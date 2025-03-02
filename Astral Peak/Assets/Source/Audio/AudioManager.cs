@@ -305,8 +305,9 @@ public static class AudioManager{
     }
 
     public static void set_available_banks(){
-        //string path = Application.streamingAssetsPath + "/FMOD Banks/Desktop/";
-        string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
+        // string path = Application.streamingAssetsPath + "/FMOD Banks/Desktop/";
+        // string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
+        string[] bank_files = Directory.GetFiles(Application.streamingAssetsPath + "/FMOD Banks/Desktop/", "*.bank");
         foreach(var file in bank_files){
             string file_name = Path.GetFileNameWithoutExtension(file);
             available_banks.Add(file_name, (sbyte)available_banks.Count);
@@ -327,14 +328,14 @@ public static class AudioManager{
         CustomSceneManager.transitioning_scene  += stop_music;
         CustomSceneManager.transitioning_scene  += stop_ambience;
         CustomSceneManager.unloaded_scene       += unload_bank;
-        CustomSceneManager.loading_scene        += load_bank;
+        CustomSceneManager.loaded_scene         += load_active_scene_bank;
     }
 
     private static void unlink_events(){
         CustomSceneManager.transitioning_scene  -= stop_music;
         CustomSceneManager.transitioning_scene  -= stop_ambience;
         CustomSceneManager.unloaded_scene       -= unload_bank;
-        CustomSceneManager.loading_scene        -= load_bank;
+        CustomSceneManager.loaded_scene         -= load_active_scene_bank;
     }
 
 

@@ -631,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 172043553}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0941019, y: -5.645729, z: -4049.569}
+  m_LocalPosition: {x: -1.0941019, y: -5.2, z: -4049.569}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3690,7 +3690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.395729
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 3323847759890158343, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3733,7 +3733,8 @@ PrefabInstance:
       value: snow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3018973766161633717, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c441bdf0f47e6b541bfde8101ddb198f, type: 3}
@@ -4608,7 +4609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1670786876062637515, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -23.74465
+      value: -23.744652
       objectReference: {fileID: 0}
     - target: {fileID: 1670786876062637515, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -4992,6 +4993,7 @@ MonoBehaviour:
   snow_controller: {fileID: 380871850}
   fight_start_trigger: {fileID: 1197821283}
   exit: {fileID: 1613884119}
+  room_state: 0
   <mage>k__BackingField: {fileID: 437290954900120641}
   <background_mage>k__BackingField: {fileID: 1973040482689557289}
   line_particles: {fileID: 2143389931}

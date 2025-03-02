@@ -64,6 +64,7 @@ public class Rider : Boss<Movement>{
     void handle_death(){
         movement.halt();
         combat.halt();
+        stop_all();
         transition_phase();
     }
 

@@ -53,7 +53,7 @@ public class Giant2 : Boss<Movement>{
     }
 
     protected override void exit_cutscene_state(){
-        idle(2);
+        idle(1);
     }
 
     private void fly_and_attack_state(){

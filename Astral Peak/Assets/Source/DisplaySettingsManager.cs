@@ -48,7 +48,7 @@ public static class DisplaySettingsManager{
     }
 
     public static void save_player_prefs(){
-        PlayerPrefs.SetInt("frame_cap_preset",frame_rate_preset);
+        PlayerPrefs.SetInt("frame_rate_preset",frame_rate_preset);
         PlayerPrefs.SetInt("fullscreen", fullscreen == true?1:0);
         PlayerPrefs.SetInt("resolution_preset", resolution_preset);
         PlayerPrefs.Save();

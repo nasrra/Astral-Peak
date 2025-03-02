@@ -24,7 +24,7 @@ public class MageCombat : BossCombat{
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  6,
-            attack_cooldown:       12,
+            attack_cooldown:       24,
             idle_cooldown:         0,
             combat_cooldown:       2),
         three_slash_phase_1 = new(

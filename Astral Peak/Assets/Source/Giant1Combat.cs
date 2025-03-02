@@ -78,7 +78,7 @@ public class Giant1Combat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
-                    // test(walk_projectile);
+                    // test(geyser);
                     front_moveset = new List<BossAttack>(){
                        down_slam,
                        jump_backward,

@@ -4135,7 +4135,7 @@ GameObject:
   - component: {fileID: 845319753}
   - component: {fileID: 845319754}
   - component: {fileID: 845319752}
-  - component: {fileID: 845319755}
+  - component: {fileID: 845319756}
   m_Layer: 0
   m_Name: BossRoomHandler
   m_TagString: Untagged
@@ -4209,7 +4209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <saveable>k__BackingField: 1
   <transition>k__BackingField: 0
---- !u!114 &845319755
+--- !u!114 &845319756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4218,10 +4218,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 845319751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 331bafb6619f6134dbf538a373c91c98, type: 3}
+  m_Script: {fileID: 11500000, guid: 419471097024db84ba0c67cf3293e96d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start_all_inactive: 0
 --- !u!1001 &847225543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5736,14 +5735,6 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
-    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
-      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
-      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4806183750753091257, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_Size.y
       value: 0.12
@@ -11068,10 +11059,6 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
-    - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
-      propertyPath: body_colliders.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7048331602739719785, guid: 952afe1edb39387429c4d062d57218be, type: 3}
       propertyPath: move_to_point._serializedList.Array.size
       value: 1
