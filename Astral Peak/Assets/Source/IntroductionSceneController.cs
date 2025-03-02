@@ -39,7 +39,7 @@ public class Introduction : Cutscene{
         yield return new WaitForSeconds(4);
         AudioManager.stop_music();
         yield return new WaitForSeconds(2);
-        CustomSceneManager.load_scene_with_transitions("TutorialRoom");
+        CustomSceneManager.load_scene_with_transitions("TutorialRoom1");
         end();
         yield break;
     }

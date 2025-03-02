@@ -10,7 +10,7 @@ using UnityEngine.Rendering;
 public class AudioPlayer : MonoBehaviour{
     Dictionary<string, EventInstance> diegetic_instances = new Dictionary<string, EventInstance>();
     Dictionary<string, EventInstance> non_diegetic_instances = new Dictionary<string, EventInstance>();
-    void OnEnable(){
+    protected virtual void OnEnable(){
         link();
     }
     void OnDisable(){

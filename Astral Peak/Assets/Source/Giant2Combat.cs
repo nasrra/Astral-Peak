@@ -64,10 +64,10 @@ public class Giant2Combat : BossCombat{
                     //test(finger_gun);
                     special_moveset = new List<BossAttack>(){
                         yell_projectile,
-                        fist_slam,
+                        //fist_slam,
                         finger_gun,
-                        hand_clap,
-                        multi_slam,
+                        //hand_clap,
+                        //multi_slam,
                         geyser,
                     };
                 }

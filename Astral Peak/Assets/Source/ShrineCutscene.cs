@@ -18,6 +18,7 @@ public class ShrineOpeningCutscene : Cutscene{
 
     public override IEnumerator get_coroutine() => start();
     IEnumerator start(){
+        CameraController.instance.regulate_in_bounds(false);
         AudioManager.load_bank("cutscene_shrine");
         AudioManager.play_music_one_shot("music_domine");
         AudioManager.stop_ambience();
@@ -53,6 +54,7 @@ public class ShrineOpeningCutscene : Cutscene{
         torches_off?.Invoke();     
         stop_skip();
         yield return new WaitForSeconds(6);  
+        CameraController.instance.regulate_in_bounds(true);
         AudioManager.stop_music();
         AudioManager.play_ambience("ambience_shrine");
         UnityHook.instance.StartCoroutine(Util.timer(4,time_out:()=>AudioManager.unload_bank("cutscene_shrine")));

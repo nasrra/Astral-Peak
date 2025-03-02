@@ -4171,6 +4171,7 @@ MonoBehaviour:
   snow_controller: {fileID: 1021822360}
   fight_start_trigger: {fileID: 375137857}
   exit: {fileID: 0}
+  room_state: 0
   <giant1>k__BackingField: {fileID: 1096982683}
   giant2: {fileID: 1892445185}
   left_hand: {fileID: 720390072}
@@ -5735,6 +5736,14 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4806183750753091257, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_Size.y
       value: 0.12
