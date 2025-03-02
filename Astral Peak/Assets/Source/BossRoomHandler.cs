@@ -14,6 +14,7 @@ public abstract class BossRoomHandler : RoomHandler{
     [SerializeField] protected SnowController snow_controller;
     [SerializeField] protected Collider2DFeedback fight_start_trigger;
     [SerializeField] protected Door exit;
+    [SerializeField] protected int room_state = 0;
     protected Dictionary<string, Func<Cutscene>> cutscenes;
     protected Cutscene cutscene; 
     protected override void Awake(){
@@ -24,7 +25,7 @@ public abstract class BossRoomHandler : RoomHandler{
 
     protected override void Start(){
         base.Start();
-        set_room_state(0);
+        set_room_state(room_state);
     }
 
     protected abstract void check_world_state();
@@ -43,7 +44,7 @@ public abstract class BossRoomHandler : RoomHandler{
         Player.instance.transform.position = fight_start_trigger.transform.position;
         Player.instance.get_movement().zero_velocity();
         unlink_fight_start_trigger();
-        play_cutscene("opening");
+        play_cutscene("phase_1");
     }
     protected void link_fight_start_trigger(){
         fight_start_trigger.trigger_enter += start_fight;
@@ -83,6 +84,7 @@ public abstract class BossRoomHandler : RoomHandler{
     }
 
     public virtual void set_room_state(int x){
+        room_state = x;
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
         snow_controller.lerp_preset(x);

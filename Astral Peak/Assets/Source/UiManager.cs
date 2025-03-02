@@ -144,9 +144,9 @@ public class UiManager : MonoBehaviour{
     void fade_out(){
         if(GameManager.get_state() != GameState.CUTSCENE){
             health_bar.fade_out();
-            foreach(ButtonPromptHUD button in button_prompts.Values)
-                if(button.isActiveAndEnabled == true)
-                    button.off();
+            // foreach(ButtonPromptHUD button in button_prompts.Values)
+            //     if(button.isActiveAndEnabled == true)
+            //         button.off();
         }
     }
     void fade_in(){

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Entropek;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ public class ButtonPromptHUD : MonoBehaviour{
     [Header("ButtonPromptHUD")]
     [SerializeField] protected List<ButtonPrompt> buttons = new List<ButtonPrompt>();
     [SerializeField] protected Animator animator;
+    [SerializeField] protected List<bool> pressed = new List<bool>();
+    [SerializeField] protected bool turned_on = false;
 
     void OnDisable(){
         unlink();
@@ -17,6 +20,12 @@ public class ButtonPromptHUD : MonoBehaviour{
     protected virtual void initialize(){
         foreach(ButtonPrompt button in buttons)
             button.initialize();
+        // link action
+        foreach(ButtonPrompt button in buttons){
+            button.action.performed += button_pressed;
+            button.action.performed += turn_off_wrapper;
+            button.action.canceled  += button_cancelled;
+        }
         Application.quitting += uninitialize;
     }
     
@@ -25,17 +34,40 @@ public class ButtonPromptHUD : MonoBehaviour{
             button.unitialize();
     }
 
-    // used in the animator.
-    protected virtual void link_action(){
+    void button_cancelled(InputAction.CallbackContext context){
+        if(pressed.Count > 0)
+            pressed.RemoveAt(0);
+    }
+
+    void button_pressed(InputAction.CallbackContext context){
+        pressed.Add(true);
+    }
+
+    public virtual void now_turned_on(){
+        turned_on = true;
+        // check if the button has already been pressed.
+        get_pressed_keys();
+        if(pressed.Count > 0)
+            turn_off();
+    }
+
+    protected void get_pressed_keys(){
         foreach(ButtonPrompt button in buttons)
-            button.action.performed += turn_off;
+            if(button.action.IsPressed() == true)
+                pressed.Add(true);
     }
 
     public void turn_on(){
         animator.Play("turn_on");
     }
 
-    public void turn_off(InputAction.CallbackContext context){
+    protected virtual void turn_off_wrapper(InputAction.CallbackContext context){
+        turn_off();
+    }
+
+    public void turn_off(){
+        if(turned_on == false)
+            return;
         animator.Play("turn_off");
         unlink();
     }
@@ -46,10 +78,15 @@ public class ButtonPromptHUD : MonoBehaviour{
     }
 
     protected virtual void unlink(){
+        // Debug.Log(gameObject.name);
         foreach(ButtonPrompt button in buttons){
-            if(button.action != null)
-                button.action.performed -= turn_off;
+            if(button.action != null){
+                button.action.performed -= turn_off_wrapper;
+                button.action.performed -= button_pressed;
+                button.action.canceled  -= button_cancelled;
+            }
         }
+        pressed.Clear();
         Application.quitting -= uninitialize;
     }
 }

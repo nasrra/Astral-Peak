@@ -94,8 +94,8 @@ public abstract class BossCombat : MonoBehaviour{
         return available_attacks;
     }
 
-    float dist_to_left_bound() => Mathf.Abs(left_arena_bound.position.x - transform.position.x);
-    float dist_to_right_bound() => Mathf.Abs(right_arena_bound.position.x - transform.position.x);
+    public float dist_to_left_bound() => Mathf.Abs(left_arena_bound.position.x - transform.position.x);
+    public float dist_to_right_bound() => Mathf.Abs(right_arena_bound.position.x - transform.position.x);
 
     protected void test(BossAttack attack){
         attack.max_player_distance = 10;

@@ -15,7 +15,7 @@ public class AudioPlayer : MonoBehaviour{
     }
     void OnDisable(){
         StopAllCoroutines();
-        stop_all_loops_immediate();
+        stop_all_loops();
         unlink();
     }
     void start_diegetic_event_instance_loop(){

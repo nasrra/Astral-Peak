@@ -44,6 +44,8 @@ public class MageBossRoom : BossRoomHandler{
     }
     protected override void OnDestroy(){
         unlink_events();
+        if(room_state == 1)
+            audio_spectum.uninitialize();
         base.OnDestroy();
     }
     public MagicPlatformsController get_platforms()=>platforms;

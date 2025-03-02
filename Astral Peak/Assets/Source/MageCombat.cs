@@ -15,7 +15,7 @@ public class MageCombat : BossCombat{
             "Mage1EnterTel",
             max_player_distance:   6,
             min_player_distance:   0,
-            arena_bound_distance:  0,
+            arena_bound_distance:  8,
             attack_cooldown:       4,
             idle_cooldown:         1,
             combat_cooldown:       2),
@@ -79,6 +79,7 @@ public class MageCombat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=>{
+                //test(teleport_phase_1);
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
