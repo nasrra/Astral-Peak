@@ -2,13 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ButtonCombinationPromptUI : MonoBehaviour{
+public class ButtonCombinationPromptHUD : ButtonPromptHUD{
     [Header("Button Combination Prompt")]
-    [SerializeField] Animator animator;
-    [SerializeField] protected List<ButtonPrompt> buttons = new List<ButtonPrompt>();
     protected Dictionary<InputAction, bool> pressed = new Dictionary<InputAction, bool>();
 
-    protected void initialize(){
+    protected override void initialize(){
         foreach(ButtonPrompt button in buttons){
             button.initialize();
             pressed.Add(button.action, false);
@@ -16,7 +14,7 @@ public class ButtonCombinationPromptUI : MonoBehaviour{
         Application.quitting += uninitialize;
     }
 
-    public void link_action(){
+    protected override void link_action(){
         foreach(ButtonPrompt button in buttons){
             button.action.performed += handle_pressed_action;
             button.action.canceled  += handle_canceled_action;        
@@ -39,10 +37,12 @@ public class ButtonCombinationPromptUI : MonoBehaviour{
         pressed[ctx.action] = false;
     }
 
-    protected void uninitialize(){
+    protected override void uninitialize(){
         foreach(ButtonPrompt button in buttons){
-            button.action.performed -= handle_pressed_action;
-            button.action.canceled  -= handle_canceled_action;
+            if(button.action != null){
+                button.action.performed -= handle_pressed_action;
+                button.action.canceled  -= handle_canceled_action;
+            }
         }
         foreach(ButtonPrompt button in buttons){
             button.unitialize();

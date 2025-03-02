@@ -8,8 +8,8 @@ public class ButtonPrompt : MonoBehaviour{
     [SerializeField] protected Image image_icon;
     [SerializeField] protected Transform image_transform;
     [SerializeField] protected string input_action;
-    [HideInInspector] public InputAction action;
-    public void set_input_action(string _input_action) => input_action = _input_action;
+    [HideInInspector] public InputAction action {get; private set;}
+
     public virtual void initialize(){
         action = InputManager.get_input_action(input_action);
         image_transform.localScale = action.bindings[0].ToDisplayString()=="Space"

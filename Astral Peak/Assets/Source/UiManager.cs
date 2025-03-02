@@ -8,7 +8,7 @@ public class UiManager : MonoBehaviour{
     public event Action
         death_screen_ended;
     public static UiManager instance;
-    [SerializeField] SerializedDictionary<string, Animator> button_prompts = new SerializedDictionary<string, Animator>();
+    [SerializeField] SerializedDictionary<string, ButtonPromptHUD> button_prompts = new SerializedDictionary<string, ButtonPromptHUD>();
     [SerializeField] Animator skip_button;
     [SerializeField] GameObject 
         death_screen,
@@ -77,7 +77,7 @@ public class UiManager : MonoBehaviour{
             cutscene_state_on();
     }
 
-    public void enable_button_prompt(string button) => button_prompts[button].Play("turn_on");
+    public void enable_button_prompt(string button) => button_prompts[button].turn_on();
 
     public void enable_death_screen(){
         pause_menu.SetActive(false);
@@ -144,9 +144,9 @@ public class UiManager : MonoBehaviour{
     void fade_out(){
         if(GameManager.get_state() != GameState.CUTSCENE){
             health_bar.fade_out();
-            foreach(Animator button in button_prompts.Values)
+            foreach(ButtonPromptHUD button in button_prompts.Values)
                 if(button.isActiveAndEnabled == true)
-                    button.Play("off");
+                    button.off();
         }
     }
     void fade_in(){

@@ -489,7 +489,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638764231393523153
+  lastModified: 638765126623885203
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -1202,10 +1202,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638764231393533153
+  lastModified: 638765126623914239
   FileSizes:
   - Name: 
-    Value: 6366
+    Value: 6406
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1585,6 +1585,7 @@ MonoBehaviour:
   - {fileID: 2824895540810843988}
   - {fileID: 9012728332702393522}
   - {fileID: 2062679436745817565}
+  - {fileID: 2871146979668874304}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1592,7 +1593,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638764596203814041
+  cacheTime: 638765126625328764
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -2171,6 +2172,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 2952
+--- !u!114 &2871146979668874304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ui/ui_tutorial
+  m_EditorClassIdentifier: 
+  Path: event:/ui/ui_tutorial
+  Guid:
+    Data1: -1543207643
+    Data2: 1156385438
+    Data3: -1208632403
+    Data4: -40761546
+  Banks:
+  - {fileID: 5898306791894782635}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &3217067466705830715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,7 +2713,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/ui.bank
   Name: ui
   StudioPath: bank:/ui
-  lastModified: 638764596203814041
+  lastModified: 638765126625328764
   FileSizes: []
   Exists: 1
 --- !u!114 &5992836656288874982

@@ -28,6 +28,7 @@ public class RoomHandler : MonoBehaviour{
             AudioManager.play_music(music_track);
         else
             AudioManager.stop_music();
+        AudioManager.stop_additive_ambience();
     }
     
     protected virtual void Start(){

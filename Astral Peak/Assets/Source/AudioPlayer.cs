@@ -10,11 +10,12 @@ using UnityEngine.Rendering;
 public class AudioPlayer : MonoBehaviour{
     Dictionary<string, EventInstance> diegetic_instances = new Dictionary<string, EventInstance>();
     Dictionary<string, EventInstance> non_diegetic_instances = new Dictionary<string, EventInstance>();
-    void Awake(){
+    void OnEnable(){
         link();
     }
-    void OnDestroy(){
+    void OnDisable(){
         StopAllCoroutines();
+        stop_all_loops_immediate();
         unlink();
     }
     void start_diegetic_event_instance_loop(){
@@ -81,7 +82,7 @@ public class AudioPlayer : MonoBehaviour{
     }
 
     public void stop_all_loops_immediate(){
-        UnityEngine.Debug.Log(gameObject.name);
+        // UnityEngine.Debug.Log(gameObject.name);
         foreach(KeyValuePair<string, EventInstance> kvp in diegetic_instances)
             stop_instance_immediate(kvp.Value);
         foreach(KeyValuePair<string, EventInstance> kvp in non_diegetic_instances)

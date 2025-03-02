@@ -197,7 +197,7 @@ public class Mage : Boss<Movement>{
     }
     private void idle_fly_pattern(){
         movement.halt();
-        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2) == 0);
+        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2)==0);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");

@@ -177,7 +177,7 @@ public class Giant2 : Boss<Movement>{
             start_action: ()=>{
                 play_idle_animation(); 
                 if(is_idle_flying == false)
-                    movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
+                    movement.figure_eight_state(reverse: UnityEngine.Random.Range(0,2)==0, x_factor:.1f, y_factor:.05f);  
             }
         );
     }
