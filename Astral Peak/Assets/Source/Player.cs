@@ -139,7 +139,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void jumped(){
         animator.jump();
         particles.play_ground_effected_particle("jump");
-        sound.play_diegetic_one_shot($"{ground}_impact_light");
+        if(ground != "" && ground != null)
+            sound.play_diegetic_one_shot($"{ground}_impact_light");
     }
     private void new_ground(GameObject ground){
         // sound.set_ground(ground.tag);
