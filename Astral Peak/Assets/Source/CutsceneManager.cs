@@ -32,6 +32,7 @@ public static class CutsceneManager{
         cutscene.ended -= cutscene_ended;
         cutscene = null;
         GameManager.state_changed(GameState.GAMEPLAY);
+        GameManager.set_time_scale(1); // set time scale back to avoid skip cutscene glitch.
     }
 
     static void start_skip_cutscene(){
