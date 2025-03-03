@@ -443,84 +443,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1364892457699260785, guid: 0c5c8885606b02e448bb376238c9cec1, type: 3}
   m_PrefabInstance: {fileID: 462021433}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &544623289
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: music_track.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: ambience_track.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: 'ambience_track.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2462142074473714249, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: final_cutscene_camera_movement
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781971622970081959, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_Name
-      value: SceneInfo (Shrine)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787584784215239962, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6100656851725724509, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-      propertyPath: <saveable>k__BackingField
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2094186803478048517, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a6976aa9dc8221349aee71bda1593099, type: 3}
 --- !u!1 &548280510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,6 +2090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1233212904}
   - component: {fileID: 1233212903}
+  - component: {fileID: 1233212905}
   m_Layer: 0
   m_Name: AstralPlaneRoom
   m_TagString: Untagged
@@ -2188,8 +2111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   room_type: 0
-  ambience_track: []
-  music_track: []
+  ambience_track: 
+  music_track: 
   final_cutscene_camera_target: {fileID: 1505791830}
   final_cutscene_camera_movement: 2
   domine_door: {fileID: 1244933018}
@@ -2209,6 +2132,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233212905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233212902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d178da4a6e6cad4ebd28d49ea60d820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <saveable>k__BackingField: 0
+  <transition>k__BackingField: 0
 --- !u!1001 &1244933016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3784,6 +3721,5 @@ SceneRoots:
   - {fileID: 1814565459}
   - {fileID: 1233212904}
   - {fileID: 2135091503}
-  - {fileID: 544623289}
   - {fileID: 1533430911}
   - {fileID: 257184098}

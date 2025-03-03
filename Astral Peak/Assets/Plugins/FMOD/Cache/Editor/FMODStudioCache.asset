@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9064994451914352255
+--- !u!114 &-9166051111801010755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/snow/snow_footstep
+  m_Name: event:/sfx/snow/snow_impact_heavy
   m_EditorClassIdentifier: 
-  Path: event:/sfx/snow/snow_footstep
+  Path: event:/sfx/snow/snow_impact_heavy
   Guid:
-    Data1: 569670506
-    Data2: 1110890274
-    Data3: 1390274971
-    Data4: -696509940
+    Data1: -431814914
+    Data2: 1176087634
+    Data3: -83094382
+    Data4: -1575703343
   Banks:
   - {fileID: 8137673862642026946}
   IsStream: 0
@@ -26,8 +26,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 1000
---- !u!114 &-9015695826522117972
+  Length: 1056
+--- !u!114 &-9142436469058321972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36,25 +36,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/snow/snow_impact_light
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ambience_wind/intensity
   m_EditorClassIdentifier: 
-  Path: event:/sfx/snow/snow_impact_light
-  Guid:
-    Data1: -1925697501
-    Data2: 1212988532
-    Data3: -228651892
-    Data4: 1173347978
-  Banks:
-  - {fileID: 8137673862642026946}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 768
---- !u!114 &-8668318197240294853
+  Name: intensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3030222322
+    data2: 260780284
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - soft
+  - heavy
+  Exists: 1
+--- !u!114 &-8953154929241738339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,6 +80,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10896
+--- !u!114 &-8912933431806311764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/cavalry/rider_sword_swing
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/cavalry/rider_sword_swing
+  Guid:
+    Data1: 1732625443
+    Data2: 1195385727
+    Data3: 1491744403
+    Data4: -1132799368
+  Banks:
+  - {fileID: 990133301624612997}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 1536
+--- !u!114 &-8739212555828414321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_ashes_to_wind
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_ashes_to_wind
+  Guid:
+    Data1: 2107326929
+    Data2: 1225163609
+    Data3: 1523238051
+    Data4: 2146454632
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8595559256893966437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +161,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-8453719602779137523
+--- !u!114 &-8434444533909351027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,50 +171,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/cavalry/wolf_howl
+  m_Name: event:/sfx/snow/snow_impact_light
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/cavalry/wolf_howl
+  Path: event:/sfx/snow/snow_impact_light
   Guid:
-    Data1: -195739448
-    Data2: 1084924785
-    Data3: -60673889
-    Data4: -886666317
+    Data1: -1925697501
+    Data2: 1212988532
+    Data3: -228651892
+    Data4: 1173347978
   Banks:
-  - {fileID: 990133301624612997}
+  - {fileID: 8137673862642026946}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 4728
---- !u!114 &-8448066528638228925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_giant_2
-  m_EditorClassIdentifier: 
-  Path: event:/music/music_the_giant_2
-  Guid:
-    Data1: -65437739
-    Data2: 1242645979
-    Data3: -1093749603
-    Data4: 962901659
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 119232
+  Length: 768
 --- !u!114 &-8413256524142465220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +212,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-8406599166103722577
+--- !u!114 &-8364627136423830958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,24 +222,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/cavalry/rider_sword_swing
+  m_Name: event:/music/music_domine_door
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/cavalry/rider_sword_swing
+  Path: event:/music/music_domine_door
   Guid:
-    Data1: 1732625443
-    Data2: 1195385727
-    Data3: 1491744403
-    Data4: -1132799368
+    Data1: -683583544
+    Data2: 1227451961
+    Data3: 1812024208
+    Data4: 984055402
   Banks:
-  - {fileID: 990133301624612997}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
+  - {fileID: 5582867981456367483}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 1536
---- !u!114 &-8199096960222209436
+  MaxDistance: 20
+  Length: 16065
+--- !u!114 &-8215142903794234965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,14 +249,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/giant/giant_hammer_down
+  m_Name: event:/sfx/stone/stone_impact_heavy
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/giant/giant_hammer_down
+  Path: event:/sfx/stone/stone_impact_heavy
   Guid:
-    Data1: -410754943
-    Data2: 1304117805
-    Data3: 2025597058
-    Data4: 478024825
+    Data1: -522418881
+    Data2: 1338222656
+    Data3: -1259102815
+    Data4: 1782298595
   Banks:
   - {fileID: 5582867981456367483}
   IsStream: 0
@@ -239,8 +265,26 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 0
---- !u!114 &-7741107742412982269
+  Length: 864
+--- !u!114 &-8064444152273702414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Introduction.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/Introduction.bank
+  Name: Introduction
+  StudioPath: bank:/Introduction
+  lastModified: 638766193944257370
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7828234841686502172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,24 +294,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_burst_soft
+  m_Name: event:/voice/domine/domine_no_hope
   m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_burst_soft
+  Path: event:/voice/domine/domine_no_hope
   Guid:
-    Data1: -360032073
-    Data2: 1155070046
-    Data3: 136886189
-    Data4: 2142733198
+    Data1: -1992477671
+    Data2: 1125717777
+    Data3: -1518331472
+    Data4: -123851361
   Banks:
-  - {fileID: -1199358877090321752}
+  - {fileID: -4397991277702180408}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 1520
---- !u!114 &-7735709278696353168
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7704991447377865006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,24 +320,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_splash_heavy
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/water_rushing/intensity
   m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_splash_heavy
-  Guid:
-    Data1: 503728340
-    Data2: 1209592825
-    Data3: 1060581003
-    Data4: -1602352428
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 0
+  Name: intensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3030222322
+    data2: 260780284
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - soft
+  - heavy
+  Exists: 1
 --- !u!114 &-7376905227913506980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,36 +352,9 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638765508144749884
+  lastModified: 638766194163020757
   FileSizes: []
   Exists: 1
---- !u!114 &-7221845261254922665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/woman_gasp_reverb
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/woman_gasp_reverb
-  Guid:
-    Data1: 513844757
-    Data2: 1211838170
-    Data3: 1106914223
-    Data4: 1983115777
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-7178158262075843451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +382,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6913431059172784355
+--- !u!114 &-6928406992107553177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,51 +392,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/magic/magic_footstep
+  m_Name: event:/sfx/stone/stone_shuffle
   m_EditorClassIdentifier: 
-  Path: event:/sfx/magic/magic_footstep
+  Path: event:/sfx/stone/stone_shuffle
   Guid:
-    Data1: 1343788441
-    Data2: 1270254900
-    Data3: -500873847
-    Data4: -1233719564
+    Data1: -1820064586
+    Data2: 1194325898
+    Data3: -329801597
+    Data4: -610873449
   Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1080
---- !u!114 &-6776011629352066327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/snow/snow_impact_heavy
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/snow/snow_impact_heavy
-  Guid:
-    Data1: -431814914
-    Data2: 1176087634
-    Data3: -83094382
-    Data4: -1575703343
-  Banks:
-  - {fileID: 8137673862642026946}
+  - {fileID: 5582867981456367483}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 1056
---- !u!114 &-6763505532757932392
+  Length: 0
+--- !u!114 &-6612218660166795489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SnowInterlude1.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude1.bank
+  Name: SnowInterlude1
+  StudioPath: bank:/SnowInterlude1
+  lastModified: 638766194186324561
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-6601162227849016598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -430,14 +437,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_old_door
+  m_Name: event:/voice/domine/domine_revive_woman
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_old_door
+  Path: event:/voice/domine/domine_revive_woman
   Guid:
-    Data1: -782018108
-    Data2: 1190650043
-    Data3: 1752690066
-    Data4: 822350863
+    Data1: -501370889
+    Data2: 1302006428
+    Data3: 30388906
+    Data4: -917703544
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -447,7 +454,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6454125156409964814
+--- !u!114 &-6586984100224138012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,23 +464,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/thunder/thunder_clap
+  m_Name: event:/voice/domine/domine_under_arches
   m_EditorClassIdentifier: 
-  Path: event:/sfx/thunder/thunder_clap
+  Path: event:/voice/domine/domine_under_arches
   Guid:
-    Data1: -201388829
-    Data2: 1119681063
-    Data3: -1107809664
-    Data4: 1158854777
+    Data1: 1918154350
+    Data2: 1207677890
+    Data3: -1674398543
+    Data4: -850808792
   Banks:
-  - {fileID: -1199358877090321752}
+  - {fileID: -4397991277702180408}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 40
-  Length: 8200
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6432616814909868593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +499,33 @@ MonoBehaviour:
   lastModified: 638765507164055421
   FileSizes: []
   Exists: 1
+--- !u!114 &-6412585855896732308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/snow/snow_footstep
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/snow/snow_footstep
+  Guid:
+    Data1: 569670506
+    Data2: 1110890274
+    Data3: 1390274971
+    Data4: -696509940
+  Banks:
+  - {fileID: 8137673862642026946}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 1000
 --- !u!114 &-6354800715163179812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,34 +555,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4627
---- !u!114 &-6277680731841273976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_bubble
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_bubble
-  Guid:
-    Data1: -842119172
-    Data2: 1138915016
-    Data3: 258202045
-    Data4: -946753362
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 0
---- !u!114 &-5995024502405556693
+--- !u!114 &-6089186418898427837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -575,7 +582,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
---- !u!114 &-5492271262660430094
+--- !u!114 &-5781394612173751023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -585,24 +592,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_mage_2
+  m_Name: event:/voice/domine/domine_old_door
   m_EditorClassIdentifier: 
-  Path: event:/music/music_the_mage_2
+  Path: event:/voice/domine/domine_old_door
   Guid:
-    Data1: -2040253147
-    Data2: 1337355953
-    Data3: -1211092585
-    Data4: -902786475
+    Data1: -782018108
+    Data2: 1190650043
+    Data3: 1752690066
+    Data4: 822350863
   Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 1
+  - {fileID: -4397991277702180408}
+  IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 119232
---- !u!114 &-5233619598671024114
+  Length: 0
+--- !u!114 &-5412671958185362387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -612,25 +619,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ambience/ambience_wind
+  m_Name: event:/sfx/water/water_bubble
   m_EditorClassIdentifier: 
-  Path: event:/ambience/ambience_wind
+  Path: event:/sfx/water/water_bubble
   Guid:
-    Data1: 182568258
-    Data2: 1296758364
-    Data3: 553892002
-    Data4: -1578378908
+    Data1: -842119172
+    Data2: 1138915016
+    Data3: 258202045
+    Data4: -946753362
   Banks:
-  - {fileID: 8137673862642026946}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -5168570498596582344}
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 35
   Length: 0
---- !u!114 &-5168570498596582344
+--- !u!114 &-5125400869483912426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,23 +645,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/ambience_wind/intensity
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/water/water_stream
   m_EditorClassIdentifier: 
-  Name: intensity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3030222322
-    data2: 260780284
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - soft
-  - heavy
-  Exists: 1
+  Path: event:/sfx/water/water_stream
+  Guid:
+    Data1: 1061056658
+    Data2: 1224353722
+    Data3: -1957242184
+    Data4: 343489354
+  Banks:
+  - {fileID: 89237910715477955}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 34864
 --- !u!114 &-4839623455687858462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,60 +690,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4608
---- !u!114 &-4628206569885906289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_ashes_to_wind
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_ashes_to_wind
-  Guid:
-    Data1: 2107326929
-    Data2: 1225163609
-    Data3: 1523238051
-    Data4: 2146454632
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4491536622830873902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_revive_woman
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_revive_woman
-  Guid:
-    Data1: -501370889
-    Data2: 1302006428
-    Data3: 30388906
-    Data4: -917703544
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-4397991277702180408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,117 +705,9 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_shrine.bank
   Name: cutscene_shrine
   StudioPath: bank:/cutscene_shrine
-  lastModified: 638765507164368660
+  lastModified: 638766193900432457
   FileSizes: []
   Exists: 1
---- !u!114 &-4322597117090999852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_splash_light
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_splash_light
-  Guid:
-    Data1: 1292311625
-    Data2: 1160555847
-    Data3: 993364406
-    Data4: 1621581729
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 0
---- !u!114 &-4266580863127589984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_lost_soul
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_lost_soul
-  Guid:
-    Data1: 1481168891
-    Data2: 1150770507
-    Data3: -440243050
-    Data4: 1216496445
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4105556081445569354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_no
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_no
-  Guid:
-    Data1: 162143471
-    Data2: 1289539691
-    Data3: -399718734
-    Data4: 1078255580
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4034730880550219014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_cavalry_2
-  m_EditorClassIdentifier: 
-  Path: event:/music/music_the_cavalry_2
-  Guid:
-    Data1: -939543079
-    Data2: 1282645706
-    Data3: -2137782113
-    Data4: -1346702534
-  Banks:
-  - {fileID: 990133301624612997}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 131832
 --- !u!114 &-4017332927612966922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,36 +749,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/entity_hollow.bank
   Name: entity_hollow
   StudioPath: bank:/entity_hollow
-  lastModified: 638765508144593624
+  lastModified: 638766193903175147
   FileSizes: []
   Exists: 1
---- !u!114 &-3655661117982130466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/water_rushing/intensity
-  m_EditorClassIdentifier: 
-  Name: intensity
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3030222322
-    data2: 260780284
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - soft
-  - heavy
-  Exists: 1
---- !u!114 &-3576140160718661681
+--- !u!114 &-3671802488352543474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -943,23 +762,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/stone/stone_impact_heavy
+  m_Name: event:/sfx/water/water_gurgle
   m_EditorClassIdentifier: 
-  Path: event:/sfx/stone/stone_impact_heavy
+  Path: event:/sfx/water/water_gurgle
   Guid:
-    Data1: -522418881
-    Data2: 1338222656
-    Data3: -1259102815
-    Data4: 1782298595
+    Data1: 1421974921
+    Data2: 1209162984
+    Data3: 1365826974
+    Data4: -1175685684
   Banks:
   - {fileID: 5582867981456367483}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 864
+  Length: 6000
+--- !u!114 &-3616463758111246777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/thunder/thunder_clap
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/thunder/thunder_clap
+  Guid:
+    Data1: -201388829
+    Data2: 1119681063
+    Data3: -1107809664
+    Data4: 1158854777
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 40
+  Length: 8200
 --- !u!114 &-3478231456119335506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,7 +833,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 1056
---- !u!114 &-3184336757824882824
+--- !u!114 &-3287268112208275591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -997,14 +843,68 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/cavalry/wolf_jump
+  m_Name: event:/voice/domine/domine_lost_soul
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/cavalry/wolf_jump
+  Path: event:/voice/domine/domine_lost_soul
   Guid:
-    Data1: 625599305
-    Data2: 1298314712
-    Data3: -1605761648
-    Data4: 188603305
+    Data1: 1481168891
+    Data2: 1150770507
+    Data3: -440243050
+    Data4: 1216496445
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3072938771754048318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/electricity/electricity_crackle_soft
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/electricity/electricity_crackle_soft
+  Guid:
+    Data1: -1608521175
+    Data2: 1258034358
+    Data3: 657290162
+    Data4: -1129431129
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 5041
+--- !u!114 &-2919389053999839726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/cavalry/rider_bow_shot
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/cavalry/rider_bow_shot
+  Guid:
+    Data1: -163303274
+    Data2: 1196418565
+    Data3: -942332234
+    Data4: 1906453960
   Banks:
   - {fileID: 990133301624612997}
   IsStream: 0
@@ -1013,7 +913,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 1018
+  Length: 1464
 --- !u!114 &-2909013221424621494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +934,8 @@ MonoBehaviour:
     Data4: 1920778168
   Banks:
   - {fileID: -7376905227913506980}
+  - {fileID: -6612218660166795489}
+  - {fileID: -2343995183772285434}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1068,7 +970,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2380832551836062586
+--- !u!114 &-2542664579186394119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1078,24 +980,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_waiting_mortal
+  m_Name: event:/music/music_main_menu
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_waiting_mortal
+  Path: event:/music/music_main_menu
   Guid:
-    Data1: -448314026
-    Data2: 1289794684
-    Data3: -600684888
-    Data4: 1536009854
+    Data1: -1790260160
+    Data2: 1330692958
+    Data3: 127224235
+    Data4: 209324920
   Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
+  - {fileID: 8533034198631698925}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &-2102401281771564003
+  Length: 255672
+--- !u!114 &-2414423397388064227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1105,23 +1007,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_enter_room
+  m_Name: event:/music/music_introduction
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_enter_room
+  Path: event:/music/music_introduction
   Guid:
-    Data1: -88969255
-    Data2: 1276835238
-    Data3: 356834219
-    Data4: 1150663560
+    Data1: -280597009
+    Data2: 1166761862
+    Data3: -2045048407
+    Data4: -1144245046
   Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
+  - {fileID: -8064444152273702414}
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 98664
+--- !u!114 &-2343995183772285434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SnowInterlude3.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude3.bank
+  Name: SnowInterlude3
+  StudioPath: bank:/SnowInterlude3
+  lastModified: 638766194186553661
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-2098064676834007149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,6 +1062,114 @@ MonoBehaviour:
   - Name: 
     Value: 6498
   Exists: 1
+--- !u!114 &-1956566668881400466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_walk_aether
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_walk_aether
+  Guid:
+    Data1: 1124772933
+    Data2: 1161099186
+    Data3: -1802654288
+    Data4: -2146595785
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1871544971077831218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ambience/ambience_thunder
+  m_EditorClassIdentifier: 
+  Path: event:/ambience/ambience_thunder
+  Guid:
+    Data1: -724734200
+    Data2: 1088671537
+    Data3: 1226618275
+    Data4: -422938932
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 41592
+--- !u!114 &-1870944921993992117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/cavalry/wolf_bark
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/cavalry/wolf_bark
+  Guid:
+    Data1: -1395504632
+    Data2: 1131571527
+    Data3: -469877873
+    Data4: -1114752840
+  Banks:
+  - {fileID: 990133301624612997}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 720
+--- !u!114 &-1604009558371188993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/water/water_gush
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/water/water_gush
+  Guid:
+    Data1: -868248004
+    Data2: 1290896575
+    Data3: -1642162507
+    Data4: 826363822
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 0
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,7 +1185,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/entity_creature.bank
   Name: entity_creature
   StudioPath: bank:/entity_creature
-  lastModified: 638765508144593624
+  lastModified: 638766193901692918
   FileSizes: []
   Exists: 1
 --- !u!114 &-1455369554362517336
@@ -1187,7 +1215,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 16065
---- !u!114 &-1371484897445393429
+--- !u!114 &-1440648980988542650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1197,14 +1225,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_why_here
+  m_Name: event:/music/music_the_mage_1
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_why_here
+  Path: event:/music/music_the_mage_1
   Guid:
-    Data1: 2104931130
-    Data2: 1135948807
-    Data3: 580571814
-    Data4: 861964760
+    Data1: 1264238883
+    Data2: 1166232198
+    Data3: -1146513005
+    Data4: -1421955203
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 66336
+--- !u!114 &-1313776028305725586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_strong_will
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_strong_will
+  Guid:
+    Data1: -793438553
+    Data2: 1078597073
+    Data3: 427360141
+    Data4: 312530251
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -1256,36 +1311,9 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MageBossRoom.bank
   Name: MageBossRoom
   StudioPath: bank:/MageBossRoom
-  lastModified: 638765508144593624
+  lastModified: 638766193951557295
   FileSizes: []
   Exists: 1
---- !u!114 &-974223011989813858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_sacrifice_ritual
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_sacrifice_ritual
-  Guid:
-    Data1: 833404426
-    Data2: 1269287094
-    Data3: 1891472823
-    Data4: -1994732900
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-868076270097151498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,7 +1341,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-780962250867317138
+--- !u!114 &-569044866579813906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1323,77 +1351,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_mage_1
+  m_Name: event:/sfx/entity/mage/mage_teleport
   m_EditorClassIdentifier: 
-  Path: event:/music/music_the_mage_1
+  Path: event:/sfx/entity/mage/mage_teleport
   Guid:
-    Data1: 1264238883
-    Data2: 1166232198
-    Data3: -1146513005
-    Data4: -1421955203
+    Data1: 2107872290
+    Data2: 1154623539
+    Data3: -831938424
+    Data4: -1269426426
   Banks:
   - {fileID: -1199358877090321752}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 66336
---- !u!114 &-668757787238128899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_crackle_harsh
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_crackle_harsh
-  Guid:
-    Data1: 1754516644
-    Data2: 1082464356
-    Data3: 2053579693
-    Data4: -1818946968
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 2586
---- !u!114 &-573412480396026316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/giant/giant_hand_clap
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/giant/giant_hand_clap
-  Guid:
-    Data1: -1378493260
-    Data2: 1308922888
-    Data3: 1024582311
-    Data4: -1706104299
-  Banks:
-  - {fileID: 5582867981456367483}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 2376
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,46 +1394,18 @@ MonoBehaviour:
   - {fileID: -7376905227913506980}
   - {fileID: 8137673862642026946}
   - {fileID: 5898306791894782635}
+  - {fileID: -8064444152273702414}
+  - {fileID: 8533034198631698925}
+  - {fileID: -6612218660166795489}
+  - {fileID: -2343995183772285434}
+  - {fileID: 89237910715477955}
   EditorEvents:
-  - {fileID: 509110276680760438}
-  - {fileID: 2379126354797618401}
-  - {fileID: -8406599166103722577}
-  - {fileID: -3184336757824882824}
-  - {fileID: 8553326654869120141}
-  - {fileID: -8453719602779137523}
-  - {fileID: -4034730880550219014}
   - {fileID: -6354800715163179812}
   - {fileID: 6288472444998745138}
   - {fileID: 7176797701013862241}
   - {fileID: 3410614622262735241}
   - {fileID: -2718262583404580216}
   - {fileID: -1455369554362517336}
-  - {fileID: -974223011989813858}
-  - {fileID: -7221845261254922665}
-  - {fileID: 5247302579110212011}
-  - {fileID: 6984867779110156841}
-  - {fileID: -1371484897445393429}
-  - {fileID: 5801823818893206}
-  - {fileID: 1547450101363089817}
-  - {fileID: 7282657673317743593}
-  - {fileID: -2380832551836062586}
-  - {fileID: 1144837275224071666}
-  - {fileID: 2105207644133845358}
-  - {fileID: 8560479575706950634}
-  - {fileID: 3289000675456043092}
-  - {fileID: 7161364910685328330}
-  - {fileID: 5118477055293509769}
-  - {fileID: 4684527436415487863}
-  - {fileID: 8331171441310700537}
-  - {fileID: -6763505532757932392}
-  - {fileID: 5294681485731080420}
-  - {fileID: 5647012999505795646}
-  - {fileID: -4628206569885906289}
-  - {fileID: 5344715932418760653}
-  - {fileID: -2102401281771564003}
-  - {fileID: -4105556081445569354}
-  - {fileID: -4491536622830873902}
-  - {fileID: -4266580863127589984}
   - {fileID: -1254940470250389964}
   - {fileID: -4839623455687858462}
   - {fileID: 1303297687187072698}
@@ -1470,51 +1416,87 @@ MonoBehaviour:
   - {fileID: -868076270097151498}
   - {fileID: 2429924840919398654}
   - {fileID: 4497449691972458087}
-  - {fileID: 3950220307022132306}
-  - {fileID: -3576140160718661681}
-  - {fileID: -4322597117090999852}
-  - {fileID: -5995024502405556693}
-  - {fileID: 5546108897788681636}
-  - {fileID: -8199096960222209436}
-  - {fileID: 1766753314289562432}
-  - {fileID: -573412480396026316}
-  - {fileID: 5010472664317911094}
-  - {fileID: -7735709278696353168}
-  - {fileID: 2560825264167563864}
-  - {fileID: -6277680731841273976}
   - {fileID: 377567603870311856}
   - {fileID: -2909013221424621494}
   - {fileID: 3848748347793837153}
   - {fileID: 7985666534730847752}
   - {fileID: 5300610733192817426}
-  - {fileID: -9015695826522117972}
-  - {fileID: -5233619598671024114}
-  - {fileID: 1566803200837460746}
-  - {fileID: -9064994451914352255}
-  - {fileID: -8668318197240294853}
-  - {fileID: -6776011629352066327}
   - {fileID: 142528699287576996}
   - {fileID: 2668327938981146815}
   - {fileID: 2584838497792574147}
   - {fileID: -7178158262075843451}
-  - {fileID: 3217067466705830715}
-  - {fileID: 7070284886081672070}
-  - {fileID: -780962250867317138}
-  - {fileID: -5492271262660430094}
-  - {fileID: 7152442963978020657}
-  - {fileID: -6913431059172784355}
-  - {fileID: -668757787238128899}
-  - {fileID: -7741107742412982269}
-  - {fileID: 728985965188455855}
-  - {fileID: -6454125156409964814}
-  - {fileID: 5509624686610302784}
-  - {fileID: 6767369716258589678}
-  - {fileID: -8448066528638228925}
   - {fileID: 7201104037349066105}
   - {fileID: 2824895540810843988}
-  - {fileID: 9012728332702393522}
   - {fileID: 2062679436745817565}
   - {fileID: 2871146979668874304}
+  - {fileID: -1870944921993992117}
+  - {fileID: 4391160236348046440}
+  - {fileID: -8912933431806311764}
+  - {fileID: 8911405654626039200}
+  - {fileID: -2919389053999839726}
+  - {fileID: 6338137475121657108}
+  - {fileID: 2538298090083559023}
+  - {fileID: 7860722707656635162}
+  - {fileID: 8926371047000038852}
+  - {fileID: -7828234841686502172}
+  - {fileID: 1368593351017273300}
+  - {fileID: 9017103000158519115}
+  - {fileID: -1956566668881400466}
+  - {fileID: 3386582371930786472}
+  - {fileID: 2775966390606349374}
+  - {fileID: 3349788079991150512}
+  - {fileID: 2882838195033493903}
+  - {fileID: 1259851183367381982}
+  - {fileID: -6586984100224138012}
+  - {fileID: 9200753264672436245}
+  - {fileID: 6266687111938244116}
+  - {fileID: -1313776028305725586}
+  - {fileID: 648199760415638795}
+  - {fileID: 2291758068713587625}
+  - {fileID: -5781394612173751023}
+  - {fileID: 4922258309023937857}
+  - {fileID: 431618207786100843}
+  - {fileID: -8739212555828414321}
+  - {fileID: 7809366804188624018}
+  - {fileID: 2811809818531968501}
+  - {fileID: 1489295366168758306}
+  - {fileID: -6601162227849016598}
+  - {fileID: -3287268112208275591}
+  - {fileID: -1604009558371188993}
+  - {fileID: -8215142903794234965}
+  - {fileID: 8838749087075147615}
+  - {fileID: 570830700781935180}
+  - {fileID: -6089186418898427837}
+  - {fileID: 3772128913221899418}
+  - {fileID: 2502438872290567814}
+  - {fileID: -3671802488352543474}
+  - {fileID: 5192216759559350812}
+  - {fileID: -6928406992107553177}
+  - {fileID: -8364627136423830958}
+  - {fileID: 8449259295099094588}
+  - {fileID: 6681476005456710931}
+  - {fileID: 1000676335395018053}
+  - {fileID: -5412671958185362387}
+  - {fileID: -2414423397388064227}
+  - {fileID: -1871544971077831218}
+  - {fileID: -569044866579813906}
+  - {fileID: -1440648980988542650}
+  - {fileID: 7663365654994686397}
+  - {fileID: -3072938771754048318}
+  - {fileID: 7097605437817961901}
+  - {fileID: 5191816738684716058}
+  - {fileID: 5671951951452745933}
+  - {fileID: 8665241086508267795}
+  - {fileID: -3616463758111246777}
+  - {fileID: 8523631324640551351}
+  - {fileID: -2542664579186394119}
+  - {fileID: -8434444533909351027}
+  - {fileID: 2999255370515486070}
+  - {fileID: 1578612903813004823}
+  - {fileID: -6412585855896732308}
+  - {fileID: -8953154929241738339}
+  - {fileID: -9166051111801010755}
+  - {fileID: -5125400869483912426}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1522,9 +1504,9 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638765508144907491
+  cacheTime: 638766194189065900
   cacheVersion: 131846
---- !u!114 &5801823818893206
+--- !u!114 &89237910715477955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1533,24 +1515,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_walk_aether
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/TutorialRoom1.bank
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_walk_aether
-  Guid:
-    Data1: 1124772933
-    Data2: 1161099186
-    Data3: -1802654288
-    Data4: -2146595785
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/TutorialRoom1.bank
+  Name: TutorialRoom1
+  StudioPath: bank:/TutorialRoom1
+  lastModified: 638766194186951021
+  FileSizes: []
+  Exists: 1
 --- !u!114 &142528699287576996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,7 +1578,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 60048
---- !u!114 &509110276680760438
+--- !u!114 &431618207786100843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1615,24 +1588,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/cavalry/wolf_bark
+  m_Name: event:/voice/domine/domine_cursed_one
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/cavalry/wolf_bark
+  Path: event:/voice/domine/domine_cursed_one
   Guid:
-    Data1: -1395504632
-    Data2: 1131571527
-    Data3: -469877873
-    Data4: -1114752840
+    Data1: -1015033659
+    Data2: 1151104084
+    Data3: 1002112415
+    Data4: 2079646844
   Banks:
-  - {fileID: 990133301624612997}
+  - {fileID: -4397991277702180408}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 720
---- !u!114 &728985965188455855
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &570830700781935180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1642,23 +1615,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/mage/mage_bells
+  m_Name: event:/music/music_the_giant_1
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/mage/mage_bells
+  Path: event:/music/music_the_giant_1
   Guid:
-    Data1: 2031588315
-    Data2: 1227159312
-    Data3: -1312017734
-    Data4: -412757002
+    Data1: 1647354955
+    Data2: 1122231148
+    Data3: -37098109
+    Data4: -1118078341
   Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 1
+  - {fileID: 5582867981456367483}
+  IsStream: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 9624
+  MaxDistance: 20
+  Length: 66336
+--- !u!114 &648199760415638795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_burned_woman
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_burned_woman
+  Guid:
+    Data1: -974341203
+    Data2: 1089335656
+    Data3: -492565096
+    Data4: -1811306370
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &990133301624612997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1674,9 +1674,37 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/CavalryBossRoom.bank
   Name: CavalryBossRoom
   StudioPath: bank:/CavalryBossRoom
-  lastModified: 638765508143492166
+  lastModified: 638766193867146162
   FileSizes: []
   Exists: 1
+--- !u!114 &1000676335395018053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/water/water_rushing
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/water/water_rushing
+  Guid:
+    Data1: 82307575
+    Data2: 1340702580
+    Data3: 713012869
+    Data4: 1885723329
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7704991447377865006}
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 0
 --- !u!114 &1095959780618285751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,7 +1732,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1144837275224071666
+--- !u!114 &1259851183367381982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1714,23 +1742,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_domine
+  m_Name: event:/voice/domine/domine_unless
   m_EditorClassIdentifier: 
-  Path: event:/music/music_domine
+  Path: event:/voice/domine/domine_unless
   Guid:
-    Data1: -759603359
-    Data2: 1266499600
-    Data3: 789537702
-    Data4: -479004224
+    Data1: -1873025695
+    Data2: 1291715177
+    Data3: 1024890813
+    Data4: -1225559615
   Banks:
   - {fileID: -4397991277702180408}
-  IsStream: 1
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 156552
+  Length: 0
 --- !u!114 &1303297687187072698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,7 +1786,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 2952
---- !u!114 &1547450101363089817
+--- !u!114 &1368593351017273300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1768,14 +1796,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_fix_woman
+  m_Name: event:/voice/domine/domine_warning
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_fix_woman
+  Path: event:/voice/domine/domine_warning
   Guid:
-    Data1: 727975249
-    Data2: 1139734632
-    Data3: -1363000696
-    Data4: -1215320137
+    Data1: -519513823
+    Data2: 1302208671
+    Data3: 1006450594
+    Data4: -1849800008
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -1785,7 +1813,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1566803200837460746
+--- !u!114 &1489295366168758306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_no
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_no
+  Guid:
+    Data1: 162143471
+    Data2: 1289539691
+    Data3: -399718734
+    Data4: 1078255580
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1578612903813004823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1812,33 +1867,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 2064
---- !u!114 &1766753314289562432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_gurgle
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_gurgle
-  Guid:
-    Data1: 1421974921
-    Data2: 1209162984
-    Data3: 1365826974
-    Data4: -1175685684
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 6000
 --- !u!114 &1791510603601319508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,7 +1920,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4627
---- !u!114 &2105207644133845358
+--- !u!114 &2291758068713587625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1902,14 +1930,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_unless
+  m_Name: event:/voice/domine/domine_dead_woman
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_unless
+  Path: event:/voice/domine/domine_dead_woman
   Guid:
-    Data1: -1873025695
-    Data2: 1291715177
-    Data3: 1024890813
-    Data4: -1225559615
+    Data1: -1411337291
+    Data2: 1336966883
+    Data3: 977122188
+    Data4: -1836675314
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -1919,33 +1947,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2379126354797618401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_cavalry_1
-  m_EditorClassIdentifier: 
-  Path: event:/music/music_the_cavalry_1
-  Guid:
-    Data1: -414653677
-    Data2: 1079403103
-    Data3: 1912532106
-    Data4: 36740790
-  Banks:
-  - {fileID: 990133301624612997}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 166152
 --- !u!114 &2429924840919398654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,7 +1974,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2560825264167563864
+--- !u!114 &2502438872290567814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1983,24 +1984,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_rushing
+  m_Name: event:/sfx/entity/giant/giant_hammer_down
   m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_rushing
+  Path: event:/sfx/entity/giant/giant_hammer_down
   Guid:
-    Data1: 82307575
-    Data2: 1340702580
-    Data3: 713012869
-    Data4: 1885723329
+    Data1: -410754943
+    Data2: 1304117805
+    Data3: 2025597058
+    Data4: 478024825
   Banks:
   - {fileID: 5582867981456367483}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -3655661117982130466}
+  IsOneShot: 1
+  Parameters: []
   MinDistance: 1
   MaxDistance: 35
   Length: 0
+--- !u!114 &2538298090083559023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_cavalry_2
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_cavalry_2
+  Guid:
+    Data1: -939543079
+    Data2: 1282645706
+    Data3: -2137782113
+    Data4: -1346702534
+  Banks:
+  - {fileID: 990133301624612997}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 131832
 --- !u!114 &2584838497792574147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2048,6 +2075,60 @@ MonoBehaviour:
     Data4: 1872322409
   Banks:
   - {fileID: 5898306791894782635}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2775966390606349374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_mountain_summit
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_mountain_summit
+  Guid:
+    Data1: -255138734
+    Data2: 1189254716
+    Data3: 1208289687
+    Data4: 1267695756
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2811809818531968501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_enter_room
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_enter_room
+  Guid:
+    Data1: -88969255
+    Data2: 1276835238
+    Data3: 356834219
+    Data4: 1150663560
+  Banks:
+  - {fileID: -4397991277702180408}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2110,7 +2191,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &3217067466705830715
+--- !u!114 &2882838195033493903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2120,24 +2201,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ambience/ambience_thunder
+  m_Name: event:/music/music_domine
   m_EditorClassIdentifier: 
-  Path: event:/ambience/ambience_thunder
+  Path: event:/music/music_domine
   Guid:
-    Data1: -724734200
-    Data2: 1088671537
-    Data3: 1226618275
-    Data4: -422938932
+    Data1: -759603359
+    Data2: 1266499600
+    Data3: 789537702
+    Data4: -479004224
   Banks:
-  - {fileID: -1199358877090321752}
+  - {fileID: -4397991277702180408}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 41592
---- !u!114 &3289000675456043092
+  Length: 156552
+--- !u!114 &2999255370515486070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2147,14 +2228,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_its_expensive
+  m_Name: event:/ambience/ambience_wind
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_its_expensive
+  Path: event:/ambience/ambience_wind
   Guid:
-    Data1: -485216906
-    Data2: 1268281125
-    Data3: -292994897
-    Data4: 353277979
+    Data1: 182568258
+    Data2: 1296758364
+    Data3: 553892002
+    Data4: -1578378908
+  Banks:
+  - {fileID: 8137673862642026946}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -9142436469058321972}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3349788079991150512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_waiting_mortal
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_waiting_mortal
+  Guid:
+    Data1: -448314026
+    Data2: 1289794684
+    Data3: -600684888
+    Data4: 1536009854
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3386582371930786472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_fix_woman
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_fix_woman
+  Guid:
+    Data1: 727975249
+    Data2: 1139734632
+    Data3: -1363000696
+    Data4: -1215320137
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -2184,6 +2320,7 @@ MonoBehaviour:
     Data4: 1988523309
   Banks:
   - {fileID: 990133301624612997}
+  - {fileID: -8064444152273702414}
   - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 1
@@ -2192,6 +2329,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 7000
+--- !u!114 &3772128913221899418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/stone/stone_footstep_heavy
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/stone/stone_footstep_heavy
+  Guid:
+    Data1: -1820467844
+    Data2: 1248915609
+    Data3: -1761159540
+    Data4: 789310021
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 864
 --- !u!114 &3848748347793837153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,7 +2384,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 3408
---- !u!114 &3950220307022132306
+--- !u!114 &4391160236348046440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2230,23 +2394,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/water/water_gush
+  m_Name: event:/music/music_the_cavalry_1
   m_EditorClassIdentifier: 
-  Path: event:/sfx/water/water_gush
+  Path: event:/music/music_the_cavalry_1
   Guid:
-    Data1: -868248004
-    Data2: 1290896575
-    Data3: -1642162507
-    Data4: 826363822
+    Data1: -414653677
+    Data2: 1079403103
+    Data3: 1912532106
+    Data4: 36740790
   Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
+  - {fileID: 990133301624612997}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
-  MaxDistance: 35
-  Length: 0
+  MaxDistance: 20
+  Length: 166152
 --- !u!114 &4421162181565660632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2262,7 +2426,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/entity_player.bank
   Name: entity_player
   StudioPath: bank:/entity_player
-  lastModified: 638765507164520865
+  lastModified: 638766193904173047
   FileSizes: []
   Exists: 1
 --- !u!114 &4497449691972458087
@@ -2293,115 +2457,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4684527436415487863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_burned_woman
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_burned_woman
-  Guid:
-    Data1: -974341203
-    Data2: 1089335656
-    Data3: -492565096
-    Data4: -1811306370
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5010472664317911094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/stone/stone_shuffle
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/stone/stone_shuffle
-  Guid:
-    Data1: -1820064586
-    Data2: 1194325898
-    Data3: -329801597
-    Data4: -610873449
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 0
---- !u!114 &5118477055293509769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_strong_will
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_strong_will
-  Guid:
-    Data1: -793438553
-    Data2: 1078597073
-    Data3: 427360141
-    Data4: 312530251
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5247302579110212011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_no_hope
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_no_hope
-  Guid:
-    Data1: -1992477671
-    Data2: 1125717777
-    Data3: -1518331472
-    Data4: -123851361
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5294681485731080420
+--- !u!114 &4922258309023937857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2421,6 +2477,60 @@ MonoBehaviour:
     Data4: -957486309
   Banks:
   - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5191816738684716058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/electricity/electricity_crackle_harsh
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/electricity/electricity_crackle_harsh
+  Guid:
+    Data1: 1754516644
+    Data2: 1082464356
+    Data3: 2053579693
+    Data4: -1818946968
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 2586
+--- !u!114 &5192216759559350812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/giant/giant_hand_clap
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/giant/giant_hand_clap
+  Guid:
+    Data1: -1378493260
+    Data2: 1308922888
+    Data3: 1024582311
+    Data4: -1706104299
+  Banks:
+  - {fileID: 5582867981456367483}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2455,87 +2565,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 37320
---- !u!114 &5344715932418760653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_youre_mortals
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_youre_mortals
-  Guid:
-    Data1: -48455214
-    Data2: 1259459922
-    Data3: 1222597538
-    Data4: -743753228
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5509624686610302784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/magic/magic_impact_light
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/magic/magic_impact_light
-  Guid:
-    Data1: -786315273
-    Data2: 1078869814
-    Data3: 100951708
-    Data4: -518611725
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1080
---- !u!114 &5546108897788681636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/stone/stone_footstep_heavy
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/stone/stone_footstep_heavy
-  Guid:
-    Data1: -1820467844
-    Data2: 1248915609
-    Data3: -1761159540
-    Data4: 789310021
-  Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 864
 --- !u!114 &5550394752543356584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,10 +2607,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638765508143968657
+  lastModified: 638766193929755377
   FileSizes: []
   Exists: 1
---- !u!114 &5647012999505795646
+--- !u!114 &5671951951452745933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2591,23 +2620,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_cursed_one
+  m_Name: event:/sfx/electricity/electricity_burst_soft
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_cursed_one
+  Path: event:/sfx/electricity/electricity_burst_soft
   Guid:
-    Data1: -1015033659
-    Data2: 1151104084
-    Data3: 1002112415
-    Data4: 2079646844
+    Data1: -360032073
+    Data2: 1155070046
+    Data3: 136886189
+    Data4: 2142733198
   Banks:
-  - {fileID: -4397991277702180408}
+  - {fileID: -1199358877090321752}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  MaxDistance: 35
+  Length: 1520
 --- !u!114 &5898306791894782635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2623,9 +2652,36 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/ui.bank
   Name: ui
   StudioPath: bank:/ui
-  lastModified: 638765508144907491
+  lastModified: 638766194189065900
   FileSizes: []
   Exists: 1
+--- !u!114 &6266687111938244116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_an_offering
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_an_offering
+  Guid:
+    Data1: 1467861890
+    Data2: 1254049888
+    Data3: -513132128
+    Data4: -1529017323
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6288472444998745138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,6 +2711,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2088
+--- !u!114 &6338137475121657108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/cavalry/wolf_howl
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/cavalry/wolf_howl
+  Guid:
+    Data1: -195739448
+    Data2: 1084924785
+    Data3: -60673889
+    Data4: -886666317
+  Banks:
+  - {fileID: 990133301624612997}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 4728
 --- !u!114 &6441361075827419593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2670,10 +2753,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_altar.bank
   Name: cutscene_altar
   StudioPath: bank:/cutscene_altar
-  lastModified: 638765507164078186
+  lastModified: 638766193870447917
   FileSizes: []
   Exists: 1
---- !u!114 &6767369716258589678
+--- !u!114 &6681476005456710931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2683,14 +2766,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_the_giant_1
+  m_Name: event:/music/music_the_giant_2
   m_EditorClassIdentifier: 
-  Path: event:/music/music_the_giant_1
+  Path: event:/music/music_the_giant_2
   Guid:
-    Data1: 1647354955
-    Data2: 1122231148
-    Data3: -37098109
-    Data4: -1118078341
+    Data1: -65437739
+    Data2: 1242645979
+    Data3: -1093749603
+    Data4: 962901659
   Banks:
   - {fileID: 5582867981456367483}
   IsStream: 1
@@ -2699,8 +2782,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 66336
---- !u!114 &6984867779110156841
+  Length: 119232
+--- !u!114 &7097605437817961901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2710,41 +2793,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_warning
+  m_Name: event:/sfx/magic/magic_footstep
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_warning
+  Path: event:/sfx/magic/magic_footstep
   Guid:
-    Data1: -519513823
-    Data2: 1302208671
-    Data3: 1006450594
-    Data4: -1849800008
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7070284886081672070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/mage/mage_teleport
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/mage/mage_teleport
-  Guid:
-    Data1: 2107872290
-    Data2: 1154623539
-    Data3: -831938424
-    Data4: -1269426426
+    Data1: 1343788441
+    Data2: 1270254900
+    Data3: -500873847
+    Data4: -1233719564
   Banks:
   - {fileID: -1199358877090321752}
   IsStream: 0
@@ -2753,61 +2809,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2376
---- !u!114 &7152442963978020657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/electricity/electricity_crackle_soft
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/electricity/electricity_crackle_soft
-  Guid:
-    Data1: -1608521175
-    Data2: 1258034358
-    Data3: 657290162
-    Data4: -1129431129
-  Banks:
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 35
-  Length: 5041
---- !u!114 &7161364910685328330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_an_offering
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_an_offering
-  Guid:
-    Data1: 1467861890
-    Data2: 1254049888
-    Data3: -513132128
-    Data4: -1529017323
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  Length: 1080
 --- !u!114 &7176797701013862241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2828,6 +2830,7 @@ MonoBehaviour:
     Data4: 1448724782
   Banks:
   - {fileID: 990133301624612997}
+  - {fileID: -8064444152273702414}
   - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 1
@@ -2864,33 +2867,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 2952
---- !u!114 &7282657673317743593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_mountain_summit
-  m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_mountain_summit
-  Guid:
-    Data1: -255138734
-    Data2: 1189254716
-    Data3: 1208289687
-    Data4: 1267695756
-  Banks:
-  - {fileID: -4397991277702180408}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &7653400970466766072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2915,6 +2891,87 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &7663365654994686397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_the_mage_2
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_the_mage_2
+  Guid:
+    Data1: -2040253147
+    Data2: 1337355953
+    Data3: -1211092585
+    Data4: -902786475
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 119232
+--- !u!114 &7809366804188624018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_youre_mortals
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_youre_mortals
+  Guid:
+    Data1: -48455214
+    Data2: 1259459922
+    Data3: 1222597538
+    Data4: -743753228
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7860722707656635162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_sacrifice_ritual
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_sacrifice_ritual
+  Guid:
+    Data1: 833404426
+    Data2: 1269287094
+    Data3: 1891472823
+    Data4: -1994732900
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7985666534730847752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,6 +2992,8 @@ MonoBehaviour:
     Data4: -1432843914
   Banks:
   - {fileID: -7376905227913506980}
+  - {fileID: -6612218660166795489}
+  - {fileID: -2343995183772285434}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2957,10 +3016,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_snow.bank
   Name: room_snow
   StudioPath: bank:/room_snow
-  lastModified: 638765508144907491
+  lastModified: 638766194186109987
   FileSizes: []
   Exists: 1
---- !u!114 &8331171441310700537
+--- !u!114 &8449259295099094588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2970,24 +3029,69 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_dead_woman
+  m_Name: event:/sfx/water/water_splash_heavy
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_dead_woman
+  Path: event:/sfx/water/water_splash_heavy
   Guid:
-    Data1: -1411337291
-    Data2: 1336966883
-    Data3: 977122188
-    Data4: -1836675314
+    Data1: 503728340
+    Data2: 1209592825
+    Data3: 1060581003
+    Data4: -1602352428
   Banks:
-  - {fileID: -4397991277702180408}
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 0
+--- !u!114 &8523631324640551351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/magic/magic_impact_light
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/magic/magic_impact_light
+  Guid:
+    Data1: -786315273
+    Data2: 1078869814
+    Data3: 100951708
+    Data4: -518611725
+  Banks:
+  - {fileID: -1199358877090321752}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &8553326654869120141
+  Length: 1080
+--- !u!114 &8533034198631698925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MainMenu.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/MainMenu.bank
+  Name: MainMenu
+  StudioPath: bank:/MainMenu
+  lastModified: 638766194148342075
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8665241086508267795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2997,14 +3101,68 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/entity/cavalry/rider_bow_shot
+  m_Name: event:/sfx/entity/mage/mage_bells
   m_EditorClassIdentifier: 
-  Path: event:/sfx/entity/cavalry/rider_bow_shot
+  Path: event:/sfx/entity/mage/mage_bells
   Guid:
-    Data1: -163303274
-    Data2: 1196418565
-    Data3: -942332234
-    Data4: 1906453960
+    Data1: 2031588315
+    Data2: 1227159312
+    Data3: -1312017734
+    Data4: -412757002
+  Banks:
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 9624
+--- !u!114 &8838749087075147615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/water/water_splash_light
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/water/water_splash_light
+  Guid:
+    Data1: 1292311625
+    Data2: 1160555847
+    Data3: 993364406
+    Data4: 1621581729
+  Banks:
+  - {fileID: 5582867981456367483}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 0
+--- !u!114 &8911405654626039200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/cavalry/wolf_jump
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/cavalry/wolf_jump
+  Guid:
+    Data1: 625599305
+    Data2: 1298314712
+    Data3: -1605761648
+    Data4: 188603305
   Banks:
   - {fileID: 990133301624612997}
   IsStream: 0
@@ -3013,8 +3171,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 35
-  Length: 1464
---- !u!114 &8560479575706950634
+  Length: 1018
+--- !u!114 &8926371047000038852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3024,14 +3182,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/voice/domine/domine_under_arches
+  m_Name: event:/voice/domine/woman_gasp_reverb
   m_EditorClassIdentifier: 
-  Path: event:/voice/domine/domine_under_arches
+  Path: event:/voice/domine/woman_gasp_reverb
   Guid:
-    Data1: 1918154350
-    Data2: 1207677890
-    Data3: -1674398543
-    Data4: -850808792
+    Data1: 513844757
+    Data2: 1211838170
+    Data3: 1106914223
+    Data4: 1983115777
   Banks:
   - {fileID: -4397991277702180408}
   IsStream: 0
@@ -3041,7 +3199,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &9012728332702393522
+--- !u!114 &9017103000158519115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3051,20 +3209,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_domine_door
+  m_Name: event:/voice/domine/domine_why_here
   m_EditorClassIdentifier: 
-  Path: event:/music/music_domine_door
+  Path: event:/voice/domine/domine_why_here
   Guid:
-    Data1: -683583544
-    Data2: 1227451961
-    Data3: 1812024208
-    Data4: 984055402
+    Data1: 2104931130
+    Data2: 1135948807
+    Data3: 580571814
+    Data4: 861964760
   Banks:
-  - {fileID: 5582867981456367483}
-  IsStream: 1
+  - {fileID: -4397991277702180408}
+  IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 16065
+  Length: 0
+--- !u!114 &9200753264672436245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_its_expensive
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_its_expensive
+  Guid:
+    Data1: -485216906
+    Data2: 1268281125
+    Data3: -292994897
+    Data4: 353277979
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
