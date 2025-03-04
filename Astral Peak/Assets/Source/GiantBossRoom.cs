@@ -23,7 +23,7 @@ public class GiantBossRoom : BossRoomHandler{
     }
 
     protected override void check_world_state(){
-        if(GameManager.get_boss_state(2)==true){
+        if(GameManager.get_boss_state(2)==true && GameManager.get_state() != GameState.CUTSCENE){
             unlink_fight_start_trigger();
             Player.instance.set_spawn_point(respawn_points[0].gameObject.name);
             CutsceneManager.play(new Cutscenes.DomineDoorOpening());

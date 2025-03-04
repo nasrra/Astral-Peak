@@ -2114,6 +2114,7 @@ MonoBehaviour:
   ambience_track: 
   music_track: 
   final_cutscene_camera_target: {fileID: 1505791830}
+  domine_particles: {fileID: 0}
   final_cutscene_camera_movement: 2
   domine_door: {fileID: 1244933018}
   credits: {fileID: 2135091504}
@@ -2807,6 +2808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1179205131957304457, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+      propertyPath: hearts.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2814723934038782069, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
       propertyPath: m_Name
       value: Main Camera (Gameplay)
@@ -2867,6 +2872,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6552074514865581583, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
     - {fileID: 2921908612438562816, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+    - {fileID: 824331404698346181, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+    - {fileID: 964098854061626371, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+    - {fileID: 3001386937971720082, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+    - {fileID: 6574100650802575674, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
+    - {fileID: 2701135433565040007, guid: c79cf4430ce5cac478affabe03fff886, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c79cf4430ce5cac478affabe03fff886, type: 3}

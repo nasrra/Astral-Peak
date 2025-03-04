@@ -16,6 +16,7 @@ public class RoomHandler : MonoBehaviour{
     public string ambience_track;
     public string music_track;
     [SerializeField] Transform final_cutscene_camera_target;
+    [SerializeField] ParticleSystem domine_particles;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
         //if (current_room_type == RoomType.NONE)
@@ -58,9 +59,8 @@ public class RoomHandler : MonoBehaviour{
     public virtual void game_cleared_room_state(){
         game_cleared_camera_movement();
         Player.instance.gameObject.SetActive(false);
-        if(EnemyManager.instance != null){
-            EnemyManager.instance.set_start_all_inactive(true);
-        }
+        domine_particles.Play();
+        EnemyManager.instance?.set_start_all_inactive(true);
         
     }
 
@@ -68,9 +68,9 @@ public class RoomHandler : MonoBehaviour{
         CameraController.instance.set_target(final_cutscene_camera_target);
         CameraController.instance.snap_to_target();
         if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.LEFT)
-            CameraController.instance.lerp_offset(-15,null,10);
+            CameraController.instance.lerp_offset(-30,null,13);
         else if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.DOWN)
-            CameraController.instance.lerp_offset(null,-15,15);
+            CameraController.instance.lerp_offset(null,-30,13);
     }
 
 

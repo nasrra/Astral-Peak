@@ -795,6 +795,81 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 66115730}
   factor: 0.25
+--- !u!1001 &1027348026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1113684052}
+    m_Modifications:
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.483349
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893320497976805670, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494105414714186799, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_Name
+      value: DomineParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6788384376304571744, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+--- !u!4 &1027348027 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1433080993216767029, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+  m_PrefabInstance: {fileID: 1027348026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1027348028 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2893320497976805670, guid: 1f1cb81cf7cd10d42b35470ecd1df9f3, type: 3}
+  m_PrefabInstance: {fileID: 1027348026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1071029799
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +1045,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.0346, z: 0}
   m_LocalScale: {x: 1, y: 1.004, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1027348027}
   m_Father: {fileID: 1828355907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1113684053
@@ -1550,12 +1626,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 321282153553528093, guid: c5085b091a0ac074f916418f725e10c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 321282153553528093, guid: c5085b091a0ac074f916418f725e10c9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 7675504043792195320, guid: c5085b091a0ac074f916418f725e10c9, type: 3}
+      propertyPath: domine_particles
+      value: 
+      objectReference: {fileID: 1027348028}
     - target: {fileID: 8123607635011266469, guid: c5085b091a0ac074f916418f725e10c9, type: 3}
       propertyPath: m_Name
       value: SceneInfo (Snow)
