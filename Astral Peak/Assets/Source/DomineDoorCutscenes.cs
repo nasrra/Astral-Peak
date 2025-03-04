@@ -37,8 +37,8 @@ public class DomineDoorFinal : Cutscene{
         //"ShrineInterlude1",
     };
 
-    GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
     public override IEnumerator get_coroutine(){
+        GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
         AudioManager.load_bank("cutscene_final");
         DomineDoor domine_door = room.get_domine_door();
         CharacterMovement player_movement = Player.instance.get_movement() as CharacterMovement;
@@ -50,11 +50,10 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(2); // 8
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        // CustomSceneManager.loaded_scene += astral_plane_segment;
+        CustomSceneManager.loaded_scene += astral_plane_segment;
         // CustomSceneManager.loaded_scene += start_scene_swap_segment;
         // CustomSceneManager.loaded_scene += start_shrine_segment;
-        CustomSceneManager.loaded_scene += start_end_credits_segment;
-        room.game_cleared_room_state();
+        // CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
     protected void astral_plane_segment(){
@@ -66,7 +65,9 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.get_sprite().set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.get_domine_door().opened();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
+        astral_room.domine.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4);
         DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
         Player.instance.get_sprite().fade_from_black();
         yield return new WaitForSeconds(6);

@@ -5,6 +5,7 @@ public class AstralPlaneRoomHandler : RoomHandler{
     [Header("AstralPlaneRoomHandler")]
     [SerializeField] DomineDoor domine_door;
     [SerializeField] Animator credits;
+    [field: SerializeField] public Domine domine {get; private set;}
     protected override void Start(){
         CameraEffects.instance.astral_plane_state();
         base.Start();

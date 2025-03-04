@@ -27,8 +27,21 @@ public class AudioSpectrum : MonoBehaviour{
         RuntimeManager.CoreSystem.createDSPByType(DSP_TYPE.FFT, out fft_dsp);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOWSIZE, samples_length);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOW, (int)window_type);
-        group.addDSP(0,fft_dsp);        
+        group.getChannel(0, out Channel _channel);
+        _channel.addDSP(0,fft_dsp);        
         UnityHook.instance.StartCoroutine(audio_data_loop());
+    }
+
+    public void link_sound(EventInstance _event){
+        FMOD.ChannelGroup channelGroup;
+        if (_event.getChannelGroup(out channelGroup) == FMOD.RESULT.OK)
+        {
+            FMOD.Channel channel;
+            if (channelGroup.getChannel(0, out channel) == FMOD.RESULT.OK)  // Get first channel
+            {
+            }
+        }
+
     }
 
     public void uninitialize(){

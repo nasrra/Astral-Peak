@@ -83,7 +83,6 @@ public class ShrineOpeningCutscene : Cutscene{
                 CutsceneManager.set_coroutine(middle()); 
                 break;
             case 14: 
-                //world_constellation_on?.Invoke();
                 room.gateway_constellation.fade_in();
                 break;
             case 19:
