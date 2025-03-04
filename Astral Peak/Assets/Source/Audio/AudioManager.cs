@@ -23,6 +23,8 @@ public static class AudioManager{
     static string current_music_track = "";
     static string current_ambience_track = "";
     static string current_additive_ambience_track = "";
+    public static bool lock_ambience = false;
+    public static bool lock_music = false;
 
     public static void initialize(){
         // load master banks.
@@ -95,8 +97,8 @@ public static class AudioManager{
     }
 
     public static void play_music(string _event_name){
-        if(current_ambience_track == _event_name)
-            return;            
+        if(current_ambience_track == _event_name || lock_music == true)
+            return;
         stop_music();
         music_track = create_event_instance(_event_name);
         music_track.start();
@@ -111,7 +113,7 @@ public static class AudioManager{
     }
 
     public static void play_ambience(string _event_name){
-        if(current_ambience_track == _event_name)
+        if(current_ambience_track == _event_name || lock_ambience == true)
             return;
         stop_ambience();
         ambience_track = create_event_instance(_event_name);
@@ -127,11 +129,12 @@ public static class AudioManager{
     }
 
     public static void set_ambience_parameter(string _parameter, int _value){
-        ambience_track.setParameterByName(_parameter, _value);
+        if(ambience_track.isValid())
+            ambience_track.setParameterByName(_parameter, _value);
     }
 
     public static void play_additive_ambience(string _event_name){
-        if(current_additive_ambience_track == _event_name)
+        if(current_additive_ambience_track == _event_name || lock_ambience == true)
             return;
         stop_additive_ambience();
         additive_ambience_track = create_event_instance(_event_name);

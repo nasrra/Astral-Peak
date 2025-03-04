@@ -45,7 +45,6 @@ public class RoomHandler : MonoBehaviour{
         game_cleared_camera_movement();
         Player.instance.gameObject.SetActive(false);
         if(EnemyManager.instance != null){
-            Debug.Log("called");
             EnemyManager.instance.set_start_all_inactive(true);
         }
         

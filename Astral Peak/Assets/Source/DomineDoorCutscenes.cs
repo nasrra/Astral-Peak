@@ -7,7 +7,6 @@ namespace Cutscenes{
 public class DomineDoorOpening : Cutscene{
     GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
     public override IEnumerator get_coroutine(){
-        Debug.Log(room);
         DomineDoor domine_door = room.get_domine_door();
         yield return new WaitForSeconds(2);
         domine_door.open();
@@ -34,6 +33,7 @@ public class DomineDoorFinal : Cutscene{
         "SnowInterlude2",
         "CavalryBossRoom",
         "SnowInterlude1",
+        "ShrineInterlude1",
     };
 
     GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
@@ -45,17 +45,18 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.transform.position = domine_door.get_player_point().position;
         Player.instance.get_sprite().fade_to_black();
         Player.instance.get_sprite().enter_domine_door_layer();
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(2); // 8
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        CustomSceneManager.loaded_scene += astral_plane_segment;
-        // CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        // CustomSceneManager.loaded_scene += astral_plane_segment;
+        CustomSceneManager.loaded_scene += start_scene_swap_segment;
         //CustomSceneManager.loaded_scene += start_shrine_segment;
         //CustomSceneManager.loaded_scene += start_end_credits_segment;
         room.game_cleared_room_state();
         yield break;
     }
     protected void astral_plane_segment(){
+        AudioManager.load_bank("cutscene_astral_plane");
         CustomSceneManager.loaded_scene -= astral_plane_segment;
         CutsceneManager.set_coroutine(astral_plane_opening());
     }
@@ -73,6 +74,9 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void start_scene_swap_segment(){
+        AudioManager.lock_ambience  = true;
+        AudioManager.lock_music     = true;
+        AudioManager.unload_bank("cutscene_astral_plane");
         DialogueHandler.instance.dialogue_ended -= start_scene_swap_segment;
         CustomSceneManager.loaded_scene         -= start_scene_swap_segment;
         scene_swap_logic();
@@ -101,6 +105,8 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void start_shrine_segment(){
+        AudioManager.lock_ambience  = false;
+        AudioManager.lock_music     = false;
         CustomSceneManager.loaded_scene -= start_shrine_segment;
         DialogueHandler.instance.dialogue_ended -= start_shrine_segment;
         CustomSceneManager.load_scene_with_transitions("Shrine");

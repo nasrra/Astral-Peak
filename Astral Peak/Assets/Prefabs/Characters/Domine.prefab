@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 3426174878451775104}
   - component: {fileID: 5407550164289133484}
   - component: {fileID: 2695712606902568578}
+  - component: {fileID: 507753675719253498}
   m_Layer: 0
   m_Name: Domine
   m_TagString: Untagged
@@ -836,10 +837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda0ebee8d63e7c4f99b41df202f3d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  audio_spectrum:
-  - {fileID: 2695712606902568578}
+  audio_spectrum: {fileID: 2695712606902568578}
   id: 1
+  audio_player: {fileID: 507753675719253498}
 --- !u!114 &2695712606902568578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,73 +852,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1670ed463435d4b8f2d8b8830eb457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  samples:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  smoothFactor: 0.1
+--- !u!114 &507753675719253498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115112392579241435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4184950287397817387
 GameObject:
   m_ObjectHideFlags: 0

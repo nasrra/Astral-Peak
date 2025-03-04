@@ -26,7 +26,6 @@ public class CavalryBossRoom : BossRoomHandler{
 
     protected override void check_world_state(){
         if(GameManager.get_boss_state(0)==true){
-            Log.MethodCall();
             unlink_fight_start_trigger();
             Player.instance.set_spawn_point(fight_start_trigger.gameObject.name);
             exit.set_start_open(true);
