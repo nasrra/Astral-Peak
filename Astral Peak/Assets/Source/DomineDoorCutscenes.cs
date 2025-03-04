@@ -74,7 +74,7 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void start_scene_swap_segment(){
-        AudioManager.lock_ambience  = true;
+        // AudioManager.lock_ambience  = true;
         AudioManager.lock_music     = true;
         AudioManager.unload_bank("cutscene_astral_plane");
         DialogueHandler.instance.dialogue_ended -= start_scene_swap_segment;

@@ -1,9 +1,15 @@
 using System.Collections.Generic;
 using Entropek;
+using FMODUnity;
 using UnityEngine;
 
 public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
+    public readonly static Dictionary<RoomType, string> room_type_strings = new Dictionary<RoomType, string>(){
+        {RoomType.NONE, "room_none"},
+        {RoomType.SHRINE, "room_shrine"},
+        {RoomType.SNOW, "room_snow"},
+    };
     public static RoomType current_room_type = RoomType.NONE;
     [Header("RoomHandler")]
     [SerializeField] RoomType room_type;
@@ -12,11 +18,19 @@ public class RoomHandler : MonoBehaviour{
     [SerializeField] Transform final_cutscene_camera_target;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
-        if (current_room_type == RoomType.NONE)
-            AudioManager.load_bank(room_type);
-        else if(current_room_type != room_type){
-            AudioManager.unload_bank(current_room_type);
-            AudioManager.load_bank(room_type);
+        //if (current_room_type == RoomType.NONE)
+        //    AudioManager.load_bank(room_type);
+        //else if(current_room_type != room_type){
+        //    AudioManager.unload_bank(current_room_type);
+        //    AudioManager.load_bank(room_type);
+        //}
+        string current_audio_bank =     room_type_strings[current_room_type];
+        string selected_audio_bank =    room_type_strings[room_type];
+        if(RuntimeManager.HasBankLoaded(room_type_strings[room_type]) == false){
+            if(current_room_type != RoomType.NONE)
+                AudioManager.unload_bank(current_audio_bank);
+            if(room_type != RoomType.NONE)
+                AudioManager.load_bank(selected_audio_bank);
         }
         current_room_type = room_type;
         instance = this;
@@ -35,11 +49,11 @@ public class RoomHandler : MonoBehaviour{
         // Debug.Log(current_room_type+" "+room_type);
     }
 
-    protected virtual void OnDestroy(){
-        if(SceneInfo.instance.transition == true){
-            AudioManager.unload_bank(room_type);
-        }
-    }
+    //protected virtual void OnDestroy(){
+    //    if(SceneInfo.instance.transition == true){
+    //        AudioManager.unload_bank(room_type);
+    //    }
+    //}
 
     public virtual void game_cleared_room_state(){
         game_cleared_camera_movement();
@@ -58,6 +72,7 @@ public class RoomHandler : MonoBehaviour{
         else if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.DOWN)
             CameraController.instance.lerp_offset(null,-15,15);
     }
+
 
     enum FinalCutsceneCameraMovementOption{
         LEFT,DOWN,NONE

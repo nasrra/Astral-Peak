@@ -269,7 +269,7 @@ public static class AudioManager{
             path = Path.GetFileNameWithoutExtension(path);
             loaded_references.Add(path,reference);
         }
-        // UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+        UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
     }
 
     public static void unload_bank(string _bank_name){
@@ -287,17 +287,8 @@ public static class AudioManager{
             loaded_references.Remove(Path.GetFileNameWithoutExtension(path));
         }
         RuntimeManager.UnloadBank(_bank_name);
-        // UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
+        UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
     }
-
-    public static void load_bank(RoomType _room_type) => load_bank(room_type_banks[_room_type]);
-    
-    public static void unload_bank(RoomType _room_type) => unload_bank(room_type_banks[_room_type]);
-    
-    private static Dictionary<RoomType, string> room_type_banks = new Dictionary<RoomType, string>(){
-        {RoomType.SHRINE, "room_shrine"},
-        {RoomType.SNOW, "room_snow"},
-    };
 
     private static void load_active_scene_bank(){
         load_bank(SceneManager.GetActiveScene().name);

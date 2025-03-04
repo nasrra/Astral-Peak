@@ -7,7 +7,7 @@ public class GameData{
         scene_to_load = "Shrine",
         spawn_point = "Enter";
     [JsonInclude]
-    // public bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
-    public bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
+    public bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
+    // public bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
     public bool game_clear = false;
 }

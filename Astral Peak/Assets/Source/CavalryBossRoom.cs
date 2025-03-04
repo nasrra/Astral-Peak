@@ -19,9 +19,9 @@ public class CavalryBossRoom : BossRoomHandler{
         base.Awake();
     } 
 
-    protected override void OnDestroy(){
+    protected void OnDestroy(){
         unlink();
-        base.OnDestroy();
+        //base.OnDestroy();
     }
 
     protected override void check_world_state(){
