@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Entropek;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -149,6 +150,7 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void ending(){
+        Log.MethodCall();
         AudioManager.restore_sfx_audio();
         CustomSceneManager.loaded_scene -= ending;
         DialogueHandler.instance.dialogue_ended -= ending;
@@ -156,9 +158,9 @@ public class DomineDoorFinal : Cutscene{
         CameraEffects.instance.fade_from_black(4);
         astral_room.end_credits_state();
         AudioManager.unload_bank("cutscene_final");
-        unlink();
         stop_skip();
         end();
+        unlink();
     }
 
     void unlink(){
