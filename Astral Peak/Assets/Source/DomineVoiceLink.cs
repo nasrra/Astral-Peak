@@ -36,7 +36,7 @@ public class DomineVoiceLink : MonoBehaviour{
     };
 
     private void dialogue_started(){
-        audio_spectrum.initialize(RuntimeManager.GetBus("bus:/voice/domine"));
+        audio_spectrum.initialize(RuntimeManager.GetBus("bus:/voice"));
     }
 
     private void dialogue_ended(){
@@ -88,7 +88,7 @@ class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
         
-        //{0, "domine_dead_woman"},
+        {0, "domine_dead_woman"},
         {1, "domine_dead_woman"},
         {2, "domine_sacrifice_ritual"},
         {3, "domine_an_offering"},

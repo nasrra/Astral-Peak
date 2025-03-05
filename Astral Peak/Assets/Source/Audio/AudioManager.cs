@@ -205,7 +205,6 @@ public static class AudioManager{
 
     public static void set_master_volume(float _volume){
         master_bus.setVolume(_volume);
-        Debug.Log(_volume);
     }
 
     public static void set_music_volume(float _volume){

@@ -3,6 +3,7 @@ using System.Collections;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,28 +21,24 @@ public class AudioSpectrum : MonoBehaviour{
 
     public void initialize(Bus _bus){
         bus = _bus;
+        RESULT result;
         bus.lockChannelGroup();
         // Flush commands to ensure the lock command is being called
         RuntimeManager.StudioSystem.flushCommands();
-        RESULT result = bus.getChannelGroup(out group);
+        result = bus.getChannelGroup(out group);
+        UnityEngine.Debug.Log(result);
         RuntimeManager.CoreSystem.createDSPByType(DSP_TYPE.FFT, out fft_dsp);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOWSIZE, samples_length);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOW, (int)window_type);
-        group.getChannel(0, out Channel _channel);
-        _channel.addDSP(0,fft_dsp);        
+        // fft_dsp.setBypass(true);
+        // Set DSP gain to a fixed level (ignores bus volume)
+        int num;
+        group.getNumDSPs(out num);
+        UnityEngine.Debug.Log(num);
+        group.addDSP(CHANNELCONTROL_DSP_INDEX.TAIL, fft_dsp); // Add DSP before fader
+        group.getNumDSPs(out num);
+        UnityEngine.Debug.Log(num);
         UnityHook.instance.StartCoroutine(audio_data_loop());
-    }
-
-    public void link_sound(EventInstance _event){
-        FMOD.ChannelGroup channelGroup;
-        if (_event.getChannelGroup(out channelGroup) == FMOD.RESULT.OK)
-        {
-            FMOD.Channel channel;
-            if (channelGroup.getChannel(0, out channel) == FMOD.RESULT.OK)  // Get first channel
-            {
-            }
-        }
-
     }
 
     public void uninitialize(){
