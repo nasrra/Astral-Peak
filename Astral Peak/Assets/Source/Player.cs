@@ -292,8 +292,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void attack_hit(){
         sound.play_diegetic_one_shot("player_sword_hit");
         if(health.get_current_health() < health.get_max_health()){
-            intermediate_health += .1f;
-            if(intermediate_health >= 1f){
+            intermediate_health += .09f;
+            if(intermediate_health >= .9f){
                 intermediate_health = 0;
                 health.heal(1);
                 intermediate_health_updated?.Invoke();

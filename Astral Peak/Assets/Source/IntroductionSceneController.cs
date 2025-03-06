@@ -38,6 +38,7 @@ public class Introduction : Cutscene{
         controller.fire_2.turn_off();
         yield return new WaitForSeconds(4);
         AudioManager.stop_music();
+        stop_skip();
         yield return new WaitForSeconds(2);
         CustomSceneManager.load_scene_with_transitions("TutorialRoom1");
         end();

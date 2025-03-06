@@ -9,7 +9,6 @@ public class UiManager : MonoBehaviour{
         death_screen_ended;
     public static UiManager instance;
     [SerializeField] SerializedDictionary<string, ButtonPromptHUD> button_prompts = new SerializedDictionary<string, ButtonPromptHUD>();
-    [SerializeField] Animator skip_button;
     [SerializeField] GameObject 
         death_screen,
         pause_menu,
@@ -21,7 +20,6 @@ public class UiManager : MonoBehaviour{
     [SerializeField] DialogueHandler dialogue; 
     [SerializeField] PlayerHealthBar health_bar;
     [SerializeField] AudioPlayer audio_player;
-    Coroutine skip_button_state;
 
     void Awake(){
         #if UNITY_EDITOR
@@ -41,7 +39,6 @@ public class UiManager : MonoBehaviour{
         GameManager.unlink_Ui();
         unlink_statics();
         unlink_instances();   
-        unlink_cutscene_skip();
         GameManager.pause_game(false);
     }
 
@@ -112,18 +109,15 @@ public class UiManager : MonoBehaviour{
     void fade_in_cutscene_state(){
         fade_out();
         fade_in_black_bars();
-        link_cutscene_skip();        
     }
 
     void fade_out_cutscene_state(){
         health_bar.fade_in();
         fade_out_black_bars();
-        unlink_cutscene_skip();
     }
 
     void cutscene_state_on(){
         black_bars_on();
-        link_cutscene_skip();
         health_bar.off();        
     }
 
@@ -155,42 +149,14 @@ public class UiManager : MonoBehaviour{
         }
     }
 
-    void start_skip(){
-        skip_button_state = StartCoroutine(Util.timer(
-            CutsceneManager.skip_buffer_time,
-            start_action: ()=>{
-                skip_button.Play("held",0,0);
-                //skip_button.playbackTime = 1/CutsceneManager.skip_buffer_time;
-            },
-            time_out:()=>unlink_cutscene_skip()
-        ));
-    }
-
     #if UNITY_EDITOR
     private void handle_play_mode_state_changed(UnityEditor.PlayModeStateChange state){
         if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode){
             UnityEditor.EditorApplication.playModeStateChanged -= handle_play_mode_state_changed;
             unlink_instances();
-            unlink_cutscene_skip();
         }
     }
     #endif
-
-    void stop_skip(){
-        if(skip_button_state != null)
-            StopCoroutine(skip_button_state);
-        skip_button.Play("idle",0,0);
-    }
-
-    void link_cutscene_skip(){
-        InputManager.cutscene_skip_performed += start_skip;
-        InputManager.cutscene_skip_canceled  += stop_skip;
-    }
-
-    void unlink_cutscene_skip(){
-        InputManager.cutscene_skip_performed -= start_skip;
-        InputManager.cutscene_skip_canceled  -= stop_skip;        
-    }
 
     void link_statics(){
         GameManager.entered_game_state                  += entered_game_state;
