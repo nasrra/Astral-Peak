@@ -81,6 +81,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 768
+--- !u!114 &-8901209444962000673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/room_astral.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_astral.bank
+  Name: room_astral
+  StudioPath: bank:/room_astral
+  lastModified: 638768695205491360
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-8668318197240294853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +285,24 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
+--- !u!114 &-7860746316811579645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/AstralPlane.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/StreamingAssets/FMOD Banks/Desktop/AstralPlane.bank
+  Name: AstralPlane
+  StudioPath: bank:/AstralPlane
+  lastModified: 638768738318607476
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-7741107742412982269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +372,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638766820062342529
+  lastModified: 638768694650946699
   FileSizes: []
   Exists: 1
 --- !u!114 &-7178158262075843451
@@ -490,7 +526,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638767141485866446
+  lastModified: 638768695205217668
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -564,7 +600,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MainMenu.bank
   Name: MainMenu
   StudioPath: bank:/MainMenu
-  lastModified: 638762624972123155
+  lastModified: 638768738318316613
   FileSizes: []
   Exists: 1
 --- !u!114 &-5995024502405556693
@@ -846,7 +882,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude3.bank
   Name: SnowInterlude3
   StudioPath: bank:/SnowInterlude3
-  lastModified: 638763511264223682
+  lastModified: 638768692480062333
   FileSizes: []
   Exists: 1
 --- !u!114 &-4129944128686250798
@@ -868,6 +904,7 @@ MonoBehaviour:
     Data3: 127224235
     Data4: 209324920
   Banks:
+  - {fileID: -7860746316811579645}
   - {fileID: -6067637395526909149}
   IsStream: 1
   Is3D: 0
@@ -1137,9 +1174,8 @@ MonoBehaviour:
     Data3: 1393321887
     Data4: 1920778168
   Banks:
-  - {fileID: 1103525165598753600}
-  - {fileID: -4183711372715096688}
   - {fileID: -7376905227913506980}
+  - {fileID: -8901209444962000673}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1245,10 +1281,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638767141485878146
+  lastModified: 638768695205227692
   FileSizes:
   - Name: 
-    Value: 6478
+    Value: 6646
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1365,7 +1401,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MageBossRoom.bank
   Name: MageBossRoom
   StudioPath: bank:/MageBossRoom
-  lastModified: 638766820061988276
+  lastModified: 638768685985260858
   FileSizes: []
   Exists: 1
 --- !u!114 &-974223011989813858
@@ -1504,6 +1540,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-356325561391269224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ambience/ambience_astral
+  m_EditorClassIdentifier: 
+  Path: event:/ambience/ambience_astral
+  Guid:
+    Data1: -1308118723
+    Data2: 1111964429
+    Data3: 930851002
+    Data4: 374477844
+  Banks:
+  - {fileID: -8901209444962000673}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 34864
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1536,6 +1599,8 @@ MonoBehaviour:
   - {fileID: -4183711372715096688}
   - {fileID: -3811467830768424052}
   - {fileID: -4103770553993699646}
+  - {fileID: -7860746316811579645}
+  - {fileID: -8901209444962000673}
   EditorEvents:
   - {fileID: 509110276680760438}
   - {fileID: 2379126354797618401}
@@ -1634,6 +1699,8 @@ MonoBehaviour:
   - {fileID: 2871146979668874304}
   - {fileID: -9030951974926187219}
   - {fileID: 3773997516111415204}
+  - {fileID: 587926894692704676}
+  - {fileID: -356325561391269224}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1641,7 +1708,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638768575492934879
+  cacheTime: 638768738318607476
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -1752,6 +1819,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 720
+--- !u!114 &587926894692704676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/deep_gong
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/deep_gong
+  Guid:
+    Data1: -1509059667
+    Data2: 1336195676
+    Data3: -2053341518
+    Data4: -325750036
+  Banks:
+  - {fileID: -1199358877090321752}
+  - {fileID: -7860746316811579645}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &728985965188455855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1839,7 +1934,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/SnowInterlude1.bank
   Name: SnowInterlude1
   StudioPath: bank:/SnowInterlude1
-  lastModified: 638763511265240854
+  lastModified: 638768692480052288
   FileSizes: []
   Exists: 1
 --- !u!114 &1144837275224071666
@@ -2134,6 +2229,7 @@ MonoBehaviour:
     Data4: 1885723329
   Banks:
   - {fileID: 5582867981456367483}
+  - {fileID: -7860746316811579645}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -2383,6 +2479,7 @@ MonoBehaviour:
     Data4: 994110959
   Banks:
   - {fileID: -7376905227913506980}
+  - {fileID: -8901209444962000673}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2411,6 +2508,7 @@ MonoBehaviour:
     Data4: 826363822
   Banks:
   - {fileID: 5582867981456367483}
+  - {fileID: -7860746316811579645}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2754,7 +2852,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/GiantBossRoom.bank
   Name: GiantBossRoom
   StudioPath: bank:/GiantBossRoom
-  lastModified: 638766820061722610
+  lastModified: 638768656618120994
   FileSizes: []
   Exists: 1
 --- !u!114 &5647012999505795646
@@ -3142,9 +3240,8 @@ MonoBehaviour:
     Data3: -1963898724
     Data4: -1432843914
   Banks:
-  - {fileID: 1103525165598753600}
-  - {fileID: -4183711372715096688}
   - {fileID: -7376905227913506980}
+  - {fileID: -8901209444962000673}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

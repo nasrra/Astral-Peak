@@ -6,9 +6,10 @@ using UnityEngine;
 public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
     public readonly static Dictionary<RoomType, string> room_type_strings = new Dictionary<RoomType, string>(){
-        {RoomType.NONE, "room_none"},
-        {RoomType.SHRINE, "room_shrine"},
-        {RoomType.SNOW, "room_snow"},
+        {RoomType.NONE,     "room_none"},
+        {RoomType.SHRINE,   "room_shrine"},
+        {RoomType.SNOW,     "room_snow"},
+        {RoomType.ASTRAL,   "room_astral"},
     };
     public static RoomType current_room_type = RoomType.NONE;
     [Header("RoomHandler")]
@@ -82,5 +83,6 @@ public class RoomHandler : MonoBehaviour{
 public enum RoomType{
     SHRINE,
     SNOW,
+    ASTRAL,
     NONE,
 }

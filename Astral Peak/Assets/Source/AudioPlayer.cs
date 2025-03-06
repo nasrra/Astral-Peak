@@ -67,7 +67,7 @@ public class AudioPlayer : MonoBehaviour{
         remove_non_diegetic_instance(_event_name);
     }
     public void play_non_diegetic_one_shot_instance(string _event_name){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.is_skipping() == true)   
             return;
         AudioManager.play_non_diegetic_one_shot_instance(_event_name);
     }
