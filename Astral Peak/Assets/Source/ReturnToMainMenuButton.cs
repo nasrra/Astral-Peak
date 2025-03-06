@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class ReturnToMainMenuButton : MonoBehaviour{
+public class ReturnToMainMenuButton : MenuButton{
     public void invoke(){
+        disable_button();
         AudioManager.stop_music();
         AudioManager.stop_ambience();
         AudioManager.stop_additive_ambience();
