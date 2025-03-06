@@ -6,5 +6,6 @@ public class MainMenu : MonoBehaviour{
     }
     void Start(){
         AudioManager.play_music("music_main_menu");
+        CameraEffects.instance.astral_plane_state();
     }
 }

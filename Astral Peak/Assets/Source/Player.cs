@@ -20,13 +20,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private string ground;
     bool i_frames = false;
     [Header("Player")]
-    [SerializeField] protected PlayerAnimator animator;
-    [SerializeField] protected MeleeHolsterHandler melee;
-    [SerializeField] protected ParticleHandler particles;
-    [SerializeField] protected PlayerSpriteHandler sprite;
-    [SerializeField] protected AudioPlayer sound;
-    [SerializeField] protected Collider2D col;
-    [SerializeField] protected StudioListener audio_listener;
+    [field: SerializeField] public PlayerAnimator animator       {get;private set;}
+    [field: SerializeField] public MeleeHolsterHandler melee     {get;private set;}
+    [field: SerializeField] public ParticleHandler particles     {get;private set;}
+    [field: SerializeField] public PlayerSpriteHandler sprite    {get;private set;}
+    [field: SerializeField] public AudioPlayer sound             {get;private set;}
+    [field: SerializeField] public Collider2D col                {get;private set;}
+    [field: SerializeField] public StudioListener audio_listener {get;private set;}
     private HashSet<Action> door_movement_queue = new HashSet<Action>();
     private float invulnerable_time = 2;
     [SerializeField] float intermediate_health = 0;
@@ -308,13 +308,16 @@ public class Player : CreatureInheritor<CharacterMovement>{
 
 
     // Game States.
-    protected override void enter_cutscene_state(){
+    public void lock_player(){
         movement.StopAllCoroutines(); // here to stop player from going vulnerable during dash_end.
         movement.renew();
         movement.zero_velocity();
         unlink_movement();
         animator.force_idle();
-        health.set_invulnerable();
+        health.set_invulnerable();        
+    }
+    protected override void enter_cutscene_state(){
+        lock_player();
         audio_listener.enabled = false;
     }
     protected override void exit_cutscene_state(){
@@ -350,8 +353,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameData data = GameManager.get_game_data();
         data.spawn_point = spawn_point;
     }
-    public PlayerSpriteHandler get_sprite() => sprite; 
-
 
 
 

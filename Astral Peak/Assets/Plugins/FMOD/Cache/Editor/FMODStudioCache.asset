@@ -81,6 +81,35 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 768
+--- !u!114 &-8972364143455590298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/stone/domine_door_non_diegetic
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/stone/domine_door_non_diegetic
+  Guid:
+    Data1: -1478919775
+    Data2: 1162351741
+    Data3: -1088483945
+    Data4: -977673819
+  Banks:
+  - {fileID: -8901209444962000673}
+  - {fileID: -7376905227913506980}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 5105806995585093338}
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 4293
 --- !u!114 &-8901209444962000673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +125,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_astral.bank
   Name: room_astral
   StudioPath: bank:/room_astral
-  lastModified: 638768695205491360
+  lastModified: 638768895568341621
   FileSizes: []
   Exists: 1
 --- !u!114 &-8668318197240294853
@@ -372,7 +401,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638768694650946699
+  lastModified: 638768895568624707
   FileSizes: []
   Exists: 1
 --- !u!114 &-7178158262075843451
@@ -526,7 +555,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638768695205217668
+  lastModified: 638768895568095699
   FileSizes: []
   Exists: 1
 --- !u!114 &-6354800715163179812
@@ -1174,8 +1203,8 @@ MonoBehaviour:
     Data3: 1393321887
     Data4: 1920778168
   Banks:
-  - {fileID: -7376905227913506980}
   - {fileID: -8901209444962000673}
+  - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1281,10 +1310,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638768695205227692
+  lastModified: 638768895568105839
   FileSizes:
   - Name: 
-    Value: 6646
+    Value: 6712
   Exists: 1
 --- !u!114 &-1590607611195831566
 MonoBehaviour:
@@ -1701,6 +1730,7 @@ MonoBehaviour:
   - {fileID: 3773997516111415204}
   - {fileID: 587926894692704676}
   - {fileID: -356325561391269224}
+  - {fileID: -8972364143455590298}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1708,7 +1738,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638768738318607476
+  cacheTime: 638768895568624707
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -2478,8 +2508,8 @@ MonoBehaviour:
     Data3: 1903472294
     Data4: 994110959
   Banks:
-  - {fileID: -7376905227913506980}
   - {fileID: -8901209444962000673}
+  - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2617,6 +2647,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 0
+--- !u!114 &5105806995585093338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/domine_door_non_diegetic/sfx_dim
+  m_EditorClassIdentifier: 
+  Name: sfx_dim
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1774328475
+    data2: 320564125
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &5118477055293509769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3240,8 +3294,8 @@ MonoBehaviour:
     Data3: -1963898724
     Data4: -1432843914
   Banks:
-  - {fileID: -7376905227913506980}
   - {fileID: -8901209444962000673}
+  - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

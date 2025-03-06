@@ -45,8 +45,8 @@ public class DomineDoorFinal : Cutscene{
         player_movement.mod_gravity(0);
         player_movement.halt();
         Player.instance.transform.position = domine_door.get_player_point().position;
-        Player.instance.get_sprite().fade_to_black();
-        Player.instance.get_sprite().enter_domine_door_layer();
+        Player.instance.sprite.fade_to_black();
+        Player.instance.sprite.enter_domine_door_layer();
         // yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
@@ -61,13 +61,13 @@ public class DomineDoorFinal : Cutscene{
         CutsceneManager.set_coroutine(astral_plane_opening());
     }
     IEnumerator astral_plane_opening(){
-        Player.instance.get_sprite().set_black();
+        Player.instance.sprite.set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.get_domine_door().opened();
         // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
         DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
         yield return new WaitForSeconds(4);
-        Player.instance.get_sprite().fade_from_black();
+        Player.instance.sprite.fade_from_black();
         yield return new WaitForSeconds(6);
         CameraController.instance.regulate = false;
         CameraController.instance.lerp_offset(-12.5f, null, 3f);
