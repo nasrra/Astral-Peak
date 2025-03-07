@@ -201,7 +201,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){
-        GameManager.state_changed(GameState.DEATH);
+        GameManager.swap_state(GameState.DEATH);
         unlink_movement();
         unlink_health();
         health.invulnerable();
@@ -265,7 +265,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         foreach(Action action in door_movement_queue)
             action();
         door_movement_queue.Clear(); // here for relocation doors
-        GameManager.state_changed(GameState.GAMEPLAY);
+        GameManager.swap_state(GameState.GAMEPLAY);
         exited_door?.Invoke();
         yield break;
     }

@@ -66,7 +66,7 @@ public static class CustomSceneManager{
         loaded_scene?.Invoke();
         if(SceneInfo.instance.saveable == true){
             if(CutsceneManager.in_cutscene() == false)
-                GameManager.state_changed(GameState.GAMEPLAY);
+                GameManager.swap_state(GameState.GAMEPLAY);
             GameManager.invoke_set_game_data();
             GameManager.save_game_data();
         }

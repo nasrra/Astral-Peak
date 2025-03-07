@@ -23,9 +23,9 @@ public static class GameManager{
         exited_game_state;
 
     public static void initialize(){
-        state_changed(GameState.MENU);
+        swap_state(GameState.MENU);
         #if UNITY_EDITOR
-        state_changed(GameState.GAMEPLAY);
+        swap_state(GameState.GAMEPLAY);
         #endif
     }
     public static void uninitialize(){
@@ -44,8 +44,12 @@ public static class GameManager{
         InputManager.enable_user_input(); // here to re-enable player input that is turned off when player death starts.
     }
 
-    static public void state_changed(GameState _state){
+    static public void swap_state(GameState _state){
         GameState previous = state;
+        if(_state == GameState.MENU)
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
         exited_game_state?.Invoke(previous);
         entered_game_state?.Invoke(_state);
         state = _state;

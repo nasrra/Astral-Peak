@@ -59,14 +59,14 @@ public class UiManager : MonoBehaviour{
     private void enable_pause_menu(){
         hud.SetActive(false);
         pause_menu.SetActive(true);
-        GameManager.state_changed(GameState.MENU);
+        GameManager.swap_state(GameState.MENU);
         GameManager.pause_game(true);        
     }
 
     private void disable_pause_menu(){
         pause_menu.SetActive(false);
         hud.SetActive(true);
-        GameManager.state_changed(GameState.GAMEPLAY);
+        GameManager.swap_state(GameState.GAMEPLAY);
         GameManager.pause_game(false);       
     }
 
