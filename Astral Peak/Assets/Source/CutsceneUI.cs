@@ -33,6 +33,7 @@ public class CutsceneUI : MonoBehaviour{
 
     void on(){
         skip_button.Play("on",0,0);
+        link_cutscene_skip();
     }
 
     void fade_in(){
