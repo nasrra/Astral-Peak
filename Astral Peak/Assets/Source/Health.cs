@@ -1,5 +1,4 @@
 using System;
-using Entropek;
 using UnityEngine;
 
 public class Health : MonoBehaviour{
@@ -9,6 +8,7 @@ public class Health : MonoBehaviour{
         knockback;
     [SerializeField] protected HealthData data;
     [SerializeField] HealthState state;
+    public bool lock_state = false;
 
     public ref int get_current_health() => ref data.current_life;
     public ref int get_max_health() => ref data.max_life;
@@ -23,19 +23,24 @@ public class Health : MonoBehaviour{
             healed?.Invoke();
     }
 
-    public void set_guarded(){
-        state = HealthState.GUARDED;
+    public void guarded(){
+        set_state(HealthState.GUARDED);
         now_guarded?.Invoke();
     }
 
-    public void set_vulnerable(){
-        state = HealthState.VULNERABLE;
+    public void vulnerable(){
+        set_state(HealthState.VULNERABLE);
         now_vulnerable?.Invoke();
     }
 
-    public void set_invulnerable(){
-        state = HealthState.INVULNERABLE;
+    public void invulnerable(){
+        set_state(HealthState.INVULNERABLE);
         now_invulnerable?.Invoke();
+    }
+
+    private void set_state(HealthState _state){
+        if(lock_state == false)
+            state = _state;
     }
 
     public void set_max_life(int amount) => data.max_life = amount;

@@ -42,8 +42,9 @@ public class DomineDoor : MonoBehaviour{
         InputManager.disable_user_input();
         CharacterMovement player_movement = Player.instance.get_movement() as CharacterMovement;
         Player.instance.transform.position = player_point.position;
-        player_movement.mod_gravity(0);
-        player_movement.halt();
+        Player.instance.StopAllCoroutines();
+        // player_movement.mod_gravity(0);
+        // player_movement.halt();
         Player.instance.animator.force_idle();
         Player.instance.sprite.fade_to_black();
         Player.instance.sprite.enter_domine_door_layer();

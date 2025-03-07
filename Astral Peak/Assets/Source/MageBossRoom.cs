@@ -37,7 +37,7 @@ public class MageBossRoom : BossRoomHandler{
     protected override void check_world_state(){
         if(GameManager.get_boss_state(1)==true){
             unlink_fight_start_trigger();
-            Player.instance.set_spawn_point(respawn_points[1].gameObject.name);
+            Player.spawn_point = respawn_points[1].gameObject.name;
             exit.set_start_open(true);
         }
     }

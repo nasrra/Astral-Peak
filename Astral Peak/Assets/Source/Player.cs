@@ -16,9 +16,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door, intermediate_health_updated, intermediate_health_gained;
     // static fields for other classes to access.
     public static Player instance;
-    public static string spawn_point = "Enter", respawn_point = ""; // respawn is temporary but spawn is forever.
+    public static string spawn_point = "Enter"; // respawn is temporary but spawn is forever.
+    public string respawn_point = "";
     private string ground;
-    bool i_frames = false;
     [Header("Player")]
     [field: SerializeField] public PlayerAnimator animator       {get;private set;}
     [field: SerializeField] public MeleeHolsterHandler melee     {get;private set;}
@@ -53,7 +53,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
         AudioManager.unload_bank("entity_player");
         AudioManager.unload_bank("entity_creature");
         GameManager.unlink_player();
-        set_respawn_point(""); // reset respawn point;
         unlink_events();
         on_destroy?.Invoke();
     }
@@ -101,13 +100,12 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void dashed(){
         sound.play_diegetic_one_shot("player_dash");
         particles.emit_particle("dash");
-        health.set_guarded();//
+        health.guarded();//
     }
     private void dash_end(){
         if(movement.check_grounded() == true)
             grounded();
-        if(i_frames == false)
-            health.set_vulnerable();
+        health.vulnerable();
     }
     private void grounded(){
         // bounce when hitting the ground.
@@ -167,6 +165,8 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
 
 
+
+
     // Damaged and Health
     private void invulnerable() => col.excludeLayers = LayersManager.BITWISE_ENEMY | LayersManager.BITWISE_PROJECTILE | LayersManager.BITWISE_BOSS;
     private void vulnerable(){
@@ -177,34 +177,34 @@ public class Player : CreatureInheritor<CharacterMovement>{
         col.excludeLayers = new LayerMask();
     }
     private void handle_enemy_contact(Collision2D other){
-        if(other.gameObject.tag != "Dead" && i_frames == false)
+        if(other.gameObject.tag != "Dead")
             health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
     }
     private void handle_enemy_contact(Collider2D other){
-        if(other.gameObject.tag != "Dead" && i_frames == false)
+        if(other.gameObject.tag != "Dead")
             health.damage(new DamageData(1), new KnockbackData(10, 0.3f, other.transform));
     } 
     private void damaged() => StartCoroutine(damaged_state());
     IEnumerator damaged_state(){
         sound.play_non_diegetic_one_shot("player_damaged");
         sprite.play_damaged_flash();
-        health.set_invulnerable();
+        health.invulnerable();
+        health.lock_state = true;
         AudioManager.enter_low_pass_filter();
         CameraController.instance.shake_camera(0.25f, 1, lock_shake: false);
-        i_frames = true;
         damaged_start?.Invoke();
         yield return new WaitForSeconds(invulnerable_time);
-        i_frames = false;
         AudioManager.exit_low_pass_filter();
         damaged_stop?.Invoke();
-        health.set_vulnerable();
+        health.lock_state = false;
+        health.vulnerable();
     }
     protected override void death_start() => StartCoroutine(death_state());
     IEnumerator death_state(){
         GameManager.state_changed(GameState.DEATH);
         unlink_movement();
         unlink_health();
-        health.set_invulnerable();
+        health.invulnerable();
         AudioManager.enter_low_pass_filter();
         movement.reset_data();
         movement.zero_velocity();
@@ -233,9 +233,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void queue_start_jump()     { door_movement_queue.Add(start_jump);     }
     private void dequeue_start_jump()   { door_movement_queue.Remove(start_jump);  }
 
-    public void set_spawn_point(string _spawn_point) => spawn_point = _spawn_point;
-    public void set_respawn_point(string _respawn_point) => respawn_point = _respawn_point;
-    public string get_spawn_point() => spawn_point;
     // used to set the players initial position in the scene.
     public void set_enter_position(){
         SpawnPoint spawn = SpawnPointManager.get_point(respawn_point != ""? respawn_point : spawn_point);
@@ -282,6 +279,22 @@ public class Player : CreatureInheritor<CharacterMovement>{
         if(move_direction.y>0)
             queue_start_jump();
     }
+    public void respawn_state(){
+        StartCoroutine(respawn_state_coroutine());
+    }
+    IEnumerator respawn_state_coroutine(){
+        CameraEffects.instance.fade_to_black(1);
+        InputManager.disable_user_input();
+        CameraController.instance.stop_follow_state();
+        yield return new WaitForSeconds(1);
+        Player.instance.set_enter_position();
+        CameraController.instance.start_follow_state();
+        CameraController.instance.snap_to_target(); 
+        CameraEffects.instance.fade_from_black(1);
+        CameraController.instance.reset_offset(1);
+        yield return new WaitForSeconds(1);
+        InputManager.enable_user_input();
+    }
 
 
 
@@ -314,7 +327,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.zero_velocity();
         unlink_movement();
         animator.force_idle();
-        health.set_invulnerable();        
+        health.invulnerable();        
     }
     protected override void enter_cutscene_state(){
         lock_player();
@@ -324,7 +337,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.renew();
         link_movement();
         movement.move_only_state();
-        health.set_vulnerable();
+        health.vulnerable();
         audio_listener.enabled = true;
     }
     protected override void entered_game_state(GameState state){

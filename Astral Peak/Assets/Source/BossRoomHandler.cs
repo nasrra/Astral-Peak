@@ -38,7 +38,7 @@ public abstract class BossRoomHandler : RoomHandler{
 
     public Transform get_boss_point(int index) => boss_points[index];
     protected void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]());
-    public void set_respawn_point(int index) => Player.instance.set_respawn_point(respawn_points[index].name);    
+    public void set_respawn_point(int index) => Player.instance.respawn_point = respawn_points[index].name;    
     protected void start_fight(Collider2D other){
         set_respawn_point(0);//
         Player.instance.transform.position = fight_start_trigger.transform.position;

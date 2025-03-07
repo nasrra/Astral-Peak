@@ -11,7 +11,7 @@ public class SceneTransitionDoor : Door{
         StartCoroutine(enter_coroutine());
     }    
     IEnumerator enter_coroutine(){
-        Player.instance.set_spawn_point(exit_point);
+        Player.spawn_point = exit_point;
         Player.instance.door_enter_state();
         CameraController.instance.set_target(transform);
         CustomSceneManager.load_scene_with_transitions(scene_to_load); 

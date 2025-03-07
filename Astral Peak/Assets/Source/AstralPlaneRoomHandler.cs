@@ -9,6 +9,10 @@ public class AstralPlaneRoomHandler : RoomHandler{
     protected override void Start(){
         CameraEffects.instance.astral_plane_state();
         credits_handler.credits_ended += credits_ended;
+        Health player_health = Player.instance.health;
+        player_health.invulnerable();
+        player_health.lock_state = true;
+        credits_ended();
         base.Start();
     }
 
