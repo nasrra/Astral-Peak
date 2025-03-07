@@ -40,8 +40,12 @@ public class PlayerAnimator : CharacterAnimatorOverride{
 
 
     // additive states that should not be returned to.
-    public void side_attack()   => play_instant(SIDE_ATTACK, false); 
-    public void up_attack()    => play_instant(UP_ATTACK, false);      
+    public void side_attack(){
+       play_instant(SIDE_ATTACK, false);
+    } 
+    public void up_attack(){
+        play_instant(UP_ATTACK, false);
+    }      
 
     //BOUNCE OVERRIDE STATES:
     // used for the override animation layer to return to the none state

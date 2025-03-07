@@ -6,7 +6,7 @@ public class KillZone : MonoBehaviour{
         Creature direct = other.GetComponent<Creature>();
         CreatureLink link = other.GetComponent<CreatureLink>();
         Creature creature = direct!=null? direct : link.get_creature();
-        if(creature != null){
+        if(creature != null && creature.tag != "Dead"){
             if(creature.gameObject.layer == LayersManager.ENEMY)
                 creature.kill();
             else if(creature.gameObject.layer == LayersManager.PLAYER){
