@@ -309,7 +309,7 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     private void unlink_phase_1(){
-        Log.MethodCall();
+        // Log.MethodCall();
         unlink_components();
         health.death -= transition_phase;
     }
@@ -325,15 +325,15 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
     private void unlink_phase_2(){//
-        Log.MethodCall();
+        // Log.MethodCall();
         unlink_components();
     }
     private void link_cutscene_opening(){
-        Log.MethodCall();
+        // Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
     private void link_cutscene_transition(){
-        Log.MethodCall();
+        // Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
 

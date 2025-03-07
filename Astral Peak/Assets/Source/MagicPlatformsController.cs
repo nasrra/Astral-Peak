@@ -19,11 +19,11 @@ public class MagicPlatformsController : MonoBehaviour{
     IEnumerator loop(){
         while(true){
             enable_scroller();
-            yield return new WaitForSeconds(50);
+            yield return new WaitForSeconds(30);
             // yield return new WaitForSeconds(5);
             disable_scroller();
             reverse_scroller();
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(15);
             // yield return new WaitForSeconds(2);
         }
     }
