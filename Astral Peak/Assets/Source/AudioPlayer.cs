@@ -23,22 +23,22 @@ public class AudioPlayer : MonoBehaviour{
         StartCoroutine(update_diegetic_instances());
     }
     public void play_diegetic_one_shot_gameobject(string _event_name, GameObject _game_object){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.skipping == true)
             return;
         AudioManager.play_diegetic_one_shot(_event_name, _game_object);
     }
     public void play_diegetic_one_shot(string _event_name){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.skipping == true)
             return;
         AudioManager.play_diegetic_one_shot(_event_name, gameObject);
     }
     public void play_non_diegetic_one_shot(string _event_name){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.skipping == true)
             return;
         AudioManager.play_non_diegetic_one_shot(_event_name);
     }
     public void play_diegetic_loop(string _event_name){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.skipping == true)
             return;
         EventInstance instance = AudioManager.create_event_instance(_event_name);
         instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
@@ -49,7 +49,7 @@ public class AudioPlayer : MonoBehaviour{
         instance.start();
     }
     public void play_non_diegetic_loop(string _event_name){
-        if(CutsceneManager.is_skipping() == true)
+        if(CutsceneManager.skipping == true)
             return;
         EventInstance instance = AudioManager.create_event_instance(_event_name);
         non_diegetic_instances.Add(_event_name, instance);
@@ -67,7 +67,7 @@ public class AudioPlayer : MonoBehaviour{
         remove_non_diegetic_instance(_event_name);
     }
     public void play_non_diegetic_one_shot_instance(string _event_name){
-        if(CutsceneManager.is_skipping() == true)   
+        if(CutsceneManager.skipping == true)   
             return;
         AudioManager.play_non_diegetic_one_shot_instance(_event_name);
     }

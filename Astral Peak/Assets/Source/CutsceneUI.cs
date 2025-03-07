@@ -67,8 +67,11 @@ public class CutsceneUI : MonoBehaviour{
     // linkage
 
     void link_cutscene_skip(){
-        InputManager.cutscene_skip_performed += start_skip;
-        InputManager.cutscene_skip_canceled  += stop_skip;
+        // only link if we are currently not skipping.
+        if(CutsceneManager.skipping == false){
+            InputManager.cutscene_skip_performed += start_skip;
+            InputManager.cutscene_skip_canceled  += stop_skip;
+        }
     }
 
     void unlink_cutscene_skip(){

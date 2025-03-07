@@ -6,7 +6,7 @@ using UnityEngine;
 public static class CutsceneManager{
     public static readonly float skip_buffer_time = 1f;
     static Coroutine skip_state;
-    static bool skipping = false;
+    public static bool skipping {get; private set;}
     public static Action<Cutscene> started_cutscene;
     static MonoBehaviour coroutines;
     private static Cutscene cutscene = null;
@@ -59,9 +59,6 @@ public static class CutsceneManager{
             UnityHook.instance.StopCoroutine(skip_state);
             skip_state = null;
         }
-    }
-    public static bool is_skipping(){
-        return skipping;
     }
     
     private static void link_cutscene_skip(){
