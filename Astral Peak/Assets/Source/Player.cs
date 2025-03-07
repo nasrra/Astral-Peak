@@ -16,7 +16,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         damaged_start, damaged_stop, on_destroy, entered_door, exiting_door, exited_door, intermediate_health_updated, intermediate_health_gained;
     // static fields for other classes to access.
     public static Player instance;
-    public static string spawn_point = "Enter"; // respawn is temporary but spawn is forever.
+    public static string spawn_point = "Enter";
     public string respawn_point = "";
     private string ground;
     [Header("Player")]
