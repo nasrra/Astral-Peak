@@ -63,7 +63,7 @@ public class DomineDoorFinal : Cutscene{
     IEnumerator astral_plane_opening(){
         Player.instance.sprite.set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
-        astral_room.get_domine_door().opened();
+        astral_room.domine_door.opened();
         // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
         DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
         yield return new WaitForSeconds(4);
@@ -88,7 +88,10 @@ public class DomineDoorFinal : Cutscene{
     IEnumerator astral_plane_ending(){
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.domine.dissolve();
-        yield return new WaitForSeconds(16);
+        yield return new WaitForSeconds(14);
+        CameraController.instance.reset_offset(3);
+        astral_room.domine_door.close();
+        yield return new WaitForSeconds(5);
         start_scene_swap_segment();
     }
 

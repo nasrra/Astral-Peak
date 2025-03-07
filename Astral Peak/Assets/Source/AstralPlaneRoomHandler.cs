@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class AstralPlaneRoomHandler : RoomHandler{
     [Header("AstralPlaneRoomHandler")]
-    [SerializeField] DomineDoor domine_door;
-    [SerializeField] CreditsHandler credits_handler;
+    [field: SerializeField] public DomineDoor domine_door {get; private set;}
+    [field: SerializeField] public CreditsHandler credits_handler {get; private set;}
     [field: SerializeField] public Domine domine {get; private set;}
     protected override void Start(){
         CameraEffects.instance.astral_plane_state();
@@ -12,11 +12,10 @@ public class AstralPlaneRoomHandler : RoomHandler{
         Health player_health = Player.instance.health;
         player_health.invulnerable();
         player_health.lock_state = true;
-        credits_ended();
+        UiManager.instance.lock_gameplay_ui_toggle = true;
+        // credits_ended();
         base.Start();
     }
-
-    public DomineDoor get_domine_door() => domine_door;
 
     public void end_credits_state(){
         domine_door.closed();

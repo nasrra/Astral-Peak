@@ -74,7 +74,7 @@ public class Domine : MonoBehaviour{
         StartCoroutine(sprite.lerp_value("_dissolve_amount", .9f, -0.2f, 8f));
         yield return new WaitForSeconds(6);
         particles.stop_all_particles();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6.5f);
         gameObject.SetActive(false);
     }
 

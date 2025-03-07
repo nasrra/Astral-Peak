@@ -5119,6 +5119,7 @@ MonoBehaviour:
   - {fileID: 1667838849}
   - {fileID: 1545575490}
   - {fileID: 1894934153}
+  audio_player: {fileID: 2143389932}
 --- !u!114 &2143389929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5736,6 +5737,14 @@ PrefabInstance:
       propertyPath: teleport_points._serializedList.Array.data[4].Value
       value: 
       objectReference: {fileID: 1243398188}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303910286237399020, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6619723628049759496, guid: 25413fef8bcb64948a6ae63727efa62e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1

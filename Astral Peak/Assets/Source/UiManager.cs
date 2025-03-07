@@ -20,6 +20,7 @@ public class UiManager : MonoBehaviour{
     [SerializeField] DialogueHandler dialogue; 
     [SerializeField] PlayerHealthBar health_bar;
     [SerializeField] AudioPlayer audio_player;
+    [HideInInspector] public bool lock_gameplay_ui_toggle = false;
 
     void Awake(){
         #if UNITY_EDITOR
@@ -43,7 +44,7 @@ public class UiManager : MonoBehaviour{
     }
 
     public void toggle_gameplay_ui(){
-        if(GameManager.get_state() == GameState.CUTSCENE || GameManager.get_state() == GameState.DEATH)
+        if(lock_gameplay_ui_toggle == true || GameManager.get_state() == GameState.CUTSCENE || GameManager.get_state() == GameState.DEATH)
             return;
         if(hud.activeSelf == true)
             enable_pause_menu();
