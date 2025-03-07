@@ -53,10 +53,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -136,10 +136,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -219,10 +219,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -302,10 +302,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -385,10 +385,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -830,8 +830,8 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 50
-        current_life: 50
+        max_life: 45
+        current_life: 45
   body_colliders:
   - {fileID: 2796472837806609066}
   - {fileID: 4748052052098932527}
@@ -867,6 +867,7 @@ MonoBehaviour:
     max_life: 0
     current_life: 0
   state: 0
+  lock_state: 0
 --- !u!114 &6999202768798039158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1111,7 +1112,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 8
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1365,10 +1366,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295

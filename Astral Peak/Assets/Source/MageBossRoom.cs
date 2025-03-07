@@ -39,6 +39,10 @@ public class MageBossRoom : BossRoomHandler{
             unlink_fight_start_trigger();
             Player.spawn_point = respawn_points[1].gameObject.name;
             exit.set_start_open(true);
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
     protected void OnDestroy(){

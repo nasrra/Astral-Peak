@@ -29,6 +29,10 @@ public class CavalryBossRoom : BossRoomHandler{
             unlink_fight_start_trigger();
             Player.spawn_point = fight_start_trigger.gameObject.name;
             exit.set_start_open(true);
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
 

@@ -27,6 +27,10 @@ public class GiantBossRoom : BossRoomHandler{
             unlink_fight_start_trigger();
             Player.instance.respawn_point = respawn_points[0].gameObject.name;
             CutsceneManager.play(new Cutscenes.DomineDoorOpening());
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
     protected override Cutscene get_altar_cutscene() => new ShrineAltarThreeCutscene();

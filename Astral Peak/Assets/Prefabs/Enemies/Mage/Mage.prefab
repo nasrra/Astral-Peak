@@ -156,12 +156,12 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 50
-        current_life: 50
+        max_life: 45
+        current_life: 45
     - Key: phase_2
       Value:
-        max_life: 50
-        current_life: 50
+        max_life: 45
+        current_life: 45
   body_colliders:
   - {fileID: 7100196876858075490}
   <sprites>k__BackingField: {fileID: 3964623577995310139}
@@ -204,6 +204,7 @@ MonoBehaviour:
     max_life: 0
     current_life: 0
   state: 0
+  lock_state: 0
 --- !u!114 &3964623577995310139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,14 +243,14 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32631
+    m_Bits: 65399
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -279,7 +280,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16319
+    m_Bits: 131007
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -331,7 +332,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32567
+    m_Bits: 65335
   m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1

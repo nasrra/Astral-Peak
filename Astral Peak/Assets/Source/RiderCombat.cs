@@ -72,18 +72,18 @@ public class RiderCombat : BossCombat{
             movesets = new Dictionary<string, Action>(){
                 {"phase_1",()=>{
                     test(signature);
-                    // front_moveset = new List<BossAttack>(){
-                    //     jump_backward,
-                    //     signature,
-                    //     front_jump_forward,
-                    //     walk_n_fire,
-                    // };
-                    // back_moveset = new List<BossAttack>(){
-                    //     back_jump_forward,     
-                    // };
-                    // special_moveset = new List<BossAttack>(){
-                    //     round_shot,      
-                    // };
+                    front_moveset = new List<BossAttack>(){
+                        jump_backward,
+                        signature,
+                        front_jump_forward,
+                        walk_n_fire,
+                    };
+                    back_moveset = new List<BossAttack>(){
+                        back_jump_forward,     
+                    };
+                    special_moveset = new List<BossAttack>(){
+                        round_shot,      
+                    };
                 }},
             };
         }

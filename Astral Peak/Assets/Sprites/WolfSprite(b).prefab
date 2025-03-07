@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 8167568823419970893}
   - component: {fileID: 2131568515661568222}
   - component: {fileID: 458955858908164319}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,10 +216,10 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -477,7 +477,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3633448710981251039}
-  m_Layer: 0
+  - component: {fileID: 3421958380836345885}
+  - component: {fileID: 6445001812350596597}
+  m_Layer: 13
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,6 +504,55 @@ Transform:
   - {fileID: 6842696917762466297}
   m_Father: {fileID: 4911516639531915609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -37.074}
+--- !u!58 &3421958380836345885
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3422942067431227439}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 130935
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 65536
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.6, y: 0}
+  m_Radius: 2
+--- !u!114 &6445001812350596597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3422942067431227439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030996c2a6c0687449fc1b53d305d690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 0}
 --- !u!1 &4298830324645454089
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,7 +879,7 @@ GameObject:
   - component: {fileID: 4911516639531915609}
   - component: {fileID: 2416874266532972373}
   - component: {fileID: 2585052718741457078}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,10 +937,10 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295

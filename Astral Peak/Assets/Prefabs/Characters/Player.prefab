@@ -386,6 +386,7 @@ MonoBehaviour:
   <health>k__BackingField: {fileID: 6397682691917227320}
   flip_objects: {fileID: 3159309843669094921}
   movement: {fileID: 1499029867392530053}
+  respawn_point: 
   <animator>k__BackingField: {fileID: 7004414246230456193}
   <melee>k__BackingField: {fileID: 2666390581207947752}
   <particles>k__BackingField: {fileID: 8789742753406188894}
@@ -536,6 +537,7 @@ MonoBehaviour:
     max_life: 5
     current_life: 5
   state: 0
+  lock_state: 0
 --- !u!70 &3397526920180955950
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10955,7 +10957,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -27.00465, y: -6.534528}
+  m_ConnectedAnchor: {x: -29.32465, y: -1.4845277}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:

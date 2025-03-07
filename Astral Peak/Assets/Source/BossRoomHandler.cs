@@ -11,6 +11,7 @@ public abstract class BossRoomHandler : RoomHandler{
     [SerializeField] protected List<FogController> fog_controllers = new List<FogController>();
     [SerializeField] protected List<Transform> boss_points = new List<Transform>(); 
     [SerializeField] protected List<Transform> respawn_points = new List<Transform>();
+    [SerializeField] protected List<Collider2D> arena_bounds = new List<Collider2D>();
     [SerializeField] protected SnowController snow_controller;
     [SerializeField] protected Collider2DFeedback fight_start_trigger;
     [SerializeField] protected Door exit;
@@ -29,6 +30,16 @@ public abstract class BossRoomHandler : RoomHandler{
     }
 
     protected abstract void check_world_state();
+
+    protected void enable_arena_bounds(){
+        foreach(Collider2D col in arena_bounds)
+            col.enabled = true;
+    }
+
+    protected void disable_arena_bounds(){
+        foreach(Collider2D col in arena_bounds)
+            col.enabled = false;
+    }
 
     public void start_fight(){
         fight_started?.Invoke();
