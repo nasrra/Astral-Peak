@@ -27,7 +27,7 @@ public class CavalryBossRoom : BossRoomHandler{
     protected override void check_world_state(){
         if(GameManager.get_boss_state(0)==true){
             unlink_fight_start_trigger();
-            Player.spawn_point = fight_start_trigger.gameObject.name;
+            Player.instance.respawn_point = fight_start_trigger.gameObject.name;
             exit.set_start_open(true);
             disable_arena_bounds();
         }

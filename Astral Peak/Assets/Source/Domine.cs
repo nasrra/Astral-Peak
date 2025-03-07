@@ -70,9 +70,11 @@ public class Domine : MonoBehaviour{
     IEnumerator dissolve_coroutine(){
         flash_off_accents();
         yield return new WaitForSeconds(2);
+        audio_player.play_non_diegetic_loop("domine_dissolve");
         turn_on_attracted_particles();
         StartCoroutine(sprite.lerp_value("_dissolve_amount", .9f, -0.2f, 8f));
         yield return new WaitForSeconds(6);
+        audio_player.stop_all_loops();
         particles.stop_all_particles();
         yield return new WaitForSeconds(6.5f);
         gameObject.SetActive(false);

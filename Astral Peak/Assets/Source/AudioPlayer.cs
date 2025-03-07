@@ -124,7 +124,8 @@ public class AudioPlayer : MonoBehaviour{
     }
 
     public void set_diegetic_instance_parameter(string _instance, string _paramter, float _value){
-        diegetic_instances[_instance].setParameterByName(_paramter, _value);
+        if(diegetic_instances.ContainsKey(_instance))
+            diegetic_instances[_instance].setParameterByName(_paramter, _value);
     }
 
     void destroy(){
