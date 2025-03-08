@@ -34,7 +34,6 @@ public class DomineDoorFinal : Cutscene{
         "SnowInterlude2",
         "CavalryBossRoom",
         "SnowInterlude1",
-        //"ShrineInterlude1",
     };
 
     public override IEnumerator get_coroutine(){
@@ -47,12 +46,12 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.transform.position = domine_door.get_player_point().position;
         Player.instance.sprite.fade_to_black();
         Player.instance.sprite.enter_domine_door_layer();
-        yield return new WaitForSeconds(8);
+        // yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        CustomSceneManager.loaded_scene += astral_plane_segment;
+        // CustomSceneManager.loaded_scene += astral_plane_segment;
         // CustomSceneManager.loaded_scene += start_scene_swap_segment;
-        // CustomSceneManager.loaded_scene += start_shrine_segment;
+        CustomSceneManager.loaded_scene += start_shrine_segment;
         // CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
@@ -152,13 +151,16 @@ public class DomineDoorFinal : Cutscene{
         CameraController.instance.regulate = false;
         yield return new WaitForSeconds(8);
         shrine_room.beatrice.awaken();
-        yield return new WaitForSeconds(6.9f);
+        yield return new WaitForSeconds(1f);
+        CameraController.instance.lerp_zoom(2.75f, 4);
+        CameraController.instance.lerp_offset(null,-2.75f,4);
+        yield return new WaitForSeconds(1.9f);
         AudioManager.dim_sfx_audio();
         AudioManager.stop_ambience();
         yield return new WaitForSeconds(2);
         AudioManager.play_non_diegetic_one_shot("woman_gasp");
         CameraEffects.instance.fade_to_black(0.01f);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
         start_end_credits_segment();
         yield break;
     }

@@ -21,7 +21,7 @@ public class AltarNumerals : MonoBehaviour{
     }
     public void turn_on(int i){
         particles[i].gameObject.SetActive(true);
-        audio_player.play_non_diegetic_one_shot("altar_numeral_thumping");
+        audio_player.play_non_diegetic_one_shot("heart_thump");
         StartCoroutine(Calc.lerp_value(
             val=>light2D[i].intensity=val,
             _start: 0,

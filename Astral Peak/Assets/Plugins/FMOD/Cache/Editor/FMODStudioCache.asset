@@ -302,7 +302,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/AstralPlane.bank
   Name: AstralPlane
   StudioPath: bank:/AstralPlane
-  lastModified: 638768738318607476
+  lastModified: 638770409144661609
   FileSizes: []
   Exists: 1
 --- !u!114 &-7735709278696353168
@@ -474,7 +474,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638769580221442115
+  lastModified: 638770416461848446
   FileSizes: []
   Exists: 1
 --- !u!114 &-6364969721200630697
@@ -906,8 +906,8 @@ MonoBehaviour:
     Data3: 127224235
     Data4: 209324920
   Banks:
-  - {fileID: -7860746316811579645}
   - {fileID: -6067637395526909149}
+  - {fileID: -7860746316811579645}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_final.bank
   Name: cutscene_final
   StudioPath: bank:/cutscene_final
-  lastModified: 638769582688491569
+  lastModified: 638770416461715900
   FileSizes: []
   Exists: 1
 --- !u!114 &-4017332927612966922
@@ -1211,6 +1211,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 35
   Length: 720
+--- !u!114 &-2954464126358960483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/other/heart_thump
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/other/heart_thump
+  Guid:
+    Data1: -518372587
+    Data2: 1228093844
+    Data3: -1367556679
+    Data4: -628458590
+  Banks:
+  - {fileID: 6441361075827419593}
+  - {fileID: -4103770553993699646}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2909013221424621494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,33 +1269,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 400
---- !u!114 &-2718262583404580216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/altar/altar_numeral_thumping
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/altar/altar_numeral_thumping
-  Guid:
-    Data1: -518372587
-    Data2: 1228093844
-    Data3: -1367556679
-    Data4: -628458590
-  Banks:
-  - {fileID: 6441361075827419593}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-2380832551836062586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,7 +1340,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638769580221457234
+  lastModified: 638770416461861155
   FileSizes:
   - Name: 
     Value: 6766
@@ -1486,7 +1487,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MageBossRoom.bank
   Name: MageBossRoom
   StudioPath: bank:/MageBossRoom
-  lastModified: 638770279070111400
+  lastModified: 638770409145481104
   FileSizes: []
   Exists: 1
 --- !u!114 &-974223011989813858
@@ -1637,7 +1638,6 @@ MonoBehaviour:
   - {fileID: 6288472444998745138}
   - {fileID: 7176797701013862241}
   - {fileID: 3410614622262735241}
-  - {fileID: -2718262583404580216}
   - {fileID: -1455369554362517336}
   - {fileID: -974223011989813858}
   - {fileID: 5247302579110212011}
@@ -1712,7 +1712,6 @@ MonoBehaviour:
   - {fileID: 2871146979668874304}
   - {fileID: -9030951974926187219}
   - {fileID: 3773997516111415204}
-  - {fileID: 587926894692704676}
   - {fileID: -356325561391269224}
   - {fileID: -8972364143455590298}
   - {fileID: 3097234852248946272}
@@ -1734,6 +1733,8 @@ MonoBehaviour:
   - {fileID: -7516865855448214721}
   - {fileID: -3058280907282490530}
   - {fileID: 3798570585953580610}
+  - {fileID: 6297151769457242774}
+  - {fileID: -2954464126358960483}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1741,7 +1742,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638770279070111400
+  cacheTime: 638770416461861155
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -1852,34 +1853,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 60048
---- !u!114 &587926894692704676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/sfx/deep_gong
-  m_EditorClassIdentifier: 
-  Path: event:/sfx/deep_gong
-  Guid:
-    Data1: -1509059667
-    Data2: 1336195676
-    Data3: -2053341518
-    Data4: -325750036
-  Banks:
-  - {fileID: -7860746316811579645}
-  - {fileID: -1199358877090321752}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &716638336458508397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3014,6 +2987,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2088
+--- !u!114 &6297151769457242774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/entity/other/deep_gong
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/entity/other/deep_gong
+  Guid:
+    Data1: -1509059667
+    Data2: 1336195676
+    Data3: -2053341518
+    Data4: -325750036
+  Banks:
+  - {fileID: -7860746316811579645}
+  - {fileID: -1199358877090321752}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6441361075827419593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3029,7 +3030,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_altar.bank
   Name: cutscene_altar
   StudioPath: bank:/cutscene_altar
-  lastModified: 638762672884898342
+  lastModified: 638770416459949079
   FileSizes: []
   Exists: 1
 --- !u!114 &6579999296753863898
