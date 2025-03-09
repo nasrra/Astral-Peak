@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Entropek;
-using NUnit.Framework;
 using UnityEngine;
 
 namespace Cutscenes{
@@ -49,10 +48,10 @@ public class DomineDoorFinal : Cutscene{
         // yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        // CustomSceneManager.loaded_scene += astral_plane_segment;
+        CustomSceneManager.loaded_scene += astral_plane_segment;
         // CustomSceneManager.loaded_scene += start_scene_swap_segment;
         // CustomSceneManager.loaded_scene += start_shrine_segment;
-        CustomSceneManager.loaded_scene += start_end_credits_segment;
+        // CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
     protected void astral_plane_segment(){
@@ -63,8 +62,8 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.sprite.set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.domine_door.opened();
-        // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
-        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
+        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
+        // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
         yield return new WaitForSeconds(4);
         Player.instance.sprite.fade_from_black();
         yield return new WaitForSeconds(4.5f);

@@ -13,7 +13,7 @@ public class AstralPlaneRoomHandler : RoomHandler{
         player_health.invulnerable();
         player_health.lock_state = true;
         UiManager.instance.lock_gameplay_ui_toggle = true;
-        // credits_ended();
+        credits_ended();
         base.Start();
     }
 
