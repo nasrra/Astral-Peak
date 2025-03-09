@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour{
     [SerializeField] private Vector3 
         offset,
         original_offset;
-    [SerializeField] private bool regulate;
+    [SerializeField] public bool regulate;
     [SerializeField] private bool shake_locked = false;
     [SerializeField] Camera cam;
 
@@ -52,11 +52,8 @@ public class CameraController : MonoBehaviour{
         unlink();
     }
 
-    public void regulate_in_bounds(bool x) => regulate = x;
-
     // external functions
     public void set_offset(Vector3 _offset, bool _override_original_offset){
-        Log.MethodCall();
         offset = _offset;
         original_offset = _override_original_offset == true? _offset : original_offset;
     }

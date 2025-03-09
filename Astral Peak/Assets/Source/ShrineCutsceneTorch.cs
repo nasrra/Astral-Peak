@@ -47,10 +47,10 @@ public class ShrineCutsceneTorch : MonoBehaviour{
     void handle_cutscene(Cutscene cutscene){
         switch(cutscene){
             case ShrineAltarCutscene c:
-                c.torches_on += turn_on;                
+                c.torches_off   += turn_off;
+                c.torches_on    += turn_on;                
                 break;
             case ShrineOpeningCutscene c:
-                Log.MethodCall();
                 c.torches_on        += turn_on;
                 c.torches_off       += turn_off;
                 c.enlargen_torches  += enlargen;

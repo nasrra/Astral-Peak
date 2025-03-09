@@ -36,15 +36,20 @@ public class MageBossRoom : BossRoomHandler{
     }
     protected override void check_world_state(){
         if(GameManager.get_boss_state(1)==true){
-            Log.MethodCall();
             unlink_fight_start_trigger();
-            Player.instance.set_spawn_point(respawn_points[1].gameObject.name);
+            Player.instance.respawn_point = respawn_points[1].gameObject.name;
             exit.set_start_open(true);
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
-    protected override void OnDestroy(){
+    protected void OnDestroy(){
         unlink_events();
-        base.OnDestroy();
+        if(room_state == 1)
+            audio_spectum.uninitialize();
+        // base.OnDestroy();
     }
     public MagicPlatformsController get_platforms()=>platforms;
     public override void set_room_state(int x){

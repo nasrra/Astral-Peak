@@ -1,49 +1,67 @@
 using System.Collections.Generic;
+using Entropek;
+using FMODUnity;
 using UnityEngine;
 
 public class RoomHandler : MonoBehaviour{
     public static RoomHandler instance;
+    public readonly static Dictionary<RoomType, string> room_type_strings = new Dictionary<RoomType, string>(){
+        {RoomType.NONE,     "room_none"},
+        {RoomType.SHRINE,   "room_shrine"},
+        {RoomType.SNOW,     "room_snow"},
+        {RoomType.ASTRAL,   "room_astral"},
+    };
     public static RoomType current_room_type = RoomType.NONE;
     [Header("RoomHandler")]
     [SerializeField] RoomType room_type;
-    [SerializeField] List<string> ambience_track = new List<string>();
-    [SerializeField] List<string> music_track = new List<string>();
+    public string ambience_track;
+    public string music_track;
     [SerializeField] Transform final_cutscene_camera_target;
+    [SerializeField] ParticleSystem domine_particles;
     [SerializeField] FinalCutsceneCameraMovementOption final_cutscene_camera_movement;
     protected virtual void Awake(){
-        Debug.Log(current_room_type+" "+room_type);
-        if (current_room_type == RoomType.NONE)
-            AudioManager.load_bank(room_type);
-        else if(current_room_type != room_type){
-            AudioManager.unload_bank(current_room_type);
-            AudioManager.load_bank(room_type);
+        //if (current_room_type == RoomType.NONE)
+        //    AudioManager.load_bank(room_type);
+        //else if(current_room_type != room_type){
+        //    AudioManager.unload_bank(current_room_type);
+        //    AudioManager.load_bank(room_type);
+        //}
+        string current_audio_bank =     room_type_strings[current_room_type];
+        string selected_audio_bank =    room_type_strings[room_type];
+        if(RuntimeManager.HasBankLoaded(room_type_strings[room_type]) == false){
+            if(current_room_type != RoomType.NONE)
+                AudioManager.unload_bank(current_audio_bank);
+            if(room_type != RoomType.NONE)
+                AudioManager.load_bank(selected_audio_bank);
         }
         current_room_type = room_type;
         instance = this;
-        if(ambience_track.Count > 0)
-            AudioManager.play_ambience(ambience_track[0]);
+        if(ambience_track != "" && ambience_track != null)
+            AudioManager.play_ambience(ambience_track);
         else
             AudioManager.stop_ambience();
-        if(music_track.Count > 0)
-            AudioManager.play_music(music_track[0]);
+        if(music_track != "" && music_track != null)
+            AudioManager.play_music(music_track);
         else
             AudioManager.stop_music();
+        AudioManager.stop_additive_ambience();
     }
-
-    protected virtual void OnDestroy(){
-        //AudioManager.unload_bank(room_type);
-    }
-
+    
     protected virtual void Start(){
+        // Debug.Log(current_room_type+" "+room_type);
     }
+
+    //protected virtual void OnDestroy(){
+    //    if(SceneInfo.instance.transition == true){
+    //        AudioManager.unload_bank(room_type);
+    //    }
+    //}
 
     public virtual void game_cleared_room_state(){
         game_cleared_camera_movement();
         Player.instance.gameObject.SetActive(false);
-        if(EnemyManager.instance != null){
-            Debug.Log("called");
-            EnemyManager.instance.set_start_all_inactive(true);
-        }
+        domine_particles.Play();
+        EnemyManager.instance?.set_start_all_inactive(true);
         
     }
 
@@ -51,10 +69,11 @@ public class RoomHandler : MonoBehaviour{
         CameraController.instance.set_target(final_cutscene_camera_target);
         CameraController.instance.snap_to_target();
         if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.LEFT)
-            CameraController.instance.lerp_offset(-15,null,10);
+            CameraController.instance.lerp_offset(-30,null,14.35f);
         else if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.DOWN)
-            CameraController.instance.lerp_offset(null,-15,15);
+            CameraController.instance.lerp_offset(null,-30,14.35f);
     }
+
 
     enum FinalCutsceneCameraMovementOption{
         LEFT,DOWN,NONE
@@ -64,5 +83,6 @@ public class RoomHandler : MonoBehaviour{
 public enum RoomType{
     SHRINE,
     SNOW,
+    ASTRAL,
     NONE,
 }

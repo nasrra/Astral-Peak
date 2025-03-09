@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using NUnit.Framework;
+using Entropek;
 using UnityEngine;
 
 namespace Cutscenes{
 public class DomineDoorOpening : Cutscene{
     GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
     public override IEnumerator get_coroutine(){
-        Debug.Log(room);
         DomineDoor domine_door = room.get_domine_door();
         yield return new WaitForSeconds(2);
         domine_door.open();
@@ -28,31 +27,31 @@ public class DomineDoorFinal : Cutscene{
     public Action torches_on, numerals_on;
     int current_level_pan_level = 0;
     string[] level_pan_levels = {
+        "GiantBossRoom",
+        "SnowInterlude3",
         "MageBossRoom",
-        "SnowField",
-        "WolfBossRoom",
-        "SnowForest",
-        "Tower",
-        "TutorialRoom",
+        "SnowInterlude2",
+        "CavalryBossRoom",
+        "SnowInterlude1",
     };
 
-    GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
     public override IEnumerator get_coroutine(){
+        GiantBossRoom room = RoomHandler.instance as GiantBossRoom;
+        AudioManager.load_bank("cutscene_final");
         DomineDoor domine_door = room.get_domine_door();
         CharacterMovement player_movement = Player.instance.get_movement() as CharacterMovement;
         player_movement.mod_gravity(0);
         player_movement.halt();
         Player.instance.transform.position = domine_door.get_player_point().position;
-        Player.instance.get_sprite().fade_to_black();
-        Player.instance.get_sprite().enter_domine_door_layer();
-        yield return new WaitForSeconds(8);
+        Player.instance.sprite.fade_to_black();
+        Player.instance.sprite.enter_domine_door_layer();
+        // yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
-        //CustomSceneManager.loaded_scene += astral_plane_segment;
-        CustomSceneManager.loaded_scene += start_scene_swap_segment;
-        //CustomSceneManager.loaded_scene += start_shrine_segment;
-        //CustomSceneManager.loaded_scene += start_end_credits_segment;
-        room.game_cleared_room_state();
+        CustomSceneManager.loaded_scene += astral_plane_segment;
+        // CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        // CustomSceneManager.loaded_scene += start_shrine_segment;
+        // CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
     protected void astral_plane_segment(){
@@ -60,19 +59,42 @@ public class DomineDoorFinal : Cutscene{
         CutsceneManager.set_coroutine(astral_plane_opening());
     }
     IEnumerator astral_plane_opening(){
-        Player.instance.get_sprite().set_black();
+        Player.instance.sprite.set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
-        astral_room.get_domine_door().opened();
-        yield return new WaitForSeconds(2);
+        astral_room.domine_door.opened();
         DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
-        Player.instance.get_sprite().fade_from_black();
+        // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
+        yield return new WaitForSeconds(4);
+        Player.instance.sprite.fade_from_black();
+        yield return new WaitForSeconds(4.5f);
+        CameraController.instance.regulate = false;
+        CameraController.instance.lerp_offset(-12.5f, null, 3f);
+        astral_room.domine.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        AudioManager.play_music_one_shot("music_domine");
         yield return new WaitForSeconds(6);
-        DialogueHandler.instance.play_dialogue(2.65f);
-        DialogueHandler.instance.dialogue_ended += start_scene_swap_segment;
+        DialogueHandler.instance.play_dialogue(3f);
+        DialogueHandler.instance.dialogue_ended += start_astral_plane_ending;
         yield break;        
     }
 
+    void start_astral_plane_ending(){
+        DialogueHandler.instance.dialogue_ended -= start_astral_plane_ending;
+        CutsceneManager.set_coroutine(astral_plane_ending());
+    }
+
+    IEnumerator astral_plane_ending(){
+        AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
+        astral_room.domine.dissolve();
+        yield return new WaitForSeconds(10);
+        CameraController.instance.reset_offset(3);
+        astral_room.domine_door.close();
+        yield return new WaitForSeconds(5);
+        start_scene_swap_segment();
+    }
+
     void start_scene_swap_segment(){
+        AudioManager.lock_ambience  = true;
         DialogueHandler.instance.dialogue_ended -= start_scene_swap_segment;
         CustomSceneManager.loaded_scene         -= start_scene_swap_segment;
         scene_swap_logic();
@@ -81,12 +103,22 @@ public class DomineDoorFinal : Cutscene{
     void scene_swap_logic(){
         if(current_level_pan_level < level_pan_levels.Length){
             CustomSceneManager.loaded_scene += start_scene_swap_coroutine;
+            CustomSceneManager.loaded_scene += check_first_scene_swap;
             CustomSceneManager.load_scene_with_transitions(level_pan_levels[current_level_pan_level]);
             current_level_pan_level++;
         }
         else
             start_shrine_segment();   
     }
+
+    void check_first_scene_swap(){
+        if(current_level_pan_level == 1){
+            AudioManager.play_music("music_awakening");
+            AudioManager.lock_music     = true;
+        }
+        CustomSceneManager.loaded_scene -= check_first_scene_swap;
+    }
+
     void start_scene_swap_coroutine(){
         CustomSceneManager.loaded_scene -= start_scene_swap_coroutine;
         CutsceneManager.set_coroutine(scene_swap_coroutine());
@@ -95,7 +127,7 @@ public class DomineDoorFinal : Cutscene{
     IEnumerator scene_swap_coroutine(){
         RoomHandler room = RoomHandler.instance;
         room.game_cleared_room_state();
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(11.25f);
         scene_swap_logic();
         yield break;
     }
@@ -121,13 +153,19 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(3);
         CameraController.instance.lerp_zoom(3,6);
         CameraController.instance.lerp_offset(null,-2.5f,6);
-        yield return new WaitForSeconds(8);
+        CameraController.instance.regulate = false;
+        yield return new WaitForSeconds(9);
         shrine_room.beatrice.awaken();
-        yield return new WaitForSeconds(8.9f);
-        // AudioManager.mute_sfx_volume();
-        // AudioClipHandler.play(Sounds.SoundID.WOMAN_GASP_REVERB, UnityHook.instance.gameObject, AudioSourceSettings.NON_DIEGETIC);
+        yield return new WaitForSeconds(1f);
+        CameraController.instance.lerp_zoom(2.75f, 4);
+        CameraController.instance.lerp_offset(null,-2.75f,4);
+        yield return new WaitForSeconds(1.9f);
+        AudioManager.dim_sfx_audio();
+        AudioManager.stop_ambience();
+        yield return new WaitForSeconds(2);
+        AudioManager.play_non_diegetic_one_shot("woman_gasp");
         CameraEffects.instance.fade_to_black(0.01f);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
         start_end_credits_segment();
         yield break;
     }
@@ -140,14 +178,20 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void ending(){
+        Log.MethodCall();
+        AudioManager.restore_sfx_audio();
         CustomSceneManager.loaded_scene -= ending;
         DialogueHandler.instance.dialogue_ended -= ending;
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         CameraEffects.instance.fade_from_black(4);
         astral_room.end_credits_state();
-        unlink();
+        AudioManager.unload_bank("cutscene_final");
+        AudioManager.lock_ambience = false;
+        AudioManager.lock_music = false;
+        AudioManager.play_music("music_main_menu");
         stop_skip();
         end();
+        unlink();
     }
 
     void unlink(){

@@ -38,7 +38,7 @@ public class Giant2 : Boss<Movement>{
     [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
     bool is_idle_flying = false;
 
-    void Awake(){
+    void OnEnable(){
         state = new StateQueue(this, fly_and_attack_state);
         link_events();
     }
@@ -46,14 +46,14 @@ public class Giant2 : Boss<Movement>{
         set_phase_data("phase_1");
         //idle(1);
     }
-    void OnDestroy() => unlink_events();
+    void OnDisable() => unlink_events();
 
     protected override void enter_cutscene_state(){
         this.state.clear_and_stop();
     }
 
     protected override void exit_cutscene_state(){
-        idle(2);
+        idle(1);
     }
 
     private void fly_and_attack_state(){
@@ -177,7 +177,7 @@ public class Giant2 : Boss<Movement>{
             start_action: ()=>{
                 play_idle_animation(); 
                 if(is_idle_flying == false)
-                    movement.figure_eight_state(reverse: false, x_factor:.1f, y_factor:.05f);  
+                    movement.figure_eight_state(reverse: UnityEngine.Random.Range(0,2)==0, x_factor:.1f, y_factor:.05f);  
             }
         );
     }
@@ -215,11 +215,12 @@ public class Giant2 : Boss<Movement>{
         state = null;
         enable_body_colliders(0);
         sprites.play_death_effect(4f);
+        StartCoroutine(sprites.lerp_value("shadow_water", "_amount", .5f, -0.2f, 3f ));
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
         particles.stop_all_particles();
         base.death_start();
         StartCoroutine(Util.timer(
-            animator.get_clip_length("Giant2DeathHead")+1,
+            animator.get_clip_length("Giant2DeathHead")+3,
             time_out:()=>{
                 // AudioManager.stop_music();
                 UiManager.instance.play_enemy_vanquished();

@@ -23,10 +23,14 @@ public class GiantBossRoom : BossRoomHandler{
     }
 
     protected override void check_world_state(){
-        if(GameManager.get_boss_state(2)==true){
+        if(GameManager.get_boss_state(2)==true && GameManager.get_state() != GameState.CUTSCENE){
             unlink_fight_start_trigger();
-            Player.instance.set_spawn_point(respawn_points[0].gameObject.name);
+            Player.instance.respawn_point = respawn_points[0].gameObject.name;
             CutsceneManager.play(new Cutscenes.DomineDoorOpening());
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
     protected override Cutscene get_altar_cutscene() => new ShrineAltarThreeCutscene();
@@ -51,6 +55,7 @@ public class GiantBossRoom : BossRoomHandler{
         left_hand.gameObject.SetActive(true);
         right_hand.gameObject.SetActive(true);
         giant2.play_intro_animation();
+        AudioManager.play_music("music_the_giant_2");
     }
 
     void link_mage(){

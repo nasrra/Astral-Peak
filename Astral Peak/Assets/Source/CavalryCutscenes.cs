@@ -28,7 +28,7 @@ public class CavalryOpening : Cutscene{
         CameraController.instance.set_target(Player.instance.transform);
         CameraController.instance.reset_zoom(time:2);
         CameraController.instance.reset_offset(time:2);
-        CameraController.instance.regulate_in_bounds(true);
+        CameraController.instance.regulate = true;
 
         //
         AudioManager.play_music("music_the_cavalry_1");
@@ -74,7 +74,7 @@ public class CavalryPhaseTransition : Cutscene{
         cavalry.gameObject.SetActive(true);
         rider.gameObject.SetActive(false);
         cavalry.transform.position = room.get_boss_point(1).position;
-        CameraController.instance.regulate_in_bounds(true);
+        CameraController.instance.regulate = true;
         CameraController.instance.set_target(cavalry.transform);
         
         yield return new WaitForSeconds(2f);

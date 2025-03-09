@@ -82,19 +82,20 @@ public class SpriteHandler : MonoBehaviour{
         yield return Calc.lerp_value(val => sprites[sprite_id].material.SetFloat(value, val), start, end, time, () => callback?.Invoke());
     }
 
-    public IEnumerator lerp_color(string value, Color start, Color end, float time) {
+    public IEnumerator lerp_color(Color _start, Color _end, string _value, float _time, Action _callback = null) {
         List<bool> operations = new List<bool>();
         int index = 0;
         foreach(KeyValuePair<string, SpriteRenderer> kvp in sprites){
-            sprites[kvp.Key].material.SetColor(value, start);
+            sprites[kvp.Key].material.SetColor(_value, _start);
             int _index = index;
             index++;
             operations.Add(true); // operation is occuring
-            StartCoroutine(Calc.lerp_color(val => sprites[kvp.Key].material.SetColor(value, val), start, end, time, () => operations[_index]=false));
+            StartCoroutine(Calc.lerp_color(val => sprites[kvp.Key].material.SetColor(_value, val), _start, _end, _time, () => operations[_index]=false));
         }
         while(operations.Contains(true)){
             yield return null;
         }
+        _callback?.Invoke();
         yield break;
     }
 

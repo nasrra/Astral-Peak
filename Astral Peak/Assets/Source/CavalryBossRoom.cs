@@ -19,17 +19,20 @@ public class CavalryBossRoom : BossRoomHandler{
         base.Awake();
     } 
 
-    protected override void OnDestroy(){
+    protected void OnDestroy(){
         unlink();
-        base.OnDestroy();
+        //base.OnDestroy();
     }
 
     protected override void check_world_state(){
         if(GameManager.get_boss_state(0)==true){
-            Log.MethodCall();
             unlink_fight_start_trigger();
-            Player.instance.set_spawn_point(fight_start_trigger.gameObject.name);
+            Player.instance.respawn_point = fight_start_trigger.gameObject.name;
             exit.set_start_open(true);
+            disable_arena_bounds();
+        }
+        else{
+            enable_arena_bounds();
         }
     }
 

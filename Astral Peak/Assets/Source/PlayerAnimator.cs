@@ -24,7 +24,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void force_idle(){
         play(IDLE, true);
     }
-    public void idle()          {if(state != FALL_START && state != FALL_LOOP) play_instant(IDLE, true);}
+    public void idle()          {if(state != FALL_START && state != FALL_LOOP) play(IDLE, true);}
     public void run()           {if(state != FALL_START && state != FALL_LOOP) play_instant(RUN, true);}
     public void none()          => play(NONE, true);
     public void start_fall()    {if(is_falling() == false)play(FALL_START, true);}
@@ -40,8 +40,12 @@ public class PlayerAnimator : CharacterAnimatorOverride{
 
 
     // additive states that should not be returned to.
-    public void side_attack()   => play(SIDE_ATTACK, false); 
-    public void up_attack()    => play(UP_ATTACK, false);      
+    public void side_attack(){
+       play_instant(SIDE_ATTACK, false);
+    } 
+    public void up_attack(){
+        play_instant(UP_ATTACK, false);
+    }      
 
     //BOUNCE OVERRIDE STATES:
     // used for the override animation layer to return to the none state

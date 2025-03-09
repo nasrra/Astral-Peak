@@ -112,19 +112,39 @@ public class Mage : Boss<Movement>{
             start_action:()=>animator.Play(attack.animation_id,0,0));
     }
     public void teleport_phase_1(){
-        float offset = UnityEngine.Random.Range(8,17);
-        Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f,0);
-        Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f,0);
+        float offset = UnityEngine.Random.Range(8, 17);
+        Vector3 left_pos = new Vector3(target.position.x - offset, -8.5f, 0);
+        Vector3 right_pos = new Vector3(target.position.x + offset, -8.5f, 0);
         Vector3 previous_pos = teleport_trail.transform.position;
-        if(UnityEngine.Random.Range(0,2) == 0)
-            transform.position = check_left_teleport(left_pos)? left_pos : right_pos;
-        else
-            transform.position = check_right_teleport(right_pos)? right_pos : left_pos;
+
+        bool canTeleportLeft = check_left_teleport(left_pos);
+        bool canTeleportRight = check_right_teleport(right_pos);
+
+        if (canTeleportLeft && canTeleportRight){
+            transform.position = UnityEngine.Random.Range(0, 2) == 0 ? left_pos : right_pos;
+        }
+        else if (canTeleportLeft){
+            transform.position = left_pos;
+        }
+        else if (canTeleportRight){
+            transform.position = right_pos;
+        }
+        else{
+            // Fallback to staying within bounds (optional)
+            transform.position = target.position;
+        }
+
         teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
-        animator.Play("Mage1ExitTel",0,0);
+        animator.Play("Mage1ExitTel", 0, 0);
     }
-    private bool check_left_teleport(Vector3 pos){return pos.x > combat.left_arena_bound.position.x + 1;}
-    private bool check_right_teleport(Vector3 pos){return pos.x < combat.right_arena_bound.position.x - 1;}
+
+    private bool check_left_teleport(Vector3 pos){
+        return pos.x >= combat.left_arena_bound.position.x + 1;
+    }
+
+    private bool check_right_teleport(Vector3 pos){
+        return pos.x <= combat.right_arena_bound.position.x - 1;
+    }
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
         hollow.set_target(target);
@@ -197,7 +217,7 @@ public class Mage : Boss<Movement>{
     }
     private void idle_fly_pattern(){
         movement.halt();
-        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2) == 0);
+        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2)==0);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");
@@ -220,7 +240,7 @@ public class Mage : Boss<Movement>{
                 sprites.play_death_effect_reverse(0.5f);
                 teleport_trail.emit_once(transform.position, pos);
                 transform.position = pos;
-                sound.play_diegetic_one_shot("boss_yell");
+                sound.play_non_diegetic_one_shot("boss_yell_non_diegetic");
             }
         ));
 
@@ -232,6 +252,7 @@ public class Mage : Boss<Movement>{
         signature_adjust();
         teleport_death(new Vector2(0,0));
         animator.Play("MageDeath");
+        particles.play_particle("death_ambience");
         particles.play_particle("yell");
         CameraController.instance.start_camera_shake(0.75f, true);
         base.death_start();
@@ -246,9 +267,13 @@ public class Mage : Boss<Movement>{
         }
         teleport_death(new Vector2(0,2));
         sprites.play_death_effect(4);
-        yield return new WaitForSeconds(4);
-        CameraController.instance.stop_camera_shake();
+        yield return new WaitForSeconds(3.25f);
+        sound.play_diegetic_one_shot("creature_death");
+        yield return new WaitForSeconds(.85f);
+        particles.play_particle("death_explosion");
+        particles.stop_particle("death_ambience");
         particles.stop_particle("yell");
+        CameraController.instance.stop_camera_shake();
         yield return new WaitForSeconds(particles.get_particle("yell").main.startLifetime.constantMax  + 1);
         signature_reset();
         base.death_complete();
@@ -284,7 +309,7 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_1;
     }
     private void unlink_phase_1(){
-        Log.MethodCall();
+        // Log.MethodCall();
         unlink_components();
         health.death -= transition_phase;
     }
@@ -300,15 +325,15 @@ public class Mage : Boss<Movement>{
         switch_to_attack = attack_phase_2;
     }
     private void unlink_phase_2(){//
-        Log.MethodCall();
+        // Log.MethodCall();
         unlink_components();
     }
     private void link_cutscene_opening(){
-        Log.MethodCall();
+        // Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
     private void link_cutscene_transition(){
-        Log.MethodCall();
+        // Log.MethodCall();
         switch_to_idle = idle_phase_1;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Entropek;
+using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using Unity.VisualScripting;
@@ -23,6 +24,8 @@ public static class AudioManager{
     static string current_music_track = "";
     static string current_ambience_track = "";
     static string current_additive_ambience_track = "";
+    public static bool lock_ambience = false;
+    public static bool lock_music = false;
 
     public static void initialize(){
         // load master banks.
@@ -95,23 +98,23 @@ public static class AudioManager{
     }
 
     public static void play_music(string _event_name){
-        if(current_ambience_track == _event_name)
-            return;            
+        if(current_ambience_track == _event_name || lock_music == true)
+            return;
         stop_music();
         music_track = create_event_instance(_event_name);
         music_track.start();
         current_music_track = _event_name;
     }
     public static void stop_music(){
-        if(current_music_track == "" || current_music_track == null)
+        if(current_music_track == "" || current_music_track == null || lock_music == true)
             return;
-        current_music_track = "";
         music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         music_track.release();
+        current_music_track = "";
     }
 
     public static void play_ambience(string _event_name){
-        if(current_ambience_track == _event_name)
+        if(current_ambience_track == _event_name || lock_ambience == true)
             return;
         stop_ambience();
         ambience_track = create_event_instance(_event_name);
@@ -121,17 +124,18 @@ public static class AudioManager{
     public static void stop_ambience(){
         if(current_ambience_track == "" || current_ambience_track == null)
             return;
-        current_ambience_track = "";
         ambience_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambience_track.release();
+        current_ambience_track = "";
     }
 
     public static void set_ambience_parameter(string _parameter, int _value){
-        ambience_track.setParameterByName(_parameter, _value);
+        if(ambience_track.isValid())
+            ambience_track.setParameterByName(_parameter, _value);
     }
 
     public static void play_additive_ambience(string _event_name){
-        if(current_additive_ambience_track == _event_name)
+        if(current_additive_ambience_track == _event_name || lock_ambience == true)
             return;
         stop_additive_ambience();
         additive_ambience_track = create_event_instance(_event_name);
@@ -201,7 +205,6 @@ public static class AudioManager{
 
     public static void set_master_volume(float _volume){
         master_bus.setVolume(_volume);
-        Debug.Log(_volume);
     }
 
     public static void set_music_volume(float _volume){
@@ -233,12 +236,10 @@ public static class AudioManager{
     }
 
     public static void dim_sfx_audio(){
-        Log.MethodCall();
         RuntimeManager.StudioSystem.setParameterByName("sfx_dim",1);
     }
 
     public static void restore_sfx_audio(){
-        Log.MethodCall();
         RuntimeManager.StudioSystem.setParameterByName("sfx_dim",0);
     }
 
@@ -268,7 +269,7 @@ public static class AudioManager{
             path = Path.GetFileNameWithoutExtension(path);
             loaded_references.Add(path,reference);
         }
-        UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
+        // UnityEngine.Debug.Log("Bank ["+_bank_name+"] loaded");
     }
 
     public static void unload_bank(string _bank_name){
@@ -286,17 +287,8 @@ public static class AudioManager{
             loaded_references.Remove(Path.GetFileNameWithoutExtension(path));
         }
         RuntimeManager.UnloadBank(_bank_name);
-        //UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
+        // UnityEngine.Debug.Log("Bank ["+_bank_name+"] unloaded");
     }
-
-    public static void load_bank(RoomType _room_type) => load_bank(room_type_banks[_room_type]);
-    
-    public static void unload_bank(RoomType _room_type) => unload_bank(room_type_banks[_room_type]);
-    
-    private static Dictionary<RoomType, string> room_type_banks = new Dictionary<RoomType, string>(){
-        {RoomType.SHRINE, "room_shrine"},
-        {RoomType.SNOW, "room_snow"},
-    };
 
     private static void load_active_scene_bank(){
         load_bank(SceneManager.GetActiveScene().name);
@@ -307,8 +299,9 @@ public static class AudioManager{
     }
 
     public static void set_available_banks(){
-        //string path = Application.streamingAssetsPath + "/FMOD Banks/Desktop/";
-        string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
+        // string path = Application.streamingAssetsPath + "/FMOD Banks/Desktop/";
+        // string[] bank_files = Directory.GetFiles(Settings.Instance.SourceBankPath, "*.bank");
+        string[] bank_files = Directory.GetFiles(Application.streamingAssetsPath + "/FMOD Banks/Desktop/", "*.bank");
         foreach(var file in bank_files){
             string file_name = Path.GetFileNameWithoutExtension(file);
             available_banks.Add(file_name, (sbyte)available_banks.Count);
@@ -320,17 +313,22 @@ public static class AudioManager{
     // Linkage
 
 
+    private static void force_update(){
+        Log.MethodCall();
+        RuntimeManager.CoreSystem.update();
+    }
+
     private static void link_events(){
         CustomSceneManager.transitioning_scene  += stop_music;
         CustomSceneManager.transitioning_scene  += stop_ambience;
-        CustomSceneManager.loading_scene        += unload_active_scene_bank;
+        CustomSceneManager.unloaded_scene       += unload_bank;
         CustomSceneManager.loaded_scene         += load_active_scene_bank;
     }
 
     private static void unlink_events(){
         CustomSceneManager.transitioning_scene  -= stop_music;
         CustomSceneManager.transitioning_scene  -= stop_ambience;
-        CustomSceneManager.loading_scene        -= unload_active_scene_bank;
+        CustomSceneManager.unloaded_scene       -= unload_bank;
         CustomSceneManager.loaded_scene         -= load_active_scene_bank;
     }
 

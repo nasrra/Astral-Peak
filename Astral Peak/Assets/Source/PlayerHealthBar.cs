@@ -7,10 +7,8 @@ public class PlayerHealthBar : MonoBehaviour{
     int health_amount = 0;
 
     void OnEnable(){
-        if(Player.instance != null){
-            health = Player.instance.health;
-            set_hearts();
-        }
+        health = Player.instance.health;
+        set_hearts();
     }
 
     void Start(){
@@ -20,8 +18,8 @@ public class PlayerHealthBar : MonoBehaviour{
         health.healed                               += health_updated;
         Player.instance.damaged_start               += health_updated;
         Player.instance.death_started               += dead;
-        if(GameManager.get_state() != GameState.CUTSCENE)
-            set_hearts();
+      if(GameManager.get_state() != GameState.CUTSCENE)
+        set_hearts();
     }
     void OnDestroy(){
         Player.instance.intermediate_health_updated -= intermediate_health_updated;
@@ -37,11 +35,10 @@ public class PlayerHealthBar : MonoBehaviour{
     void dead() => set_hearts();
 
     public void set_hearts(){
-        // if(gameObject.activeSelf == false)
-        //     return;
+        if(gameObject.activeSelf == false)
+            return;
         health_amount = health.get_current_health()-1;
-        Debug.Log(health_amount);
-        for(int i = 0; i < health.get_max_health(); i++){
+        for(int i = 0; i < hearts.Count; i++){
             if(i>health_amount)
                 hearts[i].disable();
             else

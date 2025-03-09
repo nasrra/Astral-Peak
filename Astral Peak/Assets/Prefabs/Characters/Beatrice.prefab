@@ -288,6 +288,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1678643864676705643}
+  - {fileID: 8344541023304840491}
   m_Father: {fileID: 3089510093303467132}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3707601939930153552
@@ -493,9 +494,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 226215159
   m_SortingLayer: 6
-  m_SortingOrder: -1
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: e9818c1bcb0695040a099269163fa53c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -945,6 +946,8 @@ GameObject:
   - component: {fileID: 13906575901607361}
   - component: {fileID: 1043456369727055518}
   - component: {fileID: 4077759908013109972}
+  - component: {fileID: 6677687858958857201}
+  - component: {fileID: 6062053557498274399}
   m_Layer: 0
   m_Name: Beatrice
   m_TagString: Untagged
@@ -1002,8 +1005,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c8de07f4637ea45ba76426729eefb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio_player: {fileID: 6677687858958857201}
   animator: {fileID: 13906575901607361}
   sprite: {fileID: 4077759908013109972}
+  particles: {fileID: 6062053557498274399}
 --- !u!114 &4077759908013109972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,6 +1025,34 @@ MonoBehaviour:
     _serializedList:
     - Key: main
       Value: {fileID: 3250420938770012661}
+--- !u!114 &6677687858958857201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542746185920796557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4a0a1f938ba2049bb68a350b87d59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6062053557498274399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542746185920796557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16d4f4473f740db4583e27606a70812c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles:
+    _serializedList:
+    - Key: awaken_ambience
+      Value: {fileID: 6640378530686531421}
 --- !u!1 &9134971291733350842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,3 +1084,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6515458333992283798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4161230311391300466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1139566354417866745}
+    m_Modifications:
+    - target: {fileID: 1275753674025186258, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275753674025186258, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 389b0e53bb1e9394b905a8ee4506f2c5, type: 2}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6396844050086096550, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+      propertyPath: m_Name
+      value: BeatriceAwakenParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+--- !u!198 &6640378530686531421 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7320871659867634735, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+  m_PrefabInstance: {fileID: 4161230311391300466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8344541023304840491 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5364467971745087065, guid: 8e0a3836a9f346c4ea4c9d3eb0eed325, type: 3}
+  m_PrefabInstance: {fileID: 4161230311391300466}
+  m_PrefabAsset: {fileID: 0}

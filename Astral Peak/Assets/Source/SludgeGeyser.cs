@@ -1,8 +1,6 @@
 using System.Collections;
 using Entropek;
-using TreeEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SludgeGeyser : MonoBehaviour{
     [SerializeField] protected BoxCollider2D hurtbox;
@@ -10,6 +8,12 @@ public class SludgeGeyser : MonoBehaviour{
     [SerializeField] protected ParticleSystem start_particle;
     [SerializeField] protected ParticleSystem end_particle;
     [SerializeField] protected AudioPlayer audio_player;
+    [SerializeField] protected bool start_on = false;
+
+    void Awake(){
+        if(start_on == true)
+            turn_on();
+    }
 
     Coroutine length_state;
 

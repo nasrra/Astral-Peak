@@ -193,7 +193,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 98111
   m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -214,7 +214,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 32639
+    m_Bits: 98111
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -253,6 +253,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 429880232758027218}
   movement: {fileID: 9007153683493686633}
+  destroy_on_hit: 1
   front_point: {fileID: 2191199959179037548}
   speed: 22
 --- !u!95 &5041555011694880179

@@ -8,7 +8,7 @@ public class RiderCombat : BossCombat{
             "RiderSignature",
             max_player_distance:    4,
             min_player_distance:    0,
-            arena_bound_distance:   7,
+            arena_bound_distance:   0,
             attack_cooldown:        4,
             idle_cooldown:          2,
             combat_cooldown:        2
@@ -71,6 +71,7 @@ public class RiderCombat : BossCombat{
         protected override void create_movesets(){
             movesets = new Dictionary<string, Action>(){
                 {"phase_1",()=>{
+                    test(signature);
                     front_moveset = new List<BossAttack>(){
                         jump_backward,
                         signature,

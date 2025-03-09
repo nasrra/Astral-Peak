@@ -25159,6 +25159,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.75
+    functionName: play_weapon_flash
+    data: active_crossbow
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3.4166667
     functionName: fire_projectile
     data: signature
@@ -25230,15 +25237,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 5.983333
-    functionName: play_diegetic_one_shot
-    data: snow_impact_heavy
+    functionName: play_particle
+    data: signature_slam
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 5.983333
-    functionName: play_particle
-    data: signature_slam
+    functionName: play_diegetic_one_shot
+    data: snow_impact_heavy
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25260,6 +25267,13 @@ AnimationClip:
   - time: 6.1
     functionName: stop_particle
     data: snow_dash
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 7.6666665
+    functionName: play_weapon_flash
+    data: active_crossbow
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

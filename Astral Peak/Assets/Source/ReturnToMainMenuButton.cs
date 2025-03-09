@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class ReturnToMainMenuButton : MonoBehaviour{
+public class ReturnToMainMenuButton : MenuButton{
     public void invoke(){
+        disable_button();
         AudioManager.stop_music();
         AudioManager.stop_ambience();
         AudioManager.stop_additive_ambience();
@@ -9,7 +10,7 @@ public class ReturnToMainMenuButton : MonoBehaviour{
         GameManager.invoke_set_game_data();
         GameManager.save_game_data();
         CustomSceneManager.load_scene_with_transitions_unscaled("MainMenu");
-        AudioManager.unload_bank(RoomHandler.current_room_type);
+        // AudioManager.unload_bank(RoomHandler.current_room_type);
         RoomHandler.current_room_type=RoomType.NONE;
     }
 }

@@ -26,20 +26,21 @@ public class Introduction : Cutscene{
         yield return new WaitForSeconds(1);
         controller.title_card_text.Play("fade_in");
         AudioManager.play_music("music_introduction");
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(10.25f);
         controller.fire_1.turn_on();
         yield return new WaitForSeconds(4);
         controller.fire_2.turn_on();
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         controller.lore_text.Play("fade_in");
-        yield return new WaitForSeconds(62);
+        yield return new WaitForSeconds(63);
         controller.fire_1.turn_off();
         yield return new WaitForSeconds(4);
         controller.fire_2.turn_off();
         yield return new WaitForSeconds(4);
         AudioManager.stop_music();
+        stop_skip();
         yield return new WaitForSeconds(2);
-        CustomSceneManager.load_scene_with_transitions("TutorialRoom");
+        CustomSceneManager.load_scene_with_transitions("TutorialRoom1");
         end();
         yield break;
     }

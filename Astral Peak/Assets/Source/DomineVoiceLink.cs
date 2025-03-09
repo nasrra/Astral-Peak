@@ -36,7 +36,7 @@ public class DomineVoiceLink : MonoBehaviour{
     };
 
     private void dialogue_started(){
-        audio_spectrum.initialize(RuntimeManager.GetBus("bus:/voice/domine"));
+        audio_spectrum.initialize(RuntimeManager.GetBus("bus:/voice"));
     }
 
     private void dialogue_ended(){
@@ -62,24 +62,19 @@ abstract class VoiceLines{
 class DomineAstralPlaneVoiceLines : VoiceLines{
     public DomineAstralPlaneVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
-        {0, "domine_dead_woman"},
-        {1, "domine_sacrifice_ritual"},
-        {2, "domine_an_offering"},
-        {3, "domine_no"},
-        {4, "domine_cursed_one"},
-        {5, "domine_why_here"},
-        {6, "domine_lost_soul"},
-        {7, "domine_burned_woman"},
-        {8, "domine_ashes_to_wind"},
-        {9, "domine_fool_or_brave"},
-        {10,"domine_unless"},
-        {11,"domine_mountain_summit"}, // threshold of world.
-        {12,"domine_under_arches"}, // last inhabitants.
-        {13,"domine_old_door"},
-        {14,"domine_walk_aether"}, // journey there/ wish granted.
-        {15,"domine_warning"},
-        {16,"domine_its_expensive"},
-        {17,"domine_waiting_mortal"},
+        {0, "domine_waiting_mortal"},
+        {1, "domine_walk_aether"}, // welcome
+        {2, "domine_old_door"}, // wish granted.
+        {3, "domine_unless"}, // however.
+        // 4...
+        {5,"domine_its_expensive"}, // ressurcetion costly
+        {6, "domine_why_here"}, // one enter
+        {7, "domine_why_here"}, // one leave.
+        {8, "domine_dead_woman"}, // no reunited.
+        // 9...
+        {10, "domine_sacrifice_ritual"}, // cannot leave.
+        {11, "domine_waiting_mortal"}, // may you find peace.
+        {12, "domine_warning"}, // farewell mortal.
         };
     }
 }
@@ -88,7 +83,7 @@ class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
         
-        //{0, "domine_dead_woman"},
+        {0, "domine_dead_woman"},
         {1, "domine_dead_woman"},
         {2, "domine_sacrifice_ritual"},
         {3, "domine_an_offering"},
@@ -105,8 +100,8 @@ class DomineShrineVoiceLines : VoiceLines{
         {14,"domine_mountain_summit"}, // threshold of world.
         {15,"domine_under_arches"}, // last inhabitants.
         {16,"domine_old_door"},
-        {17,"domine_walk_aether"}, // journey there/ wish granted.
-        {18,"domine_warning"},
+        {17,"domine_warning"},
+        //18...
         {19,"domine_its_expensive"},
         //20...
         {21,"domine_waiting_mortal"},

@@ -35,7 +35,7 @@ public class Giant1Combat : BossCombat{
         min_player_distance:    0,
         arena_bound_distance:   0,
         attack_cooldown:        2,
-        idle_cooldown:          0,
+        idle_cooldown:          0,  
         combat_cooldown:        1
     ),
     round_slam = new BossAttack(
@@ -78,19 +78,20 @@ public class Giant1Combat : BossCombat{
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
             {"phase_1",()=> {
+                    // test(geyser);
                     front_moveset = new List<BossAttack>(){
-                        down_slam,
-                        jump_backward,
-                        front_jump_forward,
-                        three_piece,
+                       down_slam,
+                       jump_backward,
+                       front_jump_forward,
+                       three_piece,
                     };
                     back_moveset = new List<BossAttack>(){
-                        back_jump_forward,
+                       back_jump_forward,
                     };
                     special_moveset = new List<BossAttack>(){
-                        walk_projectile,
-                        round_slam,
-                        geyser,
+                       walk_projectile,
+                       round_slam,
+                       geyser,
                     };
                 }
             },

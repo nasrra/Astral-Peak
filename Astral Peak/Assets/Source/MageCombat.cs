@@ -15,7 +15,7 @@ public class MageCombat : BossCombat{
             "Mage1EnterTel",
             max_player_distance:   6,
             min_player_distance:   0,
-            arena_bound_distance:  0,
+            arena_bound_distance:  8,
             attack_cooldown:       4,
             idle_cooldown:         1,
             combat_cooldown:       2),
@@ -24,9 +24,9 @@ public class MageCombat : BossCombat{
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  6,
-            attack_cooldown:       12,
-            idle_cooldown:         3,
-            combat_cooldown:       3),
+            attack_cooldown:       24,
+            idle_cooldown:         0,
+            combat_cooldown:       2),
         three_slash_phase_1 = new(
             "Mage1ThreeSlash",
             max_player_distance:   6,
@@ -40,9 +40,9 @@ public class MageCombat : BossCombat{
             max_player_distance:   6,
             min_player_distance:   0,
             arena_bound_distance:  6,
-            attack_cooldown:       9, //24
+            attack_cooldown:       40, //24
             idle_cooldown:         3,
-            combat_cooldown:       8),
+            combat_cooldown:       4),
         projectile_summon_phase_2 = new(
             "Mage2ProjSum",
             max_player_distance:   20,
@@ -50,7 +50,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       8,
             idle_cooldown:         0,
-            combat_cooldown:       6),
+            combat_cooldown:       3),
         signature_phase_2 = new(
             "Mage2Sig",
             max_player_distance:   20,
@@ -58,7 +58,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       9,
             idle_cooldown:         0,
-            combat_cooldown:       8),
+            combat_cooldown:       4),
         left_right_phase_2 = new(
             "Mage2LeftRight",
             max_player_distance:   20,
@@ -66,7 +66,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       16,
             idle_cooldown:         0,
-            combat_cooldown:       6),
+            combat_cooldown:       3),
         right_left_phase_2 = new(
             "Mage2RightLeft",
             max_player_distance:   20,
@@ -74,7 +74,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       16,
             idle_cooldown:         0,
-            combat_cooldown:       6)
+            combat_cooldown:       4)
         ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
@@ -93,10 +93,10 @@ public class MageCombat : BossCombat{
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
                     hollow_summon_phase_2,
-                    projectile_summon_phase_2,
+                    // projectile_summon_phase_2,
                     signature_phase_2,
-                    left_right_phase_2,     
-                    right_left_phase_2,
+                    // left_right_phase_2,     
+                    // right_left_phase_2,
                 };
             }}
         };

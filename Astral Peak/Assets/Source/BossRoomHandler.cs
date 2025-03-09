@@ -11,23 +11,35 @@ public abstract class BossRoomHandler : RoomHandler{
     [SerializeField] protected List<FogController> fog_controllers = new List<FogController>();
     [SerializeField] protected List<Transform> boss_points = new List<Transform>(); 
     [SerializeField] protected List<Transform> respawn_points = new List<Transform>();
+    [SerializeField] protected List<Collider2D> arena_bounds = new List<Collider2D>();
     [SerializeField] protected SnowController snow_controller;
     [SerializeField] protected Collider2DFeedback fight_start_trigger;
     [SerializeField] protected Door exit;
+    [SerializeField] protected int room_state = 0;
     protected Dictionary<string, Func<Cutscene>> cutscenes;
     protected Cutscene cutscene; 
     protected override void Awake(){
-        base.Awake();
         // AudioManager.stop_music();
+        base.Awake();
         check_world_state();
     }
 
     protected override void Start(){
-        set_room_state(0);
         base.Start();
+        set_room_state(room_state);
     }
 
     protected abstract void check_world_state();
+
+    protected void enable_arena_bounds(){
+        foreach(Collider2D col in arena_bounds)
+            col.enabled = true;
+    }
+
+    protected void disable_arena_bounds(){
+        foreach(Collider2D col in arena_bounds)
+            col.enabled = false;
+    }
 
     public void start_fight(){
         fight_started?.Invoke();
@@ -37,7 +49,7 @@ public abstract class BossRoomHandler : RoomHandler{
 
     public Transform get_boss_point(int index) => boss_points[index];
     protected void play_cutscene(string phase) => CutsceneManager.play(cutscenes[phase]());
-    public void set_respawn_point(int index) => Player.instance.set_respawn_point(respawn_points[index].name);    
+    public void set_respawn_point(int index) => Player.instance.respawn_point = respawn_points[index].name;    
     protected void start_fight(Collider2D other){
         set_respawn_point(0);//
         Player.instance.transform.position = fight_start_trigger.transform.position;
@@ -64,10 +76,9 @@ public abstract class BossRoomHandler : RoomHandler{
         ProjectileManager.instance?.destroy_all();
         EnemyManager.instance?.destroy_all();
         GameManager.boss_defeated(get_boss_id());
-        GameManager.invoke_set_game_data();
-        GameManager.save_game_data();
         CameraController.instance.reset_offset(1);
         CameraController.instance.reset_zoom(1);
+        CameraController.instance.set_target(Player.instance.transform);
     }
 
     protected virtual void death_completed(){
@@ -84,6 +95,7 @@ public abstract class BossRoomHandler : RoomHandler{
     }
 
     public virtual void set_room_state(int x){
+        room_state = x;
         foreach(FogController fog in fog_controllers)
             fog.lerp_preset(x,4);
         snow_controller.lerp_preset(x);

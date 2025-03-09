@@ -32,7 +32,7 @@ public class FogController : SpriteHandler{
         state_switch(ref size_state,lerp_value      ("_size",fog.GetFloat("_size"), data.size, time));
         state_switch(ref density_state,lerp_value   ("_density",fog.GetFloat("_density"),data.density,time));
         state_switch(ref speed_state, Calc.lerp_value(val => speed = val, speed, data.speed,time));
-        state_switch(ref color_state,lerp_color     ("_color",fog.GetColor("_color"),data.color,time));
+        state_switch(ref color_state,lerp_color     (fog.GetColor("_color"),data.color,"_color",time));
     }
 
     IEnumerator set_offset(){

@@ -3,6 +3,7 @@ using System.Collections;
 using FMOD;
 using FMOD.Studio;
 using FMODUnity;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,14 +21,18 @@ public class AudioSpectrum : MonoBehaviour{
 
     public void initialize(Bus _bus){
         bus = _bus;
+        RESULT result;
         bus.lockChannelGroup();
         // Flush commands to ensure the lock command is being called
         RuntimeManager.StudioSystem.flushCommands();
-        RESULT result = bus.getChannelGroup(out group);
+        result = bus.getChannelGroup(out group);
         RuntimeManager.CoreSystem.createDSPByType(DSP_TYPE.FFT, out fft_dsp);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOWSIZE, samples_length);
         fft_dsp.setParameterInt((int)DSP_FFT.WINDOW, (int)window_type);
-        group.addDSP(0,fft_dsp);        
+        int num;
+        group.getNumDSPs(out num);
+        group.addDSP(CHANNELCONTROL_DSP_INDEX.TAIL, fft_dsp); // Add DSP before fader, remember that the volume val has to be 0.0001 to work.
+        group.getNumDSPs(out num);
         UnityHook.instance.StartCoroutine(audio_data_loop());
     }
 

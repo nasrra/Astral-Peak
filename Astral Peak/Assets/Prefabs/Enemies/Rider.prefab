@@ -10271,14 +10271,14 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16247
+    m_Bits: 65399
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -10308,7 +10308,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 16319
+    m_Bits: 131006
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -10357,8 +10357,8 @@ MonoBehaviour:
     _serializedList:
     - Key: phase_1
       Value:
-        max_life: 50
-        current_life: 50
+        max_life: 45
+        current_life: 45
   body_colliders: []
   <sprites>k__BackingField: {fileID: 1483956834082543531}
   <animator>k__BackingField: {fileID: 8580107664884857992}
@@ -10415,6 +10415,7 @@ MonoBehaviour:
     max_life: 0
     current_life: 0
   state: 0
+  lock_state: 0
 --- !u!114 &1483956834082543531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30479,6 +30480,18 @@ PrefabInstance:
     - target: {fileID: 3227016893405844170, guid: 3aa69f5e3b3278b4d8ed6bbe9c1146d7, type: 3}
       propertyPath: m_Simulated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575095291997996133, guid: 3aa69f5e3b3278b4d8ed6bbe9c1146d7, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575095291997996133, guid: 3aa69f5e3b3278b4d8ed6bbe9c1146d7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.039215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575095291997996133, guid: 3aa69f5e3b3278b4d8ed6bbe9c1146d7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.015686275
       objectReference: {fileID: 0}
     - target: {fileID: 4575095291997996133, guid: 3aa69f5e3b3278b4d8ed6bbe9c1146d7, type: 3}
       propertyPath: m_SortingLayer

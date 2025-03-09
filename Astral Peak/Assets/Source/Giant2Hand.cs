@@ -103,8 +103,13 @@ public class Giant2Hand : MonoBehaviour{
         movement.halt();
     }
 
-    public void turn_on_finger_beam() => finger_beam.turn_on();
-    public void turn_off_finger_beam() => finger_beam.turn_off();
+    public void turn_on_finger_beam(){
+        finger_beam.turn_on();
+        finger_beam.set_sound_intensity(1);
+    }
+    public void turn_off_finger_beam(){
+        finger_beam.turn_off();
+    }
 
     int get_current_ground_piece(){
         int x = -1;
@@ -152,7 +157,7 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     public void enable_colliders(int _enabled){
-        Log.MethodCall();
+        // Log.MethodCall();
         bool enabled = _enabled == 1? true :false;
         foreach(Collider2D collider in colliders)
             collider.enabled = enabled;
