@@ -55,7 +55,8 @@ namespace Cutscenes{
             yield return new WaitForSeconds(fade_transition_time);
             prepare();
             CameraEffects.instance.fade_from_black(fade_transition_time);
-            yield return new WaitForSeconds(fade_transition_time);
+            CameraController.instance.lerp_offset(null, -2, fade_transition_time);
+            yield return new WaitForSeconds(fade_transition_time+1);
             mage.animator.Play("MageYell");
             CameraController.instance.set_target(mage.transform);
             yield return new WaitForSeconds(mage.animator.get_clip_length("MageYell")+1);
@@ -65,7 +66,7 @@ namespace Cutscenes{
             yield return new WaitForSeconds(mage.animator.get_clip_length("MagePhaseTransition1")/2);
             room.set_room_state(1);
             mage.link_phase("phase_2");
-            mage.animator.Play("MagePhaseTransition2",0,0);
+            mage.animator.PlayInstant("MagePhaseTransition2");
             mage.phase_2_body_charged();
             mage.get_movement().mod_speed(2);
             mage.get_movement().freeform_approach_to(room.get_boss_point(2));
