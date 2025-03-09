@@ -231,6 +231,16 @@ public class Giant2 : Boss<Movement>{
     }
 
     public void yell_camera_shake() => CameraController.instance.shake_camera(4f,.7f, true);
+    public void intro_camera_shake(){
+        CameraController.instance.shake_camera(5.5f, 0.55f, true);
+    }
+    public void intro_water_rush_sound(){
+        sound.play_diegetic_loop("water_rushing");
+        sound.set_diegetic_instance_parameter("water_rushing", "intensity",1);
+    }
+    public void play_music(){
+        AudioManager.play_music("music_the_giant_2");
+    }
 
     protected void link_events(){
         link_game_manager();
