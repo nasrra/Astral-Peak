@@ -96,6 +96,6 @@ public static class CustomSceneManager{
     } 
 
     static void set_game_data(){
-        GameManager.get_game_data().scene_to_load = scene_to_load;
+        GameManager.data.scene_to_load = scene_to_load;
     }
 }

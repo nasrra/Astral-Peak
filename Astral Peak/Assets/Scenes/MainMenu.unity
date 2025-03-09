@@ -35664,6 +35664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 831674214}
   - component: {fileID: 831674215}
+  - component: {fileID: 831674216}
   m_Layer: 0
   m_Name: Menus
   m_TagString: Untagged
@@ -35707,6 +35708,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 831674213}
+--- !u!114 &831674216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831674213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a3865395e999e40861c409f7b8d0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room_type: 3
+  ambience_track: 
+  music_track: 
+  final_cutscene_camera_target: {fileID: 0}
+  domine_particles: {fileID: 0}
+  final_cutscene_camera_movement: 2
 --- !u!1 &833532926
 GameObject:
   m_ObjectHideFlags: 0

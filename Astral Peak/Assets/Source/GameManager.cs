@@ -14,7 +14,7 @@ public enum GameState{
 public static class GameManager{
     public static event Action set_game_data;
     static GameState state = GameState.GAMEPLAY;
-    static GameData data = new GameData();
+    public static GameData data {get; private set;}
     static bool data_loaded = false;
     static float time_scale = 1;
 
@@ -23,6 +23,7 @@ public static class GameManager{
         exited_game_state;
 
     public static void initialize(){
+        data = new GameData();
         swap_state(GameState.MENU);
         #if UNITY_EDITOR
         swap_state(GameState.GAMEPLAY);
@@ -66,7 +67,6 @@ public static class GameManager{
         Time.timeScale = _time_scale;
         time_scale = _time_scale;
     }
-    public static GameData get_game_data() => data;
     public static void save_game_data(){
         if(state != GameState.CUTSCENE)
             FileManager.save_data(data);

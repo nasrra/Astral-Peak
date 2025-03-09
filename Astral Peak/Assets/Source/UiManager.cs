@@ -75,7 +75,13 @@ public class UiManager : MonoBehaviour{
             cutscene_state_on();
     }
 
-    public void enable_button_prompt(string button) => button_prompts[button].turn_on();
+    public void enable_button_prompt(string button){
+        GameData data = GameManager.data; 
+        if(data.tutorials_completed[button] == false){
+            button_prompts[button].turn_on();
+            data.tutorials_completed[button] = true;
+        }
+    }
 
     public void enable_death_screen(){
         pause_menu.SetActive(false);

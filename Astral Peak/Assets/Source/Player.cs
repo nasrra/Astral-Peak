@@ -357,13 +357,13 @@ public class Player : CreatureInheritor<CharacterMovement>{
     void load_data(){
         if(GameManager.is_data_loaded()==false)
             return;
-        GameData data = GameManager.get_game_data();
+        GameData data = GameManager.data;
         spawn_point = data.spawn_point;
     }
     void set_game_data(){
         if(GameManager.get_state() == GameState.CUTSCENE)
             return;
-        GameData data = GameManager.get_game_data();
+        GameData data = GameManager.data;
         data.spawn_point = spawn_point;
     }
 

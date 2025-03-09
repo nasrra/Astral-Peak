@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class ButtonPromptTrigger : MonoBehaviour{
     [SerializeField] string button;
-    [SerializeField] bool flag = false;
+    [SerializeField] Collider2D col;
     void OnTriggerEnter2D(){
-        if(flag == false){
-            UiManager.instance.enable_button_prompt(button);
-            flag = true;
-        }
+        UiManager.instance.enable_button_prompt(button);
+        col.enabled = false;
     }
 }
