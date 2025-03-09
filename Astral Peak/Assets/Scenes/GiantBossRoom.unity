@@ -3864,6 +3864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1495438577}
     m_Modifications:
+    - target: {fileID: 844889366180965237, guid: f626b60265a784e4792bcb9a5e613b16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3292086910786513939, guid: f626b60265a784e4792bcb9a5e613b16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.75
@@ -5689,6 +5693,14 @@ PrefabInstance:
       propertyPath: ground_handler
       value: 
       objectReference: {fileID: 1976846265}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.max_life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796190530721225586, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
+      propertyPath: health_presets._serializedList.Array.data[0].Value.current_life
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4806183750753091257, guid: b418223ebc94a044a90b49df2280b9b0, type: 3}
       propertyPath: m_Size.y
       value: 0.12
@@ -5774,6 +5786,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1495438577}
     m_Modifications:
+    - target: {fileID: 844889366180965237, guid: f626b60265a784e4792bcb9a5e613b16, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3292086910786513939, guid: f626b60265a784e4792bcb9a5e613b16, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -9550,7 +9566,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1228465404}
