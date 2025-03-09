@@ -713,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4706629354370478138, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9
+      value: -8.5
       objectReference: {fileID: 0}
     - target: {fileID: 4706629354370478138, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -748,12 +748,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 3.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
