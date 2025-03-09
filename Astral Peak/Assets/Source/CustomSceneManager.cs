@@ -31,6 +31,7 @@ public static class CustomSceneManager{
     }
 
     static void prepare_for_scene_load(string _scene){
+        InputManager.disable_ui_event_system_input();
         scene_to_load = _scene;
         AudioManager.dim_sfx_audio();
         if(SceneInfo.instance.transition == true)
@@ -75,7 +76,6 @@ public static class CustomSceneManager{
     }
 
     static IEnumerator load_scene_with_transitions_coroutine(){
-        // AudioManager.dim_sfx_volume();
         if(CameraEffects.instance != null){
             CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
             CameraEffects.instance?.fade_to_black(1);
@@ -85,7 +85,6 @@ public static class CustomSceneManager{
         yield break;
     } 
     static IEnumerator load_scene_with_transitions_unscaled_coroutine(){
-        // AudioManager.dim_sfx_volume();
         if(CameraEffects.instance != null){
             CameraEffects.instance.completed_fade_to_black += load_scene; // has to be linked beforehand to ensure the IEnumerator instance of the action isnt null.
             CameraEffects.instance?.fade_to_black_unscaled(1);

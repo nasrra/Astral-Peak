@@ -305,6 +305,33 @@ public static class InputManager{
 
 
 
+
+    // Mouse Input:
+    // globally enable and disable mouse input.
+    public static void disable_mouse_input(){
+        InputSystem.DisableDevice(Mouse.current);
+    }
+    public static void enable_mouse_input(){
+        InputSystem.EnableDevice(Mouse.current);
+    }
+
+    // Ui Input:
+    public static void enable_ui_event_system_input(){
+        UnityEngine.EventSystems.EventSystem event_system = UnityEngine.EventSystems.EventSystem.current;
+        if(event_system != null)
+            event_system.enabled = true;
+    }
+
+    public static void disable_ui_event_system_input(){
+        UnityEngine.EventSystems.EventSystem event_system = UnityEngine.EventSystems.EventSystem.current;
+        if(event_system != null)
+            event_system.enabled = false;
+    }
+
+
+
+
+
     // Util:
     public static Vector2 get_user_input_vector() => user_input_vector;
     public static InputAction get_input_action(string input_action){

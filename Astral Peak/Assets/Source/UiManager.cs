@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using Entropek;
+using UnityEngine.EventSystems;
 
 public class UiManager : MonoBehaviour{
     public event Action
