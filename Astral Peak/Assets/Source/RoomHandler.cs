@@ -69,9 +69,9 @@ public class RoomHandler : MonoBehaviour{
         CameraController.instance.set_target(final_cutscene_camera_target);
         CameraController.instance.snap_to_target();
         if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.LEFT)
-            CameraController.instance.lerp_offset(-30,null,13);
+            CameraController.instance.lerp_offset(-30,null,14.35f);
         else if(final_cutscene_camera_movement == FinalCutsceneCameraMovementOption.DOWN)
-            CameraController.instance.lerp_offset(null,-30,13);
+            CameraController.instance.lerp_offset(null,-30,14.35f);
     }
 
 

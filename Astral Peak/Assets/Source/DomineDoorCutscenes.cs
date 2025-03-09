@@ -50,8 +50,8 @@ public class DomineDoorFinal : Cutscene{
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
         // CustomSceneManager.loaded_scene += astral_plane_segment;
-        // CustomSceneManager.loaded_scene += start_scene_swap_segment;
-        CustomSceneManager.loaded_scene += start_shrine_segment;
+        CustomSceneManager.loaded_scene += start_scene_swap_segment;
+        // CustomSceneManager.loaded_scene += start_shrine_segment;
         // CustomSceneManager.loaded_scene += start_end_credits_segment;
         yield break;
     }
@@ -95,9 +95,7 @@ public class DomineDoorFinal : Cutscene{
     }
 
     void start_scene_swap_segment(){
-        AudioManager.stop_music();
         AudioManager.lock_ambience  = true;
-        AudioManager.lock_music     = true;
         DialogueHandler.instance.dialogue_ended -= start_scene_swap_segment;
         CustomSceneManager.loaded_scene         -= start_scene_swap_segment;
         scene_swap_logic();
@@ -106,12 +104,22 @@ public class DomineDoorFinal : Cutscene{
     void scene_swap_logic(){
         if(current_level_pan_level < level_pan_levels.Length){
             CustomSceneManager.loaded_scene += start_scene_swap_coroutine;
+            CustomSceneManager.loaded_scene += check_first_scene_swap;
             CustomSceneManager.load_scene_with_transitions(level_pan_levels[current_level_pan_level]);
             current_level_pan_level++;
         }
         else
             start_shrine_segment();   
     }
+
+    void check_first_scene_swap(){
+        if(current_level_pan_level == 1){
+            AudioManager.play_music("music_awakening");
+            AudioManager.lock_music     = true;
+        }
+        CustomSceneManager.loaded_scene -= check_first_scene_swap;
+    }
+
     void start_scene_swap_coroutine(){
         CustomSceneManager.loaded_scene -= start_scene_swap_coroutine;
         CutsceneManager.set_coroutine(scene_swap_coroutine());
@@ -120,14 +128,12 @@ public class DomineDoorFinal : Cutscene{
     IEnumerator scene_swap_coroutine(){
         RoomHandler room = RoomHandler.instance;
         room.game_cleared_room_state();
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(11.25f);
         scene_swap_logic();
         yield break;
     }
 
     void start_shrine_segment(){
-        AudioManager.lock_ambience  = false;
-        AudioManager.lock_music     = false;
         CustomSceneManager.loaded_scene -= start_shrine_segment;
         DialogueHandler.instance.dialogue_ended -= start_shrine_segment;
         CustomSceneManager.load_scene_with_transitions("Shrine");
@@ -149,7 +155,7 @@ public class DomineDoorFinal : Cutscene{
         CameraController.instance.lerp_zoom(3,6);
         CameraController.instance.lerp_offset(null,-2.5f,6);
         CameraController.instance.regulate = false;
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(9);
         shrine_room.beatrice.awaken();
         yield return new WaitForSeconds(1f);
         CameraController.instance.lerp_zoom(2.75f, 4);
@@ -181,6 +187,8 @@ public class DomineDoorFinal : Cutscene{
         CameraEffects.instance.fade_from_black(4);
         astral_room.end_credits_state();
         AudioManager.unload_bank("cutscene_final");
+        AudioManager.lock_ambience = false;
+        AudioManager.lock_music = false;
         AudioManager.play_music("music_main_menu");
         stop_skip();
         end();

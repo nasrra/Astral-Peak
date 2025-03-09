@@ -106,7 +106,7 @@ public static class AudioManager{
         current_music_track = _event_name;
     }
     public static void stop_music(){
-        if(current_music_track == "" || current_music_track == null)
+        if(current_music_track == "" || current_music_track == null || lock_music == true)
             return;
         music_track.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         music_track.release();
