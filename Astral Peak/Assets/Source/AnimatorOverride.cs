@@ -22,6 +22,10 @@ public class AnimatorOverride : MonoBehaviour{
     public void Play(int id, int layer) => animator.Play(id,layer);
     public void Play(int id, int layer, int normalized_time) => animator.Play(id,layer,normalized_time);
     public void Play(string id) => animator.Play(id);
+    public void PlayInstant(string id){
+        animator.Play(id,0,0);
+        animator.Update(0);
+    }
     public void Play(string id, int layer) => animator.Play(id,layer);
     public void Play(string id, int layer, int normalized_time) => animator.Play(id,layer,normalized_time);
     public void Rebind() => animator.Rebind();

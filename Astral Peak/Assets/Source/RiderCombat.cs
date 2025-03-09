@@ -71,7 +71,6 @@ public class RiderCombat : BossCombat{
         protected override void create_movesets(){
             movesets = new Dictionary<string, Action>(){
                 {"phase_1",()=>{
-                    test(signature);
                     front_moveset = new List<BossAttack>(){
                         jump_backward,
                         signature,

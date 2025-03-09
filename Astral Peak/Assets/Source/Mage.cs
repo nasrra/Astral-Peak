@@ -99,7 +99,7 @@ public class Mage : Boss<Movement>{
     //phase 1.
     private void idle_phase_1(){
         no_state();
-        state.stop();
+        // state.stop();
         animator.Rebind();
         animator.Play("MageIdle",0,0);
 
@@ -108,8 +108,8 @@ public class Mage : Boss<Movement>{
         movement.halt();
         combat.halt();
         state.queue_and_start(
-            time: animator.get_clip_length(attack.animation_id),
-            start_action:()=>animator.Play(attack.animation_id,0,0));
+            time: animator.get_clip_length(attack.animation_id)+0.05f,
+            start_action:()=>animator.PlayInstant(attack.animation_id));
     }
     public void teleport_phase_1(){
         float offset = UnityEngine.Random.Range(8, 17);
@@ -135,7 +135,7 @@ public class Mage : Boss<Movement>{
         }
 
         teleport_trail.emit_once(teleport_trail.transform.position, previous_pos);
-        animator.Play("Mage1ExitTel", 0, 0);
+        animator.PlayInstant("Mage1ExitTel");
     }
 
     private bool check_left_teleport(Vector3 pos){

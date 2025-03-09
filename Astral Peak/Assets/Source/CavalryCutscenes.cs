@@ -20,7 +20,7 @@ public class CavalryOpening : Cutscene{
         yield return new WaitForSeconds(2);
         rider.cutscene_yell();
         yield return new WaitForSeconds(.5f);
-        CameraController.instance.lerp_offset(0,2,3);
+        CameraController.instance.lerp_offset(0,0,5);
         CameraController.instance.lerp_zoom(14,5f);
         yield return new WaitForSeconds(4);
         stop_skip();
