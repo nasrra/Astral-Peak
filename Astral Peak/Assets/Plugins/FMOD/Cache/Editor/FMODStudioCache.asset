@@ -302,7 +302,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/AstralPlane.bank
   Name: AstralPlane
   StudioPath: bank:/AstralPlane
-  lastModified: 638770409144661609
+  lastModified: 638771197985040900
   FileSizes: []
   Exists: 1
 --- !u!114 &-7735709278696353168
@@ -575,7 +575,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/MainMenu.bank
   Name: MainMenu
   StudioPath: bank:/MainMenu
-  lastModified: 638768738318316613
+  lastModified: 638771197985630475
   FileSizes: []
   Exists: 1
 --- !u!114 &-5995024502405556693
@@ -906,15 +906,15 @@ MonoBehaviour:
     Data3: 127224235
     Data4: 209324920
   Banks:
-  - {fileID: -6067637395526909149}
   - {fileID: -7860746316811579645}
+  - {fileID: -6067637395526909149}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 255672
+  Length: 248000
 --- !u!114 &-4105556081445569354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_final.bank
   Name: cutscene_final
   StudioPath: bank:/cutscene_final
-  lastModified: 638771141995761555
+  lastModified: 638771178736541897
   FileSizes: []
   Exists: 1
 --- !u!114 &-4017332927612966922
@@ -1269,6 +1269,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 400
+--- !u!114 &-2906812432857562648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/music/music_introduction
+  m_EditorClassIdentifier: 
+  Path: event:/music/music_introduction
+  Guid:
+    Data1: -280597009
+    Data2: 1166761862
+    Data3: -2045048407
+    Data4: -1144245046
+  Banks:
+  - {fileID: 9137474274058199416}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 99072
 --- !u!114 &-2380832551836062586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1686,7 +1713,6 @@ MonoBehaviour:
   - {fileID: -7735709278696353168}
   - {fileID: 2560825264167563864}
   - {fileID: -6277680731841273976}
-  - {fileID: 5992836656288874982}
   - {fileID: -4129944128686250798}
   - {fileID: 377567603870311856}
   - {fileID: -2909013221424621494}
@@ -1736,6 +1762,7 @@ MonoBehaviour:
   - {fileID: 6297151769457242774}
   - {fileID: -2954464126358960483}
   - {fileID: 3359354389442216922}
+  - {fileID: -2906812432857562648}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1743,7 +1770,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638771141995761555
+  cacheTime: 638771197985630475
   cacheVersion: 131846
 --- !u!114 &5801823818893206
 MonoBehaviour:
@@ -2428,9 +2455,9 @@ MonoBehaviour:
     Data3: 164679574
     Data4: 1988523309
   Banks:
-  - {fileID: 9137474274058199416}
   - {fileID: -7376905227913506980}
   - {fileID: 990133301624612997}
+  - {fileID: 9137474274058199416}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
@@ -2932,33 +2959,6 @@ MonoBehaviour:
   lastModified: 638766820062542816
   FileSizes: []
   Exists: 1
---- !u!114 &5992836656288874982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/music/music_introduction
-  m_EditorClassIdentifier: 
-  Path: event:/music/music_introduction
-  Guid:
-    Data1: -280597009
-    Data2: 1166761862
-    Data3: -2045048407
-    Data4: -1144245046
-  Banks:
-  - {fileID: 9137474274058199416}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 98664
 --- !u!114 &6284529360217597188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3034,8 +3034,8 @@ MonoBehaviour:
     Data3: -2053341518
     Data4: -325750036
   Banks:
-  - {fileID: -7860746316811579645}
   - {fileID: -1199358877090321752}
+  - {fileID: -7860746316811579645}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3244,9 +3244,9 @@ MonoBehaviour:
     Data3: 1175700367
     Data4: 1448724782
   Banks:
-  - {fileID: 9137474274058199416}
   - {fileID: -7376905227913506980}
   - {fileID: 990133301624612997}
+  - {fileID: 9137474274058199416}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -3507,6 +3507,6 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Introduction.bank
   Name: Introduction
   StudioPath: bank:/Introduction
-  lastModified: 638762639916454422
+  lastModified: 638771178750807632
   FileSizes: []
   Exists: 1
