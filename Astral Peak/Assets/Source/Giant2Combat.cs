@@ -10,7 +10,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        6,
         idle_cooldown:          0,
-        combat_cooldown:        1.2f
+        combat_cooldown:        1.5f
     ),
     fist_slam = new(
         "Giant2Slam",
@@ -19,7 +19,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        4,
         idle_cooldown:          0,
-        combat_cooldown:        2.2f
+        combat_cooldown:        2.25f
     ),
     finger_gun = new(
         "Giant2Gun",
@@ -28,7 +28,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        16,
         idle_cooldown:          0,
-        combat_cooldown:        2.2f
+        combat_cooldown:        2.25f
     ),
     hand_clap = new(
         "Giant2Clap",
@@ -37,7 +37,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        4,
         idle_cooldown:          0,
-        combat_cooldown:        1.2f
+        combat_cooldown:        1.5f
     ),
     multi_slam = new(
         "Giant2MultiSlam",
@@ -46,7 +46,7 @@ public class Giant2Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
-        combat_cooldown:        2.2f
+        combat_cooldown:        2.25f
     ),
     geyser = new(
         "Giant2Geyser",
@@ -54,7 +54,7 @@ public class Giant2Combat : BossCombat{
         min_player_distance: 0,
         arena_bound_distance: 0,
         attack_cooldown:      8,
-        combat_cooldown:      1.2f
+        combat_cooldown:      1.5f
     )
     ;
 

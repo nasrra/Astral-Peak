@@ -9,7 +9,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:  2,
         attack_cooldown:       6,
         idle_cooldown:         0,
-        combat_cooldown:       2
+        combat_cooldown:       2.2f
     ),
     jump_backward = new BossAttack(
         "Giant1JumpBackward",
@@ -54,7 +54,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
-        combat_cooldown:        2
+        combat_cooldown:        1.5f
     ),
     geyser = new BossAttack(
         "Giant1Geyser",
@@ -72,7 +72,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        10,
         idle_cooldown:          0,
-        combat_cooldown:        3
+        combat_cooldown:        2.2f
     )
     ;
     protected override void create_movesets(){

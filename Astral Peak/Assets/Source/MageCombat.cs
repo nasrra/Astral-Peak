@@ -42,7 +42,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  6,
             attack_cooldown:       40, //24
             idle_cooldown:         3,
-            combat_cooldown:       4),
+            combat_cooldown:       3.5f),
         projectile_summon_phase_2 = new(
             "Mage2ProjSum",
             max_player_distance:   20,
@@ -50,7 +50,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       8,
             idle_cooldown:         0,
-            combat_cooldown:       3),
+            combat_cooldown:       3.2f),
         signature_phase_2 = new(
             "Mage2Sig",
             max_player_distance:   20,
@@ -58,7 +58,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       9,
             idle_cooldown:         0,
-            combat_cooldown:       4),
+            combat_cooldown:       3.2f),
         left_right_phase_2 = new(
             "Mage2LeftRight",
             max_player_distance:   20,
@@ -66,7 +66,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       16,
             idle_cooldown:         0,
-            combat_cooldown:       3),
+            combat_cooldown:       2.5f),
         right_left_phase_2 = new(
             "Mage2RightLeft",
             max_player_distance:   20,
@@ -74,7 +74,7 @@ public class MageCombat : BossCombat{
             arena_bound_distance:  2,
             attack_cooldown:       16,
             idle_cooldown:         0,
-            combat_cooldown:       4)
+            combat_cooldown:       2.5f)
         ;
     protected override void create_movesets(){
         movesets = new Dictionary<string, Action>(){
@@ -92,11 +92,11 @@ public class MageCombat : BossCombat{
                 front_moveset = new List<BossAttack>();
                 back_moveset = new List<BossAttack>();
                 special_moveset = new List<BossAttack>(){
-                    //hollow_summon_phase_2,
-                    //projectile_summon_phase_2,
+                    hollow_summon_phase_2,
+                    projectile_summon_phase_2,
                     signature_phase_2,
-                    //left_right_phase_2,     
-                    //right_left_phase_2,
+                    left_right_phase_2,     
+                    right_left_phase_2,
                 };
             }}
         };
