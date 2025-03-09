@@ -12,7 +12,9 @@ public class Torch : MonoBehaviour{
     [SerializeField] AudioPlayer audio_player;
     bool turned_on = false;
 
-    void Awake() => original_scale = fire[0].transform.localScale;
+    void Awake(){
+        original_scale = fire[0].transform.localScale;
+    }
 
     void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
@@ -28,6 +30,17 @@ public class Torch : MonoBehaviour{
         StartCoroutine(reset_flame(2));
         StartCoroutine(reset_light(2));
     }
+
+    public void on(){
+        turned_on = true;
+        fire[0].material.SetFloat("_Dim", 1);
+        light2D.intensity = 2;
+        audio_player.play_diegetic_loop("fire_crackle_soft");
+        foreach(SpriteRenderer s in fire)
+            s.enabled = true;   
+        light2D.enabled = true;  
+    }   
+
     public void turn_on(){
         if(turned_on == true)
             return;
@@ -54,7 +67,7 @@ public class Torch : MonoBehaviour{
         }
         foreach(SpriteRenderer s in fire){
             s.material.SetFloat("_Dim", 10);
-            s.gameObject.SetActive(false);
+            s.enabled = false;
         }
         smoke.Play(); 
         audio_player.play_diegetic_one_shot("fire_extinguish");
@@ -71,7 +84,7 @@ public class Torch : MonoBehaviour{
         embers.Play();
         foreach(SpriteRenderer s in fire){
             s.material.SetFloat("_Dim", 10);
-            s.gameObject.SetActive(true);
+            s.enabled = true;
         }
         while (Mathf.Abs(fire[0].material.GetFloat("_Dim") - x) > 0.5f) {
             float newDim = Mathf.Lerp(fire[0].material.GetFloat("_Dim"), 1, Time.deltaTime * 2);
@@ -129,7 +142,7 @@ public class Torch : MonoBehaviour{
         yield break;        
     }
     IEnumerator turn_on_light(){
-        light2D.gameObject.SetActive(true);
+        light2D.enabled = true;
         light2D.intensity = 0;
         while(light2D.intensity < 2.5f){
             light2D.intensity += Time.deltaTime;
@@ -144,7 +157,7 @@ public class Torch : MonoBehaviour{
             yield return null;
         }
         light2D.intensity = 0;
-        light2D.gameObject.SetActive(false);
+        light2D.enabled = false;
         yield break;
     }
 }

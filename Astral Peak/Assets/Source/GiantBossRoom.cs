@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Entropek;
 using Unity.VisualScripting;
@@ -12,6 +13,7 @@ public class GiantBossRoom : BossRoomHandler{
     [SerializeField] DomineDoor domine_door_script;
     [SerializeField] ConstellationController gateway_1, gateway_2;
     [SerializeField] Transform domine_door_transform;
+    [SerializeField] Torch[] torches;
 
     protected override void Awake(){
         link_events();
@@ -28,6 +30,7 @@ public class GiantBossRoom : BossRoomHandler{
             Player.instance.respawn_point = respawn_points[0].gameObject.name;
             CutsceneManager.play(new Cutscenes.DomineDoorOpening());
             disable_arena_bounds();
+            turn_on_torches_instant();
         }
         else{
             enable_arena_bounds();
@@ -49,8 +52,27 @@ public class GiantBossRoom : BossRoomHandler{
         unlink_fight_start_trigger();
     }
 
+
+    private void turn_on_torches_instant(){
+        for(int i = 0; i < torches.Length; i++){
+            torches[i].on();    
+        }
+    }
+    private void turn_on_torches(){
+        StartCoroutine(turn_on_torches_coroutine());
+    }
+    IEnumerator turn_on_torches_coroutine(){
+        for(int i = 0; i < torches.Length/2; i++){
+            torches[i].turn_on();
+            torches[torches.Length - i - 1].turn_on();
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield break;
+    }
+
     public void enable_giant2(){
         set_room_state(1);
+        turn_on_torches();
         giant2.gameObject.SetActive(true);
         left_hand.gameObject.SetActive(true);
         right_hand.gameObject.SetActive(true);
