@@ -10,7 +10,7 @@ public class GiantOpening : Cutscene{
         CameraController.instance.set_target(domine_door.transform);
         CameraController.instance.lerp_zoom(6,2);
         AudioManager.play_music("music_domine_door");
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
         room.get_gateway_1().fade_in();
         room.get_gateway_2().fade_in();
         yield return new WaitForSeconds(8);
