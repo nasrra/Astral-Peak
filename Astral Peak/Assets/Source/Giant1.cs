@@ -68,9 +68,20 @@ public class Giant1 : Boss<Movement>{
     public void death_camera_shake() => CameraController.instance.shake_camera(.5f,.8f, true);
 
     // ground waves.
-    public void down_slam_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
-    public void round_slam_left_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
-    public void round_slam_right_ground_wave() => ground_handler.start_wave(get_current_ground_piece() + (flipped==true?1:-1), !flipped, .15f, 400f);
+    public void down_slam_ground_wave(){
+        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
+        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);        
+    }
+    public void round_slam_left_ground_wave(){
+        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
+        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+        // ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
+    }
+    public void round_slam_right_ground_wave(){
+        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
+        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+        // ground_handler.start_wave(get_current_ground_piece() + (flipped==true?1:-1), !flipped, .15f, 400f);
+    }
     public void jump_away_ground_wave(){
         // left and right
         ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
