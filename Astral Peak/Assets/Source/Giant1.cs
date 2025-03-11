@@ -6,6 +6,7 @@ public class Giant1 : Boss<Movement>{
     Coroutine idle_state;
     [Header("Giant1")]
     [SerializeField] FinalBossRoomGroundHandler ground_handler;
+    [SerializeField] Transform hammer_ground_check;
 
     void Awake(){
         link_events();
@@ -53,9 +54,20 @@ public class Giant1 : Boss<Movement>{
             animator.Play("Giant1Idle");
     }
 
-    int get_current_ground_piece(){
+    // ground piece we are standing on.
+    int get_current_standing_ground_piece(){
         int x = -1;
         Collider2D other = Physics2D.OverlapCircle(transform.position, .5f, LayersManager.BITWISE_GROUND);
+        if(other != null)
+            Int32.TryParse(other.name, out x);
+        return x;
+    }
+
+    // ground piece hammer collides with.
+    int get_current_hammer_ground_piece(){
+        int x = -1;
+        // cahnge to raycast 2d down.
+        Collider2D other = Physics2D.OverlapCircle(hammer_ground_check.position, .5f, LayersManager.BITWISE_GROUND);
         if(other != null)
             Int32.TryParse(other.name, out x);
         return x;
@@ -69,23 +81,27 @@ public class Giant1 : Boss<Movement>{
 
     // ground waves.
     public void down_slam_ground_wave(){
-        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
-        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);        
+        int ground_piece = get_current_hammer_ground_piece();
+        ground_handler.start_wave(ground_piece + -1, true, .15f, 400f);
+        ground_handler.start_wave(ground_piece + 1, false, .15f, 400f);        
     }
     public void round_slam_left_ground_wave(){
-        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
-        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+        int ground_piece = get_current_hammer_ground_piece();
+        ground_handler.start_wave(ground_piece + -1, true, .15f, 400f);
+        ground_handler.start_wave(ground_piece + 1, false, .15f, 400f);
         // ground_handler.start_wave(get_current_ground_piece() + (flipped==true?-1:1), flipped, .15f, 400f);
     }
-    public void round_slam_right_ground_wave(){
-        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
-        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+    public void round_slam_right_ground_wave(){        
+        int ground_piece = get_current_hammer_ground_piece();
+        ground_handler.start_wave(ground_piece + -1, true, .15f, 400f);
+        ground_handler.start_wave(ground_piece + 1, false, .15f, 400f);
         // ground_handler.start_wave(get_current_ground_piece() + (flipped==true?1:-1), !flipped, .15f, 400f);
     }
     public void jump_away_ground_wave(){
         // left and right
-        ground_handler.start_wave(get_current_ground_piece() + -1, true, .15f, 400f);
-        ground_handler.start_wave(get_current_ground_piece() + 1, false, .15f, 400f);
+        int ground_piece = get_current_standing_ground_piece();
+        ground_handler.start_wave(ground_piece + -1, true, .15f, 400f);
+        ground_handler.start_wave(ground_piece + 1, false, .15f, 400f);
     }
     public void start_geysers() => ground_handler.use_geysers();
 

@@ -65,7 +65,7 @@ public class GiantBossRoom : BossRoomHandler{
         for(int i = 0; i < torches.Length/2; i++){
             torches[i].turn_on();
             torches[torches.Length - i - 1].turn_on();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
         yield break;
     }
