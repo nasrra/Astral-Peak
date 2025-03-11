@@ -16460,15 +16460,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: three_piece_jump
-    data: 
+    functionName: emit_particle
+    data: three_piece_swing
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: emit_particle
-    data: three_piece_swing
+    functionName: three_piece_jump
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -16529,6 +16529,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.6666667
+    functionName: enable_melee_hurtbox
+    data: hammer_slam_front
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.8166666
     functionName: play_particle
     data: front_down_slam_impact
@@ -16544,6 +16551,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.8333333
+    functionName: down_slam_ground_wave
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.8333333
     functionName: down_slam_camera_shake
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -16551,8 +16565,8 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 2.8333333
-    functionName: down_slam_ground_wave
-    data: 
+    functionName: disable_melee_hurtbox
+    data: hammer_slam_front
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
