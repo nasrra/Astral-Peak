@@ -62,19 +62,19 @@ abstract class VoiceLines{
 class DomineAstralPlaneVoiceLines : VoiceLines{
     public DomineAstralPlaneVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
-        {0, "domine_waiting_mortal"},
-        {1, "domine_walk_aether"}, // welcome
-        {2, "domine_old_door"}, // wish granted.
+        {0, "domine_arrived_mortal"},
+        {1, "domine_astral_plane"}, // welcome
+        {2, "domine_wish_permitted"}, // wish granted.
         {3, "domine_unless"}, // however.
         // 4...
-        {5,"domine_its_expensive"}, // ressurcetion costly
-        {6, "domine_why_here"}, // one enter
-        {7, "domine_why_here"}, // one leave.
-        {8, "domine_dead_woman"}, // no reunited.
+        {5, "domine_its_expensive"}, // ressurcetion costly
+        {6, "domine_solo_enter"}, // one enter
+        {7, "domine_solo_exit"}, // one leave.
+        {8, "domine_no_reunion"}, // no reunited.
         // 9...
-        {10, "domine_sacrifice_ritual"}, // cannot leave.
-        {11, "domine_waiting_mortal"}, // may you find peace.
-        {12, "domine_warning"}, // farewell mortal.
+        {10, "domine_you_cannot_leave"}, // cannot leave.
+        {11, "domine_find_peace"}, // may you find peace.
+        {12, "domine_farewell_mortal"}, // farewell mortal.
         };
     }
 }
@@ -90,16 +90,16 @@ class DomineShrineVoiceLines : VoiceLines{
         {4, "domine_no"},
         {5, "domine_cursed_one"},
         {6, "domine_why_here"},
-        {7, "domine_lost_soul"},
-        {8, "domine_burned_woman"},
-        {9, "domine_ashes_to_wind"},
+        {7, "domine_woman_lost_soul"},
+        // {8, "domine_burned_woman"},
+        {9, "domine_ashes_forgotten"}, 
         {10, "domine_fool_or_brave"},
         //11...
         {12,"domine_unless"},
         //13...
-        {14,"domine_mountain_summit"}, // threshold of world.
-        {15,"domine_under_arches"}, // last inhabitants.
-        {16,"domine_old_door"},
+        {14,"domine_sealed_away_door"}, // sealed away door.
+        {15,"domine_guarded_tomb"}, // guarded tomb.
+        {16,"domine_woman_resurrection"}, // woman resurrection.
         {17,"domine_warning"},
         //18...
         {19,"domine_its_expensive"},

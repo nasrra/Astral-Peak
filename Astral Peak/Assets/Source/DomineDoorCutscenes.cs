@@ -45,7 +45,7 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.transform.position = domine_door.get_player_point().position;
         Player.instance.sprite.fade_to_black();
         Player.instance.sprite.enter_domine_door_layer();
-        yield return new WaitForSeconds(8);
+        // yield return new WaitForSeconds(8);
         CameraController.instance.set_target(domine_door.transform);
         CustomSceneManager.load_scene_with_transitions("AstralPlane");
         CustomSceneManager.loaded_scene += astral_plane_segment;
