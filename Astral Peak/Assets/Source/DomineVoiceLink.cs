@@ -83,7 +83,7 @@ class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
         
-        {0, "domine_dead_woman"},
+        // {0, "domine_dead_woman"},
         {1, "domine_dead_woman"},
         {2, "domine_sacrifice_ritual"},
         {3, "domine_an_offering"},
@@ -91,7 +91,7 @@ class DomineShrineVoiceLines : VoiceLines{
         {5, "domine_cursed_one"},
         {6, "domine_why_here"},
         {7, "domine_woman_lost_soul"},
-        // {8, "domine_burned_woman"},
+        {8, "domine_remains_torched"},
         {9, "domine_ashes_forgotten"}, 
         {10, "domine_fool_or_brave"},
         //11...

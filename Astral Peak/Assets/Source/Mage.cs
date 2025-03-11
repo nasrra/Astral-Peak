@@ -223,6 +223,16 @@ public class Mage : Boss<Movement>{
         animator.Play("MageHover");
         combat.chose_attack_state(target);
     }
+    public void enter_side_swipe(){
+        // exclude everything except player and hurtbox.
+        foreach(Collider2D col in body_colliders)
+            col.excludeLayers = ~(LayersManager.BITWISE_HURTBOX | LayersManager.BITWISE_PLAYER);
+    }
+    public void exit_side_swipe(){
+        // exclude everything except player and hurtbox and level bound.
+        foreach(Collider2D col in body_colliders)
+            col.excludeLayers = ~(LayersManager.BITWISE_HURTBOX | LayersManager.BITWISE_PLAYER | LayersManager.BITWISE_LEVEL_BOUND);
+    }
 
 
 

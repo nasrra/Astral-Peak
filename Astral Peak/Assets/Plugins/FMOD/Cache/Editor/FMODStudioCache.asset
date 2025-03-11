@@ -332,6 +332,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7798950359780269410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_remains_torched
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_remains_torched
+  Guid:
+    Data1: 1847382069
+    Data2: 1185620422
+    Data3: 2141288615
+    Data4: -852441417
+  Banks:
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7735709278696353168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,7 +500,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638773206388031407
+  lastModified: 638773295268299308
   FileSizes: []
   Exists: 1
 --- !u!114 &-6379612628289836878
@@ -865,7 +892,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_shrine.bank
   Name: cutscene_shrine
   StudioPath: bank:/cutscene_shrine
-  lastModified: 638773279364918872
+  lastModified: 638773298425935877
   FileSizes: []
   Exists: 1
 --- !u!114 &-4370309661962528699
@@ -1014,7 +1041,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_final.bank
   Name: cutscene_final
   StudioPath: bank:/cutscene_final
-  lastModified: 638773279364451499
+  lastModified: 638773295353341107
   FileSizes: []
   Exists: 1
 --- !u!114 &-4017332927612966922
@@ -1479,10 +1506,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638773206388041441
+  lastModified: 638773295268314347
   FileSizes:
   - Name: 
-    Value: 7036
+    Value: 7092
   Exists: 1
 --- !u!114 &-1957192817488443775
 MonoBehaviour:
@@ -1963,6 +1990,7 @@ MonoBehaviour:
   - {fileID: 1972030699573648270}
   - {fileID: -7827888994646856009}
   - {fileID: -1903947869881790016}
+  - {fileID: -7798950359780269410}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -1970,7 +1998,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638773279364918872
+  cacheTime: 638773298425935877
   cacheVersion: 131846
 --- !u!114 &142528699287576996
 MonoBehaviour:

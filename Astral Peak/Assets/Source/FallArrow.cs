@@ -18,8 +18,8 @@ public class FallArrow : Arrow{
     IEnumerator fall_arrow_behaviour(){
         float rng = Random.Range(0,16);
         rng /= 100;
-        rise_speed      += rng;
-        rise_time       += rng; 
+        // rise_speed      += rng;
+        // rise_time       += rng; 
         rotate_speed    += rng;
         rotate_time     += rng;
         fall_speed      += rng;
