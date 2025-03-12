@@ -16,6 +16,7 @@ public class CharacterMovement : Movement{
         jump_time, jump_force, jump_force_multiplier, jump_time_counter;
     [SerializeField] private Collider2DFeedback ground_checker;
     List<GameObject> ground = new List<GameObject>();
+    public string current_ground_tag {get; private set;}
 
     void Start() => link();
     void OnDestroy() => unlink();
@@ -40,6 +41,7 @@ public class CharacterMovement : Movement{
     private void is_grounded(Collider2D other){
         ground.Add(other.gameObject);
         new_ground?.Invoke(other.gameObject);
+        current_ground_tag = other.tag;
         grounded = true;    
         jump_time_counter = 0.0f; 
 

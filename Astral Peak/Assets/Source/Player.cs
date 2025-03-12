@@ -18,7 +18,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     public static Player instance;
     public static string spawn_point = "Enter";
     public string respawn_point = "";
-    private string ground;
     [Header("Player")]
     [field: SerializeField] public PlayerAnimator animator       {get;private set;}
     [field: SerializeField] public MeleeHolsterHandler melee     {get;private set;}
@@ -110,8 +109,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void grounded(){
         // bounce when hitting the ground.
         animator.medium_bounce();
-        particles.play_ground_effected_particle("jump");
-        sound.play_diegetic_one_shot($"{ground}_impact_light");
+        play_jump_effects();
 
         // reset to none so that the animator can play the run or idle animation.
         animator.none();
@@ -136,14 +134,9 @@ public class Player : CreatureInheritor<CharacterMovement>{
     }
     private void jumped(){
         animator.jump();
-        particles.play_ground_effected_particle("jump");
-        if(ground != "" && ground != null)
-            sound.play_diegetic_one_shot($"{ground}_impact_light");
+        play_jump_effects();
     }
     private void new_ground(GameObject ground){
-        // sound.set_ground(ground.tag);
-        particles.set_ground(ground.tag);
-        this.ground = ground.tag;
         if(ground.layer == LayersManager.PLATFORM)
             transform.parent = ground.transform;
     }
@@ -158,10 +151,6 @@ public class Player : CreatureInheritor<CharacterMovement>{
     private void disabled_toggle_up(){
         up_toggle = false;
         animator.stop_up_toggle();
-    }
-    public void play_footstep_sound(){
-        if(string.IsNullOrEmpty(ground)!=true)
-            sound.play_diegetic_one_shot($"{ground}_footstep");
     }
 
 
@@ -327,7 +316,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         movement.zero_velocity();
         unlink_movement();
         animator.force_idle();
-        health.invulnerable();        
+        health.invulnerable();     
     }
     protected override void enter_cutscene_state(){
         lock_player();
@@ -366,6 +355,21 @@ public class Player : CreatureInheritor<CharacterMovement>{
         GameData data = GameManager.data;
         data.spawn_point = spawn_point;
     }
+
+
+
+
+
+    // Particles
+    protected void play_footstep_effects(){
+        particles.play_particle($"{movement.current_ground_tag}_footstep");
+        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_footstep");
+    }
+    protected void play_jump_effects(){
+        particles.play_particle($"{movement.current_ground_tag}_jump");
+        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_impact_light");    
+    }
+
 
 
 

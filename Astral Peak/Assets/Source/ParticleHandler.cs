@@ -2,20 +2,13 @@ using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class ParticleHandler : MonoBehaviour{
-    string ground;
     [SerializedDictionary("id","particle system")]
     [SerializeField] SerializedDictionary<string, ParticleSystem> particles = new SerializedDictionary<string, ParticleSystem>();
     public void emit_particle(string particle_id)                   => particles[particle_id].Emit(1);
     public void play_particle(string particle_id)                   => particles[particle_id].Play();
     public void stop_particle(string particle_id)                   => particles[particle_id].Stop(true, ParticleSystemStopBehavior.StopEmitting);
-    public void play_ground_effected_particle(string particle_id){
-        if(ground == "" || ground == null)
-            return;
-        particles[ground+"_"+particle_id].Play();
-    }
     private void flip_emitter_left(ParticleSystemRenderer emitter) => emitter.flip = new Vector3(1, emitter.flip.y, 0);
     private void flip_emitter_right(ParticleSystemRenderer emitter) => emitter.flip = new Vector3(0, emitter.flip.y, 0);
-    public void set_ground(string _ground) => ground = _ground;
     public void stop_all_particles(){
         foreach(ParticleSystem p in particles.Values)
             p.Stop(false,ParticleSystemStopBehavior.StopEmitting);

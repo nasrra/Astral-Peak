@@ -10,7 +10,7 @@ public class GameData{
     
     [JsonInclude]
     public bool[] boss_states = Enumerable.Repeat(false, 3).ToArray();
-// public bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
+    // public bool[] boss_states = Enumerable.Repeat(true, 3).ToArray();
     
     [JsonInclude]
     public Dictionary<string, bool> tutorials_completed = new Dictionary<string, bool>(){
