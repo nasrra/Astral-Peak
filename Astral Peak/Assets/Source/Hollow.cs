@@ -159,7 +159,7 @@ public class Hollow : Enemy{
     protected void play_jump_effects(){
         string tag = movement.current_ground_tag;
         if(string.IsNullOrEmpty(tag) == false){
-            Log.MethodCall();
+            // Log.MethodCall();
             particles.play_particle($"{movement.current_ground_tag}_jump");
             sound.play_diegetic_one_shot($"hollow_footstep");
         }    
