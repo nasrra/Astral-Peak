@@ -25146,15 +25146,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: flip_to_target
-    data: 
+    functionName: stop_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5
-    functionName: stop_particle
-    data: snow_dash
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25174,15 +25174,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 4.6666665
-    functionName: play_weapon_flash
-    data: sword
+    functionName: flip_to_target
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4.6666665
-    functionName: flip_to_target
-    data: 
+    functionName: play_weapon_flash
+    data: sword
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25190,6 +25190,13 @@ AnimationClip:
   - time: 5.6666665
     functionName: play_particle
     data: jump
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.6666665
+    functionName: play_particle
+    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25208,9 +25215,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 5.6666665
-    functionName: play_particle
-    data: snow_dash
+  - time: 5.9166665
+    functionName: enable_melee_hurtbox
+    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25225,13 +25232,6 @@ AnimationClip:
   - time: 5.9166665
     functionName: play_diegetic_one_shot
     data: rider_sword_swing
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 5.9166665
-    functionName: enable_melee_hurtbox
-    data: signature_strike
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -25251,22 +25251,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 6.1
+    functionName: stop_particle
+    data: snow_dash
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 6.1
     functionName: flip_to_target
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 6.1
+  - time: 6.3333335
     functionName: disable_melee_hurtbox
     data: signature_strike
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 6.1
-    functionName: stop_particle
-    data: snow_dash
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
