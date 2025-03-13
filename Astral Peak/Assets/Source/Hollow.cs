@@ -151,11 +151,11 @@ public class Hollow : Enemy{
 
     protected void play_footstep_effects(){
         particles.play_particle($"{movement.current_ground_tag}_footstep");
-        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_footstep");
+        sound.play_diegetic_one_shot($"hollow_footstep");
     }
     protected void play_jump_effects(){
         particles.play_particle($"{movement.current_ground_tag}_jump");
-        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_impact_light");    
+        sound.play_diegetic_one_shot($"hollow_footstep");    
     }
 
 
