@@ -67,7 +67,7 @@ public class Hollow : Enemy{
         state_switch(ref stun_state, Util.timer(
             stun_state_timer,
             start_action:()=>{
-                animator.Play("HollowIdle");
+                animator.Play("HollowIdle",0,0);
                 unlink_combat();        
                 set_body_colliders_exclude_layers(~LayersManager.BITWISE_GROUND);
             },
@@ -136,7 +136,7 @@ public class Hollow : Enemy{
         if(move_direction != Vector2.left && move_direction != Vector2.right)
             animator.Play("HollowIdle",0,0);
         else
-            animator.Play(alerted == true? "HollowRun" : "HollowWalk", 0, 0); // force the animation to play (0,0);
+            animator.Play(alerted == true? "HollowRun" : "HollowWalk", 0,0); // force the animation to play (0,0);
     }
 
     void target_reached(){
