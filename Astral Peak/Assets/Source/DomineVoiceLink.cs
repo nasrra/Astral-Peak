@@ -66,12 +66,12 @@ class DomineAstralPlaneVoiceLines : VoiceLines{
         {1, "domine_astral_plane"}, // welcome
         {2, "domine_wish_permitted"}, // wish granted.
         {3, "domine_unless"}, // however.
-        // 4...
+        // {0, "domine_whispers"},
         {5, "domine_its_expensive"}, // ressurcetion costly
         {6, "domine_solo_enter"}, // one enter
         {7, "domine_solo_exit"}, // one leave.
         {8, "domine_no_reunion"}, // no reunited.
-        // 9...
+        // {0, "domine_whispers"},
         {10, "domine_you_cannot_leave"}, // cannot leave.
         {11, "domine_find_peace"}, // may you find peace.
         {12, "domine_farewell_mortal"}, // farewell mortal.
@@ -83,28 +83,28 @@ class DomineShrineVoiceLines : VoiceLines{
     public DomineShrineVoiceLines(){
         voice_lines = new Dictionary<int, string>(){
         
-        // {0, "domine_dead_woman"},
-        {1, "domine_dead_woman"},
-        {2, "domine_sacrifice_ritual"},
-        {3, "domine_an_offering"},
-        {4, "domine_no"},
-        {5, "domine_cursed_one"},
-        {6, "domine_why_here"},
-        {7, "domine_woman_lost_soul"},
-        {8, "domine_remains_torched"},
-        {9, "domine_ashes_forgotten"}, 
-        {10, "domine_fool_or_brave"},
-        //11...
-        {12,"domine_unless"},
-        //13...
-        {14,"domine_sealed_away_door"}, // sealed away door.
-        {15,"domine_guarded_tomb"}, // guarded tomb.
-        {16,"domine_woman_resurrection"}, // woman resurrection.
-        {17,"domine_warning"},
-        //18...
-        {19,"domine_its_expensive"},
-        //20...
-        {21,"domine_waiting_mortal"},
+        // {0, "domine_whispers"},
+        {0, "domine_dead_woman"},
+        {1, "domine_sacrifice_ritual"},
+        {2, "domine_an_offering"},
+        {3, "domine_no"},
+        {4, "domine_cursed_one"},
+        {5, "domine_why_here"},
+        {6, "domine_woman_lost_soul"},
+        {7, "domine_remains_torched"},
+        {8, "domine_ashes_forgotten"}, 
+        {9, "domine_fool_or_brave"},
+        // {11, "domine_whispers"},
+        {11,"domine_unless"},
+        // {13, "domine_whispers"},
+        {13,"domine_sealed_away_door"}, // sealed away door.
+        {14,"domine_guarded_tomb"}, // guarded tomb.
+        {15,"domine_woman_resurrection"}, // woman resurrection.
+        {16,"domine_warning"},
+        // {18, "domine_whispers"},
+        {18,"domine_its_expensive"},
+        // {20, "domine_whispers"},
+        {20,"domine_waiting_mortal"},
         };       
     }
 }

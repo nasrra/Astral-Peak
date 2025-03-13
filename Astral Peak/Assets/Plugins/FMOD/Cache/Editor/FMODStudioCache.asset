@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9178066171698680918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/voice/domine/domine_whispers
+  m_EditorClassIdentifier: 
+  Path: event:/voice/domine/domine_whispers
+  Guid:
+    Data1: 1803494365
+    Data2: 1226668112
+    Data3: 1054067378
+    Data4: -1365006790
+  Banks:
+  - {fileID: -4103770553993699646}
+  - {fileID: -4397991277702180408}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-9064994451914352255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +879,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638773295268299308
+  lastModified: 638774735923558662
   FileSizes: []
   Exists: 1
 --- !u!114 &-6379612628289836878
@@ -1504,7 +1532,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_shrine.bank
   Name: cutscene_shrine
   StudioPath: bank:/cutscene_shrine
-  lastModified: 638774600644586585
+  lastModified: 638774736539700989
   FileSizes: []
   Exists: 1
 --- !u!114 &-4370309661962528699
@@ -1680,7 +1708,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/cutscene_final.bank
   Name: cutscene_final
   StudioPath: bank:/cutscene_final
-  lastModified: 638773295353341107
+  lastModified: 638774736539213014
   FileSizes: []
   Exists: 1
 --- !u!114 &-4017332927612966922
@@ -2058,8 +2086,8 @@ MonoBehaviour:
     Data3: -1367556679
     Data4: -628458590
   Banks:
-  - {fileID: -4103770553993699646}
   - {fileID: 6441361075827419593}
+  - {fileID: -4103770553993699646}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2379,10 +2407,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638773295268314347
+  lastModified: 638774735923568668
   FileSizes:
   - Name: 
-    Value: 7092
+    Value: 7140
   Exists: 1
 --- !u!114 &-1957192817488443775
 MonoBehaviour:
@@ -3082,6 +3110,7 @@ MonoBehaviour:
   - {fileID: -7827888994646856009}
   - {fileID: -1903947869881790016}
   - {fileID: -7798950359780269410}
+  - {fileID: -9178066171698680918}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -3089,7 +3118,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638774600644678552
+  cacheTime: 638774736539700989
   cacheVersion: 131846
 --- !u!114 &89237910715477955
 MonoBehaviour:

@@ -26,22 +26,21 @@ public class ShrineOpeningCutscene : Cutscene{
         DialogueHandler.instance.new_line += handle_new_line;
         DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineShrine"));
         torches_on?.Invoke();
-        CameraController.instance.lerp_zoom(4.45f, 6f);
-        CameraController.instance.lerp_offset(null, 2.2f, 6f);
-        yield return new WaitForSeconds(6);
+        CameraController.instance.lerp_zoom(4.45f, 7f);
+        CameraController.instance.lerp_offset(null, 2.2f, 7f);
+        yield return new WaitForSeconds(7f);
         DialogueHandler.instance.play_dialogue(2.7f);
-        yield return new WaitForSeconds(3f);
-        CameraController.instance.lerp_offset(null,-2.5f, 20f);
-        yield return new WaitForSeconds(32);
+        CameraController.instance.lerp_offset(null,-2.5f, 17f);
+        yield return new WaitForSeconds(29);
         CameraController.instance.reset_zoom(20);
         CameraController.instance.lerp_offset(null, 0, 20f);     
         yield break;//
     }
 
     IEnumerator middle(){
-        CameraController.instance.lerp_zoom(2f, 8f);
-        CameraController.instance.lerp_offset(-3, null, 8f);
-        yield return new WaitForSeconds(8);
+        CameraController.instance.lerp_zoom(2f, 7f);
+        CameraController.instance.lerp_offset(-3, null, 7f);
+        yield return new WaitForSeconds(7);
         CameraController.instance.lerp_offset(3.4f,null, 25f);
         yield return new WaitForSeconds(25);
         CameraController.instance.reset_zoom(10f);
@@ -79,13 +78,13 @@ public class ShrineOpeningCutscene : Cutscene{
                 reset_torches?.Invoke(); 
                 torches_on?.Invoke(); 
                 break;
-            case 13: 
+            case 12: 
                 CutsceneManager.set_coroutine(middle()); 
                 break;
-            case 14: 
+            case 13: 
                 room.gateway_constellation.fade_in();
                 break;
-            case 19:
+            case 18:
                 room.gateway_constellation.fade_out();
                 break;
 
