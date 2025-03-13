@@ -204,6 +204,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
         base.death_start();
         yield return new WaitForSeconds(3);
         AudioManager.exit_low_pass_filter();
+        particles.stop_all_particles();
         base.death_complete();
     }
     private void healed(){
@@ -321,6 +322,7 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected override void enter_cutscene_state(){
         lock_player();
         audio_listener.enabled = false;
+        flip_right();
     }
     protected override void exit_cutscene_state(){
         movement.renew();

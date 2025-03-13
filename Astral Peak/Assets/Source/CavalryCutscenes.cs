@@ -20,14 +20,14 @@ public class CavalryOpening : Cutscene{
         yield return new WaitForSeconds(2);
         rider.cutscene_yell();
         yield return new WaitForSeconds(.5f);
-        CameraController.instance.lerp_offset(0,0,5);
-        CameraController.instance.lerp_zoom(14,5f);
+        CameraController.instance.lerp_offset(0,0,4);
+        CameraController.instance.lerp_zoom(12,4f);
         yield return new WaitForSeconds(4);
         stop_skip();
         yield return new WaitForSeconds(1);
         CameraController.instance.set_target(Player.instance.transform);
-        CameraController.instance.reset_zoom(time:2);
-        CameraController.instance.reset_offset(time:2);
+        CameraController.instance.reset_zoom(time:1);
+        CameraController.instance.reset_offset(time:1);
         CameraController.instance.regulate = true;
 
         //

@@ -34,12 +34,14 @@ namespace Cutscenes{
             CameraController.instance.lerp_offset(x:null, y:-3.5f, time:.15f);
             yield return new WaitForSeconds(1f);
             mage.animator.Play("MageYell");
-            yield return new WaitForSeconds(1f);
-            CameraController.instance.reset_offset(2f);
-            CameraController.instance.reset_zoom(2f);
-            yield return new WaitForSeconds(2);
+            CameraController.instance.reset_offset(4f);
+            CameraController.instance.lerp_zoom(12f, 4f);
+            CameraController.instance.lerp_regulators(new Vector2(-3.12f, 3.12f), new Vector2(0.08f,1f), 4);
+            yield return new WaitForSeconds(4);
             stop_skip();
             yield return new WaitForSeconds(1);
+            CameraController.instance.reset_zoom(1f);
+            CameraController.instance.reset_regulators(1);
             CameraController.instance.set_target(Player.instance.transform);
             AudioManager.play_music("music_the_mage_1");
             end();//

@@ -76,7 +76,7 @@ public class Giant1 : Boss<Movement>{
     // Camera
     public void down_slam_camera_shake() => CameraController.instance.shake_camera(.35f,.75f,false);
     public void jump_away_camera_shake() => CameraController.instance.shake_camera(.4f,.8f,false);
-    public void yell_camera_shake() => CameraController.instance.shake_camera(2f,.8f, true);
+    public void yell_camera_shake() => CameraController.instance.shake_camera(3f,.8f, true);
     public void death_camera_shake() => CameraController.instance.shake_camera(.5f,.8f, true);
 
     // ground waves.

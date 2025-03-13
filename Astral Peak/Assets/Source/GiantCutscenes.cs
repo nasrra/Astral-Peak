@@ -24,9 +24,17 @@ public class GiantOpening : Cutscene{
         CameraController.instance.set_target(room.giant1.gameObject.transform);
         yield return new WaitForSeconds(1.5f);
         room.giant1.animator.Play("Giant1Yell");
+        yield return new WaitForSeconds(.5f);
+        CameraController.instance.lerp_zoom(12, 2f);
+        CameraController.instance.lerp_offset(-1, null, 2f);
+        CameraController.instance.lerp_regulators(null, new Vector2(-3, 2), 2f);
         yield return new WaitForSeconds(4);
         stop_skip();
         room.giant1.particles.stop_particle("yell");
+        CameraController.instance.reset_zoom(time:1);
+        CameraController.instance.reset_offset(time:1);
+        CameraController.instance.reset_regulators(1);
+        yield return new WaitForSeconds(1);
         CameraController.instance.set_target(Player.instance.transform);
         yield return new WaitForSeconds(1);
         AudioManager.play_music("music_the_giant_1");
