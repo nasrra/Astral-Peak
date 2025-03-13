@@ -6066,7 +6066,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -40.67465, y: -5.494528}
+  m_ConnectedAnchor: {x: -31.69352, y: -3.4345279}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -16901,14 +16901,6 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.x
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5746902758789414908, guid: 745ce96f2732ff74d914cbd1a0f8964e, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16975,6 +16967,26 @@ PrefabInstance:
     - target: {fileID: 3285659472590648601, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
       propertyPath: m_Name
       value: SnowFootstepParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826417355083559565, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826417355083559565, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826417355083559565, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826417355083559565, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 50501
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826417355083559565, guid: 6d973a8c94417cc4dba2f1a115e52964, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 0.5647059
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

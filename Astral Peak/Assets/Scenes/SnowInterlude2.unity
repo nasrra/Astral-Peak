@@ -178,7 +178,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1940388453
-  m_SortingLayer: 11
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: efcede49ab7d4c8498f758d564577881, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -314,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1346144351632198270, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_Name
-      value: PlayerNew
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1425689144519781822, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_BodyType
@@ -335,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 3884392177511200270, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_UseLimits
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496477767862503791, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5254497926174537456, guid: 55722fb0526765040bdd7b8b06391b29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
