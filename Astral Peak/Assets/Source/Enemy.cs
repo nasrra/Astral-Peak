@@ -9,7 +9,7 @@ using UnityEngine;
 // It's not really noticeable as when they hit the wall they immediately run back at the player.
 // This idea should be followed, to mitigate any bugs and anymore time on needless ai path finding.
 
-public class Enemy : Boss<Movement>{
+public class Enemy : Boss<CharacterMovement>{
     public event Action<Enemy> enemy_death;
     [Header("Enemy")]
     [SerializeField] protected List<MovementPath> paths = new List<MovementPath>();

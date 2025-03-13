@@ -144,7 +144,26 @@ public class Hollow : Enemy{
             movement.pathing_loop_state(paths);
     }
 
+
+
+
+    // sfx/vfx.
+
+    protected void play_footstep_effects(){
+        particles.play_particle($"{movement.current_ground_tag}_footstep");
+        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_footstep");
+    }
+    protected void play_jump_effects(){
+        particles.play_particle($"{movement.current_ground_tag}_jump");
+        sound.play_diegetic_one_shot($"{movement.current_ground_tag}_impact_light");    
+    }
+
+
+
+
+
     // linkage
+
     protected void link_events(){
         link_combat();
         link_health();

@@ -11,7 +11,7 @@ public class LightningParticleEmitter : LineParticleEmitter{
         CameraController.instance.shake_camera(.33f, .75f, false);
         SceneLighting.instance.set_intensity("global", 3f);
         SceneLighting.instance.reset_lighting("global", .2f);
-        end_point_particles.Emit(7);
+        end_point_particles.Emit(10);
     }
 
     protected override void emitting(){
