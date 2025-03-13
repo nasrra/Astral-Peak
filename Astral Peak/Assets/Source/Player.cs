@@ -364,15 +364,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected void play_footstep_effects(){
         string tag = movement.current_ground_tag;
         if(string.IsNullOrEmpty(tag) == false){
-            particles.play_particle($"{movement.current_ground_tag}_footstep");
-            sound.play_diegetic_one_shot($"{movement.current_ground_tag}_footstep");
+            particles.play_particle($"{tag}_footstep");
+            sound.play_diegetic_one_shot($"{tag}_footstep");
         }
     }
     protected void play_jump_effects(){
         string tag = movement.current_ground_tag;
         if(string.IsNullOrEmpty(tag) == false){
-            particles.play_particle($"{movement.current_ground_tag}_jump");
-            sound.play_diegetic_one_shot($"{movement.current_ground_tag}_impact_light");    
+            particles.play_particle($"{tag}_jump");
+            sound.play_diegetic_one_shot($"{tag}_impact_light");    
         }
     }
 

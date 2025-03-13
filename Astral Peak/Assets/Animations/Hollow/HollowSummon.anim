@@ -5864,6 +5864,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: unlink_events
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: play_death_effect_reverse
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -5878,15 +5885,15 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: play_summoning_animation
-    data: 
+    functionName: set_tag
+    data: Dead
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: set_tag
-    data: Dead
+    functionName: play_summoning_animation
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -5898,9 +5905,23 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.75
+    functionName: play_jump_effects
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.0666666
     functionName: set_tag
     data: Enemy
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.0666666
+    functionName: link_events
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

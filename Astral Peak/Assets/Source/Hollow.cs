@@ -150,12 +150,19 @@ public class Hollow : Enemy{
     // sfx/vfx.
 
     protected void play_footstep_effects(){
-        particles.play_particle($"{movement.current_ground_tag}_footstep");
-        sound.play_diegetic_one_shot($"hollow_footstep");
+        string tag = movement.current_ground_tag;
+        if(string.IsNullOrEmpty(tag) == false){
+            particles.play_particle($"{tag}_footstep");
+            sound.play_diegetic_one_shot($"hollow_footstep");
+        }
     }
     protected void play_jump_effects(){
-        particles.play_particle($"{movement.current_ground_tag}_jump");
-        sound.play_diegetic_one_shot($"hollow_footstep");    
+        string tag = movement.current_ground_tag;
+        if(string.IsNullOrEmpty(tag) == false){
+            Log.MethodCall();
+            particles.play_particle($"{movement.current_ground_tag}_jump");
+            sound.play_diegetic_one_shot($"hollow_footstep");
+        }    
     }
 
 
@@ -192,11 +199,13 @@ public class Hollow : Enemy{
     protected override void link_movement(){
         movement.move_direction_changed += face_direction;
         movement.move_direction_changed += move_direction_changed;
+        movement.now_grounded += play_jump_effects;
     }
 
     protected override void unlink_movement(){
         movement.move_direction_changed -= face_direction;
         movement.move_direction_changed -= move_direction_changed;
+        movement.now_grounded -= play_jump_effects;
     }
 
     protected void link_health(){
