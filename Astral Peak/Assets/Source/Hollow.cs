@@ -176,13 +176,13 @@ public class Hollow : Enemy{
         unlink_movement();
     }
 
-    protected override void link_combat(){
+    protected void link_combat(){
         if(agro_area == null)
             return;
         agro_area.trigger_enter += player_in_range;
         agro_area.trigger_exit  += player_left_range;
     }
-    protected override void unlink_combat(){
+    protected void unlink_combat(){
         if(agro_area == null)
             return;
         agro_area.trigger_enter -= player_in_range;

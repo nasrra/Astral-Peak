@@ -147,7 +147,7 @@ public class Mage : Boss<Movement>{
     }
     private void set_hollow_target(GameObject x){
         Hollow hollow = x.GetComponent<Hollow>();
-        hollow.set_target(target);
+        hollow.target = target;
         hollow.summon_state();
     }
     void move_direction_changed(Vector2 direction){
@@ -309,7 +309,7 @@ public class Mage : Boss<Movement>{
     // phase link:
 
     private void link_phase_1(){
-        Log.MethodCall();
+        // Log.MethodCall();
         set_phase_data("phase_1");
         link_components();
         health.death += transition_phase;
@@ -324,7 +324,7 @@ public class Mage : Boss<Movement>{
         health.death -= transition_phase;
     }
     private void link_phase_2(){
-        Log.MethodCall();
+        // Log.MethodCall();
         set_phase_data("phase_2");
         link_components();
         unlink_movement();
