@@ -62,7 +62,7 @@ public class DomineDoorFinal : Cutscene{
         Player.instance.sprite.set_black();
         AstralPlaneRoomHandler astral_room = RoomHandler.instance as AstralPlaneRoomHandler;
         astral_room.domine_door.opened();
-        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "DomineAstralPlane"));
+        DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
         // DialogueHandler.instance.set_dialogue(ExcelReader.read_file("Dialogue", "test"));
         yield return new WaitForSeconds(4);
         Player.instance.sprite.fade_from_black();
@@ -89,7 +89,7 @@ public class DomineDoorFinal : Cutscene{
         yield return new WaitForSeconds(10);
         CameraController.instance.reset_offset(3);
         astral_room.domine_door.close();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         start_scene_swap_segment();
     }
 
@@ -173,6 +173,10 @@ public class DomineDoorFinal : Cutscene{
     void start_end_credits_segment(){
         CustomSceneManager.loaded_scene -= start_end_credits_segment;
         DialogueHandler.instance.dialogue_ended -= start_end_credits_segment;
+        AudioManager.lock_ambience = false;
+        AudioManager.lock_music = false;
+        AudioManager.stop_music();
+        AudioManager.stop_ambience();
         CustomSceneManager.load_scene("AstralPlane");
         CustomSceneManager.loaded_scene += ending;
     }
@@ -186,8 +190,6 @@ public class DomineDoorFinal : Cutscene{
         CameraEffects.instance.fade_from_black(4);
         astral_room.end_credits_state();
         AudioManager.unload_bank("cutscene_final");
-        AudioManager.lock_ambience = false;
-        AudioManager.lock_music = false;
         AudioManager.play_music("music_main_menu");
         stop_skip();
         end();

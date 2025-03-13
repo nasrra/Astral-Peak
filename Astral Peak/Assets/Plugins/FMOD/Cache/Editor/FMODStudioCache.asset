@@ -171,7 +171,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_astral.bank
   Name: room_astral
   StudioPath: bank:/room_astral
-  lastModified: 638769439788491439
+  lastModified: 638774819232200526
   FileSizes: []
   Exists: 1
 --- !u!114 &-8883040266277700228
@@ -653,7 +653,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/room_shrine.bank
   Name: room_shrine
   StudioPath: bank:/room_shrine
-  lastModified: 638774600644678552
+  lastModified: 638774819232504881
   FileSizes: []
   Exists: 1
 --- !u!114 &-7274220357990979776
@@ -879,7 +879,7 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638774735923558662
+  lastModified: 638774817747959422
   FileSizes: []
   Exists: 1
 --- !u!114 &-6379612628289836878
@@ -2114,9 +2114,9 @@ MonoBehaviour:
     Data3: 1393321887
     Data4: 1920778168
   Banks:
-  - {fileID: -8901209444962000673}
   - {fileID: 1103525165598753600}
   - {fileID: -4183711372715096688}
+  - {fileID: -8901209444962000673}
   - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 0
@@ -2407,10 +2407,10 @@ MonoBehaviour:
   Path: Assets/StreamingAssets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638774735923568668
+  lastModified: 638774817747976590
   FileSizes:
   - Name: 
-    Value: 7140
+    Value: 7188
   Exists: 1
 --- !u!114 &-1957192817488443775
 MonoBehaviour:
@@ -3111,6 +3111,7 @@ MonoBehaviour:
   - {fileID: -1903947869881790016}
   - {fileID: -7798950359780269410}
   - {fileID: -9178066171698680918}
+  - {fileID: 598003599694757865}
   EditorParameters:
   - {fileID: 7653400970466766072}
   - {fileID: -8413256524142465220}
@@ -3118,7 +3119,7 @@ MonoBehaviour:
   - {fileID: -6432616814909868593}
   StringsBanks:
   - {fileID: -2098064676834007149}
-  cacheTime: 638774736539700989
+  cacheTime: 638774819232504881
   cacheVersion: 131846
 --- !u!114 &89237910715477955
 MonoBehaviour:
@@ -3301,6 +3302,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &598003599694757865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/sfx/stone/stone_door_shut
+  m_EditorClassIdentifier: 
+  Path: event:/sfx/stone/stone_door_shut
+  Guid:
+    Data1: 1764219698
+    Data2: 1232803942
+    Data3: 985915551
+    Data4: -688397577
+  Banks:
+  - {fileID: -8901209444962000673}
+  - {fileID: -7376905227913506980}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 35
+  Length: 3384
 --- !u!114 &716638336458508397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,9 +5788,9 @@ MonoBehaviour:
     Data3: -1963898724
     Data4: -1432843914
   Banks:
-  - {fileID: -8901209444962000673}
   - {fileID: 1103525165598753600}
   - {fileID: -4183711372715096688}
+  - {fileID: -8901209444962000673}
   - {fileID: -7376905227913506980}
   IsStream: 0
   Is3D: 0

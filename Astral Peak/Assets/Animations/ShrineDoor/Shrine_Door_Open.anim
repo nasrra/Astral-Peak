@@ -212,7 +212,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: invoke
+    functionName: started_transitioning
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -220,6 +220,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.9833333
     functionName: finished_openening
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.9833333
+    functionName: finished_transitioning
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

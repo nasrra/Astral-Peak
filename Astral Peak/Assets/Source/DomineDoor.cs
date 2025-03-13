@@ -4,8 +4,10 @@ using UnityEngine.TextCore.Text;
 
 public class DomineDoor : MonoBehaviour{
     [SerializeField] Animator animator;
+    [SerializeField] AudioPlayer audio_player;
     [SerializeField] Collider2D cutscene_trigger;
     [SerializeField] Transform player_point;
+    [SerializeField] ParticleHandler particles;
     [SerializeField] bool start_open = false;
     [SerializeField] bool final_cutscene = true;
 
@@ -18,14 +20,18 @@ public class DomineDoor : MonoBehaviour{
 
     public void open(){
         animator.Play("open");
-        play_sound();
         shake_camera();
+        audio_player.play_non_diegetic_one_shot("domine_door_non_diegetic");
+        particles.play_particle("transition_ambience_left");
+        particles.play_particle("transition_ambience_right");
     }
     public void opened() => animator.Play("opened");
     public void close(){
         animator.Play("close");
-        play_sound();
         shake_camera();
+        audio_player.play_non_diegetic_one_shot("domine_door_non_diegetic");
+        particles.play_particle("transition_ambience_left");
+        particles.play_particle("transition_ambience_right");
     }
     public void closed() => animator.Play("closed");
 
@@ -53,14 +59,22 @@ public class DomineDoor : MonoBehaviour{
         yield break;
     }
 
-    private void just_opened() => cutscene_trigger.enabled = true;
-    private void just_close() => cutscene_trigger.enabled = false;
+    private void just_opened(){
+        audio_player.play_diegetic_one_shot("stone_door_shut");
+        cutscene_trigger.enabled = true;
+        particles.stop_all_particles();
+        particles.get_particle("transition_ambience_left").Emit(15);
+        particles.get_particle("transition_ambience_right").Emit(15);
+    }
+    private void just_closed(){
+        audio_player.play_diegetic_one_shot("stone_door_shut");
+        cutscene_trigger.enabled = false;
+        particles.stop_all_particles();
+        particles.get_particle("transition_ambience_left").Emit(15);
+        particles.get_particle("transition_ambience_right").Emit(15);
+    }
 
     public Transform get_player_point() => player_point;
-
-    private void play_sound(){
-        AudioManager.play_non_diegetic_one_shot("domine_door_non_diegetic");
-    }
     private void shake_camera() => CameraController.instance.shake_camera(4f,.5f,true);
 
 }
