@@ -65,6 +65,7 @@ public class Mage : Boss<Movement>{
     } 
     protected override void exit_cutscene_state(){
         exit_cutscene_states[current_phase]();
+        idle(1);
     } 
     protected override Dictionary<string,Action> get_phase_linker() => phase_linker;
     protected override Dictionary<string,Action> get_phase_unlinker() => phase_unlinker;

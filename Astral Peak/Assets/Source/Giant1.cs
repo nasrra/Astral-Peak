@@ -19,7 +19,7 @@ public class Giant1 : Boss<Movement>{
     void OnDestroy() => unlink_events();
 
     protected override void exit_cutscene_state(){
-        idle(2);
+        idle(1);
     }
 
     protected override void enter_cutscene_state(){
