@@ -29,15 +29,16 @@ public class Cavalry : Boss<CavalryMovement>{
     }   
 
     protected override void death_start(){
-        animator.PlayInstant("WolfDeath");
         no_state();
         if(idle_state != null)
             StopCoroutine(idle_state);
-        enable_body_colliders(0);
         stop_all();
+        unlink_events();
+        animator.PlayInstant("WolfDeath");
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
         particles.play_particle("death_ambience");
         sprites.play_death_effect(2f);
+        enable_body_colliders(0);
         base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("WolfDeath")+3,
