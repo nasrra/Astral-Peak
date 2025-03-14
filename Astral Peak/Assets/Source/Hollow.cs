@@ -43,19 +43,17 @@ public class Hollow : Enemy{
     // States://
     protected override void death_start(){
         unlink_events();
+        particles.stop_all_particles();
+        movement.halt();
         animator.CrossFade("HollowDeath",0.1f, 0,0);
+        enable_body_colliders(0);
+        sprites.play_death_effect(1.5f);
         gameObject.tag = "Dead";
+        if(stun_state != null)
+            StopCoroutine(stun_state);
+        base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("HollowDeath")+2,
-            start_action: ()=>{
-                movement.halt();
-                enable_body_colliders(0);
-                particles.stop_all_particles();
-                sprites.play_death_effect(1.5f);
-                if(stun_state != null)
-                    StopCoroutine(stun_state);
-                base.death_start();
-            },
             time_out: ()=>{
                 base.death_complete();
                 Destroy(gameObject);

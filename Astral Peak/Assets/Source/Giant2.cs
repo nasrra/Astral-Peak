@@ -207,18 +207,17 @@ public class Giant2 : Boss<Movement>{
 
     protected override void death_start(){
         StopAllCoroutines();
+        stop_all();
+        no_state();
+        state.clear_and_stop();
+        state = null;
         animator.PlayInstant("Giant2DeathHead");
         left_hand.death();
         right_hand.death();
-        no_state();
-        stop_all();
-        state.clear_and_stop();
-        state = null;
-        enable_body_colliders(0);
         sprites.play_death_effect(4f);
+        enable_body_colliders(0);
         StartCoroutine(sprites.lerp_value("shadow_water", "_amount", .5f, -0.2f, 3f ));
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
-        particles.stop_all_particles();
         base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant2DeathHead")+3,

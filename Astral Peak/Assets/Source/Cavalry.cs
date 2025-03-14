@@ -36,7 +36,7 @@ public class Cavalry : Boss<CavalryMovement>{
         enable_body_colliders(0);
         stop_all();
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
-        particles.stop_all_particles();
+        particles.play_particle("death_ambience");
         sprites.play_death_effect(2f);
         base.death_start();
         StartCoroutine(Util.timer(
@@ -77,9 +77,9 @@ public class Cavalry : Boss<CavalryMovement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.CrossFade("WolfRun",0.2f,0,0);
+            animator.CrossFade("WolfRun",0.1f,0,0);
         else
-            animator.CrossFade("WolfIdle",0.2f,0,0);
+            animator.CrossFade("WolfIdle",0.1f,0,0);
     }
 
     // movement:
