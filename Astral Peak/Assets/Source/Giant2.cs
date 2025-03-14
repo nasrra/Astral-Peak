@@ -57,9 +57,9 @@ public class Giant2 : Boss<Movement>{
     }
 
     private void fly_and_attack_state(){
-        animator.Play("Giant2IdleHead");
-        left_hand.animator.Play("Giant2IdleHand");
-        right_hand.animator.Play("Giant2IdleHand");
+        animator.CrossFade("Giant2IdleHead",0.1f,0,0);
+        left_hand.animator.CrossFade("Giant2IdleHand",0.1f,0,0);
+        right_hand.animator.CrossFade("Giant2IdleHand",0.1f,0,0);
         combat.chose_attack_state(target);
     }
 
@@ -184,7 +184,7 @@ public class Giant2 : Boss<Movement>{
 
     private void play_idle_animation(){
         animator.Rebind();
-        animator.Play("Giant2IdleHead");
+        animator.CrossFade("Giant2IdleHead",0.1f,0,0);
         //left_hand.animator.Play("Giant2IdleHand");
         //right_hand.animator.Play("Giant2IdleHand");
     }

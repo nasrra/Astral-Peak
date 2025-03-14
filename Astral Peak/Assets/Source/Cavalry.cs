@@ -77,9 +77,9 @@ public class Cavalry : Boss<CavalryMovement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.CrossFade("WolfRun",0.2f);
+            animator.CrossFade("WolfRun",0.2f,0,0);
         else
-            animator.CrossFade("WolfIdle",0.2f);
+            animator.CrossFade("WolfIdle",0.2f,0,0);
     }
 
     // movement:

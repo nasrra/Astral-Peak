@@ -31,7 +31,7 @@ public class Rider : Boss<Movement>{
 
     public void cutscene_yell(){
         no_state();
-        animator.Play("RiderYell");
+        animator.CrossFade("RiderYell",0.1f,0,0);
     }
 
     private void idle(float time) =>
@@ -44,7 +44,7 @@ public class Rider : Boss<Movement>{
     private void idle(){
         if(idle_state != null)
             StopCoroutine(idle_state);
-        animator.Play("RiderIdle");
+        animator.CrossFade("RiderIdle",0.1f,0,0);
         no_state();
     }
 
@@ -56,9 +56,9 @@ public class Rider : Boss<Movement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("RiderWalk",0,0);
+            animator.CrossFade("RiderWalk",0.1f,0,0);
         else
-            animator.Play("RiderIdle");
+            animator.CrossFade("RiderIdle",0.1f,0,0);
     }
 
     void handle_death(){

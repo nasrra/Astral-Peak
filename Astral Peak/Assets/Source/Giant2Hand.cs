@@ -34,7 +34,7 @@ public class Giant2Hand : MonoBehaviour{
     }
 
     public void idle(){
-        animator.Play("Giant2IdleHand");
+        animator.CrossFade("Giant2IdleHand",0.1f,0,0);
         movement.freeform_approach_to(head_anchor, ()=>hook_to_parent(head_anchor));
     }
 
