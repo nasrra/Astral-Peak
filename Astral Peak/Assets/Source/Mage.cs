@@ -262,7 +262,7 @@ public class Mage : Boss<Movement>{
         stop_all();
         signature_adjust();
         teleport_death(new Vector2(0,0));
-        animator.Play("MageDeath");
+        animator.PlayInstant("MageDeath");
         particles.play_particle("death_ambience");
         particles.play_particle("yell");
         CameraController.instance.start_camera_shake(0.75f, true);

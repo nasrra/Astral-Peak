@@ -137,7 +137,7 @@ public class Giant2Hand : MonoBehaviour{
         turn_off_finger_beam();
         particles.stop_all_particles();
         sprite.renew();
-        animator.Play("Giant2DeathHand");
+        animator.PlayInstant("Giant2DeathHand");
         sprite.play_death_effect(4);
     }
 

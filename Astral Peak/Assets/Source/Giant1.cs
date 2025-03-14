@@ -111,7 +111,7 @@ public class Giant1 : Boss<Movement>{
         stop_all();
         enable_body_colliders(0);
         movement.zero_velocity(); // stop velocity in case the boss is dashing.
-        animator.Play("Giant1Death",0,0);
+        animator.PlayInstant("Giant1Death");
         base.death_start();
         StartCoroutine(Util.timer(
             animator.get_clip_length("Giant1Death")+3,

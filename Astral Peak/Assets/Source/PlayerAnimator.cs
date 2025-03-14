@@ -31,7 +31,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void loop_fall()     => play(FALL_LOOP, false); // key event in jump start animation.
     public void death(){
         unlock_layers();
-        play(DEATH, true);
+        play_instant(DEATH, true);
     }
     public void jump(){
         play(FALL_START, true);
