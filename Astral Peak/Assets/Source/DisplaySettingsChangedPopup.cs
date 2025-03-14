@@ -37,13 +37,15 @@ public class DisplaySettingsChangedPopup : MonoBehaviour{
 
     IEnumerator timer_text_coroutine(float _time){
         float time = _time;
-        while(time > 0){
-            time -= Time.deltaTime;
-            timer_text.text = $"({System.Math.Round(time,1)})";
-            yield return new WaitForFixedUpdate();
+        while(time >= 0){
+            time -= 0.1f;
+            timer_text.text = $"({time:F1})"; // to one decimal place
+            timer_text.ForceMeshUpdate();
+            yield return new WaitForSecondsRealtime(0.1f);
         }
         time = 0;
         timer_text.text = $"({time})";
+        timer_text.ForceMeshUpdate();
         yield break; 
     }
 
