@@ -30,6 +30,7 @@ public class Cavalry : Boss<CavalryMovement>{
 
     protected override void death_start(){
         animator.Play("WolfDeath",0,0);
+        animator.UpdateLayer(0);
         no_state();
         if(idle_state != null)
             StopCoroutine(idle_state);

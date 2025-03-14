@@ -47,10 +47,14 @@ public static class GameManager{
 
     static public void swap_state(GameState _state){
         GameState previous = state;
-        if(_state == GameState.MENU)
+        if(_state == GameState.MENU){
             Cursor.visible = true;
-        else
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else{
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
         exited_game_state?.Invoke(previous);
         entered_game_state?.Invoke(_state);
         state = _state;
