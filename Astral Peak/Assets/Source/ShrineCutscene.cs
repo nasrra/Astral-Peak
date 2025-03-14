@@ -67,10 +67,10 @@ public class ShrineOpeningCutscene : Cutscene{
             case 20: 
                 open_shrine_door?.Invoke(); 
                 break;
-            case 8: 
+            case 7: 
                 enlargen_torches?.Invoke();
                 break;
-            case 9: 
+            case 8: 
                 reset_torches?.Invoke(); 
                 torches_off?.Invoke(); 
                 break;
