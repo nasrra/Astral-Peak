@@ -43,7 +43,7 @@ public class Hollow : Enemy{
     // States://
     protected override void death_start(){
         unlink_events();
-        animator.Play("HollowDeath",0,0);
+        animator.CrossFade("HollowDeath",0.1f, 0,0);
         gameObject.tag = "Dead";
         StartCoroutine(Util.timer(
             animator.get_clip_length("HollowDeath")+2,
@@ -67,7 +67,7 @@ public class Hollow : Enemy{
         state_switch(ref stun_state, Util.timer(
             stun_state_timer,
             start_action:()=>{
-                animator.Play("HollowIdle",0,0);
+                animator.CrossFade("HollowIdle", 0.1f,0,0);
                 unlink_combat();        
                 set_body_colliders_exclude_layers(~LayersManager.BITWISE_GROUND);
             },
@@ -133,10 +133,10 @@ public class Hollow : Enemy{
     }
 
     void move_direction_changed(Vector2 move_direction){
-        if(move_direction != Vector2.left && move_direction != Vector2.right)
-            animator.Play("HollowIdle",0,0);
+        if(Mathf.Approximately(move_direction.x, 0f))
+            animator.CrossFade("HollowIdle", 0.1f,0,0);
         else
-            animator.Play(alerted == true? "HollowRun" : "HollowWalk", 0,0); // force the animation to play (0,0);
+            animator.CrossFade(alerted == true? "HollowRun" : "HollowWalk", 0.1f,0,0);
     }
 
     void target_reached(){

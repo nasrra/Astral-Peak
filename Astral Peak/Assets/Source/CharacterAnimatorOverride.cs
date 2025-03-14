@@ -11,9 +11,9 @@ public class CharacterAnimatorOverride : MonoBehaviour{
         BOUNCE_OVERRIDE     = 3,
         BODY_OVERRIDE       = 4;
 
-    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.Play(animation_hash, HEAD);}
-    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.Play(animation_hash, BODY);}
-    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.Play(animation_hash, LEGS);}
+    protected void play_head(int animation_hash){ if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true) animator.CrossFade(animation_hash, 0.1f, HEAD,0);}
+    protected void play_body(int animation_hash){ if(locked_layers[BODY] == false && animator.HasState(BODY, animation_hash) == true) animator.CrossFade(animation_hash, 0.1f, BODY,0);}
+    protected void play_legs(int animation_hash){ if(locked_layers[LEGS] == false && animator.HasState(LEGS, animation_hash) == true) animator.CrossFade(animation_hash, 0.1f, LEGS,0);}
     protected void play_head_instant(int animation_hash){ 
         if(locked_layers[HEAD] == false && animator.HasState(HEAD, animation_hash) == true){
             animator.Play(animation_hash, HEAD,0);
@@ -36,7 +36,7 @@ public class CharacterAnimatorOverride : MonoBehaviour{
         animator.Play(animation_hash, BOUNCE_OVERRIDE);
     }
     protected void play_body_override(int animation_hash){
-        animator.Play(animation_hash, BODY_OVERRIDE);
+        animator.CrossFade(animation_hash, 0.1f, BODY_OVERRIDE, 0);
     }
 
 

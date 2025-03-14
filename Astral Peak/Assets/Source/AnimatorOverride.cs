@@ -29,6 +29,7 @@ public class AnimatorOverride : MonoBehaviour{
     public void Play(string id, int layer) => animator.Play(id,layer);
     public void Play(string id, int layer, int normalized_time) => animator.Play(id,layer,normalized_time);
     public void CrossFade(string id, float time) => animator.CrossFade(id, time);
+    public void CrossFade(string id, float time, int layer, int offset) => animator.CrossFade(id, time, layer, offset);
     public void Rebind() => animator.Rebind();
     public void UpdateLayer(int layer) => animator.Update(layer);
     public void UpdateLayer(float layer) => animator.Update(layer);
