@@ -38,10 +38,14 @@ public class DomineDoor : MonoBehaviour{
     void OnTriggerEnter2D(Collider2D other){
         cutscene_trigger.enabled = false;
         CharacterMovement player_movement = Player.instance.get_movement() as CharacterMovement;
+        Player.instance.transform.position = player_point.position;
+        Player.instance.transform.parent = player_point;
         if(final_cutscene == true)
             CutsceneManager.play(new Cutscenes.DomineDoorFinal());
-        else
+        else{
             StartCoroutine(enter_game_end_stinger());
+            Player.instance.lock_player();
+        }
     }
 
     IEnumerator enter_game_end_stinger(){

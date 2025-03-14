@@ -41,7 +41,7 @@ public class DomineDoorFinal : Cutscene{
         DomineDoor domine_door = room.get_domine_door();
         CharacterMovement player_movement = Player.instance.get_movement() as CharacterMovement;
         player_movement.mod_gravity(0);
-        player_movement.halt();
+        // player_movement.halt();
         Player.instance.transform.position = domine_door.get_player_point().position;
         Player.instance.sprite.fade_to_black();
         Player.instance.sprite.enter_domine_door_layer();
