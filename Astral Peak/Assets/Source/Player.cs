@@ -322,12 +322,15 @@ public class Player : CreatureInheritor<CharacterMovement>{
     protected override void enter_cutscene_state(){
         lock_player();
         audio_listener.enabled = false;
+        health.invulnerable();
+        health.lock_state = true;
         flip_right();
     }
     protected override void exit_cutscene_state(){
         movement.renew();
         link_movement();
         movement.move_only_state();
+        health.lock_state = false;
         health.vulnerable();
         audio_listener.enabled = true;
     }
