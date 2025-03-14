@@ -265,14 +265,14 @@ public static class InputManager{
             }
         })
         .OnCancel(c =>{
-            Debug.Log("Rebinding operation was canceled.");
+            // Debug.Log("Rebinding operation was canceled.");
             c.Dispose();
             keybinds.MenuControls.Enable();
             keybinds.RebindControls.Disable();
             rebind_completed?.Invoke();
         })
         .OnComplete(c =>{
-            Debug.Log("Rebind successful!");
+            // Debug.Log("Rebind successful!");
             c.Dispose();
             keybinds.MenuControls.Enable();
             keybinds.RebindControls.Disable();

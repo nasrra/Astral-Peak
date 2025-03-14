@@ -44,7 +44,7 @@ public class Rider : Boss<Movement>{
     private void idle(){
         if(idle_state != null)
             StopCoroutine(idle_state);
-        animator.CrossFade("RiderIdle",0.1f,0,0);
+        animator.Play("RiderIdle",0,0);
         no_state();
     }
 
@@ -56,9 +56,9 @@ public class Rider : Boss<Movement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.CrossFade("RiderWalk",0.1f,0,0);
+            animator.Play("RiderWalk",0,0);
         else
-            animator.CrossFade("RiderIdle",0.1f,0,0);
+            animator.Play("RiderIdle",0,0);
     }
 
     void handle_death(){
