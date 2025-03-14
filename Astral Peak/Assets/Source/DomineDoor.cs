@@ -58,7 +58,7 @@ public class DomineDoor : MonoBehaviour{
         Player.instance.animator.force_idle();
         Player.instance.sprite.fade_to_black();
         Player.instance.sprite.enter_domine_door_layer();
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(8);
         CustomSceneManager.load_scene_with_transitions("GameEndStinger");
         yield break;
     }
