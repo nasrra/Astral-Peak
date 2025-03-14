@@ -24,6 +24,7 @@ public class Rider : Boss<Movement>{
 
     protected override void enter_cutscene_state(){
         idle();
+        combat.halt();
     } 
     protected override void exit_cutscene_state(){
         idle(1);
@@ -44,8 +45,9 @@ public class Rider : Boss<Movement>{
     private void idle(){
         if(idle_state != null)
             StopCoroutine(idle_state);
-        animator.Play("RiderIdle",0,0);
-        no_state();
+        animator.Rebind();
+        animator.CrossFade("RiderIdle",0.1f,0,0);
+        no_state(); 
     }
 
     void projectile_fired(string x){
@@ -56,9 +58,9 @@ public class Rider : Boss<Movement>{
         if(combat.is_attacking == true)
             return;
         if(direction == Vector2.left || direction == Vector2.right)
-            animator.Play("RiderWalk",0,0);
+            animator.CrossFade("RiderWalk",0.1f,0,0);
         else
-            animator.Play("RiderIdle",0,0);
+            animator.CrossFade("RiderIdle",0.1f,0,0);
     }
 
     void handle_death(){
