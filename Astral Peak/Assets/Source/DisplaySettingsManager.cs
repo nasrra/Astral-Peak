@@ -19,9 +19,10 @@ public static class DisplaySettingsManager{
         {4, 165},
         {5, 244},
     };
-    static int resolution_preset    = 0;
-    static int frame_rate_preset    = 0;
-    static bool fullscreen          = false;
+    static int resolution_preset            = 0;
+    static int frame_rate_preset            = 0;
+    static int vsync_preset                 = 0;
+    static bool fullscreen_preset           = false;
     static Coroutine change_buffer_coroutine;
     public static Action change_buffer_started, change_buffer_cancelled, change_buffer_accepted;
     public static readonly float change_buffer_time = 6f;
@@ -33,13 +34,14 @@ public static class DisplaySettingsManager{
         set_resolution(load_resolution_preset());
         set_fullscreen(load_fullscreen_preset());
         set_frame_rate_preset(load_frame_rate_preset());
+        set_vsync_preset(load_vsync_preset());
     }
 
-    public static int load_resolution_preset(){
+    private static int load_resolution_preset(){
         return PlayerPrefs.GetInt("resolution_preset", resolution_preset);
     }
 
-    public static bool load_fullscreen_preset(){
+    private static bool load_fullscreen_preset(){
         return PlayerPrefs.GetInt("fullscreen",0) == 1? true: false;
     }
 
@@ -47,10 +49,16 @@ public static class DisplaySettingsManager{
         return PlayerPrefs.GetInt("frame_rate_preset",frame_rate_preset);
     }
 
+    private static int load_vsync_preset(){
+        return PlayerPrefs.GetInt("vsync_preset",vsync_preset);
+    }
+
     public static void save_player_prefs(){
+        // Log.MethodCall();
         PlayerPrefs.SetInt("frame_rate_preset",frame_rate_preset);
-        PlayerPrefs.SetInt("fullscreen", fullscreen == true?1:0);
+        PlayerPrefs.SetInt("fullscreen", fullscreen_preset == true?1:0);
         PlayerPrefs.SetInt("resolution_preset", resolution_preset);
+        PlayerPrefs.SetInt("vsync_preset",vsync_preset);
         PlayerPrefs.Save();
     }
 
@@ -72,21 +80,25 @@ public static class DisplaySettingsManager{
         );    
     }
 
-    private static void set_resolution(int preset){
-        resolution_preset = preset;
-        Vector2Int resolution = resolutions[preset];
-        Screen.SetResolution(resolution.x, resolution.y, fullscreen);
+    private static void set_resolution(int _preset){
+        resolution_preset = _preset;
+        Vector2Int resolution = resolutions[_preset];
+        Screen.SetResolution(resolution.x, resolution.y, fullscreen_preset);
     }
     private static void set_fullscreen(bool _fullscreen){
-        fullscreen = _fullscreen;
-        Screen.fullScreenMode = fullscreen == false? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
+        fullscreen_preset = _fullscreen;
+        Screen.fullScreenMode = fullscreen_preset == false? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
         set_resolution(resolution_preset);
     }
-    public static void set_frame_rate_preset(int preset){
-        frame_rate_preset = preset;
+    public static void set_frame_rate_preset(int _preset){
+        frame_rate_preset = _preset;
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = frame_caps[preset];
-        save_player_prefs();
+        Application.targetFrameRate = frame_caps[_preset];
+    }
+    public static void set_vsync_preset(int _preset){
+        vsync_preset = _preset;
+        QualitySettings.vSyncCount = _preset;
+        // Debug.Log(QualitySettings.vSyncCount);
     }
 
     // used for confirmation when changing important settings.
@@ -108,7 +120,6 @@ public static class DisplaySettingsManager{
     }
 
     public static void accept_display_settings_change(){
-        save_player_prefs();
         change_buffer_accepted?.Invoke();
         UnityHook.instance.StopCoroutine(change_buffer_coroutine);
     }
@@ -120,6 +131,7 @@ public static class DisplaySettingsManager{
     }
 
     public static int get_resolution_preset()   => resolution_preset;
-    public static bool get_is_fullscreen()      => fullscreen;
+    public static bool get_fullscreen_preset()  => fullscreen_preset;
     public static int get_frame_rate_preset()   => frame_rate_preset;
+    public static int get_vsync_preset()        => vsync_preset;
 }
