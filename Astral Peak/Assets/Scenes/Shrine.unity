@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -173495125
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 82b63dd024ee29d4eb441921c71f4d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5524,16 +5524,20 @@ PrefabInstance:
       value: Skylight
       objectReference: {fileID: 0}
     - target: {fileID: 5431643312312678883, guid: 4c5d6971067d17049861ce8525a9710e, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
+      propertyPath: m_SortingLayer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6212301112438479017, guid: 4c5d6971067d17049861ce8525a9710e, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212301112438479017, guid: 4c5d6971067d17049861ce8525a9710e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6212301112438479017, guid: 4c5d6971067d17049861ce8525a9710e, type: 3}
       propertyPath: m_SortingLayerID
-      value: -173495125
+      value: 226215159
       objectReference: {fileID: 0}
     - target: {fileID: 6455198018927357916, guid: 4c5d6971067d17049861ce8525a9710e, type: 3}
       propertyPath: audio_spectrum

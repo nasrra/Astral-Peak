@@ -206,6 +206,7 @@ public class Giant2 : Boss<Movement>{
     }
 
     protected override void death_start(){
+        StopAllCoroutines();
         animator.Play("Giant2DeathHead");
         left_hand.death();
         right_hand.death();
