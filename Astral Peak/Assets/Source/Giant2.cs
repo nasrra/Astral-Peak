@@ -152,7 +152,7 @@ public class Giant2 : Boss<Movement>{
 
     private void play_attack_animation(string animation){
         if(animator.clips.ContainsKey(animation+"Head")){
-            animator.Play(animation+"Head");
+            animator.PlayInstant(animation+"Head");
         }
         if(single_hand_attacks.Contains(animation)){
             Giant2Hand hand = UnityEngine.Random.Range(0,2) == 0? left_hand : right_hand;
@@ -168,7 +168,7 @@ public class Giant2 : Boss<Movement>{
             right_hand.attack($"{animation}{(x==0?2:1)}Hand");
         }
         else
-            animator.Play($"{animation}Head");
+            animator.PlayInstant($"{animation}Head");
     }
 
     private void idle(float time){
@@ -176,8 +176,10 @@ public class Giant2 : Boss<Movement>{
             time: time,
             start_action: ()=>{
                 play_idle_animation(); 
-                if(is_idle_flying == false)
+                if(is_idle_flying == false){
+                    movement.reset_speed();
                     movement.figure_eight_state(reverse: UnityEngine.Random.Range(0,2)==0, x_factor:.1f, y_factor:.05f);  
+                }
             }
         );
     }
@@ -190,9 +192,9 @@ public class Giant2 : Boss<Movement>{
     }
 
     public void play_intro_animation(){
-        left_hand.animator.Play("Giant2Intro1Hand",0,0);
-        right_hand.animator.Play("Giant2Intro2Hand",0,0);
-        animator.Play("Giant2IntroHead");
+        left_hand.animator.PlayInstant("Giant2Intro1Hand");
+        right_hand.animator.PlayInstant("Giant2Intro2Hand");
+        animator.PlayInstant("Giant2IntroHead");
     }
 
     public void move_to_point_camera_adjust(){
