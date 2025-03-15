@@ -54,7 +54,7 @@ public class PlayerAnimator : CharacterAnimatorOverride{
     public void medium_bounce() => play_bounce_override(MBOUNCE);
 
     public void up_toggle() => play_body_override(UP_TOGGLE);
-    public void stop_up_toggle() => animator.Play(NONE, BODY_OVERRIDE);
+    public void stop_up_toggle() => play_body_override(NONE);
 
     public bool is_falling() => state == FALL_LOOP || state == FALL_START;
 }
