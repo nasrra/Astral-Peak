@@ -134,6 +134,7 @@ public class Giant2Hand : MonoBehaviour{
 
     public void death(){
         state.clear_and_stop();
+        StopAllCoroutines();
         turn_off_finger_beam();
         particles.stop_all_particles();
         sprite.renew();
