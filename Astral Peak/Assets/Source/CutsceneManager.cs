@@ -37,7 +37,7 @@ public static class CutsceneManager{
 
     static void start_skip_cutscene(){
         skipping = true;
-        GameManager.set_time_scale(16);
+        GameManager.set_time_scale(15);
         unlink_cutscene_skip();
     }
 
