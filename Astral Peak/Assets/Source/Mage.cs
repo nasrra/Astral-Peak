@@ -19,6 +19,7 @@ public class Mage : Boss<Movement>{
     protected Dictionary<string, Action> phase_linker;
     protected Dictionary<string, Action> phase_unlinker;
     protected Dictionary<string, Action> exit_cutscene_states;
+    private bool reversePath = false;
     
     // Base: 
     void Awake(){
@@ -218,7 +219,8 @@ public class Mage : Boss<Movement>{
     }
     private void idle_fly_pattern(){
         movement.halt();
-        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reverse: UnityEngine.Random.Range(0,2)==0);
+        reversePath = !reversePath;
+        movement.figure_eight_state(x_factor:.133f, y_factor:.0665f, reversePath);
     }
     private void fly_and_attack_state(){
         animator.Play("MageHover");

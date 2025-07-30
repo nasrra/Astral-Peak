@@ -37,6 +37,7 @@ public class Giant2 : Boss<Movement>{
         //};
     [SerializeField] Transform head, player_hover_point, start_point, move_to_target;
     bool is_idle_flying = false;
+    private bool reversePath = false;
 
     void OnEnable(){
         state = new StateQueue(this, fly_and_attack_state);
@@ -178,7 +179,8 @@ public class Giant2 : Boss<Movement>{
                 play_idle_animation(); 
                 if(is_idle_flying == false){
                     movement.reset_speed();
-                    movement.figure_eight_state(reverse: UnityEngine.Random.Range(0,2)==0, x_factor:.1f, y_factor:.05f);  
+                    reversePath = !reversePath;
+                    movement.figure_eight_state(x_factor:.1f, y_factor:.05f, reverse: reversePath);  
                 }
             }
         );

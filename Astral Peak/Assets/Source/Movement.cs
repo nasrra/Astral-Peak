@@ -300,11 +300,11 @@ public class Movement : MonoBehaviour{
             yield return new WaitForFixedUpdate();
         }
     }
-    public void figure_eight_state(float x_factor, float y_factor, bool reverse = false){
+    public void figure_eight_state(float x_factor, float y_factor, bool reverse){
         state_switch(ref move_state, move());
         state_switch(ref controller_state, figure_eight(x_factor, y_factor, reverse));
     }
-    protected IEnumerator figure_eight(float x_factor, float y_factor, bool reverse = false){
+    protected IEnumerator figure_eight(float x_factor, float y_factor, bool reverse){
         float elapsed_time = 0;
         float reverse_factor = reverse==false? 1 : -1;
         float y_speed_factor = data.speed/y_factor;
