@@ -16,6 +16,11 @@ public class Torch : MonoBehaviour{
         original_scale = fire[0].transform.localScale;
     }
 
+    void Start()
+    {        
+        on();
+    }
+
     void state_switch(ref Coroutine state, IEnumerator _state){
         if(state != null)
             StopCoroutine(state);
