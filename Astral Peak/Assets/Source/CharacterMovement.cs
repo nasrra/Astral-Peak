@@ -102,16 +102,23 @@ public class CharacterMovement : Movement{
     // override vertical move to take jumping into account.
     protected override void vertical_move(){
         // if we are ggrounded and want to jump, start jumping.
-        if(jumping == true && Mathf.Abs(move_direction.y) > 0.1f){
+        if(jumping == true && Mathf.Abs(move_direction.y) > 0.1f && jump_time_counter < jump_time){
+        // if(jump_time_counter > 0){
             // if the jump has not exceeded its max height, keeping apply force.
             if(jump_time_counter < jump_time){
                 rb.linearVelocity = new Vector2(
                     rb.linearVelocity.x, 
-                    move_direction.y * jump_force + (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
+                    move_direction.y * jump_force - (jump_time_counter * jump_force_multiplier) // adding multipler for 'feel'.
                 );
                 jump_time_counter += Time.deltaTime;
             }
-        }      
+        }
+        else if(grounded==false){
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x, 
+                    rb.linearVelocity.y - 0.66f // adding multipler for 'feel'.
+                );
+        }
     }
 
     // used for ai path finding and other state machines.

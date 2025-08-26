@@ -11,7 +11,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        4,
             idle_cooldown:          2,
-            combat_cooldown:        2
+            combat_cooldown:        2.25f
         ),
         jump_n_dash = new BossAttack(
             "RiderJumpNDash",
@@ -20,7 +20,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   10,
             attack_cooldown:        4,
             idle_cooldown:          2,
-            combat_cooldown:        1
+            combat_cooldown:        1.25f
         ),
         round_shot = new BossAttack(
             "RiderRoundShot",
@@ -29,7 +29,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          2,
-            combat_cooldown:        1
+            combat_cooldown:        1.25f
         ),
         front_jump_forward = new BossAttack(
             "RiderJumpForward",
@@ -38,7 +38,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        16,
             idle_cooldown:          0,
-            combat_cooldown:        1
+            combat_cooldown:        1.25f
         ),
         back_jump_forward = new BossAttack(
             "RiderJumpForward",
@@ -47,7 +47,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          0,
-            combat_cooldown:        1
+            combat_cooldown:        1.25f
         ),
         jump_backward = new BossAttack(
             "RiderJumpBackward",
@@ -56,7 +56,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        16,
             idle_cooldown:          0,
-            combat_cooldown:        1
+            combat_cooldown:        1.25f
         ),  
         walk_n_fire = new BossAttack(
             "RiderWalkNFire",
@@ -65,7 +65,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          0,
-            combat_cooldown:        2
+            combat_cooldown:        2.25f
         )
         ;
         protected override void create_movesets(){

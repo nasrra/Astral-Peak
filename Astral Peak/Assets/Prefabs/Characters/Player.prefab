@@ -703,7 +703,7 @@ MonoBehaviour:
   can_dash: 1
   is_dashing: 0
   data:
-    speed: 6
+    speed: 7
     accel: 0.825
     decel: 0.25
     gravity: 3.5
@@ -719,9 +719,9 @@ MonoBehaviour:
   grounded: 0
   jumping: 0
   can_jump: 1
-  jump_time: 0.35
-  jump_force: 12
-  jump_force_multiplier: 3
+  jump_time: 0.45
+  jump_force: 18
+  jump_force_multiplier: 18
   jump_time_counter: 0
   ground_checker: {fileID: 559969052093912371}
 --- !u!1 &2197240984357164275
@@ -6066,7 +6066,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -23.744652, y: -6.684528}
+  m_ConnectedAnchor: {x: -49.749195, y: -6.036306}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:

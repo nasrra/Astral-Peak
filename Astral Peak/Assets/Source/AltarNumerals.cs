@@ -11,7 +11,7 @@ public class AltarNumerals : MonoBehaviour{
     [SerializeField] AudioPlayer audio_player;
     void Awake(){
         handle_cutscene();
-        set_all_on();
+        // set_all_on();
     }
 
     public void turn_on(List<int> numerals){

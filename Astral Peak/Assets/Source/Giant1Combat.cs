@@ -9,7 +9,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:  2,
         attack_cooldown:       6,
         idle_cooldown:         0,
-        combat_cooldown:       2.2f
+        combat_cooldown:       1f
     ),
     jump_backward = new BossAttack(
         "Giant1JumpBackward",
@@ -27,7 +27,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        16,
         idle_cooldown:          0,
-        combat_cooldown:        1
+        combat_cooldown:        0.5f
     ),
     back_jump_forward = new BossAttack(
         "Giant1JumpForward",
@@ -36,7 +36,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        2,
         idle_cooldown:          0,  
-        combat_cooldown:        1
+        combat_cooldown:        0.5f
     ),
     round_slam = new BossAttack(
         "Giant1RoundSlam",
@@ -45,7 +45,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        24,
         idle_cooldown:          1,
-        combat_cooldown:        2
+        combat_cooldown:        1.25f
     ),
     walk_projectile = new BossAttack(
         "Giant1WalkingProjectile",
@@ -54,7 +54,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
-        combat_cooldown:        1.5f
+        combat_cooldown:        0.1f
     ),
     geyser = new BossAttack(
         "Giant1Geyser",
@@ -63,7 +63,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        8,
         idle_cooldown:          0,
-        combat_cooldown:        2
+        combat_cooldown:        1.25f
     ),
     three_piece = new BossAttack(
         "Giant1ThreePiece",
@@ -72,7 +72,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        10,
         idle_cooldown:          0,
-        combat_cooldown:        2.2f
+        combat_cooldown:        1.25f
     )
     ;
     protected override void create_movesets(){

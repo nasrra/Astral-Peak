@@ -42,9 +42,9 @@ public class CharacterAnimatorOverride : MonoBehaviour{
 
     public void play(int animation_hash, bool set_state){
         if( animator.isActiveAndEnabled == true){
-            play_head(animation_hash);
-            play_body(animation_hash);
-            play_legs(animation_hash);
+            play_head_instant(animation_hash);
+            play_body_instant(animation_hash);
+            play_legs_instant(animation_hash);
             state = set_state == true? animation_hash : state;
         }
     }

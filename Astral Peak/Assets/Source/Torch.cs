@@ -18,7 +18,7 @@ public class Torch : MonoBehaviour{
 
     void Start()
     {        
-        on();
+        // on();
     }
 
     void state_switch(ref Coroutine state, IEnumerator _state){
