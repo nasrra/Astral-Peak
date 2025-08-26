@@ -34,7 +34,7 @@ public class Introduction : Cutscene{
         controller.lore_text.Play("fade_in");
         yield return new WaitForSeconds(40);
         controller.fire_1.turn_off();
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(4);
         controller.fire_2.turn_off();
         yield return new WaitForSeconds(4);
         AudioManager.stop_music();
