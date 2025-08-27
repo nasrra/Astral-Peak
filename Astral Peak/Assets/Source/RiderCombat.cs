@@ -29,7 +29,7 @@ public class RiderCombat : BossCombat{
             arena_bound_distance:   0,
             attack_cooldown:        8,
             idle_cooldown:          2,
-            combat_cooldown:        1.25f
+            combat_cooldown:        2.25f
         ),
         front_jump_forward = new BossAttack(
             "RiderJumpForward",

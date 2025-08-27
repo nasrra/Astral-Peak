@@ -27,7 +27,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        16,
         idle_cooldown:          0,
-        combat_cooldown:        0.5f
+        combat_cooldown:        0f
     ),
     back_jump_forward = new BossAttack(
         "Giant1JumpForward",
@@ -36,7 +36,7 @@ public class Giant1Combat : BossCombat{
         arena_bound_distance:   0,
         attack_cooldown:        2,
         idle_cooldown:          0,  
-        combat_cooldown:        0.5f
+        combat_cooldown:        0f
     ),
     round_slam = new BossAttack(
         "Giant1RoundSlam",
